@@ -11,6 +11,10 @@
 #import "YdForgetViewController.h"
 #import "YdRegisterViewController.h"
 #import "WarningBox.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
 @interface ViewController ()
 
 @end
@@ -22,8 +26,8 @@
     //导航栏名称
     self.navigationItem.title = @"登录";
     
-    self.PhoneText.text = @"18345559961";
-    self.PasswordText.text = @"123456";
+    self.PhoneText.text = @"15765512881";
+    self.PasswordText.text = @"111111";
     
     [self TextFieldSetUp];
 }
@@ -32,7 +36,7 @@
     
     [self.PhoneText resignFirstResponder];
     [self.PasswordText resignFirstResponder];
-   
+    
 }
 //设置textfield
 -(void)TextFieldSetUp
@@ -144,10 +148,75 @@
         }
         else if ([self isMobileNumberClassification:self.PhoneText.text]&&[self mima:self.PasswordText.text])
         {
-            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-            [self presentViewController:Root animated:YES completion:^{
-                [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+            
+            [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
+            
+            //userID    暂时不用改
+            NSString * userID=@"0";
+            
+            //请求地址   地址不同 必须要改
+            NSString * url =@"/login";
+            
+            //时间戳
+            NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+            NSTimeInterval a=[dat timeIntervalSince1970];
+            NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+            
+            
+            //将上传对象转换为json格式字符串
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+            SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+            //出入参数：
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"loginName",_PasswordText.text,@"password", nil];
+            
+            NSString*jsonstring=[writer stringWithObject:datadic];
+            
+            //获取签名
+            NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+            
+            NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+            
+            
+            //电泳借口需要上传的数据
+            NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+            
+            [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                @try
+                {
+                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                    NSLog(@"%@",responseObject);
+                    if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                        
+                        NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                        NSLog(@"%@",datadic);
+                        
+                        YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                        [self presentViewController:Root animated:YES completion:^{
+                            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+                        }];
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+                @catch (NSException * e) {
+                    
+                    [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                    
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                NSLog(@"错误：%@",error);
+                
             }];
+            
         }
     }
     else
@@ -158,7 +227,7 @@
 //忘记密码
 - (IBAction)ForgetButton:(id)sender {
     [self.view endEditing:YES];
-
+    
     //跳转到忘记密码
     YdForgetViewController *Forget = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"forget"];
     [self.navigationController pushViewController:Forget animated:YES];
@@ -166,7 +235,7 @@
 //注册
 - (IBAction)RegisterButton:(id)sender {
     [self.view endEditing:YES];
-
+    
     //跳转到注册
     YdRegisterViewController *Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"register"];
     [self.navigationController pushViewController:Register animated:YES];
