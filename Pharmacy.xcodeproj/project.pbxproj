@@ -1,0 +1,972 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9502A49C1C9CF38500578339 /* YdSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A49B1C9CF38500578339 /* YdSearchViewController.m */; };
+		9502A4A01C9CF3CA00578339 /* YdSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A49F1C9CF3CA00578339 /* YdSearchResultViewController.m */; };
+		9502A4A51C9CFE2100578339 /* YdbannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A4A41C9CFE2100578339 /* YdbannerViewController.m */; };
+		9502A4AA1C9D21B200578339 /* YdDiseaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A4A91C9D21B200578339 /* YdDiseaseViewController.m */; };
+		9502A4AD1C9D21D300578339 /* YdDrugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A4AC1C9D21D300578339 /* YdDrugsViewController.m */; };
+		9502A4B11C9D3F1300578339 /* YdShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9502A4B01C9D3F1300578339 /* YdShoppingCartViewController.m */; };
+		9505D6CE1C9A7B27006F6850 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D6CD1C9A7B27006F6850 /* main.m */; };
+		9505D6D11C9A7B27006F6850 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D6D01C9A7B27006F6850 /* AppDelegate.m */; };
+		9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D6D31C9A7B27006F6850 /* ViewController.m */; };
+		9505D6D71C9A7B27006F6850 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9505D6D51C9A7B27006F6850 /* Main.storyboard */; };
+		9505D6D91C9A7B27006F6850 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9505D6D81C9A7B27006F6850 /* Assets.xcassets */; };
+		9505D6DC1C9A7B27006F6850 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9505D6DA1C9A7B27006F6850 /* LaunchScreen.storyboard */; };
+		9505D6E71C9A7B27006F6850 /* PharmacyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D6E61C9A7B27006F6850 /* PharmacyTests.m */; };
+		9505D6F21C9A7B27006F6850 /* PharmacyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D6F11C9A7B27006F6850 /* PharmacyUITests.m */; };
+		9505D7051C9A7F72006F6850 /* YdHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */; };
+		9505D70D1C9A7FF7006F6850 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7081C9A7FF7006F6850 /* RECommonFunctions.m */; };
+		9505D70E1C9A7FF7006F6850 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D70A1C9A7FF7006F6850 /* RESideMenu.m */; };
+		9505D70F1C9A7FF7006F6850 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D70C1C9A7FF7006F6850 /* UIViewController+RESideMenu.m */; };
+		9505D7141C9A7FFF006F6850 /* YdRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7111C9A7FFF006F6850 /* YdRootViewController.m */; };
+		9505D7151C9A7FFF006F6850 /* YdLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */; };
+		9505D7171C9A8378006F6850 /* @3x_xx_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7161C9A8378006F6850 /* @3x_xx_06.png */; };
+		9505D71E1C9A8727006F6850 /* 7008.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9505D71D1C9A8727006F6850 /* 7008.wav */; };
+		9505D7271C9A9BE5006F6850 /* IMG_0797.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7221C9A9BE5006F6850 /* IMG_0797.jpg */; };
+		9505D7281C9A9BE5006F6850 /* IMG_0798.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7231C9A9BE5006F6850 /* IMG_0798.jpg */; };
+		9505D7291C9A9BE5006F6850 /* IMG_0799.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7241C9A9BE5006F6850 /* IMG_0799.jpg */; };
+		9505D72A1C9A9BE5006F6850 /* IMG_0800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7251C9A9BE5006F6850 /* IMG_0800.jpg */; };
+		9505D72B1C9A9BE5006F6850 /* IMG_0801.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9505D7261C9A9BE5006F6850 /* IMG_0801.jpg */; };
+		9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7301C9A9CE3006F6850 /* YdScanViewController.m */; };
+		9505D7341C9A9D08006F6850 /* YdScanJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */; };
+		9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */; };
+		9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D7381C9A9D88006F6850 /* AVFoundation.framework */; };
+		9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D73A1C9A9D91006F6850 /* AdSupport.framework */; };
+		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
+		95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */; };
+		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
+		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
+		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
+		95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79551C9BA8E30093829A /* YdModifyViewController.m */; };
+		95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795A1C9BB07B0093829A /* MBProgressHUD.m */; };
+		95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795C1C9BB07B0093829A /* WarningBox.m */; };
+		95EA79661C9BEAB50093829A /* ZLImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79651C9BEAB50093829A /* ZLImageScrollView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9505D6E31C9A7B27006F6850 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9505D6C11C9A7B27006F6850 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9505D6C81C9A7B27006F6850;
+			remoteInfo = Pharmacy;
+		};
+		9505D6EE1C9A7B27006F6850 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9505D6C11C9A7B27006F6850 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9505D6C81C9A7B27006F6850;
+			remoteInfo = Pharmacy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9502A49A1C9CF38500578339 /* YdSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdSearchViewController.h; sourceTree = "<group>"; };
+		9502A49B1C9CF38500578339 /* YdSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdSearchViewController.m; sourceTree = "<group>"; };
+		9502A49E1C9CF3CA00578339 /* YdSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdSearchResultViewController.h; sourceTree = "<group>"; };
+		9502A49F1C9CF3CA00578339 /* YdSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdSearchResultViewController.m; sourceTree = "<group>"; };
+		9502A4A31C9CFE2100578339 /* YdbannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdbannerViewController.h; sourceTree = "<group>"; };
+		9502A4A41C9CFE2100578339 /* YdbannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdbannerViewController.m; sourceTree = "<group>"; };
+		9502A4A81C9D21B200578339 /* YdDiseaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDiseaseViewController.h; sourceTree = "<group>"; };
+		9502A4A91C9D21B200578339 /* YdDiseaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDiseaseViewController.m; sourceTree = "<group>"; };
+		9502A4AB1C9D21D300578339 /* YdDrugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugsViewController.h; sourceTree = "<group>"; };
+		9502A4AC1C9D21D300578339 /* YdDrugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugsViewController.m; sourceTree = "<group>"; };
+		9502A4AF1C9D3F1300578339 /* YdShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdShoppingCartViewController.h; sourceTree = "<group>"; };
+		9502A4B01C9D3F1300578339 /* YdShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdShoppingCartViewController.m; sourceTree = "<group>"; };
+		9505D6C91C9A7B27006F6850 /* Pharmacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pharmacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9505D6CD1C9A7B27006F6850 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9505D6CF1C9A7B27006F6850 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9505D6D01C9A7B27006F6850 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9505D6D21C9A7B27006F6850 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9505D6D31C9A7B27006F6850 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9505D6D61C9A7B27006F6850 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9505D6D81C9A7B27006F6850 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9505D6DB1C9A7B27006F6850 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9505D6DD1C9A7B27006F6850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9505D6E21C9A7B27006F6850 /* PharmacyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PharmacyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9505D6E61C9A7B27006F6850 /* PharmacyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PharmacyTests.m; sourceTree = "<group>"; };
+		9505D6E81C9A7B27006F6850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9505D6ED1C9A7B27006F6850 /* PharmacyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PharmacyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9505D6F11C9A7B27006F6850 /* PharmacyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PharmacyUITests.m; sourceTree = "<group>"; };
+		9505D6F31C9A7B27006F6850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdHomePageViewController.h; sourceTree = "<group>"; };
+		9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdHomePageViewController.m; sourceTree = "<group>"; };
+		9505D7071C9A7FF7006F6850 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		9505D7081C9A7FF7006F6850 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		9505D7091C9A7FF7006F6850 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		9505D70A1C9A7FF7006F6850 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		9505D70B1C9A7FF7006F6850 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		9505D70C1C9A7FF7006F6850 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		9505D7101C9A7FFF006F6850 /* YdRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRootViewController.h; sourceTree = "<group>"; };
+		9505D7111C9A7FFF006F6850 /* YdRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRootViewController.m; sourceTree = "<group>"; };
+		9505D7121C9A7FFF006F6850 /* YdLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdLeftViewController.h; sourceTree = "<group>"; };
+		9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdLeftViewController.m; sourceTree = "<group>"; };
+		9505D7161C9A8378006F6850 /* @3x_xx_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "@3x_xx_06.png"; sourceTree = "<group>"; };
+		9505D71D1C9A8727006F6850 /* 7008.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7008.wav; sourceTree = "<group>"; };
+		9505D7221C9A9BE5006F6850 /* IMG_0797.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0797.jpg; sourceTree = "<group>"; };
+		9505D7231C9A9BE5006F6850 /* IMG_0798.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0798.jpg; sourceTree = "<group>"; };
+		9505D7241C9A9BE5006F6850 /* IMG_0799.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0799.jpg; sourceTree = "<group>"; };
+		9505D7251C9A9BE5006F6850 /* IMG_0800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0800.jpg; sourceTree = "<group>"; };
+		9505D7261C9A9BE5006F6850 /* IMG_0801.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0801.jpg; sourceTree = "<group>"; };
+		9505D72F1C9A9CE3006F6850 /* YdScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdScanViewController.h; sourceTree = "<group>"; };
+		9505D7301C9A9CE3006F6850 /* YdScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdScanViewController.m; sourceTree = "<group>"; };
+		9505D7321C9A9D08006F6850 /* YdScanJumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdScanJumpViewController.h; sourceTree = "<group>"; };
+		9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdScanJumpViewController.m; sourceTree = "<group>"; };
+		9505D7351C9A9D34006F6850 /* YdGenerateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdGenerateViewController.h; sourceTree = "<group>"; };
+		9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdGenerateViewController.m; sourceTree = "<group>"; };
+		9505D7381C9A9D88006F6850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9505D73A1C9A9D91006F6850 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
+		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
+		95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugJumpViewController.h; sourceTree = "<group>"; };
+		95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugJumpViewController.m; sourceTree = "<group>"; };
+		95CA50F81CA121F7006CBC72 /* disease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = disease.plist; sourceTree = "<group>"; };
+		95EA794E1C9BA8A10093829A /* YdForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdForgetViewController.h; sourceTree = "<group>"; };
+		95EA794F1C9BA8A10093829A /* YdForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdForgetViewController.m; sourceTree = "<group>"; };
+		95EA79511C9BA8BF0093829A /* YdRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRegisterViewController.h; sourceTree = "<group>"; };
+		95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRegisterViewController.m; sourceTree = "<group>"; };
+		95EA79541C9BA8E30093829A /* YdModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdModifyViewController.h; sourceTree = "<group>"; };
+		95EA79551C9BA8E30093829A /* YdModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdModifyViewController.m; sourceTree = "<group>"; };
+		95EA79591C9BB07B0093829A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		95EA795A1C9BB07B0093829A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		95EA795B1C9BB07B0093829A /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
+		95EA795C1C9BB07B0093829A /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
+		95EA79641C9BEAB50093829A /* ZLImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLImageScrollView.h; sourceTree = "<group>"; };
+		95EA79651C9BEAB50093829A /* ZLImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLImageScrollView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9505D6C61C9A7B27006F6850 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */,
+				9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6DF1C9A7B27006F6850 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6EA1C9A7B27006F6850 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9502A49D1C9CF38F00578339 /* 病症与药品 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A49E1C9CF3CA00578339 /* YdSearchResultViewController.h */,
+				9502A49F1C9CF3CA00578339 /* YdSearchResultViewController.m */,
+				9502A4A61C9D215500578339 /* 病症详情 */,
+				9502A4A71C9D216200578339 /* 药品详情 */,
+			);
+			name = "病症与药品";
+			sourceTree = "<group>";
+		};
+		9502A4A11C9CF54C00578339 /* 搜索界面 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A49A1C9CF38500578339 /* YdSearchViewController.h */,
+				9502A49B1C9CF38500578339 /* YdSearchViewController.m */,
+			);
+			name = "搜索界面";
+			sourceTree = "<group>";
+		};
+		9502A4A21C9CFDE400578339 /* 轮播详情 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A4A31C9CFE2100578339 /* YdbannerViewController.h */,
+				9502A4A41C9CFE2100578339 /* YdbannerViewController.m */,
+			);
+			name = "轮播详情";
+			sourceTree = "<group>";
+		};
+		9502A4A61C9D215500578339 /* 病症详情 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A4A81C9D21B200578339 /* YdDiseaseViewController.h */,
+				9502A4A91C9D21B200578339 /* YdDiseaseViewController.m */,
+			);
+			name = "病症详情";
+			sourceTree = "<group>";
+		};
+		9502A4A71C9D216200578339 /* 药品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A4AB1C9D21D300578339 /* YdDrugsViewController.h */,
+				9502A4AC1C9D21D300578339 /* YdDrugsViewController.m */,
+			);
+			name = "药品详情";
+			sourceTree = "<group>";
+		};
+		9505D6C01C9A7B27006F6850 = {
+			isa = PBXGroup;
+			children = (
+				9505D6CB1C9A7B27006F6850 /* Pharmacy */,
+				9505D6E51C9A7B27006F6850 /* PharmacyTests */,
+				9505D6F01C9A7B27006F6850 /* PharmacyUITests */,
+				9505D6CA1C9A7B27006F6850 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9505D6CA1C9A7B27006F6850 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9505D6C91C9A7B27006F6850 /* Pharmacy.app */,
+				9505D6E21C9A7B27006F6850 /* PharmacyTests.xctest */,
+				9505D6ED1C9A7B27006F6850 /* PharmacyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9505D6CB1C9A7B27006F6850 /* Pharmacy */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7021C9A7B59006F6850 /* Other */,
+				9505D7011C9A7B34006F6850 /* Model */,
+				9505D7001C9A7B31006F6850 /* View */,
+				9505D6FF1C9A7B2F006F6850 /* Controller */,
+				9505D6CC1C9A7B27006F6850 /* Supporting Files */,
+			);
+			path = Pharmacy;
+			sourceTree = "<group>";
+		};
+		9505D6CC1C9A7B27006F6850 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9505D6CD1C9A7B27006F6850 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9505D6E51C9A7B27006F6850 /* PharmacyTests */ = {
+			isa = PBXGroup;
+			children = (
+				9505D6E61C9A7B27006F6850 /* PharmacyTests.m */,
+				9505D6E81C9A7B27006F6850 /* Info.plist */,
+			);
+			path = PharmacyTests;
+			sourceTree = "<group>";
+		};
+		9505D6F01C9A7B27006F6850 /* PharmacyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9505D6F11C9A7B27006F6850 /* PharmacyUITests.m */,
+				9505D6F31C9A7B27006F6850 /* Info.plist */,
+			);
+			path = PharmacyUITests;
+			sourceTree = "<group>";
+		};
+		9505D6FF1C9A7B2F006F6850 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9505D71B1C9A856B006F6850 /* 登录功能 */,
+				9505D7181C9A8537006F6850 /* 首页 */,
+				95EA79621C9BD9710093829A /* 药品 */,
+				95EA79611C9BD96F0093829A /* New Group2 */,
+				95EA79601C9BD96C0093829A /* New Group1 */,
+				95EA795F1C9BD9690093829A /* 订单 */,
+				9505D7191C9A8543006F6850 /* 侧滑相关 */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9505D7001C9A7B31006F6850 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7221C9A9BE5006F6850 /* IMG_0797.jpg */,
+				9505D7231C9A9BE5006F6850 /* IMG_0798.jpg */,
+				9505D7241C9A9BE5006F6850 /* IMG_0799.jpg */,
+				9505D7251C9A9BE5006F6850 /* IMG_0800.jpg */,
+				9505D7261C9A9BE5006F6850 /* IMG_0801.jpg */,
+				9505D7161C9A8378006F6850 /* @3x_xx_06.png */,
+				9505D6D51C9A7B27006F6850 /* Main.storyboard */,
+				9505D6D81C9A7B27006F6850 /* Assets.xcassets */,
+				9505D6DA1C9A7B27006F6850 /* LaunchScreen.storyboard */,
+				9505D6DD1C9A7B27006F6850 /* Info.plist */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9505D7011C9A7B34006F6850 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79671C9BEACD0093829A /* 轮播 */,
+				95EA79581C9BB0610093829A /* 提示框 */,
+				9505D71C1C9A8579006F6850 /* 侧滑 */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9505D7021C9A7B59006F6850 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				950AF4C31C9F89E8000E2B8F /* 扫码 */,
+				9505D71D1C9A8727006F6850 /* 7008.wav */,
+				9505D6CF1C9A7B27006F6850 /* AppDelegate.h */,
+				9505D6D01C9A7B27006F6850 /* AppDelegate.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		9505D7061C9A7FF7006F6850 /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7071C9A7FF7006F6850 /* RECommonFunctions.h */,
+				9505D7081C9A7FF7006F6850 /* RECommonFunctions.m */,
+				9505D7091C9A7FF7006F6850 /* RESideMenu.h */,
+				9505D70A1C9A7FF7006F6850 /* RESideMenu.m */,
+				9505D70B1C9A7FF7006F6850 /* UIViewController+RESideMenu.h */,
+				9505D70C1C9A7FF7006F6850 /* UIViewController+RESideMenu.m */,
+			);
+			path = RESideMenu;
+			sourceTree = "<group>";
+		};
+		9505D7181C9A8537006F6850 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */,
+				9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */,
+				9505D7201C9A8F78006F6850 /* 搜索 */,
+				9505D71F1C9A8F6B006F6850 /* 二维码 */,
+				9502A4A21C9CFDE400578339 /* 轮播详情 */,
+			);
+			name = "首页";
+			sourceTree = "<group>";
+		};
+		9505D7191C9A8543006F6850 /* 侧滑相关 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7101C9A7FFF006F6850 /* YdRootViewController.h */,
+				9505D7111C9A7FFF006F6850 /* YdRootViewController.m */,
+				9505D71A1C9A8551006F6850 /* 左侧滑 */,
+			);
+			name = "侧滑相关";
+			sourceTree = "<group>";
+		};
+		9505D71A1C9A8551006F6850 /* 左侧滑 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7121C9A7FFF006F6850 /* YdLeftViewController.h */,
+				9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */,
+			);
+			name = "左侧滑";
+			sourceTree = "<group>";
+		};
+		9505D71B1C9A856B006F6850 /* 登录功能 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79571C9BAD780093829A /* 登录 */,
+				95EA794B1C9BA8370093829A /* 注册 */,
+				95EA794C1C9BA8410093829A /* 忘记密码 */,
+				95EA794D1C9BA84D0093829A /* 修改密码 */,
+			);
+			name = "登录功能";
+			sourceTree = "<group>";
+		};
+		9505D71C1C9A8579006F6850 /* 侧滑 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7061C9A7FF7006F6850 /* RESideMenu */,
+			);
+			name = "侧滑";
+			sourceTree = "<group>";
+		};
+		9505D71F1C9A8F6B006F6850 /* 二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D72C1C9A9C8C006F6850 /* 扫描 */,
+				9505D72E1C9A9CAA006F6850 /* 扫描后跳转 */,
+				9505D72D1C9A9CA3006F6850 /* 生成 */,
+			);
+			name = "二维码";
+			sourceTree = "<group>";
+		};
+		9505D7201C9A8F78006F6850 /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A4A11C9CF54C00578339 /* 搜索界面 */,
+				9502A49D1C9CF38F00578339 /* 病症与药品 */,
+			);
+			name = "搜索";
+			sourceTree = "<group>";
+		};
+		9505D72C1C9A9C8C006F6850 /* 扫描 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D72F1C9A9CE3006F6850 /* YdScanViewController.h */,
+				9505D7301C9A9CE3006F6850 /* YdScanViewController.m */,
+			);
+			name = "扫描";
+			sourceTree = "<group>";
+		};
+		9505D72D1C9A9CA3006F6850 /* 生成 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7351C9A9D34006F6850 /* YdGenerateViewController.h */,
+				9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */,
+			);
+			name = "生成";
+			sourceTree = "<group>";
+		};
+		9505D72E1C9A9CAA006F6850 /* 扫描后跳转 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7321C9A9D08006F6850 /* YdScanJumpViewController.h */,
+				9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */,
+			);
+			name = "扫描后跳转";
+			sourceTree = "<group>";
+		};
+		950AF4C31C9F89E8000E2B8F /* 扫码 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D73A1C9A9D91006F6850 /* AdSupport.framework */,
+				9505D7381C9A9D88006F6850 /* AVFoundation.framework */,
+			);
+			name = "扫码";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9532B7B21CA24705008373E1 /* 首页跳转 */ = {
+			isa = PBXGroup;
+			children = (
+				95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */,
+				95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */,
+			);
+			name = "首页跳转";
+			sourceTree = "<group>";
+		};
+		95EA794B1C9BA8370093829A /* 注册 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79511C9BA8BF0093829A /* YdRegisterViewController.h */,
+				95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */,
+			);
+			name = "注册";
+			sourceTree = "<group>";
+		};
+		95EA794C1C9BA8410093829A /* 忘记密码 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA794E1C9BA8A10093829A /* YdForgetViewController.h */,
+				95EA794F1C9BA8A10093829A /* YdForgetViewController.m */,
+			);
+			name = "忘记密码";
+			sourceTree = "<group>";
+		};
+		95EA794D1C9BA84D0093829A /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79541C9BA8E30093829A /* YdModifyViewController.h */,
+				95EA79551C9BA8E30093829A /* YdModifyViewController.m */,
+			);
+			name = "修改密码";
+			sourceTree = "<group>";
+		};
+		95EA79571C9BAD780093829A /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D6D21C9A7B27006F6850 /* ViewController.h */,
+				9505D6D31C9A7B27006F6850 /* ViewController.m */,
+			);
+			name = "登录";
+			sourceTree = "<group>";
+		};
+		95EA79581C9BB0610093829A /* 提示框 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79591C9BB07B0093829A /* MBProgressHUD.h */,
+				95EA795A1C9BB07B0093829A /* MBProgressHUD.m */,
+				95EA795B1C9BB07B0093829A /* WarningBox.h */,
+				95EA795C1C9BB07B0093829A /* WarningBox.m */,
+			);
+			name = "提示框";
+			sourceTree = "<group>";
+		};
+		95EA795F1C9BD9690093829A /* 订单 */ = {
+			isa = PBXGroup;
+			children = (
+				9502A4AF1C9D3F1300578339 /* YdShoppingCartViewController.h */,
+				9502A4B01C9D3F1300578339 /* YdShoppingCartViewController.m */,
+			);
+			name = "订单";
+			sourceTree = "<group>";
+		};
+		95EA79601C9BD96C0093829A /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group1";
+			sourceTree = "<group>";
+		};
+		95EA79611C9BD96F0093829A /* New Group2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group2";
+			sourceTree = "<group>";
+		};
+		95EA79621C9BD9710093829A /* 药品 */ = {
+			isa = PBXGroup;
+			children = (
+				95CA50F81CA121F7006CBC72 /* disease.plist */,
+				950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */,
+				950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */,
+				9532B7B21CA24705008373E1 /* 首页跳转 */,
+			);
+			name = "药品";
+			sourceTree = "<group>";
+		};
+		95EA79631C9BEAB50093829A /* ZLImageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79641C9BEAB50093829A /* ZLImageScrollView.h */,
+				95EA79651C9BEAB50093829A /* ZLImageScrollView.m */,
+			);
+			path = ZLImageScrollView;
+			sourceTree = "<group>";
+		};
+		95EA79671C9BEACD0093829A /* 轮播 */ = {
+			isa = PBXGroup;
+			children = (
+				95EA79631C9BEAB50093829A /* ZLImageScrollView */,
+			);
+			name = "轮播";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9505D6C81C9A7B27006F6850 /* Pharmacy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9505D6F61C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "Pharmacy" */;
+			buildPhases = (
+				9505D6C51C9A7B27006F6850 /* Sources */,
+				9505D6C61C9A7B27006F6850 /* Frameworks */,
+				9505D6C71C9A7B27006F6850 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pharmacy;
+			productName = Pharmacy;
+			productReference = 9505D6C91C9A7B27006F6850 /* Pharmacy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9505D6E11C9A7B27006F6850 /* PharmacyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9505D6F91C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "PharmacyTests" */;
+			buildPhases = (
+				9505D6DE1C9A7B27006F6850 /* Sources */,
+				9505D6DF1C9A7B27006F6850 /* Frameworks */,
+				9505D6E01C9A7B27006F6850 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9505D6E41C9A7B27006F6850 /* PBXTargetDependency */,
+			);
+			name = PharmacyTests;
+			productName = PharmacyTests;
+			productReference = 9505D6E21C9A7B27006F6850 /* PharmacyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9505D6EC1C9A7B27006F6850 /* PharmacyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9505D6FC1C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "PharmacyUITests" */;
+			buildPhases = (
+				9505D6E91C9A7B27006F6850 /* Sources */,
+				9505D6EA1C9A7B27006F6850 /* Frameworks */,
+				9505D6EB1C9A7B27006F6850 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9505D6EF1C9A7B27006F6850 /* PBXTargetDependency */,
+			);
+			name = PharmacyUITests;
+			productName = PharmacyUITests;
+			productReference = 9505D6ED1C9A7B27006F6850 /* PharmacyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9505D6C11C9A7B27006F6850 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = sk;
+				TargetAttributes = {
+					9505D6C81C9A7B27006F6850 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Q893CLHQS4;
+					};
+					9505D6E11C9A7B27006F6850 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 9505D6C81C9A7B27006F6850;
+					};
+					9505D6EC1C9A7B27006F6850 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 9505D6C81C9A7B27006F6850;
+					};
+				};
+			};
+			buildConfigurationList = 9505D6C41C9A7B27006F6850 /* Build configuration list for PBXProject "Pharmacy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9505D6C01C9A7B27006F6850;
+			productRefGroup = 9505D6CA1C9A7B27006F6850 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9505D6C81C9A7B27006F6850 /* Pharmacy */,
+				9505D6E11C9A7B27006F6850 /* PharmacyTests */,
+				9505D6EC1C9A7B27006F6850 /* PharmacyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9505D6C71C9A7B27006F6850 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9505D7291C9A9BE5006F6850 /* IMG_0799.jpg in Resources */,
+				95CA50F91CA121F7006CBC72 /* disease.plist in Resources */,
+				9505D6DC1C9A7B27006F6850 /* LaunchScreen.storyboard in Resources */,
+				9505D71E1C9A8727006F6850 /* 7008.wav in Resources */,
+				9505D6D91C9A7B27006F6850 /* Assets.xcassets in Resources */,
+				9505D72A1C9A9BE5006F6850 /* IMG_0800.jpg in Resources */,
+				9505D6D71C9A7B27006F6850 /* Main.storyboard in Resources */,
+				9505D72B1C9A9BE5006F6850 /* IMG_0801.jpg in Resources */,
+				9505D7271C9A9BE5006F6850 /* IMG_0797.jpg in Resources */,
+				9505D7281C9A9BE5006F6850 /* IMG_0798.jpg in Resources */,
+				9505D7171C9A8378006F6850 /* @3x_xx_06.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6E01C9A7B27006F6850 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6EB1C9A7B27006F6850 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9505D6C51C9A7B27006F6850 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9502A4AD1C9D21D300578339 /* YdDrugsViewController.m in Sources */,
+				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
+				95EA79661C9BEAB50093829A /* ZLImageScrollView.m in Sources */,
+				9505D7141C9A7FFF006F6850 /* YdRootViewController.m in Sources */,
+				9505D70D1C9A7FF7006F6850 /* RECommonFunctions.m in Sources */,
+				95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */,
+				9505D6D11C9A7B27006F6850 /* AppDelegate.m in Sources */,
+				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
+				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,
+				9505D6CE1C9A7B27006F6850 /* main.m in Sources */,
+				950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */,
+				9505D7341C9A9D08006F6850 /* YdScanJumpViewController.m in Sources */,
+				9502A4A01C9CF3CA00578339 /* YdSearchResultViewController.m in Sources */,
+				9502A49C1C9CF38500578339 /* YdSearchViewController.m in Sources */,
+				9505D70E1C9A7FF7006F6850 /* RESideMenu.m in Sources */,
+				9505D70F1C9A7FF7006F6850 /* UIViewController+RESideMenu.m in Sources */,
+				9502A4B11C9D3F1300578339 /* YdShoppingCartViewController.m in Sources */,
+				9502A4A51C9CFE2100578339 /* YdbannerViewController.m in Sources */,
+				9505D7051C9A7F72006F6850 /* YdHomePageViewController.m in Sources */,
+				95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */,
+				9505D7151C9A7FFF006F6850 /* YdLeftViewController.m in Sources */,
+				9502A4AA1C9D21B200578339 /* YdDiseaseViewController.m in Sources */,
+				95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */,
+				95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */,
+				95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */,
+				95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6DE1C9A7B27006F6850 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9505D6E71C9A7B27006F6850 /* PharmacyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9505D6E91C9A7B27006F6850 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9505D6F21C9A7B27006F6850 /* PharmacyUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9505D6E41C9A7B27006F6850 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9505D6C81C9A7B27006F6850 /* Pharmacy */;
+			targetProxy = 9505D6E31C9A7B27006F6850 /* PBXContainerItemProxy */;
+		};
+		9505D6EF1C9A7B27006F6850 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9505D6C81C9A7B27006F6850 /* Pharmacy */;
+			targetProxy = 9505D6EE1C9A7B27006F6850 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9505D6D51C9A7B27006F6850 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9505D6D61C9A7B27006F6850 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9505D6DA1C9A7B27006F6850 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9505D6DB1C9A7B27006F6850 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9505D6F41C9A7B27006F6850 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9505D6F51C9A7B27006F6850 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9505D6F71C9A7B27006F6850 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Pharmacy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9505D6F81C9A7B27006F6850 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Pharmacy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9505D6FA1C9A7B27006F6850 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PharmacyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.PharmacyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pharmacy.app/Pharmacy";
+			};
+			name = Debug;
+		};
+		9505D6FB1C9A7B27006F6850 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PharmacyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.PharmacyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pharmacy.app/Pharmacy";
+			};
+			name = Release;
+		};
+		9505D6FD1C9A7B27006F6850 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PharmacyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.PharmacyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Pharmacy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		9505D6FE1C9A7B27006F6850 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PharmacyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sk.PharmacyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Pharmacy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9505D6C41C9A7B27006F6850 /* Build configuration list for PBXProject "Pharmacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9505D6F41C9A7B27006F6850 /* Debug */,
+				9505D6F51C9A7B27006F6850 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9505D6F61C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "Pharmacy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9505D6F71C9A7B27006F6850 /* Debug */,
+				9505D6F81C9A7B27006F6850 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9505D6F91C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "PharmacyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9505D6FA1C9A7B27006F6850 /* Debug */,
+				9505D6FB1C9A7B27006F6850 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9505D6FC1C9A7B27006F6850 /* Build configuration list for PBXNativeTarget "PharmacyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9505D6FD1C9A7B27006F6850 /* Debug */,
+				9505D6FE1C9A7B27006F6850 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9505D6C11C9A7B27006F6850 /* Project object */;
+}
