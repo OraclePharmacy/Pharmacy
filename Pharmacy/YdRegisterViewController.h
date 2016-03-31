@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdRegisterViewController : UIViewController<UITextFieldDelegate>
+@interface YdRegisterViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 //手机号
 @property (weak, nonatomic) IBOutlet UITextField *PhoneText;
 //验证码
@@ -27,4 +27,18 @@
 @property (weak, nonatomic) IBOutlet UIButton *Complete;
 - (IBAction)CompleteButton:(id)sender;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *bejing;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *picke;
+
+- (IBAction)queding:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *quxiao;
+@property (weak, nonatomic) IBOutlet UIView *pickerview;
+
+- (IBAction)quxiao:(id)sender;
+
+- (IBAction)beijing:(id)sender;
 @end

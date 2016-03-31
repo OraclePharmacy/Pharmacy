@@ -86,6 +86,7 @@
 		95609F091CABC88200AF65E4 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609F081CABC88200AF65E4 /* Color+Hex.m */; };
 		95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */; };
 		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
+		95D817111CACE96D006BE2DB /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D817101CACE96D006BE2DB /* area.plist */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
 		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
 		95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79551C9BA8E30093829A /* YdModifyViewController.m */; };
@@ -264,6 +265,7 @@
 		95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugJumpViewController.h; sourceTree = "<group>"; };
 		95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugJumpViewController.m; sourceTree = "<group>"; };
 		95CA50F81CA121F7006CBC72 /* disease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = disease.plist; sourceTree = "<group>"; };
+		95D817101CACE96D006BE2DB /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		95EA794E1C9BA8A10093829A /* YdForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdForgetViewController.h; sourceTree = "<group>"; };
 		95EA794F1C9BA8A10093829A /* YdForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdForgetViewController.m; sourceTree = "<group>"; };
 		95EA79511C9BA8BF0093829A /* YdRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRegisterViewController.h; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 		95EA794B1C9BA8370093829A /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				95D817101CACE96D006BE2DB /* area.plist */,
 				95EA79511C9BA8BF0093829A /* YdRegisterViewController.h */,
 				95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */,
 			);
@@ -921,6 +924,7 @@
 				9505D6DC1C9A7B27006F6850 /* LaunchScreen.storyboard in Resources */,
 				9505D71E1C9A8727006F6850 /* 7008.wav in Resources */,
 				9505D6D91C9A7B27006F6850 /* Assets.xcassets in Resources */,
+				95D817111CACE96D006BE2DB /* area.plist in Resources */,
 				9505D72A1C9A9BE5006F6850 /* IMG_0800.jpg in Resources */,
 				9505D6D71C9A7B27006F6850 /* Main.storyboard in Resources */,
 				9505D72B1C9A9BE5006F6850 /* IMG_0801.jpg in Resources */,

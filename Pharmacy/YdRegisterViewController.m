@@ -8,14 +8,50 @@
 
 #import "YdRegisterViewController.h"
 #import "WarningBox.h"
-@interface YdRegisterViewController ()
+#import "AFHTTPRequestOperationManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
 
+@interface YdRegisterViewController ()
+{
+    NSArray *arr;
+    NSString *str;
+    
+    CGFloat width;
+    
+    NSArray *stateArray;
+    NSArray *cityArray;
+    NSArray *areaArray;
+    
+    NSDictionary *stateDic;
+    NSDictionary *cityDic;
+    
+    
+}
 @end
 
 @implementation YdRegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.PhoneText.text = @"18345559961";
+    self.PassText.text = @"111111";
+    self.AgainPassText.text = @"111111";
+    
+    self.RecommendedText.text = @"";
+    self.StoreText.text = @"黑龙江";
+    
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
+    
+    self.bejing.hidden = YES;
+    self.tableview.hidden = YES;
+    self.pickerview.hidden = YES;
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    
     //导航栏名称
     self.navigationItem.title = @"注册";
     //设置self.view背景颜色
@@ -185,6 +221,235 @@
     }
     return YES;
 }
+#pragma textfield点击事件
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.StoreText) {
+        
+        [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
+        
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/Store/getLonLat";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"126.512834",@"longitude",@"45.796286",@"latitude", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                NSLog(@"%@",responseObject);
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                    arr = [datadic objectForKey:@"mdList"];
+                    
+                    
+                    if (arr.count == 1)
+                    {
+                        self.StoreText.text = [arr[0] objectForKey:@"name"];
+                        str = [arr[0] objectForKey:@"id"];
+                    }
+                    else if (arr.count > 1)
+                    {
+                    
+                        self.bejing.hidden = NO;
+                        self.tableview.hidden = NO;
+                        [self.tableview reloadData];
+                        
+                    }
+                    else
+                    {
+                        self.bejing.hidden = NO;
+                        self.pickerview.hidden = NO;
+                        [self sanji];
+                    }
+                    
+                }
+                
+                
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+            
+        }];
+
+        return NO;
+    }
+    return YES;
+}
+#pragma 设置tableview
+//tableview 分组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+//tableview 行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"%lu",(unsigned long)arr.count);
+    return arr.count;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return 40;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *id1 = @"cell3";
+    UITableViewCell *cell= [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
+    }
+    
+    UILabel *name = [[UILabel alloc]init];
+    name.frame  =  CGRectMake(0, 0, 150, 39);
+    name.font = [UIFont systemFontOfSize:15.0];
+    name.textAlignment = UITextAlignmentCenter;
+    name.textColor = [UIColor blackColor];
+    name.text = [arr[indexPath.row] objectForKey:@"name"];;
+    
+    [cell.contentView addSubview:name];
+    
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.StoreText.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
+    str = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+    self.tableview.hidden = YES;
+    self.bejing.hidden = YES;
+}
+#pragma 创建三级联动
+-(void)sanji
+{
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+    
+    stateArray = [NSArray arrayWithContentsOfFile:path];
+    cityArray = [stateArray[0] objectForKey:@"cities"];
+    areaArray = [cityArray[0] objectForKey:@"areas"];
+    
+    self.picke.delegate = self;
+    self.picke.dataSource = self;
+
+}
+//返回几列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 3;
+}
+//每列有多少行
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (component ==0)
+    {
+        return stateArray.count;
+    }
+    else if (component == 1)
+    {
+        return cityArray.count;
+    }
+    else
+    {
+        return areaArray.count;
+    }
+}
+//每列显示
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (component == 0) {
+        
+        NSString *state = [stateArray[row] objectForKey:@"state"];
+        return state;
+        
+    }else if (component == 1){
+        
+        NSString *city = [cityArray[row] objectForKey:@"city"];
+        return city;
+    }else{
+        
+        return areaArray[row];
+    }
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        
+        cityArray = [stateArray[row] objectForKey:@"cities"];
+        areaArray = [cityArray[0] objectForKey:@"areas"];
+        [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
+        [pickerView reloadComponent:2];
+        if ([areaArray count] > 0) {
+            [pickerView selectRow:0 inComponent:2 animated:NO];
+        }
+        
+    }else if(component == 1){
+        
+        areaArray = [cityArray[row] objectForKey:@"areas"];
+        [pickerView reloadComponent:2];
+        if ([areaArray count] > 0) {
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+        }
+        
+    }
+    
+    
+}
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    if (component == 0)
+    {
+        return width/3;
+    }
+    else if (component == 1)
+    {
+        return width/3;
+    }
+    else if (component == 2)
+    {
+        return width/3;
+    }
+    
+    
+    return 0;
+}
+
 
 #pragma 按钮点击事件
 
@@ -192,6 +457,85 @@
 - (IBAction)VerificationButton:(id)sender {
     
     [self.view endEditing:YES];
+    
+    if (self.PhoneText.text.length > 0 )
+    {
+        if (![self isMobileNumberClassification:self.PhoneText.text])
+        {
+            
+            [WarningBox warningBoxModeText:@"请输入正确的手机号" andView:self.view];
+         
+        }
+        else if([self isMobileNumberClassification:self.PhoneText.text])
+        {
+            [WarningBox warningBoxModeIndeterminate:@"正在获取验证码..." andView:self.view];
+            
+            //userID    暂时不用改
+            NSString * userID=@"0";
+            
+            //请求地址   地址不同 必须要改
+            NSString * url =@"/index/getsjyzm";
+            
+            //时间戳
+            NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+            NSTimeInterval a=[dat timeIntervalSince1970];
+            NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+            
+            
+            //将上传对象转换为json格式字符串
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+            SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+            //出入参数：
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",@"0",@"msg_type", nil];
+            
+            NSString*jsonstring=[writer stringWithObject:datadic];
+            
+            //获取签名
+            NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+            
+            NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+            
+            
+            //电泳借口需要上传的数据
+            NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+            
+            [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                @try
+                {
+                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                    NSLog(@"%@",responseObject);
+                    if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                        
+                        NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                        NSLog(@"%@",datadic);
+                        
+                       
+                        
+                    }
+                    
+                    
+                }
+                @catch (NSException * e) {
+                    
+                    [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                    
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                NSLog(@"错误：%@",error);
+                
+            }];
+
+        }
+    }
+    else
+    {
+        [WarningBox warningBoxModeText:@"手机号不能为空" andView:self.view];
+    }
 
 }
 //完成
@@ -220,7 +564,64 @@
             //是
             if ([self.PassText.text isEqualToString:self.AgainPassText.text]) {
                 
-               [self.navigationController popViewControllerAnimated:YES];
+                [WarningBox warningBoxModeIndeterminate:@"正在获取验证码..." andView:self.view];
+                
+                //userID    暂时不用改
+                NSString * userID=@"0";
+                
+                //请求地址   地址不同 必须要改
+                NSString * url =@"/index/register";
+                
+                //时间戳
+                NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+                NSTimeInterval a=[dat timeIntervalSince1970];
+                NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+                
+                
+                //将上传对象转换为json格式字符串
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+                SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+                //出入参数：
+                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",_PassText.text,@"password",_VerificationText.text,@"vaildCode", _RecommendedText.text,@"recommendedNumber",@"",@"office_id",nil];
+                
+                NSString*jsonstring=[writer stringWithObject:datadic];
+                
+                //获取签名
+                NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+                
+                NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+                
+                
+                //电泳借口需要上传的数据
+                NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+                
+                [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [WarningBox warningBoxHide:YES andView:self.view];
+                    @try
+                    {
+                        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                        NSLog(@"%@",responseObject);
+                        if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                            
+                             [self.navigationController popViewControllerAnimated:YES];
+                            
+                        }
+                        
+                        
+                    }
+                    @catch (NSException * e) {
+                        
+                        [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                        
+                    }
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [WarningBox warningBoxHide:YES andView:self.view];
+                    [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                    NSLog(@"错误：%@",error);
+                    
+                }];
                 
             }
             //不是
@@ -248,5 +649,45 @@
 {
     //返回上一页面
      [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)queding:(id)sender {
+    
+    stateDic = stateArray[[self.picke selectedRowInComponent:0]];
+    NSString *state = [stateDic objectForKey:@"state"];
+    
+    
+    cityDic = cityArray[[self.picke selectedRowInComponent:1]];
+    NSString *city = [cityDic objectForKey:@"city"];
+    
+    
+    NSString *area;
+    if (areaArray.count > 0) {
+        area = areaArray[[self.picke selectedRowInComponent:2]];
+    }else{
+        area = @"";
+    }
+    
+    
+    NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
+    
+    NSLog(@"resultresultresultresultresultresultresult%@",result);
+    
+    self.bejing.hidden = YES;
+    self.pickerview.hidden = YES;
+    
+    [self.tableview reloadData];
+    self.tableview.hidden = NO;
+    
+}
+- (IBAction)quxiao:(id)sender {
+    self.bejing.hidden = YES;
+    self.pickerview.hidden = YES;
+}
+
+- (IBAction)beijing:(id)sender {
+    
+    self.bejing.hidden = YES;
+    self.tableview.hidden = YES;
+    self.pickerview.hidden = YES;
 }
 @end
