@@ -7,7 +7,7 @@
 //
 
 #import "YdShoppingCartViewController.h"
-#import "ZLImageScrollView/ZLImageScrollView.h"
+
 
 @interface YdShoppingCartViewController ()
 {

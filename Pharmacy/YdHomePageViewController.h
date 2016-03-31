@@ -11,4 +11,7 @@
 
 @interface YdHomePageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+
 @end

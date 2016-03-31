@@ -7,7 +7,6 @@
 //
 
 #import "YdDrugViewController.h"
-#import "ZLImageScrollView/ZLImageScrollView.h"
 #import "YdDrugJumpViewController.h"
 
 @interface YdDrugViewController ()
@@ -192,28 +191,6 @@
 -(void)banner1
 {
     
-    CGRect frame = CGRectMake(0, 0, width-40-width/5, height/5);
-
-    NSArray *imageArray = @[@"IMG_0797.jpg", @"IMG_0798.jpg", @"IMG_0799.jpg", @"IMG_0800.jpg", @"IMG_0801.jpg"];
-    
-    //初始化控件
-    ZLImageScrollView *imageViewDisplay = [ZLImageScrollView zlImageScrollViewWithFrame:frame WithImages:imageArray];
-    
-    //设定轮播时间
-    imageViewDisplay.scrollInterval = 2;
-    
-    //图片滚动的时间
-    imageViewDisplay.animationInterVale = 0.6;
-    
-    
-    //把该视图添加到相应的父视图上
-    [self.bannerview addSubview:imageViewDisplay];
-    
-    //轮播点击
-    [imageViewDisplay addTapEventForImageWithBlock:^(NSInteger imageIndex) {
-
-        
-    }];
     
 }
 //创建一级病症分类

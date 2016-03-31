@@ -7,17 +7,24 @@
 //
 
 #import "YdHomePageViewController.h"
-#import "ZLImageScrollView/ZLImageScrollView.h"
 #import "YdLeftViewController.h"
 #import "YdScanViewController.h"
 #import "YdSearchViewController.h"
 #import "YdbannerViewController.h"
+#import "WarningBox.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
+#import "YCAdView.h"
 @interface YdHomePageViewController ()
 {
     CGFloat width;
     CGFloat heigth;
     UITableViewCell *cell ;
     UITextField *SearchText;
+    NSMutableArray *arrImage;
+    
 }
 @end
 
@@ -25,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    arrImage = [[NSMutableArray alloc]init];
+    
     width = [UIScreen mainScreen].bounds.size.width;
     heigth = [UIScreen mainScreen].bounds.size.height;
     //设置self.view背景颜色
@@ -33,6 +43,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
      //设置导航栏又按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
     
     [self SearchView];
 
@@ -109,34 +122,90 @@
 -(void)banner
 {
     
-    CGRect frame = CGRectMake(0, 0, width, heigth/4);
+    [WarningBox warningBoxModeIndeterminate:@"数据加载中..." andView:self.view];
     
-    NSArray *imageArray = @[@"IMG_0797.jpg", @"IMG_0798.jpg", @"IMG_0799.jpg", @"IMG_0800.jpg", @"IMG_0801.jpg"];
+    //userID    暂时不用改
+    NSString * userID=@"0";
     
-    //初始化控件
-    ZLImageScrollView *imageViewDisplay = [ZLImageScrollView zlImageScrollViewWithFrame:frame WithImages:imageArray];
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/function/newsList";
     
-    //设定轮播时间
-    imageViewDisplay.scrollInterval = 2;
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
     
-    //图片滚动的时间
-    imageViewDisplay.animationInterVale = 0.6;
     
-    //把该视图添加到相应的父视图上
-    [cell.contentView addSubview:imageViewDisplay];
+    //将上传对象转换为json格式字符串
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"2",@"officeId", nil];
     
-    //轮播点击
-    [imageViewDisplay addTapEventForImageWithBlock:^(NSInteger imageIndex) {
-//        NSString *str = [NSString stringWithFormat:@"我是第%ld张图片", imageIndex];
-//        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"提示" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alter show];
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                NSArray *arr = [datadic objectForKey:@"newsList"];
+                
+                
+                for (int i = 0; i < arr.count; i++) {
+                    
+                    [arrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[arr[i] objectForKey:@"url"]]];
+                    
+                }
+                
+                NSLog(@"%@",arrImage);
+                
+                YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, heigth/4)
+                                                            images:arrImage
+                                                            titles:nil
+                                                  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+                ycAdView.clickAdImage = ^(NSInteger index)
+                {
+                    
+                    NSLog(@"点击了第%ld图片",index);
+                    
+                };
+                
+                [cell.contentView addSubview:ycAdView];
+
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
         
-        //跳转到轮播详情
-        YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-        [self.navigationController pushViewController:banner animated:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
         
     }];
-
 }
 //第二组  四个按钮
 -(void)fourButton

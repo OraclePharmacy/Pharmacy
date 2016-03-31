@@ -86,13 +86,13 @@
 		95609F091CABC88200AF65E4 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609F081CABC88200AF65E4 /* Color+Hex.m */; };
 		95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */; };
 		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
+		95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D4CD621CAD0855003CD827 /* YCAdView.m */; };
 		95D817111CACE96D006BE2DB /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D817101CACE96D006BE2DB /* area.plist */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
 		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
 		95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79551C9BA8E30093829A /* YdModifyViewController.m */; };
 		95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795A1C9BB07B0093829A /* MBProgressHUD.m */; };
 		95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795C1C9BB07B0093829A /* WarningBox.m */; };
-		95EA79661C9BEAB50093829A /* ZLImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79651C9BEAB50093829A /* ZLImageScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +265,8 @@
 		95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugJumpViewController.h; sourceTree = "<group>"; };
 		95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugJumpViewController.m; sourceTree = "<group>"; };
 		95CA50F81CA121F7006CBC72 /* disease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = disease.plist; sourceTree = "<group>"; };
+		95D4CD611CAD0855003CD827 /* YCAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAdView.h; sourceTree = "<group>"; };
+		95D4CD621CAD0855003CD827 /* YCAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAdView.m; sourceTree = "<group>"; };
 		95D817101CACE96D006BE2DB /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		95EA794E1C9BA8A10093829A /* YdForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdForgetViewController.h; sourceTree = "<group>"; };
 		95EA794F1C9BA8A10093829A /* YdForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdForgetViewController.m; sourceTree = "<group>"; };
@@ -276,8 +278,6 @@
 		95EA795A1C9BB07B0093829A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		95EA795B1C9BB07B0093829A /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
 		95EA795C1C9BB07B0093829A /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
-		95EA79641C9BEAB50093829A /* ZLImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLImageScrollView.h; sourceTree = "<group>"; };
-		95EA79651C9BEAB50093829A /* ZLImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLImageScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,19 +798,11 @@
 			name = "药品";
 			sourceTree = "<group>";
 		};
-		95EA79631C9BEAB50093829A /* ZLImageScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				95EA79641C9BEAB50093829A /* ZLImageScrollView.h */,
-				95EA79651C9BEAB50093829A /* ZLImageScrollView.m */,
-			);
-			path = ZLImageScrollView;
-			sourceTree = "<group>";
-		};
 		95EA79671C9BEACD0093829A /* 轮播 */ = {
 			isa = PBXGroup;
 			children = (
-				95EA79631C9BEAB50093829A /* ZLImageScrollView */,
+				95D4CD611CAD0855003CD827 /* YCAdView.h */,
+				95D4CD621CAD0855003CD827 /* YCAdView.m */,
 			);
 			name = "轮播";
 			sourceTree = "<group>";
@@ -960,8 +952,8 @@
 				95609EC91CABC74000AF65E4 /* AFSecurityPolicy.m in Sources */,
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
 				95609EA11CABC72E00AF65E4 /* SBJsonStreamParserAccumulator.m in Sources */,
+				95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */,
 				95609EF41CABC74E00AF65E4 /* NSData+ImageContentType.m in Sources */,
-				95EA79661C9BEAB50093829A /* ZLImageScrollView.m in Sources */,
 				95609F001CABC74E00AF65E4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				95609E9F1CABC72E00AF65E4 /* SBJsonParser.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
