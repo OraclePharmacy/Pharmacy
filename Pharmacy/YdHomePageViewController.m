@@ -24,8 +24,14 @@
     UITableViewCell *cell ;
     UITextField *SearchText;
     NSMutableArray *arrImage;
+    NSArray *arr;
+    
+    NSInteger rowNo;
     
 }
+
+@property (strong,nonatomic) UICollectionView *Collectionview;
+
 @end
 
 @implementation YdHomePageViewController
@@ -43,11 +49,14 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
      //设置导航栏又按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
     [self SearchView];
+    [self banner];
 
 }
 //导航标题  添加View
@@ -118,7 +127,7 @@
 {
     NSLog(@"暂时不需要跳页,但是有此方法");
 }
-//第一组 轮播
+#pragma  第一组 轮播
 -(void)banner
 {
     
@@ -166,7 +175,7 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                NSArray *arr = [datadic objectForKey:@"newsList"];
+                arr = [datadic objectForKey:@"newsList"];
                 
                 
                 for (int i = 0; i < arr.count; i++) {
@@ -174,22 +183,8 @@
                     [arrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[arr[i] objectForKey:@"url"]]];
                     
                 }
+                [self.tableview reloadData];
                 
-                NSLog(@"%@",arrImage);
-                
-                YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, heigth/4)
-                                                            images:arrImage
-                                                            titles:nil
-                                                  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
-                ycAdView.clickAdImage = ^(NSInteger index)
-                {
-                    
-                    NSLog(@"点击了第%ld图片",index);
-                    
-                };
-                
-                [cell.contentView addSubview:ycAdView];
-
             }
             
             
@@ -206,28 +201,30 @@
         NSLog(@"错误：%@",error);
         
     }];
+    
+    
 }
-//第二组  四个按钮
+#pragma  第二组  四个按钮
 -(void)fourButton
 {
     //第一个按钮
     UIButton *one = [[UIButton alloc]init];
-    one.frame = CGRectMake(0, 0, width/4, width/4);
+    one.frame = CGRectMake((width-width/6*4)/5, (width/4-width/6)/2, width/6, width/6);
     [one setImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
     [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
     //第二个按钮
     UIButton *two = [[UIButton alloc]init];
-    two.frame = CGRectMake(width/4, 0, width/4, width/4);
+    two.frame = CGRectMake((width-width/6*4)/5*2+width/6, (width/4-width/6)/2, width/6, width/6);
     [two setImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateNormal];
     [two addTarget:self action:@selector(two) forControlEvents:UIControlEventTouchUpInside];
     //第三个按钮
     UIButton *three = [[UIButton alloc]init];
-    three.frame = CGRectMake(width/4*2, 0, width/4, width/4);
+    three.frame = CGRectMake((width-width/6*4)/5*3+width/6*2, (width/4-width/6)/2, width/6, width/6);
     [three setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
     [three addTarget:self action:@selector(three) forControlEvents:UIControlEventTouchUpInside];
     //第四个按钮
     UIButton *four = [[UIButton alloc]init];
-    four.frame = CGRectMake(width/4*3, 0, width/4, width/4);
+    four.frame = CGRectMake((width-width/6*4)/5*4+width/6*3, (width/4-width/6)/2, width/6, width/6);
     [four setImage:[UIImage imageNamed:@"IMG_0800.jpg"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
 
@@ -258,12 +255,74 @@
 {
     NSLog(@"four");
 }
+#pragma  第三组  特价药品
+-(void)bargaingoods
+{
+    //刷新Collectionview
+    //[self.Collectionview reloadData];
+    
+    self.Collectionview.frame = CGRectMake(0, 20, width, width/4);
+    
+    //Collectionview遵守代理
+    self.Collectionview.delegate = self;
+    self.Collectionview.dataSource = self;
+    //创建UICollectionViewFlowLayout布局对象
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    //设置单元格的大小
+    flowLayout.itemSize = CGSizeMake(width/4,width/4);
+    //设置滑动方向
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    //设置分区上下左右空白大小
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    //设置两行单元格之间的间距
+    flowLayout.minimumInteritemSpacing = 0;
+    //这只布局对象
+    self.Collectionview.collectionViewLayout = flowLayout;
+    
+    [cell.contentView addSubview:self.Collectionview];
 
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //[self.Collectionview reloadData];
+    //为单元格定义一个静态字符串作为标示符
+    static NSString *cellId = @"diseasecell";
+    //从可重用单元格队列中去除一个单元格
+    UICollectionViewCell *Collectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    //设置圆角
+    Collectioncell.layer.cornerRadius = 8;
+    Collectioncell.layer.masksToBounds = YES;
+    rowNo = indexPath.row;
+
+    UIImageView *imageview = [[UIImageView alloc]init];
+    imageview.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    
+    
+    
+    return Collectioncell;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+#pragma tableview
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //跳转到详细病症
+//    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
+//    DrugJump.imageName = DiseaseImageArray[indexPath.row];
+//    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
+//    [self.navigationController pushViewController:DrugJump animated:YES];
+    
+    return;
+}
+
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -299,7 +358,7 @@
     }
     else if (section == 1)
     {
-        return 10;
+        return 0;
     }
     return 0;
 }
@@ -320,15 +379,49 @@
 
     if (indexPath.section == 0) {
         
-        [self banner];
+        if (arrImage.count < 1 )
+        {
+            UIImageView *image = [[UIImageView alloc]init];
+            image.frame = CGRectMake(0, 0, self.view.frame.size.width, heigth/4);
+            image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
+            [cell.contentView addSubview:image];
+        }
+        else
+        {
+            YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, heigth/4)
+                                                        images:arrImage
+                                                        titles:nil
+                                              placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+            ycAdView.clickAdImage = ^(NSInteger index)
+            {
+                
+                YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+                //门店id
+                //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
+                [self.navigationController pushViewController:banner animated:YES];
+                
+                
+            };
+            
+            [cell.contentView addSubview:ycAdView];
+
+        }
         
     }
     
-    if (indexPath.section == 1) {
+    else if (indexPath.section == 1) {
         
+        cell.contentView.backgroundColor = [UIColor grayColor];
         [self fourButton];
         
     }
+    else if (indexPath.section == 2)
+    {
+        
+        
+        
+    }
+        
     
     return cell;
 }

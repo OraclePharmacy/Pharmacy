@@ -10,6 +10,8 @@
 
 @interface YdbannerViewController ()
 
+
+
 @end
 
 @implementation YdbannerViewController
