@@ -494,6 +494,8 @@
 			children = (
 				9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */,
 				9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */,
+				95E951241CB4AC1A00BB754C /* 积分商品 */,
+				95E951211CB4ABC900BB754C /* 特价药品 */,
 				9505D7201C9A8F78006F6850 /* 搜索 */,
 				9505D71F1C9A8F6B006F6850 /* 二维码 */,
 				9502A4A21C9CFDE400578339 /* 轮播详情 */,
@@ -714,6 +716,52 @@
 				95609EF21CABC74E00AF65E4 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		95E951211CB4ABC900BB754C /* 特价药品 */ = {
+			isa = PBXGroup;
+			children = (
+				95E951231CB4AC0D00BB754C /* 特级药品更多 */,
+				95E951221CB4ABFC00BB754C /* 特价药品详情 */,
+			);
+			name = "特价药品";
+			sourceTree = "<group>";
+		};
+		95E951221CB4ABFC00BB754C /* 特价药品详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "特价药品详情";
+			sourceTree = "<group>";
+		};
+		95E951231CB4AC0D00BB754C /* 特级药品更多 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "特级药品更多";
+			sourceTree = "<group>";
+		};
+		95E951241CB4AC1A00BB754C /* 积分商品 */ = {
+			isa = PBXGroup;
+			children = (
+				95E951261CB4AC3900BB754C /* 积分商品更多 */,
+				95E951251CB4AC2F00BB754C /* 积分商品详情 */,
+			);
+			name = "积分商品";
+			sourceTree = "<group>";
+		};
+		95E951251CB4AC2F00BB754C /* 积分商品详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "积分商品详情";
+			sourceTree = "<group>";
+		};
+		95E951261CB4AC3900BB754C /* 积分商品更多 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "积分商品更多";
 			sourceTree = "<group>";
 		};
 		95EA794B1C9BA8370093829A /* 注册 */ = {

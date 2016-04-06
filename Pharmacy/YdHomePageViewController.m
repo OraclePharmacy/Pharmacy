@@ -479,6 +479,17 @@
     }
     else if (indexPath.section == 2)
     {
+        
+        UIImageView *biaoti = [[UIImageView alloc] init];
+        biaoti.frame = CGRectMake(0, 0, 100, 20);
+        biaoti.image = [UIImage imageNamed:@""];
+        
+        UIButton *gengduo = [[UIButton alloc]init];
+        gengduo.frame = CGRectMake(width-100, 0, 100, 20);
+        [gengduo setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [gengduo addTarget:self action:@selector(pharmacygengduo) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         UIView *xian = [[UIView alloc]init];
         xian.frame = CGRectMake(0, 20, width, 0.5);
         xian.backgroundColor = [UIColor grayColor];
@@ -488,6 +499,7 @@
         self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
         
         for (int i = 0; i < 6; i++) {
+            
             UIButton *IntegrationSix = [[UIButton alloc]init];
             IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
             IntegrationSix.backgroundColor = [UIColor clearColor];
@@ -510,7 +522,7 @@
             originalcost.textAlignment = NSTextAlignmentCenter;
             originalcost.textColor = [UIColor lightGrayColor];
             originalcost.text = @"￥10";
-            //积分
+            //特价
             UILabel *specialoffer = [[UILabel alloc] init];
             specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
             specialoffer.font = [UIFont systemFontOfSize:13];
@@ -539,6 +551,15 @@
     }
     else if (indexPath.section == 3)
     {
+        
+        UIImageView *biaoti = [[UIImageView alloc] init];
+        biaoti.frame = CGRectMake(0, 0, 100, 20);
+        biaoti.image = [UIImage imageNamed:@""];
+        
+        UIButton *gengduo = [[UIButton alloc]init];
+        gengduo.frame = CGRectMake(width-100, 0, 100, 20);
+        [gengduo setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [gengduo addTarget:self action:@selector(specialoffergengduo) forControlEvents:UIControlEventTouchUpInside];
 
         UIView *xian = [[UIView alloc]init];
         xian.frame = CGRectMake(0, 20, width, 0.5);
@@ -600,8 +621,40 @@
         
     }
         
-    
+    //cell点击不变色
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+
+
+
+//特价药品展示   药品详情
+-(void)pharmacyjump
+{
+    
+    
+    
+}
+//更多
+-(void)pharmacygengduo
+{
+    
+}
+
+//积分礼品展示  礼品详情
+-(void)specialofferjump
+{
+    
+    
+    
+}
+//更多
+-(void)specialoffergengduo
+{
+    
+    
+    
 }
 
 //扫描
