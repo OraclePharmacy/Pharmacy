@@ -245,7 +245,8 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"126.512834",@"longitude",@"45.796286",@"latitude", nil];
+        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"126.663513",@"longitude",@"45.716008",@"latitude",nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -254,10 +255,10 @@
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
         
-        
+        NSLog(@"url1%@",url1);
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        
+        NSLog(@"dic%@",dic);
         [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
@@ -272,7 +273,7 @@
                     
                     if (arr.count == 1)
                     {
-                        self.StoreText.text = [arr[0] objectForKey:@"name"];
+                        self.StoreText.text = [arr[0] objectForKey:@"office"];
                         str = [arr[0] objectForKey:@"id"];
                     }
                     else if (arr.count > 1)
@@ -338,7 +339,7 @@
     UILabel *name = [[UILabel alloc]init];
     name.frame  =  CGRectMake(0, 0, 150, 39);
     name.font = [UIFont systemFontOfSize:15.0];
-    name.textAlignment = UITextAlignmentCenter;
+    name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor blackColor];
     name.text = [arr[indexPath.row] objectForKey:@"name"];;
     

@@ -17,21 +17,29 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "YCAdView.h"
+#import "UIImageView+WebCache.h"
 @interface YdHomePageViewController ()
 {
     CGFloat width;
     CGFloat heigth;
-    UITableViewCell *cell ;
+    UITableViewCell *cell;
     UITextField *SearchText;
     NSMutableArray *arrImage;
     NSArray *arr;
     
     NSInteger rowNo;
+    CGFloat gao ;
+    CGFloat kuan ;
     
+    NSArray *presentarray;
+    NSMutableArray *presentarrImage;
+    
+    
+    NSURL*urll;
 }
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
-
+@property(strong,nonatomic) UIScrollView *scrollView;
 @end
 
 @implementation YdHomePageViewController
@@ -40,9 +48,15 @@
     [super viewDidLoad];
     
     arrImage = [[NSMutableArray alloc]init];
+    presentarrImage = [[NSMutableArray alloc]init];
     
     width = [UIScreen mainScreen].bounds.size.width;
     heigth = [UIScreen mainScreen].bounds.size.height;
+    
+    gao = width/4/156*184;
+    kuan = width/4;
+    
+   
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
@@ -56,7 +70,7 @@
     self.tableview.dataSource = self;
     
     [self SearchView];
-    [self banner];
+    [self bargaingoodsjiekou];
 
 }
 //导航标题  添加View
@@ -128,7 +142,8 @@
     NSLog(@"暂时不需要跳页,但是有此方法");
 }
 #pragma  第一组 轮播
--(void)banner
+
+-(void)bannerjiekou
 {
     
     [WarningBox warningBoxModeIndeterminate:@"数据加载中..." andView:self.view];
@@ -168,7 +183,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 
@@ -183,6 +198,8 @@
                     [arrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[arr[i] objectForKey:@"url"]]];
                     
                 }
+                
+                
                 [self.tableview reloadData];
                 
             }
@@ -198,7 +215,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+        //NSLog(@"错误：%@",error);
         
     }];
     
@@ -255,72 +272,90 @@
 {
     NSLog(@"four");
 }
-#pragma  第三组  特价药品
--(void)bargaingoods
+#pragma  第三组   第四组  特价药品  积分兑换
+//接口
+-(void)bargaingoodsjiekou
 {
-    //刷新Collectionview
-    //[self.Collectionview reloadData];
+  
+    //userID    暂时不用改
+    NSString * userID=@"0";
     
-    self.Collectionview.frame = CGRectMake(0, 20, width, width/4);
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/integralGift/integralGiftList";
     
-    //Collectionview遵守代理
-    self.Collectionview.delegate = self;
-    self.Collectionview.dataSource = self;
-    //创建UICollectionViewFlowLayout布局对象
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //设置单元格的大小
-    flowLayout.itemSize = CGSizeMake(width/4,width/4);
-    //设置滑动方向
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    //设置分区上下左右空白大小
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    //设置两行单元格之间的间距
-    flowLayout.minimumInteritemSpacing = 0;
-    //这只布局对象
-    self.Collectionview.collectionViewLayout = flowLayout;
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
     
-    [cell.contentView addSubview:self.Collectionview];
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                presentarray = [datadic objectForKey:@"integralGiftList"];
+                
+                NSLog(@"presentarray%@",presentarray);
+                
+                for (int i = 0; i < presentarray.count; i++) {
+                    
+                
+                    [presentarrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[presentarray[i] objectForKey:@"url"]]];
+                
+                    
+                }
+                
+                [self.tableview reloadData];
+
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+        
+    }];
 
 }
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //[self.Collectionview reloadData];
-    //为单元格定义一个静态字符串作为标示符
-    static NSString *cellId = @"diseasecell";
-    //从可重用单元格队列中去除一个单元格
-    UICollectionViewCell *Collectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    //设置圆角
-    Collectioncell.layer.cornerRadius = 8;
-    Collectioncell.layer.masksToBounds = YES;
-    rowNo = indexPath.row;
 
-    UIImageView *imageview = [[UIImageView alloc]init];
-    imageview.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-    
-    
-    
-    return Collectioncell;
-}
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 6;
-}
 
 #pragma tableview
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //跳转到详细病症
-//    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-//    DrugJump.imageName = DiseaseImageArray[indexPath.row];
-//    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
-//    [self.navigationController pushViewController:DrugJump animated:YES];
-    
-    return;
+    return 4;
 }
 
 //行
@@ -334,6 +369,15 @@
     {
         return 1;
     }
+    else if (section == 2)
+    {
+        return 1;
+    }
+    else if (section == 3)
+    {
+        return 1;
+    }
+
     return 0;
 }
 //cell高度
@@ -347,6 +391,15 @@
     {
         return width/4;
     }
+    else if (indexPath.section == 2)
+    {
+        return gao+1+20;
+    }
+    else if (indexPath.section == 3)
+    {
+        return gao+1+20;
+    }
+
     return 0;
 }
 //header 高度
@@ -360,6 +413,15 @@
     {
         return 0;
     }
+    else if (section == 2)
+    {
+        return 10;
+    }
+    else if (section == 3)
+    {
+        return 10;
+    }
+
     return 0;
 }
 //编辑header内容
@@ -417,7 +479,123 @@
     }
     else if (indexPath.section == 2)
     {
+        UIView *xian = [[UIView alloc]init];
+        xian.frame = CGRectMake(0, 20, width, 0.5);
+        xian.backgroundColor = [UIColor grayColor];
+        [cell.contentView addSubview:xian];
         
+        
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
+        
+        for (int i = 0; i < 6; i++) {
+            UIButton *IntegrationSix = [[UIButton alloc]init];
+            IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
+            IntegrationSix.backgroundColor = [UIColor clearColor];
+            
+            //图片
+            UIImageView *imageview = [[UIImageView alloc]init];
+            imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+            imageview.image = [UIImage imageNamed:@"IMG_0799.jpg"];
+            //名称
+            UILabel *name = [[UILabel alloc]init];
+            name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
+            name.font = [UIFont systemFontOfSize:15];
+            name.textAlignment = NSTextAlignmentCenter;
+            name.textColor = [UIColor blackColor];
+            name.text = @"泻立停";
+            //原价
+            UILabel *originalcost = [[UILabel alloc]init];
+            originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
+            originalcost.font = [UIFont systemFontOfSize:11];
+            originalcost.textAlignment = NSTextAlignmentCenter;
+            originalcost.textColor = [UIColor lightGrayColor];
+            originalcost.text = @"￥10";
+            //积分
+            UILabel *specialoffer = [[UILabel alloc] init];
+            specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
+            specialoffer.font = [UIFont systemFontOfSize:13];
+            specialoffer.textAlignment = NSTextAlignmentCenter;
+            specialoffer.textColor = [UIColor orangeColor];
+            specialoffer.text = @"￥9.98";
+            
+            self.scrollView.pagingEnabled = YES;
+            
+            self.scrollView.delegate = self;
+            
+            [self.scrollView addSubview:IntegrationSix];
+            [IntegrationSix addSubview:imageview];
+            [IntegrationSix addSubview:name];
+            [IntegrationSix addSubview:originalcost];
+            [IntegrationSix addSubview:specialoffer];
+
+        }
+        
+        self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
+        
+        [cell.contentView addSubview:self.scrollView];
+        
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        
+    }
+    else if (indexPath.section == 3)
+    {
+
+        UIView *xian = [[UIView alloc]init];
+        xian.frame = CGRectMake(0, 20, width, 0.5);
+        xian.backgroundColor = [UIColor grayColor];
+        [cell.contentView addSubview:xian];
+        
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
+        
+        for (int i = 0; i < presentarray.count; i++) {
+            UIButton *IntegrationSix = [[UIButton alloc]init];
+            IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
+            IntegrationSix.backgroundColor = [UIColor clearColor];
+            //图片
+            UIImageView *imageview = [[UIImageView alloc]init];
+            imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+            
+            NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
+            
+            [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@""]];
+            //名称
+            UILabel *name = [[UILabel alloc]init];
+            name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
+            name.font = [UIFont systemFontOfSize:15];
+            name.textAlignment = NSTextAlignmentCenter;
+            name.textColor = [UIColor blackColor];
+            name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];;
+            //原价
+            UILabel *originalcost = [[UILabel alloc]init];
+            originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
+            originalcost.font = [UIFont systemFontOfSize:11];
+            originalcost.textAlignment = NSTextAlignmentCenter;
+            originalcost.textColor = [UIColor lightGrayColor];
+            originalcost.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"price"]];;
+            //积分
+            UILabel *specialoffer = [[UILabel alloc] init];
+            specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
+            specialoffer.font = [UIFont systemFontOfSize:13];
+            specialoffer.textAlignment = NSTextAlignmentCenter;
+            specialoffer.textColor = [UIColor orangeColor];
+            specialoffer.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"integral"]];
+
+            self.scrollView.pagingEnabled = YES;
+            
+            self.scrollView.delegate = self;
+            
+            [self.scrollView addSubview:IntegrationSix];
+            [IntegrationSix addSubview:imageview];
+            [IntegrationSix addSubview:name];
+            [IntegrationSix addSubview:originalcost];
+            [IntegrationSix addSubview:specialoffer];
+        }
+        
+        self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
+
+        [cell.contentView addSubview:self.scrollView];
+        
+        self.scrollView.showsHorizontalScrollIndicator = NO;
         
         
     }

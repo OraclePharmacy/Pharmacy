@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface YdHomePageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface YdHomePageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
