@@ -803,7 +803,7 @@
         <scene sceneID="Pdj-di-UPf">
             <objects>
                 <navigationController id="9ta-FX-oTh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="药品" id="JnJ-zQ-EJA"/>
+                    <tabBarItem key="tabBarItem" title="药品" image="药品@3x.png" id="JnJ-zQ-EJA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kix-oM-XfD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -972,7 +972,7 @@
         <scene sceneID="Aut-Xx-fmt">
             <objects>
                 <navigationController id="pdM-SN-nJd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ncl-r6-vqd"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="服务@3x.png" id="Ncl-r6-vqd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yh8-Oe-XPL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1013,11 +1013,11 @@
             </objects>
             <point key="canvasLocation" x="1337" y="403"/>
         </scene>
-        <!--Item-->
+        <!--资讯-->
         <scene sceneID="70X-3m-cS8">
             <objects>
                 <navigationController id="ofS-JI-Cc3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ZrL-CL-0aa"/>
+                    <tabBarItem key="tabBarItem" title="资讯" image="资讯@3x.png" id="ZrL-CL-0aa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DAF-p1-s9q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1030,10 +1030,10 @@
             </objects>
             <point key="canvasLocation" x="623" y="1110"/>
         </scene>
-        <!--4-->
+        <!--资讯-->
         <scene sceneID="eDM-IR-dZb">
             <objects>
-                <viewController id="Jm1-hD-ly1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="information" id="Jm1-hD-ly1" customClass="YdInformationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IeV-k7-Ipj"/>
                         <viewControllerLayoutGuide type="bottom" id="XJf-n5-bIQ"/>
@@ -1042,17 +1042,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buf-Pf-8uv">
-                                <rect key="frame" x="100" y="130" width="11" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-M0-RHm">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Jm1-hD-ly1" id="NzY-RZ-UYa"/>
+                                    <outlet property="delegate" destination="Jm1-hD-ly1" id="ktR-jC-Wgi"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dNa-M0-RHm" firstAttribute="leading" secondItem="ams-3R-y8t" secondAttribute="leading" id="3kZ-uM-yJr"/>
+                            <constraint firstAttribute="trailing" secondItem="dNa-M0-RHm" secondAttribute="trailing" id="FPY-ye-xb8"/>
+                            <constraint firstItem="dNa-M0-RHm" firstAttribute="top" secondItem="IeV-k7-Ipj" secondAttribute="bottom" id="hfl-s7-DvP"/>
+                            <constraint firstItem="XJf-n5-bIQ" firstAttribute="top" secondItem="dNa-M0-RHm" secondAttribute="bottom" id="sVl-AU-Olm"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CkD-wp-tes"/>
-                    <navigationItem key="navigationItem" title="4" id="3dJ-g5-13a"/>
+                    <tabBarItem key="tabBarItem" title="资讯" id="CkD-wp-tes"/>
+                    <navigationItem key="navigationItem" id="3dJ-g5-13a">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="GxO-vz-EgZ">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="文字资讯"/>
+                                <segment title="电台"/>
+                            </segments>
+                            <connections>
+                                <action selector="Segmented:" destination="Jm1-hD-ly1" eventType="valueChanged" id="cFx-W7-Csf"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="Segmented" destination="GxO-vz-EgZ" id="mvg-QU-pLh"/>
+                        <outlet property="tableview" destination="dNa-M0-RHm" id="A0c-Gw-q95"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64V-eF-7Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1062,7 +1087,7 @@
         <scene sceneID="Ggt-kb-2TA">
             <objects>
                 <navigationController id="YBO-0f-7K0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="oCM-yd-XNW"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="汇总@3x.png" id="oCM-yd-XNW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L4M-xd-Cmg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1073,7 +1098,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KbP-4S-BcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="629" y="1782"/>
+            <point key="canvasLocation" x="623" y="1782"/>
         </scene>
         <!--5-->
         <scene sceneID="w6d-1c-11b">
@@ -1118,10 +1143,12 @@
         <scene sceneID="xLk-Vb-Tf9">
             <objects>
                 <navigationController id="pAw-5m-ZR6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="WEM-Ws-9q0"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="1213465@3x.png" id="WEM-Ws-9q0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eLZ-wm-JP0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.19607843137254902" green="0.74509803921568629" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="m4h-9M-mmh" kind="relationship" relationship="rootViewController" id="4Ve-eX-oSg"/>
@@ -1592,6 +1619,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1213465@3x.png" width="1080" height="1920"/>
         <image name="IMG_0797.jpg" width="1080" height="1920"/>
+        <image name="服务@3x.png" width="1080" height="1920"/>
+        <image name="汇总@3x.png" width="1080" height="1920"/>
+        <image name="药品@3x.png" width="1080" height="1920"/>
+        <image name="资讯@3x.png" width="1080" height="1920"/>
     </resources>
 </document>

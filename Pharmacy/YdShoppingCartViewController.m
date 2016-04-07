@@ -36,8 +36,7 @@
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     //解决tableview多出的白条
