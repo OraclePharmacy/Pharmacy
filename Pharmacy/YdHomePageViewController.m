@@ -19,6 +19,7 @@
 #import "YCAdView.h"
 #import "UIImageView+WebCache.h"
 #import "Color+Hex.h"
+#import "YdSurpriseViewController.h"
 @interface YdHomePageViewController ()
 {
     CGFloat width;
@@ -278,7 +279,9 @@
 //第一个按钮点击事件
 -(void)one
 {
-    NSLog(@"one");
+    YdSurpriseViewController *Surprise = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"superise"];
+    [self.navigationController pushViewController:Surprise animated:YES];
+    
 }
 //第二个按钮点击事件
 -(void)two
