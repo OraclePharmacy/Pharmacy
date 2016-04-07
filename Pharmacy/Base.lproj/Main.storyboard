@@ -929,7 +929,7 @@
         <!--Yd Drug Jump View Controller-->
         <scene sceneID="ToD-gv-xXu">
             <objects>
-                <viewController storyboardIdentifier="drugjump" id="SgQ-rX-8cc" customClass="YdDrugJumpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="drugjump" hidesBottomBarWhenPushed="YES" id="SgQ-rX-8cc" customClass="YdDrugJumpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aIs-Oq-Vnm"/>
                         <viewControllerLayoutGuide type="bottom" id="Vty-HC-f1t"/>
