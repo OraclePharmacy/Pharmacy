@@ -1045,7 +1045,7 @@
 				TargetAttributes = {
 					9505D6C81C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = KBRTKNG36Q;
+						DevelopmentTeam = Q893CLHQS4;
 					};
 					9505D6E11C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1364,13 +1364,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy1;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1379,13 +1377,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy1;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
