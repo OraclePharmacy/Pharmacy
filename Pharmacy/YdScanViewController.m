@@ -15,7 +15,10 @@
 @end
 
 @implementation YdScanViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.previewLayer removeFromSuperlayer];
+     [self readqrcode];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //状态栏名称
@@ -24,7 +27,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-    [self readqrcode];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +89,10 @@
     if (metadataObjects.count>0) {
         AVMetadataMachineReadableCodeObject*obj=metadataObjects[0];
         NSLog(@"%@",obj.stringValue);
+         YdScanJumpViewController *tiaotiao=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scanjump"];
+        tiaotiao.jieshou=obj.stringValue;
+        [self.navigationController pushViewController:tiaotiao animated:YES];
+        
     }
 }
 - (IBAction)Jump:(id)sender {

@@ -15,6 +15,7 @@
 @implementation YdScanJumpViewController
 
 - (void)viewDidLoad {
+    NSLog(@"-------%@",_jieshou);
     [super viewDidLoad];
     //状态栏名称
     self.navigationItem.title = @"评论";

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdScanJumpViewController : UINavigationController
-
+@interface YdScanJumpViewController :UIViewController
+@property (nonatomic ,strong) NSString*jieshou;
 @end
