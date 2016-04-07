@@ -807,6 +807,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kix-oM-XfD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="cun-Wt-NXG" kind="relationship" relationship="rootViewController" id="158-B6-N0Q"/>
@@ -976,6 +981,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yh8-Oe-XPL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="ElB-Jh-t4z" kind="relationship" relationship="rootViewController" id="gKH-wf-F0U"/>
@@ -1021,6 +1031,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DAF-p1-s9q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Jm1-hD-ly1" kind="relationship" relationship="rootViewController" id="4Fz-UN-iyZ"/>
@@ -1069,6 +1084,7 @@
                                 <segment title="文字资讯"/>
                                 <segment title="电台"/>
                             </segments>
+                            <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="Segmented:" destination="Jm1-hD-ly1" eventType="valueChanged" id="cFx-W7-Csf"/>
                             </connections>
@@ -1091,6 +1107,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L4M-xd-Cmg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="muQ-pQ-x9i" kind="relationship" relationship="rootViewController" id="TTb-t6-a2n"/>
@@ -1149,6 +1170,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.19607843137254902" green="0.74509803921568629" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="m4h-9M-mmh" kind="relationship" relationship="rootViewController" id="4Ve-eX-oSg"/>
@@ -1392,7 +1416,7 @@
         <!--Yd Disease View Controller-->
         <scene sceneID="o6h-YJ-EL6">
             <objects>
-                <viewController storyboardIdentifier="disease" id="Tm8-lO-sDq" customClass="YdDiseaseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="disease" hidesBottomBarWhenPushed="YES" id="Tm8-lO-sDq" customClass="YdDiseaseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OgO-V5-jJ7"/>
                         <viewControllerLayoutGuide type="bottom" id="O7h-L7-7nd"/>
@@ -1410,7 +1434,7 @@
         <!--Yd Drugs View Controller-->
         <scene sceneID="XLe-J8-4Ca">
             <objects>
-                <viewController storyboardIdentifier="drugs" id="nBP-gx-c3b" customClass="YdDrugsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="drugs" hidesBottomBarWhenPushed="YES" id="nBP-gx-c3b" customClass="YdDrugsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iLB-qe-qaq"/>
                         <viewControllerLayoutGuide type="bottom" id="8ua-iK-8qM"/>
@@ -1608,6 +1632,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s0j-42-wVG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ufq-5l-Hu4"/>
