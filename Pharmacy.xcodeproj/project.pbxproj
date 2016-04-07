@@ -122,6 +122,7 @@
 		95C372781CB645DF0083AC90 /* YdShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C372771CB645DF0083AC90 /* YdShakeViewController.m */; };
 		95C3727B1CB646500083AC90 /* YdTurntableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C3727A1CB646500083AC90 /* YdTurntableViewController.m */; };
 		95C3727E1CB6468A0083AC90 /* YdAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C3727D1CB6468A0083AC90 /* YdAnswerViewController.m */; };
+		95C372811CB6582A0083AC90 /* YdServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C372801CB6582A0083AC90 /* YdServiceViewController.m */; };
 		95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */; };
 		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
 		95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D4CD621CAD0855003CD827 /* YCAdView.m */; };
@@ -343,6 +344,8 @@
 		95C3727A1CB646500083AC90 /* YdTurntableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdTurntableViewController.m; sourceTree = "<group>"; };
 		95C3727C1CB6468A0083AC90 /* YdAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdAnswerViewController.h; sourceTree = "<group>"; };
 		95C3727D1CB6468A0083AC90 /* YdAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdAnswerViewController.m; sourceTree = "<group>"; };
+		95C3727F1CB6582A0083AC90 /* YdServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdServiceViewController.h; sourceTree = "<group>"; };
+		95C372801CB6582A0083AC90 /* YdServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdServiceViewController.m; sourceTree = "<group>"; };
 		95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugJumpViewController.h; sourceTree = "<group>"; };
 		95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugJumpViewController.m; sourceTree = "<group>"; };
 		95CA50F81CA121F7006CBC72 /* disease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = disease.plist; sourceTree = "<group>"; };
@@ -501,7 +504,7 @@
 				9505D71B1C9A856B006F6850 /* 登录功能 */,
 				9505D7181C9A8537006F6850 /* 首页 */,
 				95EA79621C9BD9710093829A /* 药品 */,
-				95EA79611C9BD96F0093829A /* New Group2 */,
+				95EA79611C9BD96F0093829A /* 服务 */,
 				95EA79601C9BD96C0093829A /* 资讯 */,
 				95EA795F1C9BD9690093829A /* 订单 */,
 				9505D7191C9A8543006F6850 /* 侧滑相关 */,
@@ -1003,11 +1006,13 @@
 			name = "资讯";
 			sourceTree = "<group>";
 		};
-		95EA79611C9BD96F0093829A /* New Group2 */ = {
+		95EA79611C9BD96F0093829A /* 服务 */ = {
 			isa = PBXGroup;
 			children = (
+				95C3727F1CB6582A0083AC90 /* YdServiceViewController.h */,
+				95C372801CB6582A0083AC90 /* YdServiceViewController.m */,
 			);
-			name = "New Group2";
+			name = "服务";
 			sourceTree = "<group>";
 		};
 		95EA79621C9BD9710093829A /* 药品 */ = {
@@ -1257,6 +1262,7 @@
 				95609ECB1CABC74000AF65E4 /* AFURLRequestSerialization.m in Sources */,
 				95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */,
 				9505D7151C9A7FFF006F6850 /* YdLeftViewController.m in Sources */,
+				95C372811CB6582A0083AC90 /* YdServiceViewController.m in Sources */,
 				95609EFC1CABC74E00AF65E4 /* UIButton+WebCache.m in Sources */,
 				95609EC61CABC74000AF65E4 /* AFHTTPRequestOperationManager.m in Sources */,
 				9502A4AA1C9D21B200578339 /* YdDiseaseViewController.m in Sources */,

@@ -995,10 +995,10 @@
             </objects>
             <point key="canvasLocation" x="623" y="403"/>
         </scene>
-        <!--3-->
+        <!--服务-->
         <scene sceneID="PC0-el-mMy">
             <objects>
-                <viewController id="ElB-Jh-t4z" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="service" id="ElB-Jh-t4z" customClass="YdServiceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r9X-rx-p1L"/>
                         <viewControllerLayoutGuide type="bottom" id="pJg-CQ-x94"/>
@@ -1017,7 +1017,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="pyV-dI-skV"/>
-                    <navigationItem key="navigationItem" title="3" id="K7a-yc-yMN"/>
+                    <navigationItem key="navigationItem" title="服务" id="K7a-yc-yMN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9f-Ga-1sK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
