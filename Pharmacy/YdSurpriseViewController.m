@@ -40,6 +40,7 @@
     YdTurntableViewController *Turntable = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"turntable"];
     [self.navigationController pushViewController:Turntable animated:YES];
 }
+
 //摇一摇
 - (IBAction)ShakeButton:(id)sender {
     //跳摇一摇
