@@ -569,7 +569,7 @@
             //是
             if ([self.PassText.text isEqualToString:self.AgainPassText.text]) {
                 
-                [WarningBox warningBoxModeIndeterminate:@"正在获取验证码..." andView:self.view];
+                [WarningBox warningBoxModeIndeterminate:@"正在注册..." andView:self.view];
                 
                 //userID    暂时不用改
                 NSString * userID=@"0";
