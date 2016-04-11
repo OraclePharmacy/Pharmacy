@@ -12,7 +12,7 @@
 #import "YdSearchViewController.h"
 #import "YdbannerViewController.h"
 #import "WarningBox.h"
-#import "AFHTTPRequestOperationManager.h"
+#import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
@@ -181,7 +181,7 @@
     
     
     //将上传对象转换为json格式字符串
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
@@ -197,8 +197,9 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    
-    [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
@@ -231,13 +232,13 @@
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         //NSLog(@"错误：%@",error);
-        
     }];
+    
     
     
 }
@@ -316,7 +317,7 @@
     
     
     //将上传对象转换为json格式字符串
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
@@ -332,8 +333,9 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    
-    [manager GET:url1 parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
@@ -349,14 +351,14 @@
                 
                 for (int i = 0; i < presentarray.count; i++) {
                     
-                
+                    
                     [presentarrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[presentarray[i] objectForKey:@"url"]]];
-                
+                    
                     
                 }
                 
                 [self.tableview reloadData];
-
+                
             }
             
             
@@ -367,12 +369,13 @@
             
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
-        
     }];
+    
 
 }
 

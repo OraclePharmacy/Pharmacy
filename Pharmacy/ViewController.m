@@ -11,7 +11,7 @@
 #import "YdForgetViewController.h"
 #import "YdRegisterViewController.h"
 #import "WarningBox.h"
-#import "AFHTTPRequestOperationManager.h"
+#import "AFHTTPSessionManager.h"
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //导航栏名称
+    
+    
     self.navigationItem.title = @"登录";
     
     self.PhoneText.text = @"15765512881";
