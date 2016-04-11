@@ -776,9 +776,6 @@
     return cell;
 }
 
-
-
-
 //特价药品展示   药品详情
 -(void)pharmacyjump
 {

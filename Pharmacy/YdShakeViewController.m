@@ -35,6 +35,7 @@
     // 并让自己成为第一响应者
     [self becomeFirstResponder];
     
+    [self.navigationController setNavigationBarHidden:YES animated:NO];//隐藏UINavigationBar
     //状态栏名称
     self.navigationItem.title = @"摇一摇";
     //设置self.view背景颜色
