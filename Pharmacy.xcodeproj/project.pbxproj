@@ -121,6 +121,7 @@
 		95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79551C9BA8E30093829A /* YdModifyViewController.m */; };
 		95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795A1C9BB07B0093829A /* MBProgressHUD.m */; };
 		95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795C1C9BB07B0093829A /* WarningBox.m */; };
+		95EBA8731CBB9B2400A48D80 /* YdQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */; };
 		95F1E03F1CB7A72300614502 /* shake_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0351CB7A72300614502 /* shake_background.png */; };
 		95F1E0401CB7A72300614502 /* shake_fangshe.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0361CB7A72300614502 /* shake_fangshe.png */; };
 		95F1E0411CB7A72300614502 /* shake_yyy.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0371CB7A72300614502 /* shake_yyy.png */; };
@@ -343,6 +344,8 @@
 		95EA795A1C9BB07B0093829A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		95EA795B1C9BB07B0093829A /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
 		95EA795C1C9BB07B0093829A /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
+		95EBA8711CBB9B2400A48D80 /* YdQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdQuestionViewController.h; sourceTree = "<group>"; };
+		95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdQuestionViewController.m; sourceTree = "<group>"; };
 		95F1E0351CB7A72300614502 /* shake_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_background.png; sourceTree = "<group>"; };
 		95F1E0361CB7A72300614502 /* shake_fangshe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_fangshe.png; sourceTree = "<group>"; };
 		95F1E0371CB7A72300614502 /* shake_yyy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_yyy.png; sourceTree = "<group>"; };
@@ -584,6 +587,7 @@
 			children = (
 				9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */,
 				9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */,
+				95EBA8741CBB9F1A00A48D80 /* 问药师 */,
 				95C3726F1CB6431D0083AC90 /* 有惊喜 */,
 				95E951241CB4AC1A00BB754C /* 积分商品 */,
 				95E951211CB4ABC900BB754C /* 特价药品 */,
@@ -998,6 +1002,15 @@
 			name = "轮播";
 			sourceTree = "<group>";
 		};
+		95EBA8741CBB9F1A00A48D80 /* 问药师 */ = {
+			isa = PBXGroup;
+			children = (
+				95EBA8711CBB9B2400A48D80 /* YdQuestionViewController.h */,
+				95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */,
+			);
+			name = "问药师";
+			sourceTree = "<group>";
+		};
 		95F1E0341CB7A72300614502 /* 摇一摇 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1219,6 +1232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95EBA8731CBB9B2400A48D80 /* YdQuestionViewController.m in Sources */,
 				95609F021CABC74E00AF65E4 /* UIView+WebCacheOperation.m in Sources */,
 				9502A4AD1C9D21D300578339 /* YdDrugsViewController.m in Sources */,
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,

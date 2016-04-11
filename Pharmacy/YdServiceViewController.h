@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdServiceViewController : UIViewController
+@interface YdServiceViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end

@@ -973,6 +973,24 @@
             </objects>
             <point key="canvasLocation" x="1984" y="-316"/>
         </scene>
+        <!--Yd Question View Controller-->
+        <scene sceneID="XZY-Nz-se7">
+            <objects>
+                <viewController id="Uix-7P-8dy" customClass="YdQuestionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iun-br-ZQl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ol1-02-zgg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i19-m1-61f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6o-XC-vBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4930" y="-5299"/>
+        </scene>
         <!--服务-->
         <scene sceneID="Aut-Xx-fmt">
             <objects>
@@ -1006,14 +1024,6 @@
                     <view key="view" contentMode="scaleToFill" id="fUL-oX-hWb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAe-91-Oje">
-                                <rect key="frame" x="70" y="138" width="11" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="pyV-dI-skV"/>
