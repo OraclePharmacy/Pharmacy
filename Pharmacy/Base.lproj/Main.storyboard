@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -984,6 +984,32 @@
                     <view key="view" contentMode="scaleToFill" id="i19-m1-61f">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tx4-KS-gJV">
+                                <rect key="frame" x="111" y="111" width="240" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yKH-H6-dIA">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="96l-o2-oUx">
+                                        <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerId" id="ETH-xe-6FH">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -1033,6 +1059,150 @@
             </objects>
             <point key="canvasLocation" x="1337" y="403"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="pEA-gT-MNQ">
+            <objects>
+                <viewController id="rgS-Y4-pGI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b8q-cd-OiV"/>
+                        <viewControllerLayoutGuide type="bottom" id="M6e-lX-zm5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rTH-Zl-G7T">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIY-w2-PQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1984" y="403"/>
+        </scene>
+        <!--Yd Wire View Controller-->
+        <scene sceneID="w2F-ur-IiA">
+            <objects>
+                <viewController storyboardIdentifier="wire" id="Po1-UE-pU9" customClass="YdWireViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bhi-pM-wg3"/>
+                        <viewControllerLayoutGuide type="bottom" id="0fg-es-vY9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1p1-Ke-weB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s5o-di-X5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624" y="403"/>
+        </scene>
+        <!--Yd Remind View Controller-->
+        <scene sceneID="CD8-OW-EDp">
+            <objects>
+                <viewController storyboardIdentifier="remind" id="qx4-B8-3oc" customClass="YdRemindViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8rH-nz-SaY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mwr-TG-H5h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mpC-Ef-qJK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DtN-du-HLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="403"/>
+        </scene>
+        <!--Yd Blood View Controller-->
+        <scene sceneID="Z9b-oK-2og">
+            <objects>
+                <viewController storyboardIdentifier="blood" id="khA-UY-dGW" customClass="YdBloodViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QaW-at-gYB"/>
+                        <viewControllerLayoutGuide type="bottom" id="nwp-XF-rff"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xLs-md-OJB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBI-8f-JDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3912" y="403"/>
+        </scene>
+        <!--Yd Electronics View Controller-->
+        <scene sceneID="FRG-bz-am0">
+            <objects>
+                <viewController storyboardIdentifier="electronics" id="v46-Tg-vky" customClass="YdElectronicsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xbg-Zb-3li"/>
+                        <viewControllerLayoutGuide type="bottom" id="NzA-0e-mLM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NPJ-JD-cEi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49z-X7-OGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4568" y="403"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2um-hS-STF">
+            <objects>
+                <viewController id="CTW-4N-f4G" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="70o-iZ-Izf"/>
+                        <viewControllerLayoutGuide type="bottom" id="DbQ-oD-usE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2bQ-Rw-yED">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y3C-lg-IBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5212" y="403"/>
+        </scene>
+        <!--Ydchat View Controller-->
+        <scene sceneID="Rsm-dp-ij2">
+            <objects>
+                <viewController storyboardIdentifier="chat" id="jEt-eT-2Aa" customClass="YdchatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z1P-uX-ymz"/>
+                        <viewControllerLayoutGuide type="bottom" id="u4I-KN-iZB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JHH-ZP-FiC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3w-vT-aYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5848" y="403"/>
+        </scene>
+        <!--Yd Recommend View Controller-->
+        <scene sceneID="L39-U1-uvW">
+            <objects>
+                <viewController storyboardIdentifier="recommend" id="KH1-04-OoL" customClass="YdRecommendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ddM-Qm-rKf"/>
+                        <viewControllerLayoutGuide type="bottom" id="o6c-MF-Z60"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nZg-Br-b7R">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9I-Pp-VX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6476" y="403"/>
+        </scene>
         <!--资讯-->
         <scene sceneID="70X-3m-cS8">
             <objects>
@@ -1068,7 +1238,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-M0-RHm">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="94" width="600" height="457"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Jm1-hD-ly1" id="NzY-RZ-UYa"/>
@@ -1076,11 +1246,11 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dNa-M0-RHm" firstAttribute="leading" secondItem="ams-3R-y8t" secondAttribute="leading" id="3kZ-uM-yJr"/>
                             <constraint firstAttribute="trailing" secondItem="dNa-M0-RHm" secondAttribute="trailing" id="FPY-ye-xb8"/>
-                            <constraint firstItem="dNa-M0-RHm" firstAttribute="top" secondItem="IeV-k7-Ipj" secondAttribute="bottom" id="hfl-s7-DvP"/>
+                            <constraint firstItem="dNa-M0-RHm" firstAttribute="top" secondItem="IeV-k7-Ipj" secondAttribute="bottom" constant="30" id="hfl-s7-DvP"/>
                             <constraint firstItem="XJf-n5-bIQ" firstAttribute="top" secondItem="dNa-M0-RHm" secondAttribute="bottom" id="sVl-AU-Olm"/>
                         </constraints>
                     </view>

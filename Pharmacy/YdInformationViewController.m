@@ -12,6 +12,10 @@
 {
     int index;
     int zhi ;
+    
+    CGFloat width;
+    CGFloat height;
+    
 }
 @end
 
@@ -19,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
     
     //设置分段控制器的默认选项
     self.Segmented.selectedSegmentIndex = 0;
@@ -110,6 +117,8 @@
     }
     else if(index == 1){
         zhi = 2;
+        self.tableview.frame = CGRectMake(0, 64,width, height-64-40);
+       
         [self.tableview reloadData];
     }
 

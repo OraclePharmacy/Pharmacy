@@ -305,7 +305,7 @@
     bing.frame = CGRectMake(0, 10, width/5, height/18-10);
     bing.font = [UIFont systemFontOfSize:10];
     bing.textColor = [UIColor blackColor];
-    bing.textAlignment = UITextAlignmentRight;
+    bing.textAlignment = NSTextAlignmentRight;
     bing.text =erji[indexPath.row];
     //bing.backgroundColor  = [UIColor redColor];
     [cell.contentView addSubview:bing];

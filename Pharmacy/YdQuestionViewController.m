@@ -24,7 +24,7 @@
     NSString * userID=@"0";
     
     //请求地址   地址不同 必须要改
-    NSString * url =@"/function/pharmacistInfoList";
+    NSString * url =@"/vipinfo/appraiseInterface";
     
     //时间戳
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -37,7 +37,8 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    //NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1000",@"storeId",@"/hyb/userfiles/1/files/base/news/news/2016/03/88.jpg",@"encode", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
