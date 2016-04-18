@@ -158,7 +158,7 @@
 //            NSString * userID=@"0";
 //            
 //            //请求地址   地址不同 必须要改
-//            NSString * url =@"/login";
+//            NSString * url =@"/viplogin";
 //            
 //            //时间戳
 //            NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];

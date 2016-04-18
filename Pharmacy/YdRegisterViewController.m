@@ -12,23 +12,33 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import <CoreLocation/CoreLocation.h>
 
-
-@interface YdRegisterViewController ()
+@interface YdRegisterViewController ()<CLLocationManagerDelegate>
 {
     NSArray *arr;
     NSString *str;
     
     CGFloat width;
     
+    NSString*jing;
+    NSString*wei;
+    NSString*sheng;
+    NSString*shi;
+    NSString*qu;
+    
     NSArray *stateArray;
     NSArray *cityArray;
     NSArray *areaArray;
     
+    NSMutableDictionary*hehe1;
+    NSArray*shengg;
+    
     NSDictionary *stateDic;
     NSDictionary *cityDic;
     
-    
+    CLLocationManager*_locationManager;
+
 }
 @end
 
@@ -36,6 +46,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self sanji];
+    
+    
     self.PhoneText.text = @"18345559961";
     self.PassText.text = @"111111";
     self.AgainPassText.text = @"111111";
@@ -52,6 +66,9 @@
     
     width = [UIScreen mainScreen].bounds.size.width;
     
+    //调用定位
+    [self initializeLocationService];
+    
     //导航栏名称
     self.navigationItem.title = @"注册";
     //设置self.view背景颜色
@@ -66,12 +83,12 @@
 //点击编辑区以外的地方键盘消失
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    [self.PhoneText resignFirstResponder];
+    [self.PhoneText        resignFirstResponder];
     [self.VerificationText resignFirstResponder];
-    [self.RecommendedText resignFirstResponder];
-    [self.PassText resignFirstResponder];
-    [self.AgainPassText resignFirstResponder];
-    [self.StoreText resignFirstResponder];
+    [self.RecommendedText  resignFirstResponder];
+    [self.PassText         resignFirstResponder];
+    [self.AgainPassText    resignFirstResponder];
+    [self.StoreText        resignFirstResponder];
     
 }
 //设置textfield
@@ -232,7 +249,7 @@
         NSString * userID=@"0";
         
         //请求地址   地址不同 必须要改
-        NSString * url =@"/Store/getLonLat";
+        NSString * url =@"/Store/getLocation";
         
         //时间戳
         NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -243,11 +260,10 @@
         //将上传对象转换为json格式字符串
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
-//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"126.663513",@"longitude",@"45.716008",@"latitude",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -256,60 +272,50 @@
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
         
-        NSLog(@"url1%@",url1);
+        NSLog(@"%@",url1);
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        NSLog(@"dic%@",dic);
-        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
-            
+        NSLog(@"%@",dic);
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"%@",responseObject);
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                    arr = [datadic objectForKey:@"mdList"];
-                    
-                    
-                    if (arr.count == 1)
-                    {
-                        self.StoreText.text = [arr[0] objectForKey:@"office"];
-                        str = [arr[0] objectForKey:@"id"];
-                    }
-                    else if (arr.count > 1)
-                    {
-                        
-                        self.bejing.hidden = NO;
-                        self.tableview.hidden = NO;
-                        [self.tableview reloadData];
-                        
-                    }
-                    else
-                    {
-                        self.bejing.hidden = NO;
-                        self.pickerview.hidden = NO;
-                        [self sanji];
-                    }
-                    
+            NSLog(@"%@",responseObject);
+            NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
+            hehe1=[[NSMutableDictionary alloc] init];
+            
+            shengg=[SSMap allKeys];
+            for (int i=0; i<shengg.count; i++) {
+                //NSLog(@"%@",shengg[i]);
+                NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                for (int y=0; y<xixi.count; y++) {
+                    [meme1 addObject: [xixi[y] objectForKey:@"name"]];
                 }
-                
-                
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                [hehe1 setObject:meme1 forKey:shengg[i]];
                 
             }
+            NSLog(@"%@",hehe1);
+            UILabel* hah=[[UILabel alloc] initWithFrame:CGRectMake(100, 500, 200, 40)];
+            hah.text=[NSString stringWithFormat:@"%@",shengg[0]];
+            UILabel* haha1=[[UILabel alloc] initWithFrame:CGRectMake(100, 550, 200, 40)];
+            haha1.text=[NSString stringWithFormat:@"%@",[hehe1 objectForKey:shengg[0]][0]];
+            [self.view addSubview:haha1];
+            [self.view addSubview:hah];
+            
+            
+            NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
+            [hehe1 writeToFile:path atomically:YES];
+            
+            NSLog(@"%@",NSHomeDirectory());
+            
 
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
             NSLog(@"错误：%@",error);
         }];
+        
         
         return NO;
     }
@@ -361,10 +367,13 @@
 #pragma 创建三级联动
 -(void)sanji
 {
+    self.pickerview.hidden=NO;
+    self.bejing.hidden=NO;
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
     
     stateArray = [NSArray arrayWithContentsOfFile:path];
+    NSLog(@"%@",stateArray);
     cityArray = [stateArray[0] objectForKey:@"cities"];
     areaArray = [cityArray[0] objectForKey:@"areas"];
     
@@ -546,6 +555,7 @@
 //完成
 - (IBAction)CompleteButton:(id)sender {
     [self.view endEditing:YES];
+    [self sanji];
 
     //判断长度是否大于0
     if (self.PhoneText.text.length > 0 && self.VerificationText.text.length > 0 && self.PassText.text.length > 0 && self.AgainPassText.text.length &&self.StoreText.text.length)
@@ -698,4 +708,69 @@
     self.tableview.hidden = YES;
     self.pickerview.hidden = YES;
 }
+
+- (void)initializeLocationService {
+    
+    // 初始化定位管理器
+    _locationManager = [[CLLocationManager alloc] init];
+    // 设置代理
+    _locationManager.delegate = self;
+    // 设置定位精确度到米
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    // 设置过滤器为无
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    // 开始定位
+    // 取得定位权限，有两个方法，取决于你的定位使用情况
+    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
+    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+    [_locationManager startUpdatingLocation];
+}
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    //将经度显示到label上
+    jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
+    //将纬度现实到label上
+    wei = [NSString stringWithFormat:@"%lf", newLocation.coordinate.latitude];
+    
+    // 获取当前所在的城市名
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
+        if (array.count > 0){
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            
+            sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
+            NSLog(@"%@",sheng);
+            //获取城市
+            NSString *city = placemark.locality;
+            
+            if (city) {
+                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+                city = placemark.administrativeArea;
+                
+                //市
+                
+                shi=[NSString stringWithFormat:@"%@",placemark.locality];
+                //区
+                qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
+            }
+            
+        }
+        else if (error == nil && [array count] == 0)
+        {
+            NSLog(@"No results were returned.");
+        }
+        else if (error != nil)
+        {
+            NSLog(@"An error occurred = %@", error);
+        }
+    }];
+    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+    [manager stopUpdatingLocation];
+    
+    
+    
+    
+}
+
+
 @end

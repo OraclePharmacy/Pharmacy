@@ -9,113 +9,113 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>通州</string>
+				<string>通州区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>房山</string>
+				<string>房山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>昌平</string>
+				<string>昌平区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>顺义</string>
+				<string>顺义区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>怀柔</string>
+				<string>怀柔区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大兴</string>
+				<string>大兴区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>密云</string>
+				<string>密云县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>平谷</string>
+				<string>平谷区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>延庆</string>
+				<string>延庆县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>东城</string>
+				<string>东城区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>崇文</string>
+				<string>崇文区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>西城</string>
+				<string>西城区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>朝阳</string>
+				<string>朝阳区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宣武</string>
+				<string>宣武区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石景山</string>
+				<string>石景山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>丰台</string>
+				<string>丰台区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>门头沟</string>
+				<string>门头沟区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>海淀</string>
+				<string>海淀区</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>北京</string>
+		<string>北京市</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -124,119 +124,119 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>普陀</string>
+				<string>普陀区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闸北</string>
+				<string>闸北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>虹口</string>
+				<string>虹口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>杨浦</string>
+				<string>杨浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>卢湾</string>
+				<string>卢湾区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>徐汇</string>
+				<string>徐汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>长宁</string>
+				<string>长宁区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>静安</string>
+				<string>静安区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>黄浦</string>
+				<string>黄浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>金山</string>
+				<string>金山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>浦东新</string>
+				<string>浦东新区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>嘉定</string>
+				<string>嘉定区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闵行</string>
+				<string>闵行区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宝山</string>
+				<string>宝山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南汇</string>
+				<string>南汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>青浦</string>
+				<string>青浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>松江</string>
+				<string>松江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>奉贤</string>
+				<string>奉贤区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>崇明</string>
+				<string>崇明县</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>上海</string>
+		<string>上海市</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -245,79 +245,79 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>武清</string>
+				<string>武清区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河东</string>
+				<string>河东区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>和平</string>
+				<string>和平区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>西青</string>
+				<string>西青区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>津南</string>
+				<string>津南区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大港</string>
+				<string>大港区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>东丽</string>
+				<string>东丽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>塘沽</string>
+				<string>塘沽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>汉沽</string>
+				<string>汉沽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河北</string>
+				<string>河北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>红桥</string>
+				<string>红桥区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河西</string>
+				<string>河西区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南开</string>
+				<string>南开区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -329,29 +329,29 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宁河</string>
+				<string>宁河县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>静海</string>
+				<string>静海县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宝坻</string>
+				<string>宝坻区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>北辰</string>
+				<string>北辰区</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>天津</string>
+		<string>天津市</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -366,97 +366,97 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>江北</string>
+				<string>江北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>沙坪坝</string>
+				<string>沙坪坝区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>九龙坡</string>
+				<string>九龙坡区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南岸</string>
+				<string>南岸区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>北碚</string>
+				<string>北碚区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>万盛</string>
+				<string>万盛区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>双桥</string>
+				<string>双桥区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>渝北</string>
+				<string>渝北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巴南</string>
+				<string>巴南区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>黔江</string>
+				<string>黔江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>垫江</string>
+				<string>垫江县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>武隆</string>
+				<string>武隆县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巫山</string>
+				<string>巫山县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巫溪</string>
+				<string>巫溪县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>云阳</string>
+				<string>云阳县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>奉节</string>
+				<string>奉节县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -468,137 +468,137 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>梁平</string>
+				<string>梁平县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>璧山</string>
+				<string>璧山县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>荣昌</string>
+				<string>荣昌县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大足</string>
+				<string>大足县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>铜梁</string>
+				<string>铜梁县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>潼南</string>
+				<string>潼南县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>綦江</string>
+				<string>綦江县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>长寿</string>
+				<string>长寿区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>彭水</string>
+				<string>彭水苗族土家族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>酉阳</string>
+				<string>酉阳土家族苗族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>合川</string>
+				<string>合川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>江津</string>
+				<string>江津区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南川</string>
+				<string>南川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>永川</string>
+				<string>永川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>丰都</string>
+				<string>丰都县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>城口</string>
+				<string>城口县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大渡口</string>
+				<string>大渡口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>渝中</string>
+				<string>渝中区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>涪陵</string>
+				<string>涪陵区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>万州</string>
+				<string>万州区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石柱</string>
+				<string>石柱土家族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>秀山</string>
+				<string>秀山土家族苗族自治县</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>重庆</string>
+		<string>重庆市</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -617,7 +617,7 @@
 					<string>松阳县</string>
 				</array>
 				<key>city</key>
-				<string>丽水</string>
+				<string>丽水市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -628,7 +628,7 @@
 					<string>岱山县</string>
 				</array>
 				<key>city</key>
-				<string>舟山</string>
+				<string>舟山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -646,7 +646,7 @@
 					<string>余姚市</string>
 				</array>
 				<key>city</key>
-				<string>宁波</string>
+				<string>宁波市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -659,7 +659,7 @@
 					<string>龙游县</string>
 				</array>
 				<key>city</key>
-				<string>衢州</string>
+				<string>衢州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -677,7 +677,7 @@
 					<string>永嘉县</string>
 				</array>
 				<key>city</key>
-				<string>温州</string>
+				<string>温州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -697,7 +697,7 @@
 					<string>富阳市</string>
 				</array>
 				<key>city</key>
-				<string>杭州</string>
+				<string>杭州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -713,7 +713,7 @@
 					<string>临海市</string>
 				</array>
 				<key>city</key>
-				<string>台州</string>
+				<string>台州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -727,7 +727,7 @@
 					<string>桐乡市</string>
 				</array>
 				<key>city</key>
-				<string>嘉兴</string>
+				<string>嘉兴市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -740,7 +740,7 @@
 					<string>诸暨市</string>
 				</array>
 				<key>city</key>
-				<string>绍兴</string>
+				<string>绍兴市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -756,7 +756,7 @@
 					<string>婺城区</string>
 				</array>
 				<key>city</key>
-				<string>金华</string>
+				<string>金华市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -768,11 +768,11 @@
 					<string>南浔区</string>
 				</array>
 				<key>city</key>
-				<string>湖州</string>
+				<string>湖州市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>浙江</string>
+		<string>浙江省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -785,7 +785,7 @@
 					<string>金湾区</string>
 				</array>
 				<key>city</key>
-				<string>珠海</string>
+				<string>珠海市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -797,7 +797,7 @@
 					<string>惠阳区</string>
 				</array>
 				<key>city</key>
-				<string>惠州</string>
+				<string>惠州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -812,7 +812,7 @@
 					<string>连州市</string>
 				</array>
 				<key>city</key>
-				<string>清远</string>
+				<string>清远市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -829,7 +829,7 @@
 					<string>乳源瑶族自治县</string>
 				</array>
 				<key>city</key>
-				<string>韶关</string>
+				<string>韶关市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -843,7 +843,7 @@
 					<string>恩平市</string>
 				</array>
 				<key>city</key>
-				<string>江门</string>
+				<string>江门市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -855,7 +855,7 @@
 					<string>揭西县</string>
 				</array>
 				<key>city</key>
-				<string>揭阳</string>
+				<string>揭阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -867,7 +867,7 @@
 					<string>罗定市</string>
 				</array>
 				<key>city</key>
-				<string>云浮</string>
+				<string>云浮市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -879,7 +879,7 @@
 					<string>高明区</string>
 				</array>
 				<key>city</key>
-				<string>佛山</string>
+				<string>佛山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -898,7 +898,7 @@
 					<string>南沙区</string>
 				</array>
 				<key>city</key>
-				<string>广州</string>
+				<string>广州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -911,7 +911,7 @@
 					<string>罗湖区</string>
 				</array>
 				<key>city</key>
-				<string>深圳</string>
+				<string>深圳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -924,7 +924,7 @@
 					<string>和平县</string>
 				</array>
 				<key>city</key>
-				<string>河源</string>
+				<string>河源市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -938,7 +938,7 @@
 					<string>澄海区</string>
 				</array>
 				<key>city</key>
-				<string>汕头</string>
+				<string>汕头市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -949,7 +949,7 @@
 					<string>海丰县</string>
 				</array>
 				<key>city</key>
-				<string>汕尾</string>
+				<string>汕尾市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -962,7 +962,7 @@
 					<string>茂南区</string>
 				</array>
 				<key>city</key>
-				<string>茂名</string>
+				<string>茂名市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -977,19 +977,19 @@
 					<string>高要市</string>
 				</array>
 				<key>city</key>
-				<string>肇庆</string>
+				<string>肇庆市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>厚街</string>
-					<string>樟木头</string>
-					<string>石龙</string>
-					<string>长安</string>
-					<string>虎门</string>
+					<string>厚街镇</string>
+					<string>樟木头镇</string>
+					<string>石龙镇</string>
+					<string>长安镇</string>
+					<string>虎门镇</string>
 				</array>
 				<key>city</key>
-				<string>东莞</string>
+				<string>东莞市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1005,7 +1005,7 @@
 					<string>坡头区</string>
 				</array>
 				<key>city</key>
-				<string>湛江</string>
+				<string>湛江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1015,7 +1015,7 @@
 					<string>饶平县</string>
 				</array>
 				<key>city</key>
-				<string>潮州</string>
+				<string>潮州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1026,13 +1026,15 @@
 					<string>江城区</string>
 				</array>
 				<key>city</key>
-				<string>阳江</string>
+				<string>阳江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
-				<array/>
+				<array>
+					<string>中山市</string>
+				</array>
 				<key>city</key>
-				<string>中山</string>
+				<string>中山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1047,11 +1049,11 @@
 					<string>五华县</string>
 				</array>
 				<key>city</key>
-				<string>梅州</string>
+				<string>梅州市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>广东</string>
+		<string>广东省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -1068,7 +1070,7 @@
 					<string>灌南县</string>
 				</array>
 				<key>city</key>
-				<string>连云港</string>
+				<string>连云港市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1084,7 +1086,7 @@
 					<string>大丰市</string>
 				</array>
 				<key>city</key>
-				<string>盐城</string>
+				<string>盐城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1099,7 +1101,7 @@
 					<string>宜兴市</string>
 				</array>
 				<key>city</key>
-				<string>无锡</string>
+				<string>无锡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1111,7 +1113,7 @@
 					<string>宿城区</string>
 				</array>
 				<key>city</key>
-				<string>宿迁</string>
+				<string>宿迁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1125,7 +1127,7 @@
 					<string>江都市</string>
 				</array>
 				<key>city</key>
-				<string>扬州</string>
+				<string>扬州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1138,7 +1140,7 @@
 					<string>京口区</string>
 				</array>
 				<key>city</key>
-				<string>镇江</string>
+				<string>镇江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1158,7 +1160,7 @@
 					<string>溧水县</string>
 				</array>
 				<key>city</key>
-				<string>南京</string>
+				<string>南京市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1176,7 +1178,7 @@
 					<string>丰县</string>
 				</array>
 				<key>city</key>
-				<string>徐州</string>
+				<string>徐州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1189,7 +1191,7 @@
 					<string>海陵区</string>
 				</array>
 				<key>city</key>
-				<string>泰州</string>
+				<string>泰州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1204,7 +1206,7 @@
 					<string>崇川区</string>
 				</array>
 				<key>city</key>
-				<string>南通</string>
+				<string>南通市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1218,7 +1220,7 @@
 					<string>金坛市</string>
 				</array>
 				<key>city</key>
-				<string>常州</string>
+				<string>常州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1233,7 +1235,7 @@
 					<string>金湖县</string>
 				</array>
 				<key>city</key>
-				<string>淮安</string>
+				<string>淮安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1251,11 +1253,11 @@
 					<string>相城区</string>
 				</array>
 				<key>city</key>
-				<string>苏州</string>
+				<string>苏州市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>江苏</string>
+		<string>江苏省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -1273,7 +1275,7 @@
 					<string>高青县</string>
 				</array>
 				<key>city</key>
-				<string>淄博</string>
+				<string>淄博市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1292,7 +1294,7 @@
 					<string>栖霞市</string>
 				</array>
 				<key>city</key>
-				<string>烟台</string>
+				<string>烟台市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1303,7 +1305,7 @@
 					<string>东港区</string>
 				</array>
 				<key>city</key>
-				<string>日照</string>
+				<string>日照市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1319,7 +1321,7 @@
 					<string>定陶县</string>
 				</array>
 				<key>city</key>
-				<string>荷泽</string>
+				<string>荷泽市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1338,7 +1340,7 @@
 					<string>青州市</string>
 				</array>
 				<key>city</key>
-				<string>潍坊</string>
+				<string>潍坊市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1355,7 +1357,7 @@
 					<string>济阳县</string>
 				</array>
 				<key>city</key>
-				<string>济南</string>
+				<string>济南市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1374,7 +1376,7 @@
 					<string>曲阜市</string>
 				</array>
 				<key>city</key>
-				<string>济宁</string>
+				<string>济宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1393,7 +1395,7 @@
 					<string>莱西市</string>
 				</array>
 				<key>city</key>
-				<string>青岛</string>
+				<string>青岛市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1412,7 +1414,7 @@
 					<string>沂水县</string>
 				</array>
 				<key>city</key>
-				<string>临沂</string>
+				<string>临沂市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1423,7 +1425,7 @@
 					<string>文登市</string>
 				</array>
 				<key>city</key>
-				<string>威海</string>
+				<string>威海市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1432,7 +1434,7 @@
 					<string>莱城区</string>
 				</array>
 				<key>city</key>
-				<string>莱芜</string>
+				<string>莱芜市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1445,7 +1447,7 @@
 					<string>肥城市</string>
 				</array>
 				<key>city</key>
-				<string>泰安</string>
+				<string>泰安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1457,7 +1459,7 @@
 					<string>广饶县</string>
 				</array>
 				<key>city</key>
-				<string>东营</string>
+				<string>东营市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1472,7 +1474,7 @@
 					<string>东阿县</string>
 				</array>
 				<key>city</key>
-				<string>聊城</string>
+				<string>聊城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1485,7 +1487,7 @@
 					<string>峄城区</string>
 				</array>
 				<key>city</key>
-				<string>枣庄</string>
+				<string>枣庄市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1499,7 +1501,7 @@
 					<string>无棣县</string>
 				</array>
 				<key>city</key>
-				<string>滨州</string>
+				<string>滨州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1517,11 +1519,11 @@
 					<string>陵县</string>
 				</array>
 				<key>city</key>
-				<string>德州</string>
+				<string>德州市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>山东</string>
+		<string>山东省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -1541,7 +1543,7 @@
 					<string>延平区</string>
 				</array>
 				<key>city</key>
-				<string>南平</string>
+				<string>南平市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1554,7 +1556,7 @@
 					<string>海沧区</string>
 				</array>
 				<key>city</key>
-				<string>厦门</string>
+				<string>厦门市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1574,7 +1576,7 @@
 					<string>长乐市</string>
 				</array>
 				<key>city</key>
-				<string>福州</string>
+				<string>福州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1590,7 +1592,7 @@
 					<string>柘荣县</string>
 				</array>
 				<key>city</key>
-				<string>宁德</string>
+				<string>宁德市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1604,7 +1606,7 @@
 					<string>武平县</string>
 				</array>
 				<key>city</key>
-				<string>龙岩</string>
+				<string>龙岩市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1616,7 +1618,7 @@
 					<string>秀屿区</string>
 				</array>
 				<key>city</key>
-				<string>莆田</string>
+				<string>莆田市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1634,7 +1636,7 @@
 					<string>南靖县</string>
 				</array>
 				<key>city</key>
-				<string>漳州</string>
+				<string>漳州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1653,7 +1655,7 @@
 					<string>泉港区</string>
 				</array>
 				<key>city</key>
-				<string>泉州</string>
+				<string>泉州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1672,11 +1674,11 @@
 					<string>尤溪县</string>
 				</array>
 				<key>city</key>
-				<string>三明</string>
+				<string>三明市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>福建</string>
+		<string>福建省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -1692,7 +1694,7 @@
 					<string>凤台县</string>
 				</array>
 				<key>city</key>
-				<string>淮南</string>
+				<string>淮南市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1706,7 +1708,7 @@
 					<string>祁门县</string>
 				</array>
 				<key>city</key>
-				<string>黄山</string>
+				<string>黄山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1720,7 +1722,7 @@
 					<string>怀远县</string>
 				</array>
 				<key>city</key>
-				<string>蚌埠</string>
+				<string>蚌埠市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1734,7 +1736,7 @@
 					<string>长丰县</string>
 				</array>
 				<key>city</key>
-				<string>合肥</string>
+				<string>合肥市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1746,7 +1748,7 @@
 					<string>埇桥区</string>
 				</array>
 				<key>city</key>
-				<string>宿州</string>
+				<string>宿州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1760,7 +1762,7 @@
 					<string>霍邱县</string>
 				</array>
 				<key>city</key>
-				<string>六安</string>
+				<string>六安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1771,7 +1773,7 @@
 					<string>青阳县</string>
 				</array>
 				<key>city</key>
-				<string>池州</string>
+				<string>池州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1785,7 +1787,7 @@
 					<string>芜湖县</string>
 				</array>
 				<key>city</key>
-				<string>芜湖</string>
+				<string>芜湖市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1799,7 +1801,7 @@
 					<string>郎溪县</string>
 				</array>
 				<key>city</key>
-				<string>宣城</string>
+				<string>宣城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1811,7 +1813,7 @@
 					<string>和县</string>
 				</array>
 				<key>city</key>
-				<string>巢湖</string>
+				<string>巢湖市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1822,7 +1824,7 @@
 					<string>蒙城县</string>
 				</array>
 				<key>city</key>
-				<string>亳州</string>
+				<string>亳州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1837,7 +1839,7 @@
 					<string>颍州区</string>
 				</array>
 				<key>city</key>
-				<string>阜阳</string>
+				<string>阜阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1848,7 +1850,7 @@
 					<string>铜陵县</string>
 				</array>
 				<key>city</key>
-				<string>铜陵</string>
+				<string>铜陵市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1859,7 +1861,7 @@
 					<string>濉溪县</string>
 				</array>
 				<key>city</key>
-				<string>淮北</string>
+				<string>淮北市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1874,7 +1876,7 @@
 					<string>定远县</string>
 				</array>
 				<key>city</key>
-				<string>滁州</string>
+				<string>滁州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1885,7 +1887,7 @@
 					<string>金家庄区</string>
 				</array>
 				<key>city</key>
-				<string>马鞍山</string>
+				<string>马鞍山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1903,11 +1905,11 @@
 					<string>迎江区</string>
 				</array>
 				<key>city</key>
-				<string>安庆</string>
+				<string>安庆市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>安徽</string>
+		<string>安徽省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -1927,7 +1929,7 @@
 					<string>江安县</string>
 				</array>
 				<key>city</key>
-				<string>宜宾</string>
+				<string>宜宾市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1938,7 +1940,7 @@
 					<string>平昌县</string>
 				</array>
 				<key>city</key>
-				<string>巴中</string>
+				<string>巴中市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1954,7 +1956,7 @@
 					<string>阆中市</string>
 				</array>
 				<key>city</key>
-				<string>南充</string>
+				<string>南充市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1980,7 +1982,7 @@
 					<string>金堂县</string>
 				</array>
 				<key>city</key>
-				<string>成都</string>
+				<string>成都市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -1992,7 +1994,7 @@
 					<string>喜德县</string>
 					<string>金阳县</string>
 					<string>西昌市</string>
-					<string>木里</string>
+					<string>木里藏族自治县</string>
 					<string>盐源县</string>
 					<string>德昌县</string>
 					<string>越西县</string>
@@ -2004,7 +2006,7 @@
 					<string>昭觉县</string>
 				</array>
 				<key>city</key>
-				<string>凉山彝族</string>
+				<string>凉山彝族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2017,7 +2019,7 @@
 					<string>东坡区</string>
 				</array>
 				<key>city</key>
-				<string>眉山</string>
+				<string>眉山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2037,15 +2039,15 @@
 					<string>若尔盖县</string>
 				</array>
 				<key>city</key>
-				<string>阿坝</string>
+				<string>阿坝藏族羌族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>峨眉山市</string>
-					<string>马边彝族</string>
+					<string>马边彝族自治县</string>
 					<string>沐川县</string>
-					<string>峨边彝族</string>
+					<string>峨边彝族自治县</string>
 					<string>市中区</string>
 					<string>沙湾区</string>
 					<string>五通桥区</string>
@@ -2055,7 +2057,7 @@
 					<string>夹江县</string>
 				</array>
 				<key>city</key>
-				<string>乐山</string>
+				<string>乐山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2065,13 +2067,13 @@
 					<string>游仙区</string>
 					<string>三台县</string>
 					<string>涪城区</string>
-					<string>北川羌族</string>
+					<string>北川羌族自治县</string>
 					<string>梓潼县</string>
 					<string>江油市</string>
 					<string>平武县</string>
 				</array>
 				<key>city</key>
-				<string>绵阳</string>
+				<string>绵阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2083,7 +2085,7 @@
 					<string>岳池县</string>
 				</array>
 				<key>city</key>
-				<string>广安</string>
+				<string>广安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2097,7 +2099,7 @@
 					<string>青川县</string>
 				</array>
 				<key>city</key>
-				<string>广元</string>
+				<string>广元市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2110,7 +2112,7 @@
 					<string>旌阳区</string>
 				</array>
 				<key>city</key>
-				<string>德阳</string>
+				<string>德阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2121,7 +2123,7 @@
 					<string>简阳市</string>
 				</array>
 				<key>city</key>
-				<string>资阳</string>
+				<string>资阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2135,7 +2137,7 @@
 					<string>万源市</string>
 				</array>
 				<key>city</key>
-				<string>达州</string>
+				<string>达州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2149,7 +2151,7 @@
 					<string>龙马潭区</string>
 				</array>
 				<key>city</key>
-				<string>泸州</string>
+				<string>泸州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2162,7 +2164,7 @@
 					<string>富顺县</string>
 				</array>
 				<key>city</key>
-				<string>自贡</string>
+				<string>自贡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2174,7 +2176,7 @@
 					<string>射洪县</string>
 				</array>
 				<key>city</key>
-				<string>遂宁</string>
+				<string>遂宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2199,7 +2201,7 @@
 					<string>康定县</string>
 				</array>
 				<key>city</key>
-				<string>甘孜藏族</string>
+				<string>甘孜藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2214,7 +2216,7 @@
 					<string>汉源县</string>
 				</array>
 				<key>city</key>
-				<string>雅安</string>
+				<string>雅安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2226,7 +2228,7 @@
 					<string>市中区</string>
 				</array>
 				<key>city</key>
-				<string>内江</string>
+				<string>内江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2238,11 +2240,11 @@
 					<string>东区</string>
 				</array>
 				<key>city</key>
-				<string>攀枝花</string>
+				<string>攀枝花市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>四川</string>
+		<string>四川省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -2258,7 +2260,7 @@
 					<string>通山县</string>
 				</array>
 				<key>city</key>
-				<string>咸宁</string>
+				<string>咸宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2268,17 +2270,17 @@
 					<string>当阳市</string>
 					<string>兴山县</string>
 					<string>远安县</string>
-					<string>长阳</string>
+					<string>长阳土家族自治县</string>
 					<string>秭归县</string>
 					<string>点军区</string>
 					<string>伍家岗区</string>
 					<string>夷陵区</string>
 					<string>猇亭区</string>
 					<string>宜都市</string>
-					<string>五峰</string>
+					<string>五峰土家族自治县</string>
 				</array>
 				<key>city</key>
-				<string>宜昌</string>
+				<string>宜昌市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2295,7 +2297,7 @@
 					<string>蕲春县</string>
 				</array>
 				<key>city</key>
-				<string>黄冈</string>
+				<string>黄冈市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2310,7 +2312,7 @@
 					<string>公安县</string>
 				</array>
 				<key>city</key>
-				<string>荆州</string>
+				<string>荆州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2324,7 +2326,7 @@
 					<string>孝南区</string>
 				</array>
 				<key>city</key>
-				<string>孝感</string>
+				<string>孝感市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2336,7 +2338,7 @@
 					<string>钟祥市</string>
 				</array>
 				<key>city</key>
-				<string>荆门</string>
+				<string>荆门市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2351,7 +2353,7 @@
 					<string>竹山县</string>
 				</array>
 				<key>city</key>
-				<string>十堰</string>
+				<string>十堰市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2361,19 +2363,19 @@
 					<string>梁子湖区</string>
 				</array>
 				<key>city</key>
-				<string>鄂州</string>
+				<string>鄂州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>天门</string>
+				<string>天门市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>潜江</string>
+				<string>潜江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2388,7 +2390,7 @@
 					<string>巴东县</string>
 				</array>
 				<key>city</key>
-				<string>恩施</string>
+				<string>恩施土家族苗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2408,19 +2410,19 @@
 					<string>青山区</string>
 				</array>
 				<key>city</key>
-				<string>武汉</string>
+				<string>武汉市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>仙桃</string>
+				<string>仙桃市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>神农架林</string>
+				<string>神农架林区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2429,7 +2431,7 @@
 					<string>广水市</string>
 				</array>
 				<key>city</key>
-				<string>随州</string>
+				<string>随州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2442,7 +2444,7 @@
 					<string>黄石港区</string>
 				</array>
 				<key>city</key>
-				<string>黄石</string>
+				<string>黄石市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2458,11 +2460,11 @@
 					<string>宜城市</string>
 				</array>
 				<key>city</key>
-				<string>襄樊</string>
+				<string>襄樊市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>湖北</string>
+		<string>湖北省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -2489,7 +2491,7 @@
 					<string>阳原县</string>
 				</array>
 				<key>city</key>
-				<string>张家口</string>
+				<string>张家口市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2515,7 +2517,7 @@
 					<string>广平县</string>
 				</array>
 				<key>city</key>
-				<string>邯郸</string>
+				<string>邯郸市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2541,7 +2543,7 @@
 					<string>内丘县</string>
 				</array>
 				<key>city</key>
-				<string>邢台</string>
+				<string>邢台市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2559,7 +2561,7 @@
 					<string>桃城区</string>
 				</array>
 				<key>city</key>
-				<string>衡水</string>
+				<string>衡水市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2573,7 +2575,7 @@
 					<string>抚宁县</string>
 				</array>
 				<key>city</key>
-				<string>秦皇岛</string>
+				<string>秦皇岛市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2590,7 +2592,7 @@
 					<string>霸州市</string>
 				</array>
 				<key>city</key>
-				<string>廊坊</string>
+				<string>廊坊市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2622,7 +2624,7 @@
 					<string>高碑店市</string>
 				</array>
 				<key>city</key>
-				<string>保定</string>
+				<string>保定市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2640,7 +2642,7 @@
 					<string>双桥区</string>
 				</array>
 				<key>city</key>
-				<string>承德</string>
+				<string>承德市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2661,7 +2663,7 @@
 					<string>路南区</string>
 				</array>
 				<key>city</key>
-				<string>唐山</string>
+				<string>唐山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2684,7 +2686,7 @@
 					<string>沧县</string>
 				</array>
 				<key>city</key>
-				<string>沧州</string>
+				<string>沧州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2714,11 +2716,11 @@
 					<string>行唐县</string>
 				</array>
 				<key>city</key>
-				<string>石家庄</string>
+				<string>石家庄市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>河北</string>
+		<string>河北省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -2726,14 +2728,14 @@
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>瑞丽</string>
-					<string>潞西</string>
-					<string>盈江</string>
-					<string>梁河</string>
-					<string>陇川</string>
+					<string>瑞丽市</string>
+					<string>潞西市</string>
+					<string>盈江县</string>
+					<string>梁河县</string>
+					<string>陇川县</string>
 				</array>
 				<key>city</key>
-				<string>德宏</string>
+				<string>德宏傣族景颇族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2744,12 +2746,12 @@
 					<string>通海县</string>
 					<string>华宁县</string>
 					<string>易门县</string>
-					<string>元江</string>
-					<string>新平</string>
-					<string>峨山</string>
+					<string>元江哈尼族彝族傣族自治县</string>
+					<string>新平彝族傣族自治县</string>
+					<string>峨山彝族自治县</string>
 				</array>
 				<key>city</key>
-				<string>玉溪</string>
+				<string>玉溪市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2765,66 +2767,66 @@
 					<string>师宗县</string>
 				</array>
 				<key>city</key>
-				<string>曲靖</string>
+				<string>曲靖市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>腾冲</string>
-					<string>施甸</string>
-					<string>昌宁</string>
-					<string>龙陵</string>
+					<string>腾冲县</string>
+					<string>施甸县</string>
+					<string>昌宁县</string>
+					<string>龙陵县</string>
 					<string>隆阳区</string>
 				</array>
 				<key>city</key>
-				<string>保山</string>
+				<string>保山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>泸水</string>
-					<string>兰坪</string>
-					<string>贡山</string>
-					<string>福贡</string>
+					<string>泸水县</string>
+					<string>兰坪县</string>
+					<string>贡山独龙族怒族自治县</string>
+					<string>兰坪白族普米族自治县</string>
 				</array>
 				<key>city</key>
-				<string>怒江</string>
+				<string>怒江傈僳族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>维西</string>
-					<string>德钦</string>
-					<string>香格里拉</string>
+					<string>维西傈僳族自治县</string>
+					<string>德钦县</string>
+					<string>香格里拉县</string>
 				</array>
 				<key>city</key>
-				<string>迪庆</string>
+				<string>迪庆藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>鲁甸</string>
+					<string>鲁甸县</string>
 					<string>昭阳区</string>
-					<string>水富</string>
-					<string>大关</string>
-					<string>永善</string>
-					<string>巧家</string>
-					<string>盐津</string>
-					<string>彝良</string>
-					<string>威信</string>
-					<string>绥江</string>
-					<string>镇雄</string>
+					<string>水富县</string>
+					<string>大关县</string>
+					<string>永善县</string>
+					<string>巧家县</string>
+					<string>盐津县</string>
+					<string>彝良县</string>
+					<string>威信县</string>
+					<string>绥江县</string>
+					<string>镇雄县</string>
 				</array>
 				<key>city</key>
-				<string>昭通</string>
+				<string>昭通市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>寻甸</string>
-					<string>禄劝</string>
+					<string>寻甸回族彝族自治县</string>
+					<string>禄劝彝族苗族自治县</string>
 					<string>嵩明县</string>
-					<string>石林</string>
+					<string>石林彝族自治县</string>
 					<string>富民县</string>
 					<string>宜良县</string>
 					<string>呈贡县</string>
@@ -2837,136 +2839,137 @@
 					<string>安宁市</string>
 				</array>
 				<key>city</key>
-				<string>昆明</string>
+				<string>昆明市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>武定</string>
-					<string>禄丰</string>
-					<string>沧源</string>
-					<string>双柏</string>
-					<string>楚雄</string>
-					<string>南华</string>
-					<string>牟定</string>
-					<string>大姚</string>
-					<string>姚安</string>
-					<string>元谋</string>
-					<string>永仁</string>
+					<string>武定县</string>
+					<string>禄丰县</string>
+					<string>沧源县</string>
+					<string>双柏县</string>
+					<string>楚雄市</string>
+					<string>南华县</string>
+					<string>牟定县</string>
+					<string>大姚县</string>
+					<string>姚安县</string>
+					<string>元谋县</string>
+					<string>永仁县</string>
 				</array>
 				<key>city</key>
-				<string>楚雄</string>
+				<string>楚雄彝族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>广南</string>
-					<string>富宁</string>
-					<string>丘北</string>
-					<string>砚山</string>
-					<string>西畴</string>
-					<string>文山</string>
-					<string>麻栗坡</string>
-					<string>马关</string>
+					<string>广南县</string>
+					<string>富宁县</string>
+					<string>丘北县</string>
+					<string>砚山县</string>
+					<string>西畴县</string>
+					<string>文山县</string>
+					<string>麻栗坡县</string>
+					<string>马关县</string>
 				</array>
 				<key>city</key>
-				<string>文山</string>
+				<string>文山壮族苗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>景洪</string>
-					<string>勐腊</string>
-					<string>勐海</string>
+					<string>景洪市</string>
+					<string>勐腊县</string>
+					<string>勐海县</string>
 				</array>
 				<key>city</key>
-				<string>西双版纳</string>
+				<string>西双版纳傣族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>古城区</string>
-					<string>宁蒗</string>
-					<string>华坪</string>
-					<string>永胜</string>
-					<string>玉龙</string>
+					<string>宁蒗彝族自治县</string>
+					<string>华坪县</string>
+					<string>永胜县</string>
+					<string>玉龙纳西族自治县</string>
 				</array>
 				<key>city</key>
-				<string>丽江</string>
+				<string>丽江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>河口</string>
-					<string>绿春县</string>
-					<string>建水</string>
-					<string>石屏</string>
-					<string>蒙自</string>
-					<string>屏边</string>
-					<string>个旧</string>
-					<string>开远</string>
-					<string>元阳</string>
-					<string>红河</string>
-					<string>金平</string>
-					<string>弥勒</string>
-					<string>泸西</string>
+					<string>河口瑶族自治县</string>
+					<string>绿春县县</string>
+					<string>建水县</string>
+					<string>石屏县</string>
+					<string>蒙自县</string>
+					<string>屏边苗族自治县</string>
+					<string>个旧市</string>
+					<string>开远市</string>
+					<string>元阳县</string>
+					<string>红河县</string>
+					<string>金平苗族瑶族傣族自治县</string>
+					<string>弥勒县</string>
+					<string>泸西县</string>
 				</array>
 				<key>city</key>
-				<string>红河</string>
+				<string>红河哈尼族彝族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>弥渡</string>
-					<string>南涧</string>
-					<string>巍山</string>
-					<string>永平</string>
-					<string>云龙</string>
-					<string>洱源</string>
-					<string>剑川</string>
-					<string>鹤庆</string>
-					<string>漾濞</string>
-					<string>大理</string>
-					<string>宾川</string>
-					<string>祥云</string>
+					<string>弥渡县</string>
+					<string>南涧彝族自治县</string>
+					<string>巍山彝族回族自治县</string>
+					<string>永平县</string>
+					<string>云龙县</string>
+					<string>洱源县</string>
+					<string>剑川县</string>
+					<string>鹤庆县</string>
+					<string>漾濞彝族自治县</string>
+					<string>大理市</string>
+					<string>宾川县</string>
+					<string>祥云县</string>
 				</array>
 				<key>city</key>
-				<string>大理</string>
+				<string>大理白族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>耿马</string>
-					<string>镇康</string>
-					<string>双江</string>
+					<string>耿马傣族佤族自治县</string>
+					<string>镇康县</string>
+					<string>双江拉祜族佤族布朗族傣族自治县</string>
+					<string>沧源佤族自治县</string>
 					<string>临翔区</string>
-					<string>凤庆</string>
+					<string>凤庆县</string>
 					<string>云县</string>
-					<string>永德</string>
+					<string>永德县</string>
 				</array>
 				<key>city</key>
-				<string>临沧</string>
+				<string>临沧市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>镇沅</string>
-					<string>景谷</string>
-					<string>景东</string>
-					<string>墨江</string>
-					<string>普洱</string>
-					<string>翠云</string>
-					<string>江城</string>
-					<string>孟连</string>
-					<string>澜沧</string>
-					<string>西盟</string>
+					<string>镇沅彝族哈尼族拉祜族自治县</string>
+					<string>景谷傣族彝族自治县</string>
+					<string>景东彝族自治县</string>
+					<string>墨江哈尼族自治县</string>
+					<string>思茅区</string>
+					<string>宁洱哈尼族彝族自治县</string>
+					<string>江城哈尼族彝族自治县</string>
+					<string>孟连傣族拉祜族佤族自治县</string>
+					<string>澜沧拉祜族自治县</string>
+					<string>西盟佤族自治县</string>
 				</array>
 				<key>city</key>
-				<string>思茅</string>
+				<string>普洱市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>云南</string>
+		<string>云南省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -2984,7 +2987,7 @@
 					<string>绥滨县</string>
 				</array>
 				<key>city</key>
-				<string>鹤岗</string>
+				<string>鹤岗市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -2994,7 +2997,7 @@
 					<string>塔河县</string>
 				</array>
 				<key>city</key>
-				<string>大兴安岭地</string>
+				<string>大兴安岭地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3010,7 +3013,7 @@
 					<string>让胡路区</string>
 				</array>
 				<key>city</key>
-				<string>大庆</string>
+				<string>大庆市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3021,7 +3024,7 @@
 					<string>茄子河区</string>
 				</array>
 				<key>city</key>
-				<string>七台河</string>
+				<string>七台河市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3044,7 +3047,7 @@
 					<string>讷河市</string>
 				</array>
 				<key>city</key>
-				<string>齐齐哈尔</string>
+				<string>齐齐哈尔市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3061,7 +3064,7 @@
 					<string>穆棱市</string>
 				</array>
 				<key>city</key>
-				<string>牡丹江</string>
+				<string>牡丹江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3074,7 +3077,7 @@
 					<string>嫩江县</string>
 				</array>
 				<key>city</key>
-				<string>黑河</string>
+				<string>黑河市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3089,7 +3092,7 @@
 					<string>宝山区</string>
 				</array>
 				<key>city</key>
-				<string>双鸭山</string>
+				<string>双鸭山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3106,7 +3109,7 @@
 					<string>北林区</string>
 				</array>
 				<key>city</key>
-				<string>绥化</string>
+				<string>绥化市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3130,7 +3133,7 @@
 					<string>乌伊岭区</string>
 				</array>
 				<key>city</key>
-				<string>伊春</string>
+				<string>伊春市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3148,7 +3151,7 @@
 					<string>郊区</string>
 				</array>
 				<key>city</key>
-				<string>佳木斯</string>
+				<string>佳木斯市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3174,7 +3177,7 @@
 					<string>巴彦县</string>
 				</array>
 				<key>city</key>
-				<string>哈尔滨</string>
+				<string>哈尔滨市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3190,11 +3193,11 @@
 					<string>鸡冠区</string>
 				</array>
 				<key>city</key>
-				<string>鸡西</string>
+				<string>鸡西市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>黑龙江</string>
+		<string>黑龙江省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -3209,7 +3212,7 @@
 					<string>扶余县</string>
 				</array>
 				<key>city</key>
-				<string>松原</string>
+				<string>松原市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3222,7 +3225,7 @@
 					<string>铁东区</string>
 				</array>
 				<key>city</key>
-				<string>四平</string>
+				<string>四平市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3234,7 +3237,7 @@
 					<string>通榆县</string>
 				</array>
 				<key>city</key>
-				<string>白城</string>
+				<string>白城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3247,7 +3250,7 @@
 					<string>江源县</string>
 				</array>
 				<key>city</key>
-				<string>白山</string>
+				<string>白山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3263,7 +3266,7 @@
 					<string>昌邑区</string>
 				</array>
 				<key>city</key>
-				<string>吉林</string>
+				<string>吉林市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3277,7 +3280,7 @@
 					<string>柳河县</string>
 				</array>
 				<key>city</key>
-				<string>通化</string>
+				<string>通化市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3294,7 +3297,7 @@
 					<string>宽城区</string>
 				</array>
 				<key>city</key>
-				<string>长春</string>
+				<string>长春市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3309,7 +3312,7 @@
 					<string>汪清县</string>
 				</array>
 				<key>city</key>
-				<string>延边朝鲜族</string>
+				<string>延边朝鲜族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3320,11 +3323,11 @@
 					<string>东丰县</string>
 				</array>
 				<key>city</key>
-				<string>辽源</string>
+				<string>辽源市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>吉林</string>
+		<string>吉林省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -3341,7 +3344,7 @@
 					<string>开原市</string>
 				</array>
 				<key>city</key>
-				<string>铁岭</string>
+				<string>铁岭市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3354,7 +3357,7 @@
 					<string>龙港区</string>
 				</array>
 				<key>city</key>
-				<string>葫芦岛</string>
+				<string>葫芦岛市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3367,7 +3370,7 @@
 					<string>大石桥市</string>
 				</array>
 				<key>city</key>
-				<string>营口</string>
+				<string>营口市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3380,7 +3383,7 @@
 					<string>本溪满族自治县</string>
 				</array>
 				<key>city</key>
-				<string>本溪</string>
+				<string>本溪市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3394,7 +3397,7 @@
 					<string>辽阳县</string>
 				</array>
 				<key>city</key>
-				<string>辽阳</string>
+				<string>辽阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3405,7 +3408,7 @@
 					<string>盘山县</string>
 				</array>
 				<key>city</key>
-				<string>盘锦</string>
+				<string>盘锦市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3419,7 +3422,7 @@
 					<string>太平区</string>
 				</array>
 				<key>city</key>
-				<string>阜新</string>
+				<string>阜新市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3433,7 +3436,7 @@
 					<string>双塔区</string>
 				</array>
 				<key>city</key>
-				<string>朝阳</string>
+				<string>朝阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3447,7 +3450,7 @@
 					<string>凌河区</string>
 				</array>
 				<key>city</key>
-				<string>锦州</string>
+				<string>锦州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3461,7 +3464,7 @@
 					<string>新宾满族自治县</string>
 				</array>
 				<key>city</key>
-				<string>抚顺</string>
+				<string>抚顺市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3474,7 +3477,7 @@
 					<string>元宝区</string>
 				</array>
 				<key>city</key>
-				<string>丹东</string>
+				<string>丹东市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3494,7 +3497,7 @@
 					<string>苏家屯区</string>
 				</array>
 				<key>city</key>
-				<string>沈阳</string>
+				<string>沈阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3508,7 +3511,7 @@
 					<string>岫岩满族自治县</string>
 				</array>
 				<key>city</key>
-				<string>鞍山</string>
+				<string>鞍山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3525,11 +3528,11 @@
 					<string>中山区</string>
 				</array>
 				<key>city</key>
-				<string>大连</string>
+				<string>大连市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>辽宁</string>
+		<string>辽宁省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -3538,13 +3541,13 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>保亭</string>
+				<string>保亭黎族苗族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>澄迈</string>
+				<string>澄迈县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3556,61 +3559,61 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>陵水黎族</string>
+				<string>陵水黎族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>中沙群岛</string>
+				<string>中沙群岛的岛礁及其海域</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>屯昌</string>
+				<string>屯昌县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>昌江黎族</string>
+				<string>昌江黎族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>乐东黎族</string>
+				<string>乐东黎族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>琼海</string>
+				<string>琼海市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>儋州</string>
+				<string>儋州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>文昌</string>
+				<string>文昌市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>万宁</string>
+				<string>万宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>白沙黎族</string>
+				<string>白沙黎族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3621,37 +3624,37 @@
 					<string>美兰区</string>
 				</array>
 				<key>city</key>
-				<string>海口</string>
+				<string>海口市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>三亚</string>
+				<string>三亚市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>五指山</string>
+				<string>五指山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>琼中</string>
+				<string>琼中黎族苗族自治县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>东方</string>
+				<string>东方市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>定安</string>
+				<string>定安县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3663,7 +3666,7 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>临高</string>
+				<string>临高县</string>
 			</dict>
 		</array>
 		<key>state</key>
@@ -3688,7 +3691,7 @@
 					<string>永兴县</string>
 				</array>
 				<key>city</key>
-				<string>郴州</string>
+				<string>郴州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3704,7 +3707,7 @@
 					<string>汨罗市</string>
 				</array>
 				<key>city</key>
-				<string>岳阳</string>
+				<string>岳阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3723,7 +3726,7 @@
 					<string>溆浦县</string>
 				</array>
 				<key>city</key>
-				<string>怀化</string>
+				<string>怀化市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3735,7 +3738,7 @@
 					<string>娄星区</string>
 				</array>
 				<key>city</key>
-				<string>娄底</string>
+				<string>娄底市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3746,7 +3749,7 @@
 					<string>永定区</string>
 				</array>
 				<key>city</key>
-				<string>张家界</string>
+				<string>张家界市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3759,7 +3762,7 @@
 					<string>桃江县</string>
 				</array>
 				<key>city</key>
-				<string>益阳</string>
+				<string>益阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3774,7 +3777,7 @@
 					<string>永顺县</string>
 				</array>
 				<key>city</key>
-				<string>湘西土家族苗族</string>
+				<string>湘西土家族苗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3790,7 +3793,7 @@
 					<string>鼎城区</string>
 				</array>
 				<key>city</key>
-				<string>常德</string>
+				<string>常德市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3802,7 +3805,7 @@
 					<string>韶山市</string>
 				</array>
 				<key>city</key>
-				<string>湘潭</string>
+				<string>湘潭市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3820,7 +3823,7 @@
 					<string>零陵区</string>
 				</array>
 				<key>city</key>
-				<string>永州</string>
+				<string>永州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3839,7 +3842,7 @@
 					<string>常宁市</string>
 				</array>
 				<key>city</key>
-				<string>衡阳</string>
+				<string>衡阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3855,7 +3858,7 @@
 					<string>荷塘区</string>
 				</array>
 				<key>city</key>
-				<string>株洲</string>
+				<string>株洲市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3871,7 +3874,7 @@
 					<string>浏阳市</string>
 				</array>
 				<key>city</key>
-				<string>长沙</string>
+				<string>长沙市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3890,11 +3893,11 @@
 					<string>双清区</string>
 				</array>
 				<key>city</key>
-				<string>邵阳</string>
+				<string>邵阳市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>湖南</string>
+		<string>湖南省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -3917,7 +3920,7 @@
 					<string>南召县</string>
 				</array>
 				<key>city</key>
-				<string>南阳</string>
+				<string>南阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3939,7 +3942,7 @@
 					<string>栾川县</string>
 				</array>
 				<key>city</key>
-				<string>洛阳</string>
+				<string>洛阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3952,7 +3955,7 @@
 					<string>灵宝市</string>
 				</array>
 				<key>city</key>
-				<string>三门峡</string>
+				<string>三门峡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3968,7 +3971,7 @@
 					<string>虞城县</string>
 				</array>
 				<key>city</key>
-				<string>商丘</string>
+				<string>商丘市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -3986,7 +3989,7 @@
 					<string>孟州市</string>
 				</array>
 				<key>city</key>
-				<string>焦作</string>
+				<string>焦作市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4003,7 +4006,7 @@
 					<string>鼓楼区</string>
 				</array>
 				<key>city</key>
-				<string>开封</string>
+				<string>开封市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4020,7 +4023,7 @@
 					<string>新蔡县</string>
 				</array>
 				<key>city</key>
-				<string>驻马店</string>
+				<string>驻马店市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4033,7 +4036,7 @@
 					<string>清丰县</string>
 				</array>
 				<key>city</key>
-				<string>濮阳</string>
+				<string>濮阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4046,7 +4049,7 @@
 					<string>长葛市</string>
 				</array>
 				<key>city</key>
-				<string>许昌</string>
+				<string>许昌市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4062,7 +4065,7 @@
 					<string>林州市</string>
 				</array>
 				<key>city</key>
-				<string>安阳</string>
+				<string>安阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4079,7 +4082,7 @@
 					<string>固始县</string>
 				</array>
 				<key>city</key>
-				<string>信阳</string>
+				<string>信阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4091,7 +4094,7 @@
 					<string>临颍县</string>
 				</array>
 				<key>city</key>
-				<string>漯河</string>
+				<string>漯河市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4108,7 +4111,7 @@
 					<string>舞钢市</string>
 				</array>
 				<key>city</key>
-				<string>平顶山</string>
+				<string>平顶山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4127,7 +4130,7 @@
 					<string>二七区</string>
 				</array>
 				<key>city</key>
-				<string>郑州</string>
+				<string>郑州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4146,7 +4149,7 @@
 					<string>凤泉区</string>
 				</array>
 				<key>city</key>
-				<string>新乡</string>
+				<string>新乡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4158,7 +4161,7 @@
 					<string>山城区</string>
 				</array>
 				<key>city</key>
-				<string>鹤壁</string>
+				<string>鹤壁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4175,11 +4178,11 @@
 					<string>项城市</string>
 				</array>
 				<key>city</key>
-				<string>周口</string>
+				<string>周口市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>河南</string>
+		<string>河南省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -4191,13 +4194,13 @@
 					<string>黔西县</string>
 					<string>大方县</string>
 					<string>纳雍县</string>
-					<string>威宁</string>
+					<string>威宁彝族回族苗族自治县</string>
 					<string>赫章县</string>
 					<string>织金县</string>
 					<string>金沙县</string>
 				</array>
 				<key>city</key>
-				<string>毕节地</string>
+				<string>毕节地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4213,10 +4216,10 @@
 					<string>独山县</string>
 					<string>长顺县</string>
 					<string>罗甸县</string>
-					<string>三都</string>
+					<string>三都水族自治县</string>
 				</array>
 				<key>city</key>
-				<string>黔南</string>
+				<string>黔南布依族苗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4227,7 +4230,7 @@
 					<string>盘县</string>
 				</array>
 				<key>city</key>
-				<string>六盘水</string>
+				<string>六盘水市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4250,7 +4253,7 @@
 					<string>榕江县</string>
 				</array>
 				<key>city</key>
-				<string>黔东南</string>
+				<string>黔东南苗族侗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4267,7 +4270,7 @@
 					<string>息烽县</string>
 				</array>
 				<key>city</key>
-				<string>贵阳</string>
+				<string>贵阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4288,24 +4291,24 @@
 					<string>道真县</string>
 				</array>
 				<key>city</key>
-				<string>遵义</string>
+				<string>遵义市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>印江</string>
-					<string>玉屏</string>
+					<string>印江土家族苗族自治县</string>
+					<string>玉屏侗族自治县</string>
 					<string>江口县</string>
 					<string>铜仁市</string>
 					<string>德江县</string>
 					<string>石阡县</string>
 					<string>思南县</string>
 					<string>万山特区</string>
-					<string>沿河</string>
-					<string>松桃</string>
+					<string>沿河土家族自治县</string>
+					<string>松桃苗族自治县</string>
 				</array>
 				<key>city</key>
-				<string>铜仁地</string>
+				<string>铜仁地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4320,24 +4323,24 @@
 					<string>兴义市</string>
 				</array>
 				<key>city</key>
-				<string>黔西南</string>
+				<string>黔西南布依族苗族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>紫云</string>
-					<string>关岭</string>
-					<string>镇宁</string>
+					<string>紫云苗族布依族自治县</string>
+					<string>关岭布依族苗族自治县</string>
+					<string>镇宁布依族苗族自治县</string>
 					<string>普定县</string>
 					<string>平坝县</string>
 					<string>西秀区</string>
 				</array>
 				<key>city</key>
-				<string>安顺</string>
+				<string>安顺市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>贵州</string>
+		<string>贵州省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -4356,7 +4359,7 @@
 					<string>南昌县</string>
 				</array>
 				<key>city</key>
-				<string>南昌</string>
+				<string>南昌市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4368,7 +4371,7 @@
 					<string>湘东区</string>
 				</array>
 				<key>city</key>
-				<string>萍乡</string>
+				<string>萍乡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4379,7 +4382,7 @@
 					<string>昌江区</string>
 				</array>
 				<key>city</key>
-				<string>景德镇</string>
+				<string>景德镇市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4399,7 +4402,7 @@
 					<string>吉州区</string>
 				</array>
 				<key>city</key>
-				<string>吉安</string>
+				<string>吉安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4418,7 +4421,7 @@
 					<string>瑞昌市</string>
 				</array>
 				<key>city</key>
-				<string>九江</string>
+				<string>九江市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4427,7 +4430,7 @@
 					<string>渝水区</string>
 				</array>
 				<key>city</key>
-				<string>新余</string>
+				<string>新余市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4437,7 +4440,7 @@
 					<string>月湖区</string>
 				</array>
 				<key>city</key>
-				<string>鹰潭</string>
+				<string>鹰潭市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4455,7 +4458,7 @@
 					<string>资溪县</string>
 				</array>
 				<key>city</key>
-				<string>抚州</string>
+				<string>抚州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4480,7 +4483,7 @@
 					<string>瑞金市</string>
 				</array>
 				<key>city</key>
-				<string>赣州</string>
+				<string>赣州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4499,7 +4502,7 @@
 					<string>鄱阳县</string>
 				</array>
 				<key>city</key>
-				<string>上饶</string>
+				<string>上饶市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4516,11 +4519,11 @@
 					<string>高安市</string>
 				</array>
 				<key>city</key>
-				<string>宜春</string>
+				<string>宜春市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>江西</string>
+		<string>江西省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -4534,7 +4537,7 @@
 					<string>钟山县</string>
 				</array>
 				<key>city</key>
-				<string>贺州</string>
+				<string>贺州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4548,7 +4551,7 @@
 					<string>藤县</string>
 				</array>
 				<key>city</key>
-				<string>梧州</string>
+				<string>梧州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4566,7 +4569,7 @@
 					<string>宜州市</string>
 				</array>
 				<key>city</key>
-				<string>河池</string>
+				<string>河池市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4585,7 +4588,7 @@
 					<string>隆林各族自治县</string>
 				</array>
 				<key>city</key>
-				<string>百色</string>
+				<string>百色市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4598,7 +4601,7 @@
 					<string>合山市</string>
 				</array>
 				<key>city</key>
-				<string>来宾</string>
+				<string>来宾市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4610,7 +4613,7 @@
 					<string>平南县</string>
 				</array>
 				<key>city</key>
-				<string>贵港</string>
+				<string>贵港市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4623,7 +4626,7 @@
 					<string>玉州区</string>
 				</array>
 				<key>city</key>
-				<string>玉林</string>
+				<string>玉林市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4634,7 +4637,7 @@
 					<string>钦南区</string>
 				</array>
 				<key>city</key>
-				<string>钦州</string>
+				<string>钦州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4645,7 +4648,7 @@
 					<string>合浦县</string>
 				</array>
 				<key>city</key>
-				<string>北海</string>
+				<string>北海市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4662,7 +4665,7 @@
 					<string>三江侗族自治县</string>
 				</array>
 				<key>city</key>
-				<string>柳州</string>
+				<string>柳州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4686,7 +4689,7 @@
 					<string>灵川县</string>
 				</array>
 				<key>city</key>
-				<string>桂林</string>
+				<string>桂林市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4705,7 +4708,7 @@
 					<string>隆安县</string>
 				</array>
 				<key>city</key>
-				<string>南宁</string>
+				<string>南宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4716,7 +4719,7 @@
 					<string>东兴市</string>
 				</array>
 				<key>city</key>
-				<string>防城港</string>
+				<string>防城港市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4730,11 +4733,11 @@
 					<string>扶绥县</string>
 				</array>
 				<key>city</key>
-				<string>崇左</string>
+				<string>崇左市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>广西</string>
+		<string>广西壮族自治区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -4758,7 +4761,7 @@
 					<string>兴平市</string>
 				</array>
 				<key>city</key>
-				<string>咸阳</string>
+				<string>咸阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4769,7 +4772,7 @@
 					<string>耀州区</string>
 				</array>
 				<key>city</key>
-				<string>铜川</string>
+				<string>铜川市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4783,7 +4786,7 @@
 					<string>镇安县</string>
 				</array>
 				<key>city</key>
-				<string>商洛</string>
+				<string>商洛市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4802,7 +4805,7 @@
 					<string>清涧县</string>
 				</array>
 				<key>city</key>
-				<string>榆林</string>
+				<string>榆林市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4820,7 +4823,7 @@
 					<string>合阳县</string>
 				</array>
 				<key>city</key>
-				<string>渭南</string>
+				<string>渭南市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4838,7 +4841,7 @@
 					<string>佛坪县</string>
 				</array>
 				<key>city</key>
-				<string>汉中</string>
+				<string>汉中市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4855,7 +4858,7 @@
 					<string>平利县</string>
 				</array>
 				<key>city</key>
-				<string>安康</string>
+				<string>安康市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4875,7 +4878,7 @@
 					<string>宝塔区</string>
 				</array>
 				<key>city</key>
-				<string>延安</string>
+				<string>延安市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4894,7 +4897,7 @@
 					<string>扶风县</string>
 				</array>
 				<key>city</key>
-				<string>宝鸡</string>
+				<string>宝鸡市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4914,11 +4917,11 @@
 					<string>新城区</string>
 				</array>
 				<key>city</key>
-				<string>西安</string>
+				<string>西安市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>陕西</string>
+		<string>陕西省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -4945,7 +4948,7 @@
 					<string>洪洞县</string>
 				</array>
 				<key>city</key>
-				<string>临汾</string>
+				<string>临汾市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4963,7 +4966,7 @@
 					<string>介休市</string>
 				</array>
 				<key>city</key>
-				<string>晋中</string>
+				<string>晋中市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4976,7 +4979,7 @@
 					<string>平鲁区</string>
 				</array>
 				<key>city</key>
-				<string>朔州</string>
+				<string>朔州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -4996,7 +4999,7 @@
 					<string>河津市</string>
 				</array>
 				<key>city</key>
-				<string>运城</string>
+				<string>运城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5009,7 +5012,7 @@
 					<string>城区</string>
 				</array>
 				<key>city</key>
-				<string>晋城</string>
+				<string>晋城市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5021,7 +5024,7 @@
 					<string>郊区</string>
 				</array>
 				<key>city</key>
-				<string>阳泉</string>
+				<string>阳泉市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5042,7 +5045,7 @@
 					<string>静乐县</string>
 				</array>
 				<key>city</key>
-				<string>忻州</string>
+				<string>忻州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5060,7 +5063,7 @@
 					<string>浑源县</string>
 				</array>
 				<key>city</key>
-				<string>大同</string>
+				<string>大同市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5080,7 +5083,7 @@
 					<string>郊区</string>
 				</array>
 				<key>city</key>
-				<string>长治</string>
+				<string>长治市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5097,7 +5100,7 @@
 					<string>小店区</string>
 				</array>
 				<key>city</key>
-				<string>太原</string>
+				<string>太原市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5117,11 +5120,11 @@
 					<string>交城县</string>
 				</array>
 				<key>city</key>
-				<string>吕梁</string>
+				<string>吕梁市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>山西</string>
+		<string>山西省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -5129,26 +5132,26 @@
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>河南</string>
+					<string>河南蒙古族自治县</string>
 					<string>泽库县</string>
 					<string>尖扎县</string>
 					<string>同仁县</string>
 				</array>
 				<key>city</key>
-				<string>黄南</string>
+				<string>黄南藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>乐都县</string>
-					<string>互助</string>
+					<string>互助土族自治县</string>
 					<string>平安县</string>
-					<string>民和</string>
-					<string>化隆</string>
-					<string>循化</string>
+					<string>民和回族土族自治县</string>
+					<string>化隆回族自治县</string>
+					<string>循化撒拉族自治县</string>
 				</array>
 				<key>city</key>
-				<string>海东地</string>
+				<string>海东地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5161,7 +5164,7 @@
 					<string>玛多县</string>
 				</array>
 				<key>city</key>
-				<string>果洛</string>
+				<string>果洛藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5169,13 +5172,13 @@
 					<string>湟中县</string>
 					<string>湟源县</string>
 					<string>城北区</string>
-					<string>大通</string>
+					<string>大通回族土族自治县</string>
 					<string>城西区</string>
 					<string>城中区</string>
 					<string>城东区</string>
 				</array>
 				<key>city</key>
-				<string>西宁</string>
+				<string>西宁市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5183,10 +5186,10 @@
 					<string>刚察县</string>
 					<string>海晏县</string>
 					<string>祁连县</string>
-					<string>门源</string>
+					<string>门源回族自治县</string>
 				</array>
 				<key>city</key>
-				<string>海北</string>
+				<string>海北藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5199,7 +5202,7 @@
 					<string>曲麻莱县</string>
 				</array>
 				<key>city</key>
-				<string>玉树</string>
+				<string>玉树藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5211,7 +5214,7 @@
 					<string>共和县</string>
 				</array>
 				<key>city</key>
-				<string>海南</string>
+				<string>海南藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5223,7 +5226,7 @@
 					<string>德令哈市</string>
 				</array>
 				<key>city</key>
-				<string>海西</string>
+				<string>海西蒙古族藏族自治州</string>
 			</dict>
 		</array>
 		<key>state</key>
@@ -5240,7 +5243,7 @@
 					<string>平罗县</string>
 				</array>
 				<key>city</key>
-				<string>石嘴山</string>
+				<string>石嘴山市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5252,7 +5255,7 @@
 					<string>西吉县</string>
 				</array>
 				<key>city</key>
-				<string>固原</string>
+				<string>固原市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5262,7 +5265,7 @@
 					<string>沙坡头区</string>
 				</array>
 				<key>city</key>
-				<string>中卫</string>
+				<string>中卫市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5275,7 +5278,7 @@
 					<string>西夏区</string>
 				</array>
 				<key>city</key>
-				<string>银川</string>
+				<string>银川市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5286,11 +5289,11 @@
 					<string>利通区</string>
 				</array>
 				<key>city</key>
-				<string>吴忠</string>
+				<string>吴忠市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>宁夏</string>
+		<string>宁夏回族自治区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -5308,7 +5311,7 @@
 					<string>永登县</string>
 				</array>
 				<key>city</key>
-				<string>兰州</string>
+				<string>兰州市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5317,7 +5320,7 @@
 					<string>永昌县</string>
 				</array>
 				<key>city</key>
-				<string>金昌</string>
+				<string>金昌市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5332,7 +5335,7 @@
 					<string>合作市</string>
 				</array>
 				<key>city</key>
-				<string>甘南藏族</string>
+				<string>甘南藏族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5346,13 +5349,13 @@
 					<string>泾川县</string>
 				</array>
 				<key>city</key>
-				<string>平凉</string>
+				<string>平凉市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>嘉峪关</string>
+				<string>嘉峪关市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5366,7 +5369,7 @@
 					<string>张家川</string>
 				</array>
 				<key>city</key>
-				<string>天水</string>
+				<string>天水市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5378,7 +5381,7 @@
 					<string>平川区</string>
 				</array>
 				<key>city</key>
-				<string>白银</string>
+				<string>白银市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5386,15 +5389,15 @@
 					<string>凉州区</string>
 					<string>民勤县</string>
 					<string>古浪县</string>
-					<string>天祝</string>
+					<string>天祝藏族自治县</string>
 				</array>
 				<key>city</key>
-				<string>武威</string>
+				<string>武威市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>肃南裕固族</string>
+					<string>肃南裕固族自治县</string>
 					<string>民乐县</string>
 					<string>山丹县</string>
 					<string>高台县</string>
@@ -5402,7 +5405,7 @@
 					<string>甘州区</string>
 				</array>
 				<key>city</key>
-				<string>张掖</string>
+				<string>张掖市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5417,7 +5420,7 @@
 					<string>环县</string>
 				</array>
 				<key>city</key>
-				<string>庆阳</string>
+				<string>庆阳市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5431,7 +5434,7 @@
 					<string>岷县</string>
 				</array>
 				<key>city</key>
-				<string>定西</string>
+				<string>定西市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5446,21 +5449,21 @@
 					<string>临夏市</string>
 				</array>
 				<key>city</key>
-				<string>临夏回族</string>
+				<string>临夏回族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>敦煌市</string>
-					<string>阿克塞</string>
+					<string>阿克塞哈萨克族自治县</string>
 					<string>玉门市</string>
 					<string>瓜州县</string>
-					<string>肃北</string>
+					<string>肃北蒙古族自治县</string>
 					<string>肃州区</string>
 					<string>金塔县</string>
 				</array>
 				<key>city</key>
-				<string>酒泉</string>
+				<string>酒泉市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5476,11 +5479,11 @@
 					<string>成县</string>
 				</array>
 				<key>city</key>
-				<string>陇南</string>
+				<string>陇南市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>甘肃</string>
+		<string>甘肃省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -5488,128 +5491,128 @@
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>普兰</string>
-					<string>措勤</string>
-					<string>改则</string>
-					<string>革吉</string>
-					<string>日土</string>
-					<string>噶尔</string>
-					<string>札达</string>
+					<string>普兰县</string>
+					<string>措勤县</string>
+					<string>改则县</string>
+					<string>革吉县</string>
+					<string>日土县</string>
+					<string>噶尔县</string>
+					<string>札达县</string>
 				</array>
 				<key>city</key>
-				<string>阿里地</string>
+				<string>阿里地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>当雄</string>
-					<string>尼木</string>
+					<string>当雄县</string>
+					<string>尼木县</string>
 					<string>城关区</string>
-					<string>林周</string>
-					<string>达孜</string>
-					<string>墨竹工卡</string>
-					<string>曲水</string>
-					<string>堆龙德庆</string>
+					<string>林周县</string>
+					<string>达孜县</string>
+					<string>墨竹工卡县</string>
+					<string>曲水县</string>
+					<string>堆龙德庆县</string>
 				</array>
 				<key>city</key>
-				<string>拉萨</string>
+				<string>拉萨市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>曲松</string>
-					<string>措美</string>
-					<string>洛扎</string>
-					<string>加查</string>
-					<string>扎囊</string>
-					<string>贡嘎</string>
-					<string>桑日</string>
-					<string>琼结</string>
-					<string>浪卡子</string>
-					<string>隆子</string>
-					<string>错那</string>
-					<string>乃东</string>
+					<string>曲松县</string>
+					<string>措美县</string>
+					<string>洛扎县</string>
+					<string>加查县</string>
+					<string>扎囊县</string>
+					<string>贡嘎县</string>
+					<string>桑日县</string>
+					<string>琼结县</string>
+					<string>浪卡子县</string>
+					<string>隆子县</string>
+					<string>错那县</string>
+					<string>乃东县</string>
 				</array>
 				<key>city</key>
-				<string>山南地</string>
+				<string>山南地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>昂仁</string>
-					<string>拉孜</string>
-					<string>萨迦</string>
-					<string>定日</string>
-					<string>江孜</string>
-					<string>南木林</string>
+					<string>昂仁县</string>
+					<string>拉孜县</string>
+					<string>萨迦县</string>
+					<string>定日县</string>
+					<string>江孜县</string>
+					<string>南木林县</string>
 					<string>日喀则市</string>
-					<string>聂拉木</string>
-					<string>萨嘎</string>
-					<string>亚东</string>
-					<string>吉隆</string>
-					<string>定结</string>
-					<string>仲巴</string>
-					<string>白朗</string>
-					<string>谢通门</string>
-					<string>仁布</string>
-					<string>岗巴</string>
-					<string>康马</string>
+					<string>聂拉木县</string>
+					<string>萨嘎县</string>
+					<string>亚东县</string>
+					<string>吉隆县</string>
+					<string>定结县</string>
+					<string>仲巴县</string>
+					<string>白朗县</string>
+					<string>谢通门县</string>
+					<string>仁布县</string>
+					<string>岗巴县</string>
+					<string>康马县</string>
 				</array>
 				<key>city</key>
-				<string>日喀则地</string>
+				<string>日喀则地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>尼玛</string>
-					<string>那曲</string>
-					<string>比如</string>
-					<string>嘉黎</string>
-					<string>安多</string>
-					<string>聂荣</string>
-					<string>索</string>
-					<string>申扎</string>
-					<string>巴青</string>
-					<string>班戈</string>
+					<string>尼玛县</string>
+					<string>那曲县</string>
+					<string>比如县</string>
+					<string>嘉黎县</string>
+					<string>安多县</string>
+					<string>聂荣县 </string>
+					<string>索县</string>
+					<string>申扎县</string>
+					<string>巴青县</string>
+					<string>班戈县</string>
 				</array>
 				<key>city</key>
-				<string>那曲地</string>
+				<string>那曲地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>芒康</string>
-					<string>边坝</string>
-					<string>左贡</string>
-					<string>八宿</string>
-					<string>昌都</string>
-					<string>江达</string>
-					<string>类乌齐</string>
-					<string>贡觉</string>
-					<string>察雅</string>
-					<string>丁青</string>
-					<string>洛隆</string>
+					<string>芒康县</string>
+					<string>边坝县</string>
+					<string>左贡县</string>
+					<string>八宿县</string>
+					<string>昌都县</string>
+					<string>江达县</string>
+					<string>类乌齐县</string>
+					<string>贡觉县</string>
+					<string>察雅县</string>
+					<string>丁青县</string>
+					<string>洛隆县</string>
 				</array>
 				<key>city</key>
-				<string>昌都地</string>
+				<string>昌都地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>墨脱</string>
-					<string>米林</string>
-					<string>工布江达</string>
-					<string>林芝</string>
-					<string>波密</string>
-					<string>察隅</string>
-					<string>朗</string>
+					<string>墨脱县</string>
+					<string>米林县</string>
+					<string>工布江达县</string>
+					<string>林芝县</string>
+					<string>波密县</string>
+					<string>察隅县</string>
+					<string>朗县</string>
 				</array>
 				<key>city</key>
-				<string>林芝地</string>
+				<string>林芝地区</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>西藏</string>
+		<string>西藏自治区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -5626,7 +5629,7 @@
 					<string>杭锦后旗</string>
 				</array>
 				<key>city</key>
-				<string>巴彦淖尔</string>
+				<string>巴彦淖尔市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5676,7 +5679,7 @@
 					<string>察哈尔右翼前旗</string>
 				</array>
 				<key>city</key>
-				<string>乌兰察布</string>
+				<string>乌兰察布市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5691,7 +5694,7 @@
 					<string>鄂托克前旗</string>
 				</array>
 				<key>city</key>
-				<string>鄂尔多斯</string>
+				<string>鄂尔多斯市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5701,7 +5704,7 @@
 					<string>海勃湾区</string>
 				</array>
 				<key>city</key>
-				<string>乌海</string>
+				<string>乌海市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5717,7 +5720,7 @@
 					<string>土默特右旗</string>
 				</array>
 				<key>city</key>
-				<string>包头</string>
+				<string>包头市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5733,7 +5736,7 @@
 					<string>玉泉区</string>
 				</array>
 				<key>city</key>
-				<string>呼和浩特</string>
+				<string>呼和浩特市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5753,7 +5756,7 @@
 					<string>阿荣旗</string>
 				</array>
 				<key>city</key>
-				<string>呼伦贝尔</string>
+				<string>呼伦贝尔市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5768,7 +5771,7 @@
 					<string>扎鲁特旗</string>
 				</array>
 				<key>city</key>
-				<string>通辽</string>
+				<string>通辽市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5797,11 +5800,11 @@
 					<string>红山区</string>
 				</array>
 				<key>city</key>
-				<string>赤峰</string>
+				<string>赤峰市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>内蒙古</string>
+		<string>内蒙古自治区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -5809,19 +5812,19 @@
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>新源</string>
-					<string>昭苏</string>
-					<string>霍城</string>
-					<string>巩留</string>
-					<string>伊宁</string>
-					<string>察布查尔</string>
+					<string>新源县</string>
+					<string>昭苏县</string>
+					<string>霍城县</string>
+					<string>巩留县</string>
+					<string>伊宁县</string>
+					<string>察布查尔县</string>
 					<string>伊宁市</string>
 					<string>奎屯市</string>
-					<string>尼勒克</string>
-					<string>特克斯</string>
+					<string>尼勒克县</string>
+					<string>特克斯县</string>
 				</array>
 				<key>city</key>
-				<string>伊犁</string>
+				<string>伊犁哈萨克自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5832,53 +5835,53 @@
 					<string>乌尔禾区</string>
 				</array>
 				<key>city</key>
-				<string>克拉玛依</string>
+				<string>克拉玛依市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>巴里坤</string>
+					<string>巴里坤哈萨克自治县</string>
 					<string>哈密市</string>
-					<string>伊吾</string>
+					<string>伊吾县</string>
 				</array>
 				<key>city</key>
-				<string>哈密地</string>
+				<string>哈密地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石河子</string>
+				<string>石河子市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>托克逊</string>
-					<string>鄯善</string>
+					<string>托克逊县</string>
+					<string>鄯善县</string>
 					<string>吐鲁番市</string>
 				</array>
 				<key>city</key>
-				<string>吐鲁番地</string>
+				<string>吐鲁番地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>阿拉尔</string>
+				<string>阿拉尔市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>阿勒泰市</string>
-					<string>布尔津</string>
-					<string>福海</string>
-					<string>哈巴河</string>
-					<string>青河</string>
-					<string>吉木乃</string>
-					<string>富蕴</string>
+					<string>布尔津县</string>
+					<string>福海县</string>
+					<string>哈巴河县</string>
+					<string>青河县</string>
+					<string>吉木乃县</string>
+					<string>富蕴县</string>
 				</array>
 				<key>city</key>
-				<string>阿勒泰地</string>
+				<string>阿勒泰地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
@@ -5893,139 +5896,139 @@
 					<string>东山区</string>
 				</array>
 				<key>city</key>
-				<string>乌鲁木齐</string>
+				<string>乌鲁木齐市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>和布克赛尔</string>
+					<string>和布克赛尔蒙古自治县</string>
 					<string>乌苏市</string>
 					<string>塔城市</string>
-					<string>沙湾</string>
-					<string>额敏</string>
-					<string>裕民</string>
-					<string>托里</string>
+					<string>沙湾县</string>
+					<string>额敏县</string>
+					<string>裕民县</string>
+					<string>托里县</string>
 				</array>
 				<key>city</key>
-				<string>塔城地</string>
+				<string>塔城地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
 					<string>昌吉市</string>
-					<string>呼图壁</string>
-					<string>玛纳斯</string>
+					<string>呼图壁县</string>
+					<string>玛纳斯县</string>
 					<string>阜康市</string>
 					<string>米泉市</string>
-					<string>木垒</string>
-					<string>奇台</string>
-					<string>吉木萨尔</string>
+					<string>木垒哈萨克自治县</string>
+					<string>奇台县</string>
+					<string>吉木萨尔县</string>
 				</array>
 				<key>city</key>
-				<string>昌吉</string>
+				<string>昌吉回族自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>阿合奇</string>
-					<string>阿克陶</string>
+					<string>阿合奇县</string>
+					<string>阿克陶县</string>
 					<string>阿图什市</string>
-					<string>乌恰</string>
+					<string>乌恰县</string>
 				</array>
 				<key>city</key>
-				<string>克孜勒</string>
+				<string>克孜勒苏柯尔克孜自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>图木舒克</string>
+				<string>图木舒克市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>乌什</string>
-					<string>拜城</string>
-					<string>柯坪</string>
-					<string>阿瓦提</string>
-					<string>库车</string>
-					<string>温宿</string>
-					<string>新和</string>
-					<string>沙雅</string>
+					<string>乌什县</string>
+					<string>拜城县</string>
+					<string>柯坪县</string>
+					<string>阿瓦提县</string>
+					<string>库车县</string>
+					<string>温宿县</string>
+					<string>新和县</string>
+					<string>沙雅县</string>
 					<string>阿克苏市</string>
 				</array>
 				<key>city</key>
-				<string>阿克苏地</string>
+				<string>阿克苏地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>五家渠</string>
+				<string>五家渠市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>博湖</string>
-					<string>尉犁</string>
-					<string>若羌</string>
+					<string>博湖县</string>
+					<string>尉犁县</string>
+					<string>若羌县</string>
 					<string>库尔勒市</string>
-					<string>轮台</string>
-					<string>和静</string>
-					<string>和硕</string>
-					<string>且末</string>
-					<string>焉耆</string>
+					<string>轮台县</string>
+					<string>和静县</string>
+					<string>和硕县</string>
+					<string>且末县</string>
+					<string>焉耆回族自治县</string>
 				</array>
 				<key>city</key>
-				<string>巴音郭楞</string>
+				<string>巴音郭楞蒙古自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>于田</string>
-					<string>民丰</string>
-					<string>策勒</string>
-					<string>洛浦</string>
-					<string>皮山</string>
-					<string>墨玉</string>
-					<string>和田</string>
+					<string>于田县</string>
+					<string>民丰县</string>
+					<string>策勒县</string>
+					<string>洛浦县</string>
+					<string>皮山县</string>
+					<string>墨玉县</string>
+					<string>和田县</string>
 					<string>和田市</string>
 				</array>
 				<key>city</key>
-				<string>和田地</string>
+				<string>和田地区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>精河</string>
-					<string>温泉</string>
+					<string>精河县</string>
+					<string>温泉县</string>
 					<string>博乐市</string>
 				</array>
 				<key>city</key>
-				<string>博尔塔拉</string>
+				<string>博尔塔拉蒙古自治州</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array>
-					<string>伽师</string>
-					<string>岳普湖</string>
-					<string>叶城</string>
-					<string>麦盖提</string>
-					<string>疏勒</string>
-					<string>英吉沙</string>
-					<string>泽普</string>
-					<string>莎车</string>
-					<string>塔什库尔干</string>
-					<string>巴楚</string>
+					<string>伽师县</string>
+					<string>岳普湖县</string>
+					<string>叶城县</string>
+					<string>麦盖提县</string>
+					<string>疏勒县</string>
+					<string>英吉沙县</string>
+					<string>泽普县</string>
+					<string>莎车县</string>
+					<string>塔什库尔干塔吉克自治县</string>
+					<string>巴楚县</string>
 					<string>喀什市</string>
-					<string>疏附</string>
+					<string>疏附县</string>
 				</array>
 				<key>city</key>
-				<string>喀什地</string>
+				<string>喀什地区</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>新疆</string>
+		<string>新疆维吾尔自治区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -6034,119 +6037,131 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>新竹</string>
+				<string>新竹县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>基隆</string>
+				<string>基隆市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>高雄</string>
+				<string>高雄市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>台北</string>
+				<string>台北市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>台南</string>
+				<string>台南县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>嘉义</string>
+				<string>嘉义市</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>台中</string>
+				<string>台中县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宜兰</string>
+				<string>宜兰县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>屏东</string>
+				<string>屏东县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>桃园</string>
+				<string>桃园县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>台东</string>
+				<string>台东县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>苗栗</string>
+				<string>苗栗县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>金门</string>
+				<string>金门县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>花莲</string>
+				<string>花莲县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>云林</string>
+				<string>云林县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>连江</string>
+				<string>连江县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>澎湖</string>
+				<string>澎湖县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南投</string>
+				<string>南投县</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>彰化</string>
+				<string>彰化县</string>
+			</dict>
+			<dict>
+				<key>areas</key>
+				<array/>
+				<key>city</key>
+				<string>基隆市</string>
+			</dict>
+			<dict>
+				<key>areas</key>
+				<array/>
+				<key>city</key>
+				<string>新竹市</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>台湾</string>
+		<string>台湾省</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -6261,7 +6276,7 @@
 			</dict>
 		</array>
 		<key>state</key>
-		<string>香港</string>
+		<string>香港特别行政区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -6310,7 +6325,7 @@
 			</dict>
 		</array>
 		<key>state</key>
-		<string>澳门</string>
+		<string>澳门特别行政区</string>
 	</dict>
 	<dict>
 		<key>cities</key>
