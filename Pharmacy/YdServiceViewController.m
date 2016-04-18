@@ -13,7 +13,6 @@
 #import "YdElectronicsViewController.h"
 #import "YdchatViewController.h"
 #import "YdRecommendViewController.h"
-
 #import "Color+Hex.h"
 @interface YdServiceViewController ()
 {
@@ -274,7 +273,9 @@
 }
 -(void)Doctorsrecommendedff
 {
+    //跳转推荐医生
     YdRecommendViewController *Recommend = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recommend"];
     [self.navigationController pushViewController:Recommend animated:YES];
+    
 }
 @end

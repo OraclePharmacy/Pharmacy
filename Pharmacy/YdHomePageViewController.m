@@ -613,9 +613,10 @@
         for (int i = 0; i < 6; i++) {
             
             UIButton *IntegrationSix = [[UIButton alloc]init];
+            IntegrationSix.tag = 400+i;
             IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
             IntegrationSix.backgroundColor = [UIColor clearColor];
-            
+            [IntegrationSix addTarget:self action:@selector(handleClick1:) forControlEvents:UIControlEventTouchUpInside];
             //图片
             UIImageView *imageview = [[UIImageView alloc]init];
             imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
@@ -695,8 +696,10 @@
         
         for (int i = 0; i < presentarray.count; i++) {
             UIButton *IntegrationSix = [[UIButton alloc]init];
+            IntegrationSix.tag = 500+i;
             IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
             IntegrationSix.backgroundColor = [UIColor clearColor];
+            [IntegrationSix addTarget:self action:@selector(handleClick2:) forControlEvents:UIControlEventTouchUpInside];
             //图片
             UIImageView *imageview = [[UIImageView alloc]init];
             imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
@@ -779,11 +782,16 @@
     return cell;
 }
 
+
 //特价药品展示   药品详情
--(void)pharmacyjump
-{
+- (void)handleClick1:(UIButton *)btn{
     
+    if (btn.tag == 400)
+    {
+        
+    }
     
+    NSLog(@"%ld",btn.tag);
     
 }
 //更多
@@ -793,10 +801,15 @@
     
 }
 //积分礼品展示  礼品详情
--(void)specialofferjump
-{
+- (void)handleClick2:(UIButton *)btn{
     
-
+    if (btn.tag == 500)
+    {
+        
+    }
+    
+    NSLog(@"%ld",btn.tag);
+    
 }
 //更多
 -(void)specialoffergengduo

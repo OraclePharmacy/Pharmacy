@@ -1262,7 +1262,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="文字资讯"/>
-                                <segment title="电台"/>
+                                <segment title="健康电台"/>
                             </segments>
                             <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface YdInformationViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface YdInformationViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
