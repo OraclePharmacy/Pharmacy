@@ -338,7 +338,7 @@
     //垂直行间距
     flowLayout.minimumLineSpacing = 1.0;
     
-    CollectionView =[[UICollectionView alloc] initWithFrame:CGRectMake(0, 94, width,height-64-40)collectionViewLayout:flowLayout];
+    CollectionView =[[UICollectionView alloc] initWithFrame:CGRectMake(0, 94, width,height-64-40-30)collectionViewLayout:flowLayout];
     
     CollectionView.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     
@@ -372,7 +372,7 @@
 
 {
     
-    UIEdgeInsets top = {0,0,0,0};
+    UIEdgeInsets top = {10,10,10,10};
     
     return top;
     
@@ -396,7 +396,67 @@
     
     [cell sizeToFit];
     
-    cell.contentView.backgroundColor = [UIColor blackColor];
+    
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(0, 0, (width - 30 )/2, (width - 30 )/2+20);
+    image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
+    image.layer.cornerRadius = 8;
+    image.layer.masksToBounds = YES;
+
+    UILabel *title = [[UILabel alloc]init];
+    title.frame = CGRectMake(0, CGRectGetMaxY(image.frame), (width - 30 )/2 - 25, 25);
+    title.text = @"生活 生活 生活 ";
+    title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    title.font = [UIFont systemFontOfSize:15];
+    
+    UILabel *neirong = [[UILabel alloc]init];
+    neirong.frame = CGRectMake(0, CGRectGetMaxY(title.frame), (width - 30 )/2 - 25, 20);
+    neirong.text = @"健康送给您";
+    neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    neirong.font = [UIFont systemFontOfSize:12];
+    
+    UIButton *dianzan = [[UIButton alloc]init];
+    dianzan.frame = CGRectMake(cell.contentView.bounds.size.width - 25, CGRectGetMaxY(image.frame), 25,CGRectGetMaxY(neirong.frame) - CGRectGetMaxY(image.frame));
+    
+    UIImageView *dianzanimage = [[UIImageView alloc]init];
+    dianzanimage.frame = CGRectMake(5, 5, dianzan.bounds.size.width - 10 , dianzan.bounds.size.width - 10 );
+    dianzanimage.image = [UIImage imageNamed:@"iconfont-zanzan@3x.png"];
+    [dianzan addSubview:dianzanimage];
+    
+    UILabel *dianzanlable = [[UILabel alloc]init];
+    dianzanlable.frame = CGRectMake(0, dianzan.bounds.size.height - 20,dianzan.bounds.size.width,20);
+    dianzanlable.text = @"100";
+    dianzanlable.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    dianzanlable.font = [UIFont systemFontOfSize:12];
+    [dianzanlable setTextAlignment:NSTextAlignmentCenter];
+    [dianzan addSubview:dianzanlable];
+    
+    UIImageView *bofangimage = [[UIImageView alloc]init];
+    bofangimage.frame = CGRectMake(( image.bounds.size.width - 50 )/2,( image.bounds.size.height - 50 )/2 , 50, 50);
+    bofangimage.image = [UIImage imageNamed:@"组-11@3x.png"];
+    [image addSubview:bofangimage];
+
+    
+    UILabel *biaoshi = [[UILabel alloc]init];
+    biaoshi.frame = CGRectMake(10, 10, 16, 35);
+    biaoshi.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
+    biaoshi.font = [UIFont systemFontOfSize:12];
+    biaoshi.text = @"视频";
+    biaoshi.textColor = [UIColor whiteColor];
+    biaoshi.numberOfLines = 2;
+    biaoshi.layer.cornerRadius = 5;
+    biaoshi.layer.masksToBounds = YES;
+    [biaoshi setTextAlignment:NSTextAlignmentCenter];
+    [image addSubview:biaoshi];
+
+    
+    [cell.contentView addSubview:image];
+    [cell.contentView addSubview:title];
+    [cell.contentView addSubview:neirong];
+    [cell.contentView addSubview:dianzan];
+
+    
+    cell.contentView.backgroundColor = [UIColor clearColor];
     
     return cell;
     
@@ -406,7 +466,26 @@
 //设置元素大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((collectionView.bounds.size.width-1)/2, (collectionView.bounds.size.height-2)/3);
+    if (self.view.bounds.size.width  == 320)
+    {
+        
+        return CGSizeMake((collectionView.bounds.size.width-30)/2, 220);
+        
+    }
+    else if (self.view.bounds.size.width  == 375)
+    {
+        
+        return CGSizeMake((collectionView.bounds.size.width-30)/2, 245);
+        
+    }
+    else if (self.view.bounds.size.width  == 414)
+    {
+        
+        return CGSizeMake((collectionView.bounds.size.width-30)/2, 265);
+        
+    }
+    
+    return CGSizeMake((collectionView.bounds.size.width-30)/2, 270);
     
 }
 //点击事件

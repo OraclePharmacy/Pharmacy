@@ -127,6 +127,8 @@
 		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
 		95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D4CD621CAD0855003CD827 /* YCAdView.m */; };
 		95D817111CACE96D006BE2DB /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D817101CACE96D006BE2DB /* area.plist */; };
+		95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */; };
+		95E0EC621CC5C6C400B87690 /* 组-11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E0EC611CC5C6C400B87690 /* 组-11@3x.png */; };
 		95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E951281CB4FAC600BB754C /* YdInformationViewController.m */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
 		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
@@ -364,6 +366,8 @@
 		95D4CD611CAD0855003CD827 /* YCAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAdView.h; sourceTree = "<group>"; };
 		95D4CD621CAD0855003CD827 /* YCAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAdView.m; sourceTree = "<group>"; };
 		95D817101CACE96D006BE2DB /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-zanzan@3x.png"; sourceTree = "<group>"; };
+		95E0EC611CC5C6C400B87690 /* 组-11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-11@3x.png"; sourceTree = "<group>"; };
 		95E951271CB4FAC600BB754C /* YdInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdInformationViewController.h; sourceTree = "<group>"; };
 		95E951281CB4FAC600BB754C /* YdInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdInformationViewController.m; sourceTree = "<group>"; };
 		95EA794E1C9BA8A10093829A /* YdForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdForgetViewController.h; sourceTree = "<group>"; };
@@ -878,6 +882,8 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				95E0EC611CC5C6C400B87690 /* 组-11@3x.png */,
+				95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */,
 				95ED97451CC4B64A006F92B8 /* iconfont-fenxiang@3x.png */,
 				95ED97461CC4B64A006F92B8 /* iconfont-tubiao1shoucang@3x.png */,
 				959F9E351CBDFA3E00C5D019 /* 1@3x.png */,
@@ -1282,6 +1288,7 @@
 				95C372641CB5F5780083AC90 /* 组-4@3x.png in Resources */,
 				95C3726E1CB5F5780083AC90 /* 首页@3x.png in Resources */,
 				95C372571CB5F5780083AC90 /* 代购药@2x.png in Resources */,
+				95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */,
 				95F1E0441CB7A72300614502 /* shake_yyy_right30.png in Resources */,
 				95CA50F91CA121F7006CBC72 /* disease.plist in Resources */,
 				95C3726A1CB5F5780083AC90 /* 送到家@3x.png in Resources */,
@@ -1311,6 +1318,7 @@
 				95C3725F1CB5F5780083AC90 /* 矩形-20-拷贝@2x.png in Resources */,
 				9505D6D91C9A7B27006F6850 /* Assets.xcassets in Resources */,
 				95F1E0411CB7A72300614502 /* shake_yyy.png in Resources */,
+				95E0EC621CC5C6C400B87690 /* 组-11@3x.png in Resources */,
 				95C372501CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@3x.png in Resources */,
 				95C372511CB5F5780083AC90 /* iconfont-search@2x.png in Resources */,
 				95D817111CACE96D006BE2DB /* area.plist in Resources */,
