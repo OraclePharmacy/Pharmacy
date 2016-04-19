@@ -31,14 +31,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *bejing;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *picke;
+//@property (weak, nonatomic) IBOutlet UIPickerView *picke;
 
-- (IBAction)queding:(id)sender;
+//- (IBAction)queding:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *quxiao;
-@property (weak, nonatomic) IBOutlet UIView *pickerview;
+//@property (weak, nonatomic) IBOutlet UIButton *quxiao;
+//@property (weak, nonatomic) IBOutlet UIView *pickerview;
 
-- (IBAction)quxiao:(id)sender;
+//- (IBAction)quxiao:(id)sender;
 
 - (IBAction)beijing:(id)sender;
 @end

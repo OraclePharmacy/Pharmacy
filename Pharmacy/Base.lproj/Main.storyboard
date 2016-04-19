@@ -348,80 +348,6 @@
                                     <outlet property="delegate" destination="ewx-e9-uCB" id="w3A-Wa-lhq"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Di-A4-T6T">
-                                <rect key="frame" x="20" y="180" width="560" height="240"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgU-Zk-V8U">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="19"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择省市区" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shp-D9-QWb">
-                                                <rect key="frame" x="0.0" y="-2" width="560" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="shp-D9-QWb" secondAttribute="bottom" id="8R0-GW-9vw"/>
-                                            <constraint firstAttribute="trailing" secondItem="shp-D9-QWb" secondAttribute="trailing" id="8n1-91-MVU"/>
-                                            <constraint firstAttribute="height" constant="19" id="on6-4e-dQz"/>
-                                            <constraint firstItem="shp-D9-QWb" firstAttribute="leading" secondItem="wgU-Zk-V8U" secondAttribute="leading" id="pup-cd-8yd"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-rq-n04">
-                                        <rect key="frame" x="0.0" y="215" width="560" height="25"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDT-p3-Kal">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="取消"/>
-                                                <connections>
-                                                    <action selector="quxiao:" destination="ewx-e9-uCB" eventType="touchUpInside" id="ItQ-eI-1ui"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-wj-V4L">
-                                                <rect key="frame" x="281" y="0.0" width="279" height="25"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="确定"/>
-                                                <connections>
-                                                    <action selector="queding:" destination="ewx-e9-uCB" eventType="touchUpInside" id="IXB-6E-Hdo"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="KDT-p3-Kal" firstAttribute="leading" secondItem="0fM-rq-n04" secondAttribute="leading" id="82O-cY-L3y"/>
-                                            <constraint firstItem="1UZ-wj-V4L" firstAttribute="top" secondItem="0fM-rq-n04" secondAttribute="top" id="MPN-kz-rjE"/>
-                                            <constraint firstItem="1UZ-wj-V4L" firstAttribute="leading" secondItem="KDT-p3-Kal" secondAttribute="trailing" constant="1" id="Nqi-CL-Cem"/>
-                                            <constraint firstAttribute="height" constant="25" id="OEw-Cu-Ihf"/>
-                                            <constraint firstItem="1UZ-wj-V4L" firstAttribute="width" secondItem="KDT-p3-Kal" secondAttribute="width" id="OQK-4D-rPv"/>
-                                            <constraint firstItem="KDT-p3-Kal" firstAttribute="top" secondItem="0fM-rq-n04" secondAttribute="top" id="PSb-it-rkA"/>
-                                            <constraint firstAttribute="bottom" secondItem="1UZ-wj-V4L" secondAttribute="bottom" id="RXj-jI-V0E"/>
-                                            <constraint firstItem="1UZ-wj-V4L" firstAttribute="leading" secondItem="KDT-p3-Kal" secondAttribute="trailing" constant="1" id="eFa-Lf-Lui"/>
-                                            <constraint firstAttribute="trailing" secondItem="1UZ-wj-V4L" secondAttribute="trailing" id="fe3-Jb-uIx"/>
-                                            <constraint firstAttribute="bottom" secondItem="KDT-p3-Kal" secondAttribute="bottom" id="vK1-4P-ISF"/>
-                                        </constraints>
-                                    </view>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfA-WX-pzG">
-                                        <rect key="frame" x="0.0" y="20" width="560" height="194"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </pickerView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="HfA-WX-pzG" firstAttribute="top" secondItem="wgU-Zk-V8U" secondAttribute="bottom" constant="1" id="0wQ-SB-txS"/>
-                                    <constraint firstItem="0fM-rq-n04" firstAttribute="top" secondItem="HfA-WX-pzG" secondAttribute="bottom" constant="1" id="2I7-FN-mCd"/>
-                                    <constraint firstItem="wgU-Zk-V8U" firstAttribute="top" secondItem="8Di-A4-T6T" secondAttribute="top" id="IDu-FS-vjS"/>
-                                    <constraint firstAttribute="trailing" secondItem="0fM-rq-n04" secondAttribute="trailing" id="TUy-UH-hYE"/>
-                                    <constraint firstItem="HfA-WX-pzG" firstAttribute="leading" secondItem="8Di-A4-T6T" secondAttribute="leading" id="Tzl-GP-cAc"/>
-                                    <constraint firstAttribute="height" constant="240" id="WO8-sp-85l"/>
-                                    <constraint firstAttribute="bottom" secondItem="0fM-rq-n04" secondAttribute="bottom" id="at0-0j-jqz"/>
-                                    <constraint firstItem="0fM-rq-n04" firstAttribute="leading" secondItem="8Di-A4-T6T" secondAttribute="leading" id="cN2-en-19T"/>
-                                    <constraint firstAttribute="trailing" secondItem="wgU-Zk-V8U" secondAttribute="trailing" id="fht-rb-Blo"/>
-                                    <constraint firstAttribute="trailing" secondItem="HfA-WX-pzG" secondAttribute="trailing" id="g60-7F-qri"/>
-                                    <constraint firstItem="wgU-Zk-V8U" firstAttribute="leading" secondItem="8Di-A4-T6T" secondAttribute="leading" id="s5v-A5-Fvs"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -430,15 +356,11 @@
                             <constraint firstItem="log-yA-usI" firstAttribute="leading" secondItem="9oz-d6-LRH" secondAttribute="leading" id="AZg-Ic-HRF"/>
                             <constraint firstItem="8bP-YW-KDS" firstAttribute="top" secondItem="5xC-gp-FyL" secondAttribute="bottom" constant="10" id="AiD-wc-fSN"/>
                             <constraint firstItem="K41-Sq-R8Z" firstAttribute="centerY" secondItem="9oz-d6-LRH" secondAttribute="centerY" id="IZM-5w-kHx"/>
-                            <constraint firstItem="8Di-A4-T6T" firstAttribute="leading" secondItem="9oz-d6-LRH" secondAttribute="leadingMargin" id="Shs-h2-Yyc"/>
                             <constraint firstItem="5xC-gp-FyL" firstAttribute="leading" secondItem="9oz-d6-LRH" secondAttribute="leading" id="YKR-oA-QCW"/>
                             <constraint firstItem="8bP-YW-KDS" firstAttribute="centerX" secondItem="9oz-d6-LRH" secondAttribute="centerX" id="byg-Yx-7ks"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Di-A4-T6T" secondAttribute="trailing" id="dr4-Cp-e64"/>
-                            <constraint firstItem="8Di-A4-T6T" firstAttribute="centerY" secondItem="9oz-d6-LRH" secondAttribute="centerY" id="dwK-c0-ftM"/>
                             <constraint firstAttribute="trailing" secondItem="5xC-gp-FyL" secondAttribute="trailing" id="mbN-Zo-u3g"/>
                             <constraint firstAttribute="trailing" secondItem="log-yA-usI" secondAttribute="trailing" id="pO5-tn-bib"/>
                             <constraint firstItem="log-yA-usI" firstAttribute="top" secondItem="9oz-d6-LRH" secondAttribute="top" id="t8C-ME-vpH"/>
-                            <constraint firstItem="8Di-A4-T6T" firstAttribute="centerX" secondItem="9oz-d6-LRH" secondAttribute="centerX" id="vaF-pU-5uO"/>
                             <constraint firstAttribute="bottom" secondItem="log-yA-usI" secondAttribute="bottom" id="w7c-AP-Nbp"/>
                         </constraints>
                     </view>
@@ -453,9 +375,6 @@
                         <outlet property="VerificationButton" destination="rFa-wc-Uhh" id="Nqx-a2-tCn"/>
                         <outlet property="VerificationText" destination="GTs-VU-9Th" id="KQb-js-5kB"/>
                         <outlet property="bejing" destination="log-yA-usI" id="XoD-UA-8uK"/>
-                        <outlet property="picke" destination="HfA-WX-pzG" id="ovs-80-BiH"/>
-                        <outlet property="pickerview" destination="8Di-A4-T6T" id="ZOl-BK-JQV"/>
-                        <outlet property="quxiao" destination="KDT-p3-Kal" id="zVH-fX-X25"/>
                         <outlet property="tableview" destination="K41-Sq-R8Z" id="sv8-kU-fb7"/>
                     </connections>
                 </viewController>

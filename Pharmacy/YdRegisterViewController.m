@@ -39,6 +39,9 @@
     
     CLLocationManager*_locationManager;
 
+    
+    UIView * pickerview;
+    UIPickerView *picke;
 }
 @end
 
@@ -47,9 +50,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self sanji];
     
     
+    pickerview=[[UIView alloc] init];
     self.PhoneText.text = @"18345559961";
     self.PassText.text = @"111111";
     self.AgainPassText.text = @"111111";
@@ -62,7 +65,7 @@
     
     self.bejing.hidden = YES;
     self.tableview.hidden = YES;
-    self.pickerview.hidden = YES;
+    pickerview.hidden = YES;
     
     width = [UIScreen mainScreen].bounds.size.width;
     
@@ -286,10 +289,10 @@
             
             shengg=[SSMap allKeys];
             for (int i=0; i<shengg.count; i++) {
-                //NSLog(@"%@",shengg[i]);
+                
                 NSMutableArray*meme1=[[NSMutableArray alloc] init];
                 NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
-                for (int y=0; y<xixi.count; y++) {
+                                                                                                                for (int y=0; y<xixi.count; y++) {
                     [meme1 addObject: [xixi[y] objectForKey:@"name"]];
                 }
                 [hehe1 setObject:meme1 forKey:shengg[i]];
@@ -367,19 +370,48 @@
 #pragma 创建三级联动
 -(void)sanji
 {
-    self.pickerview.hidden=NO;
+    if (pickerview) {
+        [pickerview removeFromSuperview];
+        pickerview=nil;
+    }
+    float w=[[UIScreen mainScreen] bounds].size.width;
+    float h=[[UIScreen mainScreen] bounds].size.height;
+    
+    
+    pickerview.backgroundColor=[UIColor redColor];
+    picke.backgroundColor=[UIColor greenColor];
+    
+    
+    pickerview.hidden=NO;
     self.bejing.hidden=NO;
+    
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
     
     stateArray = [NSArray arrayWithContentsOfFile:path];
-    NSLog(@"%@",stateArray);
     cityArray = [stateArray[0] objectForKey:@"cities"];
     areaArray = [cityArray[0] objectForKey:@"areas"];
     
-    self.picke.delegate = self;
-    self.picke.dataSource = self;
-
+    pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
+    picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
+    
+    picke.delegate = self;
+    picke.dataSource = self;
+    
+    
+    [pickerview addSubview:picke];
+    
+    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 30)];
+    UIBarButtonItem*bb1=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(queding)];
+    UIBarButtonItem*flex=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem*bb2=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(quxiao)];
+    NSArray*arr9=[NSArray arrayWithObjects:bb1,flex,bb2, nil];
+    tool.items=arr9;
+    [pickerview addSubview:tool];
+    
+    
+    [self.view addSubview:pickerview];
+   [UIView animateWithDuration:0.3 animations:^{pickerview.frame=CGRectMake(0, h-220, w, 220);}];
 }
 //返回几列
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -452,17 +484,31 @@
     }
     else if (component == 1)
     {
-        return width/3;
+        return width/4;
     }
     else if (component == 2)
     {
-        return width/3;
+        return width*5/12;
     }
     
     
     return 0;
 }
-
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        // Setup label properties - frame, font, colors etc
+        //adjustsFontSizeToFitWidth property to YES
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setTextAlignment:NSTextAlignmentLeft];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    }
+    // Fill the label text here
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
 
 #pragma 按钮点击事件
 
@@ -668,19 +714,19 @@
     //返回上一页面
      [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)queding:(id)sender {
-    
-    stateDic = stateArray[[self.picke selectedRowInComponent:0]];
+- (void)queding {
+    [pickerview removeFromSuperview];
+    stateDic = stateArray[[picke selectedRowInComponent:0]];
     NSString *state = [stateDic objectForKey:@"state"];
     
     
-    cityDic = cityArray[[self.picke selectedRowInComponent:1]];
+    cityDic = cityArray[[picke selectedRowInComponent:1]];
     NSString *city = [cityDic objectForKey:@"city"];
     
     
     NSString *area;
     if (areaArray.count > 0) {
-        area = areaArray[[self.picke selectedRowInComponent:2]];
+        area = areaArray[[picke selectedRowInComponent:2]];
     }else{
         area = @"";
     }
@@ -691,22 +737,22 @@
     NSLog(@"resultresultresultresultresultresultresult%@",result);
     
     self.bejing.hidden = YES;
-    self.pickerview.hidden = YES;
+    
     
     [self.tableview reloadData];
     self.tableview.hidden = NO;
     
 }
-- (IBAction)quxiao:(id)sender {
+- (void)quxiao {
     self.bejing.hidden = YES;
-    self.pickerview.hidden = YES;
+    pickerview.hidden = YES;
 }
 
 - (IBAction)beijing:(id)sender {
     
     self.bejing.hidden = YES;
     self.tableview.hidden = YES;
-    self.pickerview.hidden = YES;
+    pickerview.hidden = YES;
 }
 
 - (void)initializeLocationService {
