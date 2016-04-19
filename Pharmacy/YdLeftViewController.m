@@ -8,10 +8,7 @@
 
 #import "YdLeftViewController.h"
 #import "YdHomePageViewController.h"
-//#import "YdSecondViewController.h"
-//#import "YdThirdViewController.h"
-//#import "YdFourthViewController.h"
-//#import "YdFifthViewController.h"
+#import "YdPersonalInformationViewController.h"
 #import "UIViewController+RESideMenu.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
@@ -31,7 +28,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     
-    _lefs = @[@"首页", @"客服热线", @"用户反馈", @"软件设置", @"关于我们"];
+    _lefs = @[@"个人信息", @"客服热线", @"用户反馈", @"软件设置", @"关于我们"];
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.width - 64);
     _tableView.dataSource = self;
@@ -69,11 +66,11 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kYCLeftViewControllerCellReuseId];
     }
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = self.lefs[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0];
     cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.highlightedTextColor = [UIColor grayColor];
+    //cell.textLabel.highlightedTextColor = [UIColor grayColor];
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.backgroundColor = [UIColor clearColor];
     
@@ -84,6 +81,41 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    switch (indexPath.row) {
+//        case 0:
+//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homepage"]]
+//                                                         animated:YES];
+//            [self.sideMenuViewController hideMenuViewController];
+//            break;
+//        case 1:
+//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"personalinformation"]]
+//                                                         animated:YES];
+//            [self.sideMenuViewController hideMenuViewController];
+//            break;
+//        default:
+//            break;
+//    }
+//
+//    
+    
+    
+//    if (indexPath.row == 0)
+//    {
+//        
+//        YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+//        [self presentViewController:PersonalInformation animated:YES completion:^{
+//            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+//        }];
+//    
+//    }
+    
+    
+    YdPersonalInformationViewController *PersonalInformation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+    [self.navigationController pushViewController:PersonalInformation animated:YES];
+    
+    
+    
 }
 
 

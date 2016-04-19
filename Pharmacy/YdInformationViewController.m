@@ -8,6 +8,8 @@
 
 #import "YdInformationViewController.h"
 #import "Color+Hex.h"
+#import "YdInformationDetailsViewController.h"
+#import "YdTextDetailsViewController.h"
 @interface YdInformationViewController ()
 {
     UICollectionView * CollectionView;
@@ -39,6 +41,9 @@
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+//    self.Segmented.layer.cornerRadius = 8;
+//    self.Segmented.layer.masksToBounds = YES;
+
     //设置分段控制器的默认选项
     self.Segmented.selectedSegmentIndex = 0;
     //解决tableview多出的白条
@@ -316,6 +321,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    //跳转文字资讯详情
+    YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+    [self.navigationController pushViewController:TextDetails animated:YES];
+    
+    
 }
 //创建CollectionView
 -(void)makeCollectionView
@@ -491,6 +501,10 @@
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    //跳转健康电台详情
+    YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
+    [self.navigationController pushViewController:InformationDetails animated:YES];
     
 }
 @end

@@ -799,6 +799,24 @@
             </objects>
             <point key="canvasLocation" x="-735" y="1072"/>
         </scene>
+        <!--Yd Personal Information View Controller-->
+        <scene sceneID="t84-Dc-Hz8">
+            <objects>
+                <viewController storyboardIdentifier="personalinformation" id="TcZ-w1-2Vt" customClass="YdPersonalInformationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jp4-Of-Wh2"/>
+                        <viewControllerLayoutGuide type="bottom" id="wEW-eT-5Br"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ADz-Ic-PLt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHE-sV-ZqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-735" y="1733"/>
+        </scene>
         <!--药品-->
         <scene sceneID="Pdj-di-UPf">
             <objects>
@@ -1278,6 +1296,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64V-eF-7Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="1110"/>
+        </scene>
+        <!--Yd Text Details View Controller-->
+        <scene sceneID="DU7-UE-5Z2">
+            <objects>
+                <viewController storyboardIdentifier="textdetails" id="PIe-HG-mSW" customClass="YdTextDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IMs-gG-Dex"/>
+                        <viewControllerLayoutGuide type="bottom" id="GIe-2D-Vu3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qCU-CA-pim">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQM-ym-eov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1984" y="1110"/>
+        </scene>
+        <!--Yd Information Details View Controller-->
+        <scene sceneID="CK9-o6-a1q">
+            <objects>
+                <viewController storyboardIdentifier="informationdetails" id="x9H-GZ-RMv" customClass="YdInformationDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YrF-Ci-74d"/>
+                        <viewControllerLayoutGuide type="bottom" id="2wO-Iq-jxY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iLK-hL-HZl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TdE-cC-ZFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624" y="1110"/>
         </scene>
         <!--汇总-->
         <scene sceneID="Ggt-kb-2TA">
@@ -1980,7 +2034,7 @@
         <image name="shake_yyy.png" width="640" height="1136"/>
         <image name="服务@3x.png" width="1080" height="1920"/>
         <image name="汇总@3x.png" width="1080" height="1920"/>
-        <image name="药品@3x.png" width="640" height="1136"/>
+        <image name="药品@3x.png" width="320" height="568"/>
         <image name="资讯@3x.png" width="1080" height="1920"/>
     </resources>
 </document>
