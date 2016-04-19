@@ -16,6 +16,8 @@
 
 @interface YdRegisterViewController ()<CLLocationManagerDelegate>
 {
+    int panduan;
+    
     NSArray *arr;
     NSString *str;
     
@@ -31,14 +33,14 @@
     NSArray *cityArray;
     NSArray *areaArray;
     
-    NSMutableDictionary*hehe1;
+    NSMutableArray* bianxing;
     NSArray*shengg;
     
     NSDictionary *stateDic;
     NSDictionary *cityDic;
     
     CLLocationManager*_locationManager;
-
+    
     
     UIView * pickerview;
     UIPickerView *picke;
@@ -50,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    panduan=0;
     
     pickerview=[[UIView alloc] init];
     self.PhoneText.text = @"18345559961";
@@ -78,9 +80,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
     [self TextFieldSetUp];
-
+    
 }
 
 //点击编辑区以外的地方键盘消失
@@ -109,7 +111,7 @@
     [self.RecommendedText addTarget:self action:@selector(RecommendedPhoneSetLength) forControlEvents:UIControlEventEditingChanged];
     [self.PassText addTarget:self action:@selector(PassSetLength) forControlEvents:UIControlEventEditingChanged];
     [self.AgainPassText addTarget:self action:@selector(AgainPassSetLength) forControlEvents:UIControlEventEditingChanged];
-
+    
 }
 #pragma 限制textfield的长度
 //设置手机号长度
@@ -237,7 +239,7 @@
     }
     else
     {
-         [self.StoreText becomeFirstResponder];
+        [self.StoreText becomeFirstResponder];
     }
     return YES;
 }
@@ -282,37 +284,43 @@
         [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",responseObject);
-            NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
-            hehe1=[[NSMutableDictionary alloc] init];
-            
-            shengg=[SSMap allKeys];
-            for (int i=0; i<shengg.count; i++) {
+            @try{
+                panduan=1;
                 
-                NSMutableArray*meme1=[[NSMutableArray alloc] init];
-                NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
-                                                                                                                for (int y=0; y<xixi.count; y++) {
-                    [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                [WarningBox warningBoxHide:YES andView:self.view];
+                NSLog(@"%@",responseObject);
+                NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
+                NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
+                
+                shengg=[SSMap allKeys];
+                bianxing=[NSMutableArray array];
+                for (int i=0; i<shengg.count; i++) {
+                    
+                    NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                    NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                    for (int y=0; y<xixi.count; y++) {
+                        [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                    }
+                    [hehe1 setObject:meme1 forKey:@"cities"];
+                    [hehe1 setObject:shengg[i] forKey:@"state"];
+                    [bianxing addObject:hehe1];
                 }
-                [hehe1 setObject:meme1 forKey:shengg[i]];
+                NSLog(@"%@",bianxing);
+                
+                
+                
+                
+                
+                NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
+                [bianxing writeToFile:path atomically:YES];
+                
+                NSLog(@"%@",NSHomeDirectory());
+            }
+            @catch (NSException * e) {
+                [WarningBox warningBoxModeText:@"" andView:self.view];
                 
             }
-            NSLog(@"%@",hehe1);
-            UILabel* hah=[[UILabel alloc] initWithFrame:CGRectMake(100, 500, 200, 40)];
-            hah.text=[NSString stringWithFormat:@"%@",shengg[0]];
-            UILabel* haha1=[[UILabel alloc] initWithFrame:CGRectMake(100, 550, 200, 40)];
-            haha1.text=[NSString stringWithFormat:@"%@",[hehe1 objectForKey:shengg[0]][0]];
-            [self.view addSubview:haha1];
-            [self.view addSubview:hah];
             
-            
-            NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
-            [hehe1 writeToFile:path atomically:YES];
-            
-            NSLog(@"%@",NSHomeDirectory());
-            
-
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -357,7 +365,6 @@
     
     [cell.contentView addSubview:name];
     
-    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -377,27 +384,46 @@
     float w=[[UIScreen mainScreen] bounds].size.width;
     float h=[[UIScreen mainScreen] bounds].size.height;
     
-    
     pickerview.backgroundColor=[UIColor redColor];
     picke.backgroundColor=[UIColor greenColor];
     
-    
     pickerview.hidden=NO;
     self.bejing.hidden=NO;
-    
-    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+    if (panduan==0) {
     
-    stateArray = [NSArray arrayWithContentsOfFile:path];
-    cityArray = [stateArray[0] objectForKey:@"cities"];
-    areaArray = [cityArray[0] objectForKey:@"areas"];
+        stateArray = [NSArray arrayWithContentsOfFile:path];
+        cityArray = [stateArray[0] objectForKey:@"cities"];
+        areaArray = [cityArray[0] objectForKey:@"areas"];
+        
+    }
+    else {
+        stateArray = [NSArray arrayWithArray:bianxing];
+        cityArray = [stateArray[0] objectForKey:@"cities"];
+        NSArray*qq=[NSArray arrayWithContentsOfFile:path];
+        int tiao=0;
+        for (int i=0; i<qq.count; i++) {
+            if ([[qq[i] objectForKey:@"state"] isEqual:shengg[0]]) {
+                for (int y=0; y<[[qq[i] objectForKey:@"cities"] count]; y++) {
+                    if ([[[qq[i] objectForKey:@"cities"][y] objectForKey:@"city"]isEqual:[cityArray[0] objectForKey:@"city"]]) {
+                        
+                        areaArray=  [NSArray arrayWithArray:[[qq[i] objectForKey:@"cities"][y] objectForKey:@"areas"] ];
+                        tiao=1;
+                        break;
+                    }
+                }
+            }
+            if (tiao!=0) {
+                break;
+            }
+        }
+    }
     
     pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
     picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
     
     picke.delegate = self;
     picke.dataSource = self;
-    
     
     [pickerview addSubview:picke];
     
@@ -409,9 +435,8 @@
     tool.items=arr9;
     [pickerview addSubview:tool];
     
-    
     [self.view addSubview:pickerview];
-   [UIView animateWithDuration:0.3 animations:^{pickerview.frame=CGRectMake(0, h-220, w, 220);}];
+    [UIView animateWithDuration:0.3 animations:^{pickerview.frame=CGRectMake(0, h-220, w, 200);}];
 }
 //返回几列
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -523,7 +548,7 @@
         {
             
             [WarningBox warningBoxModeText:@"请输入正确的手机号" andView:self.view];
-         
+            
         }
         else if([self isMobileNumberClassification:self.PhoneText.text])
         {
@@ -542,8 +567,8 @@
             
             
             //将上传对象转换为json格式字符串
-           AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-          //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
             SBJsonWriter *writer = [[SBJsonWriter alloc]init];
             //出入参数：
             NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",@"0",@"msg_type", nil];
@@ -582,27 +607,27 @@
                     
                 }
                 
-
+                
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
                 NSLog(@"错误：%@",error);
             }];
             
-
+            
         }
     }
     else
     {
         [WarningBox warningBoxModeText:@"手机号不能为空" andView:self.view];
     }
-
+    
 }
 //完成
 - (IBAction)CompleteButton:(id)sender {
     [self.view endEditing:YES];
     [self sanji];
-
+    
     //判断长度是否大于0
     if (self.PhoneText.text.length > 0 && self.VerificationText.text.length > 0 && self.PassText.text.length > 0 && self.AgainPassText.text.length &&self.StoreText.text.length)
     {
@@ -611,10 +636,10 @@
         {
             [WarningBox warningBoxModeText:@"您的手机号不正确" andView:self.view];
         }
-//        else if (![self isMobileNumberClassification:self.RecommendedText.text])
-//        {
-//            [WarningBox warningBoxModeText:@"您的推荐人手机号不正确" andView:self.view];
-//        }
+        //        else if (![self isMobileNumberClassification:self.RecommendedText.text])
+        //        {
+        //            [WarningBox warningBoxModeText:@"您的推荐人手机号不正确" andView:self.view];
+        //        }
         else if (![self mima:self.PassText.text])
         {
             [WarningBox warningBoxModeText:@"您的密码格式不正确" andView:self.view];
@@ -678,12 +703,12 @@
                         [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                         
                     }
-
+                    
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [WarningBox warningBoxHide:YES andView:self.view];
                     [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
                     NSLog(@"错误：%@",error);
-
+                    
                 }];
                 
                 
@@ -695,7 +720,7 @@
                 [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
                 
             }
-
+            
         }
         
     }
@@ -703,16 +728,16 @@
     else
     {
         
-       [WarningBox warningBoxModeText:@"输入内容不能为空" andView:self.view];
+        [WarningBox warningBoxModeText:@"输入内容不能为空" andView:self.view];
         
     }
-
+    
 }
 //左按钮
 -(void)fanhui
 {
     //返回上一页面
-     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)queding {
     [pickerview removeFromSuperview];
