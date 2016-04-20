@@ -80,41 +80,19 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    switch (indexPath.row) {
-//        case 0:
-//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homepage"]]
-//                                                         animated:YES];
-//            [self.sideMenuViewController hideMenuViewController];
-//            break;
-//        case 1:
-//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"personalinformation"]]
-//                                                         animated:YES];
-//            [self.sideMenuViewController hideMenuViewController];
-//            break;
-//        default:
-//            break;
-//    }
-//
-//    
     
+    if (indexPath.row == 0)
+    {
+        
+        YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+        
+        [self presentViewController:PersonalInformation animated:YES completion:^{
+            
+            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+        }];
     
-//    if (indexPath.row == 0)
-//    {
-//        
-//        YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
-//        [self presentViewController:PersonalInformation animated:YES completion:^{
-//            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-//        }];
-//    
-//    }
-    
-    
-    YdPersonalInformationViewController *PersonalInformation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
-    [self.navigationController pushViewController:PersonalInformation animated:YES];
-    
-    
+    }
     
 }
 
