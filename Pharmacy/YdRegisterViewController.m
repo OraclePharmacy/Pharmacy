@@ -247,87 +247,92 @@
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == self.StoreText) {
-        
-        [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
-        
-        //userID    暂时不用改
-        NSString * userID=@"0";
-        
-        //请求地址   地址不同 必须要改
-        NSString * url =@"/Store/getLocation";
-        
-        //时间戳
-        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSTimeInterval a=[dat timeIntervalSince1970];
-        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-        
-        
-        //将上传对象转换为json格式字符串
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
-        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
-        
-        NSString*jsonstring=[writer stringWithObject:datadic];
-        
-        //获取签名
-        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-        
-        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        
-        NSLog(@"%@",url1);
-        //电泳借口需要上传的数据
-        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        NSLog(@"%@",dic);
-        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        if (panduan==0) {
+            [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
             
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            @try{
-                panduan=1;
+            //userID    暂时不用改
+            NSString * userID=@"0";
+            
+            //请求地址   地址不同 必须要改
+            NSString * url =@"/Store/getLocation";
+            
+            //时间戳
+            NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+            NSTimeInterval a=[dat timeIntervalSince1970];
+            NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+            
+            
+            //将上传对象转换为json格式字符串
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
+            SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+            //出入参数：
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
+            
+            NSString*jsonstring=[writer stringWithObject:datadic];
+            
+            //获取签名
+            NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+            
+            NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+            
+            NSLog(@"%@",url1);
+            //电泳借口需要上传的数据
+            NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+            NSLog(@"%@",dic);
+            [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
                 
-                [WarningBox warningBoxHide:YES andView:self.view];
-                NSLog(@"%@",responseObject);
-                NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
-                NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
-                
-                shengg=[SSMap allKeys];
-                bianxing=[NSMutableArray array];
-                for (int i=0; i<shengg.count; i++) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                @try{
+                    panduan=1;
                     
-                    NSMutableArray*meme1=[[NSMutableArray alloc] init];
-                    NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
-                    for (int y=0; y<xixi.count; y++) {
-                        [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                    [WarningBox warningBoxHide:YES andView:self.view];
+                    NSLog(@"%@",responseObject);
+                    
+                    
+                    NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
+                    
+                    
+                    shengg=[SSMap allKeys];
+                    bianxing=[[NSMutableArray alloc] init];
+                    
+                    for (int i=0; i<shengg.count; i++) {
+                        
+                        NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                        NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                        NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
+                        for (int y=0; y<xixi.count; y++) {
+                            [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                        }
+                        [hehe1 setObject:meme1 forKey:@"cities"];
+                        [hehe1 setObject:shengg[i] forKey:@"state"];
+                        [bianxing addObject:hehe1];
+                        
                     }
-                    [hehe1 setObject:meme1 forKey:@"cities"];
-                    [hehe1 setObject:shengg[i] forKey:@"state"];
-                    [bianxing addObject:hehe1];
+                    
+                    NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
+                    [bianxing writeToFile:path atomically:YES];
+                    
+                    NSLog(@"%@",NSHomeDirectory());
                 }
-                NSLog(@"%@",bianxing);
+                @catch (NSException * e) {
+                    [WarningBox warningBoxModeText:@"" andView:self.view];
+                    
+                }
                 
-                
-                
-                
-                
-                NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
-                [bianxing writeToFile:path atomically:YES];
-                
-                NSLog(@"%@",NSHomeDirectory());
-            }
-            @catch (NSException * e) {
-                [WarningBox warningBoxModeText:@"" andView:self.view];
-                
-            }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                NSLog(@"错误：%@",error);
+            }];
             
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [WarningBox warningBoxHide:YES andView:self.view];
-            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
-        }];
-        
-        
+            
+            
+        }else{
+            [self sanji];
+            
+        }
         return NO;
     }
     return YES;
@@ -405,7 +410,7 @@
         for (int i=0; i<qq.count; i++) {
             if ([[qq[i] objectForKey:@"state"] isEqual:shengg[0]]) {
                 for (int y=0; y<[[qq[i] objectForKey:@"cities"] count]; y++) {
-                    if ([[[qq[i] objectForKey:@"cities"][y] objectForKey:@"city"]isEqual:[cityArray[0] objectForKey:@"city"]]) {
+                    if ([[[qq[i] objectForKey:@"cities"][y] objectForKey:@"city"]isEqual:cityArray[0]]) {
                         
                         areaArray=  [NSArray arrayWithArray:[[qq[i] objectForKey:@"cities"][y] objectForKey:@"areas"] ];
                         tiao=1;
@@ -463,8 +468,12 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        
-        NSString *state = [stateArray[row] objectForKey:@"state"];
+        NSString *state;
+        if(panduan==0){
+         state = [stateArray[row] objectForKey:@"state"];
+        }else{
+            state = [NSString stringWithFormat:@"%@", shengg[row] ];
+        }
         return state;
         
     }else if (component == 1){
@@ -490,8 +499,29 @@
             areaArray = [cityArray[0]    objectForKey:@"areas" ];
         }else{
             cityArray = [bianxing[row] objectForKey:[NSString stringWithFormat:@"%@",[bianxing[row] allKeys][0]]];
-        }
         
+            
+            
+            
+            NSString *state = shengg[row];
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+            int xixi=0;
+            NSArray*bendi=[NSArray arrayWithContentsOfFile:path];
+            for (int i=0; i<bendi.count; i++) {
+                if ([[bendi[i] objectForKey:@"state"]isEqual:state]) {
+                    for (int y=0; y<[[bendi[i] objectForKey:@"cities"] count]; y++) {
+                        if ([[[bendi[i] objectForKey:@"cities"][y] objectForKey:@"city"] isEqual:cityArray[0]]) {
+                            areaArray=  [[bendi[i] objectForKey:@"cities"][y] objectForKey:@"areas"];
+                            xixi=1;
+                            break;
+                        }
+                    }
+                }
+                if (xixi==1) {
+                    break;
+                }
+            }
+        }
         [pickerView reloadComponent:1];
         [pickerView selectRow:0 inComponent:1 animated:YES];
         [pickerView reloadComponent:2];
@@ -503,9 +533,11 @@
         if (panduan==0) {
             areaArray = [cityArray[row] objectForKey:@"areas"];
         }else{
+            
             ///////判断是那个 省   那个  市   根据市 取出区
             ///////本地数据与返回数据的接轨
             stateDic = stateArray[[picke selectedRowInComponent:0]];
+            NSLog(@"%@",stateDic);
             NSString *state = [stateDic objectForKey:@"state"];
              NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
             int xixi=0;
@@ -530,10 +562,7 @@
         if ([areaArray count] > 0) {
             [pickerView selectRow:0 inComponent:2 animated:YES];
         }
-        
     }
-    
-    
 }
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
@@ -660,7 +689,7 @@
 //完成
 - (IBAction)CompleteButton:(id)sender {
     [self.view endEditing:YES];
-    [self sanji];
+    
     
     //判断长度是否大于0
     if (self.PhoneText.text.length > 0 && self.VerificationText.text.length > 0 && self.PassText.text.length > 0 && self.AgainPassText.text.length &&self.StoreText.text.length)
@@ -782,12 +811,14 @@
     
     
     cityDic = cityArray[[picke selectedRowInComponent:1]];
+    
     NSString *city;
     if (panduan==0) {
         city= [cityDic objectForKey:@"city"];
     }else{
-        city= [cityDic objectForKey:[NSString stringWithFormat:@"%@",[cityDic allKeys][0]]];
+        city= [NSString stringWithFormat:@"%@",cityDic];
     }
+   
         
     
     NSString *area;
@@ -800,17 +831,19 @@
         area = @"";
         
     }
-    
+   
     NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
     
     NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
     
+    
     self.bejing.hidden = YES;
     
-    
+    //再次掉接口  如果成功显示下边的
+    {
     [self.tableview reloadData];
     self.tableview.hidden = NO;
-    
+    }
 }
 - (void)quxiao {
     self.bejing.hidden = YES;
@@ -845,7 +878,6 @@
     jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
     //将纬度现实到label上
     wei = [NSString stringWithFormat:@"%lf", newLocation.coordinate.latitude];
-    
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
@@ -882,10 +914,6 @@
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
     [manager stopUpdatingLocation];
     
-    
-    
-    
 }
-
 
 @end
