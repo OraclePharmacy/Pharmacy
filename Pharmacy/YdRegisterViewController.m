@@ -391,7 +391,7 @@
     self.bejing.hidden=NO;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
     if (panduan==0) {
-    
+        
         stateArray = [NSArray arrayWithContentsOfFile:path];
         cityArray = [stateArray[0] objectForKey:@"cities"];
         areaArray = [cityArray[0] objectForKey:@"areas"];
@@ -427,7 +427,7 @@
     
     [pickerview addSubview:picke];
     
-    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 30)];
+    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 40)];
     UIBarButtonItem*bb1=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(queding)];
     UIBarButtonItem*flex=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem*bb2=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(quxiao)];
@@ -469,7 +469,13 @@
         
     }else if (component == 1){
         
-        NSString *city = [cityArray[row] objectForKey:@"city"];
+        NSString *city;
+        if (panduan==0) {
+            city= [cityArray[row] objectForKey:@"city"];
+        }else{
+            city=[NSString stringWithFormat:@"%@", cityArray[row] ];
+        }
+        
         return city;
     }else{
         
@@ -479,9 +485,13 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (component == 0) {
+        if (panduan==0) {
+            cityArray = [stateArray[row] objectForKey:@"cities"];
+            areaArray = [cityArray[0]    objectForKey:@"areas" ];
+        }else{
+            cityArray = [bianxing[row] objectForKey:[NSString stringWithFormat:@"%@",[bianxing[row] allKeys][0]]];
+        }
         
-        cityArray = [stateArray[row] objectForKey:@"cities"];
-        areaArray = [cityArray[0] objectForKey:@"areas"];
         [pickerView reloadComponent:1];
         [pickerView selectRow:0 inComponent:1 animated:YES];
         [pickerView reloadComponent:2];
@@ -490,8 +500,32 @@
         }
         
     }else if(component == 1){
+        if (panduan==0) {
+            areaArray = [cityArray[row] objectForKey:@"areas"];
+        }else{
+            ///////判断是那个 省   那个  市   根据市 取出区
+            ///////本地数据与返回数据的接轨
+            stateDic = stateArray[[picke selectedRowInComponent:0]];
+            NSString *state = [stateDic objectForKey:@"state"];
+             NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+            int xixi=0;
+            NSArray*bendi=[NSArray arrayWithContentsOfFile:path];
+            for (int i=0; i<bendi.count; i++) {
+                if ([[bendi[i] objectForKey:@"state"]isEqual:state]) {
+                    for (int y=0; y<[[bendi[i] objectForKey:@"cities"] count]; y++) {
+                        if ([[[bendi[i] objectForKey:@"cities"][y] objectForKey:@"city"] isEqual:cityArray[[picke selectedRowInComponent:1]]]) {
+                            areaArray=  [[bendi[i] objectForKey:@"cities"][y] objectForKey:@"areas"];
+                            xixi=1;
+                            break;
+                        }
+                    }  
+                }
+                if (xixi==1) {
+                    break;
+                }
+            }
+        }
         
-        areaArray = [cityArray[row] objectForKey:@"areas"];
         [pickerView reloadComponent:2];
         if ([areaArray count] > 0) {
             [pickerView selectRow:0 inComponent:2 animated:YES];
@@ -741,25 +775,35 @@
 }
 - (void)queding {
     [pickerview removeFromSuperview];
+    
+    
     stateDic = stateArray[[picke selectedRowInComponent:0]];
     NSString *state = [stateDic objectForKey:@"state"];
     
     
     cityDic = cityArray[[picke selectedRowInComponent:1]];
-    NSString *city = [cityDic objectForKey:@"city"];
-    
+    NSString *city;
+    if (panduan==0) {
+        city= [cityDic objectForKey:@"city"];
+    }else{
+        city= [cityDic objectForKey:[NSString stringWithFormat:@"%@",[cityDic allKeys][0]]];
+    }
+        
     
     NSString *area;
     if (areaArray.count > 0) {
-        area = areaArray[[picke selectedRowInComponent:2]];
-    }else{
-        area = @"";
-    }
     
+        area = areaArray[[picke selectedRowInComponent:2]];
+ 
+    }else{
+        
+        area = @"";
+        
+    }
     
     NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
     
-    NSLog(@"resultresultresultresultresultresultresult%@",result);
+    NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
     
     self.bejing.hidden = YES;
     
