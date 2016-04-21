@@ -39,12 +39,13 @@
 		9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */; };
 		9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D7381C9A9D88006F6850 /* AVFoundation.framework */; };
 		9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D73A1C9A9D91006F6850 /* AdSupport.framework */; };
-		9509565B1CC74BF200A10A5A /* 相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9509565A1CC74BF200A10A5A /* 相机@2x.png */; };
 		9509565D1CC74C3700A10A5A /* 小人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9509565C1CC74C3700A10A5A /* 小人@2x.png */; };
 		9509565F1CC75FE600A10A5A /* sexnv@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9509565E1CC75FE600A10A5A /* sexnv@3x.png */; };
 		950956611CC7600D00A10A5A /* sex1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950956601CC7600D00A10A5A /* sex1@3x.png */; };
 		950956631CC7602F00A10A5A /* sex2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950956621CC7602F00A10A5A /* sex2@3x.png */; };
 		950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950956641CC7604F00A10A5A /* sexnan@3x.png */; };
+		950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */; };
+		950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AAB1CC87F2400A04F95 /* 相机@2x.png */; };
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
 		95609E831CABC72000AF65E4 /* URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E811CABC72000AF65E4 /* URLEncode.m */; };
@@ -238,12 +239,13 @@
 		9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdGenerateViewController.m; sourceTree = "<group>"; };
 		9505D7381C9A9D88006F6850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9505D73A1C9A9D91006F6850 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		9509565A1CC74BF200A10A5A /* 相机@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机@2x.png"; sourceTree = "<group>"; };
 		9509565C1CC74C3700A10A5A /* 小人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小人@2x.png"; sourceTree = "<group>"; };
 		9509565E1CC75FE600A10A5A /* sexnv@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sexnv@3x.png"; sourceTree = "<group>"; };
 		950956601CC7600D00A10A5A /* sex1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sex1@3x.png"; sourceTree = "<group>"; };
 		950956621CC7602F00A10A5A /* sex2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sex2@3x.png"; sourceTree = "<group>"; };
 		950956641CC7604F00A10A5A /* sexnan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sexnan@3x.png"; sourceTree = "<group>"; };
+		950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-xinshouyetubiao@3x.png"; sourceTree = "<group>"; };
+		950A5AAB1CC87F2400A04F95 /* 相机@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机@2x.png"; sourceTree = "<group>"; };
 		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
 		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
 		95609E7E1CABC72000AF65E4 /* mmm5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmm5.h; sourceTree = "<group>"; };
@@ -904,12 +906,13 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				950A5AAB1CC87F2400A04F95 /* 相机@2x.png */,
+				950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */,
 				950956641CC7604F00A10A5A /* sexnan@3x.png */,
 				950956621CC7602F00A10A5A /* sex2@3x.png */,
 				950956601CC7600D00A10A5A /* sex1@3x.png */,
 				9509565E1CC75FE600A10A5A /* sexnv@3x.png */,
 				9509565C1CC74C3700A10A5A /* 小人@2x.png */,
-				9509565A1CC74BF200A10A5A /* 相机@2x.png */,
 				95E0EC611CC5C6C400B87690 /* 组-11@3x.png */,
 				95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */,
 				95ED97451CC4B64A006F92B8 /* iconfont-fenxiang@3x.png */,
@@ -1333,7 +1336,6 @@
 				95C3726D1CB5F5780083AC90 /* 首页@2x.png in Resources */,
 				95C372561CB5F5780083AC90 /* Multiple-Email-Thread@3x.png in Resources */,
 				95C3725D1CB5F5780083AC90 /* 汇总@2x.png in Resources */,
-				9509565B1CC74BF200A10A5A /* 相机@2x.png in Resources */,
 				9505D7291C9A9BE5006F6850 /* IMG_0799.jpg in Resources */,
 				95C372661CB5F5780083AC90 /* 药品@3x.png in Resources */,
 				95C372641CB5F5780083AC90 /* 组-4@3x.png in Resources */,
@@ -1342,6 +1344,7 @@
 				950956631CC7602F00A10A5A /* sex2@3x.png in Resources */,
 				95C372571CB5F5780083AC90 /* 代购药@2x.png in Resources */,
 				95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */,
+				950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */,
 				95F1E0441CB7A72300614502 /* shake_yyy_right30.png in Resources */,
 				95CA50F91CA121F7006CBC72 /* disease.plist in Resources */,
 				95C3726A1CB5F5780083AC90 /* 送到家@3x.png in Resources */,
@@ -1389,6 +1392,7 @@
 				9505D7281C9A9BE5006F6850 /* IMG_0798.jpg in Resources */,
 				959F9E3C1CBDFA3E00C5D019 /* 2@3x.png in Resources */,
 				95C372531CB5F5780083AC90 /* Multiple-Email-Thread-拷贝-2@2x.png in Resources */,
+				950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */,
 				950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */,
 				95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */,
 				95C3725E1CB5F5780083AC90 /* 汇总@3x.png in Resources */,

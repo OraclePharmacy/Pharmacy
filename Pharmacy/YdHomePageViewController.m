@@ -101,7 +101,7 @@
     
     SearchButton.titleLabel.font = [UIFont systemFontOfSize:12];
     
-    [SearchButton setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    [SearchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [SearchButton addTarget:self action:@selector(searchbutton) forControlEvents:UIControlEventTouchUpInside];
     
@@ -247,27 +247,23 @@
 {
     //第一个按钮
     UIButton *one = [[UIButton alloc]init];
-    one.frame = CGRectMake((width-width/6*4)/5, 10, width/6, width/5);
-    //[one setImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
+    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
     [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
     [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
     //第二个按钮
     UIButton *two = [[UIButton alloc]init];
-    two.frame = CGRectMake((width-width/6*4)/5*2+width/6, 10, width/6, width/5);
-    //[two setImage:[UIImage imageNamed:@"问药师@3x.png"] forState:UIControlStateNormal];
+    two.frame = CGRectMake((width - 55 *4 )/5*2+width/6, 10, 55, 75);
     [two setBackgroundImage:[UIImage imageNamed:@"问药师@3x.png"] forState:UIControlStateNormal];
     [two addTarget:self action:@selector(two) forControlEvents:UIControlEventTouchUpInside];
     //第三个按钮
     UIButton *three = [[UIButton alloc]init];
-    three.frame = CGRectMake((width-width/6*4)/5*3+width/6*2, 10, width/6, width/5);
+    three.frame = CGRectMake((width - 55 *4 )/5*3+width/6*2, 10, 55, 75);
     [three setBackgroundImage:[UIImage imageNamed:@"代购药@3x.png"] forState:UIControlStateNormal];
-    //[three setImage:[UIImage imageNamed:@"代购药@3x.png"] forState:UIControlStateNormal];
     [three addTarget:self action:@selector(three) forControlEvents:UIControlEventTouchUpInside];
     //第四个按钮
     UIButton *four = [[UIButton alloc]init];
-    four.frame = CGRectMake((width-width/6*4)/5*4+width/6*3, 10, width/6, width/5);
+    four.frame = CGRectMake((width - 55 *4 )/5*4+width/6*3, 10, 55, 75);
     [four setBackgroundImage:[UIImage imageNamed:@"送到家@3x.png"] forState:UIControlStateNormal];
-    //[four setImage:[UIImage imageNamed:@"送到家@3x.png"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
 
     //在cell上显示
@@ -405,7 +401,8 @@
     else if (section == 3)
     {
         return 1;
-    }else if (section == 4)
+    }
+    else if (section == 4)
     {
         return 5;
     }
@@ -413,9 +410,6 @@
     {
         return 1;
     }
-
-
-
     return 0;
 }
 //cell高度
@@ -423,11 +417,11 @@
 {
     if (indexPath.section == 0)
     {
-        return heigth/4;
+        return 150;
     }
     else if (indexPath.section == 1)
     {
-        return width/4;
+        return 95;
     }
     else if (indexPath.section == 2)
     {
@@ -445,9 +439,6 @@
     {
         return 100;
     }
-
-
-
     return 0;
 }
 //header 高度
@@ -477,8 +468,6 @@
     {
         return 30;
     }
-
-
     return 0;
 }
 //编辑header内容
@@ -545,13 +534,13 @@
         if (arrImage.count < 1 )
         {
             UIImageView *image = [[UIImageView alloc]init];
-            image.frame = CGRectMake(0, 0, self.view.frame.size.width, heigth/4);
+            image.frame = CGRectMake(0, 0, width, 150);
             image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
             [cell.contentView addSubview:image];
         }
         else
         {
-            YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, heigth/4)
+            YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
                                                         images:arrImage
                                                         titles:nil
                                               placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
@@ -641,7 +630,7 @@
             specialoffer.font = [UIFont systemFontOfSize:13];
             specialoffer.textAlignment = NSTextAlignmentCenter;
             specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-            specialoffer.text = @"￥9.98";
+            specialoffer.text = @"￥7.98";
             
             self.scrollView.pagingEnabled = YES;
             
@@ -826,8 +815,8 @@
 //扫描
 -(void)scanning{
     //跳转到扫描页面
-    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
-    [self.navigationController pushViewController:Scan animated:YES];
+//    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
+//    [self.navigationController pushViewController:Scan animated:YES];
     
 }
 
