@@ -156,9 +156,12 @@
     }
     return NO;
 }
-//选择地址按钮
+//选择门店按钮
 -(void)searchbutton
 {
+    //调用定位方法。。。
+    //弹出列表
+    
     NSLog(@"暂时不需要跳页,但是有此方法");
 }
 #pragma  第一组 轮播
@@ -242,6 +245,7 @@
     
     
 }
+
 #pragma  第二组  四个按钮
 -(void)fourButton
 {

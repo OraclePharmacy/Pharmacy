@@ -285,36 +285,42 @@
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 @try{
-                    panduan=1;
+                   
+                    
                     
                     [WarningBox warningBoxHide:YES andView:self.view];
                     NSLog(@"%@",responseObject);
-                    
-                    
-                    NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
-                    
-                    
-                    shengg=[SSMap allKeys];
-                    bianxing=[[NSMutableArray alloc] init];
-                    
-                    for (int i=0; i<shengg.count; i++) {
+                    if([[responseObject objectForKey:@"code"] intValue]==1111){
+                        panduan=1;
+                        NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                         
-                        NSMutableArray*meme1=[[NSMutableArray alloc] init];
-                        NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
-                        NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
-                        for (int y=0; y<xixi.count; y++) {
-                            [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                        
+                        shengg=[SSMap allKeys];
+                        bianxing=[[NSMutableArray alloc] init];
+                        
+                        for (int i=0; i<shengg.count; i++) {
+                            
+                            NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                            NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                            NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
+                            for (int y=0; y<xixi.count; y++) {
+                                [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                            }
+                            [hehe1 setObject:meme1 forKey:@"cities"];
+                            [hehe1 setObject:shengg[i] forKey:@"state"];
+                            [bianxing addObject:hehe1];
+                            
                         }
-                        [hehe1 setObject:meme1 forKey:@"cities"];
-                        [hehe1 setObject:shengg[i] forKey:@"state"];
-                        [bianxing addObject:hehe1];
+                        
+                        NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
+                        [bianxing writeToFile:path atomically:YES];
+                        
+                        NSLog(@"%@",NSHomeDirectory());
+                    }
+                    else if ([[responseObject objectForKey:@"code"] intValue]==0){
+                        //5个门店的列表
                         
                     }
-                    
-                    NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
-                    [bianxing writeToFile:path atomically:YES];
-                    
-                    NSLog(@"%@",NSHomeDirectory());
                 }
                 @catch (NSException * e) {
                     [WarningBox warningBoxModeText:@"" andView:self.view];
@@ -470,7 +476,7 @@
     if (component == 0) {
         NSString *state;
         if(panduan==0){
-         state = [stateArray[row] objectForKey:@"state"];
+            state = [stateArray[row] objectForKey:@"state"];
         }else{
             state = [NSString stringWithFormat:@"%@", shengg[row] ];
         }
@@ -499,7 +505,7 @@
             areaArray = [cityArray[0]    objectForKey:@"areas" ];
         }else{
             cityArray = [bianxing[row] objectForKey:[NSString stringWithFormat:@"%@",[bianxing[row] allKeys][0]]];
-        
+            
             
             
             
@@ -539,7 +545,7 @@
             stateDic = stateArray[[picke selectedRowInComponent:0]];
             NSLog(@"%@",stateDic);
             NSString *state = [stateDic objectForKey:@"state"];
-             NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
             int xixi=0;
             NSArray*bendi=[NSArray arrayWithContentsOfFile:path];
             for (int i=0; i<bendi.count; i++) {
@@ -550,7 +556,7 @@
                             xixi=1;
                             break;
                         }
-                    }  
+                    }
                 }
                 if (xixi==1) {
                     break;
@@ -752,7 +758,7 @@
                     @try
                     {
                         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                        NSLog(@"%@",responseObject);
+                        NSLog(@"%@",[responseObject objectForKey:@"msg"]);
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             
                             [self.navigationController popViewControllerAnimated:YES];
@@ -818,20 +824,20 @@
     }else{
         city= [NSString stringWithFormat:@"%@",cityDic];
     }
-   
-        
+    
+    
     
     NSString *area;
     if (areaArray.count > 0) {
-    
+        
         area = areaArray[[picke selectedRowInComponent:2]];
- 
+        
     }else{
         
         area = @"";
         
     }
-   
+    
     NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
     
     NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
@@ -841,8 +847,8 @@
     
     //再次掉接口  如果成功显示下边的
     {
-    [self.tableview reloadData];
-    self.tableview.hidden = NO;
+        [self.tableview reloadData];
+        self.tableview.hidden = NO;
     }
 }
 - (void)quxiao {
