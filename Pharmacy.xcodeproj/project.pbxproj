@@ -46,7 +46,9 @@
 		950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950956641CC7604F00A10A5A /* sexnan@3x.png */; };
 		950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */; };
 		950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AAB1CC87F2400A04F95 /* 相机@2x.png */; };
+		950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */; };
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
+		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
 		95609E831CABC72000AF65E4 /* URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E811CABC72000AF65E4 /* URLEncode.m */; };
 		95609E9E1CABC72E00AF65E4 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E861CABC72E00AF65E4 /* NSObject+SBJson.m */; };
@@ -246,8 +248,11 @@
 		950956641CC7604F00A10A5A /* sexnan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sexnan@3x.png"; sourceTree = "<group>"; };
 		950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-xinshouyetubiao@3x.png"; sourceTree = "<group>"; };
 		950A5AAB1CC87F2400A04F95 /* 相机@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机@2x.png"; sourceTree = "<group>"; };
+		950A5AAE1CC899EB00A04F95 /* YdRecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRecordListViewController.h; sourceTree = "<group>"; };
+		950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecordListViewController.m; sourceTree = "<group>"; };
 		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
 		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
+		9537CFC61CC9D21F0031021A /* time_line_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_line_mark.png; sourceTree = "<group>"; };
 		95609E7E1CABC72000AF65E4 /* mmm5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmm5.h; sourceTree = "<group>"; };
 		95609E7F1CABC72000AF65E4 /* mmm5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mmm5.m; sourceTree = "<group>"; };
 		95609E801CABC72000AF65E4 /* URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLEncode.h; sourceTree = "<group>"; };
@@ -744,6 +749,15 @@
 			name = "扫描后跳转";
 			sourceTree = "<group>";
 		};
+		950A5AAD1CC899A500A04F95 /* 列表 */ = {
+			isa = PBXGroup;
+			children = (
+				950A5AAE1CC899EB00A04F95 /* YdRecordListViewController.h */,
+				950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */,
+			);
+			name = "列表";
+			sourceTree = "<group>";
+		};
 		950AF4C31C9F89E8000E2B8F /* 扫码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +861,7 @@
 			children = (
 				959F9E511CBE215700C5D019 /* YdElectronicsViewController.h */,
 				959F9E521CBE215700C5D019 /* YdElectronicsViewController.m */,
+				950A5AAD1CC899A500A04F95 /* 列表 */,
 			);
 			name = "电子病历";
 			sourceTree = "<group>";
@@ -906,6 +921,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				9537CFC61CC9D21F0031021A /* time_line_mark.png */,
 				950A5AAB1CC87F2400A04F95 /* 相机@2x.png */,
 				950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */,
 				950956641CC7604F00A10A5A /* sexnan@3x.png */,
@@ -1365,6 +1381,7 @@
 				95F1E0481CB7A72300614502 /* 摇一摇弹窗.png in Resources */,
 				959F9E401CBDFA3E00C5D019 /* 组-1@3x.png in Resources */,
 				959F9E3E1CBDFA3E00C5D019 /* 组-1-拷贝-2@3x.png in Resources */,
+				9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */,
 				95C372681CB5F5780083AC90 /* 资讯@3x.png in Resources */,
 				95C372671CB5F5780083AC90 /* 资讯@2x.png in Resources */,
 				95C372551CB5F5780083AC90 /* Multiple-Email-Thread@2x.png in Resources */,
@@ -1462,6 +1479,7 @@
 				95609EA01CABC72E00AF65E4 /* SBJsonStreamParser.m in Sources */,
 				95609F011CABC74E00AF65E4 /* UIImageView+WebCache.m in Sources */,
 				95609EF31CABC74E00AF65E4 /* MKAnnotationView+WebCache.m in Sources */,
+				950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */,
 				95609EFF1CABC74E00AF65E4 /* UIImage+WebP.m in Sources */,
 				95609EA41CABC72E00AF65E4 /* SBJsonStreamWriter.m in Sources */,
 				95609EA91CABC72E00AF65E4 /* SBJsonWriter.m in Sources */,
