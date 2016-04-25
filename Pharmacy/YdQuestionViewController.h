@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdQuestionViewController : UIViewController
+@interface YdQuestionViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

@@ -21,6 +21,7 @@
 #import "Color+Hex.h"
 #import "YdSurpriseViewController.h"
 #import "YdPurchasingViewController.h"
+#import "YdQuestionViewController.h"
 @interface YdHomePageViewController ()
 {
     CGFloat width;
@@ -288,7 +289,8 @@
 //第二个按钮点击事件
 -(void)two
 {
-    NSLog(@"two");
+    YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
+    [self.navigationController pushViewController:Question animated:YES];
 }
 //第三个按钮点击事件
 -(void)three
