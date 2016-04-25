@@ -38,17 +38,28 @@
     self.titleText.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
     self.titleText.layer.borderWidth =1;
 
-    
-    
     tishi = [[UILabel alloc]init];
     tishi.frame = CGRectMake(5, 5, 150, 21);
     tishi.textColor = [UIColor colorWithHexString:@"c8c8c8" alpha:1];
     tishi.font = [UIFont systemFontOfSize:13];
     tishi.text = @"请对病历进行备注...";
     
+    self.titleText.delegate = self;
+    
+    [self.view endEditing:YES];
+    
     [_writeText addSubview:tishi];
 
 }
+
+//点击编辑区以外的地方键盘消失
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.titleText resignFirstResponder];
+    [self.writeText resignFirstResponder];
+    
+}
+
 
 -(void)textViewDidChange:(UITextView *)textView
 {
@@ -60,13 +71,10 @@
     }
 }
 
-
-
-
-
 //电子病历列表跳转
 -(void)liebiao
 {
+    [self.view endEditing:YES];
     YdRecordListViewController *RecordList = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recordlist"];
     [self.navigationController pushViewController:RecordList animated:YES];
 }
@@ -80,11 +88,15 @@
 
 
 - (IBAction)first:(id)sender {
+    [self.view endEditing:YES];
 }
 - (IBAction)second:(id)sender {
+    [self.view endEditing:YES];
 }
 - (IBAction)third:(id)sender {
+    [self.view endEditing:YES];
 }
 - (IBAction)tijiao:(id)sender {
+    [self.view endEditing:YES];
 }
 @end

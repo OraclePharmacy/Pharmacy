@@ -20,6 +20,7 @@
 #import "UIImageView+WebCache.h"
 #import "Color+Hex.h"
 #import "YdSurpriseViewController.h"
+#import "YdPurchasingViewController.h"
 @interface YdHomePageViewController ()
 {
     CGFloat width;
@@ -292,7 +293,9 @@
 //第三个按钮点击事件
 -(void)three
 {
-    NSLog(@"three");
+    YdPurchasingViewController *Purchasing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"purchasing"];
+    [self.navigationController pushViewController:Purchasing animated:YES];
+
 }
 //第四个按钮点击事件
 -(void)four
@@ -696,9 +699,7 @@
             //图片
             UIImageView *imageview = [[UIImageView alloc]init];
             imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
-            
             NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
-            
             [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@""]];
             //名称
             UILabel *name = [[UILabel alloc]init];

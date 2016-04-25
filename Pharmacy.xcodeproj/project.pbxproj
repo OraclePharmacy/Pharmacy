@@ -49,6 +49,7 @@
 		950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */; };
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
 		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
+		9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
 		95609E831CABC72000AF65E4 /* URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E811CABC72000AF65E4 /* URLEncode.m */; };
 		95609E9E1CABC72E00AF65E4 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E861CABC72E00AF65E4 /* NSObject+SBJson.m */; };
@@ -253,6 +254,8 @@
 		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
 		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
 		9537CFC61CC9D21F0031021A /* time_line_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_line_mark.png; sourceTree = "<group>"; };
+		9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPurchasingViewController.h; sourceTree = "<group>"; };
+		9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPurchasingViewController.m; sourceTree = "<group>"; };
 		95609E7E1CABC72000AF65E4 /* mmm5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmm5.h; sourceTree = "<group>"; };
 		95609E7F1CABC72000AF65E4 /* mmm5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mmm5.m; sourceTree = "<group>"; };
 		95609E801CABC72000AF65E4 /* URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLEncode.h; sourceTree = "<group>"; };
@@ -653,6 +656,7 @@
 			children = (
 				9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */,
 				9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */,
+				9537CFC81CC9D7FA0031021A /* 代购药 */,
 				95EBA8741CBB9F1A00A48D80 /* 问药师 */,
 				95C3726F1CB6431D0083AC90 /* 有惊喜 */,
 				95E951241CB4AC1A00BB754C /* 积分商品 */,
@@ -775,6 +779,15 @@
 				95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */,
 			);
 			name = "首页跳转";
+			sourceTree = "<group>";
+		};
+		9537CFC81CC9D7FA0031021A /* 代购药 */ = {
+			isa = PBXGroup;
+			children = (
+				9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */,
+				9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */,
+			);
+			name = "代购药";
 			sourceTree = "<group>";
 		};
 		95609E841CABC72E00AF65E4 /* SBJSON */ = {
@@ -1463,6 +1476,7 @@
 				95E0EC651CC6044C00B87690 /* YdInformationDetailsViewController.m in Sources */,
 				D23EE57E1CBB4BC1000A9F01 /* AFSecurityPolicy.m in Sources */,
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
+				9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */,
 				95609EA71CABC72E00AF65E4 /* SBJsonTokeniser.m in Sources */,
 				95609EF91CABC74E00AF65E4 /* SDWebImageDownloaderOperation.m in Sources */,
 				95609EFE1CABC74E00AF65E4 /* UIImage+MultiFormat.m in Sources */,

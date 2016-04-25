@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YdElectronicsViewController : UIViewController
-<UITextViewDelegate>
+<UITextViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *first;
 - (IBAction)first:(id)sender;
 
