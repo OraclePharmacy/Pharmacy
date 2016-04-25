@@ -9,18 +9,41 @@
 #import "YdPurchasingViewController.h"
 #import "Color+Hex.h"
 
-@interface YdPurchasingViewController ()
+@interface YdPurchasingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 {
+    int po;
     UILabel *tishi;
 }
+@property (strong,nonatomic)UIImage *image;
 @end
 
 @implementation YdPurchasingViewController
 
 - (void)viewDidLoad {
+    po=0;
     [super viewDidLoad];
     //状态栏名称
     self.navigationItem.title = @"代购药";
+    
+    
+    NSFileManager *fm=[NSFileManager defaultManager];
+    //完整的图片路径，如果图片是放在文件夹中的话，还要在中间加上文件夹的路径
+    NSString *imagepath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+    
+    //可以打印路径看看是什么情况
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/1.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/1.jpg",imagepath]];
+        [_one setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/2.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/2.jpg",imagepath]];
+        [_one setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/3.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/3.jpg",imagepath]];
+        [_one setBackgroundImage:image forState:UIControlStateNormal];
+    }
+
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     self.yuding.layer.cornerRadius = 8;
@@ -89,20 +112,137 @@
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)choosephoto{
+    
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择", nil];
+    actionSheet.tag = 255;
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+        
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 取消
+                    return;
+                case 1:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                    
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:NO completion:^{}];
+        
+        //        [imagePickerController release];
+    }
+}
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+
+{
+    
+    [picker dismissViewControllerAnimated:NO completion:^{}];
+    
+    _image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // 保存图片至本地，方法见下文
+    
+    //按时间为图片命名
+    NSDateFormatter *forr=[[NSDateFormatter alloc] init];
+    
+    [forr setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *name=[NSString stringWithFormat:@"%d.jpg",po/*[forr stringFromDate:[NSDate date]]*/];
+    
+    [self saveImage:_image withName:name];
+    
+}
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    NSFileManager *fm=[NSFileManager defaultManager];
+    NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+    
+    [fm createDirectoryAtPath:dicpath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
+    
+    NSLog(@"%@",picpath);
+    [fm createFileAtPath:picpath contents:imageData attributes:nil];
+    if (po==1) {
+
+        [_one setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else if(po==2){
+        [_two setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else if (po==3){
+        [_three setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else{
+        
+    }
+   
+    
+}
+
 //照片1
 - (IBAction)one:(id)sender {
     [self.view endEditing:YES];
+    po=1;
+    [self choosephoto];
 }
 //照片2
 - (IBAction)two:(id)sender {
     [self.view endEditing:YES];
+    po=2;
+    [self choosephoto];
 }
 //照片3
 - (IBAction)three:(id)sender {
     [self.view endEditing:YES];
+    po=3;
+    [self choosephoto];
 }
 //预定按钮
 - (IBAction)yuding:(id)sender {
     [self.view endEditing:YES];
+    NSFileManager *defaultManager;
+    defaultManager = [NSFileManager defaultManager];
+    NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
+    [defaultManager removeItemAtPath:path error:NULL];
+    
+
 }
 @end

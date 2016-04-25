@@ -8,8 +8,8 @@
 
 #import "YdTurntableViewController.h"
 
-@interface YdTurntableViewController ()
-
+@interface YdTurntableViewController ()<UIWebViewDelegate>
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
 @end
 
 @implementation YdTurntableViewController
@@ -22,6 +22,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    float w=[[UIScreen mainScreen] bounds].size.width;
+    float h=[[UIScreen mainScreen] bounds].size.height;
+    _webview.frame=CGRectMake(0, 0, w, h);
+    NSString * path=@"http://www.baidu.com";
+    NSURL *url=[NSURL URLWithString:path];
+    [_webview loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    _webview.delegate=self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,5 +44,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+int i=0;
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    i++;
+    if (i==2) {
+//        xixiix*xixi=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"xixi"];
+//        NSLog(@"url====  %@",_webview.request.URL.absoluteURL);
+//        [self presentViewController:xixi animated:YES completion:nil];
+    }
+    
+}
 
 @end

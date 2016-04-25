@@ -273,6 +273,9 @@
 }
 -(void)Doctorsrecommendedff
 {
+    //传值
+    
+    
     //跳转推荐医生
     YdRecommendViewController *Recommend = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recommend"];
     [self.navigationController pushViewController:Recommend animated:YES];
