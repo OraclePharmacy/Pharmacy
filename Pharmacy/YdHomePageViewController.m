@@ -68,7 +68,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-     //设置导航栏又按钮
+     //设置导航栏右按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-erweimasaomiaotubiao@2x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -202,6 +202,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -338,6 +339,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    NSLog(@"%@",dic);
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -380,8 +382,6 @@
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
-    
-
 }
 
 
@@ -793,7 +793,7 @@
 //更多
 -(void)pharmacygengduo
 {
-    
+    NSLog(@"更多");
     
 }
 //积分礼品展示  礼品详情
@@ -822,8 +822,8 @@
 //扫描
 -(void)scanning{
     //跳转到扫描页面
-//    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
-//    [self.navigationController pushViewController:Scan animated:YES];
+    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
+    [self.navigationController pushViewController:Scan animated:YES];
     
 }
 

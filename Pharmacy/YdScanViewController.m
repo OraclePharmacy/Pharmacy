@@ -14,6 +14,7 @@
 
 @end
 
+//需要添加一张图片    掏个洞的
 @implementation YdScanViewController
 
 - (void)viewDidLoad {

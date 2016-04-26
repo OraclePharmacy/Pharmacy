@@ -11,7 +11,7 @@
  *  @return http://125.211.221.232:60080
  */
 //李想
-#define service_host @"http://192.168.1.118:8080"
+#define service_host @"http://192.168.1.123:8080"
 //冷中原
 //#define service_host @"http://192.168.1.115:8686"
 //其中斌
