@@ -709,7 +709,7 @@
             name.font = [UIFont systemFontOfSize:15];
             name.textAlignment = NSTextAlignmentCenter;
             name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];;
+            name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];
             //原价
             UILabel *originalcost = [[UILabel alloc]init];
             originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);

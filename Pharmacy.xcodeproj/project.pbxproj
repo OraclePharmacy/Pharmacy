@@ -171,6 +171,7 @@
 		95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440C71CD047A000B66D8C /* UULineChart.m */; };
 		95F440D11CD0487B00B66D8C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440CF1CD0487B00B66D8C /* TableViewCell.m */; };
 		95F440D21CD0487B00B66D8C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F440D01CD0487B00B66D8C /* TableViewCell.xib */; };
+		95F440D61CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */; };
 		D23EE57C1CBB4BC1000A9F01 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5701CBB4BC1000A9F01 /* AFHTTPSessionManager.m */; };
 		D23EE57D1CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5731CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m */; };
 		D23EE57E1CBB4BC1000A9F01 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5751CBB4BC1000A9F01 /* AFSecurityPolicy.m */; };
@@ -454,6 +455,8 @@
 		95F440CE1CD0487B00B66D8C /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		95F440CF1CD0487B00B66D8C /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		95F440D01CD0487B00B66D8C /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		95F440D41CD0B9B600B66D8C /* YdyaopinxiangqingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyaopinxiangqingViewController.h; sourceTree = "<group>"; };
+		95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyaopinxiangqingViewController.m; sourceTree = "<group>"; };
 		D23EE56F1CBB4BC1000A9F01 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		D23EE5701CBB4BC1000A9F01 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		D23EE5711CBB4BC1000A9F01 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -816,6 +819,7 @@
 			children = (
 				95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */,
 				95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */,
+				95F440D31CD0B98700B66D8C /* 药品详情 */,
 			);
 			name = "首页跳转";
 			sourceTree = "<group>";
@@ -1305,6 +1309,15 @@
 			path = UUChart;
 			sourceTree = "<group>";
 		};
+		95F440D31CD0B98700B66D8C /* 药品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				95F440D41CD0B9B600B66D8C /* YdyaopinxiangqingViewController.h */,
+				95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */,
+			);
+			name = "药品详情";
+			sourceTree = "<group>";
+		};
 		D23EE56E1CBB4BC1000A9F01 /* AFNetworking 3.0.4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1586,6 +1599,7 @@
 				959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */,
 				959F9E531CBE215700C5D019 /* YdElectronicsViewController.m in Sources */,
 				95609EF61CABC74E00AF65E4 /* SDWebImageCompat.m in Sources */,
+				95F440D61CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m in Sources */,
 				95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */,
 				9502A4A51C9CFE2100578339 /* YdbannerViewController.m in Sources */,
 				D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */,

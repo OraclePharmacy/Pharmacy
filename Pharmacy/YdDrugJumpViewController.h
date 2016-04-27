@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdDrugJumpViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *DrugIMG;
+@interface YdDrugJumpViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *DrugLAB;
 
 @property (strong,nonatomic) NSString *imageName;
 @property (nonatomic,assign) NSString * bookNo;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

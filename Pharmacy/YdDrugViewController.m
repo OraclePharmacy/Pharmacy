@@ -8,7 +8,7 @@
 
 #import "YdDrugViewController.h"
 #import "YdDrugJumpViewController.h"
-
+#import "Color+Hex.h"
 @interface YdDrugViewController ()
 {
     CGFloat width;
@@ -103,19 +103,7 @@
 {
     return DiseaseLableArray.count;
 }
-////当用户单击单元格跳转到下一个试图控制器时激发该方法
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    //获取激发该跳转的单元格
-//    UICollectionViewCell *cell = (UICollectionViewCell*)sender;
-//    //获取该单元格所在的NSIndexPath
-//    NSIndexPath *indexpath = [self.Collectionview indexPathForCell:cell];
-//    //获取跳转的目标试图控制器:DetailVIewController控制器
-//    YdDrugJumpViewController *DrugJump =  segue.destinationViewController;
-//    //将选中单元格内的数据传给
-//    DrugJump.imageName = DiseaseImageArray[rowNo];
-//    DrugJump.bookNo = rowNo;
-//}
+
 //collectionView点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -304,7 +292,7 @@
     UILabel *bing = [[UILabel alloc]init];
     bing.frame = CGRectMake(0, 10, width/5, height/18-10);
     bing.font = [UIFont systemFontOfSize:10];
-    bing.textColor = [UIColor blackColor];
+    bing.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     bing.textAlignment = NSTextAlignmentRight;
     bing.text =erji[indexPath.row];
     //bing.backgroundColor  = [UIColor redColor];
