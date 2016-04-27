@@ -21,10 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.VerificationButton.layer.cornerRadius = 5;
+    self.VerificationButton.layer.masksToBounds = YES;
+    
+    self.CompleteButton.layer.cornerRadius = 5;
+    self.CompleteButton.layer.masksToBounds = YES;
+    
     //导航栏名称
-    self.navigationItem.title = @"忘记密码";
-    //设置self.view背景颜色
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"重置密码";
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 

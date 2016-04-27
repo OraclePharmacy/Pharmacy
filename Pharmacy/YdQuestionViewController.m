@@ -14,6 +14,7 @@
 #import "WarningBox.h"
 #import "Color+Hex.h"
 #import "UIImageView+WebCache.h"
+#import "YdPharmacistDetailsViewController.h"
 @interface YdQuestionViewController ()
 {
     CGFloat width;
@@ -30,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
         
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.width;
@@ -94,8 +97,8 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                
                 NSLog(@"datadicdatadicdatadicdatadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
+
                 
                 arr = [datadic objectForKey:@"pharmacistInfoList"];
                 
@@ -106,12 +109,10 @@
                     
                     
                 }
-                NSLog(@"arrImagearrImagearrImagearrImagearrImage%@",arrImage);
                 
                 [self.tableview reloadData];
                 
             }
-            
             
         }
         @catch (NSException * e) {
@@ -126,8 +127,6 @@
         //NSLog(@"错误：%@",error);
     }];
     
-    
-
 }
 
 //组
@@ -157,6 +156,7 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 20)];
+    
     baseView.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     
     UIView *bai = [[UIView alloc]initWithFrame:CGRectMake(0, 1, width, 18)];
@@ -200,7 +200,7 @@
     zixun.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     zixun.layer.cornerRadius =5;
     zixun.layer.masksToBounds = YES;
-    
+    [zixun addTarget:self action:@selector(liaotian) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *neirong = [[UILabel alloc]init];
     neirong.frame = CGRectMake(CGRectGetMaxX(touxiang.frame) + 10,38, width - CGRectGetMaxX(touxiang.frame) - 20 ,16);
@@ -229,8 +229,23 @@
 
     return cell;
 }
-
-        
+-(void)liaotian
+{
+    NSLog(@"聊天界面");
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+     YdPharmacistDetailsViewController *PharmacistDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pharmacistdetails"];
+     PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
+     NSLog(@"%@",PharmacistDetails.yaoshiid);
+     [self.navigationController pushViewController:PharmacistDetails animated:YES];
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
 -(void)fanhui
 {
     //返回上一页

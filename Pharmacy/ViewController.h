@@ -21,5 +21,6 @@
 - (IBAction)ForgetButton:(id)sender;
 //注册
 - (IBAction)RegisterButton:(id)sender;
+
 @end
 

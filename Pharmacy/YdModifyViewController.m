@@ -20,16 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.CompleteButton.layer.cornerRadius = 5;
+    self.CompleteButton.layer.masksToBounds = YES;
+    
     //导航栏名称
     self.navigationItem.title = @"修改密码";
-    //设置self.view背景颜色
-    self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
-    self.OldPassText.text = @"111111";
-    self.NewPassText.text = @"123456";
-    self.AgainPassText.text = @"123456";
     
     [self TextFieldSetUp];
 }

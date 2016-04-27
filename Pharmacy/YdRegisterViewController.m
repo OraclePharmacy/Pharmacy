@@ -55,12 +55,6 @@
     panduan=0;
     
     pickerview=[[UIView alloc] init];
-    self.PhoneText.text = @"18345559961";
-    self.PassText.text = @"111111";
-    self.AgainPassText.text = @"111111";
-    
-    self.RecommendedText.text = @"";
-    self.StoreText.text = @"黑龙江";
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -69,6 +63,12 @@
     self.tableview.hidden = YES;
     pickerview.hidden = YES;
     
+    self.Complete.layer.cornerRadius = 5;
+    self.Complete.layer.masksToBounds = YES;
+    
+    self.VerificationButton.layer.cornerRadius = 5;
+    self.VerificationButton.layer.masksToBounds = YES;
+    
     width = [UIScreen mainScreen].bounds.size.width;
     
     //调用定位
@@ -76,8 +76,6 @@
     
     //导航栏名称
     self.navigationItem.title = @"注册";
-    //设置self.view背景颜色
-    self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     

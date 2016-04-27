@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdPharmacistDetailsViewController : UIViewController
+@interface YdPharmacistDetailsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong , nonatomic) NSString*yaoshiid;
 
 @end

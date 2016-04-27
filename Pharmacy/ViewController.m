@@ -24,12 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //导航栏名称
-    
-    
     self.navigationItem.title = @"登录";
     
     self.PhoneText.text = @"15765512881";
     self.PasswordText.text = @"111111";
+    
+    self.LoginButton.layer.cornerRadius = 5;
+    self.LoginButton.layer.masksToBounds = YES;
     
     [self TextFieldSetUp];
 }
@@ -245,4 +246,5 @@
     YdRegisterViewController *Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"register"];
     [self.navigationController pushViewController:Register animated:YES];
 }
+
 @end

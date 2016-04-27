@@ -10,4 +10,7 @@
 
 @interface YdBloodViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+
 @end

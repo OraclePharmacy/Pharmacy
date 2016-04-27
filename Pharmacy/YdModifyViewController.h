@@ -16,7 +16,7 @@
 //再次输入
 @property (weak, nonatomic) IBOutlet UITextField *AgainPassText;
 //完成按钮
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CompleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *CompleteButton;
 - (IBAction)CompleteButton:(id)sender;
 
 @end
