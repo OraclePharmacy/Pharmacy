@@ -20,8 +20,7 @@
     
     UIButton *nan;
     UIButton *nv;
-    UIButton *touxiang;
-    
+    UIImageView*toux;
     
     NSString *sex;
     
@@ -32,6 +31,17 @@
     UITextField* textField5 ;
     UITextField* textField6 ;
     UITextField* textField7 ;
+    
+    UIView * pickerview;
+    UIPickerView *picke;
+    
+    NSArray *stateArray;
+    NSArray *cityArray;
+    NSArray *areaArray;
+    
+    NSDictionary *stateDic;
+    NSDictionary *cityDic;
+    
 }
 @property (strong , nonatomic) UIImage * image;
 @property (strong,nonatomic)UITableView *tableview;
@@ -49,14 +59,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    sex=@"";
-    
+ 
+     pickerview=[[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
     _first = @[@"头像", @"昵称"];
     _second = @[@"姓名",@"性别",@"年龄",@"会员卡号(选填)",@"地区",@"详细地址"];
-    _third = @[@"请输入姓名",@"",@"请输入年龄",@"请输入会员卡号",@"请选择地区",@"请输入详细地址"];
+    
+    
+    
+   
+    UITapGestureRecognizer *shoushifangfa=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zhaoxiang)];
+    [toux addGestureRecognizer:shoushifangfa];
     
     //创建tableview
     self.tableview = [[UITableView alloc]init];
@@ -67,7 +82,114 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
+    NSFileManager*fm=[NSFileManager defaultManager];
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi"];
+    if ([fm fileExistsAtPath:path]) {
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path];
+        [self fuzhi:pp];
+    }else
+        [self fuzhi:nil];
 }
+-(void)fuzhi:(NSDictionary*)dd{
+    textField1 = [[UITextField alloc]init];
+    textField1.frame = CGRectMake(130, 10, width - 150, 20);
+    textField1.textAlignment = NSTextAlignmentRight;
+    textField1.font = [UIFont systemFontOfSize:13];
+    textField1.delegate=self;
+    textField1.placeholder = @"请输入昵称";
+
+    textField2 = [[UITextField alloc]init];
+    textField2.frame = CGRectMake(130, 10, width - 150, 20);
+    textField2.textAlignment = NSTextAlignmentRight;
+    textField2.font = [UIFont systemFontOfSize:13];
+    textField2.delegate=self;
+    textField2.placeholder = self.third[0];
+
+    textField3 = [[UITextField alloc]init];
+    textField3.frame = CGRectMake(130, 10, width - 150, 20);
+    textField3.textAlignment = NSTextAlignmentRight;
+    textField3.font = [UIFont systemFontOfSize:13];
+    textField3.delegate=self;
+    textField3.keyboardType=UIKeyboardTypeNumberPad;
+    textField3.placeholder = self.third[2];
+    
+    textField4 = [[UITextField alloc]init];
+    textField4.frame = CGRectMake(130, 10, width - 150, 20);
+    textField4.textAlignment = NSTextAlignmentRight;
+    textField4.font = [UIFont systemFontOfSize:13];
+    textField4.delegate=self;
+    textField4.keyboardType=UIKeyboardTypeNumberPad;
+    textField4.placeholder = self.third[3];
+    
+    textField5 = [[UITextField alloc]init];
+    textField5.frame = CGRectMake(130, 10, width - 150, 20);
+    textField5.textAlignment = NSTextAlignmentRight;
+    textField5.font = [UIFont systemFontOfSize:13];
+    textField5.delegate=self;
+    textField5.placeholder = self.third[4];
+
+    textField6 = [[UITextField alloc]init];
+    textField6.frame = CGRectMake(130, 10, width - 150, 20);
+    textField6.textAlignment = NSTextAlignmentRight;
+    textField6.font = [UIFont systemFontOfSize:13];
+    textField6.delegate=self;
+    textField6.placeholder = self.third[5];
+    
+    toux=[[UIImageView alloc] init];
+    toux.userInteractionEnabled=YES;
+    toux.frame=CGRectMake(width-80, 10, 60, 60);
+    toux.layer.cornerRadius=30;
+    toux.layer.masksToBounds=YES;
+    toux.backgroundColor= [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    nan = [[UIButton alloc]init];
+    nan.frame = CGRectMake(width - 80, 10, 30, 20);
+    [nan setImage:[UIImage imageNamed:@"sex2@3x.png"] forState:UIControlStateNormal];
+    [nan addTarget:self action:@selector(man) forControlEvents:UIControlEventTouchUpInside];
+    
+    nv = [[UIButton alloc]init];
+    nv.frame = CGRectMake(width - 50, 10, 30, 20);
+    [nv setImage:[UIImage imageNamed:@"sex1@3x.png"] forState:UIControlStateNormal];
+    [nv addTarget:self action:@selector(woman) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (dd==nil) {
+        sex=@"";
+        textField1.text=@"";
+        textField2.text=@"";
+        textField3.text=@"";
+        textField4.text=@"";
+        textField5.text=@"";
+        textField6.text=@"";
+    }else{
+    sex=[NSString stringWithFormat:@"%@",[dd objectForKey:@"sex"]];
+        if ([sex isEqual:@"男"]) {
+            [nan setImage:[UIImage imageNamed:@"sexnan@3x.png"] forState:UIControlStateNormal];
+            [nv setImage:[UIImage imageNamed:@"sex1@3x.png"] forState:UIControlStateNormal];
+        }else{
+            [nan setImage:[UIImage imageNamed:@"sex2@3x.png"] forState:UIControlStateNormal];
+            [nv setImage:[UIImage imageNamed:@"sexnv@3x.png"] forState:UIControlStateNormal];
+        }
+    textField1.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"nickName"]];;
+    textField2.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"name"]];;
+    textField3.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"age"]];;
+    textField4.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"vipCode"]];;
+    textField5.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"area"]];;
+    textField6.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"detail"]];;
+    }
+    NSFileManager*fm=[NSFileManager defaultManager];
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
+    if ([fm fileExistsAtPath:path]) {
+    toux.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
+        _image=toux.image;
+    }else if([dd objectForKey:@"touxiang"]!=nil){
+        //接取网络图片;   _image=tou.image;   toux.image=[UIImage ]
+        
+        
+        
+    }else
+    toux.image =[UIImage imageNamed:@"小人@2x.png"];
+    }
+
 //性别
 -(void)man
 {
@@ -146,80 +268,6 @@
     
     return baseView;
 }
-//保存方法
--(void)baocun
-{
-    NSLog(@"%@%@%@%@%@%@%@",textField1.text,textField2.text,textField3.text,textField4.text,textField5.text,textField6.text,sex);
-    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField4.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
-         NSLog(@"请输入完整的信息!");
-    }else{
-       if ([sex isEqual:@""]) {
-           NSLog(@"请选择性别!");
-       }else{
-               [WarningBox warningBoxModeIndeterminate:@"数据上传中...." andView:self.view];
-           
-               //请求地址   地址不同 必须要改
-               NSString * url =@"/basic/savevipInfo";
-           
-               //将上传对象转换为json格式字符串
-               AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-               manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-               //出入参数：
-               NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"area",@"",@"detail",@"1000",@"vipId",@"小狼",@"nickName",@"斌小狼",@"name",sex,@"sex",@"18",@"age",@"2012021385",@"vipCode", nil];
-               NSLog(@"%@",datadic);
-           
-               NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-           
-               [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                   //对图片进行多个上传
-           
-                   UIImage *Img=_image;
-                   NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用png方法需添加png压缩方法
-                   NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-                   // 设置时间格式
-                   fm.dateFormat = @"yyyyMMddHHmmss";
-                   NSString *str = [fm stringFromDate:[NSDate date]];
-                   NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-                   NSLog(@"filename------%@",fileName);
-                   [formData appendPartWithFileData:data name:@"photo" fileName:fileName mimeType:@"image/jpeg"];
-               } progress:^(NSProgress * _Nonnull uploadProgress) {
-           
-               } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                   [WarningBox warningBoxHide:YES andView:self.view];
-                   @try
-                   {
-                       [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                       NSLog(@"%@",responseObject);
-                       if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-           
-                           [self dismissViewControllerAnimated:YES completion: nil ];
-           
-           
-           
-                       }
-           
-           
-                   }
-                   @catch (NSException * e) {
-                       
-                       [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                       
-                   }
-                   
-           
-               } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                   [WarningBox warningBoxHide:YES andView:self.view];
-                   [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-                   NSLog(@"错误：%@",error);
-           
-               }];
-
-       }
-    }
-    
-    
-    
-}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *id1 =@"cell1";
@@ -241,90 +289,33 @@
         if (indexPath.row == 0)
         { //lable
             cell.textLabel.text = self.first[indexPath.row];
-            
             //头像
-            touxiang = [[UIButton alloc]init];
-            touxiang.frame = CGRectMake(width - 80, 10, 60, 60);
-            [touxiang setImage:[UIImage imageNamed:@"小人@2x.png"] forState:UIControlStateNormal];
-            touxiang.layer.cornerRadius = 30;
-            touxiang.layer.masksToBounds = YES;
-            touxiang.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-            [touxiang addTarget:self action:@selector(zhaoxiang) forControlEvents:UIControlEventTouchUpInside];
             
-            [cell addSubview:touxiang];
+            [cell.contentView addSubview:toux];
+            
         }
         else
-        {   textField1 = [[UITextField alloc]init];
-            textField1.frame = CGRectMake(130, 10, width - 150, 20);
-            textField1.textAlignment = NSTextAlignmentRight;
-            textField1.font = [UIFont systemFontOfSize:13];
-            textField1.delegate=self;
-            textField1.placeholder = @"请输入昵称";
+        {
             [cell.contentView addSubview:textField1];
         }
     }
     else if (indexPath.section == 1)
     {
         cell.textLabel.text = self.second[indexPath.row];
-        
         if (indexPath.row == 1)
         {
-            nan = [[UIButton alloc]init];
-            nan.frame = CGRectMake(width - 80, 10, 30, 20);
-            [nan setImage:[UIImage imageNamed:@"sex2@3x.png"] forState:UIControlStateNormal];
-            [nan addTarget:self action:@selector(man) forControlEvents:UIControlEventTouchUpInside];
             
-            
-            nv = [[UIButton alloc]init];
-            nv.frame = CGRectMake(width - 50, 10, 30, 20);
-            [nv setImage:[UIImage imageNamed:@"sex1@3x.png"] forState:UIControlStateNormal];
-            [nv addTarget:self action:@selector(woman) forControlEvents:UIControlEventTouchUpInside];
-    
             [cell.contentView addSubview:nan];
             [cell.contentView addSubview:nv];
-            
-            
         }else if (indexPath.row ==0){
-            textField2 = [[UITextField alloc]init];
-            textField2.frame = CGRectMake(130, 10, width - 150, 20);
-            textField2.textAlignment = NSTextAlignmentRight;
-            textField2.font = [UIFont systemFontOfSize:13];
-            textField2.delegate=self;
-            textField2.placeholder = self.third[indexPath.row];
             [cell addSubview:textField2];
         }else if (indexPath.row==2){
-            textField3 = [[UITextField alloc]init];
-            textField3.frame = CGRectMake(130, 10, width - 150, 20);
-            textField3.textAlignment = NSTextAlignmentRight;
-            textField3.font = [UIFont systemFontOfSize:13];
-            textField3.delegate=self;
-            textField3.keyboardType=UIKeyboardTypeNumberPad;
-            textField3.placeholder = self.third[indexPath.row];
             [cell addSubview:textField3];
         }else if (indexPath.row==3){
-            textField4 = [[UITextField alloc]init];
-            textField4.frame = CGRectMake(130, 10, width - 150, 20);
-            textField4.textAlignment = NSTextAlignmentRight;
-            textField4.font = [UIFont systemFontOfSize:13];
-            textField4.delegate=self;
-            textField4.keyboardType=UIKeyboardTypeNumberPad;
-            textField4.placeholder = self.third[indexPath.row];
             [cell addSubview:textField4];
         }else if (indexPath.row==4){
-            textField5 = [[UITextField alloc]init];
-            textField5.frame = CGRectMake(130, 10, width - 150, 20);
-            textField5.textAlignment = NSTextAlignmentRight;
-            textField5.font = [UIFont systemFontOfSize:13];
-            textField5.delegate=self;
-            textField5.placeholder = self.third[indexPath.row];
             [cell addSubview:textField5];
         }else if (indexPath.row==5){
-            textField6 = [[UITextField alloc]init];
-            textField6.frame = CGRectMake(130, 10, width - 150, 20);
-            textField6.textAlignment = NSTextAlignmentRight;
-            textField6.font = [UIFont systemFontOfSize:13];
-            textField6.delegate=self;
-            textField6.placeholder = self.third[indexPath.row];
             [cell addSubview:textField6];
         }
 
@@ -459,23 +450,288 @@
     NSLog(@"%@",picpath);
     [fm createFileAtPath:picpath contents:imageData attributes:nil];
    
-        
-    [touxiang setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
-   
-    //局部cell刷新  www.2cto.com
-    NSIndexPath *te=[NSIndexPath indexPathForRow:0 inSection:0];//刷新第一个section的第二行
-    [_tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:te,nil] withRowAnimation:UITableViewRowAnimationMiddle];
-        
+    toux.image=[UIImage imageWithData:imageData];
+
     
 }
+
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField==textField6) {
+    if (textField==textField5) {
+        [self sanji];
         return NO;
     }
     return YES;
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    [pickerview removeFromSuperview];
+    pickerview=nil;
+}
+-(void)sanji
+{
+    if (pickerview) {
+        [pickerview removeFromSuperview];
+        pickerview=nil;
+    }
+    float w=[[UIScreen mainScreen] bounds].size.width;
+    float h=[[UIScreen mainScreen] bounds].size.height;
+    
+//    pickerview.backgroundColor=[UIColor redColor];
+//    picke.backgroundColor=[UIColor greenColor];
+    
+    pickerview.hidden=NO;
+    //self.bejing.hidden=NO;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
+   
+        
+        stateArray = [NSArray arrayWithContentsOfFile:path];
+        cityArray = [stateArray[0] objectForKey:@"cities"];
+        areaArray = [cityArray[0] objectForKey:@"areas"];
+        
+    
+
+    pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
+    picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
+    
+    picke.delegate = self;
+    picke.dataSource = self;
+    
+    [pickerview addSubview:picke];
+    
+    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 40)];
+    UIBarButtonItem*bb1=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(queding)];
+    UIBarButtonItem*flex=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem*bb2=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(quxiao)];
+    NSArray*arr9=[NSArray arrayWithObjects:bb1,flex,bb2, nil];
+    tool.items=arr9;
+    [pickerview addSubview:tool];
+    
+    [self.view addSubview:pickerview];
+    [UIView animateWithDuration:0.3 animations:^{pickerview.frame=CGRectMake(0, h-220, w, 200);}];
+}
+//返回几列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 3;
+}
+//每列有多少行
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (component ==0)
+    {
+        return stateArray.count;
+    }
+    else if (component == 1)
+    {
+        return cityArray.count;
+    }
+    else
+    {
+        return areaArray.count;
+    }
+}
+//每列显示
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (component == 0) {
+        NSString *state= [stateArray[row] objectForKey:@"state"];
+      
+        return state;
+        
+    }else if (component == 1){
+        
+        NSString *city= [cityArray[row] objectForKey:@"city"];
+       
+        return city;
+    }else{
+        
+        return areaArray[row];
+    }
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        
+            cityArray = [stateArray[row] objectForKey:@"cities"];
+            areaArray = [cityArray[0]    objectForKey:@"areas" ];
+        
+        [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
+        [pickerView reloadComponent:2];
+        if ([areaArray count] > 0) {
+            [pickerView selectRow:0 inComponent:2 animated:NO];
+        }
+        
+    }else if(component == 1){
+       
+            areaArray = [cityArray[row] objectForKey:@"areas"];
+       
+        
+        [pickerView reloadComponent:2];
+        if ([areaArray count] > 0) {
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+        }
+    }
+}
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    if (component == 0)
+    {
+        return width/3;
+    }
+    else if (component == 1)
+    {
+        return width/4;
+    }
+    else if (component == 2)
+    {
+        return width*5/12;
+    }
+    
+    
+    return 0;
+}
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        // Setup label properties - frame, font, colors etc
+        //adjustsFontSizeToFitWidth property to YES
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setTextAlignment:NSTextAlignmentLeft];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    }
+    // Fill the label text here
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
+
+- (void)queding {
+    [pickerview removeFromSuperview];
+    
+    stateDic = stateArray[[picke selectedRowInComponent:0]];
+    
+    NSString *state = [stateDic objectForKey:@"state"];
+    
+    cityDic = cityArray[[picke selectedRowInComponent:1]];
+    
+    NSString *city= [cityDic objectForKey:@"city"];
+   
+    NSString *area;
+    if (areaArray.count > 0) {
+        
+        area = areaArray[[picke selectedRowInComponent:2]];
+        
+    }else{
+        
+        area = @"";
+        
+    }
+    
+    NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
+    
+    NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
+    textField5.text=result;
+    
+//    self.bejing.hidden = YES;
+    
+   
+}
+- (void)quxiao {
+//    self.bejing.hidden = YES;
+    pickerview.hidden = YES;
+}
 
 
+
+//保存方法
+-(void)baocun
+{
+    //NSLog(@"%@%@%@%@%@%@%@",textField1.text,textField2.text,textField3.text,textField4.text,textField5.text,textField6.text,sex);
+    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField4.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
+        [WarningBox warningBoxModeText:@"请输入完整的信息!" andView:self.view];
+    }else{
+        if ([sex isEqual:@""]) {
+            [WarningBox warningBoxModeText:@"请选择性别!" andView:self.view];
+        }else{
+            [WarningBox warningBoxModeIndeterminate:@"数据上传中...." andView:self.view];
+            
+            //请求地址   地址不同 必须要改
+            NSString * url =@"/basic/savevipInfo";
+            
+            //将上传对象转换为json格式字符串
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+            //出入参数：
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",@"1000",@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
+            NSLog(@"%@",datadic);
+            
+            NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+          
+            
+            [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                
+                
+                
+                
+                //对图片进行多个上传
+                
+                UIImage *Img=_image;
+                NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用png方法需添加png压缩方法
+                NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                fm.dateFormat = @"yyyyMMddHHmmss";
+                NSString *str = [fm stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+                NSLog(@"filename------%@",fileName);
+                [formData appendPartWithFileData:data name:@"photo" fileName:fileName mimeType:@"image/jpeg"];
+            } progress:^(NSProgress * _Nonnull uploadProgress) {
+                NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                @try
+                {
+                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                    NSLog(@"%@",responseObject);
+                    if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                        //把上传的数据存到本地
+                        
+                        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi"];
+                        [datadic writeToFile:path atomically:YES];
+                        
+                        
+                        
+                        [self dismissViewControllerAnimated:YES completion: nil ];
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+                @catch (NSException * e) {
+                    
+                    [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                    
+                }
+                
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                NSLog(@"错误：%@",error);
+                
+            }];
+            
+        }
+    }
+    
+    
+    
+}
 
 //返回
 - (IBAction)fanhui:(id)sender {

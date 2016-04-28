@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface YdPersonalInformationViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface YdPersonalInformationViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
 
 //返回
 - (IBAction)fanhui:(id)sender;
