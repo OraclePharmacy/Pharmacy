@@ -1543,23 +1543,7 @@
                     <view key="view" contentMode="scaleToFill" id="ams-3R-y8t">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-M0-RHm">
-                                <rect key="frame" x="0.0" y="94" width="600" height="457"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Jm1-hD-ly1" id="NzY-RZ-UYa"/>
-                                    <outlet property="delegate" destination="Jm1-hD-ly1" id="ktR-jC-Wgi"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="dNa-M0-RHm" firstAttribute="leading" secondItem="ams-3R-y8t" secondAttribute="leading" id="3kZ-uM-yJr"/>
-                            <constraint firstAttribute="trailing" secondItem="dNa-M0-RHm" secondAttribute="trailing" id="FPY-ye-xb8"/>
-                            <constraint firstItem="dNa-M0-RHm" firstAttribute="top" secondItem="IeV-k7-Ipj" secondAttribute="bottom" constant="30" id="hfl-s7-DvP"/>
-                            <constraint firstItem="XJf-n5-bIQ" firstAttribute="top" secondItem="dNa-M0-RHm" secondAttribute="bottom" id="sVl-AU-Olm"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="资讯" id="CkD-wp-tes"/>
                     <navigationItem key="navigationItem" id="3dJ-g5-13a">
@@ -1579,7 +1563,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="Segmented" destination="GxO-vz-EgZ" id="mvg-QU-pLh"/>
-                        <outlet property="tableview" destination="dNa-M0-RHm" id="A0c-Gw-q95"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64V-eF-7Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
