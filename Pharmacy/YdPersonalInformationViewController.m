@@ -70,14 +70,14 @@
     
     
    
-    UITapGestureRecognizer *shoushifangfa=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zhaoxiang)];
-    [toux addGestureRecognizer:shoushifangfa];
+    
     
     //创建tableview
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height-64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [self.view addSubview:self.tableview];
+    
     //代理协议
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -103,7 +103,7 @@
     textField2.textAlignment = NSTextAlignmentRight;
     textField2.font = [UIFont systemFontOfSize:13];
     textField2.delegate=self;
-    textField2.placeholder = self.third[0];
+    textField2.placeholder = @"请输入姓名";
 
     textField3 = [[UITextField alloc]init];
     textField3.frame = CGRectMake(130, 10, width - 150, 20);
@@ -111,7 +111,7 @@
     textField3.font = [UIFont systemFontOfSize:13];
     textField3.delegate=self;
     textField3.keyboardType=UIKeyboardTypeNumberPad;
-    textField3.placeholder = self.third[2];
+    textField3.placeholder = @"请输入年龄";
     
     textField4 = [[UITextField alloc]init];
     textField4.frame = CGRectMake(130, 10, width - 150, 20);
@@ -119,21 +119,22 @@
     textField4.font = [UIFont systemFontOfSize:13];
     textField4.delegate=self;
     textField4.keyboardType=UIKeyboardTypeNumberPad;
-    textField4.placeholder = self.third[3];
+    textField4.placeholder = @"请输入会员卡号";
     
     textField5 = [[UITextField alloc]init];
     textField5.frame = CGRectMake(130, 10, width - 150, 20);
     textField5.textAlignment = NSTextAlignmentRight;
     textField5.font = [UIFont systemFontOfSize:13];
     textField5.delegate=self;
-    textField5.placeholder = self.third[4];
+    textField5.placeholder = @"请输入地区";
 
     textField6 = [[UITextField alloc]init];
     textField6.frame = CGRectMake(130, 10, width - 150, 20);
     textField6.textAlignment = NSTextAlignmentRight;
     textField6.font = [UIFont systemFontOfSize:13];
     textField6.delegate=self;
-    textField6.placeholder = self.third[5];
+    textField6.returnKeyType=UIReturnKeyDone;
+    textField6.placeholder = @"请输入详细地址";
     
     toux=[[UIImageView alloc] init];
     toux.userInteractionEnabled=YES;
@@ -141,6 +142,8 @@
     toux.layer.cornerRadius=30;
     toux.layer.masksToBounds=YES;
     toux.backgroundColor= [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    UITapGestureRecognizer *shoushifangfa=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zhaoxiang)];
+    [toux addGestureRecognizer:shoushifangfa];
     
     nan = [[UIButton alloc]init];
     nan.frame = CGRectMake(width - 80, 10, 30, 20);
@@ -153,13 +156,13 @@
     [nv addTarget:self action:@selector(woman) forControlEvents:UIControlEventTouchUpInside];
     
     if (dd==nil) {
-        sex=@"";
-        textField1.text=@"";
-        textField2.text=@"";
-        textField3.text=@"";
-        textField4.text=@"";
-        textField5.text=@"";
-        textField6.text=@"";
+        sex=nil;
+        textField1.text=nil;
+        textField2.text=nil;
+        textField3.text=nil;
+        textField4.text=nil;
+        textField5.text=nil;
+        textField6.text=nil;
     }else{
     sex=[NSString stringWithFormat:@"%@",[dd objectForKey:@"sex"]];
         if ([sex isEqual:@"男"]) {
@@ -204,6 +207,7 @@
     
     sex = @"女";
 }
+///////////////----------以下是tableview----------/////////////
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -351,10 +355,13 @@
     [self.view endEditing:YES];
     
 }
+///////////////----------以上是tableview----------/////////////
 
+///////////////----------以下是照相----------/////////////
 //头像
 -(void)zhaoxiang
 {
+    [self.view endEditing:YES];
     [self choosephoto];
 }
 
@@ -454,7 +461,7 @@
 
     
 }
-
+///////////////----------以上是照相----------/////////////
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField==textField5) {
@@ -463,13 +470,32 @@
     }
     return YES;
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField==textField1) {
+        [textField2 becomeFirstResponder];
+    }else if (textField==textField2) {
+        [textField3 becomeFirstResponder];
+    }else if (textField==textField3) {
+        [textField4 becomeFirstResponder];
+    }else if (textField==textField4) {
+        [textField5 becomeFirstResponder];
+    }else if (textField==textField5) {
+        [textField6 becomeFirstResponder];
+    }else if (textField==textField6) {
+        [self.view endEditing:YES];
+    }
+    return YES;
+}
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
     [pickerview removeFromSuperview];
     pickerview=nil;
 }
+
+///////////////----------以下是三级联动----------/////////////
 -(void)sanji
 {
+    [self.view endEditing:YES];
     if (pickerview) {
         [pickerview removeFromSuperview];
         pickerview=nil;
@@ -491,15 +517,15 @@
         
     
 
-    pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
-    picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
+    pickerview=[[UIView alloc] initWithFrame:CGRectMake(20, h, w-40, 200)];
+    picke=[[UIPickerView alloc] initWithFrame:CGRectMake(20, 20, w-40, 200)];
     
     picke.delegate = self;
     picke.dataSource = self;
     
     [pickerview addSubview:picke];
     
-    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 40)];
+    UIToolbar*tool=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, w, 50)];
     UIBarButtonItem*bb1=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(queding)];
     UIBarButtonItem*flex=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem*bb2=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(quxiao)];
@@ -643,7 +669,7 @@
 //    self.bejing.hidden = YES;
     pickerview.hidden = YES;
 }
-
+///////////////----------以上是三级联动----------/////////////
 
 
 //保存方法
@@ -673,9 +699,6 @@
             
             [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                 
-                
-                
-                
                 //对图片进行多个上传
                 
                 UIImage *Img=_image;
@@ -702,11 +725,9 @@
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi"];
                         [datadic writeToFile:path atomically:YES];
                         
-                        
-                        
-                        [self dismissViewControllerAnimated:YES completion: nil ];
-                        
-                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self dismissViewControllerAnimated:YES completion: nil ];
+                        });
                         
                     }
                     

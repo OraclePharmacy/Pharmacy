@@ -54,9 +54,24 @@
     _webview.hidden=NO;
     NSLog(@"%d",i);
     if (i==2) {
-//        xixiix*xixi=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"xixi"];
-//        NSLog(@"url====  %@",_webview.request.URL.absoluteURL);
-//        [self presentViewController:xixi animated:YES completion:nil];
+        UIAlertController*alert=[UIAlertController alertControllerWithTitle:@"提示" message:@"这里写的是中奖结果" preferredStyle:UIAlertControllerStyleAlert];
+       
+        UIAlertAction*action2=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSLog(@"中奖结果====  %@",_webview.request.URL.absoluteURL);
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            
+        }];
+        
+        [alert addAction:action2];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+
+
+        
+
     }
     
 }

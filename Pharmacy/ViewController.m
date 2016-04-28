@@ -26,7 +26,7 @@
     //导航栏名称
     self.navigationItem.title = @"登录";
     
-    self.PhoneText.text = @"15765512881";
+    self.PhoneText.text = @"15545457012";
     self.PasswordText.text = @"111111";
     
     self.LoginButton.layer.cornerRadius = 5;
@@ -152,7 +152,7 @@
         else if ([self isMobileNumberClassification:self.PhoneText.text]&&[self mima:self.PasswordText.text])
         {
             
-//            
+            
 //            [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:self.view];
 //            
 //            //userID    暂时不用改
@@ -197,11 +197,13 @@
 //                        
 //                        NSDictionary*datadic=[responseObject valueForKey:@"data"];
 //                        NSLog(@"%@",datadic);
-//                        
-                        YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
                         [self presentViewController:Root animated:YES completion:^{
                             [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
                         }];
+
+            });
 //
 //                        
 //                        
@@ -221,8 +223,8 @@
 //                                NSLog(@"错误：%@",error);
 //
 //            }];
-//      
-//            
+      
+//
         }
     }
     else

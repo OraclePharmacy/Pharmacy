@@ -13,7 +13,7 @@
 //李想
 #define service_host @"http://192.168.1.123:8080"
 //冷中原
-//#define service_host @"http://192.168.1.115:8686"
+//#define service_host @"http://192.168.1.125:8686"
 //其中斌
 //#define service_host @"http://192.168.1.180:8080"
 /**

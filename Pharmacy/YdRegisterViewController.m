@@ -58,12 +58,16 @@
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    [self.tableview.layer setBorderWidth:1];
+    [self.tableview.layer setBorderColor:[[UIColor greenColor] CGColor]];
+    [self.tableview.layer setCornerRadius:5];
+    self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.bejing.hidden = YES;
     self.tableview.hidden = YES;
     pickerview.hidden = YES;
     
-    self.Complete.layer.cornerRadius = 5;
+    self.Complete.layer.cornerRadius = 10;
     self.Complete.layer.masksToBounds = YES;
     
     self.VerificationButton.layer.cornerRadius = 5;
@@ -244,6 +248,7 @@
 #pragma textfield点击事件
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [self.view endEditing:YES];
     if (textField == self.StoreText) {
         if (panduan==0) {
             [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
@@ -266,6 +271,22 @@
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
             SBJsonWriter *writer = [[SBJsonWriter alloc]init];
             //出入参数：
+            if (jing==nil) {
+                jing=@"";
+            }
+            if (wei==nil) {
+                wei=@"";
+            }
+            if (sheng==nil) {
+                sheng=@"";
+            }
+            if (shi==nil) {
+                shi=@"";
+            }
+            if (qu==nil) {
+                qu=@"";
+            }
+            
             NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
             
             NSString*jsonstring=[writer stringWithObject:datadic];
@@ -312,11 +333,18 @@
                         
                         NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
                         [bianxing writeToFile:path atomically:YES];
-                        
+                        [self sanji];
                         NSLog(@"%@",NSHomeDirectory());
                     }
                     else if ([[responseObject objectForKey:@"code"] intValue]==0){
                         //5个门店的列表
+                        panduan=2;
+                        arr=[NSArray array];
+                        arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                        
+                        [_tableview reloadData];
+                        [self.tableview reloadData];
+                        self.tableview.hidden = NO;
                         
                     }
                 }
@@ -333,9 +361,12 @@
             
             
             
+        }
+        else if (panduan==2){
+            _tableview.hidden=NO;
+            
         }else{
             [self sanji];
-            
         }
         return NO;
     }
@@ -351,7 +382,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"%lu",(unsigned long)arr.count);
-    return arr.count;
+    return arr.count+1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
@@ -364,24 +395,33 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-    
     UILabel *name = [[UILabel alloc]init];
-    name.frame  =  CGRectMake(0, 0, 150, 39);
+    name.frame  =  CGRectMake(0, 0, _tableview.frame.size.width, 39);
     name.font = [UIFont systemFontOfSize:15.0];
     name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor blackColor];
-    name.text = [arr[indexPath.row] objectForKey:@"name"];;
-    
+    if (indexPath.row==0) {
+        name.textColor = [UIColor blueColor];
+        name.text=@"请选择门店";
+    }else{
+    name.text = [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
+    }
     [cell.contentView addSubview:name];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.StoreText.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
-    str = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+    
+    if (indexPath.row==0) {
+        
+    }else{
+    self.StoreText.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]];
+    str = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"id"]];
+    
     self.tableview.hidden = YES;
     self.bejing.hidden = YES;
+    }
 }
 #pragma 创建三级联动
 -(void)sanji
@@ -653,20 +693,13 @@
             [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                
                 @try
                 {
                     [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     NSLog(@"%@",responseObject);
-                    if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                        
-                        NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                        NSLog(@"%@",datadic);
-                        
-                        
-                        
-                    }
-                    
-                    
+                   
                 }
                 @catch (NSException * e) {
                     
@@ -755,14 +788,17 @@
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
-                        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                        
+                       [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                         NSLog(@"%@",[responseObject objectForKey:@"msg"]);
+                        
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            
-                            [self.navigationController popViewControllerAnimated:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [self.navigationController popViewControllerAnimated:YES];
+                           
+                            });
                             
                         }
-                        
                         
                     }
                     @catch (NSException * e) {
@@ -801,8 +837,7 @@
     
 }
 //左按钮
--(void)fanhui
-{
+-(void)fanhui{
     //返回上一页面
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -835,19 +870,102 @@
         area = @"";
         
     }
+ 
+    if (panduan==1) {
+        
+    [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
     
-    NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
+    //userID    暂时不用改
+    NSString * userID=@"0";
     
-    NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/Store/getLocation";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
     
     
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",nil];
+
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    NSLog(@"%@",url1);
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    NSLog(@"%@",dic);
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try{
+        
+            
+            
+            [WarningBox warningBoxHide:YES andView:self.view];
+            NSLog(@"%@",responseObject);
+            if([[responseObject objectForKey:@"code"] intValue]==1111){
+                NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
+                
+                
+                shengg=[SSMap allKeys];
+                bianxing=[[NSMutableArray alloc] init];
+                
+                for (int i=0; i<shengg.count; i++) {
+                    
+                    NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                    NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                    NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
+                    for (int y=0; y<xixi.count; y++) {
+                        [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                    }
+                    [hehe1 setObject:meme1 forKey:@"cities"];
+                    [hehe1 setObject:shengg[i] forKey:@"state"];
+                    [bianxing addObject:hehe1];
+                    
+                }
+                [self sanji];
+
+            }
+            else if ([[responseObject objectForKey:@"code"] intValue]==0){
+                //5个门店的列表
+                panduan=2;
+                arr=[NSArray array];
+                arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                
+                [_tableview reloadData];
+                [self.tableview reloadData];
+                self.tableview.hidden = NO;
+                
+                
+                
+            }
+        }
+        @catch (NSException * e) {
+            [WarningBox warningBoxModeText:@"" andView:self.view];
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
+    }
+
     self.bejing.hidden = YES;
     
-    //再次掉接口  如果成功显示下边的
-    {
-        [self.tableview reloadData];
-        self.tableview.hidden = NO;
-    }
 }
 - (void)quxiao {
     self.bejing.hidden = YES;

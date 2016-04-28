@@ -272,7 +272,7 @@
         {
             if ([self.PassText.text isEqualToString:self.AgainPassText.text]) {
                 
-                [WarningBox warningBoxModeIndeterminate:@"正在获取验证码..." andView:self.view];
+                [WarningBox warningBoxModeIndeterminate:@"正在更改密码..." andView:self.view];
                 
                 //userID    暂时不用改
                 NSString * userID=@"0";
@@ -310,12 +310,9 @@
                     @try
                     {
                         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                        NSLog(@"%@",responseObject);
+                        
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            
-                            NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                            NSLog(@"%@",datadic);
-                            
+                            [WarningBox warningBoxModeText:@"密码修改成功" andView:self.view];
                             [self.navigationController popViewControllerAnimated:YES];
                             
                         }
