@@ -25,6 +25,9 @@
     
     UITableViewCell *cell;
     
+    NSArray *arr;
+    NSString *str;
+    
 }
 @property(strong,nonatomic) UIScrollView *scrollView;
 @end
@@ -33,6 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    arr = @[@"世界",@"儿童",@"男性",@"女性",@"生活"];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -61,43 +66,37 @@
     //设置scrollView
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
     //for循环创建button
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < arr.count; i++) {
         
         UIButton *tabButton = [[UIButton alloc]init];
         tabButton.tag = 300+i;
         tabButton.frame = CGRectMake(width/5*i, 0, width/5, 30);
+        [tabButton setBackgroundImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateSelected];
         tabButton.backgroundColor = [UIColor clearColor];
         [tabButton addTarget:self action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
+        [tabButton setTitle:arr[i] forState:UIControlStateNormal];
+        [tabButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        //图片
+//        UIImageView *imageview = [[UIImageView alloc]init];
+//        imageview.frame = CGRectMake(0, 0, width/5, 30);
+//        imageview.image = [UIImage imageNamed:@"IMG_0799.jpg"];
+//        //名称
+//        UILabel *name = [[UILabel alloc]init];
+//        name.frame = CGRectMake(0, 0,  width/5, 30);
+//        name.font = [UIFont systemFontOfSize:15];
+//        name.textAlignment = NSTextAlignmentCenter;
+//        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         
-        //图片
-        UIImageView *imageview = [[UIImageView alloc]init];
-        imageview.frame = CGRectMake(0, 0, width/5, 30);
-        imageview.image = [UIImage imageNamed:@"IMG_0799.jpg"];
-        //名称
-        UILabel *name = [[UILabel alloc]init];
-        name.frame = CGRectMake(0, 0,  width/5, 30);
-        name.font = [UIFont systemFontOfSize:15];
-        name.textAlignment = NSTextAlignmentCenter;
-        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        //通过分段控制器给lable赋值
-        if (zhi == 1)
-        {
-            name.text = @"泻立停";
-        }
-        else
-        {
-            name.text = @"泻立停1";
-        }
-        
-        
+        //name.text = arr[i];
+     
         self.scrollView.pagingEnabled = YES;
         
         self.scrollView.delegate = self;
         
         
         [self.scrollView addSubview:tabButton];
-        [tabButton addSubview:imageview];
-        [tabButton addSubview:name];
+        //[tabButton addSubview:imageview];
+        //[tabButton addSubview:name];
         
     }
     //设置可滑动大小
@@ -111,14 +110,37 @@
 //scrollview上面button点击事件
 - (void)handleClick:(UIButton *)btn
 {
-    
+    str = [[NSString alloc]init];
+     UIButton *u = (UIButton *)btn;
+    u.selected = NO;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
     if (btn.tag == 300)
     {
-        
+        str = @"世界";
+        u.selected = YES;
+    }
+    else if (btn.tag == 301)
+    {
+        str = @"儿童";
+        u.selected = YES;
+    }
+    else if (btn.tag == 302)
+    {
+        str = @"男性";
+        u.selected = YES;
+    }
+    else if (btn.tag == 303)
+    {
+        str = @"女性";
+        u.selected = YES;
+    }
+    else if (btn.tag == 304)
+    {
+        str = @"生活";
+        u.selected = YES;
     }
     
-    NSLog(@"%ld",btn.tag);
-    
+    NSLog(@"%@",str);
+
 }
 
 //分段控制器  点击方法

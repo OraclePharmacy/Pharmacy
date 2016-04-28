@@ -73,41 +73,28 @@
             vi.frame = CGRectMake(0, 0, width, 170);
             vi.backgroundColor = [UIColor whiteColor];
             [cell.contentView addSubview:vi];
-            
-            
-            
-            
-            
-            
-            
         }
     }
     //点击不变颜色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170;
+    return 180;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 30);
-    UILabel *label = [[UILabel alloc]initWithFrame:frame];
-    label.font = [UIFont systemFontOfSize:20];
-    label.backgroundColor = [[UIColor grayColor]colorWithAlphaComponent:1];
-    label.text = section ? @"表格":@"折线图";
-    label.textColor = [UIColor colorWithRed:0.257 green:0.650 blue:0.478 alpha:1.000];
-    label.textAlignment = NSTextAlignmentCenter;
-    return label;
+    //return 30;
+    if (section == 1)
+    {
+        return 30;
+    }
+    return 0;
 }
 
 -(void)fanhui
