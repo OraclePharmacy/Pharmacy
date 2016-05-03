@@ -723,10 +723,17 @@
     }
     
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==_PassText) {
+        if (![self mima:self.PassText.text]) {
+            _PassText.text=@"";
+            [WarningBox warningBoxModeText:@"密码格式不对哟～" andView:self.view];
+        }
+    }
+}
 //完成
 - (IBAction)CompleteButton:(id)sender {
     [self.view endEditing:YES];
-    
     
     //判断长度是否大于0
     if (self.PhoneText.text.length > 0 && self.VerificationText.text.length > 0 && self.PassText.text.length > 0 && self.AgainPassText.text.length &&self.StoreText.text.length)
@@ -836,11 +843,7 @@
     }
     
 }
-//左按钮
--(void)fanhui{
-    //返回上一页面
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 - (void)queding {
     [pickerview removeFromSuperview];
     
@@ -978,7 +981,11 @@
     self.tableview.hidden = YES;
     pickerview.hidden = YES;
 }
-
+//左按钮
+-(void)fanhui{
+    //返回上一页面
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)initializeLocationService {
     
     // 初始化定位管理器

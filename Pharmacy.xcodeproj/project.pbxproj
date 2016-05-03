@@ -178,6 +178,7 @@
 		D23EE57F1CBB4BC1000A9F01 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5771CBB4BC1000A9F01 /* AFURLRequestSerialization.m */; };
 		D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */; };
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
+		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -470,6 +471,7 @@
 		D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */,
 				9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */,
 				9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */,
 			);
@@ -649,6 +652,7 @@
 		9505D7011C9A7B34006F6850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */,
 				95F440BB1CD047A000B66D8C /* UUChart */,
 				95609F071CABC88200AF65E4 /* Color+Hex.h */,
 				95609F081CABC88200AF65E4 /* Color+Hex.m */,

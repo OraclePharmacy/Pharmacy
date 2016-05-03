@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YdInformationDetailsViewController : UIViewController
-
+@property (nonatomic , strong)NSString * hahaha;
+@property (nonatomic , strong)NSString * liexing;
 @end

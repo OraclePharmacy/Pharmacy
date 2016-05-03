@@ -169,6 +169,14 @@
     }
        return YES;
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==_PassText) {
+        if (![self mima:self.PassText.text]) {
+            _PassText.text=@"";
+            [WarningBox warningBoxModeText:@"密码格式不对哟~" andView:self.view];
+        }
+    }
+}
 #pragma 按钮点击事件
 - (IBAction)VerificationButton:(id)sender {
     

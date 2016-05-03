@@ -1586,8 +1586,29 @@
                     <view key="view" contentMode="scaleToFill" id="qCU-CA-pim">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="Lz8-eV-pGD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ezk-Jk-KVc" secondAttribute="trailing" constant="-20" id="SBD-cF-5Ho"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="topMargin" constant="-64" id="VHi-26-uX5"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="topMargin" id="VlJ-xD-hKy"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="leading" secondItem="qCU-CA-pim" secondAttribute="leadingMargin" constant="-20" id="X6t-eF-ADC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VHi-26-uX5"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="halou" destination="Ezk-Jk-KVc" id="qCa-lo-jiI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQM-ym-eov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

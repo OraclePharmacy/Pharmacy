@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YdTextDetailsViewController : UIViewController
-
+@property (nonatomic , strong)NSString*xixi;
 @end
