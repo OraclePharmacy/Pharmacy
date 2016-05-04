@@ -49,6 +49,10 @@
 		950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AAB1CC87F2400A04F95 /* 相机@2x.png */; };
 		950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */; };
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
+		952A1A081CD843D600582D26 /* 组-13@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A071CD843D600582D26 /* 组-13@3x.png */; };
+		952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A091CD8440700582D26 /* 组-14@3x.png */; };
+		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
+		952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */; };
 		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
 		9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
@@ -267,6 +271,12 @@
 		950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecordListViewController.m; sourceTree = "<group>"; };
 		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
 		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
+		952A1A071CD843D600582D26 /* 组-13@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-13@3x.png"; sourceTree = "<group>"; };
+		952A1A091CD8440700582D26 /* 组-14@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-14@3x.png"; sourceTree = "<group>"; };
+		952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdJiaoLiuViewController.h; sourceTree = "<group>"; };
+		952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdJiaoLiuViewController.m; sourceTree = "<group>"; };
+		952A1A0E1CD8450F00582D26 /* YdYaoXiangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdYaoXiangViewController.h; sourceTree = "<group>"; };
+		952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdYaoXiangViewController.m; sourceTree = "<group>"; };
 		9537CFC61CC9D21F0031021A /* time_line_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_line_mark.png; sourceTree = "<group>"; };
 		9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPurchasingViewController.h; sourceTree = "<group>"; };
 		9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPurchasingViewController.m; sourceTree = "<group>"; };
@@ -919,11 +929,13 @@
 			name = "药师详情";
 			sourceTree = "<group>";
 		};
-		959F9E411CBE1EE200C5D019 /* 其他服务 */ = {
+		959F9E411CBE1EE200C5D019 /* 智慧药箱 */ = {
 			isa = PBXGroup;
 			children = (
+				952A1A0E1CD8450F00582D26 /* YdYaoXiangViewController.h */,
+				952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */,
 			);
-			name = "其他服务";
+			name = "智慧药箱";
 			sourceTree = "<group>";
 		};
 		959F9E421CBE1EF000C5D019 /* 电子病历 */ = {
@@ -966,11 +978,13 @@
 			name = "用药咨询";
 			sourceTree = "<group>";
 		};
-		959F9E471CBE1F3200C5D019 /* 会员服务 */ = {
+		959F9E471CBE1F3200C5D019 /* 病友交流 */ = {
 			isa = PBXGroup;
 			children = (
+				952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */,
+				952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */,
 			);
-			name = "会员服务";
+			name = "病友交流";
 			sourceTree = "<group>";
 		};
 		959F9E541CBE22EC00C5D019 /* 推荐医生 */ = {
@@ -994,6 +1008,8 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				952A1A091CD8440700582D26 /* 组-14@3x.png */,
+				952A1A071CD843D600582D26 /* 组-13@3x.png */,
 				9537CFC61CC9D21F0031021A /* time_line_mark.png */,
 				950A5AAB1CC87F2400A04F95 /* 相机@2x.png */,
 				950A5AA91CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png */,
@@ -1235,12 +1251,12 @@
 			children = (
 				95C3727F1CB6582A0083AC90 /* YdServiceViewController.h */,
 				95C372801CB6582A0083AC90 /* YdServiceViewController.m */,
-				959F9E471CBE1F3200C5D019 /* 会员服务 */,
+				959F9E471CBE1F3200C5D019 /* 病友交流 */,
 				959F9E461CBE1F2900C5D019 /* 用药咨询 */,
 				959F9E451CBE1F1E00C5D019 /* 用药提醒 */,
 				959F9E431CBE1EF800C5D019 /* 血压血糖 */,
 				959F9E421CBE1EF000C5D019 /* 电子病历 */,
-				959F9E411CBE1EE200C5D019 /* 其他服务 */,
+				959F9E411CBE1EE200C5D019 /* 智慧药箱 */,
 				959F9E551CBE22F600C5D019 /* 药师聊天 */,
 				959F9E541CBE22EC00C5D019 /* 推荐医生 */,
 			);
@@ -1446,6 +1462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */,
 				95C372621CB5F5780083AC90 /* 矩形-20@3x.png in Resources */,
 				95C3725B1CB5F5780083AC90 /* 服务@2x.png in Resources */,
 				950956611CC7600D00A10A5A /* sex1@3x.png in Resources */,
@@ -1512,6 +1529,7 @@
 				9505D7281C9A9BE5006F6850 /* IMG_0798.jpg in Resources */,
 				959F9E3C1CBDFA3E00C5D019 /* 2@3x.png in Resources */,
 				95C372531CB5F5780083AC90 /* Multiple-Email-Thread-拷贝-2@2x.png in Resources */,
+				952A1A081CD843D600582D26 /* 组-13@3x.png in Resources */,
 				950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */,
 				950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */,
 				95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */,
@@ -1550,6 +1568,7 @@
 				9502A4AD1C9D21D300578339 /* YdDrugsViewController.m in Sources */,
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
 				95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */,
+				952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */,
 				95F440C91CD047A000B66D8C /* UUBarChart.m in Sources */,
 				95609EA11CABC72E00AF65E4 /* SBJsonStreamParserAccumulator.m in Sources */,
 				95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */,
@@ -1576,6 +1595,7 @@
 				95609EFE1CABC74E00AF65E4 /* UIImage+MultiFormat.m in Sources */,
 				95609E821CABC72000AF65E4 /* mmm5.m in Sources */,
 				95F440CB1CD047A000B66D8C /* UUChartConst.m in Sources */,
+				952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */,
 				D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */,
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
 				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,

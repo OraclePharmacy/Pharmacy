@@ -13,6 +13,8 @@
 #import "YdElectronicsViewController.h"
 #import "YdchatViewController.h"
 #import "YdRecommendViewController.h"
+#import "YdJiaoLiuViewController.h"
+#import "YdYaoXiangViewController.h"
 #import "Color+Hex.h"
 @interface YdServiceViewController ()
 {
@@ -36,8 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    imagearray = [NSArray arrayWithObjects:@"1@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-1@3x.png",nil];
-    lablearray = [NSArray arrayWithObjects:@"会员服务",@"用药咨询",@"用药提醒",@"血压血糖",@"电子病历",@"其他服务", nil];
+    imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-14@3x.png",nil];
+    lablearray = [NSArray arrayWithObjects:@"病友交流",@"用药咨询",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
     
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -211,8 +213,8 @@
     {
         if (indexPath.row == 0)
         {
-//                YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-//                [self.navigationController pushViewController:DrugJump animated:YES];
+            YdJiaoLiuViewController *JiaoLiu =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
+            [self.navigationController pushViewController:JiaoLiu animated:YES];
 
         }
         else if (indexPath.row == 1)
@@ -237,7 +239,8 @@
         }
         else if (indexPath.row == 5)
         {
-            
+            YdYaoXiangViewController *YaoXiang =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaoxiang"];
+            [self.navigationController pushViewController:YaoXiang animated:YES];
         }
     }
     else if (indexPath.section == 1)

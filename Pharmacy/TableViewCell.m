@@ -27,7 +27,7 @@
     
     path = indexPath;
     
-    chartView = [[UUChart alloc]initWithFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20, 150)
+    chartView = [[UUChart alloc]initWithFrame:CGRectMake(5, 10, [UIScreen mainScreen].bounds.size.width-20, 160)
                                    dataSource:self
                                         style:indexPath.section==1?UUChartStyleBar:UUChartStyleLine];
     [chartView showInView:self.contentView];
@@ -113,7 +113,7 @@
 - (CGRange)chartHighlightRangeInLine:(UUChart *)chart
 {
     if (path.row == 2) {
-        return CGRangeMake(25, 75);
+        return CGRangeMake(20, 75);
     }
     return CGRangeZero;
 }

@@ -1155,10 +1155,10 @@
             </objects>
             <point key="canvasLocation" x="1337" y="403"/>
         </scene>
-        <!--View Controller-->
+        <!--Yd Jiao Liu View Controller-->
         <scene sceneID="pEA-gT-MNQ">
             <objects>
-                <viewController id="rgS-Y4-pGI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jiaoliu" id="rgS-Y4-pGI" customClass="YdJiaoLiuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b8q-cd-OiV"/>
                         <viewControllerLayoutGuide type="bottom" id="M6e-lX-zm5"/>
@@ -1248,7 +1248,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ujg-VC-FlJ" firstAttribute="leading" secondItem="xLs-md-OJB" secondAttribute="leading" id="68c-03-eiR"/>
                             <constraint firstAttribute="trailing" secondItem="Ujg-VC-FlJ" secondAttribute="trailing" id="6dS-TO-FXu"/>
@@ -1462,10 +1461,10 @@
             </objects>
             <point key="canvasLocation" x="4568" y="1055"/>
         </scene>
-        <!--View Controller-->
+        <!--Yd Yao Xiang View Controller-->
         <scene sceneID="2um-hS-STF">
             <objects>
-                <viewController id="CTW-4N-f4G" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="yaoxiang" id="CTW-4N-f4G" customClass="YdYaoXiangViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="70o-iZ-Izf"/>
                         <viewControllerLayoutGuide type="bottom" id="DbQ-oD-usE"/>
@@ -1617,7 +1616,7 @@
         <!--Yd Information Details View Controller-->
         <scene sceneID="CK9-o6-a1q">
             <objects>
-                <viewController storyboardIdentifier="informationdetails" id="x9H-GZ-RMv" customClass="YdInformationDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="informationdetails" hidesBottomBarWhenPushed="YES" id="x9H-GZ-RMv" customClass="YdInformationDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YrF-Ci-74d"/>
                         <viewControllerLayoutGuide type="bottom" id="2wO-Iq-jxY"/>

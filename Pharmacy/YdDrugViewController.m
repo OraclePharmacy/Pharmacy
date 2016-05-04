@@ -9,6 +9,11 @@
 #import "YdDrugViewController.h"
 #import "YdDrugJumpViewController.h"
 #import "Color+Hex.h"
+#import "WarningBox.h"
+#import "AFHTTPSessionManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
 @interface YdDrugViewController ()
 {
     CGFloat width;
@@ -126,7 +131,7 @@
         [erji addObject:@"其它外用药"];
         [erji addObject:@"头疼安神类"];
         [erji addObject:@"妇科用药"];
-        [erji addObject:@"心脑血管类"];
+        [erji addObject:@"心脑血管"];
         [erji addObject:@"感冒类"];;
         [erji addObject:@"抗菌消炎类"];
         [erji addObject:@"抗过敏类"];
@@ -320,20 +325,82 @@
     DiseaseImageArray = [[NSMutableArray alloc]init];
     
     NSString *ss = erji[indexPath.row];
+    NSLog(@"%@",ss);
     //读取plist文件
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"disease.plist" ofType:nil];
-    NSDictionary *staeArray;
-    staeArray = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSDictionary *cityArray;
-    cityArray = [staeArray objectForKey:ss];
-    for (NSDictionary *dd in cityArray) {
-        
-        [DiseaseLableArray addObject:[dd objectForKey:@"name"]];
-        [DiseaseImageArray addObject:[dd objectForKey:@"icon"]];
-
-    }
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"disease.plist" ofType:nil];
+//    NSDictionary *staeArray;
+//    staeArray = [NSDictionary dictionaryWithContentsOfFile:path];
+//    NSDictionary *cityArray;
+//    cityArray = [staeArray objectForKey:ss];
+//    for (NSDictionary *dd in cityArray) {
+//        
+//        [DiseaseLableArray addObject:[dd objectForKey:@"name"]];
+//        [DiseaseImageArray addObject:[dd objectForKey:@"icon"]];
+//
+//    }
+//    [self AddDisease];
     
-    [self AddDisease];
-
+    [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
+    
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/product/productListLevelTwo";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval ad =[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",ad];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"心脑血管",@"level2Name",nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    NSLog(@"%@",url1);
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                [self AddDisease];
+                
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+        
+    }];
+    
 }
 @end
