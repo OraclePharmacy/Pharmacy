@@ -16,32 +16,14 @@
 #import "UIImageView+WebCache.h"
 #import <MediaPlayer/MediaPlayer.h>
 @interface YdInformationDetailsViewController ()<MPMediaPickerControllerDelegate>
-{
-    NSString*shareUrl;
-    
-    //音频
-    AVAudioPlayer*audioPlayer;
-    CGFloat durationTime;
-    UIButton*yb1;
-    UIButton*yb2;
-    UIButton*yb3;
-    NSTimer*time;
-    UIProgressView*prog;
-    
-    
-    MPMediaPickerController*mpc;
-    MPMusicPlayerController*musicplayer;
-    MPMediaItemCollection*itemlist;
-    
-}
-@property(nonatomic,strong)MPMoviePlayerController* moviePlay;
+
+
 @end
 
 @implementation YdInformationDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"id==%@-------类型==%@",_hahaha,_liexing);
     //状态栏名称
     self.navigationItem.title = @"健康电台";
     //设置self.view背景颜色
@@ -49,17 +31,10 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
-    
-    
-    if ([_liexing integerValue]==1) {
-        [self jiazaiyinpin];
-    }else if ([_liexing integerValue]==2){
-        [self jiazaiyinpin];
-    }
+    [self wangluo];
 }
--(void)jiazaishipin{
-    }
--(void)jiazaiyinpin{
+
+-(void)wangluo{
     [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
     
     //userID    暂时不用改
@@ -98,14 +73,20 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try{
             
-            
-            
             [WarningBox warningBoxHide:YES andView:self.view];
-            
             NSLog(@"%@",responseObject);
-            shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
-
-            [self yinyuebofang];
+            NSString*shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
+            
+            
+            NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
+            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
+                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
+            {
+                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            }
+            
+            
         }
         @catch (NSException * e) {
             [WarningBox warningBoxModeText:@"" andView:self.view];
@@ -118,30 +99,86 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
--(void)yinyuebofang{
-    self.moviePlay=[[MPMoviePlayerController alloc]initWithContentURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,shareUrl] ]];
-    self.moviePlay.controlStyle=MPMovieControlStyleEmbedded;
-    self.moviePlay.scalingMode=MPMovieScalingModeAspectFit;
-    [self.moviePlay.view setFrame:self.view.bounds];
-    UIButton*bu=[[UIButton alloc] initWithFrame:CGRectMake(80, 80, 50, 50)];
-    [bu addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
-    bu.backgroundColor=[UIColor redColor];
-    [self.moviePlay.view addSubview:bu];
-    [self.view addSubview:self.moviePlay.view];
-
+-(void)shipinbofang:(NSString *)sFileNamePath{
+    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
+    
+    
+    
+    [movie.moviePlayer prepareToPlay];
+    
+    [self presentMoviePlayerViewControllerAnimated:movie];
+    
+    [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    
+    
+    
+    [movie.view setBackgroundColor:[UIColor clearColor]];
+    
+    
+    
+    [movie.view setFrame:self.view.bounds];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+     
+     
+     
+                                           selector:@selector(movieFinishedCallback:)
+     
+     
+     
+                                               name:MPMoviePlayerPlaybackDidFinishNotification
+     
+     
+     
+                                             object:movie.moviePlayer];
+    
+    
+    
 }
--(void)play:(UIButton *)sender{
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
-    if (sender.selected) {
-        
-        [self.moviePlay prepareToPlay];
-    }else{
-        
-        [self.moviePlay stop];
-    }
+
+-(void)movieFinishedCallback:(NSNotification*)notify{
+    
+    
+    
+    // 视频播放完或者在presentMoviePlayerViewControllerAnimated下的Done按钮被点击响应的通知。
+    
+    
+    
+    MPMoviePlayerController* theMovie = [notify object];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self
+     
+     
+     
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+     
+     
+     
+                                                object:theMovie];
+    
+    
+    
+    [self dismissMoviePlayerViewControllerAnimated];
+    
+    
+    
+}
+-(void)yinyuebofang:(NSString*)sss{
+    MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:sss ]];
+    [moviePlayer.moviePlayer prepareToPlay];
+    [self presentMoviePlayerViewControllerAnimated:moviePlayer]; // 这里是presentMoviePlayerViewControllerAnimated
+    [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieFinishedCallback:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer.moviePlayer];
+    
 }
 
 
