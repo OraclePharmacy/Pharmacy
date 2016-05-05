@@ -27,6 +27,7 @@
 {
     CGFloat width;
     CGFloat heigth;
+    UITableView*wocalei;
     UITableViewCell *cell;
     UITextField *SearchText;
     NSMutableArray *arrImage;
@@ -64,6 +65,7 @@
     
     int panduan;
     
+    NSArray*wocalede;
     NSArray *arr1;
     NSString *str;
 }
@@ -89,6 +91,10 @@
     gao = width/4/156*184;
     kuan = width/4;
     
+    wocalei=[[UITableView alloc] initWithFrame:CGRectMake((width-300)/2, (heigth-64-50-500)/2, 300, 500)];
+    wocalei.delegate=self;
+    wocalei.dataSource=self;
+    wocalei.hidden=YES;
     //Tab bar 颜色
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
    
@@ -242,7 +248,7 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"newsList"];
-                
+                NSLog(@"----****----\n\n图片轮播\n\n%@",arr);
                 
                 for (int i = 0; i < arr.count; i++) {
                     
@@ -371,14 +377,14 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 presentarray = [datadic objectForKey:@"integralGiftList"];
                 
-                NSLog(@"presentarray%@",presentarray);
+                NSLog(@"-----****---\n\n特价药品\n\npresentarray%@",presentarray);
                 
                 for (int i = 0; i < presentarray.count; i++) {
                     
@@ -412,13 +418,17 @@
 #pragma tableview
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+{if(tableView==wocalei){
+    return 1;
+}else
     return 6;
 }
 
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+{   if(tableView==wocalei){
+    return 5;
+}else{
     if (section == 0)
     {
         return 1;
@@ -445,9 +455,12 @@
     }
     return 0;
 }
+}
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
+{if(tableView==wocalei){
+    return 40;
+}else{
     if (indexPath.section == 0)
     {
         return 150;
@@ -474,9 +487,12 @@
     }
     return 0;
 }
+}
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+{if(tableView==wocalei){
+    return 0;
+}else{
     if (section == 0)
     {
         return 0;
@@ -503,9 +519,11 @@
     }
     return 0;
 }
+}
 //编辑header内容
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+   
     if (section == 4) {
         
         UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
@@ -562,6 +580,23 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
 
+    
+    if (tableView==wocalei) {
+        UILabel *name = [[UILabel alloc]init];
+        name.frame  =  CGRectMake(0, 0, _tableview.frame.size.width, 39);
+        name.font = [UIFont systemFontOfSize:15.0];
+        name.textAlignment = NSTextAlignmentCenter;
+        name.textColor = [UIColor blackColor];
+        if (indexPath.row==0) {
+            name.textColor = [UIColor blueColor];
+            name.text=@"请选择门店";
+        }else{
+            name.text = [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
+        }
+        [cell.contentView addSubview:name];
+    }else{
+    
+    
     if (indexPath.section == 0) {
         
         if (arrImage.count < 1 )
@@ -600,6 +635,7 @@
         [self fourButton];
         
     }
+    //特价药品
     else if (indexPath.section == 2)
     {
         
@@ -685,6 +721,7 @@
         self.scrollView.showsHorizontalScrollIndicator = NO;
         
     }
+    //积分礼品
     else if (indexPath.section == 3)
     {
         
@@ -726,7 +763,7 @@
             UIImageView *imageview = [[UIImageView alloc]init];
             imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
             NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
-            [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@""]];
+            [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
             //名称
             UILabel *name = [[UILabel alloc]init];
             name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
@@ -793,16 +830,25 @@
         [cell.contentView addSubview:neirong];
         
     }
-    else if (indexPath.section == 4)
+    else if (indexPath.section == 5)
     {
+        
+        
         cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    }
+    
     }
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView==wocalei) {
+        NSLog(@"%@",wocalede[indexPath.row]);
+        wocalei=nil;
+    }
+}
 //特价药品展示   药品详情
 - (void)handleClick1:(UIButton *)btn{
     
@@ -1172,12 +1218,12 @@
                 else if ([[responseObject objectForKey:@"code"] intValue]==0){
                     //5个门店的列表
                     panduan=2;
-                    arr=[NSArray array];
-                    arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                    wocalede=[NSArray array];
+                    wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     
-                    [_tableview reloadData];
-                    [self.tableview reloadData];
-                    self.tableview.hidden = NO;
+                    [wocalei reloadData];
+                    [wocalei reloadData];
+                    wocalei.hidden = NO;
                     
                     
                     
@@ -1357,12 +1403,12 @@ int nicaicai=0;
                 else if ([[responseObject objectForKey:@"code"] intValue]==0){
                     //5个门店的列表
                     panduan=2;
-                    arr=[NSArray array];
-                    arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                    wocalede=[NSArray array];
+                    wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     
-                    [_tableview reloadData];
-                    [self.tableview reloadData];
-                    self.tableview.hidden = NO;
+                    [wocalei reloadData];
+                    [wocalei reloadData];
+                     wocalei.hidden = NO;
                     
                 }
             }
