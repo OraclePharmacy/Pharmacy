@@ -1425,7 +1425,6 @@
 				TargetAttributes = {
 					9505D6C81C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = KBRTKNG36Q;
 					};
 					9505D6E11C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1802,7 +1801,7 @@
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy1;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1818,7 +1817,7 @@
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy1;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

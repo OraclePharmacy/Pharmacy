@@ -20,7 +20,7 @@
     
     //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
     if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
-        [self addLocalNotification];
+        [self addLocalNotification:nil];
     }else{
         [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
     }
@@ -31,7 +31,7 @@
 #pragma mark 调用过用户注册通知方法之后执行（也就是调用完registerUserNotificationSettings:方法之后执行）
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
     if (notificationSettings.types!=UIUserNotificationTypeNone) {
-        [self addLocalNotification];
+        [self addLocalNotification:nil];
     }
 }
 
@@ -42,14 +42,21 @@
 
 #pragma mark - 私有方法
 #pragma mark 添加本地通知
--(void)addLocalNotification{
-    
+-(void)addLocalNotification:(NSArray *)add{
+    if (add==nil) {
+        UILocalNotification *notification=[[UILocalNotification alloc]init];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+
+    }else{
+        for (int i=0; i<add.count; i++) {
+            
+        
     //定义本地通知对象
     UILocalNotification *notification=[[UILocalNotification alloc]init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm:ss"];
     //触发通知的时间
-    NSDate *now = [formatter dateFromString:@"14:35:00"];
+    NSDate *now = [formatter dateFromString:[NSString stringWithFormat:@"%@",add[i]]];
     notification.fireDate = now;
     //时区
     notification.timeZone = [NSTimeZone defaultTimeZone];
@@ -73,6 +80,10 @@
     
     //调用通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    NSLog(@"sss");
+        }
+    }
 }
 
 #pragma mark 移除本地通知，在不需要此通知时记得移除

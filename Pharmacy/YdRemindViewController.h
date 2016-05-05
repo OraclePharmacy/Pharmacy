@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdRemindViewController : UIViewController
+@interface YdRemindViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+
+@property (strong,nonatomic) UITableView *tableview;
 
 @end

@@ -1212,7 +1212,7 @@
         <!--Yd Remind View Controller-->
         <scene sceneID="CD8-OW-EDp">
             <objects>
-                <viewController storyboardIdentifier="remind" id="qx4-B8-3oc" customClass="YdRemindViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="remind" hidesBottomBarWhenPushed="YES" id="qx4-B8-3oc" customClass="YdRemindViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8rH-nz-SaY"/>
                         <viewControllerLayoutGuide type="bottom" id="Mwr-TG-H5h"/>
