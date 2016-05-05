@@ -173,12 +173,12 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 1;
 }
 //行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 65;
+    return 55;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -189,10 +189,25 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
     
-    cell.textLabel.text = @"1";
-    cell.textLabel.textColor = [UIColor blackColor];
+    UILabel *ci = [[UILabel alloc]init];
+    ci.frame = CGRectMake(10, 5, 80, 20);
+    ci.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    ci.font = [UIFont systemFontOfSize:15];
+    ci.text = @"一日四次";
     
-    
+    UILabel *time = [[UILabel alloc]init];
+    time.frame = CGRectMake(10, 30, 200, 20);
+    time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+    time.font = [UIFont systemFontOfSize:15];
+    time.text = @"12.00,12.00,12.00,12.00";
+
+    UISwitch *kai = [[UISwitch alloc]init];
+    kai.frame = CGRectMake(width - 60, 15, 30, 15);
+    [kai addTarget: self action:@selector(switchIsChanged:) forControlEvents:UIControlEventValueChanged];
+
+    [cell.contentView addSubview:ci];
+    [cell.contentView addSubview:time];
+    [cell.contentView addSubview:kai];
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
@@ -202,6 +217,7 @@
     
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 1;
@@ -217,12 +233,15 @@
         [queding removeFromSuperview];
         [quxiao removeFromSuperview];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒的次数" message:@"请选择需要的提醒次数"delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
+        
         [alert show];
     }
     else
     {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒的次数" message:@"请选择需要的提醒次数"delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
-    [alert show];
+   
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒的次数" message:@"请选择需要的提醒次数"delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
+        
+        [alert show];
     }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -245,7 +264,15 @@
     }
     
 }
-
+//开关
+-(void)switchIsChanged:(UISwitch *)paramSender{
+    NSLog(@"Sender is=%@",paramSender);
+    if([paramSender isOn]){//如果开关状态为ON
+        NSLog(@"The switch is turned on.");
+    }else{
+        NSLog(@"The switch is turned off.");
+    }
+}
 -(void)fanhui
 {
     //返回上一页
