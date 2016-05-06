@@ -192,11 +192,23 @@
                 @try
                 {
                     [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                    NSLog(@"%@",responseObject);
-                    if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    NSLog(@"登陆返回－－－＊＊＊－－－\n\n\n%@",responseObject);
+                    if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                         
                         NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                        NSLog(@"%@",datadic);
+                        NSDictionary*vipInfoReturnList=[NSDictionary dictionaryWithDictionary:[datadic objectForKey:@"vipInfoReturnList"]];
+NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
+                        NSFileManager*fm=[NSFileManager defaultManager];
+                        if ([fm fileExistsAtPath:path]) {
+                           
+                            [fm removeItemAtPath:path error:NULL];
+                            
+                        }
+                        
+                        NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+                        [vipInfoReturnList writeToFile:path1 atomically:YES];
+                        NSLog(@"%@",NSHomeDirectory());
+                        
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
                             [self presentViewController:Root animated:YES completion:^{
@@ -204,12 +216,9 @@
                             }];
                             
                         });
-                        
-                        
-                        
+                       
                     }
-                    
-                    
+                  
                 }
                 @catch (NSException * e) {
                     

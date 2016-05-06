@@ -13,10 +13,13 @@
 #import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
 #import "WarningBox.h"
 #import "SBJsonWriter.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 @interface YdPersonalInformationViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate>
 {
     CGFloat width;
     CGFloat height;
+    
+    NSString*zhid;
     
     UIButton *nan;
     UIButton *nv;
@@ -82,13 +85,15 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
-    NSFileManager*fm=[NSFileManager defaultManager];
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi"];
-    if ([fm fileExistsAtPath:path]) {
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path];
-        [self fuzhi:pp];
-    }else
+    
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path];
+    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    if ([pp objectForKey:@"age"]==nil) {
         [self fuzhi:nil];
+        
+    }else
+        [self fuzhi:pp];
 }
 -(void)fuzhi:(NSDictionary*)dd{
     textField1 = [[UITextField alloc]init];
@@ -184,10 +189,11 @@
     if ([fm fileExistsAtPath:path]) {
     toux.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
         _image=toux.image;
-    }else if([dd objectForKey:@"touxiang"]!=nil){
+    }else if([dd objectForKey:@"photo"]!=nil){
         //接取网络图片;   _image=tou.image;   toux.image=[UIImage ]
-        
-        
+        NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[dd objectForKey:@"photo"]]];
+        NSLog(@"%@",url);
+        [toux sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
         
     }else
     toux.image =[UIImage imageNamed:@"小人@2x.png"];
@@ -691,17 +697,17 @@
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
             //出入参数：
-            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",@"1000",@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
-            NSLog(@"%@",datadic);
-            NSLog(@"%@",url);
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",zhid,@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
+            
             NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-            NSLog(@"%@",url1);
+            
             
             [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                 
                 //对图片进行多个上传
                 
-                UIImage *Img=_image;
+                
+                UIImage *Img=toux.image;
                 NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用png方法需添加png压缩方法
                 NSDateFormatter *fm = [[NSDateFormatter alloc] init];
                 // 设置时间格式
@@ -718,11 +724,11 @@
                 @try
                 {
                     [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                    NSLog(@"%@",responseObject);
+                    NSLog(@"上传个人信息返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                         //把上传的数据存到本地
                         
-                        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi"];
+                        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
                         [datadic writeToFile:path atomically:YES];
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

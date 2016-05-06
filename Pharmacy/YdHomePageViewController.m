@@ -46,6 +46,7 @@
     
     UIView * pickerview;
     UIPickerView *picke;
+    UIButton *SearchButton;
     
     NSString*jing;
     NSString*wei;
@@ -91,10 +92,14 @@
     gao = width/4/156*184;
     kuan = width/4;
     
-    wocalei=[[UITableView alloc] initWithFrame:CGRectMake((width-300)/2, (heigth-64-50-500)/2, 300, 500)];
+    wocalei=[[UITableView alloc] initWithFrame:CGRectMake((width-200)/2, (heigth-64-50-240)/2, 200, 240)];
     wocalei.delegate=self;
     wocalei.dataSource=self;
     wocalei.hidden=YES;
+    [wocalei.layer setBorderWidth:1];
+    [wocalei.layer setCornerRadius:30];
+    [wocalei.layer setBorderColor:[[UIColor greenColor] CGColor]];
+    [self.view addSubview:wocalei];
     //Tab bar 颜色
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
    
@@ -110,9 +115,9 @@
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    
+    //表头
     [self SearchView];
-    [self bargaingoodsjiekou];
+    
     //调用定位
     [self initializeLocationService];
 
@@ -132,7 +137,7 @@
     
     //创建button
     //设置基本属性
-    UIButton *SearchButton = [[UIButton alloc]init];
+    SearchButton = [[UIButton alloc]init];
     
     SearchButton.frame = CGRectMake(0, 3, 150, 15);
     
@@ -192,9 +197,11 @@
 -(void)searchbutton
 {
     //调用定位方法。。。
+    [self zidongdingwei];
     //弹出列表
     
-    NSLog(@"暂时不需要跳页,但是有此方法");
+    
+   
 }
 #pragma  第一组 轮播
 
@@ -427,7 +434,7 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {   if(tableView==wocalei){
-    return 5;
+    return wocalede.count+1;
 }else{
     if (section == 0)
     {
@@ -490,7 +497,8 @@
 }
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{if(tableView==wocalei){
+{
+    if(tableView==wocalei){
     return 0;
 }else{
     if (section == 0)
@@ -523,7 +531,9 @@
 //编辑header内容
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-   
+    if (tableView==wocalei) {
+        
+    }else{
     if (section == 4) {
         
         UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
@@ -567,7 +577,7 @@
         return baseView;
 
     }
-    
+    }
     return nil;
 }
 //编辑Cell
@@ -583,7 +593,7 @@
     
     if (tableView==wocalei) {
         UILabel *name = [[UILabel alloc]init];
-        name.frame  =  CGRectMake(0, 0, _tableview.frame.size.width, 39);
+        name.frame  =  CGRectMake(0, 0, wocalei.frame.size.width, 39);
         name.font = [UIFont systemFontOfSize:15.0];
         name.textAlignment = NSTextAlignmentCenter;
         name.textColor = [UIColor blackColor];
@@ -845,9 +855,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==wocalei) {
-        NSLog(@"%@",wocalede[indexPath.row]);
-        wocalei=nil;
-    }
+        if (indexPath.row!=0) {
+            NSString*haha=[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"] ];
+            [SearchButton setTitle:haha forState:UIControlStateNormal];
+            wocalei.hidden=YES;
+            panduan=0;
+            
+            [self bargaingoodsjiekou];
+        }
+        
+        
+    }else
+    wocalei.hidden=YES;
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    wocalei.hidden=YES;
 }
 //特价药品展示   药品详情
 - (void)handleClick1:(UIButton *)btn{
@@ -909,8 +931,7 @@
     float w=[[UIScreen mainScreen] bounds].size.width;
     float h=[[UIScreen mainScreen] bounds].size.height;
     
-    pickerview.backgroundColor=[UIColor redColor];
-    picke.backgroundColor=[UIColor greenColor];
+    
     
     pickerview.hidden=NO;
     
@@ -946,6 +967,8 @@
     
     pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
     picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
+    pickerview.backgroundColor=[UIColor redColor];
+    picke.backgroundColor=[UIColor greenColor];
     
     picke.delegate = self;
     picke.dataSource = self;
@@ -1222,7 +1245,7 @@
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     
                     [wocalei reloadData];
-                    [wocalei reloadData];
+                    
                     wocalei.hidden = NO;
                     
                     
@@ -1427,7 +1450,7 @@ int nicaicai=0;
         
     }
     else if (panduan==2){
-        _tableview.hidden=NO;
+        wocalei.hidden=NO;
         
     }else{
         [self sanji];

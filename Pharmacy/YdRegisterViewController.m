@@ -60,7 +60,7 @@
     self.tableview.dataSource = self;
     [self.tableview.layer setBorderWidth:1];
     [self.tableview.layer setBorderColor:[[UIColor greenColor] CGColor]];
-    [self.tableview.layer setCornerRadius:5];
+    [self.tableview.layer setCornerRadius:30];
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.bejing.hidden = YES;
