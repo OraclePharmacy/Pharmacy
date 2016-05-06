@@ -40,6 +40,7 @@
 		9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */; };
 		9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D7381C9A9D88006F6850 /* AVFoundation.framework */; };
 		9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9505D73A1C9A9D91006F6850 /* AdSupport.framework */; };
+		950665031CDC307A00C3AED3 /* YdNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950665021CDC307A00C3AED3 /* YdNewsViewController.m */; };
 		9509565D1CC74C3700A10A5A /* 小人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9509565C1CC74C3700A10A5A /* 小人@2x.png */; };
 		9509565F1CC75FE600A10A5A /* sexnv@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9509565E1CC75FE600A10A5A /* sexnv@3x.png */; };
 		950956611CC7600D00A10A5A /* sex1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950956601CC7600D00A10A5A /* sex1@3x.png */; };
@@ -260,6 +261,8 @@
 		9505D7361C9A9D34006F6850 /* YdGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdGenerateViewController.m; sourceTree = "<group>"; };
 		9505D7381C9A9D88006F6850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9505D73A1C9A9D91006F6850 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		950665011CDC307A00C3AED3 /* YdNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdNewsViewController.h; sourceTree = "<group>"; };
+		950665021CDC307A00C3AED3 /* YdNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdNewsViewController.m; sourceTree = "<group>"; };
 		9509565C1CC74C3700A10A5A /* 小人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小人@2x.png"; sourceTree = "<group>"; };
 		9509565E1CC75FE600A10A5A /* sexnv@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sexnv@3x.png"; sourceTree = "<group>"; };
 		950956601CC7600D00A10A5A /* sex1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sex1@3x.png"; sourceTree = "<group>"; };
@@ -712,6 +715,7 @@
 			children = (
 				9505D7031C9A7F72006F6850 /* YdHomePageViewController.h */,
 				9505D7041C9A7F72006F6850 /* YdHomePageViewController.m */,
+				950665041CDC35FA00C3AED3 /* 消息 */,
 				9537CFC81CC9D7FA0031021A /* 代购药 */,
 				95EBA8741CBB9F1A00A48D80 /* 问药师 */,
 				95C3726F1CB6431D0083AC90 /* 有惊喜 */,
@@ -807,6 +811,15 @@
 				9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */,
 			);
 			name = "扫描后跳转";
+			sourceTree = "<group>";
+		};
+		950665041CDC35FA00C3AED3 /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				950665011CDC307A00C3AED3 /* YdNewsViewController.h */,
+				950665021CDC307A00C3AED3 /* YdNewsViewController.m */,
+			);
+			name = "消息";
 			sourceTree = "<group>";
 		};
 		950A5AAD1CC899A500A04F95 /* 列表 */ = {
@@ -1613,6 +1626,7 @@
 				95609EA91CABC72E00AF65E4 /* SBJsonWriter.m in Sources */,
 				9502A49C1C9CF38500578339 /* YdSearchViewController.m in Sources */,
 				9505D70E1C9A7FF7006F6850 /* RESideMenu.m in Sources */,
+				950665031CDC307A00C3AED3 /* YdNewsViewController.m in Sources */,
 				95609EF51CABC74E00AF65E4 /* SDImageCache.m in Sources */,
 				9505D70F1C9A7FF7006F6850 /* UIViewController+RESideMenu.m in Sources */,
 				958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */,

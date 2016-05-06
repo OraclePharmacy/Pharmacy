@@ -1113,6 +1113,24 @@
             </objects>
             <point key="canvasLocation" x="5478" y="-5325"/>
         </scene>
+        <!--Yd News View Controller-->
+        <scene sceneID="7v7-mG-xM0">
+            <objects>
+                <viewController storyboardIdentifier="news" id="O0I-UT-mZD" customClass="YdNewsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cOX-Kf-KwO"/>
+                        <viewControllerLayoutGuide type="bottom" id="bUr-9X-gEQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Mg-fe-sLG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ktT-lf-HPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6130" y="-5325"/>
+        </scene>
         <!--服务-->
         <scene sceneID="Aut-Xx-fmt">
             <objects>

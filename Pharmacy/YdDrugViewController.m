@@ -359,7 +359,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"心脑血管",@"level2Name",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:ss,@"level2Name",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -367,7 +367,6 @@
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    NSLog(@"%@",url1);
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];

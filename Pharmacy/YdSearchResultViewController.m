@@ -90,7 +90,7 @@
     if (zhi == 1) {
         return 50;
     }
-    return 115;
+    return 116;
 }
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -135,28 +135,44 @@
     {
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(5, 5, 80, 80);
-        image.backgroundColor = [UIColor grayColor];
+        image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
+        
         
         UILabel *name = [[UILabel alloc]init];
         name.frame = CGRectMake(90, 5, width - 95, 20);
-        name.backgroundColor = [UIColor purpleColor];
+        name.font = [UIFont systemFontOfSize:15];
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        name.text = @"硝苯地平片";
         
         UILabel *chufang = [[UILabel alloc]init];
         chufang.frame = CGRectMake(90, 25, width - 95 , 20);
-        chufang.backgroundColor = [UIColor grayColor];
+        chufang.font = [UIFont systemFontOfSize:13];
+        chufang.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
+        chufang.text = @"非处方药";
         
         UILabel *guige = [[UILabel alloc]init];
         guige.frame = CGRectMake(90, 45, width - 95, 20);
-        guige.backgroundColor = [UIColor purpleColor];
+        guige.font = [UIFont systemFontOfSize:11];
+        guige.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        guige.text = @"规格/暂无";
         
         UILabel *changjia = [[UILabel alloc]init];
         changjia.frame = CGRectMake(90, 64, width - 95, 20);
-        changjia.backgroundColor = [UIColor grayColor];
+        changjia.font = [UIFont systemFontOfSize:11];
+        changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        changjia.text = @"厂家/暂无";
         
         UILabel *jianjie = [[UILabel alloc]init];
         jianjie.frame = CGRectMake(5, 85, width - 10, 30);
-        jianjie.backgroundColor = [UIColor greenColor];
+        jianjie.font = [UIFont systemFontOfSize:11];
+        jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        jianjie.numberOfLines = 2;
+        jianjie.text = @"简介:该药品为某某某药厂生产，主要针对病症有,拉肚子,感冒,高血压,高血糖,失眠,多梦.";
         
+        
+        UIView *xian = [[UIView alloc]init];
+        xian.frame = CGRectMake(0, 115, width, 1);
+        xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
         
         [cell.contentView addSubview:image];
         [cell.contentView addSubview:name];
@@ -164,6 +180,7 @@
         [cell.contentView addSubview:guige];
         [cell.contentView addSubview:changjia];
         [cell.contentView addSubview:jianjie];
+        [cell.contentView addSubview:xian];
     }
     
     //cell点击不变色

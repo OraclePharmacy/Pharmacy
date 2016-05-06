@@ -47,7 +47,6 @@
     [self CreateSearch];
     [self biaoqian];
     
-    
 }
 -(void)biaoqian{
     //userID    暂时不用改
@@ -75,7 +74,6 @@
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
@@ -118,7 +116,7 @@
 
 -(void)remen
 {
-//    arr = @[@"水电费水电费",@"阿斯蒂芬",@"说的顶顶顶顶",@"唉",@"西门吹雪",@"呵呵哒",@"快看看",@"窿窿啦啦",@"一杆禽兽狙",@"合欢花",@"暴走大事件",@"非诚勿扰",@"呵呵呵"];
+
     CGFloat w = 0;//保存前一个button的宽以及前一个button距离屏幕边缘的距离
     CGFloat h = 75;//用来控制button距离父视图的高
     for (int i = 0; i < arr.count; i++) {
@@ -190,68 +188,68 @@
     [self.navigationItem.titleView endEditing:YES];
     
     
-//    //userID    暂时不用改
-//    NSString * userID=@"0";
-//    
-//    //请求地址   地址不同 必须要改
-//    NSString * url =@"/product/searchList";
-//    
-//    //时间戳
-//    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-//    NSTimeInterval a=[dat timeIntervalSince1970];
-//    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-//    
-//    
-//    //将上传对象转换为json格式字符串
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-//    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-//    //出入参数：
-//    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords", nil];
-//    
-//    NSString*jsonstring=[writer stringWithObject:datadic];
-//    
-//    //获取签名
-//    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-//    
-//    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-//
-//    //电泳借口需要上传的数据
-//    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-//    NSLog(@"%@",dic);
-//    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        [WarningBox warningBoxHide:YES andView:self.view];
-//        @try
-//        {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-//            NSLog(@"%@",responseObject);
-//            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-//                
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/product/searchList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords",@"1",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    NSLog(@"dic%@",dic);
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
                 //NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 //NSLog(@"%@",datadic);
                 //跳转到病症/药品界面
-                YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
-                [self.navigationController pushViewController:SearchResult animated:YES];
+//                YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
+//                [self.navigationController pushViewController:SearchResult animated:YES];
                 
-//            }
-//            
-//            
-//        }
-//        @catch (NSException * e) {
-//            
-//            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-//            
-//        }
-//        
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [WarningBox warningBoxHide:YES andView:self.view];
-//        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-//        NSLog(@"错误：%@",error);
-//    }];
-//
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
+
 }
 //导航栏左按钮方法
 -(void)fanhui
