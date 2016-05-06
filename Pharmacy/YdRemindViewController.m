@@ -193,17 +193,34 @@
     ci.frame = CGRectMake(10, 5, 80, 20);
     ci.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     ci.font = [UIFont systemFontOfSize:15];
-    ci.text = @"一日四次";
     
     UILabel *time = [[UILabel alloc]init];
     time.frame = CGRectMake(10, 30, 200, 20);
     time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     time.font = [UIFont systemFontOfSize:15];
-    time.text = @"12.00,12.00,12.00,12.00";
 
     UISwitch *kai = [[UISwitch alloc]init];
     kai.frame = CGRectMake(width - 60, 15, 30, 15);
     [kai addTarget: self action:@selector(switchIsChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    if (str == 1) {
+        ci.text = @"一日一次";
+        time.text = @"12.00";
+    }
+    else if (str == 2){
+        ci.text = @"一日两次";
+        time.text = @"12.00,12.00";
+    }
+    else if (str == 2){
+        ci.text = @"一日三次";
+        time.text = @"12.00,12.00,12.00";
+    }
+    else if (str == 4){
+        ci.text = @"一日四次";
+        time.text = @"12.00,12.00,12.00,12.00";
+    }
+
+
 
     [cell.contentView addSubview:ci];
     [cell.contentView addSubview:time];

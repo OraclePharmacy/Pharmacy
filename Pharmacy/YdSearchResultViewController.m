@@ -7,7 +7,7 @@
 //
 
 #import "YdSearchResultViewController.h"
-
+#import "Color+Hex.h"
 @interface YdSearchResultViewController ()
 {
     CGFloat width;
@@ -26,6 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    zhi = 1;
+    
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
@@ -49,7 +54,7 @@
     _segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
     _segmentedControl.frame = CGRectMake(0,0,width/2,30);
     _segmentedControl.selectedSegmentIndex = 0;//设置默认选择项索引
-    _segmentedControl.tintColor = [UIColor grayColor];
+    _segmentedControl.tintColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [_segmentedControl addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
     //显示在导航栏
     self.navigationItem.titleView = self.segmentedControl;
@@ -82,7 +87,10 @@
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 0;
+    if (zhi == 1) {
+        return 50;
+    }
+    return 115;
 }
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -103,7 +111,63 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
+    if (zhi == 1) {
+        
+        cell.textLabel.text = @"其他疾病";
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1 ];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        
+        
+        //    UILabel *renqi = [[UILabel alloc]init];
+        //    renqi.frame = CGRectMake(width - 120, 10, 100, 20);
+        //    renqi.text = @"人气:12345";
+        //    renqi.textColor = [UIColor redColor];
+        //    renqi.font = [UIFont systemFontOfSize:13];
+        
+        
+        //    [cell.contentView addSubview:renqi];
+        
+        //显示最右边的箭头
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    }
+    else
+    {
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(5, 5, 80, 80);
+        image.backgroundColor = [UIColor grayColor];
+        
+        UILabel *name = [[UILabel alloc]init];
+        name.frame = CGRectMake(90, 5, width - 95, 20);
+        name.backgroundColor = [UIColor purpleColor];
+        
+        UILabel *chufang = [[UILabel alloc]init];
+        chufang.frame = CGRectMake(90, 25, width - 95 , 20);
+        chufang.backgroundColor = [UIColor grayColor];
+        
+        UILabel *guige = [[UILabel alloc]init];
+        guige.frame = CGRectMake(90, 45, width - 95, 20);
+        guige.backgroundColor = [UIColor purpleColor];
+        
+        UILabel *changjia = [[UILabel alloc]init];
+        changjia.frame = CGRectMake(90, 64, width - 95, 20);
+        changjia.backgroundColor = [UIColor grayColor];
+        
+        UILabel *jianjie = [[UILabel alloc]init];
+        jianjie.frame = CGRectMake(5, 85, width - 10, 30);
+        jianjie.backgroundColor = [UIColor greenColor];
+        
+        
+        [cell.contentView addSubview:image];
+        [cell.contentView addSubview:name];
+        [cell.contentView addSubview:chufang];
+        [cell.contentView addSubview:guige];
+        [cell.contentView addSubview:changjia];
+        [cell.contentView addSubview:jianjie];
+    }
     
+    //cell点击不变色
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
