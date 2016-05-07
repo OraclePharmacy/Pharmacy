@@ -191,7 +191,7 @@
     //隐藏键盘
     [self.navigationItem.titleView endEditing:YES];
     
-    
+    [WarningBox warningBoxModeIndeterminate:@"搜索中..." andView:self.view];
     //userID    暂时不用改
     NSString * userID=@"0";
     

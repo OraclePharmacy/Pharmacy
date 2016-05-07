@@ -208,6 +208,7 @@
         
         YdDiseaseViewController *Disease = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"disease"];
         Disease.bingzhengID = [_bingzheng[indexPath.row] objectForKey:@"id"];
+        Disease.bingzhengname = [_bingzheng[indexPath.row] objectForKey:@"name"];
         [self.navigationController pushViewController:Disease animated:YES];
         
     }

@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdDiseaseViewController : UIViewController
+@interface YdDiseaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong,nonatomic) NSString *bingzhengID;
+@property (strong,nonatomic) NSString *bingzhengname;
+
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
 
 @end
