@@ -10,4 +10,6 @@
 
 @interface YdDiseaseViewController : UIViewController
 
+@property (strong,nonatomic) NSString *bingzhengID;
+
 @end

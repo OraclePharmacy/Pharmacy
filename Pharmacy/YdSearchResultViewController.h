@@ -12,4 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
+@property (strong,nonatomic) NSArray *bingzheng;
+@property (strong,nonatomic) NSArray *yaopin;
+
 @end

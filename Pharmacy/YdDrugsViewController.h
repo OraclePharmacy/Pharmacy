@@ -10,4 +10,6 @@
 
 @interface YdDrugsViewController : UIViewController
 
+@property (strong,nonatomic) NSString *yaopinID;
+
 @end

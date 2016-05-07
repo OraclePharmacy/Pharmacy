@@ -8,6 +8,10 @@
 
 #import "YdSearchResultViewController.h"
 #import "Color+Hex.h"
+#import "YdDiseaseViewController.h"
+#import "YdDrugsViewController.h"
+#import "hongdingyi.h"
+#import "UIImageView+WebCache.h"
 @interface YdSearchResultViewController ()
 {
     CGFloat width;
@@ -82,7 +86,15 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (zhi == 1)
+    {
+        return _bingzheng.count;
+    }
+    else if (zhi == 2)
+    {
+        return _yaopin.count;
+    }
+    return 0;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -113,7 +125,7 @@
     }
     if (zhi == 1) {
         
-        cell.textLabel.text = @"其他疾病";
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[_bingzheng[indexPath.row] objectForKey:@"name"]];
         cell.textLabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1 ];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         
@@ -135,39 +147,40 @@
     {
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(5, 5, 80, 80);
-        image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
-        
+        //image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[_yaopin[indexPath.row] objectForKey:@"picUrl"]] ;
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
         
         UILabel *name = [[UILabel alloc]init];
         name.frame = CGRectMake(90, 5, width - 95, 20);
         name.font = [UIFont systemFontOfSize:15];
         name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        name.text = @"硝苯地平片";
+        name.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"name"]];
         
         UILabel *chufang = [[UILabel alloc]init];
         chufang.frame = CGRectMake(90, 25, width - 95 , 20);
         chufang.font = [UIFont systemFontOfSize:13];
         chufang.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
-        chufang.text = @"非处方药";
+        chufang.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"prescription"]];
         
         UILabel *guige = [[UILabel alloc]init];
         guige.frame = CGRectMake(90, 45, width - 95, 20);
         guige.font = [UIFont systemFontOfSize:11];
         guige.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        guige.text = @"规格/暂无";
+        guige.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"specification"]];
         
         UILabel *changjia = [[UILabel alloc]init];
         changjia.frame = CGRectMake(90, 64, width - 95, 20);
         changjia.font = [UIFont systemFontOfSize:11];
         changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        changjia.text = @"厂家/暂无";
+        changjia.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"manufacturer"]];
         
         UILabel *jianjie = [[UILabel alloc]init];
         jianjie.frame = CGRectMake(5, 85, width - 10, 30);
         jianjie.font = [UIFont systemFontOfSize:11];
         jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         jianjie.numberOfLines = 2;
-        jianjie.text = @"简介:该药品为某某某药厂生产，主要针对病症有,拉肚子,感冒,高血压,高血糖,失眠,多梦.";
+        jianjie.text = [NSString stringWithFormat:@"药品简介:%@",[_yaopin[indexPath.row] objectForKey:@"summary"]];
         
         
         UIView *xian = [[UIView alloc]init];
@@ -187,6 +200,25 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (zhi == 1) {
+        
+        YdDiseaseViewController *Disease = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"disease"];
+        Disease.bingzhengID = [_bingzheng[indexPath.row] objectForKey:@"id"];
+        [self.navigationController pushViewController:Disease animated:YES];
+        
+    }
+    else if (zhi == 2) {
+        
+        YdDrugsViewController *Drugs = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
+        Drugs.yaopinID = [_yaopin[indexPath.row] objectForKey:@"prodId"];
+        [self.navigationController pushViewController:Drugs animated:YES];
+        
+    }
+    
 }
 
 //导航左按钮

@@ -26,6 +26,9 @@
     UISearchBar *searchbar;
     
     NSArray *arr;
+    
+    NSArray *bingzheng;
+    NSArray *yaopin;
 }
 @end
 
@@ -150,6 +153,7 @@
     
     [self.navigationItem.titleView endEditing:YES];
     
+    
     //跳转到病症/药品界面
     YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
     [self.navigationController pushViewController:SearchResult animated:YES];
@@ -205,7 +209,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords",@"1",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"高血压",@"keywords",@"2",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -216,22 +220,30 @@
 
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"dic%@",dic);
-    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
+            //NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
-                //NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                //NSLog(@"%@",datadic);
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                bingzheng = [datadic objectForKey:@"BzSearchList"];
+                yaopin = [datadic objectForKey:@"AddSearchList"];
+                
+//                NSLog(@"bingzheng%@",bingzheng);
+//                NSLog(@"yaopin%@",yaopin);
+                
                 //跳转到病症/药品界面
-//                YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
-//                [self.navigationController pushViewController:SearchResult animated:YES];
+                YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
+                SearchResult.bingzheng = bingzheng;
+                SearchResult.yaopin = yaopin;
+                [self.navigationController pushViewController:SearchResult animated:YES];
                 
             }
             

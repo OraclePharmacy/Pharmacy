@@ -27,6 +27,8 @@
     
     NSInteger rowNo;
     
+    NSArray *arr;
+    
     NSMutableArray *DiseaseLableArray;
     NSMutableArray *DiseaseImageArray;
 }
@@ -36,6 +38,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //初始化数组
+    DiseaseLableArray = [[NSMutableArray alloc]init];
+    DiseaseImageArray = [[NSMutableArray alloc]init];
+    
     _Tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];    
@@ -56,7 +63,7 @@
     [self addButton];
     [self banner1];
     
-    [self AddDisease];
+    //[self AddDisease];
 }
 
 -(void)AddDisease
@@ -100,7 +107,7 @@
     //通过tag属性获取单元格内的lable控件
     UILabel *lable = (UILabel *)[cell viewWithTag:2];
     //为单元格内的UIlable控件设置文本
-    lable.text =DiseaseLableArray[rowNo];
+    lable.text = DiseaseLableArray[rowNo];
     return cell;
 }
 //设置单元格个数
@@ -320,12 +327,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
-    //初始化数组
-    DiseaseLableArray = [[NSMutableArray alloc]init];
-    DiseaseImageArray = [[NSMutableArray alloc]init];
-    
     NSString *ss = erji[indexPath.row];
-    NSLog(@"%@",ss);
+    //NSLog(@"%@",ss);
     //读取plist文件
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"disease.plist" ofType:nil];
 //    NSDictionary *staeArray;
@@ -384,10 +387,16 @@
             NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
-                [self AddDisease];
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                arr = [datadic objectForKey:@"productList"];
+                
+                
+                
+                [self.Collectionview reloadData];
+                
                 
             }
-            
             
         }
         @catch (NSException * e) {
@@ -395,7 +404,6 @@
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
-        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
