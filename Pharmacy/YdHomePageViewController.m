@@ -33,6 +33,7 @@
     NSMutableArray *arrImage;
     NSArray *arr;
     
+    NSString*MDID;
     NSInteger rowNo;
     CGFloat gao ;
     CGFloat kuan ;
@@ -40,7 +41,8 @@
     NSArray *presentarray;
     NSMutableArray *presentarrImage;
     
-    NSURL*urll;
+    NSArray *proList;
+    NSMutableArray *proListImage;
     
     CLLocationManager*_locationManager;
     
@@ -342,7 +344,7 @@
 {
     NSLog(@"four");
 }
-#pragma  第三组   第四组  特价药品  积分兑换
+#pragma  mark ---- 积分礼品接口
 //接口
 -(void)bargaingoodsjiekou
 {
@@ -376,7 +378,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"%@",dic);
+    NSLog(@"\n\n\n－－－礼品展示入参－－－\n\n\n%@",dic);
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -391,7 +393,7 @@
                 
                 presentarray = [datadic objectForKey:@"integralGiftList"];
                 
-                NSLog(@"-----****---\n\n特价药品\n\npresentarray%@",presentarray);
+                NSLog(@"-----****---\n\n礼品展示\n\npresentarray%@",presentarray);
                 
                 for (int i = 0; i < presentarray.count; i++) {
                     
@@ -420,9 +422,85 @@
         NSLog(@"错误：%@",error);
     }];
 }
+#pragma mark ---- 特价药品接口
+-(void)tejieyaopinjiekou{
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/product/proList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"2",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    NSLog(@"%@",dic);
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+           
+            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                proList = [datadic objectForKey:@"proList"];
+                
+                NSLog(@"-----****---\n\n特价药品\n\npresentarray%@",presentarray);
+                
+                for (int i = 0; i < presentarray.count; i++) {
+                    
+                    
+                    [presentarrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[presentarray[i] objectForKey:@"url"]]];
+                    
+                    
+                }
+                
+                [self.tableview reloadData];
+                
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
 
+    
+}
 
-#pragma tableview
+#pragma  mark ---- tableview
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {if(tableView==wocalei){
@@ -606,7 +684,7 @@
         [cell.contentView addSubview:name];
     }else{
     
-    
+    //轮播
     if (indexPath.section == 0) {
         
         if (arrImage.count < 1 )
@@ -638,7 +716,7 @@
         }
         
     }
-    
+    //四个按钮
     else if (indexPath.section == 1) {
         
         cell.contentView.backgroundColor = [UIColor clearColor];
@@ -678,7 +756,7 @@
         
         self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
         
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < proList.count; i++) {
             
             UIButton *IntegrationSix = [[UIButton alloc]init];
             IntegrationSix.tag = 400+i;
@@ -688,7 +766,7 @@
             //图片
             UIImageView *imageview = [[UIImageView alloc]init];
             imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
-            imageview.image = [UIImage imageNamed:@"IMG_0799.jpg"];
+            [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
             //名称
             UILabel *name = [[UILabel alloc]init];
             name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
@@ -860,14 +938,17 @@
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;
             panduan=0;
+//            MDID=[wocalei[indexPath.row-1]]
             
-            [self bargaingoodsjiekou];
+            [self tejieyaopinjiekou];
+//            [self bargaingoodsjiekou];
         }
         
         
     }else
     wocalei.hidden=YES;
 }
+#pragma  mark ---好多按钮
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     wocalei.hidden=YES;
 }
@@ -921,7 +1002,7 @@
     
 }
 
-#pragma 创建三级联动
+#pragma mark ----- 创建三级联动
 -(void)sanji
 {
     if (pickerview) {
@@ -1080,7 +1161,7 @@
             ///////判断是那个 省   那个  市   根据市 取出区
             ///////本地数据与返回数据的接轨
             stateDic = stateArray[[picke selectedRowInComponent:0]];
-            NSLog(@"%@",stateDic);
+            
             NSString *state = [stateDic objectForKey:@"state"];
             NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
             int xixi=0;
@@ -1202,10 +1283,10 @@
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
         
-        NSLog(@"%@",url1);
+        
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        NSLog(@"%@",dic);
+        
         [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -1214,7 +1295,7 @@
                 
                 
                 [WarningBox warningBoxHide:YES andView:self.view];
-                NSLog(@"%@",responseObject);
+               
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
                     NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                     
@@ -1243,7 +1324,9 @@
                     panduan=2;
                     wocalede=[NSArray array];
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                    NSLog(@"%@",responseObject);
                     
+
                     [wocalei reloadData];
                     
                     wocalei.hidden = NO;
@@ -1301,7 +1384,8 @@ int nicaicai=0;
             CLPlacemark *placemark = [array objectAtIndex:0];
             
             sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
-            NSLog(@"%@",sheng);
+            
+            
             //获取城市
             NSString *city = placemark.locality;
             
@@ -1383,10 +1467,10 @@ int nicaicai=0;
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
         
-        NSLog(@"%@",url1);
+        
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        NSLog(@"%@",dic);
+        
         [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -1395,7 +1479,7 @@ int nicaicai=0;
                 
                 
                 [WarningBox warningBoxHide:YES andView:self.view];
-                NSLog(@"%@",responseObject);
+                
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
                     panduan=1;
                     NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
@@ -1421,7 +1505,7 @@ int nicaicai=0;
                     NSString *path =[NSHomeDirectory() stringByAppendingString:@"/Documents/shengshiqu.plist"];
                     [bianxing writeToFile:path atomically:YES];
                     [self sanji];
-                    NSLog(@"%@",NSHomeDirectory());
+                    
                 }
                 else if ([[responseObject objectForKey:@"code"] intValue]==0){
                     //5个门店的列表

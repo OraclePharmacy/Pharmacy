@@ -155,7 +155,7 @@
         name.frame = CGRectMake(90, 5, width - 95, 20);
         name.font = [UIFont systemFontOfSize:15];
         name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        name.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"name"]];
+        name.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"commonName"]];
         
         UILabel *chufang = [[UILabel alloc]init];
         chufang.frame = CGRectMake(90, 25, width - 95 , 20);

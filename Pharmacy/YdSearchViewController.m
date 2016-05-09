@@ -237,7 +237,7 @@
                 yaopin = [datadic objectForKey:@"AddSearchList"];
                 
 //                NSLog(@"bingzheng%@",bingzheng);
-//                NSLog(@"yaopin%@",yaopin);
+             NSLog(@"\n\n\n--*-*-*-*-*-yaopin\n\n%@",yaopin);
                 
                 //跳转到病症/药品界面
                 YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
