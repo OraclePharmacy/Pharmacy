@@ -259,7 +259,7 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"newsList"];
-                NSLog(@"----****----\n\n图片轮播\n\n%@",arr);
+                
                 
                 for (int i = 0; i < arr.count; i++) {
                     
@@ -283,7 +283,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
+        
     }];
     
     
@@ -380,13 +380,14 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"\n\n\n－－－礼品展示入参－－－\n\n\n%@",dic);
+   
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
+            NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
@@ -395,7 +396,7 @@
                 
                 presentarray = [datadic objectForKey:@"integralGiftList"];
                 
-                NSLog(@"-----****---\n\n礼品展示\n\npresentarray%@",presentarray);
+               
                 
                 for (int i = 0; i < presentarray.count; i++) {
                     
@@ -455,7 +456,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"%@",dic);
+   
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -463,15 +464,15 @@
         @try
         {
            
-            NSLog(@"%@",responseObject);
+            NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 proList = [datadic objectForKey:@"proList"];
                 
                 
-                NSLog(@"-----****---\n\n礼品展示\n\npresentarray%@",proList);
+               
                 
                 for (int i = 0; i < proList.count; i++) {
                     
@@ -481,7 +482,7 @@
                     
                 }
 
-                NSLog(@"proImage----------------------------%@",proImage);
+                
                 
                 
                 [self.tableview reloadData];
@@ -505,7 +506,14 @@
 
     
 }
-
+#pragma mark ---- 病友问答接口
+-(void)bingyouwenda{
+    
+}
+#pragma mark ---- 药品分类接口
+-(void)yaopinfenlei{
+    
+}
 #pragma  mark ---- tableview
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -793,7 +801,7 @@
             specialoffer.font = [UIFont systemFontOfSize:13];
             specialoffer.textAlignment = NSTextAlignmentCenter;
             specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-            specialoffer.text =  [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"specPrice"]];
+            specialoffer.text =  [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"specPrice"]];
             
             self.scrollView.pagingEnabled = YES;
             
@@ -973,7 +981,8 @@
 //更多
 -(void)pharmacygengduo
 {
-    NSLog(@"更多");
+    
+    NSLog(@"特价药品");
     
 }
 //积分礼品展示  礼品详情
@@ -997,7 +1006,7 @@
 //病友问答  更多
 -(void)interlocutiongengduo
 {
-    
+    NSLog(@"病友问答");
     
 }
 //扫描
