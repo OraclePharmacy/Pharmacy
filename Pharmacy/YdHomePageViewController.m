@@ -40,6 +40,7 @@
     
     NSArray *presentarray;
     NSMutableArray *presentarrImage;
+    NSMutableArray *proImage;
     
     NSArray *proList;
     NSMutableArray *proListImage;
@@ -87,6 +88,7 @@
     
     arrImage = [[NSMutableArray alloc]init];
     presentarrImage = [[NSMutableArray alloc]init];
+    proImage = [[NSMutableArray alloc]init];
     
     width = [UIScreen mainScreen].bounds.size.width;
     heigth = [UIScreen mainScreen].bounds.size.height;
@@ -468,15 +470,19 @@
                 
                 proList = [datadic objectForKey:@"proList"];
                 
-                NSLog(@"-----****---\n\n特价药品\n\npresentarray%@",presentarray);
                 
-                for (int i = 0; i < presentarray.count; i++) {
+                NSLog(@"-----****---\n\n礼品展示\n\npresentarray%@",proList);
+                
+                for (int i = 0; i < proList.count; i++) {
                     
                     
-                    [presentarrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[presentarray[i] objectForKey:@"url"]]];
+                    [proImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]];
                     
                     
                 }
+
+                NSLog(@"proImage----------------------------%@",proImage);
+                
                 
                 [self.tableview reloadData];
                 
@@ -770,24 +776,24 @@
             //名称
             UILabel *name = [[UILabel alloc]init];
             name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
-            name.font = [UIFont systemFontOfSize:15];
+            name.font = [UIFont systemFontOfSize:13];
             name.textAlignment = NSTextAlignmentCenter;
             name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            name.text = @"泻立停";
+            name.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"commonName"]];
             //原价
             UILabel *originalcost = [[UILabel alloc]init];
             originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
             originalcost.font = [UIFont systemFontOfSize:11];
             originalcost.textAlignment = NSTextAlignmentCenter;
             originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-            originalcost.text = @"￥10";
+            originalcost.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"prodPrice"]];
             //特价
             UILabel *specialoffer = [[UILabel alloc] init];
             specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
             specialoffer.font = [UIFont systemFontOfSize:13];
             specialoffer.textAlignment = NSTextAlignmentCenter;
             specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-            specialoffer.text = @"￥7.98";
+            specialoffer.text =  [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"specPrice"]];
             
             self.scrollView.pagingEnabled = YES;
             
@@ -855,7 +861,7 @@
             //名称
             UILabel *name = [[UILabel alloc]init];
             name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
-            name.font = [UIFont systemFontOfSize:15];
+            name.font = [UIFont systemFontOfSize:13];
             name.textAlignment = NSTextAlignmentCenter;
             name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
             name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];
@@ -941,7 +947,7 @@
 //            MDID=[wocalei[indexPath.row-1]]
             
             [self tejieyaopinjiekou];
-//            [self bargaingoodsjiekou];
+            [self bargaingoodsjiekou];
         }
         
         
