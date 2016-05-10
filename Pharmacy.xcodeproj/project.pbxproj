@@ -50,6 +50,8 @@
 		950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 950A5AAB1CC87F2400A04F95 /* 相机@2x.png */; };
 		950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */; };
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
+		950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */; };
+		950C5DE81CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */; };
 		952A1A081CD843D600582D26 /* 组-13@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A071CD843D600582D26 /* 组-13@3x.png */; };
 		952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A091CD8440700582D26 /* 组-14@3x.png */; };
 		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
@@ -274,6 +276,9 @@
 		950A5AAF1CC899EB00A04F95 /* YdRecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecordListViewController.m; sourceTree = "<group>"; };
 		950AF50F1C9FB8DA000E2B8F /* YdDrugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdDrugViewController.h; sourceTree = "<group>"; };
 		950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdDrugViewController.m; sourceTree = "<group>"; };
+		950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_shopping_cart.png; sourceTree = "<group>"; };
+		950C5DE61CE1B0B200B9F662 /* YdshoppingxiangshiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdshoppingxiangshiViewController.h; sourceTree = "<group>"; };
+		950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdshoppingxiangshiViewController.m; sourceTree = "<group>"; };
 		952A1A071CD843D600582D26 /* 组-13@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-13@3x.png"; sourceTree = "<group>"; };
 		952A1A091CD8440700582D26 /* 组-14@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-14@3x.png"; sourceTree = "<group>"; };
 		952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdJiaoLiuViewController.h; sourceTree = "<group>"; };
@@ -655,6 +660,8 @@
 				9505D7261C9A9BE5006F6850 /* IMG_0801.jpg */,
 				9505D7161C9A8378006F6850 /* @3x_xx_06.png */,
 				9505D6D51C9A7B27006F6850 /* Main.storyboard */,
+				950C5DE61CE1B0B200B9F662 /* YdshoppingxiangshiViewController.h */,
+				950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */,
 				9505D6D81C9A7B27006F6850 /* Assets.xcassets */,
 				9505D6DA1C9A7B27006F6850 /* LaunchScreen.storyboard */,
 				9505D6DD1C9A7B27006F6850 /* Info.plist */,
@@ -1021,6 +1028,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */,
 				952A1A091CD8440700582D26 /* 组-14@3x.png */,
 				952A1A071CD843D600582D26 /* 组-13@3x.png */,
 				9537CFC61CC9D21F0031021A /* time_line_mark.png */,
@@ -1488,6 +1496,7 @@
 				95C372641CB5F5780083AC90 /* 组-4@3x.png in Resources */,
 				9509565D1CC74C3700A10A5A /* 小人@2x.png in Resources */,
 				95C3726E1CB5F5780083AC90 /* 首页@3x.png in Resources */,
+				950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */,
 				950956631CC7602F00A10A5A /* sex2@3x.png in Resources */,
 				95C372571CB5F5780083AC90 /* 代购药@2x.png in Resources */,
 				95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */,
@@ -1587,6 +1596,7 @@
 				95E0EC6D1CC60B7300B87690 /* YdPersonalInformationViewController.m in Sources */,
 				95609EF41CABC74E00AF65E4 /* NSData+ImageContentType.m in Sources */,
 				95609F001CABC74E00AF65E4 /* UIImageView+HighlightedWebCache.m in Sources */,
+				950C5DE81CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m in Sources */,
 				95609E9F1CABC72E00AF65E4 /* SBJsonParser.m in Sources */,
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,

@@ -151,14 +151,77 @@
 
 - (void)handleClick:(UIButton *)btn{
     
+    //隐藏键盘
     [self.navigationItem.titleView endEditing:YES];
     
+    [WarningBox warningBoxModeIndeterminate:@"搜索中..." andView:self.view];
+    //userID    暂时不用改
+    NSString * userID=@"0";
     
-    //跳转到病症/药品界面
-    YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
-    [self.navigationController pushViewController:SearchResult animated:YES];
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/product/searchList";
     
-    NSLog(@"%ld",btn.tag);
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",@"2",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                bingzheng = [datadic objectForKey:@"BzSearchList"];
+                yaopin = [datadic objectForKey:@"AddSearchList"];
+                
+                //跳转到病症/药品界面
+                YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
+                SearchResult.bingzheng = bingzheng;
+                SearchResult.yaopin = yaopin;
+                [self.navigationController pushViewController:SearchResult animated:YES];
+                
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
+    
 }
 -(void)CreateSearch
 {
@@ -209,7 +272,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"高血压",@"keywords",@"2",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords",@"2",@"officeId",@"1",@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
