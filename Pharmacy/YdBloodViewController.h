@@ -12,5 +12,15 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
+@property (strong,nonatomic)NSMutableArray *xueyaarraytime;
+@property (strong,nonatomic)NSMutableArray *xuetangarraytime;
+
+@property (strong,nonatomic)NSMutableArray *gaoyaarray;
+@property (strong,nonatomic)NSMutableArray *diyaarray;
+
+@property (strong,nonatomic)NSMutableArray *fanqianarray;
+@property (strong,nonatomic)NSMutableArray *fanhouarray;
+
+
 
 @end

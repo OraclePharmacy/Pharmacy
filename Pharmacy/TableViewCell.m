@@ -7,17 +7,18 @@
 //
 
 #import "TableViewCell.h"
+#import "YdBloodViewController.h"
 #import "UUChart.h"
 
 @interface TableViewCell ()<UUChartDataSource>
 {
     NSIndexPath *path;
     UUChart *chartView;
+    
 }
 @end
 
 @implementation TableViewCell
-
 - (void)configUI:(NSIndexPath *)indexPath
 {
     if (chartView) {
@@ -62,18 +63,29 @@
     }
     return nil;
 }
+int op=0;
 //数值多重数组
 - (NSArray *)chartConfigAxisYValue:(UUChart *)chart
 {
-    NSArray *ary = @[@"160",@"120",@"135",@"180",@"169"];
-    NSArray *ary1 = @[@"90",@"50",@"65",@"79",@"88"];
-    NSArray *ary3 = @[@"4.8",@"6.5",@"7.5",@"5.3",@"9.8"];
+    
+     NSArray *ary;
+     NSArray *ary2;
+     NSArray *ary3;
+     NSArray *ary4;
+
+     NSUserDefaults*oo=[NSUserDefaults standardUserDefaults];
+        
+     ary =[NSArray arrayWithArray:[oo objectForKey:@"gaoya"]];
+     ary2 =[NSArray arrayWithArray:[oo objectForKey:@"diya"]];
+     ary3 =[NSArray arrayWithArray:[oo objectForKey:@"fanqian"]];
+     ary4 =[NSArray arrayWithArray:[oo objectForKey:@"fanhou"]];
+
     if (path.section==0) {
         switch (path.row) {
             case 0:
-                return @[ary,ary1,ary3];
+                return @[ary,ary2];
             default:
-                return @[ary3];
+                return @[ary3,ary4];
         }
     }
     else{
@@ -98,7 +110,7 @@
         }
         else
         {
-             return CGRangeMake(10, 0);
+             return CGRangeMake(20, 0);
         }
         
     }

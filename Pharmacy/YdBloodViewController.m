@@ -23,6 +23,11 @@
     int zhi;
     
     UIView * baseView;
+    
+    NSMutableArray *xueyaarray;
+    NSMutableArray *xuetangarray;
+    
+    
 }
 @property (strong,nonatomic)UISegmentedControl *segmentedControl;
 @end
@@ -31,6 +36,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    xueyaarray = [[NSMutableArray alloc]init];
+    xuetangarray = [[NSMutableArray alloc]init];
+    
+    _xueyaarraytime = [[NSMutableArray alloc]init];
+    _xuetangarraytime = [[NSMutableArray alloc]init];
+    
+    _gaoyaarray = [[NSMutableArray alloc]init];
+    _diyaarray = [[NSMutableArray alloc]init];
+    
+    _fanqianarray = [[NSMutableArray alloc]init];
+    _fanhouarray = [[NSMutableArray alloc]init];
     
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -52,7 +69,6 @@
 -(void)huoqu
 {
     [WarningBox warningBoxModeIndeterminate:@"正在加载..." andView:self.view];
-    
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -69,8 +85,11 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    NSDictionary *ddd = [NSDictionary dictionaryWithContentsOfFile:path1];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"vipId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -79,19 +98,81 @@
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
-    
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObjectresponseObjectresponseObjectresponseObject%@",responseObject);
-            
+            //NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                NSArray *arr = [datadic objectForKey:@"bodyList"];
+                
+                
+                
+                for (NSDictionary *dd in arr) {
+                    
+                    if ([[dd objectForKey:@"checkItem"]isEqual:@"血糖"]) {
+                        
+                        [xuetangarray addObject:[dd objectForKey:@"result"]];
+                        [_xueyaarraytime addObject:[dd objectForKey:@"checkTime"]];
+
+                    }
+                    else
+                    {
+                        
+                        [xueyaarray addObject:[dd objectForKey:@"result"]];
+                        [_xuetangarraytime addObject:[dd objectForKey:@"checkTime"]];
+                    }
+                    
+                }
+                
+                NSString *str = [[NSString alloc]init];
+                for (int i = 0; i < xueyaarray.count; i++) {
+                    
+                    str = xueyaarray[i];
+                    
+                    NSArray *array = [str componentsSeparatedByString:@","]; //从字符A中分隔成2个元素的数组
+                    
+                    [_gaoyaarray addObject:array[0]];
+                    [_diyaarray addObject:array[1]];
+                }
+                for (int i = 0; i < xuetangarray.count; i++) {
+                    
+                    str = xuetangarray[i];
+                    
+                    NSArray *array = [str componentsSeparatedByString:@","]; //从字符A中分隔成2个元素的数组
+                    
+                    [_fanqianarray addObject:array[0]];
+                    [_fanhouarray addObject:array[1]];
+                }
+
+                
+//                NSLog(@"xuetangarray%@",_xuetangarraytime);
+//                NSLog(@"xueyaarray%@",_xueyaarraytime);
+//                
+                NSLog(@"fanqianarray:%@",_fanqianarray);
+                NSLog(@"fanhouarray:%@",_fanhouarray);
+                
+                NSLog(@"gaoyaarray:%@",_gaoyaarray);
+                NSLog(@"diyaarray:%@",_diyaarray);
+
+                NSUserDefaults *ss = [NSUserDefaults standardUserDefaults];
+                [ss setValue:_fanqianarray forKey:@"fanqian"];
+                [ss setValue:_fanhouarray forKey:@"fanhou"];
+                [ss setValue:_gaoyaarray forKey:@"gaoya"];
+                [ss setValue:_diyaarray forKey:@"diya"];
+                
+                [self.tableview reloadData];
+                
+            }
         }
         @catch (NSException * e) {
             
@@ -105,6 +186,7 @@
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
+    
 }
 //血压
 -(void)xueya
@@ -240,7 +322,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -299,7 +381,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
