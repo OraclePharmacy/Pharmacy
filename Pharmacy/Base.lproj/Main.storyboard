@@ -1176,7 +1176,7 @@
         <!--Yd Jiao Liu View Controller-->
         <scene sceneID="pEA-gT-MNQ">
             <objects>
-                <viewController storyboardIdentifier="jiaoliu" id="rgS-Y4-pGI" customClass="YdJiaoLiuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jiaoliu" hidesBottomBarWhenPushed="YES" id="rgS-Y4-pGI" customClass="YdJiaoLiuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b8q-cd-OiV"/>
                         <viewControllerLayoutGuide type="bottom" id="M6e-lX-zm5"/>
