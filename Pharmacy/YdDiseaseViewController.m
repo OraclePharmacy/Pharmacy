@@ -289,6 +289,7 @@
         if (yaopin.count==0) {
             
         }else if(yaopin.count==1){
+            //一张图片
             [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
@@ -301,6 +302,7 @@
             [cell addSubview:ming1];
             [cell addSubview:b1];
         }else if(yaopin.count==2){
+            //两张图片
             [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
@@ -325,6 +327,7 @@
             
             [cell addSubview:ming2];
         }else{
+            //三张图片
             [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
@@ -383,6 +386,7 @@
 {
     return 1;
 }
+#pragma mark ---跳转药品详情
 -(void)handleSingleTapFrom3{
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
     dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@""]];

@@ -661,7 +661,7 @@
         UIButton *gengduo = [[UIButton alloc]init];
         gengduo.frame = CGRectMake(width-30, 5, 30, 20);
         [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(interlocutiongengduo) forControlEvents:UIControlEventTouchUpInside];
+        [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
         
         [baseView addSubview:tou];
         [baseView addSubview:gengduo];
@@ -840,7 +840,7 @@
         UIButton *gengduo = [[UIButton alloc]init];
         gengduo.frame = CGRectMake(width-30, 0, 30, 20);
         [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(pharmacygengduo) forControlEvents:UIControlEventTouchUpInside];
+        [gengduo addTarget:self action:@selector(specialoffergengduo) forControlEvents:UIControlEventTouchUpInside];
         
         
         UIView *xian = [[UIView alloc]init];
@@ -968,6 +968,7 @@
 }
 //特价药品展示   药品详情
 - (void)handleClick1:(UIButton *)btn{
+    //药品详情  传过去药品ID
     
     if (btn.tag == 400)
     {
@@ -980,13 +981,14 @@
 
 //更多
 -(void)pharmacygengduo
-{
+{    //特价药品列表
     
     NSLog(@"特价药品");
     
 }
 //积分礼品展示  礼品详情
 - (void)handleClick2:(UIButton *)btn{
+    //礼品详情  传过去礼品ID
     
     if (btn.tag == 500)
     {
@@ -997,17 +999,22 @@
     
 }
 
-//更多
+//跳转积分礼品列表
 -(void)specialoffergengduo
 {
-    
+    NSLog(@"积分礼品更多");
     
 }
-//病友问答  更多
+//跳转病友问答列表
 -(void)interlocutiongengduo
 {
     NSLog(@"病友问答");
     
+}
+//跳转药品分类列表
+-(void)yaopingengduo{
+    
+    NSLog(@"更多药品分类");
 }
 //扫描
 -(void)scanning{
@@ -1063,8 +1070,8 @@
     
     pickerview=[[UIView alloc] initWithFrame:CGRectMake(0, h, w, 200)];
     picke=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 20, w, 230)];
-    pickerview.backgroundColor=[UIColor redColor];
-    picke.backgroundColor=[UIColor greenColor];
+    pickerview.backgroundColor=[UIColor blackColor];
+    picke.backgroundColor=[UIColor colorWithHexString:@"f4f4f4"];
     
     picke.delegate = self;
     picke.dataSource = self;

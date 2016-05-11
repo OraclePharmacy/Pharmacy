@@ -8,7 +8,11 @@
 
 #import "YdPurchasingViewController.h"
 #import "Color+Hex.h"
-
+#import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
+#import "WarningBox.h"
+#import "SBJsonWriter.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
 @interface YdPurchasingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 {
     int po;
@@ -238,10 +242,86 @@
 //预定按钮
 - (IBAction)yuding:(id)sender {
     [self.view endEditing:YES];
-    NSFileManager *defaultManager;
-    defaultManager = [NSFileManager defaultManager];
-    NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
-    [defaultManager removeItemAtPath:path error:NULL];
+   
+    
+    //后台写的跟个傻逼似的 擦
+    
+    
+    NSString*zhid;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/function/saveNewSpecPreOrderByPic";
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    //出入参数：
+    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",zhid,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext,@"batchNo",_beizhu.text,@"remark", nil];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        for (int i=0; i<3; i++) {
+            //对图片进行多个上传
+            UIImage *Img;
+            if (i==0) {
+                Img=_one.imageView.image;
+            }else if (i==1){
+                Img=_two.imageView.image;
+            }else{
+                Img=_three.imageView.image;
+            }
+           
+            NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用png方法需添加png压缩方法
+            NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+            // 设置时间格式
+            fm.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [fm stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+            NSLog(@"filename------%@",fileName);
+            [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
+        }
+     
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"代购要返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                NSFileManager *defaultManager;
+                defaultManager = [NSFileManager defaultManager];
+                NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
+                [defaultManager removeItemAtPath:path error:NULL];
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+        
+    }];
+
+    
+    
     
 
 }
