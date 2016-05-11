@@ -10,8 +10,6 @@
 
 @interface YdDrugJumpViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-
-@property (strong,nonatomic) NSString *imageName;
 @property (nonatomic,assign) NSString * bookNo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;

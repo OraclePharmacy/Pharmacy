@@ -14,6 +14,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import "UIImageView+WebCache.h"
 @interface YdDrugViewController ()
 {
     CGFloat width;
@@ -103,17 +104,19 @@
     //通过tag属性获取单元格内的uiimageview控件
     UIImageView *iv = (UIImageView*)[cell viewWithTag:1];
     //为单元个添加图片
-    iv.image = [UIImage imageNamed:DiseaseImageArray[rowNo]];
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[rowNo]objectForKey:@"picUrl" ]] ;
+    NSLog(@"%@",path);
+    [iv sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     //通过tag属性获取单元格内的lable控件
     UILabel *lable = (UILabel *)[cell viewWithTag:2];
     //为单元格内的UIlable控件设置文本
-    lable.text = DiseaseLableArray[rowNo];
+    lable.text = [arr[rowNo] objectForKey:@"level3Name"];
     return cell;
 }
 //设置单元格个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return DiseaseLableArray.count;
+    return arr.count;
 }
 
 //collectionView点击事件
@@ -121,8 +124,7 @@
 {
     //跳转到详细病症
     YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-    DrugJump.imageName = DiseaseImageArray[indexPath.row];
-    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
+    DrugJump.bookNo = [arr[indexPath.row] objectForKey:@"level3Name"];
     [self.navigationController pushViewController:DrugJump animated:YES];
 
     return;
@@ -328,21 +330,7 @@
 {
   
     NSString *ss = erji[indexPath.row];
-    //NSLog(@"%@",ss);
-    //读取plist文件
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"disease.plist" ofType:nil];
-//    NSDictionary *staeArray;
-//    staeArray = [NSDictionary dictionaryWithContentsOfFile:path];
-//    NSDictionary *cityArray;
-//    cityArray = [staeArray objectForKey:ss];
-//    for (NSDictionary *dd in cityArray) {
-//        
-//        [DiseaseLableArray addObject:[dd objectForKey:@"name"]];
-//        [DiseaseImageArray addObject:[dd objectForKey:@"icon"]];
-//
-//    }
-//    [self AddDisease];
-    
+
     [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
     
     //userID    暂时不用改
@@ -374,8 +362,7 @@
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
-    NSLog(@"  %@",dic);
-    
+    //NSLog(@"  %@",dic);
     
     [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -384,17 +371,14 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"%@",responseObject);
+            //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                arr = [datadic objectForKey:@"productList"];
+                arr = [NSArray arrayWithArray:[datadic objectForKey:@"productList"] ];
                 
-                
-                
-                [self.Collectionview reloadData];
-                
+                [self AddDisease];
                 
             }
             

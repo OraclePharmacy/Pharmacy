@@ -9,16 +9,19 @@
 #import "YdDrugJumpViewController.h"
 #import "YdDrugViewController.h"
 #import "Color+Hex.h"
-#import "YdyaopinxiangqingViewController.h"
+#import "YdDrugsViewController.h"
 #import "WarningBox.h"
 #import "AFHTTPSessionManager.h"
 #import "lianjie.h"
 #import "SBJson.h"
 #import "hongdingyi.h"
+#import "UIImageView+WebCache.h"
 @interface YdDrugJumpViewController ()
 {
     CGFloat width;
     CGFloat height;
+    
+    NSArray *arr;
 }
 @end
 
@@ -33,7 +36,7 @@
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     //状态栏名称
-    self.navigationItem.title = @"病症名称";
+    self.navigationItem.title = _bookNo;
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -64,7 +67,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"心脑血管",@"level3Name",@"1",@"pageNo",@"1",@"pageNo",nil];
+     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_bookNo,@"level3Name",@"5",@"pageNo",@"1",@"pageSize",nil];
     
         NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -77,17 +80,21 @@
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
-        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
     
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"%@",responseObject);
+                
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
     
+                    NSDictionary*datadic=[responseObject valueForKey:@"data"];
                     
+                    arr = [NSArray arrayWithArray:[datadic objectForKey:@"productList"]];
+                    
+                    [self.tableview reloadData];
     
                 }
     
@@ -117,7 +124,7 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return arr.count;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -134,13 +141,16 @@
     }
 
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 80, 80)];
-    image.backgroundColor = [UIColor grayColor];
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row]objectForKey:@"picUrl" ]] ;
+    NSLog(@"%@",path);
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+   
     
     UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(120 , 10, width -140 , 20)];
     name.font = [UIFont systemFontOfSize:15];
     //name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    name.text =@"葡萄糖";
+    name.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
     
 
     
@@ -148,28 +158,28 @@
     changjia.font = [UIFont systemFontOfSize:13];
     //changjia.textAlignment = NSTextAlignmentCenter;
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    changjia.text =@"哈尔滨医药六场";
+    changjia.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"manufacturer"]];
 
     
     UILabel *guige = [[UILabel alloc]initWithFrame:CGRectMake(120, 50, width -140, 20)];
     guige.font = [UIFont systemFontOfSize:11];
     //guige.textAlignment = NSTextAlignmentCenter;
     guige.textColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-    guige.text =@"个/盒";
+    guige.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"specification"]];
 
     
     UILabel *jiage = [[UILabel alloc]initWithFrame:CGRectMake(120, 70, width -140, 20)];
     jiage.font = [UIFont systemFontOfSize:10];
     //jiage.textAlignment = NSTextAlignmentCenter;
     jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    jiage.text =@"¥1058";
+    jiage.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@""]];
     
     
     UILabel *jianjie = [[UILabel alloc]initWithFrame:CGRectMake(20, 90, width - 40 , 40)];
     jianjie.font = [UIFont systemFontOfSize:12];
     //jianjie.textAlignment = NSTextAlignmentCenter;
     jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    jianjie.text =@"哈尔滨医药六场，浑善达克减肥是靠近阿富汗看了就撒地方好，谁都会分开就撒发挥空间上";
+    jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@""]];
     jianjie.numberOfLines = 2;
     
     [cell.contentView addSubview:image];
@@ -190,10 +200,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    YdyaopinxiangqingViewController  *xiangqing =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaopinxiangqing"];
-    [self.navigationController pushViewController:xiangqing animated:YES];
-    
-    NSLog(@"11");
+    YdDrugsViewController  *Drugs =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
+    Drugs.yaopinID = [arr[indexPath.row] objectForKey:@"id"];
+    [self.navigationController pushViewController:Drugs animated:YES];
     
     return;
 }
