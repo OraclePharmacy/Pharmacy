@@ -15,6 +15,12 @@
     NSIndexPath *path;
     UUChart *chartView;
     
+    NSArray *ary;
+    NSArray *ary2;
+    NSArray *ary3;
+    NSArray *ary4;
+    NSArray *aa;
+    NSArray *bb;
 }
 @end
 
@@ -36,50 +42,60 @@
 
 - (NSArray *)getXTitles:(int)num
 {
-    NSMutableArray *xTitles = [NSMutableArray array];
-    for (int i=0; i<num; i++) {
-        NSString * str = [NSString stringWithFormat:@"R-%d",i];
-        [xTitles addObject:str];
+    if (path.section == 0 ) {
+        NSMutableArray *xTitles = [NSMutableArray array];
+        if (path.row == 0) {
+            
+            for (int i=0; i<num; i++) {
+                NSString * str = [NSString stringWithFormat:@"%@",aa[i]];
+                [xTitles addObject:str];
+            }
+            
+        }else{
+            for (int i=0; i<num; i++) {
+                NSString * str = [NSString stringWithFormat:@"%@",bb[i]];
+                [xTitles addObject:str];
+            }
+        }
+        
+        return xTitles;
     }
-    return xTitles;
+    return nil;
 }
 
 #pragma mark - @required
 //横坐标标题数组
 - (NSArray *)chartConfigAxisXLabel:(UUChart *)chart
 {
-
+    
     if (path.section==0) {
         switch (path.row) {
             case 0:
-                return [self getXTitles:5];
+                return [self getXTitles:(int)ary.count];
             case 1:
-                return [self getXTitles:5];
+                return [self getXTitles:(int)ary3.count];
             default:
                 break;
         }
     }else{
-       
+        
     }
     return nil;
 }
-int op=0;
+
 //数值多重数组
 - (NSArray *)chartConfigAxisYValue:(UUChart *)chart
 {
     
-     NSArray *ary;
-     NSArray *ary2;
-     NSArray *ary3;
-     NSArray *ary4;
-
-     NSUserDefaults*oo=[NSUserDefaults standardUserDefaults];
-        
-     ary =[NSArray arrayWithArray:[oo objectForKey:@"gaoya"]];
-     ary2 =[NSArray arrayWithArray:[oo objectForKey:@"diya"]];
-     ary3 =[NSArray arrayWithArray:[oo objectForKey:@"fanqian"]];
-     ary4 =[NSArray arrayWithArray:[oo objectForKey:@"fanhou"]];
-
+    NSUserDefaults*oo=[NSUserDefaults standardUserDefaults];
+    
+    ary =[NSArray arrayWithArray:[oo objectForKey:@"gaoya"]];
+    ary2 =[NSArray arrayWithArray:[oo objectForKey:@"diya"]];
+    ary3 =[NSArray arrayWithArray:[oo objectForKey:@"fanqian"]];
+    ary4 =[NSArray arrayWithArray:[oo objectForKey:@"fanhou"]];
+    aa =[NSArray arrayWithArray:[oo objectForKey:@"xueyaarraytime"]];
+    bb =[NSArray arrayWithArray:[oo objectForKey:@"xuetangarraytime"]];
+    NSLog(@"\n%@\n%@\n%@\n%@\n",ary,ary2,ary3,ary4);
     if (path.section==0) {
         switch (path.row) {
             case 0:
@@ -110,12 +126,12 @@ int op=0;
         }
         else
         {
-             return CGRangeMake(20, 0);
+            return CGRangeMake(20, 0);
         }
         
     }
     
- 
+    
     return CGRangeZero;
 }
 

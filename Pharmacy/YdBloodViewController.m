@@ -22,11 +22,17 @@
     int index;
     int zhi;
     
+    UITextField *gaoyatext;
+    UITextField *diyatext;
+    UITextField *fanqiangtext;
+    UITextField *fanhoutext;
+    
     UIView * baseView;
     
     NSMutableArray *xueyaarray;
     NSMutableArray *xuetangarray;
     
+    NSDictionary *ddd;
     
 }
 @property (strong,nonatomic)UISegmentedControl *segmentedControl;
@@ -36,18 +42,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    ddd = [NSDictionary dictionaryWithContentsOfFile:path1];
     
-    xueyaarray = [[NSMutableArray alloc]init];
-    xuetangarray = [[NSMutableArray alloc]init];
-    
-    _xueyaarraytime = [[NSMutableArray alloc]init];
-    _xuetangarraytime = [[NSMutableArray alloc]init];
-    
-    _gaoyaarray = [[NSMutableArray alloc]init];
-    _diyaarray = [[NSMutableArray alloc]init];
-    
-    _fanqianarray = [[NSMutableArray alloc]init];
-    _fanhouarray = [[NSMutableArray alloc]init];
     
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -68,6 +65,18 @@
 //获取血压血糖
 -(void)huoqu
 {
+    xueyaarray = [[NSMutableArray alloc]init];
+    xuetangarray = [[NSMutableArray alloc]init];
+    
+    _xueyaarraytime = [[NSMutableArray alloc]init];
+    _xuetangarraytime = [[NSMutableArray alloc]init];
+    
+    _gaoyaarray = [[NSMutableArray alloc]init];
+    _diyaarray = [[NSMutableArray alloc]init];
+    
+    _fanqianarray = [[NSMutableArray alloc]init];
+    _fanhouarray = [[NSMutableArray alloc]init];
+
     [WarningBox warningBoxModeIndeterminate:@"正在加载..." andView:self.view];
     //userID    暂时不用改
     NSString * userID=@"0";
@@ -86,8 +95,6 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     
-    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
-    NSDictionary *ddd = [NSDictionary dictionaryWithContentsOfFile:path1];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId", nil];
     
@@ -122,14 +129,14 @@
                     if ([[dd objectForKey:@"checkItem"]isEqual:@"血糖"]) {
                         
                         [xuetangarray addObject:[dd objectForKey:@"result"]];
-                        [_xueyaarraytime addObject:[dd objectForKey:@"checkTime"]];
+                        [_xuetangarraytime addObject:[dd objectForKey:@"checkTime"]];
 
                     }
                     else
                     {
                         
                         [xueyaarray addObject:[dd objectForKey:@"result"]];
-                        [_xuetangarraytime addObject:[dd objectForKey:@"checkTime"]];
+                        [_xueyaarraytime addObject:[dd objectForKey:@"checkTime"]];
                     }
                     
                 }
@@ -155,20 +162,24 @@
                 }
 
                 
-//                NSLog(@"xuetangarray%@",_xuetangarraytime);
-//                NSLog(@"xueyaarray%@",_xueyaarraytime);
-//                
-                NSLog(@"fanqianarray:%@",_fanqianarray);
-                NSLog(@"fanhouarray:%@",_fanhouarray);
+                NSLog(@"xuetangarray%@\nfanqian%@\nfanhou%@",_xuetangarraytime,_fanqianarray,_fanhouarray);
+               
                 
-                NSLog(@"gaoyaarray:%@",_gaoyaarray);
-                NSLog(@"diyaarray:%@",_diyaarray);
+                NSLog(@"xueyaarray%@\ngaoya%@\ndiya%@",_xueyaarraytime,_gaoyaarray,_diyaarray);
+                
+//                NSLog(@"fanqianarray:%@",_fanqianarray);
+//                NSLog(@"fanhouarray:%@",_fanhouarray);
+//                
+//                NSLog(@"gaoyaarray:%@",_gaoyaarray);
+//                NSLog(@"diyaarray:%@",_diyaarray);
 
                 NSUserDefaults *ss = [NSUserDefaults standardUserDefaults];
                 [ss setValue:_fanqianarray forKey:@"fanqian"];
                 [ss setValue:_fanhouarray forKey:@"fanhou"];
                 [ss setValue:_gaoyaarray forKey:@"gaoya"];
                 [ss setValue:_diyaarray forKey:@"diya"];
+                [ss setValue:_xuetangarraytime forKey:@"xuetangarraytime"];
+                [ss setValue:_xueyaarraytime forKey:@"xueyaarraytime"];
                 
                 [self.tableview reloadData];
                 
@@ -198,7 +209,7 @@
     gaoya.text = @"高   压:";
     //gaoya.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *gaoyatext = [[UITextField alloc]init];
+    gaoyatext = [[UITextField alloc]init];
     gaoyatext.frame = CGRectMake(CGRectGetMaxX(gaoya.frame) + 5, 5, (width-25)/3, 20);
     gaoyatext.font = [UIFont systemFontOfSize:13];
     gaoyatext.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
@@ -213,7 +224,7 @@
     diya.text = @"低   压:";
     //diya.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *diyatext = [[UITextField alloc]init];
+    diyatext = [[UITextField alloc]init];
     diyatext.frame = CGRectMake(CGRectGetMaxX(diya.frame) + 5, 5, (width-25)/3, 20);
     diyatext.font = [UIFont systemFontOfSize:13];
     diyatext.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
@@ -248,22 +259,24 @@
     fanqian.text = @"餐   前:";
     //fanqian.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *fanqianext = [[UITextField alloc]init];
-    fanqianext.frame = CGRectMake(CGRectGetMaxX(fanqian.frame) + 5, 70, (width-25)/3, 20);
-    fanqianext.font = [UIFont systemFontOfSize:13];
-    fanqianext.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
-    fanqianext.layer.borderWidth =1;
-    fanqianext.layer.cornerRadius = 5.0;
-    fanqianext.placeholder = @"请输入餐前血糖";
+    fanqiangtext = [[UITextField alloc]init];
+    fanqiangtext.frame = CGRectMake(CGRectGetMaxX(fanqian.frame) + 5, 70, (width-25)/3, 20);
+    fanqiangtext.font = [UIFont systemFontOfSize:13];
+    fanqiangtext.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
+    fanqiangtext.layer.borderWidth =1;
+    fanqiangtext.layer.cornerRadius = 5.0;
+    fanqiangtext.placeholder = @"请输入餐前血糖";
+    
+    
     
     UILabel *fanhou = [[UILabel alloc]init];
-    fanhou.frame = CGRectMake(CGRectGetMaxX(fanqianext.frame) + 5, 70, (width-25)/6, 20);
+    fanhou.frame = CGRectMake(CGRectGetMaxX(fanqiangtext.frame) + 5, 70, (width-25)/6, 20);
     fanhou.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     fanhou.font = [UIFont systemFontOfSize:13];
     fanhou.text = @"餐   后:";
     //fanhou.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *fanhoutext = [[UITextField alloc]init];
+    fanhoutext = [[UITextField alloc]init];
     fanhoutext.frame = CGRectMake(CGRectGetMaxX(fanhou.frame) + 5, 70, (width-25)/3, 20);
     fanhoutext.font = [UIFont systemFontOfSize:13];
     fanhoutext.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
@@ -282,7 +295,7 @@
     xuetang.layer.masksToBounds = YES;
     
     [baseView addSubview:fanqian];
-    [baseView addSubview:fanqianext];
+    [baseView addSubview:fanqiangtext];
     [baseView addSubview:fanhou];
     [baseView addSubview:fanhoutext];
     [baseView addSubview:xuetang];
@@ -309,8 +322,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    NSString *xuetangstring = [NSString stringWithFormat:@"%@,%@",fanqiangtext.text,fanhoutext.text];
+    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"vipId",@"血压",@"checkItem",@"123,158",@"result", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血糖",@"checkItem",xuetangstring,@"result",currentTime,@"checkTime", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -329,8 +346,15 @@
         
         @try
         { 
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                
+                fanqiangtext.text = @"";
+                fanhoutext.text = @"";
+
+                [self huoqu];
+            }
+         
             
         }
         @catch (NSException * e) {
@@ -368,8 +392,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    NSString *xueyastring = [NSString stringWithFormat:@"%@,%@",gaoyatext.text,diyatext.text];
+    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"vipId",@"血糖",@"checkItem",@"123,158",@"result", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血压",@"checkItem",xueyastring,@"result",currentTime,@"checkTime", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -388,8 +416,15 @@
         
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                
+                gaoyatext.text = @"";
+                diyatext.text = @"";
+                
+                [self huoqu];
+            }
+            
             
         }
         @catch (NSException * e) {
