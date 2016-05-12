@@ -246,10 +246,16 @@
              if (indexPath.row == 0) {
                 cell.textLabel.text = @"特          价 :";
                 shuju.textColor = [UIColor redColor];
+                 if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specPrice"]isEqual:[NSNull null]]) {
+                     shuju.text=@"";
+                 }else
                 shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specPrice"]];
             }
             else if (indexPath.row == 1) {
                 cell.textLabel.text = @"原          价 :";
+                if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]isEqual:[NSNull null]]) {
+                    shuju.text=@"";
+                }else
                 shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]];
             }
         }
@@ -257,6 +263,9 @@
         {
              if (indexPath.row == 0) {
                 cell.textLabel.text = @"价          格 :";
+                 if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]isEqual:[NSNull null]]) {
+                     shuju.text=@"";
+                 }else
                 shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]];
             }
 
@@ -267,42 +276,78 @@
         cell.textLabel.text = arr[indexPath.row];
         
         if (indexPath.row == 0) {
+            if ([[xianshiarr objectForKey:@"name"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"name"]];
         }
         else if (indexPath.row == 1) {
+            if ([[xianshiarr objectForKey:@"pinyinCode"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"pinyinCode"]];
         }
         else if (indexPath.row == 2) {
+            if ([[xianshiarr objectForKey:@"commonName"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"commonName"]];
         }
         else if (indexPath.row == 3) {
+            if ([[xianshiarr objectForKey:@"summary"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"summary"]];
         }
         else if (indexPath.row == 4) {
+            if ([[xianshiarr objectForKey:@"level3Name"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"level3Name"]];
         }
         else if (indexPath.row == 5) {
+            if ([[xianshiarr objectForKey:@"specification"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"specification"]];
         }
         else if (indexPath.row == 6) {
+            if ([[xianshiarr objectForKey:@"manufacturer"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"manufacturer"]];
         }
         else if (indexPath.row == 7) {
+            if ([[xianshiarr objectForKey:@"prodCode"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prodCode"]];
         }
         else if (indexPath.row == 8) {
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
         }
         else if (indexPath.row == 9) {
+            if ([xianshiarr objectForKey:@"instructions"]==nil||[[xianshiarr objectForKey:@"instructions"]isKindOfClass:[NSNull class]]) {
+                shuju.text=@"hahah";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"instructions"]];
         }
         else if (indexPath.row == 10) {
+            if ([[xianshiarr objectForKey:@"package"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"package"]];
         }
         else if (indexPath.row == 11) {
+            if ([[xianshiarr objectForKey:@"approvalNumber"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"approvalNumber"]];
         }
         else if (indexPath.row == 12) {
+            if ([[xianshiarr objectForKey:@"prescription"]isEqual:[NSNull null]]) {
+                shuju.text=@"";
+            }else
             shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prescription"]];
         }
 

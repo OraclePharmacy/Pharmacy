@@ -80,6 +80,14 @@
 
 @implementation YdHomePageViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
+        if(nicaicai==1)
+            [self zidongdingwei];
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     panduan=0;
@@ -121,9 +129,9 @@
     self.tableview.dataSource = self;
     //表头
     [self SearchView];
-    
     //调用定位
     [self initializeLocationService];
+  
 
 }
 //导航标题  添加View
@@ -145,7 +153,7 @@
     
     SearchButton.frame = CGRectMake(0, 3, 150, 15);
     
-    [SearchButton setTitle:@"选择的门店" forState:UIControlStateNormal];
+    [SearchButton setTitle:@"请选择门店" forState:UIControlStateNormal];
     
     SearchButton.titleLabel.font = [UIFont systemFontOfSize:12];
     
@@ -1437,6 +1445,8 @@ int nicaicai=0;
     panduan=0;
     if (nicaicai==0) {
         nicaicai=1;
+        //为了让定位只调用一遍
+        
         [self zidongdingwei];
     }
     

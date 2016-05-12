@@ -242,11 +242,22 @@
 //预定按钮
 - (IBAction)yuding:(id)sender {
     [self.view endEditing:YES];
-   
+    NSMutableArray * heheda=[[NSMutableArray alloc] init];
+    NSFileManager *fm=[NSFileManager defaultManager];
+    NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+    NSString *picpath=[NSString stringWithFormat:@"%@/0.jpg",dicpath];
+    NSString *picpath1=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
+    NSString *picpath2=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
+    NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
+    for (int i=0; i<apq.count; i++) {
+        if ([fm isExecutableFileAtPath:apq[i]]) {
+            [heheda addObject:dicpath];
+        }
+    }
     
     //后台写的跟个傻逼似的 擦
     
-    
+    [WarningBox warningBoxModeIndeterminate:@"正在帮您代购药...." andView:self.view];
     NSString*zhid;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
@@ -261,29 +272,22 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     //出入参数：
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",zhid,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext,@"batchNo",_beizhu.text,@"remark", nil];
-    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",zhid,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext.text,@"batchNo",_beizhu.text,@"remark", nil];
+    NSLog(@"%@",datadic);
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
     
     [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<heheda.count; i++) {
             //对图片进行多个上传
-            UIImage *Img;
-            if (i==0) {
-                Img=_one.imageView.image;
-            }else if (i==1){
-                Img=_two.imageView.image;
-            }else{
-                Img=_three.imageView.image;
-            }
-           
-            NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用png方法需添加png压缩方法
+            
+            UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
+            NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
             NSDateFormatter *fm = [[NSDateFormatter alloc] init];
             // 设置时间格式
             fm.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [fm stringFromDate:[NSDate date]];
-            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+            NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
             NSLog(@"filename------%@",fileName);
             [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
         }
@@ -295,9 +299,10 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
             NSLog(@"代购要返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                [WarningBox warningBoxModeText:@"代购药成功!" andView:self.view];
                 NSFileManager *defaultManager;
                 defaultManager = [NSFileManager defaultManager];
                 NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
