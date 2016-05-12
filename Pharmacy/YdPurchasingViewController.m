@@ -41,11 +41,11 @@
     }
     if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/2.jpg",imagepath]]) {
         UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/2.jpg",imagepath]];
-        [_one setBackgroundImage:image forState:UIControlStateNormal];
+        [_two setBackgroundImage:image forState:UIControlStateNormal];
     }
     if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/3.jpg",imagepath]]) {
         UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/3.jpg",imagepath]];
-        [_one setBackgroundImage:image forState:UIControlStateNormal];
+        [_three setBackgroundImage:image forState:UIControlStateNormal];
     }
 
     //设置导航栏左按钮
@@ -243,18 +243,19 @@
 - (IBAction)yuding:(id)sender {
     [self.view endEditing:YES];
     NSMutableArray * heheda=[[NSMutableArray alloc] init];
-    NSFileManager *fm=[NSFileManager defaultManager];
+    NSFileManager *fm1=[NSFileManager defaultManager];
     NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
-    NSString *picpath=[NSString stringWithFormat:@"%@/0.jpg",dicpath];
-    NSString *picpath1=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
-    NSString *picpath2=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
+    NSString *picpath=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
+    NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
+    NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
     NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
+    NSLog(@"%@",apq);
     for (int i=0; i<apq.count; i++) {
-        if ([fm isExecutableFileAtPath:apq[i]]) {
-            [heheda addObject:dicpath];
+        if ([fm1 fileExistsAtPath: apq[i]]) {
+            [heheda addObject:apq[i]];
         }
     }
-    
+    NSLog(@"%@  %lu",heheda,(unsigned long)heheda.count);
     //后台写的跟个傻逼似的 擦
     
     [WarningBox warningBoxModeIndeterminate:@"正在帮您代购药...." andView:self.view];
@@ -307,8 +308,12 @@
                 defaultManager = [NSFileManager defaultManager];
                 NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
                 [defaultManager removeItemAtPath:path error:NULL];
+                //
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+               
             }
-            
             
         }
         @catch (NSException * e) {
@@ -324,10 +329,6 @@
         NSLog(@"错误：%@",error);
         
     }];
-
-    
-    
-    
 
 }
 @end
