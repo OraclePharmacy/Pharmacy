@@ -151,6 +151,7 @@
 		95E0EC651CC6044C00B87690 /* YdInformationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC641CC6044C00B87690 /* YdInformationDetailsViewController.m */; };
 		95E0EC691CC605F900B87690 /* YdTextDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC681CC605F900B87690 /* YdTextDetailsViewController.m */; };
 		95E0EC6D1CC60B7300B87690 /* YdPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */; };
+		95E6B64D1CE333D000E2A359 /* YdFaTieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */; };
 		95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E951281CB4FAC600BB754C /* YdInformationViewController.m */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
 		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
@@ -178,7 +179,7 @@
 		95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440C71CD047A000B66D8C /* UULineChart.m */; };
 		95F440D11CD0487B00B66D8C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440CF1CD0487B00B66D8C /* TableViewCell.m */; };
 		95F440D21CD0487B00B66D8C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F440D01CD0487B00B66D8C /* TableViewCell.xib */; };
-		95F440D61CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */; };
+		95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F4D1D51CE4605E00081C7E /* YdTieZiXiangQingViewController.m */; };
 		D23EE57C1CBB4BC1000A9F01 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5701CBB4BC1000A9F01 /* AFHTTPSessionManager.m */; };
 		D23EE57D1CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5731CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m */; };
 		D23EE57E1CBB4BC1000A9F01 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5751CBB4BC1000A9F01 /* AFSecurityPolicy.m */; };
@@ -433,6 +434,8 @@
 		95E0EC681CC605F900B87690 /* YdTextDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdTextDetailsViewController.m; sourceTree = "<group>"; };
 		95E0EC6B1CC60B7300B87690 /* YdPersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPersonalInformationViewController.h; sourceTree = "<group>"; };
 		95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPersonalInformationViewController.m; sourceTree = "<group>"; };
+		95E6B64B1CE333D000E2A359 /* YdFaTieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdFaTieViewController.h; sourceTree = "<group>"; };
+		95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdFaTieViewController.m; sourceTree = "<group>"; };
 		95E951271CB4FAC600BB754C /* YdInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdInformationViewController.h; sourceTree = "<group>"; };
 		95E951281CB4FAC600BB754C /* YdInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdInformationViewController.m; sourceTree = "<group>"; };
 		95EA794E1C9BA8A10093829A /* YdForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdForgetViewController.h; sourceTree = "<group>"; };
@@ -474,8 +477,8 @@
 		95F440CE1CD0487B00B66D8C /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		95F440CF1CD0487B00B66D8C /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		95F440D01CD0487B00B66D8C /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		95F440D41CD0B9B600B66D8C /* YdyaopinxiangqingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyaopinxiangqingViewController.h; sourceTree = "<group>"; };
-		95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyaopinxiangqingViewController.m; sourceTree = "<group>"; };
+		95F4D1D41CE4605E00081C7E /* YdTieZiXiangQingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdTieZiXiangQingViewController.h; sourceTree = "<group>"; };
+		95F4D1D51CE4605E00081C7E /* YdTieZiXiangQingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdTieZiXiangQingViewController.m; sourceTree = "<group>"; };
 		D23EE56F1CBB4BC1000A9F01 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		D23EE5701CBB4BC1000A9F01 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		D23EE5711CBB4BC1000A9F01 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -853,7 +856,6 @@
 			children = (
 				95CA50F51CA0E74A006CBC72 /* YdDrugJumpViewController.h */,
 				95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */,
-				95F440D31CD0B98700B66D8C /* 药品详情 */,
 			);
 			name = "首页跳转";
 			sourceTree = "<group>";
@@ -1003,6 +1005,8 @@
 			children = (
 				952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */,
 				952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */,
+				95F4D1D31CE4602500081C7E /* 详情 */,
+				95E6B64A1CE333A500E2A359 /* 发帖 */,
 			);
 			name = "病友交流";
 			sourceTree = "<group>";
@@ -1142,6 +1146,15 @@
 				95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */,
 			);
 			name = "个人信息";
+			sourceTree = "<group>";
+		};
+		95E6B64A1CE333A500E2A359 /* 发帖 */ = {
+			isa = PBXGroup;
+			children = (
+				95E6B64B1CE333D000E2A359 /* YdFaTieViewController.h */,
+				95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */,
+			);
+			name = "发帖";
 			sourceTree = "<group>";
 		};
 		95E951211CB4ABC900BB754C /* 特价药品 */ = {
@@ -1350,13 +1363,13 @@
 			path = UUChart;
 			sourceTree = "<group>";
 		};
-		95F440D31CD0B98700B66D8C /* 药品详情 */ = {
+		95F4D1D31CE4602500081C7E /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
-				95F440D41CD0B9B600B66D8C /* YdyaopinxiangqingViewController.h */,
-				95F440D51CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m */,
+				95F4D1D41CE4605E00081C7E /* YdTieZiXiangQingViewController.h */,
+				95F4D1D51CE4605E00081C7E /* YdTieZiXiangQingViewController.m */,
 			);
-			name = "药品详情";
+			name = "详情";
 			sourceTree = "<group>";
 		};
 		D23EE56E1CBB4BC1000A9F01 /* AFNetworking 3.0.4 */ = {
@@ -1607,6 +1620,7 @@
 				95609EA21CABC72E00AF65E4 /* SBJsonStreamParserAdapter.m in Sources */,
 				9505D6D11C9A7B27006F6850 /* AppDelegate.m in Sources */,
 				95609F091CABC88200AF65E4 /* Color+Hex.m in Sources */,
+				95E6B64D1CE333D000E2A359 /* YdFaTieViewController.m in Sources */,
 				95E0EC651CC6044C00B87690 /* YdInformationDetailsViewController.m in Sources */,
 				D23EE57E1CBB4BC1000A9F01 /* AFSecurityPolicy.m in Sources */,
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
@@ -1639,6 +1653,7 @@
 				950665031CDC307A00C3AED3 /* YdNewsViewController.m in Sources */,
 				95609EF51CABC74E00AF65E4 /* SDImageCache.m in Sources */,
 				9505D70F1C9A7FF7006F6850 /* UIViewController+RESideMenu.m in Sources */,
+				95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */,
 				958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */,
 				95609EF71CABC74E00AF65E4 /* SDWebImageDecoder.m in Sources */,
 				95609EA31CABC72E00AF65E4 /* SBJsonStreamParserState.m in Sources */,
@@ -1646,7 +1661,6 @@
 				959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */,
 				959F9E531CBE215700C5D019 /* YdElectronicsViewController.m in Sources */,
 				95609EF61CABC74E00AF65E4 /* SDWebImageCompat.m in Sources */,
-				95F440D61CD0B9B600B66D8C /* YdyaopinxiangqingViewController.m in Sources */,
 				95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */,
 				9502A4A51C9CFE2100578339 /* YdbannerViewController.m in Sources */,
 				D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */,

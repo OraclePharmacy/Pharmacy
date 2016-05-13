@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdJiaoLiuViewController : UIViewController
+@interface YdJiaoLiuViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong,nonatomic) UITableView *tableview;
 
 @end
