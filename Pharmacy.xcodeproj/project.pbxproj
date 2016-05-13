@@ -151,6 +151,9 @@
 		95E0EC651CC6044C00B87690 /* YdInformationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC641CC6044C00B87690 /* YdInformationDetailsViewController.m */; };
 		95E0EC691CC605F900B87690 /* YdTextDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC681CC605F900B87690 /* YdTextDetailsViewController.m */; };
 		95E0EC6D1CC60B7300B87690 /* YdPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */; };
+		95E189831CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E189821CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m */; };
+		95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */; };
+		95E189881CE56078008EB1A4 /* clicklike_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E189871CE56078008EB1A4 /* clicklike_light.png */; };
 		95E6B64D1CE333D000E2A359 /* YdFaTieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */; };
 		95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E951281CB4FAC600BB754C /* YdInformationViewController.m */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
@@ -434,6 +437,11 @@
 		95E0EC681CC605F900B87690 /* YdTextDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdTextDetailsViewController.m; sourceTree = "<group>"; };
 		95E0EC6B1CC60B7300B87690 /* YdPersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPersonalInformationViewController.h; sourceTree = "<group>"; };
 		95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPersonalInformationViewController.m; sourceTree = "<group>"; };
+		95E189811CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdpinglunliebiaoViewController.h; sourceTree = "<group>"; };
+		95E189821CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdpinglunliebiaoViewController.m; sourceTree = "<group>"; };
+		95E189841CE55BA8008EB1A4 /* YdfabiaopinglunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdfabiaopinglunViewController.h; sourceTree = "<group>"; };
+		95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdfabiaopinglunViewController.m; sourceTree = "<group>"; };
+		95E189871CE56078008EB1A4 /* clicklike_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicklike_light.png; sourceTree = "<group>"; };
 		95E6B64B1CE333D000E2A359 /* YdFaTieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdFaTieViewController.h; sourceTree = "<group>"; };
 		95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdFaTieViewController.m; sourceTree = "<group>"; };
 		95E951271CB4FAC600BB754C /* YdInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdInformationViewController.h; sourceTree = "<group>"; };
@@ -1005,6 +1013,8 @@
 			children = (
 				952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */,
 				952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */,
+				95E189801CE55B5D008EB1A4 /* 评论列表 */,
+				95E1897F1CE55B4E008EB1A4 /* 发表评论 */,
 				95F4D1D31CE4602500081C7E /* 详情 */,
 				95E6B64A1CE333A500E2A359 /* 发帖 */,
 			);
@@ -1032,6 +1042,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				95E189871CE56078008EB1A4 /* clicklike_light.png */,
 				950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */,
 				952A1A091CD8440700582D26 /* 组-14@3x.png */,
 				952A1A071CD843D600582D26 /* 组-13@3x.png */,
@@ -1146,6 +1157,24 @@
 				95E0EC6C1CC60B7300B87690 /* YdPersonalInformationViewController.m */,
 			);
 			name = "个人信息";
+			sourceTree = "<group>";
+		};
+		95E1897F1CE55B4E008EB1A4 /* 发表评论 */ = {
+			isa = PBXGroup;
+			children = (
+				95E189841CE55BA8008EB1A4 /* YdfabiaopinglunViewController.h */,
+				95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */,
+			);
+			name = "发表评论";
+			sourceTree = "<group>";
+		};
+		95E189801CE55B5D008EB1A4 /* 评论列表 */ = {
+			isa = PBXGroup;
+			children = (
+				95E189811CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.h */,
+				95E189821CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m */,
+			);
+			name = "评论列表";
 			sourceTree = "<group>";
 		};
 		95E6B64A1CE333A500E2A359 /* 发帖 */ = {
@@ -1549,6 +1578,7 @@
 				95C372511CB5F5780083AC90 /* iconfont-search@2x.png in Resources */,
 				95D817111CACE96D006BE2DB /* area.plist in Resources */,
 				95F1E0461CB7A72300614502 /* 今天还能摇三次@3x.png in Resources */,
+				95E189881CE56078008EB1A4 /* clicklike_light.png in Resources */,
 				95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */,
 				9505D72A1C9A9BE5006F6850 /* IMG_0800.jpg in Resources */,
 				95C372611CB5F5780083AC90 /* 矩形-20@2x.png in Resources */,
@@ -1631,9 +1661,11 @@
 				95609EFE1CABC74E00AF65E4 /* UIImage+MultiFormat.m in Sources */,
 				95609E821CABC72000AF65E4 /* mmm5.m in Sources */,
 				95F440CB1CD047A000B66D8C /* UUChartConst.m in Sources */,
+				95E189831CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m in Sources */,
 				952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */,
 				D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */,
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
+				95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */,
 				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,
 				9505D6CE1C9A7B27006F6850 /* main.m in Sources */,
 				950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */,

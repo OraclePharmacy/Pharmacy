@@ -14,6 +14,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "YdfabiaopinglunViewController.h"
+#import "YdpinglunliebiaoViewController.h"
 
 @interface YdTieZiXiangQingViewController ()
 {
@@ -22,6 +24,8 @@
     
     NSDictionary *arr;
     NSArray *imagearray;
+    
+    int zhi;
 }
 @end
 
@@ -29,6 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    zhi = 1;
+    
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -203,9 +210,90 @@
 -(void)pinglun
 {
     
+    YdpinglunliebiaoViewController *pinglunliebiao = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinglunliebiao"];
+    [self.navigationController pushViewController:pinglunliebiao animated:YES];
+    
+}
+- (IBAction)dianzan:(id)sender {
+    
+    if (zhi == 1) {
+        
+        [self.dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light.png"] forState:UIControlStateNormal];
+        
+        zhi = 2;
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/clickLike";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"2",@"flag", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+    
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+            
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
+        
+    }
+    else if (zhi == 2) {
+        
+         [self.dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
+        
+        zhi = 1;
+        
+    }
+    
+    
 }
 
-
 - (IBAction)pinglunButton:(id)sender {
+    
+    YdfabiaopinglunViewController *fabiaopinglun = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabiaopinglun"];
+    [self.navigationController pushViewController:fabiaopinglun animated:YES];
+    
 }
 @end

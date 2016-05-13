@@ -39,4 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *image3;
 
+@property (weak, nonatomic) IBOutlet UIButton *dianzan;
+
+
+
 @end
