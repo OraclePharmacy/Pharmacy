@@ -74,16 +74,16 @@
         @try{
             
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",responseObject);
+            NSLog(@"－＊－＊－＊－＊－＊详情接口＊－＊－＊＊－\n\n\n%@",responseObject);
             NSString*shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
             
             
             NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
             if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
-                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+//                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
             }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
             {
-                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+//                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
             }
             
             

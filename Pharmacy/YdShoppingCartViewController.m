@@ -15,16 +15,29 @@
     CGFloat width;
     CGFloat height;
     
-    UITableViewCell *cell;
     
     UITextField *num;
 
+    NSMutableArray* yikaishi;
 }
 
 @end
 
 @implementation YdShoppingCartViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"sajkhdf");
+    NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+   
+    NSFileManager *file=[NSFileManager defaultManager];
+    
+    if([file fileExistsAtPath:countwenjian]){
+        yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+        
+    }else{
+        yikaishi=nil;
+    }
+    [_tableview reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,6 +52,12 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
+    
+    
+
+    
+    
+    
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -48,9 +67,41 @@
     [num resignFirstResponder];
     
 }
+//限制输入框长度
+-(void)NumberLength
+{   
+    int MaxLen = 4;
+    NSString* szText = [num text];
+    if ([num.text length]> MaxLen)
+    {
+        num.text = [szText substringToIndex:MaxLen];
+    }
+}
 
--(void)shopping
+//组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    return 1;
+}
+//行
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return yikaishi.count;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return width/3+1;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *id1 =@"cell1";
+    UITableViewCell *cell;
+    cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
+    }
+    
+    
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(0, 0, width/3, width/3);
@@ -86,57 +137,26 @@
     num.layer.borderWidth =1;
     num.layer.cornerRadius = 5.0;
     [num addTarget:self action:@selector(NumberLength) forControlEvents:UIControlEventEditingChanged];
-    [cell.contentView addSubview:num];
-    //删减数量按钮
-    UIButton *reduce = [[UIButton alloc]init];
-    reduce.frame = CGRectMake(width/3+5+width/3/6+width/3/3+5, width/3/3+width/3/6, width/3/6, width/3/6);
-    [reduce setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
-    [cell.contentView addSubview:reduce];
-    //生产厂家
-    UILabel *vender = [[UILabel alloc]init];
-    vender.frame = CGRectMake( width/3+10, width/3/3+width/3/6+width/3/6+10, width/3*2-10, width/3/6);
-    vender.text = @"哈尔滨市甲骨文实训基地";
-    vender.textColor = [UIColor blackColor];
-    vender.font =[UIFont systemFontOfSize:12];
-    //number.backgroundColor = [UIColor yellowColor];
-    [cell.contentView addSubview:vender];
-    
-}
-//限制输入框长度
--(void)NumberLength
-{
-    int MaxLen = 4;
-    NSString* szText = [num text];
-    if ([num.text length]> MaxLen)
-    {
-        num.text = [szText substringToIndex:MaxLen];
-    }
-}
+    num.text=[NSString stringWithFormat:@"%@",[yikaishi[indexPath.row]objectForKey:@"shuliang"]];
+              [cell.contentView addSubview:num];
+              //删减数量按钮
+              UIButton *reduce = [[UIButton alloc]init];
+              reduce.frame = CGRectMake(width/3+5+width/3/6+width/3/3+5, width/3/3+width/3/6, width/3/6, width/3/6);
+              [reduce setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
+              [cell.contentView addSubview:reduce];
+              //生产厂家
+              UILabel *vender = [[UILabel alloc]init];
+              vender.frame = CGRectMake( width/3+10, width/3/3+width/3/6+width/3/6+10, width/3*2-10, width/3/6);
+              vender.text = @"哈尔滨市甲骨文实训基地";
+              vender.textColor = [UIColor blackColor];
+              vender.font =[UIFont systemFontOfSize:12];
+              //number.backgroundColor = [UIColor yellowColor];
+              [cell.contentView addSubview:vender];
 
-//组
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-//行
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    return width/3+1;
-}
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *id1 =@"cell1";
     
-    cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
-    }
     
-    [self shopping];
+    
+    
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -151,7 +171,36 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //隐藏键盘
-    [cell.contentView endEditing:YES];
+    [self.view endEditing:YES];
+    
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath      //当在Cell上滑动时会调用此函数
+{
+    
+    return  UITableViewCellEditingStyleDelete;   //返回此值时,Cell上不会出现Delete按键,即Cell不做任何响应
+        
+    
+}
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath //对选中的Cell根据editingStyle进行操作
+{
+    
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            
+            //删除字典内容
+            
+            [yikaishi removeObjectAtIndex:indexPath.row];
+            if (yikaishi.count==0) {
+                yikaishi=nil;
+            }
+            [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.tableview reloadData];
+        }
+        else if (editingStyle == UITableViewCellEditingStyleInsert)
+        {
+            [self.tableview reloadData];
+        }
+        
     
 }
 

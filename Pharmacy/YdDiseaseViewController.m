@@ -126,7 +126,7 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 NSDictionary*dd=[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
                 diseaseInfo=[NSDictionary dictionaryWithDictionary:[dd objectForKey:@"diseaseInfo"]];
-                bingyin=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"causes"]] componentsSeparatedByString:@"\n"];
+                bingyin=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"causes"]] componentsSeparatedByString:@"-----------------"];
                 bingzheng=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"symptoms"]] componentsSeparatedByString:@"\n"];
                 jiankang=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"healthCare"]] componentsSeparatedByString:@"\n"];
                 zhuyi=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"precautions"]] componentsSeparatedByString:@"\n"];;
@@ -203,7 +203,6 @@
     //给lable 赋值
     if (indexPath.section==0) {
         s =bingyin[indexPath.row];
-        
     }else if(indexPath.section==1){
         s=bingzheng[indexPath.row];
     }else if(indexPath.section==2){
@@ -284,13 +283,15 @@
         UIImageView*b1=[[UIImageView alloc] initWithFrame:CGRectMake(5, 5, width/3-10, width/3-10)];
         UIImageView*b2=[[UIImageView alloc] initWithFrame:CGRectMake(width/3+5, 5, width/3-10, width/3-10)];
         UIImageView*b3=[[UIImageView alloc] initWithFrame:CGRectMake(2*width/3+5, 5, width/3-10, width/3-10)];
-       
+        [b1 setUserInteractionEnabled:YES];
+        [b2 setUserInteractionEnabled:YES];
+        [b3 setUserInteractionEnabled:YES];
 
         if (yaopin.count==0) {
             
         }else if(yaopin.count==1){
             //一张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
@@ -303,16 +304,17 @@
             [cell addSubview:b1];
         }else if(yaopin.count==2){
             //两张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
             ming1.textAlignment=NSTextAlignmentCenter;
             UITapGestureRecognizer* singleRecognizer1;
             singleRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom1)];
+            
             singleRecognizer1.numberOfTapsRequired = 1; // 单击
             [b1 addGestureRecognizer:singleRecognizer1];
-            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming2=[[UILabel alloc] initWithFrame:CGRectMake(width/3+5, width/3, width/3-10, 23)];
             ming2.text=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"commonName"]];
             ming2.font=[UIFont systemFontOfSize:12];
@@ -328,16 +330,17 @@
             [cell addSubview:ming2];
         }else{
             //三张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
             ming1.textAlignment=NSTextAlignmentCenter;
             UITapGestureRecognizer* singleRecognizer1;
             singleRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom1)];
+            
             singleRecognizer1.numberOfTapsRequired = 1; // 单击
             [b1 addGestureRecognizer:singleRecognizer1];
-            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming2=[[UILabel alloc] initWithFrame:CGRectMake(width/3+5, width/3, width/3-10, 23)];
             ming2.text=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"commonName"]];
             ming2.font=[UIFont systemFontOfSize:12];
@@ -346,7 +349,7 @@
             singleRecognizer2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom2)];
             singleRecognizer2.numberOfTapsRequired = 1; // 单击
             [b2 addGestureRecognizer:singleRecognizer2];
-            [b3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[2] objectForKey:@""]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[2] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
             UILabel*ming3=[[UILabel alloc] initWithFrame:CGRectMake(2*width/3+5, width/3, width/3-10, 23)];
             ming3.text=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@"commonName"]];
             ming3.font=[UIFont systemFontOfSize:12];
@@ -388,19 +391,22 @@
 }
 #pragma mark ---跳转药品详情
 -(void)handleSingleTapFrom3{
+    NSLog(@"3");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@""]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 
 }
 -(void)handleSingleTapFrom2{
+    NSLog(@"2");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@""]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 }
 -(void)handleSingleTapFrom1{
+    NSLog(@"1");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@""]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 }
 #pragma  mark ---点击 展开---合并
