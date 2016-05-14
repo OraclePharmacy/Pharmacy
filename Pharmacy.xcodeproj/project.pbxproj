@@ -56,6 +56,7 @@
 		952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A091CD8440700582D26 /* 组-14@3x.png */; };
 		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
 		952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */; };
+		953717091CE6B18E00CA959D /* YdyouhuiquanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */; };
 		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
 		9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
@@ -290,6 +291,8 @@
 		952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdJiaoLiuViewController.m; sourceTree = "<group>"; };
 		952A1A0E1CD8450F00582D26 /* YdYaoXiangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdYaoXiangViewController.h; sourceTree = "<group>"; };
 		952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdYaoXiangViewController.m; sourceTree = "<group>"; };
+		953717071CE6B18E00CA959D /* YdyouhuiquanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyouhuiquanViewController.h; sourceTree = "<group>"; };
+		953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyouhuiquanViewController.m; sourceTree = "<group>"; };
 		9537CFC61CC9D21F0031021A /* time_line_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_line_mark.png; sourceTree = "<group>"; };
 		9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPurchasingViewController.h; sourceTree = "<group>"; };
 		9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPurchasingViewController.m; sourceTree = "<group>"; };
@@ -764,6 +767,7 @@
 			children = (
 				9505D7121C9A7FFF006F6850 /* YdLeftViewController.h */,
 				9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */,
+				953717051CE6B15300CA959D /* 我的优惠券 */,
 				95E189891CE5CC31008EB1A4 /* 我的订单 */,
 				95E0EC6A1CC60B3200B87690 /* 个人信息 */,
 			);
@@ -870,6 +874,15 @@
 				95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */,
 			);
 			name = "首页跳转";
+			sourceTree = "<group>";
+		};
+		953717051CE6B15300CA959D /* 我的优惠券 */ = {
+			isa = PBXGroup;
+			children = (
+				953717071CE6B18E00CA959D /* YdyouhuiquanViewController.h */,
+				953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */,
+			);
+			name = "我的优惠券";
 			sourceTree = "<group>";
 		};
 		9537CFC81CC9D7FA0031021A /* 代购药 */ = {
@@ -1677,6 +1690,7 @@
 				95E189831CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m in Sources */,
 				952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */,
 				D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */,
+				953717091CE6B18E00CA959D /* YdyouhuiquanViewController.m in Sources */,
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
 				95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */,
 				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,

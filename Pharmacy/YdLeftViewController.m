@@ -12,6 +12,7 @@
 #import "UIViewController+RESideMenu.h"
 #import "Color+Hex.h"
 #import "YdWoDeDingDanViewController.h"
+#import "YdyouhuiquanViewController.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -142,7 +143,18 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
             
         }];
 
+    }
+    else if (indexPath.row == 1)
+    {
         
+        YdyouhuiquanViewController *youhuiquan=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+        
+        [self presentViewController:youhuiquan animated:YES completion:^{
+            
+            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+        }];
+
     }
     
 }

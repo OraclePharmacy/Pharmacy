@@ -230,7 +230,7 @@
     queren.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     queren.layer.cornerRadius = 5;
     queren.layer.masksToBounds = YES;
-    
+    queren.titleLabel.font    = [UIFont systemFontOfSize: 15];
     
     [beijinger addSubview:queren];
 
