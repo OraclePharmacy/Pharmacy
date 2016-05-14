@@ -10,12 +10,17 @@
 #import "YdHomePageViewController.h"
 #import "YdPersonalInformationViewController.h"
 #import "UIViewController+RESideMenu.h"
+#import "Color+Hex.h"
+#import "YdWoDeDingDanViewController.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
 
 @interface YdLeftViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    CGFloat width;
+    CGFloat height;
+}
 @property (nonatomic, strong) NSArray *lefs;
 @property (nonatomic, assign) NSInteger previousRow;
 
@@ -26,17 +31,21 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
     
-    _lefs = @[@"个人信息", @"客服热线", @"用户反馈", @"软件设置", @"关于我们"];
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
+    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
+    
+    _lefs = @[@"我的订单", @"我的优惠券", @"我的中奖纪录", @"我的收藏", @"我的帖子",@"意见反馈",@"分享下载",@"设置"];
     _tableView = [[UITableView alloc] init];
-    _tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.width - 64);
+    _tableView.frame = CGRectMake(0, 64, width, height);
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kYCLeftViewControllerCellReuseId];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
    
     [self.view addSubview:self.tableView];
 
@@ -58,7 +67,49 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 {
     return self.lefs.count;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return 90;
+    }
+    return 0;
+}
+//编辑header内容
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //32BE60
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 80)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+    
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(10, 15, 60, 60);
+    image.image = [UIImage imageNamed:@"小人@2x.png"];
+    image.layer.cornerRadius = 30;
+    image.layer.masksToBounds = YES;
+    
+    UIButton *denglu = [[UIButton alloc]init];
+    denglu.frame = CGRectMake(70, 30, 100, 30);
+    denglu.backgroundColor = [UIColor clearColor];
+    [denglu setTitle:@"登录/注册" forState:UIControlStateNormal];
+    [denglu setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
+    [denglu addTarget:self action:@selector(denglu) forControlEvents:UIControlEventTouchUpInside];
 
+    [baseView addSubview:image];
+    [baseView addSubview:denglu];
+    return baseView;
+}
+-(void)denglu
+{
+    YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+    
+    [self presentViewController:PersonalInformation animated:YES completion:^{
+        
+        [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+        
+    }];
+
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -66,13 +117,12 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kYCLeftViewControllerCellReuseId];
     }
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.textLabel.text = self.lefs[indexPath.row];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0];
-    cell.textLabel.textColor = [UIColor blackColor];
-    //cell.textLabel.highlightedTextColor = [UIColor grayColor];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     cell.selectedBackgroundView = [[UIView alloc] init];
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     return cell;
 }
@@ -84,14 +134,15 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     if (indexPath.row == 0)
     {
         
-        YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+        YdWoDeDingDanViewController *WoDeDingDan=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodedingdan"];
         
-        [self presentViewController:PersonalInformation animated:YES completion:^{
+        [self presentViewController:WoDeDingDan animated:YES completion:^{
             
             [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
             
         }];
-    
+
+        
     }
     
 }
@@ -99,7 +150,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 
 - (void)didReceiveMemoryWarning {

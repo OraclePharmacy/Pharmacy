@@ -154,6 +154,7 @@
 		95E189831CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E189821CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m */; };
 		95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */; };
 		95E189881CE56078008EB1A4 /* clicklike_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E189871CE56078008EB1A4 /* clicklike_light.png */; };
+		95E1898C1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */; };
 		95E6B64D1CE333D000E2A359 /* YdFaTieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */; };
 		95E951291CB4FAC600BB754C /* YdInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E951281CB4FAC600BB754C /* YdInformationViewController.m */; };
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
@@ -442,6 +443,8 @@
 		95E189841CE55BA8008EB1A4 /* YdfabiaopinglunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdfabiaopinglunViewController.h; sourceTree = "<group>"; };
 		95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdfabiaopinglunViewController.m; sourceTree = "<group>"; };
 		95E189871CE56078008EB1A4 /* clicklike_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicklike_light.png; sourceTree = "<group>"; };
+		95E1898A1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdWoDeDingDanViewController.h; sourceTree = "<group>"; };
+		95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdWoDeDingDanViewController.m; sourceTree = "<group>"; };
 		95E6B64B1CE333D000E2A359 /* YdFaTieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdFaTieViewController.h; sourceTree = "<group>"; };
 		95E6B64C1CE333D000E2A359 /* YdFaTieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdFaTieViewController.m; sourceTree = "<group>"; };
 		95E951271CB4FAC600BB754C /* YdInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdInformationViewController.h; sourceTree = "<group>"; };
@@ -761,6 +764,7 @@
 			children = (
 				9505D7121C9A7FFF006F6850 /* YdLeftViewController.h */,
 				9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */,
+				95E189891CE5CC31008EB1A4 /* 我的订单 */,
 				95E0EC6A1CC60B3200B87690 /* 个人信息 */,
 			);
 			name = "左侧滑";
@@ -1175,6 +1179,15 @@
 				95E189821CE55B8E008EB1A4 /* YdpinglunliebiaoViewController.m */,
 			);
 			name = "评论列表";
+			sourceTree = "<group>";
+		};
+		95E189891CE5CC31008EB1A4 /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				95E1898A1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.h */,
+				95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */,
+			);
+			name = "我的订单";
 			sourceTree = "<group>";
 		};
 		95E6B64A1CE333A500E2A359 /* 发帖 */ = {
@@ -1707,6 +1720,7 @@
 				95C372811CB6582A0083AC90 /* YdServiceViewController.m in Sources */,
 				95609EFC1CABC74E00AF65E4 /* UIButton+WebCache.m in Sources */,
 				9502A4AA1C9D21B200578339 /* YdDiseaseViewController.m in Sources */,
+				95E1898C1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m in Sources */,
 				9505367A1CCF5F5C00BA1C43 /* YdShopViewController.m in Sources */,
 				95C3727B1CB646500083AC90 /* YdTurntableViewController.m in Sources */,
 				95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */,

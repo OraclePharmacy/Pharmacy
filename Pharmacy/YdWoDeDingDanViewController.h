@@ -1,5 +1,5 @@
 //
-//  YdpinglunliebiaoViewController.h
+//  YdWoDeDingDanViewController.h
 //  Pharmacy
 //
 //  Created by suokun on 16/5/13.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdpinglunliebiaoViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface YdWoDeDingDanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
-@property (strong,nonatomic) NSString *tieziID;
 @property (strong,nonatomic) UITableView *tableview;
+
 @end

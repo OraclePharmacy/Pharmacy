@@ -610,6 +610,62 @@
             </objects>
             <point key="canvasLocation" x="-735" y="1733"/>
         </scene>
+        <!--Yd Wo De Ding Dan View Controller-->
+        <scene sceneID="nKZ-py-A1Y">
+            <objects>
+                <viewController storyboardIdentifier="wodedingdan" id="fZ7-8e-sVY" customClass="YdWoDeDingDanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mHa-po-Hiy"/>
+                        <viewControllerLayoutGuide type="bottom" id="ddL-0f-QP6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7bz-d3-A7s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZt-Ui-oCU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR0-vD-8he">
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="我的订单" id="mZs-Q4-Jix">
+                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="UP0-74-8CW">
+                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="fanhui:" destination="fZ7-8e-sVY" id="bzP-SG-kKN"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tR0-vD-8he" firstAttribute="leading" secondItem="GZt-Ui-oCU" secondAttribute="leading" id="FzO-tm-lDG"/>
+                                    <constraint firstAttribute="height" constant="64" id="R3F-Q0-Hgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="tR0-vD-8he" secondAttribute="trailing" id="SyI-wZ-gAt"/>
+                                    <constraint firstAttribute="bottom" secondItem="tR0-vD-8he" secondAttribute="bottom" id="gao-56-NJq"/>
+                                    <constraint firstItem="tR0-vD-8he" firstAttribute="top" secondItem="GZt-Ui-oCU" secondAttribute="top" constant="20" id="nnZ-ph-ere"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="GZt-Ui-oCU" firstAttribute="top" secondItem="7bz-d3-A7s" secondAttribute="top" id="1f6-46-zhs"/>
+                            <constraint firstItem="GZt-Ui-oCU" firstAttribute="leading" secondItem="7bz-d3-A7s" secondAttribute="leading" id="Fgk-be-rtM"/>
+                            <constraint firstAttribute="trailing" secondItem="GZt-Ui-oCU" secondAttribute="trailing" id="HTk-J2-nyk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FEW-2A-Cqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-735" y="2380"/>
+        </scene>
         <!--药品-->
         <scene sceneID="Pdj-di-UPf">
             <objects>
@@ -1452,8 +1508,32 @@
                     <view key="view" contentMode="scaleToFill" id="EO7-fi-WtG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnH-G5-JnY">
+                                <rect key="frame" x="30" y="285" width="540" height="30"/>
+                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XTk-d9-ifd"/>
+                                </constraints>
+                                <state key="normal" title="发表评论">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pinglunButton:" destination="u1Y-lg-XBE" eventType="touchUpInside" id="UwJ-K3-e6Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="DnH-G5-JnY" firstAttribute="centerX" secondItem="EO7-fi-WtG" secondAttribute="centerX" id="5Mm-Lo-ieU"/>
+                            <constraint firstAttribute="trailing" secondItem="DnH-G5-JnY" secondAttribute="trailing" constant="30" id="H34-Dt-Lc2"/>
+                            <constraint firstItem="DnH-G5-JnY" firstAttribute="leading" secondItem="EO7-fi-WtG" secondAttribute="leading" constant="30" id="iG0-5l-QgG"/>
+                            <constraint firstItem="DnH-G5-JnY" firstAttribute="centerY" secondItem="EO7-fi-WtG" secondAttribute="centerY" id="jmP-pq-2ic"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pinglunNutton" destination="DnH-G5-JnY" id="7pp-tV-N3x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thh-3R-Tfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

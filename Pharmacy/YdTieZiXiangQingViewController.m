@@ -211,6 +211,7 @@
 {
     
     YdpinglunliebiaoViewController *pinglunliebiao = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinglunliebiao"];
+    pinglunliebiao.tieziID = _tieziId;
     [self.navigationController pushViewController:pinglunliebiao animated:YES];
     
 }
@@ -281,18 +282,19 @@
     }
     else if (zhi == 2) {
         
-         [self.dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
+        [self.dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
         
         zhi = 1;
         
     }
     
-    
+
 }
 
 - (IBAction)pinglunButton:(id)sender {
     
     YdfabiaopinglunViewController *fabiaopinglun = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabiaopinglun"];
+    fabiaopinglun.tieziID = _tieziId;
     [self.navigationController pushViewController:fabiaopinglun animated:YES];
     
 }

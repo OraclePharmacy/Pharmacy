@@ -63,17 +63,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-     pickerview=[[UIView alloc] init];
+    pickerview=[[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
     _first = @[@"头像", @"昵称"];
     _second = @[@"姓名",@"性别",@"年龄",@"会员卡号(选填)",@"地区",@"详细地址"];
-    
-    
-    
-   
-    
     
     //创建tableview
     self.tableview = [[UITableView alloc]init];
