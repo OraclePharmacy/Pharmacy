@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 @interface YdLeftViewController : UIViewController<RESideMenuDelegate>
+
 @property (nonatomic, strong) UITableView *tableView;
+
 @end

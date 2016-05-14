@@ -205,7 +205,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",ye],@"pageNo",@"3",@"pageSize",hehe,@"id", nil];
-    NSLog(@"%d",ye);
+   
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -468,11 +468,12 @@
         }
         else
         {
-           NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
+            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
             NSLog(@"%@",path);
             UIImageView *image = [[UIImageView alloc]init];
             image.frame = CGRectMake(10, 10, 100 , 100);
             [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            
             UILabel *title = [[UILabel alloc]init];
             title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
             title.font = [UIFont systemFontOfSize:15];
@@ -554,7 +555,7 @@
     }
     else
     {
-         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[diantainewsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[diantainewsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 100 , 100);
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];

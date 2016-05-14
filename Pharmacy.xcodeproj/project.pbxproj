@@ -57,6 +57,9 @@
 		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
 		952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */; };
 		953717091CE6B18E00CA959D /* YdyouhuiquanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */; };
+		9537170D1CE6CFB600CA959D /* YdwodetieziViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537170C1CE6CFB600CA959D /* YdwodetieziViewController.m */; };
+		953717111CE6D5C500CA959D /* YdwodeshoucangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953717101CE6D5C500CA959D /* YdwodeshoucangViewController.m */; };
+		953717151CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953717141CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m */; };
 		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
 		9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
@@ -293,6 +296,12 @@
 		952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdYaoXiangViewController.m; sourceTree = "<group>"; };
 		953717071CE6B18E00CA959D /* YdyouhuiquanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyouhuiquanViewController.h; sourceTree = "<group>"; };
 		953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyouhuiquanViewController.m; sourceTree = "<group>"; };
+		9537170B1CE6CFB600CA959D /* YdwodetieziViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdwodetieziViewController.h; sourceTree = "<group>"; };
+		9537170C1CE6CFB600CA959D /* YdwodetieziViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdwodetieziViewController.m; sourceTree = "<group>"; };
+		9537170F1CE6D5C500CA959D /* YdwodeshoucangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdwodeshoucangViewController.h; sourceTree = "<group>"; };
+		953717101CE6D5C500CA959D /* YdwodeshoucangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdwodeshoucangViewController.m; sourceTree = "<group>"; };
+		953717131CE6FCCE00CA959D /* YdzhongjiangjiluViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdzhongjiangjiluViewController.h; sourceTree = "<group>"; };
+		953717141CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdzhongjiangjiluViewController.m; sourceTree = "<group>"; };
 		9537CFC61CC9D21F0031021A /* time_line_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_line_mark.png; sourceTree = "<group>"; };
 		9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPurchasingViewController.h; sourceTree = "<group>"; };
 		9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPurchasingViewController.m; sourceTree = "<group>"; };
@@ -767,6 +776,9 @@
 			children = (
 				9505D7121C9A7FFF006F6850 /* YdLeftViewController.h */,
 				9505D7131C9A7FFF006F6850 /* YdLeftViewController.m */,
+				953717121CE6F3F800CA959D /* 我的中奖纪录 */,
+				9537170E1CE6D3A900CA959D /* 我的收藏 */,
+				9537170A1CE6CF9C00CA959D /* 我的帖子 */,
 				953717051CE6B15300CA959D /* 我的优惠券 */,
 				95E189891CE5CC31008EB1A4 /* 我的订单 */,
 				95E0EC6A1CC60B3200B87690 /* 个人信息 */,
@@ -883,6 +895,33 @@
 				953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */,
 			);
 			name = "我的优惠券";
+			sourceTree = "<group>";
+		};
+		9537170A1CE6CF9C00CA959D /* 我的帖子 */ = {
+			isa = PBXGroup;
+			children = (
+				9537170B1CE6CFB600CA959D /* YdwodetieziViewController.h */,
+				9537170C1CE6CFB600CA959D /* YdwodetieziViewController.m */,
+			);
+			name = "我的帖子";
+			sourceTree = "<group>";
+		};
+		9537170E1CE6D3A900CA959D /* 我的收藏 */ = {
+			isa = PBXGroup;
+			children = (
+				9537170F1CE6D5C500CA959D /* YdwodeshoucangViewController.h */,
+				953717101CE6D5C500CA959D /* YdwodeshoucangViewController.m */,
+			);
+			name = "我的收藏";
+			sourceTree = "<group>";
+		};
+		953717121CE6F3F800CA959D /* 我的中奖纪录 */ = {
+			isa = PBXGroup;
+			children = (
+				953717131CE6FCCE00CA959D /* YdzhongjiangjiluViewController.h */,
+				953717141CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m */,
+			);
+			name = "我的中奖纪录";
 			sourceTree = "<group>";
 		};
 		9537CFC81CC9D7FA0031021A /* 代购药 */ = {
@@ -1657,6 +1696,7 @@
 				95609F021CABC74E00AF65E4 /* UIView+WebCacheOperation.m in Sources */,
 				9502A4AD1C9D21D300578339 /* YdDrugsViewController.m in Sources */,
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
+				953717151CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m in Sources */,
 				95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */,
 				952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */,
 				95F440C91CD047A000B66D8C /* UUBarChart.m in Sources */,
@@ -1715,6 +1755,7 @@
 				95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */,
 				958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */,
 				95609EF71CABC74E00AF65E4 /* SDWebImageDecoder.m in Sources */,
+				953717111CE6D5C500CA959D /* YdwodeshoucangViewController.m in Sources */,
 				95609EA31CABC72E00AF65E4 /* SBJsonStreamParserState.m in Sources */,
 				9502A4B11C9D3F1300578339 /* YdShoppingCartViewController.m in Sources */,
 				959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */,
@@ -1751,6 +1792,7 @@
 				95C372781CB645DF0083AC90 /* YdShakeViewController.m in Sources */,
 				D23EE57F1CBB4BC1000A9F01 /* AFURLRequestSerialization.m in Sources */,
 				95609EFA1CABC74E00AF65E4 /* SDWebImageManager.m in Sources */,
+				9537170D1CE6CFB600CA959D /* YdwodetieziViewController.m in Sources */,
 				95609E831CABC72000AF65E4 /* URLEncode.m in Sources */,
 				D23EE57D1CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m in Sources */,
 				95609EFB1CABC74E00AF65E4 /* SDWebImagePrefetcher.m in Sources */,

@@ -23,6 +23,8 @@
 #import "YdPurchasingViewController.h"
 #import "YdQuestionViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "YdTieZiXiangQingViewController.h"
+#import "YdTextDetailsViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -72,6 +74,10 @@
     NSArray*wocalede;
     NSArray *arr1;
     NSString *str;
+    
+    NSArray *rementieziarray;
+    NSMutableArray *remenzixunarray;
+    
 }
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
@@ -514,9 +520,138 @@
 
     
 }
-#pragma mark ---- 病友问答接口
--(void)bingyouwenda{
+#pragma mark ---- 热门帖子接口
+-(void)rementiezi{
+    //userID    暂时不用改
+    NSString * userID=@"0";
     
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/share/vipTopicList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"id",@"1",@"pageNo",@"1",@"pageSize", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                rementieziarray = [datadic objectForKey:@"vipTopicList"];
+                
+                [self.tableview reloadData];
+                
+            }
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
+    
+
+}
+#pragma mark ---- 热门资讯接口
+-(void)remenzixun{
+    remenzixunarray = [[NSMutableArray alloc]init];
+    
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/integralGift/newsListForInterface";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"3",@"pageSize",@"1002",@"id", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            
+            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                remenzixunarray=[datadic objectForKey:@"newsListForInterface"];
+                NSLog(@"%@",datadic);
+                
+                [_tableview reloadData];
+                
+            }
+            
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+        
+    }];
+
 }
 #pragma mark ---- 药品分类接口
 -(void)yaopinfenlei{
@@ -528,7 +663,7 @@
 {if(tableView==wocalei){
     return 1;
 }else
-    return 6;
+    return 7;
 }
 
 //行
@@ -554,12 +689,17 @@
     }
     else if (section == 4)
     {
-        return 5;
+        return 4;
     }
     else if (section == 5)
     {
+        return remenzixunarray.count;
+    }
+    else if (section == 6)
+    {
         return 1;
     }
+
     return 0;
 }
 }
@@ -586,12 +726,17 @@
     }
     else if (indexPath.section == 4)
     {
-        return 50;
+        return 111;
     }
     else if (indexPath.section == 5)
     {
+        return 160;
+    }
+    else if (indexPath.section == 6)
+    {
         return 100;
     }
+
     return 0;
 }
 }
@@ -625,6 +770,11 @@
     {
         return 30;
     }
+    else if (section == 6)
+    {
+        return 30;
+    }
+
     return 0;
 }
 }
@@ -637,13 +787,13 @@
     if (section == 4) {
         
         UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-        baseView.backgroundColor = [UIColor colorWithHexString:@"E2E2E2" alpha:1];
+        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
         
         UILabel * tou = [[UILabel alloc]init];
         tou.frame = CGRectMake(8, 5, 100, 20);
         tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"病友问答展示";
+        tou.text = @"热门帖子";
         
         UIButton *gengduo = [[UIButton alloc]init];
         gengduo.frame = CGRectMake(width-30, 5, 30, 20);
@@ -658,7 +808,29 @@
     else if (section == 5)
     {
         UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-        baseView.backgroundColor = [UIColor colorWithHexString:@"E2E2E2" alpha:1];
+        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+        
+        UILabel * tou = [[UILabel alloc]init];
+        tou.frame = CGRectMake(8, 5, 100, 20);
+        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        tou.font = [UIFont systemFontOfSize:15];
+        tou.text = @"热门资讯";
+        
+        UIButton *gengduo = [[UIButton alloc]init];
+        gengduo.frame = CGRectMake(width-30, 5, 30, 20);
+        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+        [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
+        
+        [baseView addSubview:tou];
+        [baseView addSubview:gengduo];
+        
+        return baseView;
+
+    }
+    else if (section == 6)
+    {
+        UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
         
         UILabel * tou = [[UILabel alloc]init];
         tou.frame = CGRectMake(8, 5, 100, 20);
@@ -675,8 +847,9 @@
         [baseView addSubview:gengduo];
         
         return baseView;
-
+        
     }
+
     }
     return nil;
 }
@@ -917,35 +1090,166 @@
     }else if (indexPath.section == 4)
     {
         
-        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UIImageView *headportrait = [[UIImageView alloc] init];
-        headportrait.frame = CGRectMake(10, 5, 40, 40);
-        headportrait.image = [UIImage imageNamed:@"IMG_0801.jpg"];
+        UIImageView *touxiang = [[UIImageView alloc]init];
+        touxiang.frame = CGRectMake(5, 5, 80, 80);
+        touxiang.layer.cornerRadius = 40;
+        touxiang.layer.masksToBounds = YES;
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[rementieziarray[indexPath.row] objectForKey:@"photo"]];
+        [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
         
         UILabel *name = [[UILabel alloc]init];
-        name.frame = CGRectMake(60, 5, 150, 18);
-        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        name.frame = CGRectMake(5, 90, 80, 20);
         name.font = [UIFont systemFontOfSize:15];
-        name.text = @"小魔仙";
+        name.text = [NSString stringWithFormat:@"%@",[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        name.textAlignment = NSTextAlignmentCenter;
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         
-        UILabel *neirong = [[UILabel alloc]init];
-        neirong.frame = CGRectMake(60, 28, width - 50 , 17);
-        neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        neirong.font = [UIFont systemFontOfSize:13];
-        neirong.text = @"身上无缘无故会有小伤口 是不是疾病？身上无缘无故会有小伤口 是不是疾病？";
-
-        [cell.contentView addSubview:headportrait];
+        
+        UILabel *biaoti = [[UILabel alloc]init];
+        biaoti.frame = CGRectMake(90, 5, width - 95, 20);
+        biaoti.font = [UIFont systemFontOfSize:15];
+        biaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"title"]];
+        biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        
+        
+        UILabel *fubiaoti = [[UILabel alloc]init];
+        fubiaoti.frame = CGRectMake(90, 25, width - 95, 40);
+        fubiaoti.font = [UIFont systemFontOfSize:13];
+        fubiaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"context"]];
+        fubiaoti.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        fubiaoti.numberOfLines = 2;
+        
+        UILabel *biaoqian = [[UILabel alloc]init];
+        biaoqian.frame = CGRectMake(90, 65, 80, 20);
+        biaoqian.font = [UIFont systemFontOfSize:13];
+        biaoqian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"diseaseName"]];
+        biaoqian.textAlignment = NSTextAlignmentCenter;
+        biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+        biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+        
+        UILabel *shijian = [[UILabel alloc]init];
+        shijian.frame = CGRectMake(180, 65, width - 185, 20);
+        shijian.font = [UIFont systemFontOfSize:13];
+        shijian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"createTime"]];
+        shijian.textAlignment = NSTextAlignmentCenter;
+        shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+        
+        UILabel *yuedu = [[UILabel alloc]init];
+        yuedu.frame = CGRectMake(width - 215, 90, 100, 20);
+        yuedu.font = [UIFont systemFontOfSize:13];
+        yuedu.text = [NSString stringWithFormat:@"阅读量:%@",[rementieziarray[indexPath.row] objectForKey:@"viewNums"]];
+        yuedu.textAlignment = NSTextAlignmentRight;
+        yuedu.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+        
+        UILabel *dianzan = [[UILabel alloc]init];
+        dianzan.frame = CGRectMake(width - 110, 90, 100, 20);
+        dianzan.font = [UIFont systemFontOfSize:13];
+        dianzan.text = [NSString stringWithFormat:@"点赞量:%@",[rementieziarray[indexPath.row] objectForKey:@"likeNums"]];
+        dianzan.textAlignment = NSTextAlignmentRight;
+        dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+        
+        
+        [cell.contentView addSubview:touxiang];
         [cell.contentView addSubview:name];
-        [cell.contentView addSubview:neirong];
+        [cell.contentView addSubview:biaoti];
+        [cell.contentView addSubview:fubiaoti];
+        [cell.contentView addSubview:biaoqian];
+        [cell.contentView addSubview:shijian];
+        [cell.contentView addSubview:yuedu];
+        [cell.contentView addSubview:dianzan];
         
     }
     else if (indexPath.section == 5)
     {
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[remenzixunarray[indexPath.row] objectForKey:@"picUrl"]] ;
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(10, 10, 100 , 100);
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        
+        UILabel *title = [[UILabel alloc]init];
+        title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
+        title.font = [UIFont systemFontOfSize:15];
+        title.text =[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"title"] ];
+        title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        //title.backgroundColor = [UIColor grayColor];
+        
+        UILabel *content = [[UILabel alloc]init];
+        content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
+        content.font = [UIFont systemFontOfSize:12];
+        content.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"subtitle"] ];
+        content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        content.numberOfLines = 2;
+        //content.backgroundColor = [UIColor grayColor];
+        
+        UILabel *time = [[UILabel alloc]init];
+        time.frame = CGRectMake(width - 120, 100, 110, 20);
+        time.font = [UIFont systemFontOfSize:10];
+        time.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"createTime"]];
+        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        time.numberOfLines = 2;
+        //time.backgroundColor = [UIColor grayColor];
         
         
-        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+        UIView *xian = [[UIView alloc] init];
+        xian.frame = CGRectMake(0, 120, width, 1);
+        xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+        
+        UILabel *laiyuan = [[UILabel alloc]init];
+        laiyuan.frame = CGRectMake(10,130, 100, 20);
+        laiyuan.font = [UIFont systemFontOfSize:13];
+        laiyuan.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"source"]];
+        laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        
+        
+        UIButton *fenxiang = [[UIButton alloc] init];
+        fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
+        fenxiang.backgroundColor = [UIColor clearColor];
+        
+        
+        UILabel *fenxianglabel = [[UILabel alloc]init];
+        fenxianglabel.frame = CGRectMake(0,0,70,20);
+        fenxianglabel.text =[NSString stringWithFormat:@"阅读量: %@",[remenzixunarray[indexPath.row] objectForKey:@"viewCount"]];
+        fenxianglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        fenxianglabel.font = [UIFont systemFontOfSize:11];
+        [fenxiang addSubview:fenxianglabel];
+        
+        
+        UIButton *shoucang = [[UIButton alloc] init];
+        shoucang.frame = CGRectMake(width - 140 ,130 ,20 ,20);
+        shoucang.backgroundColor = [UIColor clearColor];
+        
+        
+        UILabel *shoucanglabel = [[UILabel alloc]init];
+        shoucanglabel.frame = CGRectMake(0,0,70,20);
+        shoucanglabel.text =[NSString stringWithFormat:@"点赞量: %@",[remenzixunarray[indexPath.row] objectForKey:@"clickLikeCount"]];
+        shoucanglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        shoucanglabel.font = [UIFont systemFontOfSize:11];
+        [shoucang addSubview:shoucanglabel];
+        
+        UIView *xian1 = [[UIView alloc] init];
+        xian1.frame = CGRectMake(0, 159, width, 1);
+        xian1.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+        
+        [cell.contentView addSubview:image];
+        [cell.contentView addSubview:title];
+        [cell.contentView addSubview:content];
+        [cell.contentView addSubview:xian];
+        [cell.contentView addSubview:time];
+        [cell.contentView addSubview:shoucang];
+        [cell.contentView addSubview:fenxiang];
+        [cell.contentView addSubview:laiyuan];
+        [cell.contentView addSubview:xian1];
+
+        
+        
     }
+    else if (indexPath.section == 6)
+    {
+        
+        
+        
+    }
+
     
     }
     //cell点击不变色
@@ -964,11 +1268,31 @@
             
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
+            [self rementiezi];
+            [self remenzixun];
         }
         
         
     }else
-    wocalei.hidden=YES;
+    {
+        wocalei.hidden=YES;
+        if (indexPath.section == 5) {
+            //跳转文字资讯详情
+            YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+            //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+            TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
+            [self.navigationController pushViewController:TextDetails animated:YES];
+        }
+        else if (indexPath.section == 4) {
+            YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
+            TieZiXiangQing.tieziId = [rementieziarray[indexPath.row] objectForKey:@"id"];
+            TieZiXiangQing.bingzheng = [rementieziarray[indexPath.row] objectForKey:@"diseaseName"];
+            TieZiXiangQing.touxiang1 = [rementieziarray[indexPath.row] objectForKey:@"photo"];
+            [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+        }
+        
+    }
+    
 }
 #pragma  mark ---好多按钮
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

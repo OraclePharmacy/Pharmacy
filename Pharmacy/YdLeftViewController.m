@@ -13,6 +13,9 @@
 #import "Color+Hex.h"
 #import "YdWoDeDingDanViewController.h"
 #import "YdyouhuiquanViewController.h"
+#import "YdwodetieziViewController.h"
+#import "YdwodeshoucangViewController.h"
+#import "YdzhongjiangjiluViewController.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -156,6 +159,43 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         }];
 
     }
+    else if (indexPath.row == 2)
+    {
+        YdzhongjiangjiluViewController *zhongjiangjilu=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
+        
+        [self presentViewController:zhongjiangjilu animated:YES completion:^{
+            
+            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+        }];
+
+        
+    }
+    else if (indexPath.row == 3)
+    {
+        
+        YdwodeshoucangViewController *wodeshoucang=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
+        
+        [self presentViewController:wodeshoucang animated:YES completion:^{
+            
+            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+        }];
+
+    }
+    else if (indexPath.row == 4)
+    {
+        
+        YdwodetieziViewController *wodetiezi=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
+        
+        [self presentViewController:wodetiezi animated:YES completion:^{
+            
+            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+            
+        }];
+        
+    }
+
     
 }
 
