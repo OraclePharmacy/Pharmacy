@@ -67,7 +67,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
