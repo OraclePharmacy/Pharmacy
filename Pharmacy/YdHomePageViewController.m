@@ -25,6 +25,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "YdTieZiXiangQingViewController.h"
 #import "YdTextDetailsViewController.h"
+#import "YdDrugsViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -680,15 +681,22 @@
         return 1;
     }
     else if (section == 2)
-    {
+    {if (proList.count==0) {
+        return 0;
+    }else
         return 1;
     }
     else if (section == 3)
-    {
+    {if (presentarray.count==0) {
+        return 0;
+    }else
         return 1;
     }
     else if (section == 4)
     {
+        if (rementieziarray.count==0) {
+            return 0;
+        }else
         return 4;
     }
     else if (section == 5)
@@ -1301,13 +1309,10 @@
 //特价药品展示   药品详情
 - (void)handleClick1:(UIButton *)btn{
     //药品详情  传过去药品ID
-    
-    if (btn.tag == 400)
-    {
-        
-    }
-    
-    NSLog(@"%ld",btn.tag);
+    YdDrugsViewController *dr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
+    dr.yaopinID=[proList[btn.tag-400] objectForKey:@"prodId"];
+    [self.navigationController pushViewController:dr animated:YES];
+    NSLog(@"%@",proList);
     
 }
 

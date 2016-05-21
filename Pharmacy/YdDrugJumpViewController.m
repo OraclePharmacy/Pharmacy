@@ -75,7 +75,7 @@
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        NSLog(@"%@",url1);
+    
     
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
@@ -87,7 +87,7 @@
             @try
             {
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
+                NSLog(@"详情，返回信息 ， 三级药品  %@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
     
                     NSDictionary*datadic=[responseObject valueForKey:@"data"];

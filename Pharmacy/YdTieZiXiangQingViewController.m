@@ -35,7 +35,12 @@
     [super viewDidLoad];
     
     zhi = 1;
-    
+    _touxiang.hidden=YES;
+    _biaoqian.hidden=YES;
+    _image1.hidden = YES;
+    _image2.hidden = YES;
+    _image3.hidden = YES;
+    _dianzan.hidden= YES;
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -50,9 +55,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     //设置导航栏左按钮
     self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"评论" style:UIBarButtonItemStyleDone target:self action:@selector(pinglun)];
-
+    
     [self jiekou];
-   
+    
 }
 //界面控件设置
 -(void)jiemian
@@ -91,7 +96,7 @@
     _image3.layer.cornerRadius = 8;
     _image3.layer.masksToBounds = YES;
     //_image3.hidden = YES;
-
+    
     //按钮
     _pinglunButton.layer.cornerRadius = 5;
     _pinglunButton.layer.masksToBounds = YES;
@@ -104,6 +109,7 @@
 -(void)jiekou
 {
     arr = [[NSDictionary alloc]init];
+    [WarningBox warningBoxModeIndeterminate:@"帖子加载中..." andView:self.view];
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -139,8 +145,8 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
+            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //            NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -149,40 +155,44 @@
                 
                 imagearray = [arr objectForKey:@"urls"];
                 
+                
                 //设置图片显示
-//                if (imagearray.count == 0) {
-//                    _image1.hidden = YES;
-//                    _image2.hidden = YES;
-//                    _image3.hidden = YES;
-//                }
-//                else if (imagearray.count == 1) {
-//                    
-//                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
-//                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-//                    _image1.hidden = NO;
-//                    _image2.hidden = YES;
-//                    _image3.hidden = YES;
-//                }
-//                else if (imagearray.count == 2) {
-//                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
-//                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-//                    NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
-//                    [_image2 sd_setImageWithURL:[NSURL URLWithString:path1] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-//                    _image1.hidden = NO;
-//                    _image2.hidden = NO;
-//                    _image3.hidden = YES;
-//                }
-//                else if (imagearray.count == 2) {
-                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
-                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"" ]];
-                    NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
-                    [_image2 sd_setImageWithURL:[NSURL URLWithString:path1] placeholderImage:[UIImage imageNamed:@"" ]];
-                    NSString*path2=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url3"]];
-                    [_image3 sd_setImageWithURL:[NSURL URLWithString:path2] placeholderImage:[UIImage imageNamed:@"" ]];
-                    _image1.hidden = NO;
-                    _image2.hidden = NO;
-                    _image3.hidden = NO;
-//                }
+                //                if (imagearray.count == 0) {
+                //                    _image1.hidden = YES;
+                //                    _image2.hidden = YES;
+                //                    _image3.hidden = YES;
+                //                }
+                //                else if (imagearray.count == 1) {
+                //
+                //                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
+                //                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+                //                    _image1.hidden = NO;
+                //                    _image2.hidden = YES;
+                //                    _image3.hidden = YES;
+                //                }
+                //                else if (imagearray.count == 2) {
+                //                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
+                //                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+                //                    NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
+                //                    [_image2 sd_setImageWithURL:[NSURL URLWithString:path1] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+                //                    _image1.hidden = NO;
+                //                    _image2.hidden = NO;
+                //                    _image3.hidden = YES;
+                //                }
+                //                else if (imagearray.count == 2) {
+                NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
+                [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"" ]];
+                NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
+                [_image2 sd_setImageWithURL:[NSURL URLWithString:path1] placeholderImage:[UIImage imageNamed:@"" ]];
+                NSString*path2=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url3"]];
+                [_image3 sd_setImageWithURL:[NSURL URLWithString:path2] placeholderImage:[UIImage imageNamed:@"" ]];
+                _image1.hidden = NO;
+                _image2.hidden = NO;
+                _image3.hidden = NO;
+                _biaoqian.hidden=NO;
+                _touxiang.hidden=NO;
+                _dianzan.hidden=NO;
+                //                }
                 
                 [self jiemian];
                 
@@ -200,7 +210,7 @@
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
-
+    
 }
 -(void)fanhui
 {
@@ -258,11 +268,11 @@
             @try
             {
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-    
+                
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
-            
+                    
                 }
             }
             @catch (NSException * e) {
@@ -288,7 +298,7 @@
         
     }
     
-
+    
 }
 
 - (IBAction)pinglunButton:(id)sender {

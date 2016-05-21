@@ -64,7 +64,7 @@
 
     //出入参数：
   
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"1",@"pageSize",@"1",@"pageNo",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"5",@"pageSize",@"1",@"pageNo",nil];
     
     NSLog(@"评论列表%@",datadic);
     
@@ -87,7 +87,7 @@
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                
+                NSArray* array=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"commentList"]];
             }
         }
         @catch (NSException * e) {

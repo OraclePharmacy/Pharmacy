@@ -8,30 +8,28 @@
 /**
  *  服务器访问地址
  *
- *  @return http://125.211.221.232:60080
+ *  @return http://192.168.1.123:8080
  */
 //李想
 //#define service_host @"http://192.168.1.123:8080"
 //冷中原
 //#define service_host @"http://192.168.1.125:8686"
 //其中斌
-#define service_host @"http://192.168.1.180:8080"
+//#define service_host @"http://192.168.1.180:8081"
 //小展
-//#define service_host @"http://192.168.1.121:8080"
+#define service_host @"http://192.168.1.121:8080"
 /**
  *  计算机签名地址，当服务对外使用端口映射时使用，此地址是真实地址
  *
- *  @return http://192.168.137.15:8080
+ *  @return
  */
-//#define sign_host @"http://192.168.137.15:8080"
+//#define sign_host @""
 #define sign_host @""
 
-
-//#define sign_host @"http://192.168.1.199:8080"
 /**
  *  应用名称
  *
- *  @return ／anbang
+ *  @return ／hyb
  */
 #define app_name @"/hyb"
 /**

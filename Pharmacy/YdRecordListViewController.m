@@ -13,11 +13,16 @@
 #import "hongdingyi.h"
 #import "SBJsonWriter.h"
 #import "WarningBox.h"
+#import "dianzixiangqing.h"
+#import "MJRefresh.h"
 
 @interface YdRecordListViewController ()
 {
     CGFloat width;
     CGFloat height;
+    NSArray * emrList;
+    
+    
 }
 @end
 
@@ -25,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -39,10 +45,40 @@
     self.tableview.dataSource = self;
     
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+//    self.tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        // 进入刷新状态后会自动调用这个block
+//        
+//        
+//        
+//    }];
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    
+//    NSArray * tupian=[NSArray arrayWithObjects:[UIImage imageNamed:@"IMG_0797.jpg"],[UIImage imageNamed:@"IMG_0799.jpg"], nil];
+//    // 设置普通状态的动画图片
+//    [header setImages:tupian forState:MJRefreshStateIdle];
+//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//    [header setImages:tupian forState:MJRefreshStatePulling];
+//    // 设置正在刷新状态的动画图片
+//    [header setImages:tupian forState:MJRefreshStateRefreshing];
+    // 设置header
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+
+//    // 隐藏状态
+//    header.stateLabel.hidden = YES;
     
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self jiekou];
+}
+-(void)loadNewData{
+    NSLog(@"哈哈哈");
+    
+    [self.tableview.mj_header endRefreshing];
+    
 }
 -(void)jiekou{
     NSString*zhid;
@@ -67,7 +103,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     //emrid  为空时  调回列表；
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"6",@"pageSize",@"1003",@"emrId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"6",@"pageSize",@"",@"emrId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -88,6 +124,9 @@
         {
             NSLog(@"－＊－＊－＊－＊－＊－＊电子病历列表返回＊－＊－＊－＊－\n\n\n%@",responseObject);
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            emrList=[NSArray arrayWithArray:[[responseObject objectForKey:@"data" ] objectForKey:@"emrList"]];
+            
+            [_tableview reloadData];
             
             
         }
@@ -109,7 +148,8 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    NSLog(@"%lu",(unsigned long)emrList.count);
+    return emrList.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -143,7 +183,7 @@
     UILabel *time = [[UILabel alloc]init];
     time.frame = CGRectMake(0, 5, width, 20);
     time.font = [UIFont systemFontOfSize:13];
-    time.text = @"2016年4月22日";
+    time.text = [NSString stringWithFormat:@"%@",[emrList[indexPath.section] objectForKey:@"tjsj"] ];
     time.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     time.textAlignment = NSTextAlignmentCenter;
     
@@ -156,14 +196,14 @@
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(0, 0, width -20, 20);
     title.font = [UIFont systemFontOfSize:15];
-    title.text = @"飞机失联的快捷付老师家了";
+    title.text = [NSString stringWithFormat:@"%@",[emrList[indexPath.section] objectForKey:@"title"] ];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     
     
     UILabel *neirong = [[UILabel alloc]init];
     neirong.frame = CGRectMake(0, 20, width -20, 20);
     neirong.font = [UIFont systemFontOfSize:13];
-    neirong.text = @"飞机失联的快捷付老师家了放假了设计费垃圾上来看的吉林省京东方";
+    neirong.text = [NSString stringWithFormat:@"%@",[emrList[indexPath.section] objectForKey:@"emrDesc"] ];
     neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
 
 
@@ -185,7 +225,13 @@
     self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    dianzixiangqing *xq=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dianzixiangqing"];
+    NSString * emrid=[NSString stringWithFormat:@"%@",[emrList[indexPath.section] objectForKey:@"id"] ];
+    xq.emrid=emrid;
+    [self.navigationController pushViewController:xq animated:YES];
+    NSLog(@"%@",emrid);
+}
 -(void)fanhui
 {
     //返回上一页

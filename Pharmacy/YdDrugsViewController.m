@@ -259,7 +259,6 @@ int popop=0;
     }
     
     cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-    
     cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     

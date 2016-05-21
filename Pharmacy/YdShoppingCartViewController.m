@@ -7,7 +7,8 @@
 //
 
 #import "YdShoppingCartViewController.h"
-
+#import "UIImageView+WebCache.h"
+#import "hongdingyi.h"
 
 @interface YdShoppingCartViewController ()
 {
@@ -25,9 +26,9 @@
 
 @implementation YdShoppingCartViewController
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"sajkhdf");
+    
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-   
+    NSLog(@"%@",countwenjian);
     NSFileManager *file=[NSFileManager defaultManager];
     
     if([file fileExistsAtPath:countwenjian]){
@@ -104,13 +105,14 @@
     
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
-    image.frame = CGRectMake(0, 0, width/3, width/3);
-    image.image = [UIImage imageNamed:@"IMG_0800.jpg"];
+    image.frame = CGRectMake(10, 5, width/3-10, width/3-10);
+    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[yikaishi[indexPath.row]objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    image.layer.cornerRadius=30;
     [cell.contentView addSubview:image];
     //药品名称
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(width/3+10, 0, width/3*2-10, width/3/3-10);
-    name.text = @"六味地黄丸";
+    name.text = [NSString stringWithFormat:@"%@",[yikaishi[indexPath.row]objectForKey:@"commonName"]];
     name.textColor = [UIColor blackColor];
     name.font =[UIFont systemFontOfSize:15];
     //name.backgroundColor = [UIColor redColor];
