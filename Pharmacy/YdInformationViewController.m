@@ -168,7 +168,6 @@
                 [self wenzizixun:[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]]];
             }
             
-            
         }
         @catch (NSException * e) {
             
@@ -272,7 +271,6 @@
     NSTimeInterval a=[dat timeIntervalSince1970];
     NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
     
-    
     //将上传对象转换为json格式字符串
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
@@ -286,7 +284,6 @@
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
@@ -315,8 +312,7 @@
                 [_tableview reloadData];
                 
             }
-            
-            
+           
         }
         @catch (NSException * e) {
             
@@ -332,8 +328,6 @@
     }];
 
 }
-
-
 
 //scrollview上面button点击事件
 - (void)handleClick:(UIButton *)btn
@@ -496,7 +490,6 @@
             time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             time.numberOfLines = 2;
             //time.backgroundColor = [UIColor grayColor];
-            
             
             UIView *xian = [[UIView alloc] init];
             xian.frame = CGRectMake(0, 120, width, 1);
@@ -662,7 +655,6 @@
 {
     if(zhi == 1)
     {
-        
         //跳转文字资讯详情
         YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
         //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];

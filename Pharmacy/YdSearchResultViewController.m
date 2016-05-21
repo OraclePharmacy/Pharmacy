@@ -135,7 +135,7 @@
         //    renqi.text = @"人气:12345";
         //    renqi.textColor = [UIColor redColor];
         //    renqi.font = [UIFont systemFontOfSize:13];
-        
+    
         
         //    [cell.contentView addSubview:renqi];
         

@@ -152,8 +152,6 @@
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
     
-
-    
     UILabel *changjia = [[UILabel alloc]initWithFrame:CGRectMake(120, 30, width -140, 20)];
     changjia.font = [UIFont systemFontOfSize:13];
     //changjia.textAlignment = NSTextAlignmentCenter;

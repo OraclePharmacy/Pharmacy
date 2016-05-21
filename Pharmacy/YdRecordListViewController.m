@@ -103,7 +103,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     //emrid  为空时  调回列表；
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"6",@"pageSize",@"",@"emrId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"10",@"pageSize",@"",@"emrId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

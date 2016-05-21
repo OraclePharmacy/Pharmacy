@@ -26,6 +26,7 @@
 #import "YdTieZiXiangQingViewController.h"
 #import "YdTextDetailsViewController.h"
 #import "YdDrugsViewController.h"
+#import "YdJiaoLiuViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -1320,7 +1321,7 @@
 -(void)pharmacygengduo
 {    //特价药品列表
     
-    NSLog(@"特价药品");
+    NSLog(@"特价药品、");
     
 }
 //积分礼品展示  礼品详情
@@ -1345,6 +1346,8 @@
 //跳转病友问答列表
 -(void)interlocutiongengduo
 {
+    YdJiaoLiuViewController*jiaoliu=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
+    [self.navigationController pushViewController:jiaoliu animated:YES];
     NSLog(@"病友问答");
     
 }

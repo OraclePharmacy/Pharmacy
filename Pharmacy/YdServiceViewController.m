@@ -87,9 +87,7 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 
 {
-    
     return 2;
-    
 }
 
 //设置元素的的大小框
@@ -97,9 +95,7 @@
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 
 {
-    
     UIEdgeInsets top = {0,0,0,0};
-    
     return top;
     
 }
@@ -112,13 +108,10 @@
     if (section == 0) {
         return 6;
     }
-    else
     return 3;
     
 }
-
 //设置元素内容
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 
 {
@@ -272,7 +265,7 @@
     [Doctorsrecommended addTarget:self action:@selector(Doctorsrecommendedff) forControlEvents:UIControlEventTouchUpInside];
     Doctorsrecommended.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     [CollectionView addSubview:Doctorsrecommended];
-    
+
 }
 -(void)Doctorsrecommendedff
 {
