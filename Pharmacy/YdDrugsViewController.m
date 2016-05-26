@@ -23,7 +23,10 @@
     int xxx;
     NSString *shuliangCunFang;
     NSArray *arr;
-    NSDictionary *xianshiarr;
+   
+    
+    
+    NSMutableDictionary *xianshiarr;
     
     
     NSMutableDictionary*tianjiaxinxi;
@@ -36,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     //增加监听，当键盘出现或改变时收出消息
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -64,7 +68,7 @@
     
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-    NSLog(@"文件存放路径  %@",NSHomeDirectory());
+   // NSLog(@"文件存放路径  %@",NSHomeDirectory());
     NSFileManager *file=[NSFileManager defaultManager];
     
     if([file fileExistsAtPath:countwenjian]){
@@ -107,7 +111,7 @@ int popop=0;
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_yaopinID,@"id", nil];
-    
+    NSLog(@"%@",_yaopinID);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -125,13 +129,14 @@ int popop=0;
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
+            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 popop=1;
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                xianshiarr = [datadic objectForKey:@"product"];
-                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:xianshiarr];
+                xianshiarr = [NSMutableDictionary dictionaryWithDictionary: [datadic objectForKey:@"product" ]];
+                
+                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:[xianshiarr objectForKey:@"product"]];
                 [self.tableview reloadData];
                 
             }
@@ -172,7 +177,7 @@ int popop=0;
     }
     else if (section == 1)
     {
-        if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specProdFlag"] isEqual:@"1"])
+        if ([[xianshiarr  objectForKey:@"specProdFlag"] isEqual:@"1"])
         {
             return 2;
         }
@@ -268,32 +273,28 @@ int popop=0;
     shuju.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     if (indexPath.section == 1){
         
-        if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specProdFlag"] isEqual:@"1"]) {
+        if ([[xianshiarr objectForKey:@"specProdFlag"] isEqual:@"1"]) {
             
              if (indexPath.row == 0) {
                 cell.textLabel.text = @"特          价 :";
                 shuju.textColor = [UIColor redColor];
-                 if (xianshiarr.count==0) {
-                     shuju.text=@"";
-                 }else
-                shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specPrice"]];
+                 
+                shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"specPrice"]];
             }
             else if (indexPath.row == 1) {
                 cell.textLabel.text = @"原          价 :";
-                if (xianshiarr.count==0) {
-                    shuju.text=@"";
-                }else
-                shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]];
+               
+                shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr  objectForKey:@"prodPrice"]];
             }
         }
         else
         {
              if (indexPath.row == 0) {
                 cell.textLabel.text = @"价          格 :";
-                 if (xianshiarr.count==0||[[xianshiarr objectForKey:@"addedProduct"] isEqual:[NSNull null]]) {
+                 if (xianshiarr.count==0) {
                      shuju.text=@"";
                  }else
-                shuju.text = [NSString stringWithFormat:@"%@",[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"prodPrice"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prodPrice"]];
             }
 
         }
@@ -303,80 +304,80 @@ int popop=0;
         cell.textLabel.text = arr[indexPath.row];
         
         if (indexPath.row == 0) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"name"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"name"]];
         }
         else if (indexPath.row == 1) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"pinyinCode"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"pinyinCode"]];
         }
         else if (indexPath.row == 2) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"commonName"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"commonName"]];
         }
         else if (indexPath.row == 3) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"summary"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"summary"]];
         }
         else if (indexPath.row == 4) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"level3Name"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"level3Name"]];
         }
         else if (indexPath.row == 5) {
             if (xianshiarr.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"specification"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"specification"]];
         }
         else if (indexPath.row == 6) {
             if (xianshiarr.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"manufacturer"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"manufacturer"]];
         }
         else if (indexPath.row == 7) {
             if (xianshiarr.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prodCode"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prodCode"]];
         }
         else if (indexPath.row == 8) {
             
             shuju.text = @"";//[NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
         }
         else if (indexPath.row == 9) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"instructions"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"instructions"]];
         }
         else if (indexPath.row == 10) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"package"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"package"]];
         }
         else if (indexPath.row == 11) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"approvalNumber"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"approvalNumber"]];
         }
         else if (indexPath.row == 12) {
-            if (xianshiarr.count==0) {
+            if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prescription"]];
+            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prescription"]];
         }
 
     }
@@ -434,9 +435,10 @@ int popop=0;
     }else{
         NSMutableArray * arrr=[NSMutableArray array];
         NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-        NSLog(@"文件存放路径  %@",NSHomeDirectory());
+      //  NSLog(@"文件存放路径  %@",NSHomeDirectory());
          NSFileManager *file=[NSFileManager defaultManager];
-        [tianjiaxinxi setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+        [xianshiarr setValue:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+        
         if([file fileExistsAtPath:countwenjian])
         {
             
@@ -444,18 +446,18 @@ int popop=0;
             arrr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
             int ioi=0;
             for (int i=0; i<arrr.count; i++) {
-                if ([[arrr[i] objectForKey:@"id"]isEqual:[tianjiaxinxi objectForKey:@"id"]]) {
+                if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
                     ioi=1;
                     [arrr[i] setObject:shuliangCunFang forKey:@"shuliang"];
                     [arrr writeToFile:countwenjian atomically:YES];
-                    [WarningBox warningBoxModeText:@"更改数量成功" andView:self.navigationController.view];
+                    [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
 //                    [self.navigationController popViewControllerAnimated:YES];
                     
                 }
             }
             if (ioi==0) {
                 
-                [arrr addObject:tianjiaxinxi];
+                [arrr addObject:xianshiarr];
                 [arrr writeToFile:countwenjian atomically:YES];
                 [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -468,10 +470,10 @@ int popop=0;
         else{
             
             
-            [arrr addObject:tianjiaxinxi];
+            [arrr addObject:xianshiarr];
             [arrr writeToFile:countwenjian atomically:YES];
             [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
-//            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
             
             
         }
@@ -484,12 +486,12 @@ int ll=0;
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     float op;
     if ([string isEqual:@"0"]&& ll==0) {
-        NSLog(@"没事");
+      //  NSLog(@"没事");
     }else if ([string isEqual:@""]) {
-        NSLog(@"%lu",[textField.text length]-1);
+      //  NSLog(@"%lu",[textField.text length]-1);
         op=[textField.text length]-1;
     }else{
-        NSLog(@"%lu",[textField.text length]+1);
+       // NSLog(@"%lu",[textField.text length]+1);
         op=[textField.text length]+1;
     }
     

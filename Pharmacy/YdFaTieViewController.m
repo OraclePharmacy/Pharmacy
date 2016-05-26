@@ -460,7 +460,7 @@
         @try
         {
             
-            NSLog(@"电子病历返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
+            NSLog(@"发帖返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 self.neirongText.text = @"";
                 self.biaotiText.text = @"";

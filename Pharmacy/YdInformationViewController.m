@@ -16,6 +16,7 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 @interface YdInformationViewController ()
 {
     UICollectionView * CollectionView;
@@ -26,7 +27,7 @@
     
     CGFloat width;
     CGFloat height;
-    
+    int  coun;
     
     
     NSArray *arr;
@@ -68,12 +69,40 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+
+    
      //进入界面   给zhi赋值
      zhi = 1;
      [self zixunleibie];
 }
-
-
+-(void)loadNewdata{
+    ye=1;
+    [self zixunleibie];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    NSLog(@"%d,%d",ye,coun);
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+    [self zixunleibie];
+    [self.tableview.mj_footer endRefreshing];
+    }
+}
 -(void)tab
 {
     self.scrollView=nil;
@@ -223,18 +252,21 @@
         @try
         {
             
-            NSLog(@"%@",responseObject);
+            NSLog(@"文字咨询返回列表－－－－－%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                NSArray*mg=[NSArray arrayWithArray:[datadic objectForKey:@"newsListForInterface"]];
+                coun=[[datadic objectForKey:@"count"] intValue];
                 if (ye!=1) {
-                    for (NSDictionary*dd in [datadic objectForKey:@"newsListForInterface"]) {
+                    for (NSDictionary*dd in mg) {
                         [newsListForInterface addObject:dd];
-                        
+                        NSLog(@"是啥--%@", newsListForInterface);
                     }
                 }else{
-                    newsListForInterface=[datadic objectForKey:@"newsListForInterface"];
+                    newsListForInterface=[NSMutableArray arrayWithArray:mg];
                 }
+                ye++;
                 NSLog(@"%@",datadic);
                 
                 [_tableview reloadData];

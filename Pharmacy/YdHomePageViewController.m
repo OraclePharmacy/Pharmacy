@@ -122,13 +122,13 @@
     [self.view addSubview:wocalei];
     //Tab bar 颜色
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-   
+    
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-     //设置导航栏右按钮
+    //设置导航栏右按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-erweimasaomiaotubiao@2x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -139,8 +139,8 @@
     [self SearchView];
     //调用定位
     [self initializeLocationService];
-  
-
+    
+    
 }
 //导航标题  添加View
 -(void)SearchView
@@ -148,7 +148,7 @@
     //创建view
     //设置基本属性
     UIView *searchview = [[UIView alloc]init];
-  
+    
     searchview.frame = CGRectMake(0, 0, 150, 40);
     
     searchview.backgroundColor = [UIColor clearColor];
@@ -221,7 +221,7 @@
     //弹出列表
     
     
-   
+    
 }
 #pragma  第一组 轮播
 
@@ -295,7 +295,7 @@
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
-
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -329,7 +329,7 @@
     four.frame = CGRectMake((width - 55 *4 )/5*4+width/6*3, 10, 55, 75);
     [four setBackgroundImage:[UIImage imageNamed:@"送到家@3x.png"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
-
+    
     //在cell上显示
     [cell.contentView addSubview:one];
     [cell.contentView addSubview:two];
@@ -355,7 +355,7 @@
 {
     YdPurchasingViewController *Purchasing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"purchasing"];
     [self.navigationController pushViewController:Purchasing animated:YES];
-
+    
 }
 //第四个按钮点击事件
 -(void)four
@@ -366,7 +366,7 @@
 //接口
 -(void)bargaingoodsjiekou
 {
-  
+    
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -396,7 +396,7 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-   
+    
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -412,7 +412,7 @@
                 
                 presentarray = [datadic objectForKey:@"integralGiftList"];
                 
-               
+                
                 
                 for (int i = 0; i < presentarray.count; i++) {
                     
@@ -434,7 +434,7 @@
             
         }
         
-
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -472,14 +472,14 @@
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-   
+    
     [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           
+            
             NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -488,7 +488,7 @@
                 proList = [datadic objectForKey:@"proList"];
                 
                 
-               
+                
                 
                 for (int i = 0; i < proList.count; i++) {
                     
@@ -497,7 +497,7 @@
                     
                     
                 }
-
+                
                 
                 
                 
@@ -519,7 +519,7 @@
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
-
+    
     
 }
 #pragma mark ---- 热门帖子接口
@@ -584,7 +584,7 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
 #pragma mark ---- 热门资讯接口
 -(void)remenzixun{
@@ -653,7 +653,7 @@
         NSLog(@"错误：%@",error);
         
     }];
-
+    
 }
 #pragma mark ---- 药品分类接口
 -(void)yaopinfenlei{
@@ -697,18 +697,23 @@
     {
         if (rementieziarray.count==0) {
             return 0;
+        }else if(rementieziarray.count>4){
+            return 4;
         }else
-        return 4;
+            return rementieziarray.count;
     }
     else if (section == 5)
     {
-        return remenzixunarray.count;
+        if(remenzixunarray.count<4){
+            return remenzixunarray.count;
+        }else
+            return 3;
     }
     else if (section == 6)
     {
         return 1;
     }
-
+    
     return 0;
 }
 }
@@ -745,7 +750,7 @@
     {
         return 100;
     }
-
+    
     return 0;
 }
 }
@@ -753,39 +758,39 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(tableView==wocalei){
-    return 0;
-}else{
-    if (section == 0)
-    {
+        return 0;
+    }else{
+        if (section == 0)
+        {
+            return 0;
+        }
+        else if (section == 1)
+        {
+            return 0;
+        }
+        else if (section == 2)
+        {
+            return 10;
+        }
+        else if (section == 3)
+        {
+            return 10;
+        }
+        else if (section == 4)
+        {
+            return 30;
+        }
+        else if (section == 5)
+        {
+            return 30;
+        }
+        else if (section == 6)
+        {
+            return 30;
+        }
+        
         return 0;
     }
-    else if (section == 1)
-    {
-        return 0;
-    }
-    else if (section == 2)
-    {
-        return 10;
-    }
-    else if (section == 3)
-    {
-        return 10;
-    }
-    else if (section == 4)
-    {
-        return 30;
-    }
-    else if (section == 5)
-    {
-        return 30;
-    }
-    else if (section == 6)
-    {
-        return 30;
-    }
-
-    return 0;
-}
 }
 //编辑header内容
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -793,72 +798,72 @@
     if (tableView==wocalei) {
         
     }else{
-    if (section == 4) {
+        if (section == 4) {
+            
+            UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+            baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            UILabel * tou = [[UILabel alloc]init];
+            tou.frame = CGRectMake(8, 5, 100, 20);
+            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            tou.font = [UIFont systemFontOfSize:15];
+            tou.text = @"热门帖子";
+            
+            UIButton *gengduo = [[UIButton alloc]init];
+            gengduo.frame = CGRectMake(width-30, 5, 30, 20);
+            [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+            [gengduo addTarget:self action:@selector(interlocutiongengduo) forControlEvents:UIControlEventTouchUpInside];
+            
+            [baseView addSubview:tou];
+            [baseView addSubview:gengduo];
+            
+            return baseView;
+        }
+        else if (section == 5)
+        {
+            UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+            baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            UILabel * tou = [[UILabel alloc]init];
+            tou.frame = CGRectMake(8, 5, 100, 20);
+            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            tou.font = [UIFont systemFontOfSize:15];
+            tou.text = @"热门资讯";
+            
+            UIButton *gengduo = [[UIButton alloc]init];
+            gengduo.frame = CGRectMake(width-30, 5, 30, 20);
+            [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+            [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
+            
+            [baseView addSubview:tou];
+            [baseView addSubview:gengduo];
+            
+            return baseView;
+            
+        }
+        else if (section == 6)
+        {
+            UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+            baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            UILabel * tou = [[UILabel alloc]init];
+            tou.frame = CGRectMake(8, 5, 100, 20);
+            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            tou.font = [UIFont systemFontOfSize:15];
+            tou.text = @"药品分类";
+            
+            UIButton *gengduo = [[UIButton alloc]init];
+            gengduo.frame = CGRectMake(width-30, 5, 30, 20);
+            [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+            [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
+            
+            [baseView addSubview:tou];
+            [baseView addSubview:gengduo];
+            
+            return baseView;
+            
+        }
         
-        UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UILabel * tou = [[UILabel alloc]init];
-        tou.frame = CGRectMake(8, 5, 100, 20);
-        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"热门帖子";
-        
-        UIButton *gengduo = [[UIButton alloc]init];
-        gengduo.frame = CGRectMake(width-30, 5, 30, 20);
-        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(interlocutiongengduo) forControlEvents:UIControlEventTouchUpInside];
-        
-        [baseView addSubview:tou];
-        [baseView addSubview:gengduo];
-        
-        return baseView;
-    }
-    else if (section == 5)
-    {
-        UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UILabel * tou = [[UILabel alloc]init];
-        tou.frame = CGRectMake(8, 5, 100, 20);
-        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"热门资讯";
-        
-        UIButton *gengduo = [[UIButton alloc]init];
-        gengduo.frame = CGRectMake(width-30, 5, 30, 20);
-        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
-        
-        [baseView addSubview:tou];
-        [baseView addSubview:gengduo];
-        
-        return baseView;
-
-    }
-    else if (section == 6)
-    {
-        UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-        baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UILabel * tou = [[UILabel alloc]init];
-        tou.frame = CGRectMake(8, 5, 100, 20);
-        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"药品分类";
-        
-        UIButton *gengduo = [[UIButton alloc]init];
-        gengduo.frame = CGRectMake(width-30, 5, 30, 20);
-        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
-        
-        [baseView addSubview:tou];
-        [baseView addSubview:gengduo];
-        
-        return baseView;
-        
-    }
-
     }
     return nil;
 }
@@ -871,7 +876,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-
+    
     
     if (tableView==wocalei) {
         UILabel *name = [[UILabel alloc]init];
@@ -887,379 +892,378 @@
         }
         [cell.contentView addSubview:name];
     }else{
-    
-    //轮播
-    if (indexPath.section == 0) {
         
-        if (arrImage.count < 1 )
-        {
-            UIImageView *image = [[UIImageView alloc]init];
-            image.frame = CGRectMake(0, 0, width, 150);
-            image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
-            [cell.contentView addSubview:image];
-        }
-        else
-        {
-            YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
-                                                        images:arrImage
-                                                        titles:nil
-                                              placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
-            ycAdView.clickAdImage = ^(NSInteger index)
+        //轮播
+        if (indexPath.section == 0) {
+            
+            if (arrImage.count < 1 )
             {
+                UIImageView *image = [[UIImageView alloc]init];
+                image.frame = CGRectMake(0, 0, width, 150);
+                image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
+                [cell.contentView addSubview:image];
+            }
+            else
+            {
+                YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
+                                                            images:arrImage
+                                                            titles:nil
+                                                  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+                ycAdView.clickAdImage = ^(NSInteger index)
+                {
+                    
+                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+                    //门店id
+                    //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
+                    [self.navigationController pushViewController:banner animated:YES];
+                    
+                    
+                };
                 
-                YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-                //门店id
-                //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
-                [self.navigationController pushViewController:banner animated:YES];
+                [cell.contentView addSubview:ycAdView];
                 
-                
-            };
+            }
             
-            [cell.contentView addSubview:ycAdView];
-
         }
-        
-    }
-    //四个按钮
-    else if (indexPath.section == 1) {
-        
-        cell.contentView.backgroundColor = [UIColor clearColor];
-        [self fourButton];
-        
-    }
-    //特价药品
-    else if (indexPath.section == 2)
-    {
-        
-        UIImageView *biaoti = [[UIImageView alloc] init];
-        biaoti.frame = CGRectMake(0, 3, 3, 14);
-        biaoti.image = [UIImage imageNamed:@"矩形-20@3x.png"];
-        
-        UILabel * tou = [[UILabel alloc]init];
-        tou.frame = CGRectMake(8, 0, 100, 20);
-        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"特价药品展示";
-        
-        UIButton *gengduo = [[UIButton alloc]init];
-        gengduo.frame = CGRectMake(width-30, 0, 30, 20);
-        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(pharmacygengduo) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        UIView *xian = [[UIView alloc]init];
-        xian.frame = CGRectMake(0, 20, width, 0.5);
-        xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        
-        [cell.contentView addSubview:biaoti];
-        [cell.contentView addSubview:tou];
-        [cell.contentView addSubview:gengduo];
-        [cell.contentView addSubview:xian];
-        
-        
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
-        
-        for (int i = 0; i < proList.count; i++) {
+        //四个按钮
+        else if (indexPath.section == 1) {
             
-            UIButton *IntegrationSix = [[UIButton alloc]init];
-            IntegrationSix.tag = 400+i;
-            IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
-            IntegrationSix.backgroundColor = [UIColor clearColor];
-            [IntegrationSix addTarget:self action:@selector(handleClick1:) forControlEvents:UIControlEventTouchUpInside];
-            //图片
-            UIImageView *imageview = [[UIImageView alloc]init];
-            imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
-            [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
-            //名称
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            [self fourButton];
+            
+        }
+        //特价药品
+        else if (indexPath.section == 2)
+        {
+            
+            UIImageView *biaoti = [[UIImageView alloc] init];
+            biaoti.frame = CGRectMake(0, 3, 3, 14);
+            biaoti.image = [UIImage imageNamed:@"矩形-20@3x.png"];
+            
+            UILabel * tou = [[UILabel alloc]init];
+            tou.frame = CGRectMake(8, 0, 100, 20);
+            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            tou.font = [UIFont systemFontOfSize:15];
+            tou.text = @"特价药品展示";
+            
+            UIButton *gengduo = [[UIButton alloc]init];
+            gengduo.frame = CGRectMake(width-30, 0, 30, 20);
+            [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+            [gengduo addTarget:self action:@selector(pharmacygengduo) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            UIView *xian = [[UIView alloc]init];
+            xian.frame = CGRectMake(0, 20, width, 0.5);
+            xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            
+            [cell.contentView addSubview:biaoti];
+            [cell.contentView addSubview:tou];
+            [cell.contentView addSubview:gengduo];
+            [cell.contentView addSubview:xian];
+            
+            
+            self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
+            
+            for (int i = 0; i < proList.count; i++) {
+                
+                UIButton *IntegrationSix = [[UIButton alloc]init];
+                IntegrationSix.tag = 400+i;
+                IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
+                IntegrationSix.backgroundColor = [UIColor clearColor];
+                [IntegrationSix addTarget:self action:@selector(handleClick1:) forControlEvents:UIControlEventTouchUpInside];
+                //图片
+                UIImageView *imageview = [[UIImageView alloc]init];
+                imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+                [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
+                //名称
+                UILabel *name = [[UILabel alloc]init];
+                name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
+                name.font = [UIFont systemFontOfSize:13];
+                name.textAlignment = NSTextAlignmentCenter;
+                name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                name.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"commonName"]];
+                //原价
+                UILabel *originalcost = [[UILabel alloc]init];
+                originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
+                originalcost.font = [UIFont systemFontOfSize:11];
+                originalcost.textAlignment = NSTextAlignmentCenter;
+                originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+                originalcost.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"prodPrice"]];
+                //特价
+                UILabel *specialoffer = [[UILabel alloc] init];
+                specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
+                specialoffer.font = [UIFont systemFontOfSize:13];
+                specialoffer.textAlignment = NSTextAlignmentCenter;
+                specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
+                specialoffer.text =  [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"specPrice"]];
+                
+                self.scrollView.pagingEnabled = YES;
+                
+                self.scrollView.delegate = self;
+                
+                
+                [self.scrollView addSubview:IntegrationSix];
+                [IntegrationSix addSubview:imageview];
+                [IntegrationSix addSubview:name];
+                [IntegrationSix addSubview:originalcost];
+                [IntegrationSix addSubview:specialoffer];
+                
+            }
+            self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
+            
+            [cell.contentView addSubview:self.scrollView];
+            
+            self.scrollView.showsHorizontalScrollIndicator = NO;
+            
+        }
+        //积分礼品
+        else if (indexPath.section == 3)
+        {
+            
+            UIImageView *biaoti = [[UIImageView alloc] init];
+            biaoti.frame = CGRectMake(0, 3, 3, 14);
+            biaoti.image = [UIImage imageNamed:@"矩形-20-拷贝@3x.png"];
+            
+            UILabel * tou = [[UILabel alloc]init];
+            tou.frame = CGRectMake(8, 0, 100, 20);
+            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            tou.font = [UIFont systemFontOfSize:15];
+            tou.text = @"积分礼品展示";
+            
+            UIButton *gengduo = [[UIButton alloc]init];
+            gengduo.frame = CGRectMake(width-30, 0, 30, 20);
+            [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
+            [gengduo addTarget:self action:@selector(specialoffergengduo) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            UIView *xian = [[UIView alloc]init];
+            xian.frame = CGRectMake(0, 20, width, 0.5);
+            xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            
+            [cell.contentView addSubview:biaoti];
+            [cell.contentView addSubview:tou];
+            [cell.contentView addSubview:gengduo];
+            [cell.contentView addSubview:xian];
+            
+            self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
+            
+            for (int i = 0; i < presentarray.count; i++) {
+                UIButton *IntegrationSix = [[UIButton alloc]init];
+                IntegrationSix.tag = 500+i;
+                IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
+                IntegrationSix.backgroundColor = [UIColor clearColor];
+                [IntegrationSix addTarget:self action:@selector(handleClick2:) forControlEvents:UIControlEventTouchUpInside];
+                //图片
+                UIImageView *imageview = [[UIImageView alloc]init];
+                imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+                NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
+                [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
+                //名称
+                UILabel *name = [[UILabel alloc]init];
+                name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
+                name.font = [UIFont systemFontOfSize:13];
+                name.textAlignment = NSTextAlignmentCenter;
+                name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];
+                //原价
+                UILabel *originalcost = [[UILabel alloc]init];
+                originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
+                originalcost.font = [UIFont systemFontOfSize:11];
+                originalcost.textAlignment = NSTextAlignmentCenter;
+                originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+                originalcost.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"price"]];;
+                //积分
+                UILabel *specialoffer = [[UILabel alloc] init];
+                specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
+                specialoffer.font = [UIFont systemFontOfSize:13];
+                specialoffer.textAlignment = NSTextAlignmentCenter;
+                specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
+                specialoffer.text = [NSString stringWithFormat:@"¥%@",[presentarray[i] objectForKey:@"integral"]];
+                
+                self.scrollView.pagingEnabled = YES;
+                
+                self.scrollView.delegate = self;
+                
+                [self.scrollView addSubview:IntegrationSix];
+                [IntegrationSix addSubview:imageview];
+                [IntegrationSix addSubview:name];
+                [IntegrationSix addSubview:originalcost];
+                [IntegrationSix addSubview:specialoffer];
+            }
+            
+            self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
+            
+            [cell.contentView addSubview:self.scrollView];
+            
+            self.scrollView.showsHorizontalScrollIndicator = NO;
+            
+            
+        }else if (indexPath.section == 4)
+        {
+            
+            UIImageView *touxiang = [[UIImageView alloc]init];
+            touxiang.frame = CGRectMake(5, 5, 80, 80);
+            touxiang.layer.cornerRadius = 40;
+            touxiang.layer.masksToBounds = YES;
+            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[rementieziarray[indexPath.row] objectForKey:@"photo"]];
+            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            
             UILabel *name = [[UILabel alloc]init];
-            name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
-            name.font = [UIFont systemFontOfSize:13];
+            name.frame = CGRectMake(5, 90, 80, 20);
+            name.font = [UIFont systemFontOfSize:15];
+            name.text = [NSString stringWithFormat:@"%@",[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
             name.textAlignment = NSTextAlignmentCenter;
             name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            name.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"commonName"]];
-            //原价
-            UILabel *originalcost = [[UILabel alloc]init];
-            originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
-            originalcost.font = [UIFont systemFontOfSize:11];
-            originalcost.textAlignment = NSTextAlignmentCenter;
-            originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-            originalcost.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"prodPrice"]];
-            //特价
-            UILabel *specialoffer = [[UILabel alloc] init];
-            specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
-            specialoffer.font = [UIFont systemFontOfSize:13];
-            specialoffer.textAlignment = NSTextAlignmentCenter;
-            specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-            specialoffer.text =  [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"specPrice"]];
-            
-            self.scrollView.pagingEnabled = YES;
-            
-            self.scrollView.delegate = self;
             
             
-            [self.scrollView addSubview:IntegrationSix];
-            [IntegrationSix addSubview:imageview];
-            [IntegrationSix addSubview:name];
-            [IntegrationSix addSubview:originalcost];
-            [IntegrationSix addSubview:specialoffer];
-
+            UILabel *biaoti = [[UILabel alloc]init];
+            biaoti.frame = CGRectMake(90, 5, width - 95, 20);
+            biaoti.font = [UIFont systemFontOfSize:15];
+            biaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"title"]];
+            biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            
+            
+            UILabel *fubiaoti = [[UILabel alloc]init];
+            fubiaoti.frame = CGRectMake(90, 25, width - 95, 40);
+            fubiaoti.font = [UIFont systemFontOfSize:13];
+            fubiaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"context"]];
+            fubiaoti.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            fubiaoti.numberOfLines = 2;
+            
+            UILabel *biaoqian = [[UILabel alloc]init];
+            biaoqian.frame = CGRectMake(90, 65, 80, 20);
+            biaoqian.font = [UIFont systemFontOfSize:13];
+            biaoqian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"diseaseName"]];
+            biaoqian.textAlignment = NSTextAlignmentCenter;
+            biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+            biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            UILabel *shijian = [[UILabel alloc]init];
+            shijian.frame = CGRectMake(180, 65, width - 185, 20);
+            shijian.font = [UIFont systemFontOfSize:13];
+            shijian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"createTime"]];
+            shijian.textAlignment = NSTextAlignmentCenter;
+            shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            
+            UILabel *yuedu = [[UILabel alloc]init];
+            yuedu.frame = CGRectMake(width - 215, 90, 100, 20);
+            yuedu.font = [UIFont systemFontOfSize:13];
+            yuedu.text = [NSString stringWithFormat:@"阅读量:%@",[rementieziarray[indexPath.row] objectForKey:@"viewNums"]];
+            yuedu.textAlignment = NSTextAlignmentRight;
+            yuedu.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            
+            UILabel *dianzan = [[UILabel alloc]init];
+            dianzan.frame = CGRectMake(width - 110, 90, 100, 20);
+            dianzan.font = [UIFont systemFontOfSize:13];
+            dianzan.text = [NSString stringWithFormat:@"点赞量:%@",[rementieziarray[indexPath.row] objectForKey:@"likeNums"]];
+            dianzan.textAlignment = NSTextAlignmentRight;
+            dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            
+            
+            [cell.contentView addSubview:touxiang];
+            [cell.contentView addSubview:name];
+            [cell.contentView addSubview:biaoti];
+            [cell.contentView addSubview:fubiaoti];
+            [cell.contentView addSubview:biaoqian];
+            [cell.contentView addSubview:shijian];
+            [cell.contentView addSubview:yuedu];
+            [cell.contentView addSubview:dianzan];
+            
+        }
+        else if (indexPath.section == 5)
+        {
+            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[remenzixunarray[indexPath.row] objectForKey:@"picUrl"]] ;
+            UIImageView *image = [[UIImageView alloc]init];
+            image.frame = CGRectMake(10, 10, 100 , 100);
+            [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            
+            UILabel *title = [[UILabel alloc]init];
+            title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
+            title.font = [UIFont systemFontOfSize:15];
+            title.text =[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"title"] ];
+            title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            //title.backgroundColor = [UIColor grayColor];
+            
+            UILabel *content = [[UILabel alloc]init];
+            content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
+            content.font = [UIFont systemFontOfSize:12];
+            content.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"subtitle"] ];
+            content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            content.numberOfLines = 2;
+            //content.backgroundColor = [UIColor grayColor];
+            
+            UILabel *time = [[UILabel alloc]init];
+            time.frame = CGRectMake(width - 120, 100, 110, 20);
+            time.font = [UIFont systemFontOfSize:10];
+            time.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"createTime"]];
+            time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            time.numberOfLines = 2;
+            //time.backgroundColor = [UIColor grayColor];
+            
+            
+            UIView *xian = [[UIView alloc] init];
+            xian.frame = CGRectMake(0, 120, width, 1);
+            xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+            
+            UILabel *laiyuan = [[UILabel alloc]init];
+            laiyuan.frame = CGRectMake(10,130, 100, 20);
+            laiyuan.font = [UIFont systemFontOfSize:13];
+            laiyuan.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"source"]];
+            laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            
+            
+            UIButton *fenxiang = [[UIButton alloc] init];
+            fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
+            fenxiang.backgroundColor = [UIColor clearColor];
+            
+            
+            UILabel *fenxianglabel = [[UILabel alloc]init];
+            fenxianglabel.frame = CGRectMake(0,0,70,20);
+            fenxianglabel.text =[NSString stringWithFormat:@"阅读量: %@",[remenzixunarray[indexPath.row] objectForKey:@"viewCount"]];
+            fenxianglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            fenxianglabel.font = [UIFont systemFontOfSize:11];
+            [fenxiang addSubview:fenxianglabel];
+            
+            
+            UIButton *shoucang = [[UIButton alloc] init];
+            shoucang.frame = CGRectMake(width - 140 ,130 ,20 ,20);
+            shoucang.backgroundColor = [UIColor clearColor];
+            
+            
+            UILabel *shoucanglabel = [[UILabel alloc]init];
+            shoucanglabel.frame = CGRectMake(0,0,70,20);
+            shoucanglabel.text =[NSString stringWithFormat:@"点赞量: %@",[remenzixunarray[indexPath.row] objectForKey:@"clickLikeCount"]];
+            shoucanglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            shoucanglabel.font = [UIFont systemFontOfSize:11];
+            [shoucang addSubview:shoucanglabel];
+            
+            UIView *xian1 = [[UIView alloc] init];
+            xian1.frame = CGRectMake(0, 159, width, 1);
+            xian1.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+            
+            [cell.contentView addSubview:image];
+            [cell.contentView addSubview:title];
+            [cell.contentView addSubview:content];
+            [cell.contentView addSubview:xian];
+            [cell.contentView addSubview:time];
+            [cell.contentView addSubview:shoucang];
+            [cell.contentView addSubview:fenxiang];
+            [cell.contentView addSubview:laiyuan];
+            [cell.contentView addSubview:xian1];
+            
+            
+            
+        }
+        else if (indexPath.section == 6)
+        {
+            
+            
+            
         }
         
-        self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
         
-        [cell.contentView addSubview:self.scrollView];
-        
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        
-    }
-    //积分礼品
-    else if (indexPath.section == 3)
-    {
-        
-        UIImageView *biaoti = [[UIImageView alloc] init];
-        biaoti.frame = CGRectMake(0, 3, 3, 14);
-        biaoti.image = [UIImage imageNamed:@"矩形-20-拷贝@3x.png"];
-        
-        UILabel * tou = [[UILabel alloc]init];
-        tou.frame = CGRectMake(8, 0, 100, 20);
-        tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tou.font = [UIFont systemFontOfSize:15];
-        tou.text = @"积分礼品展示";
-        
-        UIButton *gengduo = [[UIButton alloc]init];
-        gengduo.frame = CGRectMake(width-30, 0, 30, 20);
-        [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-        [gengduo addTarget:self action:@selector(specialoffergengduo) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        UIView *xian = [[UIView alloc]init];
-        xian.frame = CGRectMake(0, 20, width, 0.5);
-        xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        
-        [cell.contentView addSubview:biaoti];
-        [cell.contentView addSubview:tou];
-        [cell.contentView addSubview:gengduo];
-        [cell.contentView addSubview:xian];
-        
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, width, gao)];
-        
-        for (int i = 0; i < presentarray.count; i++) {
-            UIButton *IntegrationSix = [[UIButton alloc]init];
-            IntegrationSix.tag = 500+i;
-            IntegrationSix.frame = CGRectMake(kuan*i, 0, kuan, gao);
-            IntegrationSix.backgroundColor = [UIColor clearColor];
-            [IntegrationSix addTarget:self action:@selector(handleClick2:) forControlEvents:UIControlEventTouchUpInside];
-            //图片
-            UIImageView *imageview = [[UIImageView alloc]init];
-            imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
-            NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
-            [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
-            //名称
-            UILabel *name = [[UILabel alloc]init];
-            name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
-            name.font = [UIFont systemFontOfSize:13];
-            name.textAlignment = NSTextAlignmentCenter;
-            name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            name.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"name"]];
-            //原价
-            UILabel *originalcost = [[UILabel alloc]init];
-            originalcost.frame = CGRectMake(0, gao*0.75, kuan, gao*0.1);
-            originalcost.font = [UIFont systemFontOfSize:11];
-            originalcost.textAlignment = NSTextAlignmentCenter;
-            originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-            originalcost.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"price"]];;
-            //积分
-            UILabel *specialoffer = [[UILabel alloc] init];
-            specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
-            specialoffer.font = [UIFont systemFontOfSize:13];
-            specialoffer.textAlignment = NSTextAlignmentCenter;
-            specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-            specialoffer.text = [NSString stringWithFormat:@"¥%@",[presentarray[i] objectForKey:@"integral"]];
-
-            self.scrollView.pagingEnabled = YES;
-            
-            self.scrollView.delegate = self;
-            
-            [self.scrollView addSubview:IntegrationSix];
-            [IntegrationSix addSubview:imageview];
-            [IntegrationSix addSubview:name];
-            [IntegrationSix addSubview:originalcost];
-            [IntegrationSix addSubview:specialoffer];
-        }
-        
-        self.scrollView.contentSize = CGSizeMake(kuan*6, gao);
-
-        [cell.contentView addSubview:self.scrollView];
-        
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        
-        
-    }else if (indexPath.section == 4)
-    {
-        
-        UIImageView *touxiang = [[UIImageView alloc]init];
-        touxiang.frame = CGRectMake(5, 5, 80, 80);
-        touxiang.layer.cornerRadius = 40;
-        touxiang.layer.masksToBounds = YES;
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[rementieziarray[indexPath.row] objectForKey:@"photo"]];
-        [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-        
-        UILabel *name = [[UILabel alloc]init];
-        name.frame = CGRectMake(5, 90, 80, 20);
-        name.font = [UIFont systemFontOfSize:15];
-        name.text = [NSString stringWithFormat:@"%@",[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
-        name.textAlignment = NSTextAlignmentCenter;
-        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        
-        
-        UILabel *biaoti = [[UILabel alloc]init];
-        biaoti.frame = CGRectMake(90, 5, width - 95, 20);
-        biaoti.font = [UIFont systemFontOfSize:15];
-        biaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"title"]];
-        biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        
-        
-        UILabel *fubiaoti = [[UILabel alloc]init];
-        fubiaoti.frame = CGRectMake(90, 25, width - 95, 40);
-        fubiaoti.font = [UIFont systemFontOfSize:13];
-        fubiaoti.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"context"]];
-        fubiaoti.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        fubiaoti.numberOfLines = 2;
-        
-        UILabel *biaoqian = [[UILabel alloc]init];
-        biaoqian.frame = CGRectMake(90, 65, 80, 20);
-        biaoqian.font = [UIFont systemFontOfSize:13];
-        biaoqian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"diseaseName"]];
-        biaoqian.textAlignment = NSTextAlignmentCenter;
-        biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-        biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UILabel *shijian = [[UILabel alloc]init];
-        shijian.frame = CGRectMake(180, 65, width - 185, 20);
-        shijian.font = [UIFont systemFontOfSize:13];
-        shijian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"createTime"]];
-        shijian.textAlignment = NSTextAlignmentCenter;
-        shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-        
-        UILabel *yuedu = [[UILabel alloc]init];
-        yuedu.frame = CGRectMake(width - 215, 90, 100, 20);
-        yuedu.font = [UIFont systemFontOfSize:13];
-        yuedu.text = [NSString stringWithFormat:@"阅读量:%@",[rementieziarray[indexPath.row] objectForKey:@"viewNums"]];
-        yuedu.textAlignment = NSTextAlignmentRight;
-        yuedu.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-        
-        UILabel *dianzan = [[UILabel alloc]init];
-        dianzan.frame = CGRectMake(width - 110, 90, 100, 20);
-        dianzan.font = [UIFont systemFontOfSize:13];
-        dianzan.text = [NSString stringWithFormat:@"点赞量:%@",[rementieziarray[indexPath.row] objectForKey:@"likeNums"]];
-        dianzan.textAlignment = NSTextAlignmentRight;
-        dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-        
-        
-        [cell.contentView addSubview:touxiang];
-        [cell.contentView addSubview:name];
-        [cell.contentView addSubview:biaoti];
-        [cell.contentView addSubview:fubiaoti];
-        [cell.contentView addSubview:biaoqian];
-        [cell.contentView addSubview:shijian];
-        [cell.contentView addSubview:yuedu];
-        [cell.contentView addSubview:dianzan];
-        
-    }
-    else if (indexPath.section == 5)
-    {
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[remenzixunarray[indexPath.row] objectForKey:@"picUrl"]] ;
-        UIImageView *image = [[UIImageView alloc]init];
-        image.frame = CGRectMake(10, 10, 100 , 100);
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-        
-        UILabel *title = [[UILabel alloc]init];
-        title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
-        title.font = [UIFont systemFontOfSize:15];
-        title.text =[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"title"] ];
-        title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        //title.backgroundColor = [UIColor grayColor];
-        
-        UILabel *content = [[UILabel alloc]init];
-        content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
-        content.font = [UIFont systemFontOfSize:12];
-        content.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"subtitle"] ];
-        content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        content.numberOfLines = 2;
-        //content.backgroundColor = [UIColor grayColor];
-        
-        UILabel *time = [[UILabel alloc]init];
-        time.frame = CGRectMake(width - 120, 100, 110, 20);
-        time.font = [UIFont systemFontOfSize:10];
-        time.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"createTime"]];
-        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        time.numberOfLines = 2;
-        //time.backgroundColor = [UIColor grayColor];
-        
-        
-        UIView *xian = [[UIView alloc] init];
-        xian.frame = CGRectMake(0, 120, width, 1);
-        xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
-        
-        UILabel *laiyuan = [[UILabel alloc]init];
-        laiyuan.frame = CGRectMake(10,130, 100, 20);
-        laiyuan.font = [UIFont systemFontOfSize:13];
-        laiyuan.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"source"]];
-        laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        
-        
-        UIButton *fenxiang = [[UIButton alloc] init];
-        fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
-        fenxiang.backgroundColor = [UIColor clearColor];
-        
-        
-        UILabel *fenxianglabel = [[UILabel alloc]init];
-        fenxianglabel.frame = CGRectMake(0,0,70,20);
-        fenxianglabel.text =[NSString stringWithFormat:@"阅读量: %@",[remenzixunarray[indexPath.row] objectForKey:@"viewCount"]];
-        fenxianglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        fenxianglabel.font = [UIFont systemFontOfSize:11];
-        [fenxiang addSubview:fenxianglabel];
-        
-        
-        UIButton *shoucang = [[UIButton alloc] init];
-        shoucang.frame = CGRectMake(width - 140 ,130 ,20 ,20);
-        shoucang.backgroundColor = [UIColor clearColor];
-        
-        
-        UILabel *shoucanglabel = [[UILabel alloc]init];
-        shoucanglabel.frame = CGRectMake(0,0,70,20);
-        shoucanglabel.text =[NSString stringWithFormat:@"点赞量: %@",[remenzixunarray[indexPath.row] objectForKey:@"clickLikeCount"]];
-        shoucanglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        shoucanglabel.font = [UIFont systemFontOfSize:11];
-        [shoucang addSubview:shoucanglabel];
-        
-        UIView *xian1 = [[UIView alloc] init];
-        xian1.frame = CGRectMake(0, 159, width, 1);
-        xian1.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
-        
-        [cell.contentView addSubview:image];
-        [cell.contentView addSubview:title];
-        [cell.contentView addSubview:content];
-        [cell.contentView addSubview:xian];
-        [cell.contentView addSubview:time];
-        [cell.contentView addSubview:shoucang];
-        [cell.contentView addSubview:fenxiang];
-        [cell.contentView addSubview:laiyuan];
-        [cell.contentView addSubview:xian1];
-
-        
-        
-    }
-    else if (indexPath.section == 6)
-    {
-        
-        
-        
-    }
-
-    
     }
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1273,7 +1277,7 @@
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;
             panduan=0;
-//            MDID=[wocalei[indexPath.row-1]]
+            //            MDID=[wocalei[indexPath.row-1]]
             
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
@@ -1311,7 +1315,7 @@
 - (void)handleClick1:(UIButton *)btn{
     //药品详情  传过去药品ID
     YdDrugsViewController *dr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dr.yaopinID=[proList[btn.tag-400] objectForKey:@"prodId"];
+    dr.yaopinID=[proList[btn.tag-400] objectForKey:@"id"];
     [self.navigationController pushViewController:dr animated:YES];
     NSLog(@"%@",proList);
     
@@ -1657,7 +1661,7 @@
                 
                 
                 [WarningBox warningBoxHide:YES andView:self.view];
-               
+                
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
                     NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                     
@@ -1688,7 +1692,7 @@
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     NSLog(@"%@",responseObject);
                     
-
+                    
                     [wocalei reloadData];
                     
                     wocalei.hidden = NO;
@@ -1709,11 +1713,11 @@
         }];
     }
     
-   
+    
     
 }
 - (void)quxiao {
-   
+    
     pickerview.hidden = YES;
 }
 - (void)initializeLocationService {
@@ -1879,7 +1883,7 @@ int nicaicai=0;
                     
                     [wocalei reloadData];
                     [wocalei reloadData];
-                     wocalei.hidden = NO;
+                    wocalei.hidden = NO;
                     
                 }
             }
@@ -1903,7 +1907,7 @@ int nicaicai=0;
     }else{
         [self sanji];
     }
-
+    
 }
 
 @end

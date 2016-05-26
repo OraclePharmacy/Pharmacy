@@ -21,6 +21,7 @@
     CGFloat width;
     CGFloat height;
     
+    int ye;
     UITextField *SearchText;
     
     UISearchBar *searchbar;
@@ -36,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    ye=1;
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -87,8 +88,8 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObjectresponseObject%@",responseObject);
+            
+            NSLog(@"\n标签返回值\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -172,7 +173,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",@"2",@"officeId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",@"2",@"officeId",ye,@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

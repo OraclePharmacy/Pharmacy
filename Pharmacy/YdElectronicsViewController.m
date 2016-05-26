@@ -292,6 +292,8 @@
                 NSString*path=[NSString stringWithFormat:@"%@/Documents/dianzibinglitupian",NSHomeDirectory()];
                 [defaultManager removeItemAtPath:path error:NULL];
                 
+            }else{
+                [WarningBox warningBoxModeIndeterminate:@"上传失败!" andView:self.view];
             }
             
             

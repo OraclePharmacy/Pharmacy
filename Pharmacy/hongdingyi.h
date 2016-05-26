@@ -17,9 +17,9 @@
 //其中斌
 //#define service_host @"http://192.168.1.180:8081"
 //小展
-//#define service_host @"http://192.168.1.121:8080"
+#define service_host @"http://192.168.1.121:8080"
 //外网
-#define service_host @"http://125.211.221.232:60082"
+//#define service_host @"http://125.211.221.232:60082"
 
 /**
  *  计算机签名地址，当服务对外使用端口映射时使用，此地址是真实地址

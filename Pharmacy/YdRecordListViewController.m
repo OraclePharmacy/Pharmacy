@@ -21,6 +21,7 @@
     CGFloat width;
     CGFloat height;
     NSArray * emrList;
+    int ye;
     
     
 }
@@ -30,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    ye=1;
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -75,8 +76,8 @@
     [self jiekou];
 }
 -(void)loadNewData{
-    NSLog(@"哈哈哈");
-    
+    ye++;
+    [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
 }
@@ -103,9 +104,10 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     //emrid  为空时  调回列表；
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"10",@"pageSize",@"",@"emrId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"2",@"pageSize",@"",@"emrId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
+    
     
     //获取签名
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];

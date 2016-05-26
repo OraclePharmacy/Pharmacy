@@ -28,6 +28,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+    
     NSLog(@"%@",countwenjian);
     NSFileManager *file=[NSFileManager defaultManager];
     
@@ -112,7 +113,7 @@
     //药品名称
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(width/3+10, 0, width/3*2-10, width/3/3-10);
-    name.text = [NSString stringWithFormat:@"%@",[yikaishi[indexPath.row]objectForKey:@"commonName"]];
+    name.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
     name.textColor = [UIColor blackColor];
     name.font =[UIFont systemFontOfSize:15];
     //name.backgroundColor = [UIColor redColor];
@@ -149,7 +150,7 @@
               //生产厂家
               UILabel *vender = [[UILabel alloc]init];
               vender.frame = CGRectMake( width/3+10, width/3/3+width/3/6+width/3/6+10, width/3*2-10, width/3/6);
-              vender.text = @"哈尔滨市甲骨文实训基地";
+              vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
               vender.textColor = [UIColor blackColor];
               vender.font =[UIFont systemFontOfSize:12];
               //number.backgroundColor = [UIColor yellowColor];

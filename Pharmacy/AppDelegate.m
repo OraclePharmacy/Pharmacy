@@ -43,7 +43,7 @@
 #pragma mark - 私有方法
 #pragma mark 添加本地通知
 -(void)addLocalNotification:(NSArray *)add{
-    if (add==nil) {
+    if (add==nil||add.count==0) {
         UILocalNotification *notification=[[UILocalNotification alloc]init];
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 

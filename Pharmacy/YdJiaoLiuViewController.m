@@ -26,6 +26,11 @@
 @end
 
 @implementation YdJiaoLiuViewController
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [self jiekou];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +57,7 @@
     //设置导航栏左按钮
     self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"发帖" style:UIBarButtonItemStyleDone target:self action:@selector(fatie)];
     
-    [self jiekou];
+//    [self jiekou];
 }
 -(void)jiekou
 {

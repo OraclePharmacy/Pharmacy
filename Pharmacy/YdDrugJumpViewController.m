@@ -170,14 +170,20 @@
     jiage.font = [UIFont systemFontOfSize:10];
     //jiage.textAlignment = NSTextAlignmentCenter;
     jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    jiage.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@""]];
-    
-    
+    if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
+        jiage.text=@"非处方药";
+    }else{
+        jiage.text=@"处方药";
+    }
+   
     UILabel *jianjie = [[UILabel alloc]initWithFrame:CGRectMake(20, 90, width - 40 , 40)];
     jianjie.font = [UIFont systemFontOfSize:12];
     //jianjie.textAlignment = NSTextAlignmentCenter;
     jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@""]];
+    if([[arr[indexPath.row] objectForKey:@"summary"]isEqual:@""]){
+        jianjie.text =[NSString stringWithFormat:@"药品简介: 暂无"];
+    }else
+    jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@"summary"]];
     jianjie.numberOfLines = 2;
     
     [cell.contentView addSubview:image];
@@ -199,7 +205,7 @@
 {
     
     YdDrugsViewController  *Drugs =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    Drugs.yaopinID = [arr[indexPath.row] objectForKey:@"id"];
+    Drugs.yaopinID = [[arr[indexPath.row] objectForKey:@"addedProduct"] objectForKey:@"id"];
     [self.navigationController pushViewController:Drugs animated:YES];
     
     return;

@@ -64,7 +64,11 @@
     [self addButton];
     [self banner1];
     
-    //[self AddDisease];
+    [self jiekou:erji[0]];
+    
+    
+    
+    
 }
 
 -(void)AddDisease
@@ -233,6 +237,8 @@
 {
     a = 1;
     [self AddArray];
+    [self jiekou:erji[0]];
+    
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -243,6 +249,8 @@
 {
     a = 2;
     [self AddArray];
+    [self jiekou:erji[0]];
+    
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -254,6 +262,8 @@
 {
     a = 3;
     [self AddArray];
+    [self jiekou:erji[0]];
+    
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -264,6 +274,8 @@
 {
     a = 4;
     [self AddArray];
+    [self jiekou:erji[0]];
+    
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -274,6 +286,8 @@
 {
     a = 5;
     [self AddArray];
+    [self jiekou:erji[0]];
+    
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -331,6 +345,10 @@
   
     NSString *ss = erji[indexPath.row];
 
+    [self jiekou:ss];
+    
+}
+-(void)jiekou:(NSString *)ss{
     [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
     
     //userID    暂时不用改
@@ -370,8 +388,8 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"%@",responseObject);
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            NSLog(@"药品三级列表\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -395,6 +413,6 @@
         NSLog(@"错误：%@",error);
         
     }];
-    
+
 }
 @end
