@@ -34,9 +34,12 @@
     
     if([file fileExistsAtPath:countwenjian]){
         yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-        
+        _lianxidianzhnag.hidden=NO;
+        _tijiao.hidden=NO;
     }else{
         yikaishi=nil;
+        _lianxidianzhnag.hidden=YES;
+        _tijiao.hidden=YES;
     }
     [_tableview reloadData];
 }
@@ -54,11 +57,6 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
-    
-    
-
-    
-    
     
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -207,4 +205,15 @@
     
 }
 
+- (IBAction)tijiaoanniu:(id)sender {
+    
+    //显示订单详情，包括总价钱等等
+    
+}
+
+- (IBAction)dianzhanganniu:(id)sender {
+    
+    //聊天界面，聊天的对象是店长。。。。
+    
+}
 @end

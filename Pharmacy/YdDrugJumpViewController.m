@@ -156,6 +156,9 @@
     changjia.font = [UIFont systemFontOfSize:13];
     //changjia.textAlignment = NSTextAlignmentCenter;
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    if([arr[indexPath.row] objectForKey:@"manufacturer"]==nil){
+        changjia.text=@"";
+    }else
     changjia.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"manufacturer"]];
 
     
@@ -163,6 +166,9 @@
     guige.font = [UIFont systemFontOfSize:11];
     //guige.textAlignment = NSTextAlignmentCenter;
     guige.textColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+    if([arr[indexPath.row] objectForKey:@"specification"]==nil){
+        guige.text=@"";
+    }else
     guige.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"specification"]];
 
     
@@ -170,6 +176,7 @@
     jiage.font = [UIFont systemFontOfSize:10];
     //jiage.textAlignment = NSTextAlignmentCenter;
     jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    NSLog(@"是不是处方药\n\n\n%@",[arr[indexPath.row] objectForKey:@"prescription"]);
     if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
         jiage.text=@"非处方药";
     }else{
@@ -180,7 +187,7 @@
     jianjie.font = [UIFont systemFontOfSize:12];
     //jianjie.textAlignment = NSTextAlignmentCenter;
     jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    if([[arr[indexPath.row] objectForKey:@"summary"]isEqual:@""]){
+    if([[arr[indexPath.row] objectForKey:@"summary"]isEqual:@""]||[arr[indexPath.row] objectForKey:@"summary"]==nil){
         jianjie.text =[NSString stringWithFormat:@"药品简介: 暂无"];
     }else
     jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@"summary"]];

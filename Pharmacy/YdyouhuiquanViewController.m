@@ -67,7 +67,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -86,7 +86,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的中奖纪录%@",responseObject);
+            NSLog(@"我的优惠卷%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -281,6 +281,9 @@
 - (IBAction)fanhui:(id)sender {
     
     [ self dismissViewControllerAnimated: YES completion: nil ];
+    
+}
+- (IBAction)huoqu:(id)sender {
     
 }
 

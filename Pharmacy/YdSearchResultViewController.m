@@ -161,7 +161,7 @@
         chufang.frame = CGRectMake(90, 25, width - 95 , 20);
         chufang.font = [UIFont systemFontOfSize:13];
         chufang.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
-        chufang.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"prescription"]];
+    //?????    chufang.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"prescription"]];
         
         UILabel *guige = [[UILabel alloc]init];
         guige.frame = CGRectMake(90, 45, width - 95, 20);
@@ -215,7 +215,7 @@
     else if (zhi == 2) {
         
         YdDrugsViewController *Drugs = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-        Drugs.yaopinID = [_yaopin[indexPath.row] objectForKey:@"prodId"];
+        Drugs.yaopinID = [_yaopin[indexPath.row] objectForKey:@"id"];
         [self.navigationController pushViewController:Drugs animated:YES];
         
     }

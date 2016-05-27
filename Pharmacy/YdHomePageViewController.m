@@ -27,6 +27,9 @@
 #import "YdTextDetailsViewController.h"
 #import "YdDrugsViewController.h"
 #import "YdJiaoLiuViewController.h"
+#import "YDTejialiebiaoViewController.h"
+#import "YDJifenViewController.h"
+#import "YDJifenxiangViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -44,7 +47,6 @@
     
     NSArray *presentarray;
     NSMutableArray *presentarrImage;
-    NSMutableArray *proImage;
     
     NSArray *proList;
     NSMutableArray *proListImage;
@@ -104,7 +106,7 @@
     
     arrImage = [[NSMutableArray alloc]init];
     presentarrImage = [[NSMutableArray alloc]init];
-    proImage = [[NSMutableArray alloc]init];
+
     
     width = [UIScreen mainScreen].bounds.size.width;
     heigth = [UIScreen mainScreen].bounds.size.height;
@@ -486,20 +488,6 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 proList = [datadic objectForKey:@"proList"];
-                
-                
-                
-                
-                for (int i = 0; i < proList.count; i++) {
-                    
-                    
-                    [proImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]];
-                    
-                    
-                }
-                
-                
-                
                 
                 [self.tableview reloadData];
                 
@@ -1279,6 +1267,9 @@
             panduan=0;
             //            MDID=[wocalei[indexPath.row-1]]
             
+            NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
+            [pp setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"id"] ] forKey:@"officeid"];
+            
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
             [self rementiezi];
@@ -1324,8 +1315,9 @@
 //更多
 -(void)pharmacygengduo
 {    //特价药品列表
-    
-    NSLog(@"特价药品、");
+    YDTejialiebiaoViewController*tejia=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tejialiebiao"];
+    [self.navigationController pushViewController:tejia animated:YES];
+
     
 }
 //积分礼品展示  礼品详情
@@ -1344,7 +1336,8 @@
 //跳转积分礼品列表
 -(void)specialoffergengduo
 {
-    NSLog(@"积分礼品更多");
+    YDJifenViewController*jifen=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jifen"];
+    [self.navigationController pushViewController:jifen animated:YES];
     
 }
 //跳转病友问答列表

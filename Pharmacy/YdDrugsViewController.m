@@ -461,24 +461,19 @@ int popop=0;
                 [arrr writeToFile:countwenjian atomically:YES];
                 [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
                 [self.navigationController popViewControllerAnimated:YES];
-                
-                
+               
             }
-            
             
         }
         else{
-            
             
             [arrr addObject:xianshiarr];
             [arrr writeToFile:countwenjian atomically:YES];
             [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
             [self.navigationController popToRootViewControllerAnimated:YES];
-            
-            
+           
         }
         
-
     }
 }
 #pragma  mark ----textField
@@ -496,7 +491,7 @@ int ll=0;
     }
     
     if (op>4) {
-        [WarningBox warningBoxModeText:@"请出入1——10000之间的数" andView:self.view];
+        [WarningBox warningBoxModeText:@"请出入1——9999之间的数" andView:self.view];
         return NO;
     }
     

@@ -188,7 +188,11 @@
 		95F440D11CD0487B00B66D8C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F440CF1CD0487B00B66D8C /* TableViewCell.m */; };
 		95F440D21CD0487B00B66D8C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F440D01CD0487B00B66D8C /* TableViewCell.xib */; };
 		95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F4D1D51CE4605E00081C7E /* YdTieZiXiangQingViewController.m */; };
+		D201E8E61CF6DD2C00E890EB /* huoqumendianyouhuijuan.m in Sources */ = {isa = PBXBuildFile; fileRef = D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */; };
 		D20AC3921CED9BEC003A52AC /* dianzixiangqing.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AC3911CED9BEC003A52AC /* dianzixiangqing.m */; };
+		D212B5411CF7D15D001B5EAB /* YDTejialiebiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */; };
+		D212B5441CF7EDA7001B5EAB /* YDJifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5431CF7EDA7001B5EAB /* YDJifenViewController.m */; };
+		D212B5471CF7EDBB001B5EAB /* YDJifenxiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5461CF7EDBB001B5EAB /* YDJifenxiangViewController.m */; };
 		D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */; };
 		D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3321CEE9A81000454FE /* MJRefreshBackFooter.m */; };
 		D23EA35C1CEE9A81000454FE /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3341CEE9A81000454FE /* MJRefreshComponent.m */; };
@@ -522,8 +526,16 @@
 		95F440D01CD0487B00B66D8C /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		95F4D1D41CE4605E00081C7E /* YdTieZiXiangQingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdTieZiXiangQingViewController.h; sourceTree = "<group>"; };
 		95F4D1D51CE4605E00081C7E /* YdTieZiXiangQingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdTieZiXiangQingViewController.m; sourceTree = "<group>"; };
+		D201E8E41CF6DD2C00E890EB /* huoqumendianyouhuijuan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huoqumendianyouhuijuan.h; sourceTree = "<group>"; };
+		D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = huoqumendianyouhuijuan.m; sourceTree = "<group>"; };
 		D20AC3901CED9BEC003A52AC /* dianzixiangqing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dianzixiangqing.h; sourceTree = "<group>"; };
 		D20AC3911CED9BEC003A52AC /* dianzixiangqing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dianzixiangqing.m; sourceTree = "<group>"; };
+		D212B53F1CF7D15D001B5EAB /* YDTejialiebiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDTejialiebiaoViewController.h; sourceTree = "<group>"; };
+		D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDTejialiebiaoViewController.m; sourceTree = "<group>"; };
+		D212B5421CF7EDA7001B5EAB /* YDJifenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDJifenViewController.h; sourceTree = "<group>"; };
+		D212B5431CF7EDA7001B5EAB /* YDJifenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDJifenViewController.m; sourceTree = "<group>"; };
+		D212B5451CF7EDBB001B5EAB /* YDJifenxiangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDJifenxiangViewController.h; sourceTree = "<group>"; };
+		D212B5461CF7EDBB001B5EAB /* YDJifenxiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDJifenxiangViewController.m; sourceTree = "<group>"; };
 		D23EA32F1CEE9A81000454FE /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		D23EA3311CEE9A81000454FE /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -956,6 +968,8 @@
 			children = (
 				953717071CE6B18E00CA959D /* YdyouhuiquanViewController.h */,
 				953717081CE6B18E00CA959D /* YdyouhuiquanViewController.m */,
+				D201E8E41CF6DD2C00E890EB /* huoqumendianyouhuijuan.h */,
+				D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */,
 			);
 			name = "我的优惠券";
 			sourceTree = "<group>";
@@ -1333,6 +1347,8 @@
 		95E951231CB4AC0D00BB754C /* 特级药品更多 */ = {
 			isa = PBXGroup;
 			children = (
+				D212B53F1CF7D15D001B5EAB /* YDTejialiebiaoViewController.h */,
+				D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */,
 			);
 			name = "特级药品更多";
 			sourceTree = "<group>";
@@ -1349,6 +1365,8 @@
 		95E951251CB4AC2F00BB754C /* 积分商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				D212B5451CF7EDBB001B5EAB /* YDJifenxiangViewController.h */,
+				D212B5461CF7EDBB001B5EAB /* YDJifenxiangViewController.m */,
 			);
 			name = "积分商品详情";
 			sourceTree = "<group>";
@@ -1356,6 +1374,8 @@
 		95E951261CB4AC3900BB754C /* 积分商品更多 */ = {
 			isa = PBXGroup;
 			children = (
+				D212B5421CF7EDA7001B5EAB /* YDJifenViewController.h */,
+				D212B5431CF7EDA7001B5EAB /* YDJifenViewController.m */,
 			);
 			name = "积分商品更多";
 			sourceTree = "<group>";
@@ -1855,6 +1875,7 @@
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
 				D23EA3641CEE9A81000454FE /* MJRefreshBackStateFooter.m in Sources */,
 				953717151CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m in Sources */,
+				D212B5411CF7D15D001B5EAB /* YDTejialiebiaoViewController.m in Sources */,
 				95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */,
 				952A1A101CD8450F00582D26 /* YdYaoXiangViewController.m in Sources */,
 				D23EA35F1CEE9A81000454FE /* MJRefreshAutoGifFooter.m in Sources */,
@@ -1867,6 +1888,7 @@
 				D20AC3921CED9BEC003A52AC /* dianzixiangqing.m in Sources */,
 				D23EA3631CEE9A81000454FE /* MJRefreshBackNormalFooter.m in Sources */,
 				950C5DE81CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m in Sources */,
+				D212B5471CF7EDBB001B5EAB /* YDJifenxiangViewController.m in Sources */,
 				95609E9F1CABC72E00AF65E4 /* SBJsonParser.m in Sources */,
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
@@ -1899,6 +1921,7 @@
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
 				95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */,
 				D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */,
+				D201E8E61CF6DD2C00E890EB /* huoqumendianyouhuijuan.m in Sources */,
 				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,
 				9505D6CE1C9A7B27006F6850 /* main.m in Sources */,
 				950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */,
@@ -1923,6 +1946,7 @@
 				9505D70F1C9A7FF7006F6850 /* UIViewController+RESideMenu.m in Sources */,
 				95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */,
 				958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */,
+				D212B5441CF7EDA7001B5EAB /* YDJifenViewController.m in Sources */,
 				D23EA35E1CEE9A81000454FE /* MJRefreshHeader.m in Sources */,
 				95609EF71CABC74E00AF65E4 /* SDWebImageDecoder.m in Sources */,
 				953717111CE6D5C500CA959D /* YdwodeshoucangViewController.m in Sources */,
@@ -2115,7 +2139,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pharmacy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2131,7 +2155,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pharmacy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

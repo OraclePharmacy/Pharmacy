@@ -15,7 +15,7 @@
 //冷中原
 //#define service_host @"http://192.168.1.125:8686"
 //其中斌
-//#define service_host @"http://192.168.1.180:8081"
+//#define service_host @"http://192.168.1.180:8080"
 //小展
 #define service_host @"http://192.168.1.121:8080"
 //外网
