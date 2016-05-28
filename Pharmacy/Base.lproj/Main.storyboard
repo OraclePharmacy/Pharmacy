@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -2393,23 +2392,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q2U-sV-tsM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="455"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="457"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="muQ-pQ-x9i" id="1En-sg-Rlh"/>
                                     <outlet property="delegate" destination="muQ-pQ-x9i" id="cqa-vm-ZpW"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c46-TN-NiU">
-                                <rect key="frame" x="328" y="521" width="272" height="30"/>
-                                <state key="normal" title="提交订单"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c46-TN-NiU">
+                                <rect key="frame" x="300" y="521" width="300" height="30"/>
+                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SPa-Ag-zbq"/>
+                                </constraints>
+                                <state key="normal" title="提交订单">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="tijiaoanniu:" destination="muQ-pQ-x9i" eventType="touchUpInside" id="07f-Sh-zr8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bt-Tx-wq9">
-                                <rect key="frame" x="0.0" y="521" width="300" height="30"/>
-                                <state key="normal" title="联系店长"/>
+                                <rect key="frame" x="0.0" y="521" width="299" height="30"/>
+                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="oBs-xF-Krq"/>
+                                </constraints>
+                                <state key="normal" title="联系店长">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="dianzhanganniu:" destination="muQ-pQ-x9i" eventType="touchUpInside" id="h7V-jK-PZz"/>
                                 </connections>
@@ -2417,17 +2428,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5Bt-Tx-wq9" firstAttribute="top" secondItem="Q2U-sV-tsM" secondAttribute="bottom" constant="2" id="4qH-LW-dEh"/>
-                            <constraint firstItem="Q2U-sV-tsM" firstAttribute="leading" secondItem="poy-Kr-cqD" secondAttribute="leadingMargin" constant="-20" id="D7I-GA-iFW"/>
-                            <constraint firstItem="Q2U-sV-tsM" firstAttribute="top" secondItem="V8O-UE-11V" secondAttribute="bottom" id="H04-gO-3xD"/>
-                            <constraint firstItem="c46-TN-NiU" firstAttribute="leading" secondItem="5Bt-Tx-wq9" secondAttribute="trailing" id="Jlt-E1-ui6"/>
-                            <constraint firstItem="avE-Sy-P7s" firstAttribute="top" secondItem="c46-TN-NiU" secondAttribute="bottom" id="MDL-X2-oj2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Q2U-sV-tsM" secondAttribute="trailing" constant="-20" id="NJf-s1-6z9"/>
-                            <constraint firstItem="5Bt-Tx-wq9" firstAttribute="trailing" secondItem="poy-Kr-cqD" secondAttribute="centerX" id="c5d-Td-TXy"/>
-                            <constraint firstItem="c46-TN-NiU" firstAttribute="top" secondItem="Q2U-sV-tsM" secondAttribute="bottom" constant="2" id="fyn-ef-ClH"/>
-                            <constraint firstItem="avE-Sy-P7s" firstAttribute="top" secondItem="5Bt-Tx-wq9" secondAttribute="bottom" id="mLy-RS-ujh"/>
-                            <constraint firstItem="5Bt-Tx-wq9" firstAttribute="leading" secondItem="poy-Kr-cqD" secondAttribute="leadingMargin" constant="-20" id="ufO-Ca-zmP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c46-TN-NiU" secondAttribute="trailing" constant="-20" id="xgj-VP-tSf"/>
+                            <constraint firstItem="5Bt-Tx-wq9" firstAttribute="top" secondItem="Q2U-sV-tsM" secondAttribute="bottom" id="0hB-QF-0lp"/>
+                            <constraint firstItem="c46-TN-NiU" firstAttribute="leading" secondItem="5Bt-Tx-wq9" secondAttribute="trailing" constant="1" id="2lN-kb-02A"/>
+                            <constraint firstItem="Q2U-sV-tsM" firstAttribute="top" secondItem="V8O-UE-11V" secondAttribute="bottom" id="JIt-J5-nLz"/>
+                            <constraint firstItem="5Bt-Tx-wq9" firstAttribute="leading" secondItem="poy-Kr-cqD" secondAttribute="leading" id="LkR-K2-Mah"/>
+                            <constraint firstItem="avE-Sy-P7s" firstAttribute="top" secondItem="c46-TN-NiU" secondAttribute="bottom" id="QoJ-jR-gdn"/>
+                            <constraint firstAttribute="trailing" secondItem="Q2U-sV-tsM" secondAttribute="trailing" id="Rgz-09-YMB"/>
+                            <constraint firstItem="Q2U-sV-tsM" firstAttribute="leading" secondItem="poy-Kr-cqD" secondAttribute="leading" id="VV2-4t-mYL"/>
+                            <constraint firstItem="avE-Sy-P7s" firstAttribute="top" secondItem="5Bt-Tx-wq9" secondAttribute="bottom" id="eKA-MY-jaH"/>
+                            <constraint firstItem="c46-TN-NiU" firstAttribute="width" secondItem="5Bt-Tx-wq9" secondAttribute="width" constant="1" id="gIr-Sx-QxQ"/>
+                            <constraint firstAttribute="trailing" secondItem="c46-TN-NiU" secondAttribute="trailing" id="j3P-ia-jdq"/>
+                            <constraint firstItem="c46-TN-NiU" firstAttribute="leading" secondItem="5Bt-Tx-wq9" secondAttribute="trailing" constant="1" id="vq8-HG-bcu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="AtJ-dI-RTA"/>
@@ -2440,7 +2451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uke-4Q-EJ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="623" y="4112"/>
+            <point key="canvasLocation" x="1275" y="1782"/>
         </scene>
         <!--首页-->
         <scene sceneID="xLk-Vb-Tf9">
