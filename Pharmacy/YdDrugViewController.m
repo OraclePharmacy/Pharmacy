@@ -64,7 +64,7 @@
     [self addButton];
     [self banner1];
     
-    [self jiekou:erji[0]];
+  
     
     
     
@@ -191,6 +191,13 @@
         [erji addObject:@"儿童保健"];
         [erji addObject:@"成人营养"];
     }
+    //如果有数据，默认选中第一行并请求第一行的数据
+
+   
+//    NSIndexPath *firstPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.Tableview selectRowAtIndexPath:firstPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self tableView:self.Tableview didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];//实现点击第一行所调用的方法
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
 }
 //创建轮播
 -(void)banner1
@@ -237,24 +244,28 @@
 {
     a = 1;
     [self AddArray];
-    [self jiekou:erji[0]];
+    
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
     [self.Collectionview reloadData];
+   
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
 
 }
 -(void)bb22
 {
     a = 2;
     [self AddArray];
-    [self jiekou:erji[0]];
+    
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
     [self.Collectionview reloadData];
+  
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
     
 }
 
@@ -262,36 +273,42 @@
 {
     a = 3;
     [self AddArray];
-    [self jiekou:erji[0]];
+   
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
     [self.Collectionview reloadData];
+    
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
 }
 
 -(void)bb44
 {
     a = 4;
     [self AddArray];
-    [self jiekou:erji[0]];
+    
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
     [self.Collectionview reloadData];
+ 
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
 }
 
 -(void)bb55
 {
     a = 5;
     [self AddArray];
-    [self jiekou:erji[0]];
+    
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
     [self.Collectionview reloadData];
+  
+    [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
 }
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -369,6 +386,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:ss,@"level2Name",nil];
+    NSLog(@"\n\n%@",ss);
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
