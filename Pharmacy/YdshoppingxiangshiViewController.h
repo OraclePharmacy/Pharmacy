@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdshoppingxiangshiViewController : UINavigationController
+@interface YdshoppingxiangshiViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (weak, nonatomic) IBOutlet UIButton *tijiao;
+
+- (IBAction)tijiao:(id)sender;
 
 @end

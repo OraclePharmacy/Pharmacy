@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "hongdingyi.h"
 #import "Color+Hex.h"
+#import "YdshoppingxiangshiViewController.h"
 
 @interface YdShoppingCartViewController ()
 {
@@ -51,7 +52,7 @@
     height = [UIScreen mainScreen].bounds.size.height;
     
     //状态栏名称
-    //self.navigationItem.title = @"全部订单";
+    self.navigationItem.title = @"全部订单";
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
@@ -221,7 +222,9 @@
 - (IBAction)tijiaoanniu:(id)sender {
     
     //显示订单详情，包括总价钱等等
-    
+    YdshoppingxiangshiViewController *shoppingxiangshi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shoppingxiangshi"];
+    [self.navigationController pushViewController:shoppingxiangshi animated:YES];
+
 }
 
 - (IBAction)dianzhanganniu:(id)sender {

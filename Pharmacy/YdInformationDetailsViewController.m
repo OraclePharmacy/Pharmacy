@@ -8,6 +8,7 @@
 
 #import "YdInformationDetailsViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "Color+Hex.h"
 #import "WarningBox.h"
 #import "AFHTTPSessionManager.h"
 #import "SBJson.h"
@@ -16,7 +17,18 @@
 #import "UIImageView+WebCache.h"
 #import <MediaPlayer/MediaPlayer.h>
 @interface YdInformationDetailsViewController ()<MPMediaPickerControllerDelegate>
-
+{
+    CGFloat width;
+    CGFloat height;
+    
+    UIButton *dianzan;
+    UIButton *fenxiang;
+    UIButton *shoucang;
+    UIImageView *image;
+    
+    int dian;
+    int shou;
+}
 
 @end
 
@@ -24,6 +36,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    dian = 1;
+    shou = 1;
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
     //状态栏名称
     self.navigationItem.title = @"健康电台";
     //设置self.view背景颜色
@@ -32,9 +50,296 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
 //    [self shipinbofang:nil];
-    [self wangluo];
+    [self kongjian];
 }
 
+-(void)kongjian
+{
+    UILabel *title = [[UILabel alloc]init];
+    title.frame = CGRectMake(5, 69, width - 10, 20);
+    title.font = [UIFont systemFontOfSize:13];
+    title.text = @"标题";
+    title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    [self.view addSubview:title];
+    
+    UILabel *laiyuan = [[UILabel alloc]init];
+    laiyuan.frame = CGRectMake(5, CGRectGetMaxY(title.frame), 100, 20);
+    laiyuan.font = [UIFont systemFontOfSize:13];
+    laiyuan.text = @"来源:网络";
+    laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    [self.view addSubview:laiyuan];
+    
+    UILabel *shijian = [[UILabel alloc]init];
+    shijian.frame = CGRectMake(width - 155, CGRectGetMaxY(title.frame), 150, 20);
+    shijian.font = [UIFont systemFontOfSize:13];
+    shijian.text = @"2016-04-27 14:03:01";
+    shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+    shijian.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:shijian];
+    
+    UILabel *jianjie = [[UILabel alloc]init];
+    jianjie.frame = CGRectMake(5, CGRectGetMaxY(laiyuan.frame), width - 10, 20);
+    jianjie.font = [UIFont systemFontOfSize:13];
+    jianjie.text = @"简介:方式打开垃圾分类萨科技风";
+    jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    [self.view addSubview:jianjie];
+    
+    image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(5, CGRectGetMaxY(jianjie.frame) + 5, width - 10, 150);
+    //image.image = [UIImage imageNamed:@""];
+    image.backgroundColor = [UIColor grayColor];
+    [image setUserInteractionEnabled:YES];
+    [image addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
+    [self.view addSubview:image];
+    
+    shoucang = [[UIButton alloc]init];
+    shoucang.frame = CGRectMake(width - 70, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+    [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shoucang];
+    
+    dianzan = [[UIButton alloc]init];
+    dianzan.frame = CGRectMake(width - 45, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+    [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:dianzan];
+    
+    fenxiang = [[UIButton alloc]init];
+    fenxiang.frame = CGRectMake(width - 20, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    [fenxiang setBackgroundImage:[UIImage imageNamed:@"share(1).png"] forState:UIControlStateNormal];
+    [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:fenxiang];
+    
+}
+-(void)clickCategory:(UITapGestureRecognizer*)image1
+{
+    
+    UIView *viewClicked=[image1 view];
+    
+    if (viewClicked == image)
+    {
+        [self.view endEditing:YES];
+        [self wangluo];
+        NSLog(@"imageView1");
+        
+    }
+}
+//收藏
+-(void)shoucang
+{
+    if (shou == 1) {
+        
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_light(1).png"] forState:UIControlStateNormal];
+        
+        shou = 2;
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/newsCollect";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        NSString*zhid;
+        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+        zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",zhid,@"vipId", @"0",@"mark",nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"收藏成功" andView:self.view];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
+        
+
+    }
+    else if (shou == 2) {
+        
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/newsCollect";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        NSString*zhid;
+        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+        zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",zhid,@"vipId", @"1",@"mark",nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"取消收藏" andView:self.view];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+
+        shou = 1;
+        
+    }
+
+}
+//点赞
+-(void)dianzan
+{
+    NSLog(@"1");
+    if (dian == 1) {
+        
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
+        
+        dian = 2;
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/clickLike";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"0",@"flag", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                  [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
+        
+    }
+    else if (dian == 2) {
+        
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+        
+        dian = 1;
+        
+    }
+    
+}
+ //分享
+-(void)fenxiang
+{
+    //这里写分享功能
+}
 -(void)wangluo{
     [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
     

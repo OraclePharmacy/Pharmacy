@@ -10,6 +10,12 @@
 #import <AdSupport/ASIdentifierManager.h>
 #import "YdGenerateViewController.h"
 #import "YdScanJumpViewController.h"
+#import "Color+Hex.h"
+#import "WarningBox.h"
+#import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
 @interface YdScanViewController ()
 
 @end
@@ -48,8 +54,6 @@
     AVCaptureMetadataOutput*output=[[AVCaptureMetadataOutput alloc] init];
     //3.1设置输出代理
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-    
-    
     //4.拍摄会话
     AVCaptureSession*session=[[AVCaptureSession alloc] init];
     //添加session的输入与输出
@@ -86,7 +90,66 @@
     //3。设置界面显示扫描结果
     if (metadataObjects.count>0) {
         AVMetadataMachineReadableCodeObject*obj=metadataObjects[0];
-        NSLog(@"%@",obj.stringValue);
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/appraiseInterface";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSString *stt = [NSString stringWithFormat:@"%@",obj.stringValue];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",stt,@"encode", nil];
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    NSLog(@"chenggongle ");
+                    
+                    YdScanJumpViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scanjump"];
+    
+                    [self.navigationController pushViewController:SearchResult animated:YES];
+                
+                }
+                
+                
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+
     }
 }
 - (IBAction)Jump:(id)sender {
@@ -95,7 +158,6 @@
     YdGenerateViewController *Generate = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"generate"];
     Generate.haha = @"2012021385";
     [self.navigationController pushViewController:Generate animated:NO];
-
     
 }
 -(void)fanhui

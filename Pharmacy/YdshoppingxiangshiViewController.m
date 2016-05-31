@@ -7,31 +7,194 @@
 //
 
 #import "YdshoppingxiangshiViewController.h"
+#import "Color+Hex.h"
+#import "WarningBox.h"
+#import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
+#import "UIImageView+WebCache.h"
 
 @interface YdshoppingxiangshiViewController ()
-
+{
+    CGFloat width;
+    CGFloat height;
+}
 @end
 
 @implementation YdshoppingxiangshiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
+    
+    //状态栏名称
+    self.navigationItem.title = @"确认订单";
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
+    
+}
+//组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+//行
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return 100;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *id1 =@"cell1";
+    UITableViewCell *cell;
+    cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
+    }
+    
+    
+    //药品图片
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(10, 10, 80, 80);
+    //[image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[yikaishi[indexPath.row]objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    //image.layer.cornerRadius=30;
+    image.backgroundColor = [UIColor grayColor];
+    [cell.contentView addSubview:image];
+    //药品名称
+    UILabel *name = [[UILabel alloc]init];
+    name.frame = CGRectMake(100, 10, 200, 20);
+    //name.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
+    name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    name.font =[UIFont systemFontOfSize:15];
+    name.text = @"感冒药";
+    [cell.contentView addSubview:name];
+    
+    UILabel *yuanjia = [[UILabel alloc]init];
+    yuanjia.frame = CGRectMake(100, 30, 70, 20);
+    yuanjia.text = @"数量:105";
+    yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    yuanjia.font =[UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:yuanjia];
+    
+    UILabel *zongjia = [[UILabel alloc]init];
+    zongjia.frame = CGRectMake(100, 50, 70, 20);
+    zongjia.text = @"总价:￥500";
+    zongjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    zongjia.font =[UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:zongjia];
+    
+    //生产厂家
+    UILabel *changjia = [[UILabel alloc]init];
+    changjia.frame = CGRectMake(100, 70, 60, 20);
+    changjia.text = @"生产厂家:";
+    changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    changjia.font =[UIFont systemFontOfSize:13];
+    //changjia.backgroundColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    [cell.contentView addSubview:changjia];
+    
+    UILabel *vender = [[UILabel alloc]init];
+    vender.frame = CGRectMake( 160, 70, width - 160 , 20);
+    //vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
+    vender.text = @"副经理是减肥了卡萨积分可垃圾死李开复";
+    vender.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    vender.font =[UIFont systemFontOfSize:12];
+    [cell.contentView addSubview:vender];
+    
+    
+    //cell点击不变色
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //线消失
+    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    //隐藏滑动条
+    self.tableview.showsVerticalScrollIndicator =NO;
+    
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //隐藏键盘
+    [self.view endEditing:YES];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)tijiao:(id)sender {
+    
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/function/saveVipBuyRec";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    //会员ID  药品ID 数量   药品id与数量放到列表
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"",@"",@"",@"",@"", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                [WarningBox warningBoxModeText:@"提交成功" andView:self.view];
+                
+            }
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        NSLog(@"错误：%@",error);
+    }];
+    
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
-
 @end
