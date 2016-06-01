@@ -16,6 +16,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import "YddianyuanViewController.h"
 @interface YdScanViewController ()
 
 @end
@@ -129,10 +130,22 @@
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     NSLog(@"chenggongle ");
-                    
-                    YdScanJumpViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scanjump"];
+                    if ([_str isEqual:@"1"])
+                    {
+                         YdScanJumpViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scanjump"];
+                        
+                         [self.navigationController pushViewController:SearchResult animated:YES];
+                    }
+                    else
+                    {
+                        YddianyuanViewController *dianyuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dianyuan"];
+                        
+                        [self.navigationController pushViewController:dianyuan animated:YES];
+                    }
     
-                    [self.navigationController pushViewController:SearchResult animated:YES];
+                   
+                    
+                    
                 
                 }
                 

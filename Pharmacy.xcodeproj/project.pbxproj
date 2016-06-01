@@ -52,6 +52,8 @@
 		950AF5111C9FB8DA000E2B8F /* YdDrugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950AF5101C9FB8DA000E2B8F /* YdDrugViewController.m */; };
 		950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */; };
 		950C5DE81CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */; };
+		951A41A91CFE661C00FD81D6 /* bx.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41A81CFE661C00FD81D6 /* bx.png */; };
+		951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A41AC1CFE67FB00FD81D6 /* YddianyuanViewController.m */; };
 		952A1A081CD843D600582D26 /* 组-13@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A071CD843D600582D26 /* 组-13@3x.png */; };
 		952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A091CD8440700582D26 /* 组-14@3x.png */; };
 		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
@@ -321,6 +323,9 @@
 		950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_shopping_cart.png; sourceTree = "<group>"; };
 		950C5DE61CE1B0B200B9F662 /* YdshoppingxiangshiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdshoppingxiangshiViewController.h; sourceTree = "<group>"; };
 		950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdshoppingxiangshiViewController.m; sourceTree = "<group>"; };
+		951A41A81CFE661C00FD81D6 /* bx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bx.png; sourceTree = "<group>"; };
+		951A41AB1CFE67FB00FD81D6 /* YddianyuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YddianyuanViewController.h; sourceTree = "<group>"; };
+		951A41AC1CFE67FB00FD81D6 /* YddianyuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YddianyuanViewController.m; sourceTree = "<group>"; };
 		952A1A071CD843D600582D26 /* 组-13@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-13@3x.png"; sourceTree = "<group>"; };
 		952A1A091CD8440700582D26 /* 组-14@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-14@3x.png"; sourceTree = "<group>"; };
 		952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdJiaoLiuViewController.h; sourceTree = "<group>"; };
@@ -846,7 +851,6 @@
 				95E951241CB4AC1A00BB754C /* 积分商品 */,
 				95E951211CB4ABC900BB754C /* 特价药品 */,
 				9505D7201C9A8F78006F6850 /* 搜索 */,
-				9505D71F1C9A8F6B006F6850 /* 二维码 */,
 				9502A4A21C9CFDE400578339 /* 轮播点击事件 */,
 			);
 			name = "首页";
@@ -969,6 +973,24 @@
 			);
 			name = "扫码";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		951A41AA1CFE67CE00FD81D6 /* 评价店员 */ = {
+			isa = PBXGroup;
+			children = (
+				951A41AB1CFE67FB00FD81D6 /* YddianyuanViewController.h */,
+				951A41AC1CFE67FB00FD81D6 /* YddianyuanViewController.m */,
+			);
+			name = "评价店员";
+			sourceTree = "<group>";
+		};
+		951A41AE1CFE683900FD81D6 /* 评价门店 */ = {
+			isa = PBXGroup;
+			children = (
+				9505D7321C9A9D08006F6850 /* YdScanJumpViewController.h */,
+				9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */,
+			);
+			name = "评价门店";
 			sourceTree = "<group>";
 		};
 		9532B7B21CA24705008373E1 /* 首页跳转 */ = {
@@ -1192,6 +1214,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				951A41A81CFE661C00FD81D6 /* bx.png */,
 				95E6B20A1CFD741D000956F2 /* star_dark.png */,
 				95E6B20B1CFD741D000956F2 /* star_light.png */,
 				95F7F6FE1CFBE93C00EF30B7 /* clicklike_dark(1).png */,
@@ -1346,8 +1369,8 @@
 		95E6B2011CFD30AA000956F2 /* 评价 */ = {
 			isa = PBXGroup;
 			children = (
-				9505D7321C9A9D08006F6850 /* YdScanJumpViewController.h */,
-				9505D7331C9A9D08006F6850 /* YdScanJumpViewController.m */,
+				951A41AE1CFE683900FD81D6 /* 评价门店 */,
+				951A41AA1CFE67CE00FD81D6 /* 评价店员 */,
 				95E6B2021CFD30B9000956F2 /* RatingBar */,
 			);
 			name = "评价";
@@ -1607,6 +1630,7 @@
 			children = (
 				95F7F70A1CFC16A400EF30B7 /* YdmendianxinxiViewController.h */,
 				95F7F70B1CFC16A400EF30B7 /* YdmendianxinxiViewController.m */,
+				9505D71F1C9A8F6B006F6850 /* 二维码 */,
 			);
 			name = "门店信息";
 			sourceTree = "<group>";
@@ -1871,6 +1895,7 @@
 				95E6B20C1CFD741D000956F2 /* star_dark.png in Resources */,
 				95ED97481CC4B64A006F92B8 /* iconfont-tubiao1shoucang@3x.png in Resources */,
 				95F7F7031CFBE93C00EF30B7 /* clicklike_dark(1).png in Resources */,
+				951A41A91CFE661C00FD81D6 /* bx.png in Resources */,
 				95C3724F1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png in Resources */,
 				95C3726B1CB5F5780083AC90 /* 问药师@2x.png in Resources */,
 				9505D71E1C9A8727006F6850 /* 7008.wav in Resources */,
@@ -1969,6 +1994,7 @@
 				D212B5471CF7EDBB001B5EAB /* YDJifenxiangViewController.m in Sources */,
 				95609E9F1CABC72E00AF65E4 /* SBJsonParser.m in Sources */,
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
+				951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
 				9505D7141C9A7FFF006F6850 /* YdRootViewController.m in Sources */,
 				9505D70D1C9A7FF7006F6850 /* RECommonFunctions.m in Sources */,

@@ -1,12 +1,12 @@
 //
-//  YdScanJumpViewController.m
+//  YddianyuanViewController.m
 //  Pharmacy
 //
-//  Created by suokun on 16/3/17.
+//  Created by suokun on 16/6/1.
 //  Copyright © 2016年 sk. All rights reserved.
 //
 
-#import "YdScanJumpViewController.h"
+#import "YddianyuanViewController.h"
 #import "Color+Hex.h"
 #import "WarningBox.h"
 #import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
@@ -16,7 +16,7 @@
 
 #import "RatingBar.h"
 
-@interface YdScanJumpViewController ()<RatingBarDelegate,UITextViewDelegate>
+@interface YddianyuanViewController ()<RatingBarDelegate,UITextViewDelegate>
 {
     CGFloat width;
     CGFloat height;
@@ -44,7 +44,7 @@
 
 @end
 
-@implementation YdScanJumpViewController
+@implementation YddianyuanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,6 +82,7 @@
     [self.ratingBar3 setImageDeselected:@"star_dark.png" halfSelected:@"bx.png" fullSelected:@"star_light.png" andDelegate:self];
     
     [self kongjian];
+
 }
 
 -(void)kongjian
@@ -170,9 +171,9 @@
 {
     if (btn == self.haoping)
     {
-       [self.haoping setImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
-       [self.zhongping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
-       [self.chaping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+        [self.haoping setImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
+        [self.zhongping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+        [self.chaping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
         dengji = @"1";
     }
     else if (btn == self.zhongping)
@@ -180,16 +181,16 @@
         [self.haoping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
         [self.zhongping setImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
         [self.chaping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
-         dengji = @"2";
+        dengji = @"2";
     }
     else if (btn == self.chaping)
     {
         [self.haoping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
         [self.zhongping setImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
         [self.chaping setImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
-         dengji = @"3";
+        dengji = @"3";
     }
-
+    
 }
 -(void)tijiaoanniu
 {
@@ -214,7 +215,7 @@
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"0",@"type",@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"objectId",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"1",@"type",@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"objectId",nil];
     NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -253,7 +254,7 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
 
 -(void)textViewDidChange:(UITextView *)textView
@@ -281,12 +282,13 @@
         str3 = [NSString stringWithFormat:@"%.1f",newRating];
         //self.mLabel.text = [NSString stringWithFormat:@"第一个评分条的当前结果为:%.1f",newRating];
     }
-
+    
 }
 -(void)fanhui
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 @end
