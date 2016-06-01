@@ -12,5 +12,5 @@
 @property(strong , nonatomic)AVCaptureSession *session;
 @property (strong , nonatomic)AVCaptureVideoPreviewLayer*previewLayer;
 
-
+@property (strong,nonatomic) NSString *str;
 @end

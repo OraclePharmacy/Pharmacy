@@ -307,12 +307,14 @@
 {
     //跳转到扫描页面
     YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
+    Scan.str = @"1";
     [self.navigationController pushViewController:Scan animated:YES];
 }
 -(void)pingjiadianyuan
 {
     //跳转到扫描页面
     YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
+    Scan.str = @"2";
     [self.navigationController pushViewController:Scan animated:YES];
 }
 
