@@ -58,8 +58,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSString*zhid;
-   
-     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];

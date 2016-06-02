@@ -173,7 +173,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",@"2",@"officeId",ye,@"pageNo",@"5",@"pageSize", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",zhid,@"officeId",ye,@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -273,7 +276,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords",@"2",@"officeId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:searchbar.text,@"keywords",zhid,@"officeId",@"1",@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

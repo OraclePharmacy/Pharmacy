@@ -249,7 +249,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"2",@"officeId", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -386,7 +389,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -462,7 +468,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"2",@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

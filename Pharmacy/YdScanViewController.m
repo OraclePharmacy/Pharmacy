@@ -108,8 +108,11 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
+        NSString*zhid;
+        NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+        zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
         NSString *stt = [NSString stringWithFormat:@"%@",obj.stringValue];
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",stt,@"encode", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",stt,@"encode", nil];
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名

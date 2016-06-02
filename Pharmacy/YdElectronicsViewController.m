@@ -242,10 +242,10 @@
     //后台写的跟个傻逼似的 擦
     
     [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
-    NSString*zhid;
+    NSString*vip;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
     
     //请求地址   地址不同 必须要改
@@ -256,7 +256,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     //出入参数：
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_titleText.text,@"title",_writeText.text,@"emrDesc",zhid,@"vipId",now,@"tjsj", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_titleText.text,@"title",_writeText.text,@"emrDesc",vip,@"vipId",now,@"tjsj", nil];
     NSLog(@"%@",datadic);
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     

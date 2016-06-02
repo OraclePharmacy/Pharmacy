@@ -76,7 +76,15 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1020",@"vipId",@"2",@"officeId", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSString*vip;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"officeId", nil];
     NSLog(@"12345%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -142,7 +150,14 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1020",@"vipId",@"2",@"officeId",j,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSString*vip;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"officeId",j,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名

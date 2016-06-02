@@ -148,12 +148,12 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*zhid;
+        NSString*vip;
         NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",zhid,@"vipId", @"0",@"mark",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",vip,@"vipId", @"0",@"mark",nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -213,12 +213,12 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*zhid;
+        NSString*vip;
         NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",zhid,@"vipId", @"1",@"mark",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",vip,@"vipId", @"1",@"mark",nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         

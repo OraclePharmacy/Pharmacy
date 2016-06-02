@@ -259,10 +259,10 @@
     //后台写的跟个傻逼似的 擦
     
     [WarningBox warningBoxModeIndeterminate:@"正在帮您代购药...." andView:self.view];
-    NSString*zhid;
+    NSString*vip;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
 
     
     //请求地址   地址不同 必须要改
@@ -273,7 +273,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     //出入参数：
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",zhid,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext.text,@"batchNo",_beizhu.text,@"remark", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",vip,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext.text,@"batchNo",_beizhu.text,@"remark", nil];
     NSLog(@"%@",datadic);
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     

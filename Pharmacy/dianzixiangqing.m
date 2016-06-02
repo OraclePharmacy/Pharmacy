@@ -37,10 +37,10 @@
     [self jiekou];
 }
 -(void)jiekou{
-    NSString*zhid;
+    NSString*vip;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -59,7 +59,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     //emrid  为空时  调回列表；
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",@"1",@"pageNo",@"6",@"pageSize",_emrid,@"emrId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"1",@"pageNo",@"6",@"pageSize",_emrid,@"emrId", nil];
    
     NSString*jsonstring=[writer stringWithObject:datadic];
     

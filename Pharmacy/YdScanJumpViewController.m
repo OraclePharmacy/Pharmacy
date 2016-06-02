@@ -210,11 +210,11 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*zhid;
+    NSString*vip;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"0",@"type",@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"objectId",nil];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"0",@"type",vip,@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"objectId",nil];
     NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
