@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
+#define JMSSAGE_APPKEY @"4f7aef34fb361292c566a1cd"
+#define CHANNEL @""
+@interface AppDelegate ()<JMessageDelegate>
 
 @end
 
@@ -17,6 +18,34 @@
 
 #pragma mark - 应用代理方法
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [JMessage addDelegate:self withConversation:nil];
+    
+    /// Required - 启动 JMessage SDK
+    [JMessage setupJMessage:launchOptions
+                     appKey:JMSSAGE_APPKEY
+                    channel:CHANNEL
+           apsForProduction:NO
+                   category:nil];
+    
+    /// Required - 注册 APNs 通知
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        /// 可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        /// categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    
+//*-*-*-*-*-*--*-*-*-*-*-*-*-*-**-**-*-*-*-**-*-***-*-**-*-*-*-**-*-**-*-*-*-*-*-*-
+    
     
     //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
     if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
@@ -27,6 +56,32 @@
     
     return YES;
 }
+
+#pragma mark ----JMessage 组件
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required - 处理收到的通知
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+
+
 
 #pragma mark 调用过用户注册通知方法之后执行（也就是调用完registerUserNotificationSettings:方法之后执行）
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{

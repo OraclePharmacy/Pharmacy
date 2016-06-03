@@ -13,6 +13,7 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import <CoreLocation/CoreLocation.h>
+#import <JMessage/JMessage.h>
 
 @interface YdRegisterViewController ()<CLLocationManagerDelegate>
 {
@@ -800,11 +801,22 @@
                         NSLog(@"%@",[responseObject objectForKey:@"msg"]);
                         
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [self.navigationController popViewControllerAnimated:YES];
-                           
-                            });
                             
+                            [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+                                
+                                if (error) {
+                                    NSLog(@"出错了");
+                                    return ;
+                                }
+                                NSLog(@"haha");
+                                
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                    
+                                });
+                                
+                            }];
+    
                         }
                         
                     }
