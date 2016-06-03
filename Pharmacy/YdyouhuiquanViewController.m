@@ -31,6 +31,13 @@
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    //状态栏名称
+    self.navigationItem.title = @"我的优惠券";
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -278,13 +285,11 @@
 }
 
 
-- (IBAction)fanhui:(id)sender {
-    
-    [ self dismissViewControllerAnimated: YES completion: nil ];
-    
-}
-- (IBAction)huoqu:(id)sender {
-    
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 @end

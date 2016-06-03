@@ -105,13 +105,9 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 }
 -(void)denglu
 {
-    YdPersonalInformationViewController *PersonalInformation=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
     
-    [self presentViewController:PersonalInformation animated:YES completion:^{
-        
-        [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-        
-    }];
+    YdPersonalInformationViewController *PersonalInformation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+    [self.navigationController pushViewController:PersonalInformation animated:YES];
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,67 +134,40 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     if (indexPath.row == 0)
     {
         
-        YdWoDeDingDanViewController *WoDeDingDan=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodedingdan"];
+        YdWoDeDingDanViewController *WoDeDingDan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodedingdan"];
+        [self.navigationController pushViewController:WoDeDingDan animated:YES];
         
-        [self presentViewController:WoDeDingDan animated:YES completion:^{
-            
-            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-            
-        }];
-
     }
     else if (indexPath.row == 1)
     {
         
-        YdyouhuiquanViewController *youhuiquan=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-        
-        [self presentViewController:youhuiquan animated:YES completion:^{
-            
-            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-            
-        }];
+        YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+        [self.navigationController pushViewController:youhuiquan animated:YES];
 
     }
     else if (indexPath.row == 2)
     {
-        YdzhongjiangjiluViewController *zhongjiangjilu=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
         
-        [self presentViewController:zhongjiangjilu animated:YES completion:^{
-            
-            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-            
-        }];
-
+        YdzhongjiangjiluViewController *zhongjiangjilu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
+        [self.navigationController pushViewController:zhongjiangjilu animated:YES];
         
     }
     else if (indexPath.row == 3)
     {
         
-        YdwodeshoucangViewController *wodeshoucang=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
+        YdwodeshoucangViewController *wodeshoucang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
+        [self.navigationController pushViewController:wodeshoucang animated:YES];
         
-        [self presentViewController:wodeshoucang animated:YES completion:^{
-            
-            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-            
-        }];
-
     }
     else if (indexPath.row == 4)
     {
         
-        YdwodetieziViewController *wodetiezi=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
-        
-        [self presentViewController:wodetiezi animated:YES completion:^{
-            
-            [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-            
-        }];
+        YdwodetieziViewController *wodetiezi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
+        [self.navigationController pushViewController:wodetiezi animated:YES];
         
     }
 
-    
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

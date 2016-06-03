@@ -209,13 +209,15 @@ NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/G
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                            [self presentViewController:Root animated:YES completion:^{
-                                [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-                            }];
-                            
-                    });
+                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                        [self.navigationController pushViewController:Root animated:YES];
+//                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+//                            [self presentViewController:Root animated:YES completion:^{
+//                                [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+//                            }];
+//                            
+//                    });
                        
                     }
                   

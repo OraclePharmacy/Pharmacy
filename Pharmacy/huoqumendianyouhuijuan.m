@@ -30,6 +30,15 @@
     // Do any additional setup after loading the view.
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    //状态栏名称
+    self.navigationItem.title = @"门店优惠券";
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+
+    
     [self jiekou];
 }
 
@@ -127,7 +136,11 @@
 }
 */
 
-- (IBAction)fanhui:(id)sender {
-    
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
+
 @end

@@ -62,13 +62,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     pickerview=[[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+    //状态栏名称
+    self.navigationItem.title = @"个人信息";
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     _first = @[@"头像", @"昵称"];
     _second = @[@"姓名",@"性别",@"年龄",@"会员卡号(选填)",@"地区",@"详细地址"];
+    
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
     //创建tableview
     self.tableview = [[UITableView alloc]init];
@@ -730,9 +738,9 @@
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
                         [datadic writeToFile:path atomically:YES];
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [self dismissViewControllerAnimated:YES completion: nil ];
-                        });
+                        //返回上一页
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [self.navigationController setNavigationBarHidden:YES animated:NO];
                         
                     }
                     
@@ -760,9 +768,10 @@
 }
 
 //返回
-- (IBAction)fanhui:(id)sender {
-    
-    [ self dismissViewControllerAnimated: YES completion: nil ];
-    
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 @end

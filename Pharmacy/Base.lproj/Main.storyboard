@@ -556,7 +556,7 @@
         <!--Yd Personal Information View Controller-->
         <scene sceneID="t84-Dc-Hz8">
             <objects>
-                <viewController storyboardIdentifier="personalinformation" id="TcZ-w1-2Vt" customClass="YdPersonalInformationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personalinformation" hidesBottomBarWhenPushed="YES" id="TcZ-w1-2Vt" customClass="YdPersonalInformationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jp4-Of-Wh2"/>
                         <viewControllerLayoutGuide type="bottom" id="wEW-eT-5Br"/>
@@ -564,46 +564,7 @@
                     <view key="view" contentMode="scaleToFill" id="ADz-Ic-PLt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAI-w6-C0g">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="sVH-D9-Peo"/>
-                                </constraints>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTL-yi-JFb">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="CR2-dl-chZ"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="个人信息" id="gTR-6n-LwX">
-                                        <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="Eei-Cy-jIK">
-                                            <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="fanhui:" destination="TcZ-w1-2Vt" id="ueb-gY-3j1"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="sTL-yi-JFb" firstAttribute="top" secondItem="Jp4-Of-Wh2" secondAttribute="bottom" id="1iZ-xy-Vmz"/>
-                            <constraint firstItem="cAI-w6-C0g" firstAttribute="top" secondItem="ADz-Ic-PLt" secondAttribute="top" id="1lV-CJ-8eo"/>
-                            <constraint firstItem="cAI-w6-C0g" firstAttribute="leading" secondItem="ADz-Ic-PLt" secondAttribute="leading" id="2Pg-js-wnQ"/>
-                            <constraint firstAttribute="trailing" secondItem="sTL-yi-JFb" secondAttribute="trailing" id="dLc-vn-CM6"/>
-                            <constraint firstAttribute="trailing" secondItem="cAI-w6-C0g" secondAttribute="trailing" id="dUI-xw-Azk"/>
-                            <constraint firstItem="sTL-yi-JFb" firstAttribute="leading" secondItem="ADz-Ic-PLt" secondAttribute="leading" id="mjE-By-6Qu"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHE-sV-ZqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -621,45 +582,7 @@
                     <view key="view" contentMode="scaleToFill" id="7bz-d3-A7s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZt-Ui-oCU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tR0-vD-8he">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="我的订单" id="mZs-Q4-Jix">
-                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="UP0-74-8CW">
-                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="fanhui:" destination="fZ7-8e-sVY" id="bzP-SG-kKN"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="tR0-vD-8he" firstAttribute="leading" secondItem="GZt-Ui-oCU" secondAttribute="leading" id="FzO-tm-lDG"/>
-                                    <constraint firstAttribute="height" constant="64" id="R3F-Q0-Hgf"/>
-                                    <constraint firstAttribute="trailing" secondItem="tR0-vD-8he" secondAttribute="trailing" id="SyI-wZ-gAt"/>
-                                    <constraint firstAttribute="bottom" secondItem="tR0-vD-8he" secondAttribute="bottom" id="gao-56-NJq"/>
-                                    <constraint firstItem="tR0-vD-8he" firstAttribute="top" secondItem="GZt-Ui-oCU" secondAttribute="top" constant="20" id="nnZ-ph-ere"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="GZt-Ui-oCU" firstAttribute="top" secondItem="7bz-d3-A7s" secondAttribute="top" id="1f6-46-zhs"/>
-                            <constraint firstItem="GZt-Ui-oCU" firstAttribute="leading" secondItem="7bz-d3-A7s" secondAttribute="leading" id="Fgk-be-rtM"/>
-                            <constraint firstAttribute="trailing" secondItem="GZt-Ui-oCU" secondAttribute="trailing" id="HTk-J2-nyk"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEW-2A-Cqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,53 +600,7 @@
                     <view key="view" contentMode="scaleToFill" id="c3e-0K-514">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujf-1d-iEv">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3KL-Lu-daV">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="9e4-c9-9H3"/>
-                                        </constraints>
-                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="我的优惠券" id="zQS-j0-jL6">
-                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="hra-MY-ESH">
-                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="fanhui:" destination="4hq-B3-IyD" id="3Ig-Gg-vW7"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" title="获取优惠卷" id="oc5-kg-mjM">
-                                                    <connections>
-                                                        <action selector="huoqu:" destination="4hq-B3-IyD" id="HsV-iN-s2I"/>
-                                                        <segue destination="bqU-Tu-ThK" kind="show" id="xRD-ED-dRb"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="3KL-Lu-daV" secondAttribute="trailing" id="0Xp-yE-9To"/>
-                                    <constraint firstItem="3KL-Lu-daV" firstAttribute="leading" secondItem="ujf-1d-iEv" secondAttribute="leading" id="3g1-FY-u2k"/>
-                                    <constraint firstAttribute="height" constant="64" id="QhN-C9-eE5"/>
-                                    <constraint firstItem="3KL-Lu-daV" firstAttribute="top" secondItem="ujf-1d-iEv" secondAttribute="top" constant="20" id="hIz-mp-XWa"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ujf-1d-iEv" firstAttribute="top" secondItem="c3e-0K-514" secondAttribute="top" id="8Kh-UC-c0X"/>
-                            <constraint firstAttribute="trailing" secondItem="ujf-1d-iEv" secondAttribute="trailing" id="Whb-x2-54K"/>
-                            <constraint firstItem="ujf-1d-iEv" firstAttribute="leading" secondItem="c3e-0K-514" secondAttribute="leading" id="bxV-eK-cxa"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKX-Uu-8ew" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -741,45 +618,7 @@
                     <view key="view" contentMode="scaleToFill" id="EDK-eU-pJG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUY-kf-Exk">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-II-DMr">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="我的帖子" id="7W5-WD-Q7k">
-                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="deN-oy-xap">
-                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="fanhui:" destination="Jio-q8-dwb" id="AlQ-7V-lrD"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="bj4-II-DMr" secondAttribute="trailing" id="8XS-dt-qyp"/>
-                                    <constraint firstAttribute="height" constant="64" id="F2Q-xJ-Kzj"/>
-                                    <constraint firstItem="bj4-II-DMr" firstAttribute="top" secondItem="aUY-kf-Exk" secondAttribute="top" constant="20" id="IMX-lR-iz5"/>
-                                    <constraint firstItem="bj4-II-DMr" firstAttribute="leading" secondItem="aUY-kf-Exk" secondAttribute="leading" id="gQ4-cK-PQd"/>
-                                    <constraint firstAttribute="bottom" secondItem="bj4-II-DMr" secondAttribute="bottom" id="lkv-fQ-s7f"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="aUY-kf-Exk" firstAttribute="leading" secondItem="EDK-eU-pJG" secondAttribute="leading" id="J2p-Pd-yeA"/>
-                            <constraint firstAttribute="trailing" secondItem="aUY-kf-Exk" secondAttribute="trailing" id="YMo-Hz-aHD"/>
-                            <constraint firstItem="aUY-kf-Exk" firstAttribute="top" secondItem="EDK-eU-pJG" secondAttribute="top" id="bdP-gr-eBZ"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4M-fe-JHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -797,45 +636,7 @@
                     <view key="view" contentMode="scaleToFill" id="Bk1-bY-r2g">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqc-2U-3pq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-jw-StC">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="我的收藏" id="qta-d3-B3g">
-                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="3kb-1h-cUr">
-                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="fanhui:" destination="e1N-aC-oUF" id="H27-B5-35D"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="2OV-jw-StC" secondAttribute="trailing" id="oTg-44-vR9"/>
-                                    <constraint firstAttribute="bottom" secondItem="2OV-jw-StC" secondAttribute="bottom" id="raO-1g-91J"/>
-                                    <constraint firstAttribute="height" constant="64" id="sOa-au-kUV"/>
-                                    <constraint firstItem="2OV-jw-StC" firstAttribute="top" secondItem="Fqc-2U-3pq" secondAttribute="top" constant="20" id="sii-wR-lqx"/>
-                                    <constraint firstItem="2OV-jw-StC" firstAttribute="leading" secondItem="Fqc-2U-3pq" secondAttribute="leading" id="xFz-VB-PWt"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Fqc-2U-3pq" firstAttribute="top" secondItem="Bk1-bY-r2g" secondAttribute="top" id="HaK-Lg-nip"/>
-                            <constraint firstAttribute="trailing" secondItem="Fqc-2U-3pq" secondAttribute="trailing" id="gOK-BW-GJc"/>
-                            <constraint firstItem="Fqc-2U-3pq" firstAttribute="leading" secondItem="Bk1-bY-r2g" secondAttribute="leading" id="ktH-em-qJN"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehA-WC-Qx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -853,45 +654,7 @@
                     <view key="view" contentMode="scaleToFill" id="T2i-R0-hpF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIB-KV-Zi9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fez-MI-aJJ">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="我的中奖纪录" id="4Tz-37-5O7">
-                                                <barButtonItem key="leftBarButtonItem" image="@3x_xx_06.png" id="kvm-4N-y4U">
-                                                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="fanhui:" destination="jZw-Nr-iuy" id="1ic-ap-qBT"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Fez-MI-aJJ" firstAttribute="leading" secondItem="VIB-KV-Zi9" secondAttribute="leading" id="1Dv-Uf-C3A"/>
-                                    <constraint firstAttribute="height" constant="64" id="6is-z6-xbm"/>
-                                    <constraint firstItem="Fez-MI-aJJ" firstAttribute="top" secondItem="VIB-KV-Zi9" secondAttribute="top" constant="20" id="Dq1-Wc-PQf"/>
-                                    <constraint firstAttribute="trailing" secondItem="Fez-MI-aJJ" secondAttribute="trailing" id="RQm-I2-b6x"/>
-                                    <constraint firstAttribute="bottom" secondItem="Fez-MI-aJJ" secondAttribute="bottom" id="Vz8-Jz-lKN"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VIB-KV-Zi9" firstAttribute="leading" secondItem="T2i-R0-hpF" secondAttribute="leading" id="3DE-Y6-WVi"/>
-                            <constraint firstItem="VIB-KV-Zi9" firstAttribute="top" secondItem="T2i-R0-hpF" secondAttribute="top" id="a5K-y3-p3H"/>
-                            <constraint firstAttribute="trailing" secondItem="VIB-KV-Zi9" secondAttribute="trailing" id="omA-bb-fes"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Efb-ug-Gm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
