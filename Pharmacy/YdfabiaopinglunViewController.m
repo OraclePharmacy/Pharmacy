@@ -109,10 +109,10 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*vip;
+        NSString*zhid;
         NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
         if (![_tieziID isEqualToString:@""])
         {
@@ -122,7 +122,7 @@
         {
             _tieziID = @"";
         }
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",zhid,@"vipId",_tieziID,@"id",nil];
         NSLog(@"发表评论%@",datadic);
         
         NSString*jsonstring=[writer stringWithObject:datadic];

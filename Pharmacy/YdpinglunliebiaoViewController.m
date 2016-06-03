@@ -19,9 +19,14 @@
 {
     CGFloat width;
     CGFloat height;
+    
+    NSArray *arr;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -85,9 +90,14 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
             NSLog(@"responseObject%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                NSArray* array=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"commentList"]];
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                arr = [datadic objectForKey:@"commentList"];
             }
         }
         @catch (NSException * e) {
@@ -146,7 +156,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YdfabiaopinglunViewController *fabiaopinglun = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabiaopinglun"];
-    fabiaopinglun.pinglunID = @"";
+    fabiaopinglun.pinglunID = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
     [self.navigationController pushViewController:fabiaopinglun animated:YES];
     
 }

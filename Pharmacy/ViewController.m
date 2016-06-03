@@ -26,8 +26,8 @@
     //导航栏名称
     self.navigationItem.title = @"登录";
     
-    self.PhoneText.text = @"15545457012";
-    self.PasswordText.text = @"111111";
+    self.PhoneText.text = @"13876543211";
+    self.PasswordText.text = @"qqqqqq";
     
     self.LoginButton.layer.cornerRadius = 5;
     self.LoginButton.layer.masksToBounds = YES;
