@@ -5,7 +5,6 @@
 //  Created by suokun on 16/5/13.
 //  Copyright © 2016年 sk. All rights reserved.
 //
-
 #import "YdpinglunliebiaoViewController.h"
 #import "Color+Hex.h"
 #import "WarningBox.h"
@@ -14,6 +13,7 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "YdfabiaopinglunViewController.h"
+#import "UIImageView+WebCache.h"
 
 @implementation YdpinglunliebiaoViewController
 {
@@ -21,6 +21,7 @@
     CGFloat height;
     
     NSArray *arr;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,6 +99,8 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"commentList"];
+                
+                [self.tableview reloadData];
             }
         }
         @catch (NSException * e) {
@@ -122,12 +125,12 @@
 //cell
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return arr.count;
 }
 //cell高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 150;
+    return 85;
 }
 //header高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -148,6 +151,75 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
+    
+    if ([arr[indexPath.row] objectForKey:@"list"] == nil)
+    {
+        
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(10, 10, 40, 40);
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        image.layer.cornerRadius = 20;
+        image.layer.masksToBounds = YES;
+        [cell.contentView addSubview:image];
+        
+        UILabel *name = [[UILabel alloc]init];
+        name.frame = CGRectMake(60, 10, 180, 20);
+        name.font = [UIFont systemFontOfSize:15];
+        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        [cell.contentView addSubview:name];
+        
+        UILabel *time = [[UILabel alloc]init];
+        time.frame = CGRectMake(60, 30, 180, 20);
+        time.font = [UIFont systemFontOfSize:15];
+        time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"replyTime"] ];
+        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:time];
+        
+        UILabel *pinglun = [[UILabel alloc]init];
+        pinglun.frame = CGRectMake(60, 55, width - 70, 20);
+        pinglun.font = [UIFont systemFontOfSize:15];
+        pinglun.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"reply"] ];
+        pinglun.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:pinglun];
+        
+    }
+    else
+    {
+        
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(10, 10, 40, 40);
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        image.layer.cornerRadius = 20;
+        image.layer.masksToBounds = YES;
+        [cell.contentView addSubview:image];
+        
+        UILabel *name = [[UILabel alloc]init];
+        name.frame = CGRectMake(60, 10, 180, 20);
+        name.font = [UIFont systemFontOfSize:15];
+        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        [cell.contentView addSubview:name];
+        
+        UILabel *time = [[UILabel alloc]init];
+        time.frame = CGRectMake(60, 30, 180, 20);
+        time.font = [UIFont systemFontOfSize:13];
+        time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"replyTime"] ];
+        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:time];
+        
+        UILabel *pinglun = [[UILabel alloc]init];
+        pinglun.frame = CGRectMake(60, 55, width - 70, 20);
+        pinglun.font = [UIFont systemFontOfSize:13];
+        pinglun.text = [NSString stringWithFormat:@"回复@%@:%@",[[arr[indexPath.row] objectForKey:@"list"][0] objectForKey:@"nickNameOther"],[arr[indexPath.row] objectForKey:@"reply"]];
+        pinglun.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:pinglun];
+
+    }
+
+    
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

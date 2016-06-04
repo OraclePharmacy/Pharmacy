@@ -71,7 +71,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -236,7 +236,7 @@
     queren.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     queren.layer.cornerRadius = 5;
     queren.layer.masksToBounds = YES;
-    queren.titleLabel.font    = [UIFont systemFontOfSize: 15];
+    queren.titleLabel.font    = [UIFont systemFontOfSize: 13];
     
     [beijinger addSubview:queren];
 
