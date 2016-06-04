@@ -2360,6 +2360,24 @@
             </objects>
             <point key="canvasLocation" x="2024" y="5990"/>
         </scene>
+        <!--Ydlianxidianzhang View Controller-->
+        <scene sceneID="tAc-Hs-czp">
+            <objects>
+                <viewController storyboardIdentifier="lianxidianzhang" id="ehd-PU-drq" customClass="YdlianxidianzhangViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nsw-IW-Urm"/>
+                        <viewControllerLayoutGuide type="bottom" id="wcu-kA-8NR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hmt-Ff-yeS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RaW-c7-KKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2664" y="5990"/>
+        </scene>
         <!--首页-->
         <scene sceneID="xLk-Vb-Tf9">
             <objects>

@@ -214,7 +214,11 @@
         pinglun.frame = CGRectMake(60, 55, width - 70, 20);
         pinglun.font = [UIFont systemFontOfSize:13];
         pinglun.text = [NSString stringWithFormat:@"回复@%@:%@",[[arr[indexPath.row] objectForKey:@"list"][0] objectForKey:@"nickNameOther"],[arr[indexPath.row] objectForKey:@"reply"]];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:pinglun.text];
+        NSString*stt = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"list"][0] objectForKey:@"nickNameOther"]];
         pinglun.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"32be60" alpha:1] range:NSMakeRange(2, stt.length + 1)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
+        pinglun.attributedText = attributedString;
         [cell.contentView addSubview:pinglun];
 
     }

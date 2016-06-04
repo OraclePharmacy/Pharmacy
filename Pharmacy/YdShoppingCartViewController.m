@@ -11,6 +11,7 @@
 #import "hongdingyi.h"
 #import "Color+Hex.h"
 #import "YdshoppingxiangshiViewController.h"
+#import "YdlianxidianzhangViewController.h"
 
 @interface YdShoppingCartViewController ()
 {
@@ -194,7 +195,6 @@
     
     return  UITableViewCellEditingStyleDelete;   //返回此值时,Cell上不会出现Delete按键,即Cell不做任何响应
         
-    
 }
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath //对选中的Cell根据editingStyle进行操作
 {
@@ -230,6 +230,8 @@
 - (IBAction)dianzhanganniu:(id)sender {
     
     //聊天界面，聊天的对象是店长。。。。
+    YdlianxidianzhangViewController *lianxidianzhang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"lianxidianzhang"];
+    [self.navigationController pushViewController:lianxidianzhang animated:YES];
     
 }
 @end

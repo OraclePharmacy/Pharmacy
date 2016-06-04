@@ -101,6 +101,7 @@
 		95609F061CABC76500AF65E4 /* lianjie.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609F051CABC76500AF65E4 /* lianjie.m */; };
 		95609F091CABC88200AF65E4 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609F081CABC88200AF65E4 /* Color+Hex.m */; };
 		958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 958DA2DC1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m */; };
+		9594FCF81D02B22200E84064 /* YdlianxidianzhangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9594FCF71D02B22200E84064 /* YdlianxidianzhangViewController.m */; };
 		959F9E3B1CBDFA3E00C5D019 /* 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 959F9E351CBDFA3E00C5D019 /* 1@3x.png */; };
 		959F9E3C1CBDFA3E00C5D019 /* 2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 959F9E361CBDFA3E00C5D019 /* 2@3x.png */; };
 		959F9E3D1CBDFA3E00C5D019 /* 3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 959F9E371CBDFA3E00C5D019 /* 3@3x.png */; };
@@ -437,6 +438,8 @@
 		95609F081CABC88200AF65E4 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
 		958DA2DB1CCDFB5000E1375D /* YdPharmacistDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPharmacistDetailsViewController.h; sourceTree = "<group>"; };
 		958DA2DC1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPharmacistDetailsViewController.m; sourceTree = "<group>"; };
+		9594FCF61D02B22200E84064 /* YdlianxidianzhangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdlianxidianzhangViewController.h; sourceTree = "<group>"; };
+		9594FCF71D02B22200E84064 /* YdlianxidianzhangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdlianxidianzhangViewController.m; sourceTree = "<group>"; };
 		959F9E351CBDFA3E00C5D019 /* 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@3x.png"; sourceTree = "<group>"; };
 		959F9E361CBDFA3E00C5D019 /* 2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@3x.png"; sourceTree = "<group>"; };
 		959F9E371CBDFA3E00C5D019 /* 3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@3x.png"; sourceTree = "<group>"; };
@@ -1206,6 +1209,15 @@
 			name = "药师详情";
 			sourceTree = "<group>";
 		};
+		9594FCF91D02B2B600E84064 /* 联系店长 */ = {
+			isa = PBXGroup;
+			children = (
+				9594FCF61D02B22200E84064 /* YdlianxidianzhangViewController.h */,
+				9594FCF71D02B22200E84064 /* YdlianxidianzhangViewController.m */,
+			);
+			name = "联系店长";
+			sourceTree = "<group>";
+		};
 		959F9E411CBE1EE200C5D019 /* 智慧药箱 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1584,6 +1596,7 @@
 				9502A4AF1C9D3F1300578339 /* YdShoppingCartViewController.h */,
 				9502A4B01C9D3F1300578339 /* YdShoppingCartViewController.m */,
 				95F7F6FD1CFBC18600EF30B7 /* 订单显示 */,
+				9594FCF91D02B2B600E84064 /* 联系店长 */,
 			);
 			name = "订单";
 			sourceTree = "<group>";
@@ -2171,6 +2184,7 @@
 				95609EF81CABC74E00AF65E4 /* SDWebImageDownloader.m in Sources */,
 				D23EA3691CEE9A81000454FE /* MJRefreshConst.m in Sources */,
 				95609E9E1CABC72E00AF65E4 /* NSObject+SBJson.m in Sources */,
+				9594FCF81D02B22200E84064 /* YdlianxidianzhangViewController.m in Sources */,
 				95F440CA1CD047A000B66D8C /* UUChart.m in Sources */,
 				D23EA36A1CEE9A81000454FE /* UIScrollView+MJExtension.m in Sources */,
 				95609EFD1CABC74E00AF65E4 /* UIImage+GIF.m in Sources */,
