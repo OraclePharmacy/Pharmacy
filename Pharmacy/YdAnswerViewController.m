@@ -35,6 +35,10 @@
 @property (nonatomic,strong) UILabel *jieguo;
 @property (nonatomic,strong) UILabel *fenshu;
 @property (nonatomic,strong) UILabel *jiangpin;
+@property (nonatomic,strong) UILabel *fenshuwei;
+@property (nonatomic,strong) UIImageView *image;
+@property (nonatomic,strong) UIImageView *kuxiaoimage;
+
 
 @end
 
@@ -43,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     
     i = 0 ; j = 0 ;
     xuanxiang = [[NSString alloc]init];
@@ -207,74 +213,96 @@
 }
 -(void)kongjian
 {
-   
+    self.image = [[UIImageView alloc]init];
+    self.image.frame = CGRectMake(0, 64, width, 120);
+    self.image.image = [UIImage imageNamed:@"bj.png"];
+    [self.view addSubview:self.image];
+    
+    
     self.wenti = [[UILabel alloc]init];
-    self.wenti.frame = CGRectMake(10, 80, width - 20, 40);
+    self.wenti.frame = CGRectMake(10, 190, width - 20, 20);
     self.wenti.font = [UIFont systemFontOfSize:15];
-    self.wenti.textColor = [UIColor whiteColor];
-    self.wenti.text = [NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"examName"]];
+    self.wenti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    self.wenti.text = [NSString stringWithFormat:@"问题:%@",[arr[i] objectForKey:@"examName"]];
+     self.wenti.textAlignment = NSTextAlignmentCenter;
     self.wenti.hidden = YES;
     [self.view addSubview:self.wenti];
     
     
     self.daan1 = [[UIButton alloc]init];
-    self.daan1.frame = CGRectMake(-150, CGRectGetMaxY(self.wenti.frame) + 50, 150, 30);
-    [self.daan1 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optA"]] forState:UIControlStateNormal];
+    self.daan1.frame = CGRectMake(-150, CGRectGetMaxY(self.wenti.frame) + 20, 150, 30);
+    [self.daan1 setTitle:[NSString stringWithFormat:@"A.%@",[arr[i] objectForKey:@"optA"]] forState:UIControlStateNormal];
+    [self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    [self.daan1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     self.daan1.titleLabel.font = [UIFont systemFontOfSize:15];
-    //[self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
     self.daan1.backgroundColor = [UIColor whiteColor];
     self.daan1.layer.cornerRadius = 5;
     self.daan1.layer.masksToBounds = YES;
-    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    self.daan1.layer.borderWidth =1;
+    self.daan1.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
+//    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
+//    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    [self.daan1 setBackgroundColor:[UIColor whiteColor]];
     [self.daan1 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.daan1];
     
     
     self.daan2 = [[UIButton alloc]init];
     self.daan2.frame = CGRectMake(-150, CGRectGetMaxY(self.daan1.frame) + 20, 150, 30);
-    [self.daan2 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optB"]] forState:UIControlStateNormal];
+    [self.daan2 setTitle:[NSString stringWithFormat:@"B.%@",[arr[i] objectForKey:@"optB"]] forState:UIControlStateNormal];
+    [self.daan2 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    [self.daan2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     self.daan2.titleLabel.font = [UIFont systemFontOfSize:15];
-    //[self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
     self.daan2.backgroundColor = [UIColor whiteColor];
     self.daan2.layer.cornerRadius = 5;
     self.daan2.layer.masksToBounds = YES;
-    [self.daan2 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    [self.daan2 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    self.daan2.layer.borderWidth =1;
+    self.daan2.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    [self.daan2 setBackgroundColor:[UIColor whiteColor]];
     [self.daan2 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.daan2];
     
     
     self.daan3 = [[UIButton alloc]init];
     self.daan3.frame = CGRectMake(-150, CGRectGetMaxY(self.daan2.frame) + 20, 150, 30);
-    [self.daan3 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optC"]] forState:UIControlStateNormal];
+    [self.daan3 setTitle:[NSString stringWithFormat:@"C.%@",[arr[i] objectForKey:@"optC"]] forState:UIControlStateNormal];
+    [self.daan3 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    [self.daan3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     self.daan3.titleLabel.font = [UIFont systemFontOfSize:15];
-    //[self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
     self.daan3.backgroundColor = [UIColor whiteColor];
     self.daan3.layer.cornerRadius = 5;
     self.daan3.layer.masksToBounds = YES;
-    [self.daan3 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    [self.daan3 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    self.daan3.layer.borderWidth =1;
+    self.daan3.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    [self.daan3 setBackgroundColor:[UIColor whiteColor]];
     [self.daan3 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.daan3];
     
     
     self.daan4 = [[UIButton alloc]init];
     self.daan4.frame = CGRectMake(-150, CGRectGetMaxY(self.daan3.frame) + 20, 150, 30);
-    [self.daan4 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optD"]] forState:UIControlStateNormal];
+    [self.daan4 setTitle:[NSString stringWithFormat:@"D.%@",[arr[i] objectForKey:@"optD"]] forState:UIControlStateNormal];
+    [self.daan4 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    [self.daan4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     self.daan4.titleLabel.font = [UIFont systemFontOfSize:15];
-    //[self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
     self.daan4.backgroundColor = [UIColor whiteColor];
     self.daan4.layer.cornerRadius = 5;
     self.daan4.layer.masksToBounds = YES;
-    [self.daan4 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    [self.daan4 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    self.daan4.layer.borderWidth =1;
+    self.daan4.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
+    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
+    [self.daan4 setBackgroundColor:[UIColor whiteColor]];
     [self.daan4 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.daan4];
     
     
     self.quding = [[UIButton alloc]init];
-    self.quding.frame = CGRectMake((width - 200)/2, CGRectGetMaxY(self.daan4.frame) + 40, 200, 30);
+    self.quding.frame = CGRectMake(20, CGRectGetMaxY(self.daan4.frame) + 40, width - 40, 30);
     [self.quding setTitle:@"确 认" forState:UIControlStateNormal];
     self.quding.titleLabel.font = [UIFont systemFontOfSize:15];
     self.quding.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
@@ -291,29 +319,40 @@
 -(void)zuihouxianshi
 {
     self.jieguo = [[UILabel alloc]init];
-    self.jieguo.frame = CGRectMake(20, 120, width - 40 , 30);
-    self.jieguo.font = [UIFont systemFontOfSize:20];
-    self.jieguo.textColor = [UIColor whiteColor];
+    self.jieguo.frame = CGRectMake(20, 100, width - 40 , 30);
+    self.jieguo.font = [UIFont systemFontOfSize:22];
+    self.jieguo.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     self.jieguo.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.jieguo];
     
+    self.fenshuwei = [[UILabel alloc]init];
+    self.fenshuwei.frame = CGRectMake(20, 135, width - 40, 20);
+    self.fenshuwei.font = [UIFont systemFontOfSize:18];
+    self.fenshuwei.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    self.fenshuwei.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.fenshuwei];
+    
     self.fenshu = [[UILabel alloc]init];
-    self.fenshu.frame = CGRectMake(20, 150, width - 40, 30);
-    self.fenshu.font = [UIFont systemFontOfSize:18];
-    self.fenshu.textColor = [UIColor whiteColor];
+    self.fenshu.frame = CGRectMake(20, 170, width - 40, 30);
+    self.fenshu.font = [UIFont systemFontOfSize:26];
+    self.fenshu.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
     self.fenshu.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.fenshu];
     
+    self.kuxiaoimage = [[UIImageView alloc]init];
+    self.kuxiaoimage.frame = CGRectMake((width - 60) / 2, 220, 60, 60);
+    [self.view addSubview:self.kuxiaoimage];
+    
     self.jiangpin = [[UILabel alloc]init];
-    self.jiangpin.frame = CGRectMake(20, 190, width - 40, 50);
-    self.jiangpin.font = [UIFont systemFontOfSize:18];
-    self.jiangpin.textColor = [UIColor whiteColor];
+    self.jiangpin.frame = CGRectMake(20, 285, width - 40, 50);
+    self.jiangpin.font = [UIFont systemFontOfSize:15];
+    self.jiangpin.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
     self.jiangpin.textAlignment = NSTextAlignmentCenter;
     self.jiangpin.numberOfLines = 2;
     [self.view addSubview:self.jiangpin];
     
     self.shangyiye = [[UIButton alloc]init];
-    self.shangyiye.frame = CGRectMake((width - 200) / 2, 320, 200, 30);
+    self.shangyiye.frame = CGRectMake((width - 200) / 2, 360, 200, 30);
     [self.shangyiye setTitle:@"返回上一页" forState:UIControlStateNormal];
     self.shangyiye.titleLabel.font = [UIFont systemFontOfSize:15];
     self.shangyiye.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
@@ -325,15 +364,20 @@
     
     if ( j == 100 )
     {
-         self.jieguo.text = @"答题结束";
-         self.fenshu.text = [NSString stringWithFormat:@"您的分数为:%d分",j];
-         self.jiangpin.text = [NSString stringWithFormat:@"您的奖品为\n%@",[arr[0] objectForKey:@"giftName"]];
+        self.jieguo.text = @"答 题 结 束";
+        self.fenshuwei.text = @"您 的 分 数 为";
+        self.fenshu.text = [NSString stringWithFormat:@"%d 分",j];
+        self.jiangpin.text = [NSString stringWithFormat:@"您 的 奖 品 为\n%@",[arr[0] objectForKey:@"giftName"]];
+        self.kuxiaoimage.image = [UIImage imageNamed:@"xl.png"];
     }
     else
     {
-         self.jieguo.text = @"答题结束";
-         self.fenshu.text = [NSString stringWithFormat:@"您的分数为:%d分",j];
-         self.jiangpin.text = @"您没有获得奖品\n下次努力";
+        self.jieguo.text = @"答 题 结 束";
+        self.fenshuwei.text = @"您 的 分 数 为";
+        self.fenshu.text = [NSString stringWithFormat:@"%d分",j];
+        self.jiangpin.text = @"您 没 有 获 得 奖 品\n下 次 继 续 努 力";
+        self.kuxiaoimage.image = [UIImage imageNamed:@"kl.png"];
+
     }
 
 }
@@ -345,9 +389,11 @@
         self.daan1=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"a";
+            [self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"a"];
+            [self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         
     }
@@ -357,9 +403,11 @@
         self.daan2=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"b";
+            [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"b"];
+            [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -369,9 +417,11 @@
         self.daan3=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"c";
+            [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"c"];
+            [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -381,9 +431,11 @@
         self.daan4=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"d";
+            [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"d"];
+            [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -403,6 +455,7 @@
             [self.daan3 removeFromSuperview];
             [self.daan4 removeFromSuperview];
             [self.quding removeFromSuperview];
+            [self.image removeFromSuperview];
             
             NSString * str1 = [arr[i] objectForKey:@"answer"];
             
@@ -431,6 +484,7 @@
             [self.daan3 removeFromSuperview];
             [self.daan4 removeFromSuperview];
             [self.quding removeFromSuperview];
+            [self.image removeFromSuperview];
             
             NSString * str1 = [arr[i] objectForKey:@"answer"];
             
@@ -458,8 +512,10 @@
         [self.fenshu removeFromSuperview];
         [self.jiangpin removeFromSuperview];
         [self.shangyiye removeFromSuperview];
+        [self.kuxiaoimage removeFromSuperview];
+        [self.fenshuwei removeFromSuperview];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
     }
 }
 -(void)donghua
@@ -473,22 +529,22 @@
         
         [UIView animateWithDuration:1 animations:^{
             
-            _daan1.frame=CGRectMake((width - 150)/2, CGRectGetMaxY(self.wenti.frame) + 50, 150, 30);
+            _daan1.frame=CGRectMake(30, CGRectGetMaxY(self.wenti.frame) + 20, width - 60, 30);
             
         }];
         [UIView animateWithDuration:1.5 animations:^{
             
-            _daan2.frame=CGRectMake((width - 150)/2, CGRectGetMaxY(self.daan1.frame) + 20, 150, 30);
+            _daan2.frame=CGRectMake(30, CGRectGetMaxY(self.daan1.frame) + 20, width - 60, 30);
             
         }];
         [UIView animateWithDuration:2 animations:^{
             
-            _daan3.frame=CGRectMake((width - 150)/2, CGRectGetMaxY(self.daan2.frame) + 20, 150, 30);
+            _daan3.frame=CGRectMake(30, CGRectGetMaxY(self.daan2.frame) + 20, width - 60, 30);
             
         }];
         [UIView animateWithDuration:2.5 animations:^{
             
-            _daan4.frame=CGRectMake((width - 150)/2,CGRectGetMaxY(self.daan3.frame) + 20, 150, 30);
+            _daan4.frame=CGRectMake(30,CGRectGetMaxY(self.daan3.frame) + 20, width - 60, 30);
             
         }];
         
