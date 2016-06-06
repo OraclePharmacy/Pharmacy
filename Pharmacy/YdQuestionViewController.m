@@ -15,6 +15,9 @@
 #import "Color+Hex.h"
 #import "UIImageView+WebCache.h"
 #import "YdPharmacistDetailsViewController.h"
+#import "mememeViewController.h"
+#import <JMessage/JMessage.h>
+
 @interface YdQuestionViewController ()
 {
     CGFloat width;
@@ -234,6 +237,30 @@
 }
 -(void)liaotian
 {
+    
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"memeda"];
+    if (conversation == nil) {
+        
+        
+        [JMSGConversation createSingleConversationWithUsername:@"memeda" completionHandler:^(id resultObject, NSError *error) {
+            
+            if (error) {
+                NSLog(@"创建会话失败");
+                return ;
+            }
+            mememeViewController*xixi=[mememeViewController new];
+//            xixi.conversation=(JMSGConversation *)resultObject;
+            [self.navigationController pushViewController:xixi animated:YES];
+            
+            
+        }];
+    } else {
+        mememeViewController*xixi=[mememeViewController new];
+//        xixi.conversation=conversation;
+        [self.navigationController pushViewController:xixi animated:YES];
+        
+    }
+
     NSLog(@"聊天界面");
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

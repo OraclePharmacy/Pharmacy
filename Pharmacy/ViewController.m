@@ -15,6 +15,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import <JMessage/JMessage.h>
 @interface ViewController ()
 
 @end
@@ -26,8 +27,8 @@
     //导航栏名称
     self.navigationItem.title = @"登录";
     
-    self.PhoneText.text = @"13876543211";
-    self.PasswordText.text = @"qqqqqq";
+    self.PhoneText.text = @"13111111112";
+    self.PasswordText.text = @"111111";
     
     self.LoginButton.layer.cornerRadius = 5;
     self.LoginButton.layer.masksToBounds = YES;
@@ -209,9 +210,20 @@ NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/G
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
                         
-                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                        [self.navigationController pushViewController:Root animated:YES];
-//                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            if (error) {
+                                NSLog(@" 登录出错");
+                                return ;
+                            }
+                             NSLog(@"JMessage 登录成功");
+                            YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                            [self.navigationController pushViewController:Root animated:YES];
+
+                        }];
+                        
+                        //                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
 //                            [self presentViewController:Root animated:YES completion:^{
 //                                [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];

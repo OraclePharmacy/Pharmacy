@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#define JMSSAGE_APPKEY @"4f7aef34fb361292c566a1cd"
+#define JMSSAGE_APPKEY @"0b4f04ee1fe01108ee17cf70"
 #define CHANNEL @""
 @interface AppDelegate ()<JMessageDelegate>
 

@@ -224,7 +224,6 @@
 		D226248E1D01098E002A8689 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248D1D01098E002A8689 /* libsqlite3.0.tbd */; };
 		D22624931D0109B5002A8689 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248F1D0109B5002A8689 /* JMessage.framework */; };
 		D22624941D0109B5002A8689 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22624901D0109B5002A8689 /* JMUIChattingKit.framework */; };
-		D22624951D0109B5002A8689 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D22624911D0109B5002A8689 /* JMUIChattingKitResource.bundle */; };
 		D22624961D0109B5002A8689 /* JMUICommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22624921D0109B5002A8689 /* JMUICommon.framework */; };
 		D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */; };
 		D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3321CEE9A81000454FE /* MJRefreshBackFooter.m */; };
@@ -252,6 +251,7 @@
 		D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */; };
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
+		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -604,7 +604,6 @@
 		D226248D1D01098E002A8689 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D226248F1D0109B5002A8689 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
 		D22624901D0109B5002A8689 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
-		D22624911D0109B5002A8689 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D22624921D0109B5002A8689 /* JMUICommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUICommon.framework; sourceTree = "<group>"; };
 		D23EA32F1CEE9A81000454FE /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -658,6 +657,8 @@
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
+		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -856,7 +857,6 @@
 			children = (
 				D226248F1D0109B5002A8689 /* JMessage.framework */,
 				D22624901D0109B5002A8689 /* JMUIChattingKit.framework */,
-				D22624911D0109B5002A8689 /* JMUIChattingKitResource.bundle */,
 				D22624921D0109B5002A8689 /* JMUICommon.framework */,
 				D226248D1D01098E002A8689 /* libsqlite3.0.tbd */,
 				D226248B1D010986002A8689 /* libz.tbd */,
@@ -1654,6 +1654,8 @@
 			children = (
 				95EBA8711CBB9B2400A48D80 /* YdQuestionViewController.h */,
 				95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */,
+				D2F204C91D01817C00276FAC /* mememeViewController.h */,
+				D2F204CA1D01817C00276FAC /* mememeViewController.m */,
 				958DA2DA1CCDF9B700E1375D /* 药师详情 */,
 			);
 			name = "问药师";
@@ -2001,7 +2003,6 @@
 				9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */,
 				95C372681CB5F5780083AC90 /* 资讯@3x.png in Resources */,
 				95C372671CB5F5780083AC90 /* 资讯@2x.png in Resources */,
-				D22624951D0109B5002A8689 /* JMUIChattingKitResource.bundle in Resources */,
 				95C372551CB5F5780083AC90 /* Multiple-Email-Thread@2x.png in Resources */,
 				95F1E0401CB7A72300614502 /* shake_fangshe.png in Resources */,
 				95F1E0421CB7A72300614502 /* shake_yyy_left30.png in Resources */,
@@ -2137,6 +2138,7 @@
 				95609EF31CABC74E00AF65E4 /* MKAnnotationView+WebCache.m in Sources */,
 				95F7F70C1CFC16A400EF30B7 /* YdmendianxinxiViewController.m in Sources */,
 				950A5AB01CC899EB00A04F95 /* YdRecordListViewController.m in Sources */,
+				D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */,
 				95609EFF1CABC74E00AF65E4 /* UIImage+WebP.m in Sources */,
 				95609EA41CABC72E00AF65E4 /* SBJsonStreamWriter.m in Sources */,
 				95609EA91CABC72E00AF65E4 /* SBJsonWriter.m in Sources */,
