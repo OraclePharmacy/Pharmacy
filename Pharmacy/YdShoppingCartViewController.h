@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface YdShoppingCartViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface YdShoppingCartViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIButton *tijiao;
 @property (weak, nonatomic) IBOutlet UIButton *lianxidianzhnag;

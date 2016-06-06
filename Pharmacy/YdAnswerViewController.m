@@ -84,7 +84,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"officeId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1020",@"vipId",@"2",@"officeId", nil];
     NSLog(@"12345%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -157,7 +157,10 @@
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"officeId",j,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSLog(@"j=========================%d",j);
+    NSString *stt = [NSString stringWithFormat:@"%d",j];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1020",@"vipId",@"2",@"officeId",stt,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -401,6 +404,17 @@
             [self.daan4 removeFromSuperview];
             [self.quding removeFromSuperview];
             
+            NSString * str1 = [arr[i] objectForKey:@"answer"];
+            
+            if ([str1 isEqualToString:xuanxiang] )
+            {
+                j = j + 10 ;
+            }
+            else
+            {
+                j = j + 0 ;
+            }
+
             [self tijiaojiekou];
             
         }
