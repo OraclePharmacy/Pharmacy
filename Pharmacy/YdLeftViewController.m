@@ -16,6 +16,7 @@
 #import "YdwodetieziViewController.h"
 #import "YdwodeshoucangViewController.h"
 #import "YdzhongjiangjiluViewController.h"
+#import "YdSheZhiTableViewController.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -166,6 +167,26 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         [self.navigationController pushViewController:wodetiezi animated:YES];
         
     }
+    else if (indexPath.row == 5)
+    {
+        
+
+        
+    }
+    else if (indexPath.row == 6)
+    {
+        
+        
+    }
+    else if (indexPath.row == 7)
+    {
+        
+        YdSheZhiTableViewController *SheZhi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
+        [self.navigationController pushViewController:SheZhi animated:YES];
+        
+    }
+
+    
 
 }
 
