@@ -70,7 +70,7 @@
 
     //出入参数：
   
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"5",@"pageSize",@"1",@"pageNo",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"50",@"pageSize",@"1",@"pageNo",nil];
     
     NSLog(@"评论列表%@",datadic);
     
@@ -232,7 +232,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YdfabiaopinglunViewController *fabiaopinglun = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabiaopinglun"];
-    fabiaopinglun.pinglunID = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+    fabiaopinglun.pinglunID = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"vipId"]];
+    fabiaopinglun.tieziID=_tieziID;
     [self.navigationController pushViewController:fabiaopinglun animated:YES];
     
 }

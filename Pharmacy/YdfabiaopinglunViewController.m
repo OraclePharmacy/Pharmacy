@@ -115,13 +115,13 @@
         zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
         NSLog(@"帖子%@",_tieziID );
-        if ([_tieziID isEqualToString:@""])
+        if ([_tieziID isEqualToString:@""]||_tieziID==nil||[_tieziID isEqual:[NSNull null]])
         {
             _tieziID = @"";
         }
         else
         {
-            _pinglunID = @"";
+          
         }
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",zhid,@"vipId",_tieziID,@"id",nil];
         NSLog(@"发表评论%@",datadic);

@@ -14,6 +14,7 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "huoqumendianyouhuijuan.h"
 @interface YdyouhuiquanViewController ()
 {
     CGFloat width;
@@ -38,6 +39,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+  
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"获取优惠券" style:UIBarButtonItemStyleDone target:self action:@selector(shiyishi)];
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -283,7 +286,14 @@
     
     
 }
-
+-(void)shiyishi
+{
+    
+    huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
+    
+    [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
+     
+}
 
 -(void)fanhui
 {

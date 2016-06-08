@@ -19,6 +19,8 @@
     CGFloat width;
     CGFloat height;
     
+    UIButton *queren;
+    
     NSArray *arr;
 }
 @end
@@ -224,12 +226,19 @@
     UILabel *paisong = [[UILabel alloc]init];
     paisong.frame = CGRectMake(5, 110, kuan - 10, 20);
     paisong.font = [UIFont systemFontOfSize:13];
-    paisong.text = [NSString stringWithFormat:@"派送时间:  %@",[arr[indexPath.row] objectForKey:@"sendTime"]];
+    if ([[arr[indexPath.row] objectForKey:@"sendTime"] isEqualToString:@""]) {
+         paisong.text = @"派送时间:";
+    }
+    else
+    {
+        paisong.text = [NSString stringWithFormat:@"派送时间:  %@",[arr[indexPath.row] objectForKey:@"sendTime"]];
+    }
     paisong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
 
     [beijinger addSubview:paisong];
     
-    UIButton *queren = [[UIButton alloc]init];
+    queren = [[UIButton alloc]init];
+    queren.tag = 100 + indexPath.row;
     queren.frame = CGRectMake(30 , 136, kuan - 60, 20);
     [queren setTitle:@"确认收货" forState:UIControlStateNormal];
     [queren setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
@@ -237,6 +246,7 @@
     queren.layer.cornerRadius = 5;
     queren.layer.masksToBounds = YES;
     queren.titleLabel.font    = [UIFont systemFontOfSize: 13];
+    [queren addTarget:self action:@selector(queren) forControlEvents:UIControlEventTouchUpInside];
     
     [beijinger addSubview:queren];
 
@@ -251,12 +261,83 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)queren
 {
+    //NSLog(@"%@",[arr[queren.tag - 100] objectForKey:@"states"]);
+    if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"3"]) {
+        
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/function/changeOrdStateById";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSString*vip;
+        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"id"]],@"id",@"2",@"states",nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                NSLog(@"我的订单%@",responseObject);
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
 
-    
+                    [self.tableview reloadData];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"2"])
+    {
+        [WarningBox warningBoxModeText:@"您已确认收货！" andView:self.view];
+    }
+    else
+    {
+        [WarningBox warningBoxModeText:@"暂未发货,不能收货！" andView:self.view];
+    }
+
 }
-
 
 //返回
 -(void)fanhui
