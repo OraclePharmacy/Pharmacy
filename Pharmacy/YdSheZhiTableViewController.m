@@ -9,6 +9,7 @@
 #import "YdSheZhiTableViewController.h"
 #import "Color+Hex.h"
 #import "YdModifyViewController.h"
+#import "guanyuViewController.h"
 @interface YdSheZhiTableViewController ()
 {
     
@@ -48,7 +49,9 @@
     if (indexPath.row == 0)
     {
         
-        NSLog(@"1");
+        guanyuViewController * guanyu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"guanyu"];
+        
+        [self.navigationController pushViewController: guanyu animated:YES];
         
     }
     else if (indexPath.row == 1)

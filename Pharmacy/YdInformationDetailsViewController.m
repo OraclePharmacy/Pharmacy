@@ -52,7 +52,7 @@
 //    [self shipinbofang:nil];
     [self kongjian];
 }
-
+//创建cell显示控件
 -(void)kongjian
 {
     UILabel *title = [[UILabel alloc]init];
@@ -111,6 +111,7 @@
     [self.view addSubview:fenxiang];
     
 }
+//点击手势
 -(void)clickCategory:(UITapGestureRecognizer*)image1
 {
     

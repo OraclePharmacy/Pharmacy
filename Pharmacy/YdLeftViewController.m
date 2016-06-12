@@ -17,6 +17,8 @@
 #import "YdwodeshoucangViewController.h"
 #import "YdzhongjiangjiluViewController.h"
 #import "YdSheZhiTableViewController.h"
+#import "YdfankuiViewController.h"
+#import "YdfenxiangxiazaiViewController.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -170,13 +172,16 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     else if (indexPath.row == 5)
     {
         
-
+        YdfankuiViewController *fankui = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fankui"];
+        [self.navigationController pushViewController:fankui animated:YES];
         
     }
     else if (indexPath.row == 6)
     {
         
-        
+        YdfenxiangxiazaiViewController *fenxiangxiazai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fenxiangxiazai"];
+        [self.navigationController pushViewController:fenxiangxiazai animated:YES];
+
     }
     else if (indexPath.row == 7)
     {
