@@ -145,6 +145,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     {
         
         YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+        youhuiquan.panduan = @"1";
         [self.navigationController pushViewController:youhuiquan animated:YES];
 
     }

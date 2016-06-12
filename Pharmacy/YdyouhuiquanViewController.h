@@ -11,5 +11,5 @@
 @interface YdyouhuiquanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong,nonatomic) UITableView *tableview;
-
+@property (strong,nonatomic) NSString *panduan;
 @end

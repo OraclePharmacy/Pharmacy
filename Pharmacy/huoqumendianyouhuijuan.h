@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface huoqumendianyouhuijuan : UIViewController
+@interface huoqumendianyouhuijuan : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (nonatomic,strong) UITableView *tableview;
+
 @end

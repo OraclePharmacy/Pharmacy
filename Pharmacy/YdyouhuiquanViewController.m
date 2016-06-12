@@ -40,7 +40,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
   
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"获取优惠券" style:UIBarButtonItemStyleDone target:self action:@selector(shiyishi)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"领取" style:UIBarButtonItemStyleDone target:self action:@selector(shiyishi)];
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -77,7 +77,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1020",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -297,9 +297,17 @@
 
 -(void)fanhui
 {
-    //返回上一页
-    [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    if (([self.panduan isEqualToString:@"1"])) {
+        //返回上一页
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    }
+    else
+    {
+        //返回上一页
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+   
 }
 
 @end

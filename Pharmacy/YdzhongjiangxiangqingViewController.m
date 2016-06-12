@@ -1,12 +1,12 @@
 //
-//  YdzhongjiangjiluViewController.m
+//  YdzhongjiangxiangqingViewController.m
 //  Pharmacy
 //
-//  Created by suokun on 16/5/14.
+//  Created by suokun on 16/6/12.
 //  Copyright © 2016年 sk. All rights reserved.
 //
 
-#import "YdzhongjiangjiluViewController.h"
+#import "YdzhongjiangxiangqingViewController.h"
 #import "Color+Hex.h"
 #import "WarningBox.h"
 #import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
@@ -14,32 +14,34 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
-#import "YdzhongjiangxiangqingViewController.h"
 
-@interface YdzhongjiangjiluViewController ()
+@interface YdzhongjiangxiangqingViewController ()
 {
     CGFloat width;
     CGFloat height;
     
-    NSArray *arr;
+    NSDictionary *arr;
+    NSArray *arr1;
 }
 @end
 
-@implementation YdzhongjiangjiluViewController
+@implementation YdzhongjiangxiangqingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+    arr1 = @[@"",@"奖品来源:", @"奖品名称:", @"兑换药店:"];
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
     //状态栏名称
-    self.navigationItem.title = @"我的中奖纪录";
+    self.navigationItem.title = @"中奖纪录详情";
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -47,17 +49,17 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];
-    
-    [self jiekou];
 
+    [self jiekou];
 }
+
 -(void)jiekou
 {
     //userID    暂时不用改
     NSString * userID=@"0";
     
     //请求地址   地址不同 必须要改
-    NSString * url =@"/basic/awardetailList";
+    NSString * url =@"/basic/awardetail";
     
     //时间戳
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -75,7 +77,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1040",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"id",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -99,7 +101,7 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                arr = [datadic objectForKey:@"awardetailList"];
+                arr = [datadic valueForKey:@"findAwardetail"];
                 
                 
                 [self.tableview reloadData];
@@ -122,35 +124,77 @@
     
 }
 
+
+
 //section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return arr.count;
+    return 2;
 }
 //cell
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == 0)
+    {
+        return arr1.count;
+    }
+    else
+    {
+        return  0;
+    }
+    
 }
 //cell高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 65;
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            return 150;
+        }
+        else
+        {
+            return 50;
+        }
+    }
+    return 0;
 }
 //header高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 1)
+    {
+        return 80;
+    }
     return 0;
 }
 //自定义header
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.view;
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    if (section == 1) {
+        
+        UIButton *btn = [[UIButton alloc]init];
+        btn.frame = CGRectMake(50, 40, width-100, 30);
+        btn.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+        [btn setTitle:@"兑换" forState:UIControlStateNormal];
+        [btn setTintColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1]];
+        btn.layer.cornerRadius = 5;
+        btn.layer.masksToBounds = YES;
+        [btn addTarget:self action:@selector(duihuan) forControlEvents:UIControlEventTouchUpInside];
+        [baseView addSubview:btn];
+        
+    }
+    
+    return baseView;
+
 }
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     static NSString *id1 =@"zhongjiang";
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -159,73 +203,94 @@
     }
     
     cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-    
-    UIView *shu = [[UIView alloc]init];
-    shu.frame = CGRectMake(5, 0, 1, 65);
-    shu.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-    
-    UIImageView *yuan = [[UIImageView alloc]init];
-    yuan.frame = CGRectMake(6, 35, 9, 9);
-    yuan.image = [UIImage imageNamed:@"time_line_mark.png"];
-    
-    UILabel *time = [[UILabel alloc]init];
-    time.frame = CGRectMake(0, 5, width, 20);
-    time.font = [UIFont systemFontOfSize:13];
-    time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"actTime"] ];
-    time.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    time.textAlignment = NSTextAlignmentCenter;
-    
-    
-    UIView *bai = [[UIView alloc]init];
-    bai.backgroundColor = [UIColor whiteColor];
-    bai.frame = CGRectMake(15, 25, width-25, 40);
-    
-    
-    UILabel *title = [[UILabel alloc]init];
-    title.frame = CGRectMake(0, 0, width -20, 20);
-    title.font = [UIFont systemFontOfSize:15];
-    title.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"awardName"] ];
-    title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    
-    
-    UILabel *neirong = [[UILabel alloc]init];
-    neirong.frame = CGRectMake(0, 20, width -20, 20);
-    neirong.font = [UIFont systemFontOfSize:13];
-    neirong.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"isNewRecord"] ];
-    neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    
-    
-    [bai addSubview:title];
-    [bai addSubview:neirong];
-    
-    
-    [cell.contentView addSubview:shu];
-    [cell.contentView addSubview:time];
-    [cell.contentView addSubview:bai];
-    [cell.contentView addSubview:yuan];
-    
+    if (indexPath.section == 0) {
+    if (indexPath.row == 0)
+    {
+        UIImageView *touxiang = [[UIImageView alloc]init];
+        touxiang.frame = CGRectMake(0, 0, width, 150);
+        touxiang.layer.masksToBounds = YES;
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"photo"]];
+        [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        [cell.contentView addSubview:touxiang];
+    }
+    else
+    {
+        cell.textLabel.text = arr1[indexPath.row];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        cell.selectedBackgroundView = [[UIView alloc] init];
+        cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+        
+        UILabel *text = [[UILabel alloc]init];
+        text.frame = CGRectMake(100, 10, width -110, 30);
+        text.font = [UIFont systemFontOfSize:15];
+        text.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        [cell.contentView addSubview:text];
+        
+        if (indexPath.row == 1)
+        {
+            if ([[arr objectForKey:@"awardSource"] isEqualToString:@"1"])
+            {
+                 text.text = @"摇一摇";
+            }
+            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"2"])
+            {
+                text.text = @"大转盘";
+            }
+            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"3"])
+            {
+                text.text = @"有奖问答";
+            }
+            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"4"])
+            {
+                text.text = @"领取的优惠券";
+            }
+            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
+            {
+                text.text = @"合作商家";
+            }
+
+        }
+        else if (indexPath.row == 2)
+        {
+            text.text = [NSString stringWithFormat:@"%@",[arr objectForKey:@"awardName"] ];
+        }
+        else if (indexPath.row == 3)
+        {
+             text.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]];
+        }
+        
+    }
+    }
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
-    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section
 {
-    NSString *sss = [arr[indexPath.section] objectForKey:@"id"];
-    NSLog(@"sssssssssssssss%@",sss);
-    YdzhongjiangxiangqingViewController *zhongjiangxiangqing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangxiangqing"];
-    zhongjiangxiangqing.jiangpinid = sss;
-    [self.navigationController pushViewController:zhongjiangxiangqing animated:YES];
+    if (section == 2) {
+        return 1;
+    }
+    return 0;
 }
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    return baseView;
+}
+
 //返回
 -(void)fanhui
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
+
 @end

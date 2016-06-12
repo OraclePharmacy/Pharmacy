@@ -30,6 +30,7 @@
 #import "YDTejialiebiaoViewController.h"
 #import "YDJifenViewController.h"
 #import "YDJifenxiangViewController.h"
+#import "YdyouhuiquanViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -365,7 +366,9 @@
 //第四个按钮点击事件
 -(void)four
 {
-    NSLog(@"four");
+    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+    youhuiquan.panduan = @"2";
+    [self.navigationController pushViewController:youhuiquan animated:YES];
 }
 #pragma  mark ---- 积分礼品接口
 //接口
