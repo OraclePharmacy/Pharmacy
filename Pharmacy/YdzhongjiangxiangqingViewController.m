@@ -22,6 +22,8 @@
     
     NSDictionary *arr;
     NSArray *arr1;
+    
+    UITextField *nameField;
 }
 @end
 
@@ -124,8 +126,6 @@
     
 }
 
-
-
 //section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -157,7 +157,10 @@
             return 50;
         }
     }
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 //header高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -201,7 +204,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-    
+    UIView *xian = [[UIView alloc]init];
+    xian.frame = CGRectMake(15, 49, width - 11, 1);
+    xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+    [cell.contentView addSubview:xian];
     cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     if (indexPath.section == 0) {
     if (indexPath.row == 0)
@@ -258,6 +264,7 @@
         else if (indexPath.row == 3)
         {
              text.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]];
+           
         }
         
     }
@@ -265,15 +272,16 @@
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section
 {
-    if (section == 2) {
+    if (section == 1) {
         return 1;
     }
     return 0;
@@ -285,7 +293,98 @@
     
     return baseView;
 }
+-(void)duihuan
+{
 
+    if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        [alert show];
+        
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        
+        nameField = [alert textFieldAtIndex:0];
+        nameField.placeholder = @"请输入一个名称";
+        
+        [alert show];
+        
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSLog(@"%@",nameField.text);
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/basic/awardetail";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSString*vip;
+        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"id",nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+    
+                if ([[responseObject objectForKey:@"code"] intValue]==0000)
+                {
+                    
+                   [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+    }
+}
 //返回
 -(void)fanhui
 {

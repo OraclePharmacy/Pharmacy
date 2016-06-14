@@ -83,6 +83,9 @@
     NSArray *rementieziarray;
     NSMutableArray *remenzixunarray;
     
+    int q ;
+    int p ;
+    UIButton *bingzheng;
 }
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
@@ -528,7 +531,7 @@
     NSString * userID=@"0";
     
     //请求地址   地址不同 必须要改
-    NSString * url =@"/share/vipTopicList";
+    NSString * url =@"/share/vipTopicListHot";
     
     //时间戳
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -656,7 +659,8 @@
     
 }
 #pragma mark ---- 药品分类接口
--(void)yaopinfenlei{
+-(void)yaopinfenlei
+{
     
 }
 #pragma  mark ---- tableview
@@ -748,7 +752,7 @@
     }
     else if (indexPath.section == 6)
     {
-        return 100;
+        return 80;
     }
     
     return 0;
@@ -1258,11 +1262,31 @@
         }
         else if (indexPath.section == 6)
         {
-            
-            
+        
+            CGFloat w = 0;//保存前一个button的宽以及前一个button距离屏幕边缘的距离
+            CGFloat h =0;//用来控制button距离父视图的高
+            for (int i = 0; i < 8; i++)
+            {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+                button.tag = 100 + i;
+                [button addTarget:self action:@selector(bingzheng) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
+
+                [button setTitle:@"111" forState:UIControlStateNormal];
+                //设置button的frame
+                button.frame = CGRectMake(w, h, width / 4 , 40);
+                //当button的位置超出屏幕边缘时换行 320 只是button所在父视图的宽度
+                if( w + width / 4 > width )
+                {
+                    w = 0; //换行时将w置为0
+                    h = h + button.frame.size.height;//距离父视图也变化
+                    button.frame = CGRectMake(w, h, width / 4 , 40);//重设button的frame
+                }
+                w = button.frame.size.width + button.frame.origin.x;
+                [cell.contentView addSubview:button];
             
         }
-        
+    }
         
     }
     //cell点击不变色
@@ -1372,7 +1396,12 @@
     [self.navigationController pushViewController:Scan animated:YES];
     
 }
-
+//病症
+-(void)bingzheng
+{
+    NSLog(@"第一排:%ld",bingzheng.tag - 100);
+    NSLog(@"第二排:%ld",bingzheng.tag - 200 + 4);
+}
 #pragma mark ----- 创建三级联动
 -(void)sanji
 {

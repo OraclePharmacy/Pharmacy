@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdzhongjiangxiangqingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface YdzhongjiangxiangqingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 
 @property (strong,nonatomic) NSString *jiangpinid;

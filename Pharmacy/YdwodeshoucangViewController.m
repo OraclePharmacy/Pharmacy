@@ -94,7 +94,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的中奖纪录%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
