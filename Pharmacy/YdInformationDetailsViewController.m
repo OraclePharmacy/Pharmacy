@@ -26,8 +26,10 @@
     UIButton *shoucang;
     UIImageView *image;
     
-    int dian;
-    int shou;
+    int zan;
+    NSString *dian;
+    int cang;
+    NSString *shou;
 }
 
 @end
@@ -36,9 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    dian = 1;
-    shou = 1;
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -128,11 +127,11 @@
 //收藏
 -(void)shoucang
 {
-    if (shou == 1) {
+    if (cang == 1) {
         
-        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_light(1).png"] forState:UIControlStateNormal];
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"star_light.png"] forState:UIControlStateNormal];
         
-        shou = 2;
+        cang = 2;
         //userID    暂时不用改
         NSString * userID=@"0";
         
@@ -149,12 +148,8 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",vip,@"vipId", @"0",@"mark",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"type",@"1020",@"vipId",@"0",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -172,10 +167,11 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
+                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"收藏成功" andView:self.view];
+                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
                     
                 }
             }
@@ -193,11 +189,13 @@
         }];
         
         
-
     }
-    else if (shou == 2) {
+    else if (cang == 2) {
         
-        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"star_dark.png"] forState:UIControlStateNormal];
+        
+        cang = 1;
+        
         //userID    暂时不用改
         NSString * userID=@"0";
         
@@ -214,12 +212,8 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",vip,@"vipId", @"1",@"mark",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"type",@"1020",@"vipId",@"1",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -237,10 +231,11 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
+                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"取消收藏" andView:self.view];
+                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
                     
                 }
             }
@@ -256,21 +251,21 @@
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
             NSLog(@"错误：%@",error);
         }];
-
-        shou = 1;
+        
         
     }
+    
+    
 
 }
 //点赞
 -(void)dianzan
 {
-    NSLog(@"1");
-    if (dian == 1) {
+    if (zan == 1) {
         
-        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light(1).png"] forState:UIControlStateNormal];
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light.png"] forState:UIControlStateNormal];
         
-        dian = 2;
+        zan = 2;
         //userID    暂时不用改
         NSString * userID=@"0";
         
@@ -282,12 +277,13 @@
         NSTimeInterval a=[dat timeIntervalSince1970];
         NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
         
+        
         //将上传对象转换为json格式字符串
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"0",@"flag", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"flag",@"1020",@"vipId",@"0",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -305,10 +301,11 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
+                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                  [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
                     
                 }
             }
@@ -327,11 +324,68 @@
         
         
     }
-    else if (dian == 2) {
+    else if (zan == 2) {
         
-        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
         
-        dian = 1;
+        zan = 1;
+        
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/clickLike";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"flag",@"1020",@"vipId",@"1",@"clickMark", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
         
     }
     
@@ -362,7 +416,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1020",@"vipId",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

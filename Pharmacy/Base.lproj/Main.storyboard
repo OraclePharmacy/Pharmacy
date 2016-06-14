@@ -2189,20 +2189,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-qv-QF9">
+                                <rect key="frame" x="580" y="580" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="JJm-BS-WRW"/>
+                                    <constraint firstAttribute="width" constant="20" id="ocu-lh-jwi"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="fenxiang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="kLn-cI-kYY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es2-pf-IRo">
+                                <rect key="frame" x="560" y="580" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="4z2-re-W8c"/>
+                                    <constraint firstAttribute="width" constant="20" id="MyQ-n2-f8c"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="shoucang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="gdy-S0-UH4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-33-ene">
+                                <rect key="frame" x="540" y="580" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="EVh-JJ-kFG"/>
+                                    <constraint firstAttribute="height" constant="20" id="vwp-qn-tE0"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="dianzan:" destination="PIe-HG-mSW" eventType="touchUpInside" id="PnL-gR-IlY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="ASz-DU-LJ7"/>
-                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="leading" secondItem="qCU-CA-pim" secondAttribute="leading" id="DNI-nd-Dx2"/>
-                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="top" id="GB7-HC-Swh"/>
-                            <constraint firstAttribute="trailing" secondItem="Ezk-Jk-KVc" secondAttribute="trailing" id="SRL-qq-z4N"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="top" id="5Sl-ox-Wc2"/>
+                            <constraint firstItem="geY-33-ene" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="6Ue-a6-ODk"/>
+                            <constraint firstAttribute="trailing" secondItem="Ezk-Jk-KVc" secondAttribute="trailing" id="Eqe-2o-69D"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="leading" secondItem="qCU-CA-pim" secondAttribute="leading" id="KgY-66-qON"/>
+                            <constraint firstItem="es2-pf-IRo" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="L4N-8c-1JY"/>
+                            <constraint firstItem="Cou-qv-QF9" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="gC5-ND-fjL"/>
+                            <constraint firstItem="Cou-qv-QF9" firstAttribute="leading" secondItem="es2-pf-IRo" secondAttribute="trailing" id="gRf-so-QSd"/>
+                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" constant="20" id="jao-a7-dWC"/>
+                            <constraint firstAttribute="trailing" secondItem="Cou-qv-QF9" secondAttribute="trailing" id="zKe-ZM-8df"/>
+                            <constraint firstItem="es2-pf-IRo" firstAttribute="leading" secondItem="geY-33-ene" secondAttribute="trailing" id="zQM-F8-X2b"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dianzan" destination="geY-33-ene" id="lnp-Vr-mIV"/>
+                        <outlet property="fenxiang" destination="Cou-qv-QF9" id="YJV-rC-kre"/>
                         <outlet property="halou" destination="Ezk-Jk-KVc" id="qCa-lo-jiI"/>
+                        <outlet property="shoucang" destination="es2-pf-IRo" id="dvm-Wk-zof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQM-ym-eov" userLabel="First Responder" sceneMemberID="firstResponder"/>

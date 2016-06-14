@@ -26,6 +26,7 @@
     NSArray *imagearray;
     
     int zhi;
+    NSString *dian;
 }
 @end
 
@@ -34,7 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    zhi = 1;
     _touxiang.hidden=YES;
     _biaoqian.hidden=YES;
     _image1.hidden = YES;
@@ -101,6 +101,18 @@
     _pinglunButton.layer.cornerRadius = 5;
     _pinglunButton.layer.masksToBounds = YES;
     
+    if ([dian isEqualToString:@"0"])
+    {
+        zhi = 2;
+        [self.dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light.png"] forState:UIControlStateNormal];
+    }
+    else if([dian isEqualToString:@"1"])
+    {
+        zhi = 1;
+        [self.dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
+    }
+
+    
 }
 //textview禁止编辑
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
@@ -127,7 +139,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"1020",@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -145,16 +157,15 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //            NSLog(@"responseObject%@",responseObject);
+            NSLog(@"=============arr===================%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"vipTopicDetail"];
-                
+                dian = [datadic objectForKey:@"clickMark"];
+                NSLog(@"=============arr===================%@",dian);
                 imagearray = [arr objectForKey:@"urls"];
-                
                 
                 //设置图片显示
                 //                if (imagearray.count == 0) {
@@ -249,7 +260,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"1",@"flag", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"2",@"flag",@"1020",@"vipId",@"0",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -267,7 +278,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
@@ -296,6 +307,63 @@
         
         zhi = 1;
         
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/clickLike";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"2",@"flag",@"1020",@"vipId",@"1",@"clickMark", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
+                    
+                }
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
+        
+
     }
     
     
