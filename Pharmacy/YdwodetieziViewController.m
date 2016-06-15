@@ -230,22 +230,11 @@
 //tableview点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    YdTieZiXiangQingViewController *TieZiXiangQing=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
+    YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
     TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
     TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
     TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
-    [self presentViewController:TieZiXiangQing animated:YES completion:^{
-        
-        [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-        
-    }];
-
-//    YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
-//    TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
-//    TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
-//    TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
-//    [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+    [self.navigationController pushViewController:TieZiXiangQing animated:YES];
     
 }
 
