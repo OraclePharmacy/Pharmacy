@@ -62,13 +62,6 @@
     a = 1;
     [self AddArray];
     [self addButton];
-    [self banner1];
-    
-  
-    
-    
-    
-    
 }
 
 -(void)AddDisease
@@ -198,12 +191,6 @@
 //    [self.Tableview selectRowAtIndexPath:firstPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     [self tableView:self.Tableview didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];//实现点击第一行所调用的方法
     [self.Tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行（默认有蓝色背景）
-}
-//创建轮播
--(void)banner1
-{
-    
-    
 }
 //创建一级病症分类
 -(void)addButton

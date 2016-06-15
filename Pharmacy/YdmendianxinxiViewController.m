@@ -32,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -72,7 +75,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1",@"pageNo",@"1",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

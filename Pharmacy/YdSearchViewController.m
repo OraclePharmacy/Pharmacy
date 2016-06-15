@@ -46,7 +46,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(search)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-search@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(search)];
 
     [self CreateSearch];
     [self biaoqian];
@@ -176,8 +176,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",zhid,@"officeId",ye,@"pageNo",@"5",@"pageSize", nil];
-    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys: arr[btn.tag - 100],@"keywords",zhid,@"officeId",@"1",@"pageNo",@"5",@"pageSize", nil];
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名

@@ -31,6 +31,7 @@
 #import "YDJifenViewController.h"
 #import "YDJifenxiangViewController.h"
 #import "YdyouhuiquanViewController.h"
+#import "YdmendianxinxiViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -146,7 +147,6 @@
     //调用定位
     [self initializeLocationService];
     
-    
 }
 //导航标题  添加View
 -(void)SearchView
@@ -256,7 +256,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -276,9 +276,8 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
+            NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                
                 
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -417,7 +416,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
+           //NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
@@ -452,7 +451,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+        //NSLog(@"错误：%@",error);
     }];
 }
 #pragma mark ---- 特价药品接口
@@ -497,7 +496,7 @@
         @try
         {
             
-            NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
+           // NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -520,7 +519,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+        //NSLog(@"错误：%@",error);
     }];
     
     
@@ -584,7 +583,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+        //NSLog(@"错误：%@",error);
     }];
     
     
@@ -630,13 +629,13 @@
         @try
         {
             
-            NSLog(@"%@",responseObject);
+           // NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 remenzixunarray=[datadic objectForKey:@"newsListForInterface"];
-                NSLog(@"%@",datadic);
+                //NSLog(@"%@",datadic);
                 
                 [_tableview reloadData];
                 
@@ -653,7 +652,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+        //NSLog(@"错误：%@",error);
         
     }];
     
@@ -916,12 +915,13 @@
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
                     
-                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-                    //门店id
-                    //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
-                    [self.navigationController pushViewController:banner animated:YES];
+//                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+//                    //门店id
+//                    //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
+//                    [self.navigationController pushViewController:banner animated:YES];
                     
-                    
+                    YdmendianxinxiViewController *mendianxinxi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
+                    [self.navigationController pushViewController:mendianxinxi animated:YES];
                 };
                 
                 [cell.contentView addSubview:ycAdView];
@@ -1306,6 +1306,7 @@
             NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
             [pp setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"id"] ] forKey:@"officeid"];
             
+            [self bannerjiekou];
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
             [self rementiezi];
@@ -1344,7 +1345,6 @@
     YdDrugsViewController *dr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
     dr.yaopinID=[proList[btn.tag-400] objectForKey:@"id"];
     [self.navigationController pushViewController:dr animated:YES];
-    NSLog(@"%@",proList);
     
 }
 
@@ -1365,8 +1365,6 @@
         
     }
     
-    NSLog(@"%ld",btn.tag);
-    
 }
 
 //跳转积分礼品列表
@@ -1381,7 +1379,6 @@
 {
     YdJiaoLiuViewController*jiaoliu=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
     [self.navigationController pushViewController:jiaoliu animated:YES];
-    NSLog(@"病友问答");
     
 }
 //跳转药品分类列表
@@ -1682,7 +1679,7 @@
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        NSLog(@"定位1111111111111111111%@",url1);
+        //NSLog(@"定位1111111111111111111%@",url1);
         
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
@@ -1724,7 +1721,7 @@
                     panduan=2;
                     wocalede=[NSArray array];
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
-                    NSLog(@"%@",responseObject);
+                    //NSLog(@"%@",responseObject);
                     
                     
                     [wocalei reloadData];
@@ -1743,7 +1740,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
+            //NSLog(@"错误：%@",error);
         }];
     }
     
@@ -1929,7 +1926,7 @@ int nicaicai=0;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
+            //NSLog(@"错误：%@",error);
         }];
         
         

@@ -29,6 +29,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     CGFloat height;
 }
 @property (nonatomic, strong) NSArray *lefs;
+@property (nonatomic, strong) NSArray *image;
 @property (nonatomic, assign) NSInteger previousRow;
 
 
@@ -45,6 +46,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     self.view.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
     
     _lefs = @[@"我的订单", @"我的优惠券", @"我的中奖纪录", @"我的收藏", @"我的帖子",@"意见反馈",@"分享下载",@"设置"];
+    _image = @[@"dingdan.png",@"youhuiquan.png",@"zhongjiangjilu.png",@"shoucang.png",@"tiezi.png",@"jianyi.png",@"fenxiang.png",@"shezhi.png"];
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 64, width, height);
     _tableView.dataSource = self;
@@ -121,6 +123,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kYCLeftViewControllerCellReuseId];
     }
     
+    cell.imageView.image = [UIImage imageNamed:self.image[indexPath.row]];
+
     cell.textLabel.text = self.lefs[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
