@@ -206,22 +206,24 @@ NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/G
                             
                         }
                         
+                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                        [self.navigationController pushViewController:Root animated:YES];
+                        
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
                         
                         
-                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                            if (error) {
-                                NSLog(@" 登录出错");
-                                return ;
-                            }
-                             NSLog(@"JMessage 登录成功");
-                            YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                            [self.navigationController pushViewController:Root animated:YES];
+//                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                            if (error) {
+//                                NSLog(@" 登录出错");
+//                                return ;
+//                            }
+//                             NSLog(@"JMessage 登录成功");
+                            
 
-                        }];
+//                        }];
                         
                         //                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];

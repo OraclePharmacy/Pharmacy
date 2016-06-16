@@ -823,11 +823,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="33"/>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qdf-5f-puL">
-                                <rect key="frame" x="0.0" y="97" width="120" height="454"/>
+                                <rect key="frame" x="0.0" y="97" width="150" height="454"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bIa-TU-gFt">
-                                <rect key="frame" x="140" y="117" width="440" height="434"/>
+                                <rect key="frame" x="170" y="117" width="410" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PuA-cM-xWB">
                                     <size key="itemSize" width="133" height="142"/>
@@ -877,7 +877,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qdf-5f-puL" firstAttribute="width" secondItem="tlu-Uw-5y9" secondAttribute="width" multiplier="0.2" id="8RE-1W-unU"/>
+                            <constraint firstItem="qdf-5f-puL" firstAttribute="width" secondItem="tlu-Uw-5y9" secondAttribute="width" multiplier="0.25" id="8RE-1W-unU"/>
                             <constraint firstItem="qcM-Oi-Gci" firstAttribute="top" secondItem="bIa-TU-gFt" secondAttribute="bottom" id="8bH-pj-ztF"/>
                             <constraint firstItem="qdf-5f-puL" firstAttribute="leading" secondItem="tlu-Uw-5y9" secondAttribute="leading" id="HIx-8I-c0T"/>
                             <constraint firstItem="xY1-1d-MTx" firstAttribute="height" secondItem="tlu-Uw-5y9" secondAttribute="height" multiplier="1/18" id="LGC-j4-ntw"/>

@@ -136,7 +136,7 @@ int popop=0;
                 
                 xianshiarr = [NSMutableDictionary dictionaryWithDictionary: [datadic objectForKey:@"product" ]];
                 
-                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:[xianshiarr objectForKey:@"product"]];
+                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:[datadic objectForKey:@"product"]];
                 [self.tableview reloadData];
                 
             }

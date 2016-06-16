@@ -32,6 +32,12 @@
     
     NSMutableArray *DiseaseLableArray;
     NSMutableArray *DiseaseImageArray;
+    
+    UIButton *bb1;
+    UIButton *bb2;
+    UIButton *bb3;
+    UIButton *bb4;
+    UIButton *bb5;
 }
 @end
 
@@ -76,7 +82,7 @@
     //创建UICollectionViewFlowLayout布局对象
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     //设置单元格的大小
-    flowLayout.itemSize = CGSizeMake((width-width/5-40)/3,(height-144-height/18-height/5)/3);
+    flowLayout.itemSize = CGSizeMake((width-width *0.25 - 50 ) / 3,(width-width *0.25 - 50 ) / 2.3);
     //设置滑动方向
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     //设置分区上下左右空白大小
@@ -195,33 +201,63 @@
 //创建一级病症分类
 -(void)addButton
 {
-    UIButton *bb1 = [[UIButton alloc] init];
+    bb1 = [[UIButton alloc] init];
     bb1.frame = CGRectMake(0, 0, width/5, height/18);
-    [bb1 setImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
+    bb1.titleLabel.font = [UIFont systemFontOfSize:13];
+    [bb1 setTitle:@"中西成药" forState:UIControlStateNormal];
+    bb1.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    //默认
+    [bb1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    //选中
+    [bb1 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb1 addTarget:self action:@selector(bb11) forControlEvents:UIControlEventTouchUpInside];
     [self.Scrollview addSubview:bb1];
     
-    UIButton *bb2 = [[UIButton alloc] init];
+    bb2 = [[UIButton alloc] init];
     bb2.frame = CGRectMake(width/5, 0, width/5, height/18);
-    [bb2 setImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateNormal];
+    bb2.titleLabel.font = [UIFont systemFontOfSize:13];
+    [bb2 setTitle:@"医疗器械" forState:UIControlStateNormal];
+    bb2.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    //默认
+    [bb2 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    //选中
+    [bb2 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb2 addTarget:self action:@selector(bb22) forControlEvents:UIControlEventTouchUpInside];
     [self.Scrollview addSubview:bb2];
 
-    UIButton *bb3 = [[UIButton alloc] init];
+    bb3 = [[UIButton alloc] init];
     bb3.frame = CGRectMake(width/5*2, 0, width/5, height/18);
-    [bb3 setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
+    bb3.titleLabel.font = [UIFont systemFontOfSize:13];
+    [bb3 setTitle:@"成人用品" forState:UIControlStateNormal];
+    bb3.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    //默认
+    [bb3 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    //选中
+    [bb3 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb3 addTarget:self action:@selector(bb33) forControlEvents:UIControlEventTouchUpInside];
     [self.Scrollview addSubview:bb3];
 
-    UIButton *bb4 = [[UIButton alloc] init];
+    bb4 = [[UIButton alloc] init];
     bb4.frame = CGRectMake(width/5*3, 0, width/5, height/18);
-    [bb4 setImage:[UIImage imageNamed:@"IMG_0800.jpg"] forState:UIControlStateNormal];
+    [bb4 setTitle:@"日常用品" forState:UIControlStateNormal];
+    bb4.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    bb4.titleLabel.font = [UIFont systemFontOfSize:13];
+    //默认
+    [bb4 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    //选中
+    [bb4 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb4 addTarget:self action:@selector(bb44) forControlEvents:UIControlEventTouchUpInside];
     [self.Scrollview addSubview:bb4];
 
-    UIButton *bb5 = [[UIButton alloc] init];
+    bb5 = [[UIButton alloc] init];
     bb5.frame = CGRectMake(width/5*4, 0, width/5, height/18);
-    [bb5 setImage:[UIImage imageNamed:@"IMG_0801.jpg"] forState:UIControlStateNormal];
+    bb5.titleLabel.font = [UIFont systemFontOfSize:13];
+    [bb5 setTitle:@"营养保健" forState:UIControlStateNormal];
+    bb5.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    //默认
+    [bb5 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    //选中
+    [bb5 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb5 addTarget:self action:@selector(bb55) forControlEvents:UIControlEventTouchUpInside];
     [self.Scrollview addSubview:bb5];
 
@@ -229,9 +265,13 @@
 //一病症点击方法
 -(void)bb11
 {
+    bb1.selected = YES;
+    bb2.selected = NO;
+    bb3.selected = NO;
+    bb4.selected = NO;
+    bb5.selected = NO;
     a = 1;
     [self AddArray];
-    
     
     [self.Tableview reloadData];
     DiseaseLableArray = [[NSMutableArray alloc]init];
@@ -243,6 +283,12 @@
 }
 -(void)bb22
 {
+    bb1.selected = NO;
+    bb2.selected = YES;
+    bb3.selected = NO;
+    bb4.selected = NO;
+    bb5.selected = NO;
+    
     a = 2;
     [self AddArray];
     
@@ -258,6 +304,13 @@
 
 -(void)bb33
 {
+    
+    bb1.selected = NO;
+    bb2.selected = NO;
+    bb3.selected = YES;
+    bb4.selected = NO;
+    bb5.selected = NO;
+    
     a = 3;
     [self AddArray];
    
@@ -272,6 +325,11 @@
 
 -(void)bb44
 {
+    bb1.selected = NO;
+    bb2.selected = NO;
+    bb3.selected = NO;
+    bb4.selected = YES;
+    bb5.selected = NO;
     a = 4;
     [self AddArray];
     
@@ -286,6 +344,11 @@
 
 -(void)bb55
 {
+    bb1.selected = NO;
+    bb2.selected = NO;
+    bb3.selected = NO;
+    bb4.selected = NO;
+    bb5.selected = YES;
     a = 5;
     [self AddArray];
     
@@ -319,27 +382,31 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-    
+    cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     UILabel *bing = [[UILabel alloc]init];
-    bing.frame = CGRectMake(0, 10, width/5, height/18-10);
+    bing.frame = CGRectMake(5, 10, width/5, height/18-10);
     bing.font = [UIFont systemFontOfSize:10];
     bing.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    bing.textAlignment = NSTextAlignmentRight;
     bing.text =erji[indexPath.row];
-    //bing.backgroundColor  = [UIColor redColor];
+    bing.textAlignment = NSTextAlignmentCenter;
     [cell.contentView addSubview:bing];
     
+//    cell.textLabel.font = [UIFont systemFontOfSize:10];
+//    cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+//    cell.textLabel.text =erji[indexPath.row];
+//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     //隐藏滑动条
     self.Tableview.showsVerticalScrollIndicator =NO;
-    
     //不能设置此方法
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //线消失
+    self.Tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     
     //自定义cell选中颜色
     UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [UIColor cyanColor];
+    bgColorView.backgroundColor = [UIColor whiteColor];
     [cell setSelectedBackgroundView:bgColorView];
     
     return cell;
