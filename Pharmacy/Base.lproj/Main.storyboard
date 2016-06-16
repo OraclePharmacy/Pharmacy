@@ -3104,28 +3104,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-1O-236">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-1O-236">
                                 <rect key="frame" x="0.0" y="20" width="600" height="187"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" backgroundImage="hb_yyy.png"/>
                                 <connections>
                                     <action selector="ShakeButton:" destination="eaA-uF-gYe" eventType="touchUpInside" id="VMT-b2-2cF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIB-XQ-Nfb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIB-XQ-Nfb">
                                 <rect key="frame" x="0.0" y="217" width="600" height="186"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" backgroundImage="hb_dzp.png"/>
                                 <connections>
                                     <action selector="TurntableButton:" destination="eaA-uF-gYe" eventType="touchUpInside" id="FEu-tl-U4L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFx-o5-iBJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFx-o5-iBJ">
                                 <rect key="frame" x="0.0" y="413" width="600" height="187"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.2784313725" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.98823529409999999" green="0.2784313725" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" backgroundImage="hb_yjwd.png"/>
                                 <connections>
                                     <action selector="AnswerButton:" destination="eaA-uF-gYe" eventType="touchUpInside" id="X2P-3j-zx0"/>
                                 </connections>
@@ -3508,6 +3508,9 @@
     </scenes>
     <resources>
         <image name="IMG_0797.jpg" width="1080" height="1920"/>
+        <image name="hb_dzp.png" width="640" height="317"/>
+        <image name="hb_yjwd.png" width="640" height="317"/>
+        <image name="hb_yyy.png" width="640" height="317"/>
         <image name="iconfont-xinshouyetubiao@3x" width="30" height="48"/>
         <image name="iconfont-zanzan@3x.png" width="1080" height="1920"/>
         <image name="shake_background.png" width="640" height="1136"/>

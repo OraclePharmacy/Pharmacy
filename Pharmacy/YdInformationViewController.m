@@ -114,11 +114,13 @@
         
         UIButton *tabButton = [[UIButton alloc]init];
         tabButton.tag = 300+i;
+        tabButton.titleLabel.font =  [UIFont systemFontOfSize:13];
         tabButton.frame = CGRectMake(width/5*i, 0, width/5, 30);
         tabButton.backgroundColor = [UIColor clearColor];
         [tabButton addTarget:self action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
         [tabButton setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"cateName"]] forState:UIControlStateNormal];
-        [tabButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [tabButton setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        [tabButton setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
         //        //图片
         //        UIImageView *imageview = [[UIImageView alloc]init];
         //        imageview.frame = CGRectMake(0, 0, width/5, 30);
@@ -144,8 +146,6 @@
     }
     //设置可滑动大小
     self.scrollView.contentSize = CGSizeMake(width/5*i, 30);
-    
-    
     //隐藏滚动条
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
