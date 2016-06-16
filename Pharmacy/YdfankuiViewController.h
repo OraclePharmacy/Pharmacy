@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdfankuiViewController : UIViewController
+@interface YdfankuiViewController : UIViewController<UITextViewDelegate>
+
+@property (strong, nonatomic) UITextView *pinglunText;
+
+@property (strong, nonatomic) UIButton *tijiaoButton;
 
 @end

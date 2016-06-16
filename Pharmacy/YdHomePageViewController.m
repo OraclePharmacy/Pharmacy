@@ -773,11 +773,11 @@
         }
         else if (section == 2)
         {
-            return 10;
+            return 0;
         }
         else if (section == 3)
         {
-            return 10;
+            return 0;
         }
         else if (section == 4)
         {
