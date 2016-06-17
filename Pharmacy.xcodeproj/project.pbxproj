@@ -130,6 +130,8 @@
 		959F9E531CBE215700C5D019 /* YdElectronicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E521CBE215700C5D019 /* YdElectronicsViewController.m */; };
 		959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */; };
 		959F9E5E1CBE23EF00C5D019 /* YdRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */; };
+		95AE60531D1391C2002E4A71 /* AlarmClockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60501D1391C2002E4A71 /* AlarmClockManager.m */; };
+		95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60521D1391C2002E4A71 /* ModelClock.m */; };
 		95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722B1CB5F5780083AC90 /* 1213465@2x.png */; };
 		95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722C1CB5F5780083AC90 /* 1213465@3x.png */; };
 		95C3724F1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722D1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png */; };
@@ -498,6 +500,10 @@
 		959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdchatViewController.m; sourceTree = "<group>"; };
 		959F9E5C1CBE23EF00C5D019 /* YdRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRecommendViewController.h; sourceTree = "<group>"; };
 		959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecommendViewController.m; sourceTree = "<group>"; };
+		95AE604F1D1391C2002E4A71 /* AlarmClockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClockManager.h; sourceTree = "<group>"; };
+		95AE60501D1391C2002E4A71 /* AlarmClockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClockManager.m; sourceTree = "<group>"; };
+		95AE60511D1391C2002E4A71 /* ModelClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelClock.h; sourceTree = "<group>"; };
+		95AE60521D1391C2002E4A71 /* ModelClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelClock.m; sourceTree = "<group>"; };
 		95C3722B1CB5F5780083AC90 /* 1213465@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@2x.png"; sourceTree = "<group>"; };
 		95C3722C1CB5F5780083AC90 /* 1213465@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@3x.png"; sourceTree = "<group>"; };
 		95C3722D1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-erweimasaomiaotubiao@2x.png"; sourceTree = "<group>"; };
@@ -1337,6 +1343,10 @@
 		959F9E451CBE1F1E00C5D019 /* 用药提醒 */ = {
 			isa = PBXGroup;
 			children = (
+				95AE604F1D1391C2002E4A71 /* AlarmClockManager.h */,
+				95AE60501D1391C2002E4A71 /* AlarmClockManager.m */,
+				95AE60511D1391C2002E4A71 /* ModelClock.h */,
+				95AE60521D1391C2002E4A71 /* ModelClock.m */,
 				959F9E4B1CBE203300C5D019 /* YdRemindViewController.h */,
 				959F9E4C1CBE203300C5D019 /* YdRemindViewController.m */,
 			);
@@ -2217,6 +2227,7 @@
 				95F440C91CD047A000B66D8C /* UUBarChart.m in Sources */,
 				95609EA11CABC72E00AF65E4 /* SBJsonStreamParserAccumulator.m in Sources */,
 				95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */,
+				95AE60531D1391C2002E4A71 /* AlarmClockManager.m in Sources */,
 				95E0EC6D1CC60B7300B87690 /* YdPersonalInformationViewController.m in Sources */,
 				95609EF41CABC74E00AF65E4 /* NSData+ImageContentType.m in Sources */,
 				95609F001CABC74E00AF65E4 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -2244,6 +2255,7 @@
 				D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */,
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
 				95F440C81CD047A000B66D8C /* UUBar.m in Sources */,
+				95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */,
 				9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */,
 				95609EA71CABC72E00AF65E4 /* SBJsonTokeniser.m in Sources */,
 				95609EF91CABC74E00AF65E4 /* SDWebImageDownloaderOperation.m in Sources */,
