@@ -15,6 +15,8 @@
 #import "lianjie.h"
 #import "WarningBox.h"
 #import "UIImageView+WebCache.h"
+#import <JMessage/JMessage.h>
+#import "mememeViewController.h"
 
 @interface YdPharmacistDetailsViewController ()
 
@@ -287,7 +289,33 @@
 }
 -(void)liaotian
 {
-    NSLog(@"聊天界面");
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"18123456789"];
+    [conversation allMessages:^(id resultObject, NSError *error) {
+        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
+    }];
+    if (conversation == nil) {
+        
+        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
+        
+        [JMSGConversation createSingleConversationWithUsername:@"18123456789" completionHandler:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"创建会话返回\n\n%@",resultObject);
+            if (error) {
+                NSLog(@"创建会话失败");
+                return ;
+            }
+            
+            mememeViewController *conversationVC = [mememeViewController new];
+        conversationVC.conversation = (JMSGConversation *)resultObject;
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }];
+    } else {
+        
+        mememeViewController *conversationVC = [mememeViewController new];
+        conversationVC.conversation = conversation;
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {

@@ -245,8 +245,6 @@
 		D226248C1D010986002A8689 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248B1D010986002A8689 /* libz.tbd */; };
 		D226248E1D01098E002A8689 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248D1D01098E002A8689 /* libsqlite3.0.tbd */; };
 		D22624931D0109B5002A8689 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248F1D0109B5002A8689 /* JMessage.framework */; };
-		D22624941D0109B5002A8689 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22624901D0109B5002A8689 /* JMUIChattingKit.framework */; };
-		D22624961D0109B5002A8689 /* JMUICommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22624921D0109B5002A8689 /* JMUICommon.framework */; };
 		D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */; };
 		D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3321CEE9A81000454FE /* MJRefreshBackFooter.m */; };
 		D23EA35C1CEE9A81000454FE /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3341CEE9A81000454FE /* MJRefreshComponent.m */; };
@@ -654,8 +652,6 @@
 		D226248B1D010986002A8689 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D226248D1D01098E002A8689 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D226248F1D0109B5002A8689 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
-		D22624901D0109B5002A8689 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
-		D22624921D0109B5002A8689 /* JMUICommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUICommon.framework; sourceTree = "<group>"; };
 		D23EA32F1CEE9A81000454FE /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		D23EA3311CEE9A81000454FE /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -719,7 +715,6 @@
 			files = (
 				D226248E1D01098E002A8689 /* libsqlite3.0.tbd in Frameworks */,
 				D226248C1D010986002A8689 /* libz.tbd in Frameworks */,
-				D22624941D0109B5002A8689 /* JMUIChattingKit.framework in Frameworks */,
 				D226248A1D010977002A8689 /* MobileCoreServices.framework in Frameworks */,
 				D22624881D010967002A8689 /* AudioToolbox.framework in Frameworks */,
 				D22624861D01095C002A8689 /* Security.framework in Frameworks */,
@@ -735,7 +730,6 @@
 				D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */,
 				9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */,
 				9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */,
-				D22624961D0109B5002A8689 /* JMUICommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,8 +902,6 @@
 			isa = PBXGroup;
 			children = (
 				D226248F1D0109B5002A8689 /* JMessage.framework */,
-				D22624901D0109B5002A8689 /* JMUIChattingKit.framework */,
-				D22624921D0109B5002A8689 /* JMUICommon.framework */,
 				D226248D1D01098E002A8689 /* libsqlite3.0.tbd */,
 				D226248B1D010986002A8689 /* libz.tbd */,
 				D22624891D010977002A8689 /* MobileCoreServices.framework */,
@@ -1784,6 +1776,7 @@
 				95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */,
 				D2F204C91D01817C00276FAC /* mememeViewController.h */,
 				D2F204CA1D01817C00276FAC /* mememeViewController.m */,
+				D24C609E1D066B0100889E31 /* shishi */,
 				958DA2DA1CCDF9B700E1375D /* 药师详情 */,
 			);
 			name = "问药师";
@@ -1977,6 +1970,13 @@
 				D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */,
 			);
 			path = "AFNetworking 3.0.4";
+			sourceTree = "<group>";
+		};
+		D24C609E1D066B0100889E31 /* shishi */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = shishi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

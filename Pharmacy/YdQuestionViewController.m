@@ -80,7 +80,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageSize",@"5",@"pageNo", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:/*zhid*/@"7",@"officeId",@"1",@"pageSize",@"5",@"pageNo", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

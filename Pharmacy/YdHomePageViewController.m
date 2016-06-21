@@ -256,7 +256,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid/*@"67a3c6f913d24373b4a7917ba8a987ff"*/,@"officeId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -276,7 +276,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"%@",responseObject);
+            //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 
@@ -1304,8 +1304,8 @@
             //            MDID=[wocalei[indexPath.row-1]]
             
             NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
-            [pp setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"id"] ] forKey:@"officeid"];
-            
+            [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1] objectForKey:@"id"]] forKey:@"officeid"];
+            //NSLog(@"\n\n\nofficeid-----%@",[pp objectForKey:@"officeid"]);
             [self bannerjiekou];
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
@@ -1721,7 +1721,7 @@
                     panduan=2;
                     wocalede=[NSArray array];
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
-                    //NSLog(@"%@",responseObject);
+                    //NSLog(@"\n\n  wuge \n\n%@",responseObject);
                     
                     
                     [wocalei reloadData];
@@ -1800,11 +1800,11 @@ int nicaicai=0;
         }
         else if (error == nil && [array count] == 0)
         {
-            NSLog(@"No results were returned.");
+            //NSLog(@"No results were returned.");
         }
         else if (error != nil)
         {
-            NSLog(@"An error occurred = %@", error);
+            //NSLog(@"An error occurred = %@", error);
         }
     }];
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
