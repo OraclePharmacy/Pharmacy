@@ -191,9 +191,20 @@
     UILabel *neirong = [[UILabel alloc]init];
     neirong.frame = CGRectMake(0, 20, width -20, 20);
     neirong.font = [UIFont systemFontOfSize:13];
-    neirong.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"isNewRecord"] ];
     neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     
+    if ([[arr[indexPath.section] objectForKey:@"exchange"] isEqualToString:@"0"])
+    {
+        neirong.text = @"已兑换";
+    }
+    else if ([[arr[indexPath.section] objectForKey:@"exchange"] isEqualToString:@"1"])
+    {
+        neirong .text = @"未兑换";
+    }
+    else if ([[arr[indexPath.section] objectForKey:@"exchange"] isEqualToString:@"2"])
+    {
+        neirong.text = @"已过期";
+    }
     
     [bai addSubview:title];
     [bai addSubview:neirong];
