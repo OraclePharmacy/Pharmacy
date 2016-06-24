@@ -186,6 +186,10 @@
 		95E1898C1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */; };
 		95E38EB31D1CBEEA006BCF6C /* ll.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB21D1CBEEA006BCF6C /* ll.png */; };
 		95E38EB51D1CCE6E006BCF6C /* hh.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB41D1CCE6E006BCF6C /* hh.png */; };
+		95E38EB71D1D16B4006BCF6C /* youjingxi.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB61D1D16B4006BCF6C /* youjingxi.png */; };
+		95E38EBB1D1D240B006BCF6C /* daigouyao.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB81D1D240B006BCF6C /* daigouyao.png */; };
+		95E38EBC1D1D240B006BCF6C /* wenyaoshi.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB91D1D240B006BCF6C /* wenyaoshi.png */; };
+		95E38EBD1D1D240B006BCF6C /* youhuijuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EBA1D1D240B006BCF6C /* youhuijuan.png */; };
 		95E604C01D054BD20057BA0C /* bj.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604BF1D054BD20057BA0C /* bj.png */; };
 		95E604C31D055A3A0057BA0C /* kl.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604C11D055A3A0057BA0C /* kl.png */; };
 		95E604C41D055A3A0057BA0C /* xl.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604C21D055A3A0057BA0C /* xl.png */; };
@@ -571,6 +575,10 @@
 		95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdWoDeDingDanViewController.m; sourceTree = "<group>"; };
 		95E38EB21D1CBEEA006BCF6C /* ll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ll.png; sourceTree = "<group>"; };
 		95E38EB41D1CCE6E006BCF6C /* hh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hh.png; sourceTree = "<group>"; };
+		95E38EB61D1D16B4006BCF6C /* youjingxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youjingxi.png; sourceTree = "<group>"; };
+		95E38EB81D1D240B006BCF6C /* daigouyao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daigouyao.png; sourceTree = "<group>"; };
+		95E38EB91D1D240B006BCF6C /* wenyaoshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wenyaoshi.png; sourceTree = "<group>"; };
+		95E38EBA1D1D240B006BCF6C /* youhuijuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youhuijuan.png; sourceTree = "<group>"; };
 		95E604BF1D054BD20057BA0C /* bj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bj.png; sourceTree = "<group>"; };
 		95E604C11D055A3A0057BA0C /* kl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kl.png; sourceTree = "<group>"; };
 		95E604C21D055A3A0057BA0C /* xl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xl.png; sourceTree = "<group>"; };
@@ -1392,6 +1400,10 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				95E38EB81D1D240B006BCF6C /* daigouyao.png */,
+				95E38EB91D1D240B006BCF6C /* wenyaoshi.png */,
+				95E38EBA1D1D240B006BCF6C /* youhuijuan.png */,
+				95E38EB61D1D16B4006BCF6C /* youjingxi.png */,
 				95E38EB41D1CCE6E006BCF6C /* hh.png */,
 				95E38EB21D1CBEEA006BCF6C /* ll.png */,
 				950BC6F21D12986000817E4A /* hb_dzp.png */,
@@ -2099,6 +2111,7 @@
 				95C372561CB5F5780083AC90 /* Multiple-Email-Thread@3x.png in Resources */,
 				95E604C31D055A3A0057BA0C /* kl.png in Resources */,
 				95024D3C1D113D5900B7F7D8 /* fenxiang.png in Resources */,
+				95E38EBB1D1D240B006BCF6C /* daigouyao.png in Resources */,
 				95C3725D1CB5F5780083AC90 /* 汇总@2x.png in Resources */,
 				9505D7291C9A9BE5006F6850 /* IMG_0799.jpg in Resources */,
 				95024D421D113D5900B7F7D8 /* zhongjiangjilu.png in Resources */,
@@ -2108,6 +2121,7 @@
 				95024D411D113D5900B7F7D8 /* youhuiquan.png in Resources */,
 				9509565D1CC74C3700A10A5A /* 小人@2x.png in Resources */,
 				95C3726E1CB5F5780083AC90 /* 首页@3x.png in Resources */,
+				95E38EBD1D1D240B006BCF6C /* youhuijuan.png in Resources */,
 				950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */,
 				95F7F7061CFBE93C00EF30B7 /* collection_light(1).png in Resources */,
 				950956631CC7602F00A10A5A /* sex2@3x.png in Resources */,
@@ -2162,6 +2176,7 @@
 				951A41B21CFEA98900FD81D6 /* yyy_result_window.png in Resources */,
 				95C372511CB5F5780083AC90 /* iconfont-search@2x.png in Resources */,
 				95D817111CACE96D006BE2DB /* area.plist in Resources */,
+				95E38EB71D1D16B4006BCF6C /* youjingxi.png in Resources */,
 				95F1E0461CB7A72300614502 /* 今天还能摇三次@3x.png in Resources */,
 				95E189881CE56078008EB1A4 /* clicklike_light.png in Resources */,
 				95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */,
@@ -2189,6 +2204,7 @@
 				950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */,
 				950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */,
 				95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */,
+				95E38EBC1D1D240B006BCF6C /* wenyaoshi.png in Resources */,
 				95C3725E1CB5F5780083AC90 /* 汇总@3x.png in Resources */,
 				95F7F7051CFBE93C00EF30B7 /* collection_dark(1).png in Resources */,
 				959F9E3D1CBDFA3E00C5D019 /* 3@3x.png in Resources */,

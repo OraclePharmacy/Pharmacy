@@ -318,33 +318,88 @@
 #pragma  第二组  四个按钮
 -(void)fourButton
 {
-    //第一个按钮
+//    //第一个按钮
+//    UIButton *one = [[UIButton alloc]init];
+//    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
+//    [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
+//    [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
+//
+
     UIButton *one = [[UIButton alloc]init];
-    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
-    [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
+    one.frame = CGRectMake(0, 0, width / 4, 95 );
+    [one setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
+    [one setTitle:@"有惊喜" forState:UIControlStateNormal];
+    one.titleLabel.font = [UIFont systemFontOfSize:13];
+    [one setImage:[UIImage imageNamed:@"youjingxi.png"] forState:UIControlStateNormal];
     [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
+    
     //第二个按钮
     UIButton *two = [[UIButton alloc]init];
-    two.frame = CGRectMake((width - 55 *4 )/5*2+width/6, 10, 55, 75);
-    [two setBackgroundImage:[UIImage imageNamed:@"问药师@3x.png"] forState:UIControlStateNormal];
+    two.frame = CGRectMake(width/4, 0, width / 4, 95 );
+    [two setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
+    [two setTitle:@"问药师" forState:UIControlStateNormal];
+    two.titleLabel.font = [UIFont systemFontOfSize:13];
+    [two setImage:[UIImage imageNamed:@"wenyaoshi.png"] forState:UIControlStateNormal];
     [two addTarget:self action:@selector(two) forControlEvents:UIControlEventTouchUpInside];
     //第三个按钮
     UIButton *three = [[UIButton alloc]init];
-    three.frame = CGRectMake((width - 55 *4 )/5*3+width/6*2, 10, 55, 75);
-    [three setBackgroundImage:[UIImage imageNamed:@"代购药@3x.png"] forState:UIControlStateNormal];
+    three.frame = CGRectMake(width/4*2, 0, width / 4, 95 );
+    [three setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
+    [three setTitle:@"代购药" forState:UIControlStateNormal];
+    three.titleLabel.font = [UIFont systemFontOfSize:13];
+    [three setImage:[UIImage imageNamed:@"daigouyao.png"] forState:UIControlStateNormal];
     [three addTarget:self action:@selector(three) forControlEvents:UIControlEventTouchUpInside];
     //第四个按钮
     UIButton *four = [[UIButton alloc]init];
-    four.frame = CGRectMake((width - 55 *4 )/5*4+width/6*3, 10, 55, 75);
-    [four setBackgroundImage:[UIImage imageNamed:@"送到家@3x.png"] forState:UIControlStateNormal];
+    four.frame = CGRectMake(width/4*3, 0, width / 4, 95 );
+    [four setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
+    [four setTitle:@"优惠券" forState:UIControlStateNormal];
+    four.titleLabel.font = [UIFont systemFontOfSize:13];
+    [four setImage:[UIImage imageNamed:@"youhuijuan.png"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
+
     
-    //在cell上显示
+    NSLog(@"%f",self.view.bounds.size.width);
+    
+    if (width == 414)
+    {
+        [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+    }
+    else if (width == 375)
+    {
+        [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+    }
+    else if (self.view.bounds.size.width == 320)
+    {
+        [one setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
+        [two setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
+        [three setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
+        [four setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
+    }
+    
     [cell.contentView addSubview:one];
     [cell.contentView addSubview:two];
     [cell.contentView addSubview:three];
     [cell.contentView addSubview:four];
-    
+
 }
 //第一个按钮点击事件
 -(void)one

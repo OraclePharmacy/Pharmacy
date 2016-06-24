@@ -82,7 +82,7 @@
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -247,19 +247,35 @@
     lingqu.textAlignment = NSTextAlignmentCenter;
     [youtu addSubview:lingqu];
     NSLog(@"%@",[arr[indexPath.section] objectForKey:@"couponType"]);
-    if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"]) {
-        
-        name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
-        youtu.image = [UIImage imageNamed:@"hh.png"];
-        laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
-
-        
+    if (NULL == [arr[indexPath.section] objectForKey:@"couponFlag"]) {
+        if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"])
+        {
+            name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
+            youtu.image = [UIImage imageNamed:@"hh.png"];
+            laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
+        }
+        else
+        {
+            name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
+            youtu.image = [UIImage imageNamed:@"ll.png"];
+            laiyuan.text =@"合作商家";
+        }
     }
     else
     {
-        name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
-        youtu.image = [UIImage imageNamed:@"ll.png"];
-        laiyuan.text =@"合作商家";
+        if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"])
+        {
+            name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
+            youtu.image = [UIImage imageNamed:@".png"];
+            laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
+        }
+        else
+        {
+            name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
+            youtu.image = [UIImage imageNamed:@".png"];
+            laiyuan.text =@"合作商家";
+        }
+
     }
     
     //cell点击不变色
@@ -275,7 +291,7 @@
 {
     NSString *str1  = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"publishNums"] ];
     
-    if ([str1 isEqualToString:@"0"]) {
+    if ([str1 isEqualToString:@"1"]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,优惠券已被领光" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
         [alert show];
@@ -328,7 +344,7 @@
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        
+        NSLog(@"%@",url1);
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
