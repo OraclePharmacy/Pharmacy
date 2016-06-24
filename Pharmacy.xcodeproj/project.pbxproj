@@ -184,6 +184,8 @@
 		95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E189851CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m */; };
 		95E189881CE56078008EB1A4 /* clicklike_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E189871CE56078008EB1A4 /* clicklike_light.png */; };
 		95E1898C1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */; };
+		95E38EB31D1CBEEA006BCF6C /* ll.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB21D1CBEEA006BCF6C /* ll.png */; };
+		95E38EB51D1CCE6E006BCF6C /* hh.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E38EB41D1CCE6E006BCF6C /* hh.png */; };
 		95E604C01D054BD20057BA0C /* bj.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604BF1D054BD20057BA0C /* bj.png */; };
 		95E604C31D055A3A0057BA0C /* kl.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604C11D055A3A0057BA0C /* kl.png */; };
 		95E604C41D055A3A0057BA0C /* xl.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E604C21D055A3A0057BA0C /* xl.png */; };
@@ -567,6 +569,8 @@
 		95E189871CE56078008EB1A4 /* clicklike_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicklike_light.png; sourceTree = "<group>"; };
 		95E1898A1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdWoDeDingDanViewController.h; sourceTree = "<group>"; };
 		95E1898B1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdWoDeDingDanViewController.m; sourceTree = "<group>"; };
+		95E38EB21D1CBEEA006BCF6C /* ll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ll.png; sourceTree = "<group>"; };
+		95E38EB41D1CCE6E006BCF6C /* hh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hh.png; sourceTree = "<group>"; };
 		95E604BF1D054BD20057BA0C /* bj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bj.png; sourceTree = "<group>"; };
 		95E604C11D055A3A0057BA0C /* kl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kl.png; sourceTree = "<group>"; };
 		95E604C21D055A3A0057BA0C /* xl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xl.png; sourceTree = "<group>"; };
@@ -1388,6 +1392,8 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				95E38EB41D1CCE6E006BCF6C /* hh.png */,
+				95E38EB21D1CBEEA006BCF6C /* ll.png */,
 				950BC6F21D12986000817E4A /* hb_dzp.png */,
 				950BC6F31D12986000817E4A /* hb_yjwd.png */,
 				950BC6F41D12986000817E4A /* hb_yyy.png */,
@@ -2119,6 +2125,7 @@
 				95C3725C1CB5F5780083AC90 /* 服务@3x.png in Resources */,
 				9505D6DC1C9A7B27006F6850 /* LaunchScreen.storyboard in Resources */,
 				95C3726C1CB5F5780083AC90 /* 问药师@3x.png in Resources */,
+				95E38EB31D1CBEEA006BCF6C /* ll.png in Resources */,
 				95C372651CB5F5780083AC90 /* 药品@2x.png in Resources */,
 				95C372601CB5F5780083AC90 /* 矩形-20-拷贝@3x.png in Resources */,
 				95C372631CB5F5780083AC90 /* 组-4@2x.png in Resources */,
@@ -2135,6 +2142,7 @@
 				95F1E0481CB7A72300614502 /* 摇一摇弹窗.png in Resources */,
 				959F9E401CBDFA3E00C5D019 /* 组-1@3x.png in Resources */,
 				959F9E3E1CBDFA3E00C5D019 /* 组-1-拷贝-2@3x.png in Resources */,
+				95E38EB51D1CCE6E006BCF6C /* hh.png in Resources */,
 				9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */,
 				95C372681CB5F5780083AC90 /* 资讯@3x.png in Resources */,
 				950BC6F71D12986000817E4A /* hb_yyy.png in Resources */,

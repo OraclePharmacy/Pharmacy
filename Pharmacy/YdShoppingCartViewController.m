@@ -164,7 +164,7 @@
     add.frame = CGRectMake(100, 72, 16, 16);
     [add setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
     
-    //数量输入框
+    //数量输入框
     num = [[UITextField alloc]init];
     num.delegate=self;
     num.font = [UIFont systemFontOfSize:12];

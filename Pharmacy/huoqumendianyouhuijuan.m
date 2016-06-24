@@ -82,7 +82,7 @@
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"2",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -129,22 +129,22 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return arr.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arr.count;
+    return 1;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 80;
+    return 75;
 }
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1;
+    return 15;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,33 +157,110 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
     
+//    UIImageView *image = [[UIImageView alloc]init];
+//    image.frame = CGRectMake(10, 10, 60, 60);
+//    image.backgroundColor = [UIColor grayColor];
+//    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"url"]];
+//    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+//    [cell.contentView addSubview:image];
+//    
+//    UILabel *name = [[UILabel alloc]init];
+//    name.frame = CGRectMake(80, 10, width - 90, 20);
+//    name.font = [UIFont systemFontOfSize:13];
+//    name.text = [NSString stringWithFormat:@"相关门店:%@",[[arr[indexPath.row] objectForKey:@"office"] objectForKey:@"name"] ];
+//    name.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+//    [cell.contentView addSubview:name];
+//    
+//    UILabel *jiage = [[UILabel alloc]init];
+//    jiage.frame = CGRectMake(80, 30, 100, 20);
+//    jiage.font = [UIFont systemFontOfSize:13];
+//    jiage.text = [NSString stringWithFormat:@"优惠金额:%@",[arr[indexPath.row] objectForKey:@"faceValue"] ];
+//    jiage.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+//    [cell.contentView addSubview:jiage];
+//    
+//    UILabel *shuliang = [[UILabel alloc]init];
+//    shuliang.frame = CGRectMake(80, 50, width - 90, 20);
+//    shuliang.font = [UIFont systemFontOfSize:13];
+//    shuliang.text = [NSString stringWithFormat:@"剩余数量:%@",[arr[indexPath.row] objectForKey:@"publishNums"] ];
+//    shuliang.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+//    [cell.contentView addSubview:shuliang];
+    
+    
     UIImageView *image = [[UIImageView alloc]init];
-    image.frame = CGRectMake(10, 10, 60, 60);
+    image.frame = CGRectMake(10, 5, 65, 65);
     image.backgroundColor = [UIColor grayColor];
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"url"]];
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.section] objectForKey:@"url"]];
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     [cell.contentView addSubview:image];
     
     UILabel *name = [[UILabel alloc]init];
-    name.frame = CGRectMake(80, 10, width - 90, 20);
+    name.frame = CGRectMake(85, 5, 150, 15);
+    name.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"name"] ];
     name.font = [UIFont systemFontOfSize:13];
-    name.text = [NSString stringWithFormat:@"相关门店:%@",[[arr[indexPath.row] objectForKey:@"office"] objectForKey:@"name"] ];
-    name.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     [cell.contentView addSubview:name];
     
-    UILabel *jiage = [[UILabel alloc]init];
-    jiage.frame = CGRectMake(80, 30, 100, 20);
-    jiage.font = [UIFont systemFontOfSize:13];
-    jiage.text = [NSString stringWithFormat:@"优惠金额:%@",[arr[indexPath.row] objectForKey:@"faceValue"] ];
-    jiage.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    [cell.contentView addSubview:jiage];
+    UILabel *laiyuan = [[UILabel alloc]init];
+    laiyuan.frame = CGRectMake(85, 40, 150, 15);
+    laiyuan.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    laiyuan.font = [UIFont systemFontOfSize:11];
+    [cell.contentView addSubview:laiyuan];
+    
+    NSString *a = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"endTime"] ];
+    NSString *b = [a substringToIndex:10];
+    UILabel *time = [[UILabel alloc]init];
+    time.frame = CGRectMake(85, 55, 150, 15);
+    time.text =[NSString stringWithFormat:@"有效期至:%@",b ];
+    time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    time.font = [UIFont systemFontOfSize:11];
+    [cell.contentView addSubview:time];
+    
+    UIImageView *youtu = [[UIImageView alloc]init];
+    youtu.frame = CGRectMake(width - 70, 0, 70, 75);
+    [cell.contentView addSubview:youtu];
     
     UILabel *shuliang = [[UILabel alloc]init];
-    shuliang.frame = CGRectMake(80, 50, width - 90, 20);
-    shuliang.font = [UIFont systemFontOfSize:13];
-    shuliang.text = [NSString stringWithFormat:@"剩余数量:%@",[arr[indexPath.row] objectForKey:@"publishNums"] ];
-    shuliang.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    [cell.contentView addSubview:shuliang];
+    shuliang.frame = CGRectMake(0, 0, 70, 20);
+    shuliang.text = [NSString stringWithFormat:@"剩余:%@个",[arr[indexPath.section] objectForKey:@"publishNums"] ];
+    shuliang.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    shuliang.font = [UIFont systemFontOfSize:10];
+    shuliang.textAlignment = NSTextAlignmentCenter;
+    [youtu addSubview:shuliang];
+    
+    UILabel *moner = [[UILabel alloc]init];
+    moner.frame = CGRectMake(0, 20, 70, 35);
+    moner.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"faceValue"] ];
+    moner.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    moner.font = [UIFont systemFontOfSize:18];
+    moner.textAlignment = NSTextAlignmentCenter;
+    [youtu addSubview:moner];
+    
+    UIView *xian = [[UIView alloc]init];
+    xian.frame = CGRectMake(5, 55, 60, 0.5);
+    xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    [youtu addSubview:xian];
+    
+    UILabel *lingqu = [[UILabel alloc]init];
+    lingqu.frame = CGRectMake(0, 55, 70, 20);
+    lingqu.text = @"立即领取";
+    lingqu.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    lingqu.font = [UIFont systemFontOfSize:10];
+    lingqu.textAlignment = NSTextAlignmentCenter;
+    [youtu addSubview:lingqu];
+    NSLog(@"%@",[arr[indexPath.section] objectForKey:@"couponType"]);
+    if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"]) {
+        
+        name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
+        youtu.image = [UIImage imageNamed:@"hh.png"];
+        laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
+
+        
+    }
+    else
+    {
+        name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
+        youtu.image = [UIImage imageNamed:@"ll.png"];
+        laiyuan.text =@"合作商家";
+    }
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -196,7 +273,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *str1  = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"publishNums"] ];
+    NSString *str1  = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"publishNums"] ];
     
     if ([str1 isEqualToString:@"0"]) {
         
@@ -208,7 +285,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"是否领取优惠券？" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
         [alert show];
         
-        str2 = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+        str2 = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
         
     }
 }
@@ -225,7 +302,7 @@
         NSString * userID=@"0";
         
         //请求地址   地址不同 必须要改
-        NSString * url =@"/basic/couponExchange";
+        NSString * url =@"/basic/couponList";
         
         //时间戳
         NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -242,9 +319,9 @@
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
         
-        NSLog(@"%@",str2);
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str2,@"couponTypeId",@"1020",@"vipId",nil];
-        
+        //NSLog(@"%@",str2);
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str2,@"couponTypeId",@"1030",@"vipId",nil];
+        NSLog(@"datadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名

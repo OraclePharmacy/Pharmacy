@@ -32,6 +32,7 @@
 #import "YDJifenxiangViewController.h"
 #import "YdyouhuiquanViewController.h"
 #import "YdmendianxinxiViewController.h"
+#import "huoqumendianyouhuijuan.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -368,9 +369,12 @@
 //第四个按钮点击事件
 -(void)four
 {
-    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-    youhuiquan.panduan = @"2";
-    [self.navigationController pushViewController:youhuiquan animated:YES];
+    huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
+    
+    [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
+//    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+//    youhuiquan.panduan = @"2";
+//    [self.navigationController pushViewController:youhuiquan animated:YES];
 }
 #pragma  mark ---- 积分礼品接口
 //接口
