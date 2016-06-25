@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdyouhuiquanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface YdyouhuiquanViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (strong,nonatomic) UITableView *tableview;
 @property (strong,nonatomic) NSString *panduan;

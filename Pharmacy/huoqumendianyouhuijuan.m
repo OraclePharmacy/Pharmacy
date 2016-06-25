@@ -82,7 +82,7 @@
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"6482331337854473800a0239a3bfcb5f",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -134,7 +134,7 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return  1;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -247,17 +247,24 @@
     lingqu.textAlignment = NSTextAlignmentCenter;
     [youtu addSubview:lingqu];
     NSLog(@"%@",[arr[indexPath.section] objectForKey:@"couponType"]);
-    if (NULL == [arr[indexPath.section] objectForKey:@"couponFlag"]) {
+    
+    if ( [[arr[indexPath.section] objectForKey:@"isSend"] isEqualToString:@"1"]) {
+        
         if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"])
         {
             name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
+            
             youtu.image = [UIImage imageNamed:@"hh.png"];
+            
             laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
+            
         }
         else
         {
             name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
+            
             youtu.image = [UIImage imageNamed:@"ll.png"];
+            
             laiyuan.text =@"合作商家";
         }
     }
@@ -268,12 +275,14 @@
             name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
             youtu.image = [UIImage imageNamed:@".png"];
             laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
+
         }
         else
         {
             name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
             youtu.image = [UIImage imageNamed:@".png"];
             laiyuan.text =@"合作商家";
+            
         }
 
     }
@@ -291,20 +300,30 @@
 {
     NSString *str1  = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"publishNums"] ];
     
-    if ([str1 isEqualToString:@"1"]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,优惠券已被领光" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+     if ( [[arr[indexPath.section] objectForKey:@"isSend"] isEqualToString:@"0"])
+     {
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,您已经领取过了" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+         [alert show];
+     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"是否领取优惠券？" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
-        [alert show];
-        
-        str2 = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
-        
+        if ([str1 isEqualToString:@"0"]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,优惠券已被领光" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"是否领取优惠券？" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+            [alert show];
+            
+            str2 = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
+            
+        }
+
     }
-}
+    
+   }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -314,6 +333,7 @@
     }
     else if (buttonIndex == 1)
     {
+        
         //userID    暂时不用改
         NSString * userID=@"0";
         
