@@ -75,7 +75,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1040",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -230,6 +230,22 @@
     NSLog(@"sssssssssssssss%@",sss);
     YdzhongjiangxiangqingViewController *zhongjiangxiangqing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangxiangqing"];
     zhongjiangxiangqing.jiangpinid = sss;
+    if ( NULL == [arr[indexPath.section] objectForKey:@"couId"] )
+    {
+        zhongjiangxiangqing.couId = @"";
+    }
+    else
+    {
+        zhongjiangxiangqing.couId = [arr[indexPath.section] objectForKey:@"couId"];
+    }
+    if ( NULL == [arr[indexPath.section] objectForKey:@"couInfoId"] )
+    {
+        zhongjiangxiangqing.couInfoId = @"";
+    }
+    else
+    {
+        zhongjiangxiangqing.couInfoId = [arr[indexPath.section] objectForKey:@"couInfoId"];
+    }
     [self.navigationController pushViewController:zhongjiangxiangqing animated:YES];
 }
 //返回

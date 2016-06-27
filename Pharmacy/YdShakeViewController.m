@@ -140,7 +140,7 @@
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",vip,@"vipId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1030",@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -173,7 +173,7 @@
                 dengji.textColor = [UIColor whiteColor];
                 dengji.font = [UIFont systemFontOfSize:16];
                 dengji.textAlignment = NSTextAlignmentCenter;
-                dengji.text = [datadic objectForKey:@"results"];
+                dengji.text = @"几等奖";
                 [self.beijing addSubview:dengji];
                 
                 UILabel *jieguo = [[UILabel alloc]init];
@@ -181,8 +181,21 @@
                 jieguo.textColor = [UIColor whiteColor];
                 jieguo.font = [UIFont systemFontOfSize:15];
                 jieguo.textAlignment = NSTextAlignmentCenter;
-                jieguo.text = @"奖励媳妇一个";
+                jieguo.text = [datadic objectForKey:@"results"];
                 [self.beijing addSubview:jieguo];
+                
+                
+                UIButton *fanhui = [[UIButton alloc]init];
+                fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
+                [fanhui setTitle:@"返回" forState:UIControlStateNormal];
+                [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                fanhui.layer.cornerRadius = 5;
+                fanhui.layer.masksToBounds = YES;
+                fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
+                fanhui.layer.borderWidth =1;
+                [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:fanhui];
+                
 
             }
         }
@@ -201,8 +214,6 @@
     
     
 }
-
-
 - (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
 
 {
@@ -243,6 +254,7 @@
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 

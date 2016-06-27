@@ -321,12 +321,11 @@
 {
     if (buttonIndex == 1)
     {
-        NSLog(@"%@",nameField.text);
         //userID    暂时不用改
         NSString * userID=@"0";
         
         //请求地址   地址不同 必须要改
-        NSString * url =@"/basic/awardetail";
+        NSString * url =@"/basic/couponExchange";
         
         //时间戳
         NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -344,8 +343,8 @@
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"id",nil];
-        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",@"1030",@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
+        NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -367,7 +366,7 @@
                 if ([[responseObject objectForKey:@"code"] intValue]==0000)
                 {
                     
-                   [self.navigationController popViewControllerAnimated:YES];
+                   //[self.navigationController popViewControllerAnimated:YES];
                     
                 }
             }

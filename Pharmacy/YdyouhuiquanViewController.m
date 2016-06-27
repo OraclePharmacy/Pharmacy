@@ -99,7 +99,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
+            NSLog(@"=============我的优惠券============%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -218,16 +218,25 @@
     time.font = [UIFont systemFontOfSize:11];
     [cell.contentView addSubview:time];
     
+    UILabel *lingqu = [[UILabel alloc]init];
+    lingqu.frame = CGRectMake(0, 55, 70, 20);
+    lingqu.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    lingqu.font = [UIFont systemFontOfSize:10];
+    lingqu.textAlignment = NSTextAlignmentCenter;
+    [youtu addSubview:lingqu];
+
     
     UILabel *shuliang = [[UILabel alloc]init];
     shuliang.frame = CGRectMake(0, 0, 70, 20);
     if ([[[arr[indexPath.section] objectForKey:@"coupon"] objectForKey:@"isUser"] isEqual:@"1"])
     {
         shuliang.text = @"未使用";
+        lingqu.text = @"立即兑换";
     }
     else if ([[[arr[indexPath.section] objectForKey:@"coupon"] objectForKey:@"isUser"] isEqual:@"0"])
     {
         shuliang.text = @"已使用";
+        lingqu.text = @"已兑换";
     }
     else if ([[[arr[indexPath.section] objectForKey:@"coupon"] objectForKey:@"isUser"] isEqual:@""])
     {
@@ -251,14 +260,7 @@
     xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [youtu addSubview:xian];
     
-    UILabel *lingqu = [[UILabel alloc]init];
-    lingqu.frame = CGRectMake(0, 55, 70, 20);
-    lingqu.text = @"立即兑换";
-    lingqu.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-    lingqu.font = [UIFont systemFontOfSize:10];
-    lingqu.textAlignment = NSTextAlignmentCenter;
-    [youtu addSubview:lingqu];
-
+    
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -330,7 +332,7 @@
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",couponId,@"id",nameField.text,@"storeCode",couId,@"couId",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",couponId,@"id",nameField.text,@"storeCode",couId,@"couId",@"",@"awardId",nil];
         //NSLog(@"datadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
