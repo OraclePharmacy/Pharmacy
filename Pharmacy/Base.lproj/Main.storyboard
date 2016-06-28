@@ -2495,8 +2495,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dianhuahaoma" destination="RYR-ZO-jv9" id="UuB-5t-q01"/>
+                        <outlet property="dizhi" destination="Dh6-wb-GrC" id="i6j-P1-waa"/>
+                        <outlet property="hejijiage" destination="OHl-Aj-9lB" id="5eO-d1-8bl"/>
                         <outlet property="tableview" destination="k9p-6D-b3P" id="Aju-vH-KtU"/>
                         <outlet property="tijiao" destination="4Fh-9g-Mwd" id="Qlg-am-jru"/>
+                        <outlet property="xingming" destination="eJQ-9o-gy1" id="DID-2A-tFj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qsD-GX-Es1" userLabel="First Responder" sceneMemberID="firstResponder"/>

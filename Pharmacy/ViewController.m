@@ -212,8 +212,8 @@ NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/G
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
-                        
-                        
+                       NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
+                        [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
 //                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
 //                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 //                            if (error) {

@@ -136,7 +136,7 @@ int popop=0;
                 
                 xianshiarr = [NSMutableDictionary dictionaryWithDictionary: [datadic objectForKey:@"product" ]];
                 
-                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:[datadic objectForKey:@"product"]];
+                tianjiaxinxi=[NSMutableDictionary dictionaryWithDictionary:[xianshiarr objectForKey:@"product"]];
                 [self.tableview reloadData];
                 
             }
@@ -225,7 +225,7 @@ int popop=0;
     [view addSubview:tishi];
     
     if (section == 1) {
-        if ([[[xianshiarr objectForKey:@"addedProduct"] objectForKey:@"specProdFlag"] isEqual:@"1"])
+        if ([[xianshiarr objectForKey:@"specProdFlag"] isEqual:@"1"])
         {
             tishi.text = @"特价药品";
         }
@@ -377,7 +377,12 @@ int popop=0;
             if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
-            shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prescription"]];
+                if ([[tianjiaxinxi objectForKey:@"prescription"] intValue]==1) {
+                    shuju.text=@"处方药";
+                }else{
+                    shuju.text=@"非处方药";
+                }
+           // shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prescription"]];
         }
 
     }
@@ -419,7 +424,7 @@ int popop=0;
 //加号
 - (IBAction)jia:(id)sender {
     int shu= [_shuliang.text intValue];
-    if(shu<1000)
+    if(shu<10000)
     {
         _shuliang.text=[NSString stringWithFormat:@"%d",shu+1];
         shuliangCunFang=_shuliang.text;
@@ -448,10 +453,10 @@ int popop=0;
             for (int i=0; i<arrr.count; i++) {
                 if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
                     ioi=1;
-                    [arrr[i] setObject:shuliangCunFang forKey:@"shuliang"];
+                    [arrr[i] setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
                     [arrr writeToFile:countwenjian atomically:YES];
                     [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
-//                    [self.navigationController popViewControllerAnimated:YES];
+                    [self.navigationController popViewControllerAnimated:YES];
                     
                 }
             }

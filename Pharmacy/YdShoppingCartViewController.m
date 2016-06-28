@@ -12,6 +12,7 @@
 #import "Color+Hex.h"
 #import "YdshoppingxiangshiViewController.h"
 #import "YdlianxidianzhangViewController.h"
+#import "WarningBox.h"
 
 @interface YdShoppingCartViewController ()
 {
@@ -126,20 +127,26 @@
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.font =[UIFont systemFontOfSize:15];
     //name.backgroundColor = [UIColor redColor];
-   
-    
     UILabel *yuanjia = [[UILabel alloc]init];
-    yuanjia.frame = CGRectMake(100, 30, 70, 20);
-    yuanjia.text = @"原价:99.8";
-    yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    yuanjia.font =[UIFont systemFontOfSize:13];
-    
-    
     UILabel *tejia = [[UILabel alloc]init];
-    tejia.frame = CGRectMake(170, 30, 70, 20);
-    tejia.text = @"特价:99.8";
-    tejia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    tejia.font =[UIFont systemFontOfSize:13];
+    if ([[yikaishi[indexPath.row] objectForKey:@"specProdFlag"] intValue]==1) {
+        
+        yuanjia.frame = CGRectMake(100, 30, 70, 20);
+        yuanjia.text = [NSString stringWithFormat:@"原价:%@",[yikaishi[indexPath.row] objectForKey:@"prodPrice"]];
+        yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        yuanjia.font =[UIFont systemFontOfSize:13];
+        
+        tejia.frame = CGRectMake(170, 30, 70, 20);
+        tejia.text = [NSString stringWithFormat:@"特价:%@",[yikaishi[indexPath.row] objectForKey:@"specPrice"]];
+        tejia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        tejia.font =[UIFont systemFontOfSize:13];
+    }else{
+        yuanjia.frame = CGRectMake(100, 30, 70, 20);
+        yuanjia.text = [NSString stringWithFormat:@"原价:%@",[yikaishi[indexPath.row] objectForKey:@"prodPrice"]];
+        yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        yuanjia.font =[UIFont systemFontOfSize:13];
+    }
+   
     
     
     //生产厂家
@@ -163,6 +170,7 @@
     UIButton *add = [[UIButton alloc]init];
     add.frame = CGRectMake(100, 72, 16, 16);
     [add setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
+    [add addTarget:self action:@selector(jian:) forControlEvents:UIControlEventTouchUpInside];
     
     //数量输入框
     num = [[UITextField alloc]init];
@@ -170,15 +178,17 @@
     num.font = [UIFont systemFontOfSize:12];
     num.layer.borderColor = [[UIColor grayColor] CGColor];
     [num addTarget:self action:@selector(NumberLength) forControlEvents:UIControlEventEditingChanged];
+    num.tag=(int)indexPath.row+999;
+    [num addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     //删减数量按钮
     UIButton *reduce = [[UIButton alloc]init];
-    reduce.frame = CGRectMake(174,72, 16, 16);
+    reduce.frame = CGRectMake(200,72, 16, 16);
     [reduce setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
-   
+    [reduce addTarget:self action:@selector(jia:) forControlEvents:UIControlEventTouchUpInside];
     
     if (aa == 1 )
     {
-        num.frame = CGRectMake(100, 70, 50, 20);
+        num.frame = CGRectMake(100, 70, 100, 20);
         num.text=[NSString stringWithFormat:@"数量:%@",[yikaishi[indexPath.row]objectForKey:@"shuliang"]];
         num.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         [cell.contentView addSubview:image];
@@ -192,7 +202,7 @@
     else
     {
         num.text=[NSString stringWithFormat:@"%@",[yikaishi[indexPath.row]objectForKey:@"shuliang"]];
-        num.frame = CGRectMake(120, 70, 50, 20);
+        num.frame = CGRectMake(120, 70, 76, 20);
         num.layer.borderWidth =1;
         num.layer.cornerRadius = 5.0;
         num.textAlignment = NSTextAlignmentCenter;
@@ -273,6 +283,12 @@
 
 - (IBAction)tijiaoanniu:(id)sender {
     
+    
+    //需要判断各种情况，使下一个界面可有正常显示，如果少东西，则提示框显示是跳跳转到其他界面补全信息;
+    
+    
+    
+    
     //显示订单详情，包括总价钱等等
     YdshoppingxiangshiViewController *shoppingxiangshi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shoppingxiangshi"];
     [self.navigationController pushViewController:shoppingxiangshi animated:YES];
@@ -302,8 +318,28 @@
 
     
 }
+-(void)textFieldDidChange :(UITextField *)theTextField
+{
+        UITableViewCell *cell=(UITableViewCell*)[[theTextField superview] superview ];
+        
+        NSIndexPath *index=[self.tableview indexPathForCell:cell];
+        
+        UILabel*oo=[cell viewWithTag:index.row+999];
+        
+        oo.text=[NSString stringWithFormat:@"%d",[oo.text intValue]];
+        
+        NSString*qw=oo.text;
+        [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
+    
+}
+
 -(void)baocun
 {
+    
+    
+    NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+  
+    [yikaishi writeToFile:countwenjian atomically:YES];
 
     aa=1;
             
@@ -314,10 +350,56 @@
 }
 -(void)xiaoshi
 {
-    
     di.hidden = YES;
+}
+-(void)jia:(UIButton*)tt
+{
+    [self.view endEditing:YES];
+    UITableViewCell *cell=(UITableViewCell*)[[tt superview] superview ];
+    
+    NSIndexPath *index=[self.tableview indexPathForCell:cell];
+    
+    UILabel*oo=[cell viewWithTag:index.row+999];
+    
+    NSString*qw=oo.text;
+    
+    int wq=[qw intValue];
+    
+    qw =[NSString stringWithFormat:@"%d", wq+1];
+    
+    oo.text=qw;
+    
+    //  存入jieshou数组中
+    [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
+    
+    
     
 }
+
+-(void)jian:(UIButton*)tt
+{
+    [self.view endEditing:YES];
+    UITableViewCell *cell=(UITableViewCell*)[[tt superview] superview ];
+    
+    NSIndexPath *index=[self.tableview indexPathForCell:cell];
+    
+    UILabel*oo=[cell viewWithTag:index.row+999];
+    
+    NSString*qw=oo.text;
+    
+    int wq=[qw intValue];
+    if ([oo.text intValue]==1) {
+        
+    }else
+        qw =[NSString stringWithFormat:@"%d", wq-1];
+    
+    oo.text=qw;
+    //  存入jieshou数组中
+    [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
+    
+}
+
+
 - (IBAction)dianzhanganniu:(id)sender {
     
     //聊天界面，聊天的对象是店长。。。。

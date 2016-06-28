@@ -19,17 +19,39 @@
 {
     CGFloat width;
     CGFloat height;
+    NSMutableArray*arr;
+    float heji;
 }
+@property (weak, nonatomic) IBOutlet UILabel *dianhuahaoma;
+@property (weak, nonatomic) IBOutlet UILabel *xingming;
+@property (weak, nonatomic) IBOutlet UILabel *dizhi;
+@property (weak, nonatomic) IBOutlet UILabel *hejijiage;
+
 @end
 
 @implementation YdshoppingxiangshiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    heji = 0;
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+    NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+    arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+    for (int i=0; i<arr.count; i++) {
+        if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
+            float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.1f",s] forKey:@"zongjia"];
+        }else{
+            float s=[[arr[i] objectForKey:@"prodPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.1f",s] forKey:@"zongjia"];
+        }
+    }
+    
+    for (int i=0; i<arr.count; i++) {
+        heji+=[[arr[i] objectForKey:@"zongjia"] floatValue];
+    }
     //状态栏名称
     self.navigationItem.title = @"确认订单";
     //设置导航栏左按钮
@@ -39,6 +61,14 @@
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    
+     NSString *gerende=[NSString stringWithFormat:@"%@/Documents/GRxinxi.plist",NSHomeDirectory()];
+    NSDictionary*geren=[NSDictionary dictionaryWithContentsOfFile:gerende];
+    NSUserDefaults*s=[NSUserDefaults standardUserDefaults];
+    _dianhuahaoma.text=[NSString stringWithFormat:@"%@",[s objectForKey:@"shoujihao"]];
+    _xingming.text=[NSString stringWithFormat:@"%@",[geren objectForKey:@"name"]];
+    _dizhi.text=[NSString stringWithFormat:@"%@ %@",[geren objectForKey:@"area"],[geren objectForKey:@"detail"]];
+    _hejijiage.text=[NSString stringWithFormat:@"%.1f",heji];
     
 }
 //组
@@ -78,19 +108,19 @@
     //name.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.font =[UIFont systemFontOfSize:15];
-    name.text = @"感冒药";
+    name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
     [cell.contentView addSubview:name];
     
     UILabel *yuanjia = [[UILabel alloc]init];
     yuanjia.frame = CGRectMake(100, 30, 70, 20);
-    yuanjia.text = @"数量:105";
+    yuanjia.text = [NSString stringWithFormat:@"数量:%@",[arr[indexPath.row] objectForKey:@"shuliang"]];
     yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     yuanjia.font =[UIFont systemFontOfSize:13];
     [cell.contentView addSubview:yuanjia];
     
     UILabel *zongjia = [[UILabel alloc]init];
-    zongjia.frame = CGRectMake(100, 50, 70, 20);
-    zongjia.text = @"总价:￥500";
+    zongjia.frame = CGRectMake(100, 50,200, 20);
+    zongjia.text = [NSString stringWithFormat:@"总价:¥ %@",[arr[indexPath.row] objectForKey:@"zongjia"]];
     zongjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     zongjia.font =[UIFont systemFontOfSize:13];
     [cell.contentView addSubview:zongjia];
@@ -107,7 +137,7 @@
     UILabel *vender = [[UILabel alloc]init];
     vender.frame = CGRectMake( 160, 70, width - 160 , 20);
     //vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
-    vender.text = @"副经理是减肥了卡萨积分可垃圾死李开复";
+    vender.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
     vender.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     vender.font =[UIFont systemFontOfSize:12];
     [cell.contentView addSubview:vender];
