@@ -60,7 +60,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id", @"1020",@"vipId",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id", @"1130",@"vipId",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -206,7 +206,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"type",@"1020",@"vipId",@"0",@"mark", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"type",@"1130",@"vipId",@"0",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         

@@ -19,7 +19,7 @@
 #pragma mark - 操作闹钟
 
 /** 添加一个闹钟 */
-- (void)addNewClock:(ModelClock *)clock;
+- (void)addNewClock:(ModelClock *)clock :(NSString *)ss;
 
 /** 移除一个闹钟 */
 - (void)removeClock:(ModelClock *)clock;

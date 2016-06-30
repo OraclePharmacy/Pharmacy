@@ -296,6 +296,12 @@
 -(void)duihuan
 {
 
+    if ([self.panduan isEqualToString:@"0"]) {
+        
+        [WarningBox warningBoxModeText:@"您已兑换过，不可再次使用!" andView:self.view];
+        
+    }
+    else if ([self.panduan isEqualToString:@"1"]){
     if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
@@ -314,7 +320,7 @@
         [alert show];
         
     }
-    
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -343,7 +349,7 @@
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",@"1030",@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",@"1130",@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
         NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         

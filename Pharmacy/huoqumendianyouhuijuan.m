@@ -82,7 +82,7 @@
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -356,7 +356,7 @@
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
         
         //NSLog(@"%@",str2);
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str2,@"couponTypeId",@"1030",@"vipId",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str2,@"couponTypeId",@"1130",@"vipId",nil];
         NSLog(@"datadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         

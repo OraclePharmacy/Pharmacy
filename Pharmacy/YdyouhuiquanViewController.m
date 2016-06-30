@@ -80,7 +80,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -332,7 +332,7 @@
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",couponId,@"id",nameField.text,@"storeCode",couId,@"couId",@"",@"awardId",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",couponId,@"id",nameField.text,@"storeCode",couId,@"couId",@"",@"awardId",nil];
         //NSLog(@"datadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         

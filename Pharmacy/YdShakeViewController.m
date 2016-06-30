@@ -140,7 +140,7 @@
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1030",@"vipId", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1130",@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -159,7 +159,19 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"responseObject%@",responseObject);
+            NSLog(@"responseObject%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==4444) {
+                UIButton *fanhui = [[UIButton alloc]init];
+                fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
+                [fanhui setTitle:@"返回" forState:UIControlStateNormal];
+                [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                fanhui.layer.cornerRadius = 5;
+                fanhui.layer.masksToBounds = YES;
+                fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
+                fanhui.layer.borderWidth =1;
+                [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:fanhui];
+            }
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];

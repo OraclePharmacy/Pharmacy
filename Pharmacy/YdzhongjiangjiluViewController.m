@@ -75,7 +75,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1030",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"1",@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -245,6 +245,14 @@
     else
     {
         zhongjiangxiangqing.couInfoId = [arr[indexPath.section] objectForKey:@"couInfoId"];
+    }
+    if ([[arr[indexPath.section] objectForKey:@"exchange"] isEqualToString:@"0"])
+    {
+        zhongjiangxiangqing.panduan = @"0";
+    }
+    else if ([[arr[indexPath.section] objectForKey:@"exchange"] isEqualToString:@"1"])
+    {
+        zhongjiangxiangqing.panduan = @"1";
     }
     [self.navigationController pushViewController:zhongjiangxiangqing animated:YES];
 }

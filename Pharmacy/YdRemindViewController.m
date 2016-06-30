@@ -43,7 +43,8 @@
     UIButton *quxiao;
     UIView *view;
     UIView *xian;
-    
+    NSMutableString *time;
+    NSMutableArray *time_array;
     NSArray *jiajia;
 }
 
@@ -53,22 +54,40 @@
 
 - (void)queding {
     
-    if (number==1) {
+    NSMutableArray *choose=[[NSMutableArray alloc]init];
+   
+ if (number==1) {
         [chooseTime addObject: arr1[[myPicker selectedRowInComponent:0]]];
-        
+     [choose addObject:arr1[[myPicker selectedRowInComponent:0]]];
     }
     else if (number==2){
         [chooseTime addObject:[NSString stringWithFormat:@"%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]]]];
-        
+         [choose addObject:[NSString stringWithFormat:@"%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]]]];
     }
     else if (number==3){
         [chooseTime addObject:[NSString stringWithFormat:@"%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]]]];
-        
+         [choose addObject:[NSString stringWithFormat:@"%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]]]];
     }
     else if (number==4){
         [chooseTime addObject:[NSString stringWithFormat:@"%@,%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]],arr1[[myPicker selectedRowInComponent:3]]]];
+          [choose addObject:[NSString stringWithFormat:@"%@,%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]],arr1[[myPicker selectedRowInComponent:3]]]];
+    }
+    
+    NSMutableString *time_last=[[NSMutableString alloc]init];
+    time_last=time;
+    time=[[NSMutableString alloc]init];
+    for (int i=0; i<[choose count]; i++) {
+        
+        [time appendString:[choose objectAtIndex:i]];
         
     }
+    
+    if ([time_last isEqualToString:time]) {
+        [time appendString:@"1"];
+    }
+    [time_array addObject:time];
+    
+
     for (NSString *strItem in chooseTime) {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -84,14 +103,15 @@
             NSString *strTime = [NSString stringWithFormat:@"%@ %@", strNow, strAddDate];
             
             [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-            
+//            dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+//            [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
             NSDate *date = [dateFormatter dateFromString:strTime];
             
             ModelClock *clock = [[ModelClock alloc] init];
             
             clock.date = date;
             
-            [[AlarmClockManager shareManager] addNewClock:clock];
+            [[AlarmClockManager shareManager] addNewClock:clock :time];
             
         }
     }
@@ -140,13 +160,13 @@
     
     arr1=[[NSMutableArray alloc] init];
     
-    [arr1 addObject:@"13:03"];
-    [arr1 addObject:@"17:45"];
-    [arr1 addObject:@"17:46"];
-    [arr1 addObject:@"02:00"];
-    [arr1 addObject:@"02:30"];
-    [arr1 addObject:@"03:00"];
-    [arr1 addObject:@"03:30"];
+    [arr1 addObject:@"14:03"];
+    [arr1 addObject:@"14:02"];
+    [arr1 addObject:@"14:04"];
+    [arr1 addObject:@"13:45"];
+    [arr1 addObject:@"12:01"];
+    [arr1 addObject:@"12:02"];
+    [arr1 addObject:@"12:03"];
     [arr1 addObject:@"04:00"];
     [arr1 addObject:@"04:30"];
     [arr1 addObject:@"05:00"];
@@ -300,7 +320,8 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]init] initWithTitle:@"添加闹钟" style:UIBarButtonItemStyleDone target:self action:@selector(tianjia)];
     
     k=0;
-    
+    time=[[NSMutableString alloc]init];
+    time_array=[[NSMutableArray alloc]init];
     chooseTime = [[NSMutableArray alloc]init];
     
     NSString *fileName=[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),@"my,plist"];
@@ -398,7 +419,7 @@
     
     UISwitch *kai = [[UISwitch alloc]init];
     kai.frame = CGRectMake(self.view.frame.size.width - 60, 15, 30, 15);
-    kai.tag = 600 + indexPath.row;
+    kai.tag = 10 + indexPath.row;
     [kai setOn:YES animated:YES];
     [kai addTarget: self action:@selector(switchIsChanged:) forControlEvents:UIControlEventValueChanged];
     [cell.contentView addSubview:kai];
@@ -415,7 +436,7 @@
    
         
     }else{
-        NSLog(@"The switch is turned off.");
+        [self cancelLocalNotificationWithKey:[time_array objectAtIndex:paramSender.tag-10] :(int)paramSender.tag-10];
     }
 }
 //行的高度
@@ -431,7 +452,7 @@
     
 }
 
-- (void)registerLocalNotification:(NSInteger)interval{
+- (void)registerLocalNotification:(NSInteger)interval :(NSString *)ss{
     
     
     
@@ -454,7 +475,7 @@
     //应用程序角标，默认为0（不显示角标）
     notification.applicationIconBadgeNumber=1;
     //通知的参数，通过key值来标识这个通知
-    NSDictionary *userDict=[NSDictionary dictionaryWithObject:@"CJT" forKey:@"key"];
+    NSDictionary *userDict=[NSDictionary dictionaryWithObject:ss forKey:@"key"];
     notification.userInfo=userDict;
     
     
@@ -481,14 +502,54 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
 }
-- (void)remove{
+-(void)cancelLocalNotificationWithKey:(NSString *)key :(int)flag {
+    // 获取所有本地通知数组
+    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
     
-    
-    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-    
-    
-}
+    for (UILocalNotification *loc in localNotifications) {
+        NSDictionary *userInfo = loc.userInfo;
+        if (userInfo) {
+            // 根据设置通知参数时指定的key来获取通知参数
+            NSString *info =  [userInfo objectForKey:@"key"];;
+            
+            // 如果找到需要取消的通知，则取消
+            if (info != nil) {
+                
+                NSString *strItem=[chooseTime objectAtIndex:flag];
+                    
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    
+                    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+                    
+                    NSString *strNow = [dateFormatter stringFromDate:[NSDate date]];
+                    
+                    NSArray *arrTimes = [strItem componentsSeparatedByString:@","];
+                    
+                    for (NSString *strAddDate in arrTimes) {
+                        
+                        NSString *strTime = [NSString stringWithFormat:@"%@ %@", strNow, strAddDate];
+                        
+                        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+//                        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+//                        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                        NSDate *date = [dateFormatter dateFromString:strTime];
+                        
+                        ModelClock *clock = [[ModelClock alloc] init];
+                        
+                        clock.date = date;
+                        
+                        [[AlarmClockManager shareManager] removeClock:clock ];
+                        
+                        [[UIApplication sharedApplication] cancelLocalNotification:loc];
+                        
+                        break;
+                        
+                    }
+                }
 
+        }
+    }
+}
 //导航左按钮
 -(void)fanhui
 {

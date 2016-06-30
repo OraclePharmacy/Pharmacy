@@ -27,7 +27,7 @@
 #pragma mark - 操作闹钟
 
 /** 添加一个闹钟 */
-- (void)addNewClock:(ModelClock *)clock
+- (void)addNewClock:(ModelClock *)clock :(NSString *)ss
 {
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     notification.fireDate = clock.date;
@@ -52,10 +52,10 @@
         notification.repeatInterval=NSCalendarUnitDay;
         
     }
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
+    NSDictionary *userDict=[NSDictionary dictionaryWithObject:ss forKey:@"key"];
+    notification.userInfo=userDict; 
     clock.notification = notification;
+     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 /** 移除一个闹钟 */

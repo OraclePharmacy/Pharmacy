@@ -42,10 +42,10 @@
     for (int i=0; i<arr.count; i++) {
         if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
             float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
-            [arr[i] setValue:[NSString stringWithFormat:@"%.1f",s] forKey:@"zongjia"];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
         }else{
             float s=[[arr[i] objectForKey:@"prodPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
-            [arr[i] setValue:[NSString stringWithFormat:@"%.1f",s] forKey:@"zongjia"];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
         }
     }
     
@@ -68,7 +68,7 @@
     _dianhuahaoma.text=[NSString stringWithFormat:@"%@",[s objectForKey:@"shoujihao"]];
     _xingming.text=[NSString stringWithFormat:@"%@",[geren objectForKey:@"name"]];
     _dizhi.text=[NSString stringWithFormat:@"%@ %@",[geren objectForKey:@"area"],[geren objectForKey:@"detail"]];
-    _hejijiage.text=[NSString stringWithFormat:@"%.1f",heji];
+    _hejijiage.text=[NSString stringWithFormat:@"%.2f",heji];
     
 }
 //组
@@ -79,7 +79,7 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return arr.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
@@ -179,8 +179,22 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
+    NSMutableArray *yaoId = [[NSMutableArray alloc]init];
+    NSMutableArray *shuId = [[NSMutableArray alloc]init];
+    for ( int i = 0; i < arr.count ; i++ ) {
+        
+        [yaoId addObject:[arr[i] objectForKey:@"id"]];
+        [shuId addObject:[arr[i] objectForKey:@"shuliang"]];
+        
+    }
+    
+    NSString*vip;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    
     //会员ID  药品ID 数量   药品id与数量放到列表
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"",@"",@"",@"",@"", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",yaoId,@"",shuId,@"", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -199,7 +213,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"responseObject%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 [WarningBox warningBoxModeText:@"提交成功" andView:self.view];

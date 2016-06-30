@@ -12,8 +12,9 @@
 
 
 @property (strong,nonatomic) NSString *jiangpinid;
-@property (nonatomic,strong)UITableView *tableview;
+@property (nonatomic,strong) UITableView *tableview;
 @property (strong,nonatomic) NSString *couId;
 @property (strong,nonatomic) NSString *couInfoId;
+@property (strong,nonatomic) NSString *panduan;
 
 @end

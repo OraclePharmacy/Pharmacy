@@ -47,9 +47,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-    
+    [self wangluo];
 //    [self shipinbofang:nil];
-    [self kongjian];
+    
 }
 //创建cell显示控件
 -(void)kongjian
@@ -93,13 +93,13 @@
     
     shoucang = [[UIButton alloc]init];
     shoucang.frame = CGRectMake(width - 70, CGRectGetMaxY(image.frame) + 10, 15, 15);
-    [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+   // [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
     dianzan = [[UIButton alloc]init];
     dianzan.frame = CGRectMake(width - 45, CGRectGetMaxY(image.frame) + 10, 15, 15);
-    [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
+    //[dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
     [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dianzan];
     
@@ -108,6 +108,31 @@
     [fenxiang setBackgroundImage:[UIImage imageNamed:@"share(1).png"] forState:UIControlStateNormal];
     [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fenxiang];
+    
+    
+    //点赞
+    if ([dian isEqualToString:@"0"])
+    {
+        zan = 2;
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light.png"] forState:UIControlStateNormal];
+    }
+    else if([dian isEqualToString:@"1"])
+    {
+        zan = 1;
+        [dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
+    }
+    //收藏
+    if ([shou isEqualToString:@"0"])
+    {
+        cang = 2;
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_light(1).png"] forState:UIControlStateNormal];
+    }
+    else if([shou isEqualToString:@"1"])
+    {
+        cang = 1;
+        [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+    }
+
     
 }
 //点击手势
@@ -119,7 +144,7 @@
     if (viewClicked == image)
     {
         [self.view endEditing:YES];
-        [self wangluo];
+        //[self wangluo];
         NSLog(@"imageView1");
         
     }
@@ -437,16 +462,19 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             NSLog(@"－＊－＊－＊－＊－＊详情接口＊－＊－＊＊－\n\n\n%@",responseObject);
             NSString*shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
+            dian = [[responseObject objectForKey:@"data"] objectForKey:@"clickMark"];
+            shou = [[responseObject objectForKey:@"data"] objectForKey:@"mark"];
+            [self kongjian];
             
             
             NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
-            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
-                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
-            }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
-            {
-                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
-            }
-            
+//            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
+//                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+//            }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
+//            {
+//                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+//            }
+//            
             
         }
         @catch (NSException * e) {

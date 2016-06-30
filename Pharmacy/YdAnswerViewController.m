@@ -214,15 +214,15 @@
 -(void)kongjian
 {
     self.image = [[UIImageView alloc]init];
-    self.image.frame = CGRectMake(0, 64, width, 120);
-    self.image.image = [UIImage imageNamed:@"bj.png"];
+    self.image.frame = CGRectMake(20, 64, width - 40, 150);
+    self.image.image = [UIImage imageNamed:@"option_tm.png"];
     [self.view addSubview:self.image];
     
     
     self.wenti = [[UILabel alloc]init];
     self.wenti.frame = CGRectMake(10, 190, width - 20, 20);
-    self.wenti.font = [UIFont systemFontOfSize:15];
-    self.wenti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    self.wenti.font = [UIFont systemFontOfSize:13];
+    self.wenti.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.wenti.text = [NSString stringWithFormat:@"问题:%@",[arr[i] objectForKey:@"examName"]];
      self.wenti.textAlignment = NSTextAlignmentCenter;
     self.wenti.hidden = YES;
@@ -231,84 +231,60 @@
     
     self.daan1 = [[UIButton alloc]init];
     self.daan1.frame = CGRectMake(-150, CGRectGetMaxY(self.wenti.frame) + 20, 150, 30);
-    [self.daan1 setTitle:[NSString stringWithFormat:@"A.%@",[arr[i] objectForKey:@"optA"]] forState:UIControlStateNormal];
-    [self.daan1 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
-    [self.daan1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.daan1 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optA"]] forState:UIControlStateNormal];
+    [self.daan1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.daan1.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.daan1.backgroundColor = [UIColor whiteColor];
     self.daan1.layer.cornerRadius = 5;
     self.daan1.layer.masksToBounds = YES;
-    self.daan1.layer.borderWidth =1;
-    self.daan1.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
-//    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-//    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
-    [self.daan1 setBackgroundColor:[UIColor whiteColor]];
+    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"option_a2.png"] forState:UIControlStateNormal];
+    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"option_a1.png"] forState:UIControlStateSelected];
     [self.daan1 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
+    [self.daan1 setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,-50)];
     [self.view addSubview:self.daan1];
     
     
     self.daan2 = [[UIButton alloc]init];
     self.daan2.frame = CGRectMake(-150, CGRectGetMaxY(self.daan1.frame) + 20, 150, 30);
-    [self.daan2 setTitle:[NSString stringWithFormat:@"B.%@",[arr[i] objectForKey:@"optB"]] forState:UIControlStateNormal];
-    [self.daan2 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
-    [self.daan2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.daan2 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optB"]] forState:UIControlStateNormal];
+    [self.daan2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.daan2.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.daan2.backgroundColor = [UIColor whiteColor];
     self.daan2.layer.cornerRadius = 5;
-    self.daan2.layer.masksToBounds = YES;
-    self.daan2.layer.borderWidth =1;
     self.daan2.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
-    [self.daan2 setBackgroundColor:[UIColor whiteColor]];
+    [self.daan2 setBackgroundImage:[UIImage imageNamed:@"option_b2.png"] forState:UIControlStateNormal];
+    [self.daan2 setBackgroundImage:[UIImage imageNamed:@"option_b1.png"] forState:UIControlStateSelected];
     [self.daan2 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
+    [self.daan2 setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,-50)];
     [self.view addSubview:self.daan2];
     
     
     self.daan3 = [[UIButton alloc]init];
     self.daan3.frame = CGRectMake(-150, CGRectGetMaxY(self.daan2.frame) + 20, 150, 30);
-    [self.daan3 setTitle:[NSString stringWithFormat:@"C.%@",[arr[i] objectForKey:@"optC"]] forState:UIControlStateNormal];
-    [self.daan3 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
-    [self.daan3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.daan3 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optC"]] forState:UIControlStateNormal];
+    [self.daan3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.daan3.titleLabel.font = [UIFont systemFontOfSize:15];
     self.daan3.backgroundColor = [UIColor whiteColor];
-    self.daan3.layer.cornerRadius = 5;
-    self.daan3.layer.masksToBounds = YES;
-    self.daan3.layer.borderWidth =1;
-    self.daan3.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
-    [self.daan3 setBackgroundColor:[UIColor whiteColor]];
+    [self.daan3 setBackgroundImage:[UIImage imageNamed:@"option_c2.png"] forState:UIControlStateNormal];
+    [self.daan3 setBackgroundImage:[UIImage imageNamed:@"option_c1.png"] forState:UIControlStateSelected];
     [self.daan3 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
+    [self.daan3 setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,-50)];
     [self.view addSubview:self.daan3];
     
     
     self.daan4 = [[UIButton alloc]init];
     self.daan4.frame = CGRectMake(-150, CGRectGetMaxY(self.daan3.frame) + 20, 150, 30);
-    [self.daan4 setTitle:[NSString stringWithFormat:@"D.%@",[arr[i] objectForKey:@"optD"]] forState:UIControlStateNormal];
-    [self.daan4 setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
-    [self.daan4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.daan4 setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"optD"]] forState:UIControlStateNormal];
+    [self.daan4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.daan4.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.daan4.backgroundColor = [UIColor whiteColor];
-    self.daan4.layer.cornerRadius = 5;
-    self.daan4.layer.masksToBounds = YES;
-    self.daan4.layer.borderWidth =1;
-    self.daan4.layer.borderColor  = [[UIColor colorWithHexString:@"32be60" alpha:1]CGColor];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0797.jpg"] forState:UIControlStateNormal];
-    //    [self.daan1 setBackgroundImage:[UIImage imageNamed:@"IMG_0798.jpg"] forState:UIControlStateSelected];
-    [self.daan4 setBackgroundColor:[UIColor whiteColor]];
+    [self.daan4 setBackgroundImage:[UIImage imageNamed:@"option_d2.png"] forState:UIControlStateNormal];
+    [self.daan4 setBackgroundImage:[UIImage imageNamed:@"option_d1.png"] forState:UIControlStateSelected];
     [self.daan4 addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
+    [self.daan4 setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,-50)];
     [self.view addSubview:self.daan4];
     
     
     self.quding = [[UIButton alloc]init];
-    self.quding.frame = CGRectMake(20, CGRectGetMaxY(self.daan4.frame) + 40, width - 40, 30);
-    [self.quding setTitle:@"确 认" forState:UIControlStateNormal];
-    self.quding.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.quding.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
-    self.quding.layer.cornerRadius = 5;
-    self.quding.layer.masksToBounds = YES;
-    [self.quding setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
+    self.quding.frame = CGRectMake((width  - 200 )/2, CGRectGetMaxY(self.daan4.frame) + 40, 200, 35);
+        [self.quding setBackgroundImage:[UIImage imageNamed:@"option_qr.png"] forState:UIControlStateNormal];
     [self.quding addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     self.quding.hidden = YES;
     [self.view addSubview:self.quding];
@@ -389,11 +365,11 @@
         self.daan1=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"a";
-            [self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"a"];
-            [self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         
     }
@@ -403,11 +379,11 @@
         self.daan2=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"b";
-            [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+           // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"b"];
-            [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+           // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -417,11 +393,11 @@
         self.daan3=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"c";
-            [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+          //  [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"c"];
-            [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+           // [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -431,11 +407,11 @@
         self.daan4=btn;
         if (xuanxiang.length == 0) {
             xuanxiang = @"d";
-            [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+         //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
         else{
             xuanxiang = [xuanxiang stringByAppendingString:@"d"];
-            [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+         //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
         }
 
     }
@@ -515,7 +491,7 @@
         [self.kuxiaoimage removeFromSuperview];
         [self.fenshuwei removeFromSuperview];
         
-        //[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 -(void)donghua
