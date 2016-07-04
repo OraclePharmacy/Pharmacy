@@ -103,7 +103,7 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                NSLog(@"datadicdatadicdatadicdatadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
+                NSLog(@"dicdatadic%@",datadic);
 
                 
                 arr = [datadic objectForKey:@"pharmacistInfoList"];
@@ -166,6 +166,7 @@
     baseView.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     
     UIView *bai = [[UIView alloc]initWithFrame:CGRectMake(0, 1, width, 18)];
+    
     bai.backgroundColor = [UIColor whiteColor];
     
     [baseView addSubview:bai];

@@ -104,6 +104,16 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     [denglu setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
     [denglu addTarget:self action:@selector(denglu) forControlEvents:UIControlEventTouchUpInside];
 
+//    if (denglu)
+//    {
+//        image.image = [UIImage imageNamed:@"小人@2x.png"];
+//        [denglu setTitle:@"登录/注册" forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        image.image = [UIImage imageNamed:@"小人@2x.png"];
+//        [denglu setTitle:@" 个人信息" forState:UIControlStateNormal];
+//    }
     [baseView addSubview:image];
     [baseView addSubview:denglu];
     return baseView;
@@ -195,8 +205,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         [self.navigationController pushViewController:SheZhi animated:YES];
         
     }
-
-    
 
 }
 

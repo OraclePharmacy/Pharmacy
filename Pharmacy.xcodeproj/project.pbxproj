@@ -243,6 +243,7 @@
 		95F7F7061CFBE93C00EF30B7 /* collection_light(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95F7F7011CFBE93C00EF30B7 /* collection_light(1).png */; };
 		95F7F7071CFBE93C00EF30B7 /* share(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95F7F7021CFBE93C00EF30B7 /* share(1).png */; };
 		95F7F70C1CFC16A400EF30B7 /* YdmendianxinxiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F7F70B1CFC16A400EF30B7 /* YdmendianxinxiViewController.m */; };
+		95FD88391D265DA8009B00C2 /* YdjiluViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FD88381D265DA8009B00C2 /* YdjiluViewController.m */; };
 		D201E8E61CF6DD2C00E890EB /* huoqumendianyouhuijuan.m in Sources */ = {isa = PBXBuildFile; fileRef = D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */; };
 		D20AC3921CED9BEC003A52AC /* dianzixiangqing.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AC3911CED9BEC003A52AC /* dianzixiangqing.m */; };
 		D212B5411CF7D15D001B5EAB /* YDTejialiebiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */; };
@@ -662,6 +663,8 @@
 		95F7F7021CFBE93C00EF30B7 /* share(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share(1).png"; sourceTree = "<group>"; };
 		95F7F70A1CFC16A400EF30B7 /* YdmendianxinxiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdmendianxinxiViewController.h; sourceTree = "<group>"; };
 		95F7F70B1CFC16A400EF30B7 /* YdmendianxinxiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdmendianxinxiViewController.m; sourceTree = "<group>"; };
+		95FD88371D265DA8009B00C2 /* YdjiluViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdjiluViewController.h; sourceTree = "<group>"; };
+		95FD88381D265DA8009B00C2 /* YdjiluViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdjiluViewController.m; sourceTree = "<group>"; };
 		D201E8E41CF6DD2C00E890EB /* huoqumendianyouhuijuan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huoqumendianyouhuijuan.h; sourceTree = "<group>"; };
 		D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = huoqumendianyouhuijuan.m; sourceTree = "<group>"; };
 		D20AC3901CED9BEC003A52AC /* dianzixiangqing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dianzixiangqing.h; sourceTree = "<group>"; };
@@ -1340,6 +1343,7 @@
 			children = (
 				952A1A0E1CD8450F00582D26 /* YdYaoXiangViewController.h */,
 				952A1A0F1CD8450F00582D26 /* YdYaoXiangViewController.m */,
+				95FD88361D265D80009B00C2 /* 添加记录 */,
 			);
 			name = "智慧药箱";
 			sourceTree = "<group>";
@@ -1910,6 +1914,15 @@
 			name = "轮播详情";
 			sourceTree = "<group>";
 		};
+		95FD88361D265D80009B00C2 /* 添加记录 */ = {
+			isa = PBXGroup;
+			children = (
+				95FD88371D265DA8009B00C2 /* YdjiluViewController.h */,
+				95FD88381D265DA8009B00C2 /* YdjiluViewController.m */,
+			);
+			name = "添加记录";
+			sourceTree = "<group>";
+		};
 		D23EA32D1CEE9A81000454FE /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2097,6 +2110,7 @@
 				TargetAttributes = {
 					9505D6C81C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = GP8BUACAG4;
 					};
 					9505D6E11C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -2394,6 +2408,7 @@
 				9502A4AA1C9D21B200578339 /* YdDiseaseViewController.m in Sources */,
 				95E1898C1CE5CC5E008EB1A4 /* YdWoDeDingDanViewController.m in Sources */,
 				9505367A1CCF5F5C00BA1C43 /* YdShopViewController.m in Sources */,
+				95FD88391D265DA8009B00C2 /* YdjiluViewController.m in Sources */,
 				95C3727B1CB646500083AC90 /* YdTurntableViewController.m in Sources */,
 				95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */,
 				95609EA61CABC72E00AF65E4 /* SBJsonStreamWriterState.m in Sources */,

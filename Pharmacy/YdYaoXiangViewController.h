@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdYaoXiangViewController : UIViewController
+@interface YdYaoXiangViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (weak, nonatomic) IBOutlet UIButton *tianjia;
+
+- (IBAction)tianjia:(id)sender;
 
 @end

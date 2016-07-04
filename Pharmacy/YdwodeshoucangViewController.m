@@ -14,6 +14,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "YdTextDetailsViewController.h"
+#import "YdInformationDetailsViewController.h"
 
 @interface YdwodeshoucangViewController ()
 {
@@ -94,7 +96,7 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
+            NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -258,6 +260,23 @@
     //    TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
     //    TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
     //    [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+    
+    if ([[arr[indexPath.row] objectForKey:@"type"] isEqualToString:@"0"])
+    {
+        //跳转文字资讯详情
+        YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+        //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+        TextDetails.xixi=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+        [self.navigationController pushViewController:TextDetails animated:YES];
+    }
+    else
+    {
+        YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
+        InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+        InformationDetails.liexing=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"type"]];
+        [self.navigationController pushViewController:InformationDetails animated:YES];
+    }
+    
     
 }
 //返回

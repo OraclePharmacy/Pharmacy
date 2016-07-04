@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
     i=0;
     [WarningBox warningBoxModeIndeterminate:@"页面加载中....." andView:self.view];
     _webview.hidden=YES;
@@ -31,8 +33,6 @@
     NSString * path=@"http://www.baidu.com";
     NSURL *url=[NSURL URLWithString:path];
     [_webview loadRequest:[NSURLRequest requestWithURL:url]];
-    
-   
     
 }
 
@@ -69,8 +69,6 @@
             
         }];
 
-
-        
 
     }
     
