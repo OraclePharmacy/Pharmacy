@@ -840,6 +840,9 @@
         }
         else if (section == 4)
         {
+            if (rementieziarray.count==0) {
+                return 0;
+            }else
             return 30;
         }
         else if (section == 5)
@@ -861,6 +864,9 @@
         
     }else{
         if (section == 4) {
+            if(rementieziarray.count==0){
+                
+            }else{
             
             UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
             baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -880,6 +886,7 @@
             [baseView addSubview:gengduo];
             
             return baseView;
+            }
         }
         else if (section == 5)
         {
@@ -1059,7 +1066,7 @@
                 specialoffer.font = [UIFont systemFontOfSize:13];
                 specialoffer.textAlignment = NSTextAlignmentCenter;
                 specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-                specialoffer.text =  [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"specPrice"]];
+                specialoffer.text =  [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"specPrice"] floatValue]];
                 
                 self.scrollView.pagingEnabled = YES;
                 
@@ -1136,14 +1143,14 @@
                 originalcost.font = [UIFont systemFontOfSize:11];
                 originalcost.textAlignment = NSTextAlignmentCenter;
                 originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-                originalcost.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"price"]];;
+                originalcost.text = [NSString stringWithFormat:@"¥%@",[presentarray[i] objectForKey:@"price"]];;
                 //积分
                 UILabel *specialoffer = [[UILabel alloc] init];
                 specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
                 specialoffer.font = [UIFont systemFontOfSize:13];
                 specialoffer.textAlignment = NSTextAlignmentCenter;
                 specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-                specialoffer.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"integral"]];
+                specialoffer.text = [NSString stringWithFormat:@"%@积分",[presentarray[i] objectForKey:@"integral"]];
                 
                 self.scrollView.pagingEnabled = YES;
                 
