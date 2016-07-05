@@ -846,7 +846,9 @@
             return 30;
         }
         else if (section == 5)
-        {
+        {if (remenzixunarray.count==0) {
+            return 0;
+        }else
             return 30;
         }
         else if (section == 6)
@@ -890,6 +892,9 @@
         }
         else if (section == 5)
         {
+            if (remenzixunarray.count==0) {
+                
+            }else{
             UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
             baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
             
@@ -908,7 +913,7 @@
             [baseView addSubview:gengduo];
             
             return baseView;
-            
+            }
         }
         else if (section == 6)
         {

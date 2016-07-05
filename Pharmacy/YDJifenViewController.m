@@ -35,6 +35,7 @@
     // Do any additional setup after loading the view.
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     //状态栏名称
+    NSLog(@"\n\n\n\n\nhgdhasgdjsagdsafjkdshfgdsgfs\n\n\n\n");
     self.navigationItem.title = @"积分礼品";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
@@ -199,9 +200,9 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YDJifenxiangViewController *xiang=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jifenxiang"];
-    xiang.haha=[NSString stringWithFormat:@"%@",[presentarray[indexPath.row] objectForKey:@"id"]];
-    [self.navigationController pushViewController:xiang animated:YES];
+//    YDJifenxiangViewController *xiang=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jifenxiang"];
+//    xiang.haha=[NSString stringWithFormat:@"%@",[presentarray[indexPath.row] objectForKey:@"id"]];
+//    [self.navigationController pushViewController:xiang animated:YES];
 }
 -(void)fanhui{
     [self.navigationController popViewControllerAnimated:YES];

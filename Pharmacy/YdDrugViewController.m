@@ -49,7 +49,7 @@
     //初始化数组
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
-    
+   
     _Tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];    
@@ -211,6 +211,7 @@
     //选中
     [bb1 setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
     [bb1 addTarget:self action:@selector(bb11) forControlEvents:UIControlEventTouchUpInside];
+     bb1.selected=YES;
     [self.Scrollview addSubview:bb1];
     
     bb2 = [[UIButton alloc] init];
