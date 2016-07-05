@@ -189,8 +189,10 @@
     _pageControl.currentPage = _centerImageIndex;
 
     _labTitle.text = _arrAdTitle[_centerImageIndex];
-    
-    _scrollView.contentOffset = CGPointMake(kADView_Width, 0);
+    [_scrollView setContentOffset:CGPointMake(0, 0)];
+    [_scrollView setContentOffset:CGPointMake(kADView_Width, 0) animated:YES];
+
+//    _scrollView.contentOffset = CGPointMake(kADView_Width, 0);
 }
 
 //点击广告轮播的图片

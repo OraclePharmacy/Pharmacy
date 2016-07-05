@@ -895,7 +895,7 @@
             UIButton *gengduo = [[UIButton alloc]init];
             gengduo.frame = CGRectMake(width-30, 5, 30, 20);
             [gengduo setImage:[UIImage imageNamed:@"Multiple-Email-Thread-拷贝-2@3x.png"] forState:UIControlStateNormal];
-            [gengduo addTarget:self action:@selector(yaopingengduo) forControlEvents:UIControlEventTouchUpInside];
+            [gengduo addTarget:self action:@selector(zixunzixun) forControlEvents:UIControlEventTouchUpInside];
             
             [baseView addSubview:tou];
             [baseView addSubview:gengduo];
@@ -1143,7 +1143,7 @@
                 specialoffer.font = [UIFont systemFontOfSize:13];
                 specialoffer.textAlignment = NSTextAlignmentCenter;
                 specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-                specialoffer.text = [NSString stringWithFormat:@"¥%@",[presentarray[i] objectForKey:@"integral"]];
+                specialoffer.text = [NSString stringWithFormat:@"%@",[presentarray[i] objectForKey:@"integral"]];
                 
                 self.scrollView.pagingEnabled = YES;
                 
@@ -1439,6 +1439,9 @@
     YdJiaoLiuViewController*jiaoliu=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
     [self.navigationController pushViewController:jiaoliu animated:YES];
     
+}
+-(void)zixunzixun{
+    NSLog(@"更多咨询咨询");
 }
 //跳转药品分类列表
 -(void)yaopingengduo{

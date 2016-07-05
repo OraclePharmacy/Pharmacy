@@ -100,7 +100,7 @@
     
     UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择", nil];
     actionSheet.tag = 255;
-    [actionSheet showInView:self.view];
+    [actionSheet  showInView:self.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -183,8 +183,7 @@
     [fm createDirectoryAtPath:dicpath withIntermediateDirectories:NO attributes:nil error:nil];
     
     NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
-    
-    
+        
     [fm createFileAtPath:picpath contents:imageData attributes:nil];
     if (po==1) {
         
@@ -197,10 +196,7 @@
         
     }
     
-    
 }
-
-
 
 - (IBAction)first:(id)sender {
     [self.view endEditing:YES];
@@ -247,7 +243,6 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    
     //请求地址   地址不同 必须要改
     NSString * url =@"/basic/saveEmr";
     
@@ -260,11 +255,9 @@
     NSLog(@"%@",datadic);
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
-    
     [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i=0; i<heheda.count; i++) {
             //对图片进行多个上传
-            
             UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
             NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
             NSDateFormatter *fm = [[NSDateFormatter alloc] init];
@@ -296,14 +289,12 @@
                 [WarningBox warningBoxModeIndeterminate:@"上传失败!" andView:self.view];
             }
             
-            
         }
         @catch (NSException * e) {
             
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
-        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -312,8 +303,6 @@
         
     }];
 
-    
-    
     
 }
 @end

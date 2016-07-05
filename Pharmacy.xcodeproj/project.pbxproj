@@ -2110,7 +2110,7 @@
 				TargetAttributes = {
 					9505D6C81C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = GP8BUACAG4;
+						DevelopmentTeam = KBRTKNG36Q;
 					};
 					9505D6E11C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -2590,7 +2590,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
+				PRODUCT_BUNDLE_IDENTIFIER = Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2617,7 +2617,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sk.Pharmacy;
+				PRODUCT_BUNDLE_IDENTIFIER = Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
