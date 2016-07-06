@@ -34,21 +34,51 @@
 
 @implementation YdShoppingCartViewController
 -(void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults * user=[NSUserDefaults standardUserDefaults];
+    if ([[user objectForKey:@"wancheng"] intValue]==1) {
+        yikaishi=nil;
+        _lianxidianzhnag.hidden=YES;
+        _tijiao.hidden=YES;
+        [user setObject:@"0" forKey:@"wancheng"];
+       
+        
+        
+        
+        //添加一张没有物品的图片
+    
+    
+    
+    
+    }else{
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
     
     NSLog(@"%@",countwenjian);
     NSFileManager *file=[NSFileManager defaultManager];
-    
     if([file fileExistsAtPath:countwenjian]){
         yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
         _lianxidianzhnag.hidden=NO;
         _tijiao.hidden=NO;
+        if (yikaishi.count==0) {
+            yikaishi=nil;
+            _lianxidianzhnag.hidden=YES;
+            _tijiao.hidden=YES;
+        }
     }else{
         yikaishi=nil;
         _lianxidianzhnag.hidden=YES;
         _tijiao.hidden=YES;
+        
+        
+        
+        //添加一张没有物品的图片
+        
+        
+        
+        
     }
+    }
+    NSLog(@"刚进来\n\n%@",yikaishi);
     [_tableview reloadData];
 }
 - (void)viewDidLoad {
@@ -245,23 +275,28 @@
 }
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath //对选中的Cell根据editingStyle进行操作
 {
+    if (aa == 2) {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //删除字典内容
+        
+        [yikaishi removeObjectAtIndex:indexPath.row];
+        NSLog(@"0.0%@",yikaishi);
+        
+        if (yikaishi.count==0) {
+            //yikaishi=nil;
+        }
+        
+        [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.tableview reloadData];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        [self.tableview reloadData];
+    }
     
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            
-            //删除字典内容
-            
-            [yikaishi removeObjectAtIndex:indexPath.row];
-            if (yikaishi.count==0) {
-                yikaishi=nil;
-            }
-            [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            
-            [self.tableview reloadData];
-        }
-        else if (editingStyle == UITableViewCellEditingStyleInsert)
-        {
-            [self.tableview reloadData];
-        }
+}
     
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -335,8 +370,7 @@
 
 -(void)baocun
 {
-    
-    
+    NSLog(@"zheshiji  %@",yikaishi);
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
   
     [yikaishi writeToFile:countwenjian atomically:YES];
@@ -346,7 +380,7 @@
     self.navigationItem.rightBarButtonItem = right;
     
     [self.tableview reloadData];
-
+    [self viewWillAppear:YES];
 }
 -(void)xiaoshi
 {

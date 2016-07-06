@@ -225,6 +225,15 @@
                 
                 [WarningBox warningBoxModeText:@"提交成功" andView:self.view];
                 
+                NSUserDefaults *user=[NSUserDefaults standardUserDefaults];
+                [user setObject:@"1" forKey:@"wancheng"];
+                //删除plist文件
+                NSFileManager *defaultManager;
+                defaultManager = [NSFileManager defaultManager];
+                NSString*path=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+                [defaultManager removeItemAtPath:path error:NULL];
+                [self.navigationController popViewControllerAnimated:YES];
+                
             }
         }
         @catch (NSException * e) {
