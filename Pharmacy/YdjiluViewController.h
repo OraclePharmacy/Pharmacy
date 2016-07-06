@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdjiluViewController : UIViewController
+@interface YdjiluViewController : UIViewController<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
+
+@property (weak, nonatomic) IBOutlet UITextField *name;
+
+@property (weak, nonatomic) IBOutlet UITextField *changshang;
+
+@property (weak, nonatomic) IBOutlet UITextField *time;
+
+@property (weak, nonatomic) IBOutlet UITextField *cishu;
+
+@property (weak, nonatomic) IBOutlet UIButton *baocun;
+- (IBAction)baocun:(id)sender;
 
 @end

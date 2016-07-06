@@ -181,11 +181,17 @@
     //出入参数：
     NSMutableArray *yaoId = [[NSMutableArray alloc]init];
     NSMutableArray *shuId = [[NSMutableArray alloc]init];
+    NSDictionary *liebiao;
+    NSMutableArray *liebiao1 = [[NSMutableArray alloc]init];
     for ( int i = 0; i < arr.count ; i++ ) {
         
         [yaoId addObject:[arr[i] objectForKey:@"id"]];
         [shuId addObject:[arr[i] objectForKey:@"shuliang"]];
+//        NSDictionary *yaoid = [NSDictionary dictionaryWithObjectsAndKeys:[arr[i] objectForKey:@"id"], @"id",nil];
+//        NSDictionary *shuId = [NSDictionary dictionaryWithObjectsAndKeys:[arr[i] objectForKey:@"shuliang"], @"amount",nil];
+        liebiao = [NSDictionary dictionaryWithObjectsAndKeys:yaoId[i],@"id",shuId[i],@"amount", nil];
         
+        [liebiao1 addObject:liebiao];
     }
     
     NSString*vip;
@@ -194,8 +200,9 @@
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
     //会员ID  药品ID 数量   药品id与数量放到列表
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",yaoId,@"",shuId,@"", nil];
-    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1110",@"vipId",liebiao1,@"vipBuyRec", nil];
+    NSLog(@"=========%@",datadic);
+    NSLog(@"%@",vip);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名

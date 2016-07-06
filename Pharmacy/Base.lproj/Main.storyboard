@@ -2117,6 +2117,9 @@
                                 <state key="normal" title="保存">
                                     <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="baocun:" destination="EfT-Qv-5gp" eventType="touchUpInside" id="nCX-td-RZY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2149,6 +2152,14 @@
                             <constraint firstItem="hiA-hu-EQ3" firstAttribute="leading" secondItem="xLy-IR-iKJ" secondAttribute="leadingMargin" id="ud3-6u-dYI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="baocun" destination="HR1-pz-Are" id="V1f-yf-xsy"/>
+                        <outlet property="changshang" destination="JMt-0w-zWt" id="bxc-Ud-bwR"/>
+                        <outlet property="cishu" destination="jTb-q7-yKo" id="0Ue-fz-80j"/>
+                        <outlet property="name" destination="3Mw-Vg-GMg" id="fPV-oa-m8k"/>
+                        <outlet property="photo" destination="bLZ-G8-Ekx" id="wBJ-lc-y8a"/>
+                        <outlet property="time" destination="hiA-hu-EQ3" id="uDU-4m-CdE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="544-Tx-S0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

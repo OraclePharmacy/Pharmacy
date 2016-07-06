@@ -73,7 +73,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -264,7 +264,7 @@
 -(void)queren
 {
     //NSLog(@"%@",[arr[queren.tag - 100] objectForKey:@"states"]);
-    if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"3"]) {
+    if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"1"]) {
         
         //userID    暂时不用改
         NSString * userID=@"0";
@@ -330,13 +330,17 @@
     }
     else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"2"])
     {
-        [WarningBox warningBoxModeText:@"您已确认收货！" andView:self.view];
+        [WarningBox warningBoxModeText:@"订单已完成，无法进行操作！" andView:self.view];
     }
-    else
+     else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"3"])
     {
         [WarningBox warningBoxModeText:@"暂未发货,不能收货！" andView:self.view];
     }
+    else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"0"])
+    {
+        [WarningBox warningBoxModeText:@"正在处理中,请稍后..." andView:self.view];
 
+    }
 }
 
 //返回
