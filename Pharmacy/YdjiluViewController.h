@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdjiluViewController : UIViewController<UITextFieldDelegate>
+@interface YdjiluViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 

@@ -9,10 +9,21 @@
 #import "YdYaoXiangViewController.h"
 #import "Color+Hex.h"
 #import "YdjiluViewController.h"
+#import "YdRemindViewController.h"
 @interface YdYaoXiangViewController ()
 {
     CGFloat width;
     CGFloat height;
+    
+    NSMutableArray *cishu1;
+    NSDictionary* dic2;
+    
+    NSMutableArray *changshang1 ;
+    NSMutableArray *name1;
+    NSMutableArray *time1;
+    NSMutableArray *cishu2;
+    
+    int ccc;
 }
 @end
 
@@ -21,8 +32,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    changshang1 = [[NSMutableArray alloc]init];
+    name1 = [[NSMutableArray alloc]init];
+    time1 = [[NSMutableArray alloc]init];
+    cishu2 = [[NSMutableArray alloc]init];
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
+    
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSLog(@"path = %@",path);
+    NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
+    
+    //判断是否已经创建文件
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
+        
+        ccc = 1;
+        //读文件
+        dic2 = [NSDictionary dictionaryWithContentsOfFile:filename];
+        
+        changshang1 = [dic2 objectForKey:@"changshang"];
+        name1 = [dic2 objectForKey:@"name"];
+        cishu2 = [dic2 objectForKey:@"cishu"];
+        time1 = [dic2 objectForKey:@"time"];
+        
+    }else {
+        
+        ccc = 2;
+        
+    }
     
     //状态栏名称
     self.navigationItem.title = @"智慧药箱";
@@ -32,6 +71,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    self.tianjia.layer.cornerRadius = 5;
+    self.tianjia.layer.masksToBounds = YES;
     
 }
 
@@ -43,7 +85,15 @@
 //cell
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (ccc == 1)
+    {
+        return changshang1.count;
+    }
+    else if (ccc == 2)
+    {
+         return 0;
+    }
+    return 0;
 }
 //cell高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -77,32 +127,31 @@
     
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(90, 5, width - 95, 20);
-    name.text = @"名    称:   林俊杰";
+    name.text = [NSString stringWithFormat:@"名    称:   %@",name1[indexPath.row]];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:name ];
     
     UILabel *changshang = [[UILabel alloc]init];
     changshang.frame = CGRectMake(90, 25, width - 95, 20);
-    changshang.text = @"厂    商:   林俊杰工厂";
+    changshang.text = [NSString stringWithFormat:@"厂    商:   %@",changshang1[indexPath.row]];
     changshang.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     changshang.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:changshang];
     
     UILabel *time = [[UILabel alloc]init];
     time.frame = CGRectMake(90, 45, width - 95, 20);
-    time.text = @"有限期:   12个月";
+    time.text = [NSString stringWithFormat:@"有限期:   %@",time1[indexPath.row]];
     time.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     time.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:time];
     
     UILabel *num = [[UILabel alloc]init];
     num.frame = CGRectMake(90, 65, width - 95, 20);
-    num.text = @"次    数:   3次/日";
+    num.text = [NSString stringWithFormat:@"次    数:   %@",cishu2[indexPath.row]];
     num.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     num.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:num];
-    
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -111,9 +160,45 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    YdRemindViewController *Remind = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"remind"];
+    [self.navigationController pushViewController:Remind animated:YES];
     
 }
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath //对选中的Cell根据editingStyle进行操作
+{
 
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        //删除字典内容
+        
+        [changshang1 removeObjectAtIndex:indexPath.row];
+        [name1 removeObjectAtIndex:indexPath.row];
+        [time1 removeObjectAtIndex:indexPath.row];
+        [cishu2 removeObjectAtIndex:indexPath.row];
+        NSLog(@"0.0%@,%@,%@,%@",name1,changshang1,time1,cishu2);
+        
+        if (changshang1.count==0) {
+            //yikaishi=nil;
+        }
+        
+        [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path=[paths    objectAtIndex:0];
+        NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu2,@"cishu",nil]; //写入数据
+        [dic writeToFile:filename atomically:YES];
+        
+        [self.tableview reloadData];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        [self.tableview reloadData];
+    }
+    
+    
+    
+}
 
 -(void)fanhui
 {
