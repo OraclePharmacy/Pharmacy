@@ -74,12 +74,79 @@
     self.photo.layer.masksToBounds = YES;
     UITapGestureRecognizer *shoushifangfa=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zhaoxiang)];
     [self.photo addGestureRecognizer:shoushifangfa];
+    [self.photo setUserInteractionEnabled:YES];
 }
 -(void)zhaoxiang
 {
     UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择", nil];
     actionSheet.tag = 255;
     [actionSheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 取消
+                    return;
+                case 1:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                    
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:NO completion:^{}];
+        
+        //        [imagePickerController release];
+    }
+}
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+
+{
+    
+    [picker dismissViewControllerAnimated:NO completion:^{}];
+    
+    self.photo = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // 保存图片至本地，方法见下文
+    
+    //按时间为图片命名
+
+    
+   
+    
 }
 
 //点击编辑区以外的地方键盘消失
