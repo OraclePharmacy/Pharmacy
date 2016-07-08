@@ -142,6 +142,7 @@
 		959F9E531CBE215700C5D019 /* YdElectronicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E521CBE215700C5D019 /* YdElectronicsViewController.m */; };
 		959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */; };
 		959F9E5E1CBE23EF00C5D019 /* YdRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */; };
+		95A301E01D2FA1510084C81E /* YdyuwoxiangguanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A301DF1D2FA1510084C81E /* YdyuwoxiangguanViewController.m */; };
 		95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60521D1391C2002E4A71 /* ModelClock.m */; };
 		95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722B1CB5F5780083AC90 /* 1213465@2x.png */; };
 		95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722C1CB5F5780083AC90 /* 1213465@3x.png */; };
@@ -529,6 +530,8 @@
 		959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdchatViewController.m; sourceTree = "<group>"; };
 		959F9E5C1CBE23EF00C5D019 /* YdRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdRecommendViewController.h; sourceTree = "<group>"; };
 		959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecommendViewController.m; sourceTree = "<group>"; };
+		95A301DE1D2FA1510084C81E /* YdyuwoxiangguanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyuwoxiangguanViewController.h; sourceTree = "<group>"; };
+		95A301DF1D2FA1510084C81E /* YdyuwoxiangguanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyuwoxiangguanViewController.m; sourceTree = "<group>"; };
 		95AE60511D1391C2002E4A71 /* ModelClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelClock.h; sourceTree = "<group>"; };
 		95AE60521D1391C2002E4A71 /* ModelClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelClock.m; sourceTree = "<group>"; };
 		95C3722B1CB5F5780083AC90 /* 1213465@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@2x.png"; sourceTree = "<group>"; };
@@ -1215,6 +1218,7 @@
 			children = (
 				9537170B1CE6CFB600CA959D /* YdwodetieziViewController.h */,
 				9537170C1CE6CFB600CA959D /* YdwodetieziViewController.m */,
+				95A301DD1D2FA10A0084C81E /* 与我相关 */,
 			);
 			name = "我的帖子";
 			sourceTree = "<group>";
@@ -1421,6 +1425,15 @@
 				959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */,
 			);
 			name = "药师聊天";
+			sourceTree = "<group>";
+		};
+		95A301DD1D2FA10A0084C81E /* 与我相关 */ = {
+			isa = PBXGroup;
+			children = (
+				95A301DE1D2FA1510084C81E /* YdyuwoxiangguanViewController.h */,
+				95A301DF1D2FA1510084C81E /* YdyuwoxiangguanViewController.m */,
+			);
+			name = "与我相关";
 			sourceTree = "<group>";
 		};
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
@@ -2429,6 +2442,7 @@
 				95C372781CB645DF0083AC90 /* YdShakeViewController.m in Sources */,
 				D23EE57F1CBB4BC1000A9F01 /* AFURLRequestSerialization.m in Sources */,
 				95609EFA1CABC74E00AF65E4 /* SDWebImageManager.m in Sources */,
+				95A301E01D2FA1510084C81E /* YdyuwoxiangguanViewController.m in Sources */,
 				95104D7C1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m in Sources */,
 				9537170D1CE6CFB600CA959D /* YdwodetieziViewController.m in Sources */,
 				D23EA35C1CEE9A81000454FE /* MJRefreshComponent.m in Sources */,

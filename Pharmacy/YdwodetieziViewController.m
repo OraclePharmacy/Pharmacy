@@ -15,6 +15,7 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import "YdTieZiXiangQingViewController.h"
+#import "YdyuwoxiangguanViewController.h"
 
 @interface YdwodetieziViewController ()
 {
@@ -40,6 +41,8 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"与我相关" style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -48,6 +51,13 @@
     [self.view addSubview:self.tableview];
     
     [self jiekou];
+}
+
+-(void)guanyu
+{
+    YdyuwoxiangguanViewController *yuwoxiangguan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yuwoxiangguan"];
+
+    [self.navigationController pushViewController:yuwoxiangguan animated:YES];
 }
 
 -(void)jiekou
