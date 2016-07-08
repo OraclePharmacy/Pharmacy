@@ -285,6 +285,7 @@
                 
                 arr = [datadic objectForKey:@"newsList"];
                 
+                NSLog(@"轮播返回：%@",arr);
                 
                 for (int i = 0; i < arr.count; i++) {
                     
@@ -985,14 +986,21 @@
                                                   placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
-                    
-//                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-//                    //门店id
-//                    //NSString *sst = [NSString stringWithFormat:@"%@",[[arr[index] objectForKey:@"office"] objectForKey:@"id"]];
-//                    [self.navigationController pushViewController:banner animated:YES];
-                    
+                    NSLog(@"%ld",(long)index);
+                if (index == 0) {
                     YdmendianxinxiViewController *mendianxinxi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
                     [self.navigationController pushViewController:mendianxinxi animated:YES];
+                }
+                else
+                {
+                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+                    //门店id
+                    NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
+                    banner.xixi = sst;
+                    NSLog(@"sst:%@",sst);
+                    [self.navigationController pushViewController:banner animated:YES];
+                }
+                    
                 };
                 
                 [cell.contentView addSubview:ycAdView];
@@ -1376,7 +1384,7 @@
             
             NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
             [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1] objectForKey:@"id"]] forKey:@"officeid"];
-            //NSLog(@"\n\n\nofficeid-----%@",[pp objectForKey:@"officeid"]);
+            NSLog(@"\n\n\nofficeid-----%@",[pp objectForKey:@"officeid"]);
             [self bannerjiekou];
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];

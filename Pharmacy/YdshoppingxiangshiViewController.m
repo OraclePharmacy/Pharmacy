@@ -195,14 +195,16 @@
     }
     
     NSString*vip;
+    NSString*zhid;
     NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    NSUserDefaults *dd = [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[dd objectForKey:@"officeid"]];
     
     //会员ID  药品ID 数量   药品id与数量放到列表
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1110",@"vipId",liebiao1,@"vipBuyRec", nil];
-    NSLog(@"=========%@",datadic);
-    NSLog(@"%@",vip);
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",liebiao1,@"vipBuyRec",zhid,@"officeId", nil];
+
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名

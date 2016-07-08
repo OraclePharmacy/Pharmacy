@@ -15,8 +15,9 @@
     NSMutableArray *changshang1;
     NSMutableArray *time1;
     NSMutableArray *cishu1;
+    NSMutableArray *tupian1;
     NSDictionary* dic2;
-    
+    NSData *imageData;
     int ccc;
 }
 @end
@@ -30,6 +31,7 @@
     changshang1 = [[NSMutableArray alloc]init];
     time1 = [[NSMutableArray alloc]init];
     cishu1 = [[NSMutableArray alloc]init];
+    tupian1 = [[NSMutableArray alloc]init];
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
@@ -128,6 +130,7 @@
         
         [self presentViewController:imagePickerController animated:NO completion:^{}];
         
+        
         //        [imagePickerController release];
     }
 }
@@ -138,14 +141,35 @@
     
     [picker dismissViewControllerAnimated:NO completion:^{}];
     
-    self.photo = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     // 保存图片至本地，方法见下文
     
     //按时间为图片命名
-
+    NSDateFormatter *forr=[[NSDateFormatter alloc] init];
     
-   
+    [forr setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *name=[NSString stringWithFormat:@"%@.jpg",@"tianjia"/*[forr stringFromDate:[NSDate date]]*/];
+    
+    [self saveImage:image withName:name];
+    
+}
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    NSFileManager *fm=[NSFileManager defaultManager];
+    NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/dianzibinglitupian"];
+    
+    [fm createDirectoryAtPath:dicpath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
+    
+    [fm createFileAtPath:picpath contents:imageData attributes:nil];
+
+        
+   _photo.image=[UIImage imageWithData:imageData];
     
 }
 
@@ -209,11 +233,13 @@
                 changshang1 = [[NSMutableArray alloc]init];
                 time1 = [[NSMutableArray alloc]init];
                 cishu1 = [[NSMutableArray alloc]init];
+                tupian1 = [[NSMutableArray alloc]init];
                 
                 [name1 addObject:self.name.text];
                 [changshang1 addObject:self.changshang.text];
                 [time1 addObject:self.time.text];
                 [cishu1 addObject:self.cishu.text];
+                [tupian1 addObject:imageData];
             }
             else
             {
@@ -221,11 +247,13 @@
                 changshang1 = [dic2 objectForKey:@"changshang"];
                 time1 = [dic2 objectForKey:@"time"];
                 cishu1 = [dic2 objectForKey:@"cishu"];
+                tupian1 = [dic2 objectForKey:@"tupian"];
                 
                 [name1 addObject:self.name.text];
                 [changshang1 addObject:self.changshang.text];
                 [time1 addObject:self.time.text];
                 [cishu1 addObject:self.cishu.text];
+                [tupian1 addObject:imageData];
             }
            
         }
@@ -235,17 +263,20 @@
             [changshang1 addObject:self.changshang.text];
             [time1 addObject:self.time.text];
             [cishu1 addObject:self.cishu.text];
+            [tupian1 addObject:imageData];
         }
         
         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path=[paths    objectAtIndex:0];
         NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu1,@"cishu",nil]; //写入数据
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu1,@"cishu",tupian1,@"tupian",nil]; //写入数据
+        
+        //NSLog(@"%@",dic);
         [dic writeToFile:filename atomically:YES];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加成功" message:@"您已添加成功,是否继续添加?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
         [alert show];
-        
+    
     }
     
 }
@@ -257,6 +288,7 @@
         self.changshang.text =@"";
         self.cishu.text = @"";
         self.time.text = @"";
+        self.photo.image = [UIImage imageNamed:@"相机@2x.png"];
         [self.navigationController popViewControllerAnimated:YES];
         
     }
@@ -266,6 +298,7 @@
         self.changshang.text =@"";
         self.cishu.text = @"";
         self.time.text = @"";
+        self.photo.image = [UIImage imageNamed:@"相机@2x.png"];
     }
 }
 @end

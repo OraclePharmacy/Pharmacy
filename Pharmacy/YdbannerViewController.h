@@ -10,4 +10,6 @@
 
 @interface YdbannerViewController : UIViewController
 
+@property(strong,nonatomic) NSString *xixi;
+
 @end

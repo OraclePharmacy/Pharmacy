@@ -22,6 +22,7 @@
     NSMutableArray *name1;
     NSMutableArray *time1;
     NSMutableArray *cishu2;
+    NSMutableArray *tupian1;
     
     int ccc;
 }
@@ -36,6 +37,7 @@
     name1 = [[NSMutableArray alloc]init];
     time1 = [[NSMutableArray alloc]init];
     cishu2 = [[NSMutableArray alloc]init];
+    tupian1 = [[NSMutableArray alloc]init];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -56,6 +58,7 @@
         name1 = [dic2 objectForKey:@"name"];
         cishu2 = [dic2 objectForKey:@"cishu"];
         time1 = [dic2 objectForKey:@"time"];
+        tupian1 = [dic2 objectForKey:@"tupian"];
         
     }else {
         
@@ -122,7 +125,7 @@
 
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(5, 5, 80, 80);
-    image.image = [UIImage imageNamed:@""];
+    image.image=[UIImage imageWithData:tupian1[indexPath.row]];
     [cell.contentView addSubview:image];
     
     UILabel *name = [[UILabel alloc]init];
@@ -175,6 +178,7 @@
         [name1 removeObjectAtIndex:indexPath.row];
         [time1 removeObjectAtIndex:indexPath.row];
         [cishu2 removeObjectAtIndex:indexPath.row];
+        [tupian1 removeObjectAtIndex:indexPath.row];
         NSLog(@"0.0%@,%@,%@,%@",name1,changshang1,time1,cishu2);
         
         if (changshang1.count==0) {
@@ -186,7 +190,7 @@
         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path=[paths    objectAtIndex:0];
         NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
-        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu2,@"cishu",nil]; //写入数据
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu2,@"cishu",tupian1,@"tupian",nil]; //写入数据
         [dic writeToFile:filename atomically:YES];
         
         [self.tableview reloadData];
