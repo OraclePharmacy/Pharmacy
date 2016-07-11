@@ -119,7 +119,9 @@
         tabButton.backgroundColor = [UIColor clearColor];
         [tabButton addTarget:self action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
         [tabButton setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"cateName"]] forState:UIControlStateNormal];
+        //默认
         [tabButton setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        //选中
         [tabButton setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
         //        //图片
         //        UIImageView *imageview = [[UIImageView alloc]init];
@@ -366,7 +368,7 @@
 {
     str = [[NSString alloc]init];
     UIButton *u = (UIButton *)btn;
-    u.selected = NO;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
+    //u.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
     if (btn.tag == 300)
     {
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
@@ -375,22 +377,22 @@
     else if (btn.tag == 301)
     {
         str = [NSString stringWithFormat:@"%@",[arr[1] objectForKey:@"id"]];;
-        u.selected = YES;
+        u.selected = NO;
     }
     else if (btn.tag == 302)
     {
         str = [NSString stringWithFormat:@"%@",[arr[2] objectForKey:@"id"]];;
-        u.selected = YES;
+        u.selected = NO;
     }
     else if (btn.tag == 303)
     {
         str = [NSString stringWithFormat:@"%@",[arr[3] objectForKey:@"id"]];;
-        u.selected = YES;
+        u.selected = NO;
     }
     else if (btn.tag == 304)
     {
         str = [NSString stringWithFormat:@"%@",[arr[4] objectForKey:@"id"]];;
-        u.selected = YES;
+        u.selected = NO;
     }
     
     [self wenzizixun:str];

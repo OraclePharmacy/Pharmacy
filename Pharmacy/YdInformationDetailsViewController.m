@@ -30,6 +30,10 @@
     NSString *dian;
     int cang;
     NSString *shou;
+    
+    NSString*shareUrl;
+    
+    int bo ;
 }
 
 @end
@@ -48,7 +52,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self wangluo];
-//    [self shipinbofang:nil];
+    //[self shipinbofang:nil];
     
 }
 //创建cell显示控件
@@ -144,7 +148,14 @@
     if (viewClicked == image)
     {
         [self.view endEditing:YES];
-        //[self wangluo];
+        
+        if (bo == 1) {
+            [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+        }
+        else if (bo == 2){
+             [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+        }
+    
         NSLog(@"imageView1");
         
     }
@@ -461,20 +472,23 @@
             
             [WarningBox warningBoxHide:YES andView:self.view];
             NSLog(@"－＊－＊－＊－＊－＊详情接口＊－＊－＊＊－\n\n\n%@",responseObject);
-            NSString*shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
+            shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
             dian = [[responseObject objectForKey:@"data"] objectForKey:@"clickMark"];
             shou = [[responseObject objectForKey:@"data"] objectForKey:@"mark"];
+            
             [self kongjian];
             
             
             NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
-//            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
-//                [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
-//            }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
-//            {
-//                [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
-//            }
-//            
+            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
+                bo = 1;
+               // [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
+            {
+                bo = 2;
+                //[self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            }
+            
             
         }
         @catch (NSException * e) {
@@ -494,8 +508,8 @@
     NSLog(@"%@",sFileNamePath);
     
     
-    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
-//    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://dlqncdn.miaopai.com/stream/VT40C6y1OVXhEdOt5kpgcg__.mp4"]];
+    //MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
+    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://dlqncdn.miaopai.com/stream/VT40C6y1OVXhEdOt5kpgcg__.mp4"]];
     
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
