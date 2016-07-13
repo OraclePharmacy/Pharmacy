@@ -508,8 +508,8 @@
     NSLog(@"%@",sFileNamePath);
     
     
-    //MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
-    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://dlqncdn.miaopai.com/stream/VT40C6y1OVXhEdOt5kpgcg__.mp4"]];
+    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
+    //MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://dlqncdn.miaopai.com/stream/VT40C6y1OVXhEdOt5kpgcg__.mp4"]];
     
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];

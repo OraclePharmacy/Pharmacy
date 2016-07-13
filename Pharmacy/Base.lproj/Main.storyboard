@@ -3255,16 +3255,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-gX-CQm">
-                                <rect key="frame" x="0.0" y="20" width="600" height="480"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsa-IS-X1M">
                                 <rect key="frame" x="470" y="535" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="mtt-hi-nsr"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="shoucang:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="7pv-3n-Jyq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uds-jW-KaA">
                                 <rect key="frame" x="510" y="535" width="30" height="30"/>
@@ -3272,6 +3271,9 @@
                                     <constraint firstAttribute="width" constant="30" id="0pW-hS-OaU"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="dianzan:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="ke7-8L-eJA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gf-aa-cX3">
                                 <rect key="frame" x="550" y="535" width="30" height="30"/>
@@ -3279,7 +3281,14 @@
                                     <constraint firstAttribute="width" constant="30" id="wj9-Z2-hZG"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="fenxiang:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="104-LK-KhW"/>
+                                </connections>
                             </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3B-gX-CQm">
+                                <rect key="frame" x="0.0" y="20" width="600" height="480"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3299,6 +3308,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dianzan" destination="uds-jW-KaA" id="7ET-AS-f58"/>
+                        <outlet property="fenxiang" destination="8Gf-aa-cX3" id="qJu-Q1-YaI"/>
+                        <outlet property="shoucang" destination="fsa-IS-X1M" id="Nwl-Vq-Qju"/>
                         <outlet property="webview" destination="z3B-gX-CQm" id="Gzo-Se-WPt"/>
                     </connections>
                 </viewController>

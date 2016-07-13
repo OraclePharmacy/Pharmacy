@@ -17,6 +17,14 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 
+@property (weak, nonatomic) IBOutlet UIButton *shoucang;
+- (IBAction)shoucang:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *dianzan;
+- (IBAction)dianzan:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *fenxiang;
+- (IBAction)fenxiang:(id)sender;
 
 @end
 
@@ -123,5 +131,21 @@
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
+}
+//收藏
+- (IBAction)shoucang:(id)sender {
+    
+}
+
+//点赞
+- (IBAction)dianzan:(id)sender {
+    
+}
+
+//分享
+- (IBAction)fenxiang:(id)sender {
+    
+    NSLog(@"分享");
+    
 }
 @end
