@@ -3260,7 +3260,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="mtt-hi-nsr"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="shoucang:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="7pv-3n-Jyq"/>
                                 </connections>
@@ -3270,7 +3269,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="0pW-hS-OaU"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="dianzan:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="ke7-8L-eJA"/>
                                 </connections>
@@ -3280,7 +3278,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="wj9-Z2-hZG"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="fenxiang:" destination="MS6-Vr-j8h" eventType="touchUpInside" id="104-LK-KhW"/>
                                 </connections>
