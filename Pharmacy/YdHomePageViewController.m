@@ -33,6 +33,7 @@
 #import "YdyouhuiquanViewController.h"
 #import "YdmendianxinxiViewController.h"
 #import "huoqumendianyouhuijuan.h"
+#import "YdNewsViewController.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -137,7 +138,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
     //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-erweimasaomiaotubiao@2x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -1471,8 +1472,8 @@
 //扫描
 -(void)scanning{
     //跳转到扫描页面
-    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
-    [self.navigationController pushViewController:Scan animated:YES];
+    YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
+    [self.navigationController pushViewController:News animated:YES];
     
 }
 //病症

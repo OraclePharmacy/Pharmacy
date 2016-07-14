@@ -1282,7 +1282,7 @@
         <!--Yd News View Controller-->
         <scene sceneID="7v7-mG-xM0">
             <objects>
-                <viewController storyboardIdentifier="news" id="O0I-UT-mZD" customClass="YdNewsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="news" hidesBottomBarWhenPushed="YES" id="O0I-UT-mZD" customClass="YdNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cOX-Kf-KwO"/>
                         <viewControllerLayoutGuide type="bottom" id="bUr-9X-gEQ"/>
@@ -3548,6 +3548,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kf-Nh-2Ku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4224" y="-3313"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZuQ-9q-axo">
+            <objects>
+                <viewController id="Wpb-3h-Aej" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zHL-Aa-xmR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oxs-GY-EwM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dPz-bR-ABW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cch-qF-ndi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="-5961"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="CWr-ht-rfP">
