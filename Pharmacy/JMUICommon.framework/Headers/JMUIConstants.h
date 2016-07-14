@@ -9,6 +9,7 @@
 #ifndef JMUIConstants_h
 #define JMUIConstants_h
 
+#import <Foundation/Foundation.h>
 /*========================================屏幕适配============================================*/
 
 #define kIOSVersions [[[UIDevice currentDevice] systemVersion] floatValue] //获得iOS版本

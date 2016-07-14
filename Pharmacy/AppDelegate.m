@@ -7,61 +7,61 @@
 //
 
 #import "AppDelegate.h"
-#define JMSSAGE_APPKEY @"0b4f04ee1fe01108ee17cf70"
+#define JMSSAGE_APPKEY @"7f781ffb921114be6cb3d00b"
 #define CHANNEL @""
-@interface AppDelegate ()/*<JMessageDelegate>*/
+@interface AppDelegate ()<JMessageDelegate>
 @end
 
 @implementation AppDelegate
 
 
 #pragma mark - 应用代理方法
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    
-//    [JMessage addDelegate:self withConversation:nil];
-//    
-//    /// Required - 启动 JMessage SDK
-//    [JMessage setupJMessage:launchOptions
-//                     appKey:JMSSAGE_APPKEY
-//                    channel:CHANNEL
-//           apsForProduction:NO
-//                   category:nil];
-//    
-//    /// Required - 注册 APNs 通知
-//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-//        /// 可以添加自定义categories
-//        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-//                                                          UIUserNotificationTypeSound |
-//                                                          UIUserNotificationTypeAlert)
-//                                              categories:nil];
-//    } else {
-//        /// categories 必须为nil
-//        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                          UIRemoteNotificationTypeSound |
-//                                                          UIRemoteNotificationTypeAlert)
-//                                              categories:nil];
-//    }
-//    
-//    
-////*-*-*-*-*-*--*-*-*-*-*-*-*-*-**-**-*-*-*-**-*-***-*-**-*-*-*-**-*-**-*-*-*-*-*-*-
-//    
-//    
-//    //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [JMessage addDelegate:self withConversation:nil];
+    
+    /// Required - 启动 JMessage SDK
+    [JMessage setupJMessage:launchOptions
+                     appKey:JMSSAGE_APPKEY
+                    channel:CHANNEL
+           apsForProduction:NO
+                   category:nil];
+    
+    /// Required - 注册 APNs 通知
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        /// 可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        /// categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    
+//*-*-*-*-*-*--*-*-*-*-*-*-*-*-**-**-*-*-*-**-*-***-*-**-*-*-*-**-*-**-*-*-*-*-*-*-
+    
+    
+    //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
 //    if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
 //        [self addLocalNotification:nil];
 //    }else{
 //        [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
 //    }
-//    
-//    return YES;
-//}
-//
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     return YES;
 }
+
+//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    // Override point for customization after application launch.
+//    
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    return YES;
+//}
 
 
 #pragma mark - 通知

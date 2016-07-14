@@ -26,21 +26,21 @@
                         <constraint firstAttribute="width" constant="27" id="2Wr-HL-v6u"/>
                         <constraint firstAttribute="height" constant="27" id="V4b-qe-SqG"/>
                     </constraints>
-                    <state key="normal" image="add01@2x.png">
+                    <state key="normal" image="JMUIChattingKitResource.bundle/add01_pre@2x.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="add01_pre@2x.png"/>
+                    <state key="highlighted" image="JMUIChattingKitResource.bundle/add01_pre@2x.png"/>
                     <connections>
                         <action selector="addBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="pbb-SA-CQS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCs-zm-hKL">
-                    <rect key="frame" x="8" y="6.5" width="31" height="31"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCs-zm-hKL">
+                    <rect key="frame" x="10" y="8.5" width="27" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="hqn-mr-WwU"/>
                         <constraint firstAttribute="width" constant="31" id="pq5-AN-2Np"/>
                     </constraints>
-                    <state key="normal">
+                    <state key="normal" image=" ">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -74,7 +74,7 @@
         </view>
     </objects>
     <resources>
-        <image name="add01@2x.png" width="27" height="27"/>
-        <image name="add01_pre@2x.png" width="27" height="27"/>
+        <image name=" " width="27" height="27"/>
+        <image name="JMUIChattingKitResource.bundle/add01_pre@2x.png" width="27" height="27"/>
     </resources>
 </document>

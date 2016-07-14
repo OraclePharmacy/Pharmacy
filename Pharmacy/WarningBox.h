@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
 
+#import <JMUICommon/MBProgressHUD.h>
+#import <JMUICommon/MBProgressHUD+Add.h>
 
 @interface WarningBox : UIView
 

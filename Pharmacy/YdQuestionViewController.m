@@ -239,14 +239,14 @@
 -(void)liaotian
 {
     
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"memeda"];
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"tt_admin"];
     if (conversation == nil) {
         
         
-        [JMSGConversation createSingleConversationWithUsername:@"memeda" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGConversation createSingleConversationWithUsername:@"tt_admin" completionHandler:^(id resultObject, NSError *error) {
             
             if (error) {
-                NSLog(@"创建会话失败");
+                NSLog(@"创建会话失败-*-*-*%@",error);
                 return ;
             }
             mememeViewController*xixi=[mememeViewController new];

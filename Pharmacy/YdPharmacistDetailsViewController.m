@@ -289,7 +289,7 @@
 }
 -(void)liaotian
 {
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"18123456789"];
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"tt_admin"];
     [conversation allMessages:^(id resultObject, NSError *error) {
         NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
     }];
@@ -297,11 +297,11 @@
         
         [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
         
-        [JMSGConversation createSingleConversationWithUsername:@"18123456789" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGConversation createSingleConversationWithUsername:@"tt_admin" completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             NSLog(@"创建会话返回\n\n%@",resultObject);
             if (error) {
-                NSLog(@"创建会话失败");
+                NSLog(@"创建会话失败%@",error);
                 return ;
             }
             

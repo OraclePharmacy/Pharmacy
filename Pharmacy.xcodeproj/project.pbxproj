@@ -215,7 +215,6 @@
 		95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA794F1C9BA8A10093829A /* YdForgetViewController.m */; };
 		95EA79531C9BA8BF0093829A /* YdRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */; };
 		95EA79561C9BA8E30093829A /* YdModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA79551C9BA8E30093829A /* YdModifyViewController.m */; };
-		95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795A1C9BB07B0093829A /* MBProgressHUD.m */; };
 		95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EA795C1C9BB07B0093829A /* WarningBox.m */; };
 		95EBA8731CBB9B2400A48D80 /* YdQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */; };
 		95ED97471CC4B64A006F92B8 /* iconfont-fenxiang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ED97451CC4B64A006F92B8 /* iconfont-fenxiang@3x.png */; };
@@ -290,6 +289,9 @@
 		D23EE57F1CBB4BC1000A9F01 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5771CBB4BC1000A9F01 /* AFURLRequestSerialization.m */; };
 		D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */; };
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
+		D250FBE81D37185100CF5206 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D250FBE61D37185100CF5206 /* JMUIChattingKit.framework */; };
+		D250FBE91D37185100CF5206 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D250FBE71D37185100CF5206 /* JMUIChattingKitResource.bundle */; };
+		D250FBEB1D37186100CF5206 /* JMUICommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D250FBEA1D37186100CF5206 /* JMUICommon.framework */; };
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
 		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
@@ -626,8 +628,6 @@
 		95EA79521C9BA8BF0093829A /* YdRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRegisterViewController.m; sourceTree = "<group>"; };
 		95EA79541C9BA8E30093829A /* YdModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdModifyViewController.h; sourceTree = "<group>"; };
 		95EA79551C9BA8E30093829A /* YdModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdModifyViewController.m; sourceTree = "<group>"; };
-		95EA79591C9BB07B0093829A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		95EA795A1C9BB07B0093829A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		95EA795B1C9BB07B0093829A /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
 		95EA795C1C9BB07B0093829A /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
 		95EBA8711CBB9B2400A48D80 /* YdQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdQuestionViewController.h; sourceTree = "<group>"; };
@@ -745,6 +745,9 @@
 		D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		D250FBE61D37185100CF5206 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
+		D250FBE71D37185100CF5206 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
+		D250FBEA1D37186100CF5206 /* JMUICommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUICommon.framework; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
 		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
@@ -757,6 +760,7 @@
 			files = (
 				D226248E1D01098E002A8689 /* libsqlite3.0.tbd in Frameworks */,
 				D226248C1D010986002A8689 /* libz.tbd in Frameworks */,
+				D250FBE81D37185100CF5206 /* JMUIChattingKit.framework in Frameworks */,
 				D226248A1D010977002A8689 /* MobileCoreServices.framework in Frameworks */,
 				D22624881D010967002A8689 /* AudioToolbox.framework in Frameworks */,
 				D22624861D01095C002A8689 /* Security.framework in Frameworks */,
@@ -772,6 +776,7 @@
 				D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */,
 				9505D73B1C9A9D91006F6850 /* AdSupport.framework in Frameworks */,
 				9505D7391C9A9D88006F6850 /* AVFoundation.framework in Frameworks */,
+				D250FBEB1D37186100CF5206 /* JMUICommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +948,9 @@
 		9505D7011C9A7B34006F6850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D250FBEA1D37186100CF5206 /* JMUICommon.framework */,
+				D250FBE61D37185100CF5206 /* JMUIChattingKit.framework */,
+				D250FBE71D37185100CF5206 /* JMUIChattingKitResource.bundle */,
 				D226248F1D0109B5002A8689 /* JMessage.framework */,
 				D226248D1D01098E002A8689 /* libsqlite3.0.tbd */,
 				D226248B1D010986002A8689 /* libz.tbd */,
@@ -1773,8 +1781,6 @@
 		95EA79581C9BB0610093829A /* 提示框 */ = {
 			isa = PBXGroup;
 			children = (
-				95EA79591C9BB07B0093829A /* MBProgressHUD.h */,
-				95EA795A1C9BB07B0093829A /* MBProgressHUD.m */,
 				95EA795B1C9BB07B0093829A /* WarningBox.h */,
 				95EA795C1C9BB07B0093829A /* WarningBox.m */,
 			);
@@ -2163,6 +2169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D250FBE91D37185100CF5206 /* JMUIChattingKitResource.bundle in Resources */,
 				952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */,
 				95C372621CB5F5780083AC90 /* 矩形-20@3x.png in Resources */,
 				95C3725B1CB5F5780083AC90 /* 服务@2x.png in Resources */,
@@ -2440,7 +2447,6 @@
 				D23EA36A1CEE9A81000454FE /* UIScrollView+MJExtension.m in Sources */,
 				95609EFD1CABC74E00AF65E4 /* UIImage+GIF.m in Sources */,
 				95EA795E1C9BB07B0093829A /* WarningBox.m in Sources */,
-				95EA795D1C9BB07B0093829A /* MBProgressHUD.m in Sources */,
 				D23EA35D1CEE9A81000454FE /* MJRefreshFooter.m in Sources */,
 				95F440D11CD0487B00B66D8C /* TableViewCell.m in Sources */,
 				95C372781CB645DF0083AC90 /* YdShakeViewController.m in Sources */,

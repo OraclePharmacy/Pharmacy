@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <JMessage/JMessage.h>
+#import <JMUIChattingKit/JMUIChattingViewController.h>
 
-@interface mememeViewController :  UIViewController
+@interface mememeViewController :  JMUIConversationViewController
 
-@property (strong, nonatomic)JMSGConversation *conversation;
+
 @end

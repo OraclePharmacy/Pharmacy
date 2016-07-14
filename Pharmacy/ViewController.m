@@ -198,43 +198,43 @@
                         
                         NSDictionary*datadic=[responseObject valueForKey:@"data"];
                         NSDictionary*vipInfoReturnList=[NSDictionary dictionaryWithDictionary:[datadic objectForKey:@"vipInfoReturnList"]];
-NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
+                        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
                         NSFileManager*fm=[NSFileManager defaultManager];
                         if ([fm fileExistsAtPath:path]) {
-                           
+                            
                             [fm removeItemAtPath:path error:NULL];
                             
                         }
                         
-                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                        [self.navigationController pushViewController:Root animated:YES];
+//                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+//                        [self.navigationController pushViewController:Root animated:YES];
                         
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
-                       NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
+                        NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
-//                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                            if (error) {
-//                                NSLog(@" 登录出错");
-//                                return ;
-//                            }
-//                             NSLog(@"JMessage 登录成功");
-                            
-
-//                        }];
+                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                            if (error) {
+                                NSLog(@" 登录出错");
+                                return ;
+                            }
+                            NSLog(@"JMessage 登录成功");
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                                [self presentViewController:Root animated:YES completion:^{
+                                    [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
+                                }];
+                                
+                            });
+                        }];
                         
-                        //                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                            YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-//                            [self presentViewController:Root animated:YES completion:^{
-//                                [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-//                            }];
-//                            
-//                    });
-                       
+                        
+                        
+                        
                     }
-                  
+                    
                 }
                 @catch (NSException * e) {
                     
