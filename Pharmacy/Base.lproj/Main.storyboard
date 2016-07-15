@@ -92,6 +92,9 @@
                                 <state key="normal" title="记住密码">
                                     <color key="titleColor" red="0.1960784314" green="0.74509803919999995" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="RememberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="weK-K1-Xto"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>

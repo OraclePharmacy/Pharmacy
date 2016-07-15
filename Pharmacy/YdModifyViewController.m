@@ -90,7 +90,7 @@
 //验证密码
 -(BOOL)mima:(NSString *)pass{
     
-    NSString *password = @"^[a-zA-Z0-9]{5,15}";
+    NSString *password = @"^[a-zA-Z0-9]{6,16}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",password];
     BOOL isMatch = [pred evaluateWithObject:pass];
     return isMatch;
@@ -101,18 +101,38 @@
     
     if (textField == self.NewPassText)
     {
-        [self.OldPassText becomeFirstResponder];
+        [self.AgainPassText becomeFirstResponder];
     }
     else if (textField == self.OldPassText)
     {
-        [self.AgainPassText becomeFirstResponder];
+        [self.NewPassText becomeFirstResponder];
     }
     else
     {
-        [self.AgainPassText becomeFirstResponder];
+        [textField resignFirstResponder];
     }
     return YES;
 }
+
+//textfield退出编辑
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==_OldPassText) {
+        if (![self mima:self.OldPassText.text]) {
+            
+            [WarningBox warningBoxModeText:@"密码格式不对哟~" andView:self.view];
+        }
+    }else if (textField==_NewPassText){
+        if(![self mima:self.NewPassText.text]){
+            [WarningBox warningBoxModeText:@"新密码格式不对哟~" andView:self.view];
+        }
+    }else if (textField==_AgainPassText){
+        if(![self.AgainPassText.text isEqual:_NewPassText.text]){
+            [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
+        }
+    }
+    
+}
+
 #pragma 按钮点击事件
 
 - (IBAction)CompleteButton:(id)sender {

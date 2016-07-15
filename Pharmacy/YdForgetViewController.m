@@ -146,7 +146,7 @@
 //验证密码
 -(BOOL)mima:(NSString *)pass{
     
-    NSString *password = @"^[a-zA-Z0-9]{5,15}";
+    NSString *password = @"^[a-zA-Z0-9]{6,16}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",password];
     BOOL isMatch = [pred evaluateWithObject:pass];
     return isMatch;
@@ -159,23 +159,43 @@
     {
         [self.PassText becomeFirstResponder];
     }
-        else if (textField == self.PassText)
+    else if (textField == self.PassText)
     {
         [self.AgainPassText becomeFirstResponder];
     }
     else
     {
-        [self.AgainPassText becomeFirstResponder];
+        //[self.AgainPassText becomeFirstResponder];
+        [textField resignFirstResponder];
     }
-       return YES;
+    return YES;
 }
+
+//textfield退出编辑
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField==_PassText) {
         if (![self mima:self.PassText.text]) {
             _PassText.text=@"";
             [WarningBox warningBoxModeText:@"密码格式不对哟~" andView:self.view];
         }
+    }else if (textField==_PhoneText){
+        if(self.PhoneText.text.length!=11||![self isMobileNumberClassification:self.PhoneText.text]){
+            [WarningBox warningBoxModeText:@"您的手机号不正确" andView:self.view];
+        }
+    }else if (textField==_AgainPassText){
+        if(![self.AgainPassText.text isEqual:_PassText.text]){
+            [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
+        }
+        
+    }else if (textField==_VerificationText){
+        if (_VerificationText.text.length!=4){
+            [WarningBox warningBoxModeText:@"验证码格式不对" andView:self.view];
+        }
     }
+    
+    
+    
+    
 }
 #pragma 按钮点击事件
 - (IBAction)VerificationButton:(id)sender {

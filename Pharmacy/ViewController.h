@@ -22,5 +22,7 @@
 //注册
 - (IBAction)RegisterButton:(id)sender;
 
+- (IBAction)RememberButton:(id)sender;
+
 @end
 

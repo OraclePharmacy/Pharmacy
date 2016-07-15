@@ -242,7 +242,8 @@
     }
     else
     {
-        [self.StoreText becomeFirstResponder];
+        //[self.StoreText becomeFirstResponder];
+        [textField resignFirstResponder];
     }
     return YES;
 }
@@ -730,7 +731,23 @@
             _PassText.text=@"";
             [WarningBox warningBoxModeText:@"密码格式不对哟～" andView:self.view];
         }
+    }else if (textField==_PhoneText){
+        if(self.PhoneText.text.length!=11||![self isMobileNumberClassification:self.PhoneText.text]){
+            [WarningBox warningBoxModeText:@"您的手机号不正确" andView:self.view];
+        }
+    }else if (textField==_AgainPassText){
+        if(![self.AgainPassText.text isEqual:_PassText.text]){
+            [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
+        }
+        
+    }else if (textField==_VerificationText){
+        if (_VerificationText.text.length!=4){
+            [WarningBox warningBoxModeText:@"验证码格式不对" andView:self.view];
+        }
     }
+    
+    
+    
 }
 //完成
 - (IBAction)CompleteButton:(id)sender {

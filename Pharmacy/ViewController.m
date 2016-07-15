@@ -17,7 +17,10 @@
 #import "lianjie.h"
 #import <JMessage/JMessage.h>
 @interface ViewController ()
-
+{
+    NSString *Rempath;
+    int m;
+}
 @end
 
 @implementation ViewController
@@ -35,6 +38,23 @@
     
     [self TextFieldSetUp];
 }
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
+    NSLog(@"%@",NSHomeDirectory());
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithContentsOfFile:Rempath];
+    
+    if ([fm fileExistsAtPath:Rempath]){
+        NSLog(@"12331111%@",dic);
+        _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
+        _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
+    }else{
+        
+    }
+}
+
 //点击编辑区以外的地方键盘消失
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -272,6 +292,48 @@
     //跳转到注册
     YdRegisterViewController *Register = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"register"];
     [self.navigationController pushViewController:Register animated:YES];
+}
+
+- (IBAction)RememberButton:(id)sender {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    
+    if(m==0){
+        m=1;
+        NSMutableDictionary *Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
+        
+        if ([fm fileExistsAtPath:Rempath]){
+            NSLog(@"1");
+            
+        }else{
+            if (_PhoneText.text.length==0&&_PasswordText.text.length==0){
+                NSLog(@"啥都没输入还想记住密码？");
+            }else{
+                // NSLog(@"2");
+                NSLog(@"我记住你了!!!");
+                
+                [Passdic writeToFile:Rempath atomically:NO];
+                NSLog(@"%@",Passdic);
+            }
+        }
+        
+    }else{
+        m=0;
+        if ([fm fileExistsAtPath:Rempath]){
+            NSLog(@"我怎么把你忘了");
+            [fm removeItemAtPath:Rempath error:nil];
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }else{
+            NSLog(@"你这个人怎么这样那");
+        }
+        
+        
+    }
+    
+
+    
 }
 
 @end
