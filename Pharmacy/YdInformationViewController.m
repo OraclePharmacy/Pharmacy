@@ -367,32 +367,32 @@
 - (void)handleClick:(UIButton *)btn
 {
     str = [[NSString alloc]init];
-    UIButton *u = (UIButton *)btn;
+    
     //u.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
     if (btn.tag == 300)
     {
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
-        u.selected = YES;
+        btn.selected = YES;
     }
     else if (btn.tag == 301)
     {
         str = [NSString stringWithFormat:@"%@",[arr[1] objectForKey:@"id"]];;
-        u.selected = NO;
+        btn.selected = NO;
     }
     else if (btn.tag == 302)
     {
         str = [NSString stringWithFormat:@"%@",[arr[2] objectForKey:@"id"]];;
-        u.selected = NO;
+        btn.selected = NO;
     }
     else if (btn.tag == 303)
     {
         str = [NSString stringWithFormat:@"%@",[arr[3] objectForKey:@"id"]];;
-        u.selected = NO;
+        btn.selected = NO;
     }
     else if (btn.tag == 304)
     {
         str = [NSString stringWithFormat:@"%@",[arr[4] objectForKey:@"id"]];;
-        u.selected = NO;
+        btn.selected = NO;
     }
     
     [self wenzizixun:str];

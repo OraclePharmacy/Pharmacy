@@ -209,7 +209,7 @@
     
     bingzheng = [arr[btn.tag - 100] objectForKey:@"id"];
     
-    NSLog(@"%@",bingzheng);
+    NSLog(@"+++++++++++++++++++++++++++%@",bingzheng);
     
 }
 //image 设置
