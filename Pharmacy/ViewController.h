@@ -23,6 +23,7 @@
 - (IBAction)RegisterButton:(id)sender;
 
 - (IBAction)RememberButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *RememberButton;
 
 @end
 

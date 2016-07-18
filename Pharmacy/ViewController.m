@@ -36,6 +36,12 @@
     self.LoginButton.layer.cornerRadius = 5;
     self.LoginButton.layer.masksToBounds = YES;
     
+//    [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+//    [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
+//    [self.RememberButton setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,0)];
+//    [self.RememberButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    
     [self TextFieldSetUp];
 }
 
@@ -48,6 +54,9 @@
     
     if ([fm fileExistsAtPath:Rempath]){
         NSLog(@"12331111%@",dic);
+        m = 1;
+        [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+        [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
         _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
         _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
     }else{
@@ -226,8 +235,7 @@
                             
                         }
                         
-//                        YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-//                        [self.navigationController pushViewController:Root animated:YES];
+                        
                         
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
@@ -242,10 +250,9 @@
                             }
                             NSLog(@"JMessage 登录成功");
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                YdRootViewController *Root=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                                [self presentViewController:Root animated:YES completion:^{
-                                    [self setModalTransitionStyle: UIModalTransitionStyleCrossDissolve];
-                                }];
+                                
+                                YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                                [self.navigationController pushViewController:Root animated:YES];
                                 
                             });
                         }];
@@ -295,11 +302,13 @@
 }
 
 - (IBAction)RememberButton:(id)sender {
+    
     NSFileManager *fm = [NSFileManager defaultManager];
     
-    
     if(m==0){
+        
         m=1;
+        
         NSMutableDictionary *Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
         
         if ([fm fileExistsAtPath:Rempath]){
@@ -309,7 +318,9 @@
             if (_PhoneText.text.length==0&&_PasswordText.text.length==0){
                 NSLog(@"啥都没输入还想记住密码？");
             }else{
-                // NSLog(@"2");
+                // NSLog(@"2")
+                [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+                [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
                 NSLog(@"我记住你了!!!");
                 
                 [Passdic writeToFile:Rempath atomically:NO];
@@ -320,6 +331,7 @@
     }else{
         m=0;
         if ([fm fileExistsAtPath:Rempath]){
+            [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
             NSLog(@"我怎么把你忘了");
             [fm removeItemAtPath:Rempath error:nil];
             

@@ -78,7 +78,7 @@
     CollectionView.dataSource = self;
     
     
-    [self tuijian];
+    //[self tuijian];
     [self.view addSubview:CollectionView];
     
 }
@@ -89,7 +89,7 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 
 {
-    return 2;
+    return 1;
 }
 
 //设置元素的的大小框
