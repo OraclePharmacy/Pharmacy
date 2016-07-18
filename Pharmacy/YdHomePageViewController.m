@@ -138,7 +138,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
     //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
