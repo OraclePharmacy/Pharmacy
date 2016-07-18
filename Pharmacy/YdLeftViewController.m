@@ -46,7 +46,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     self.view.backgroundColor = [UIColor colorWithHexString:@"32be60" alpha:1];
     
     _lefs = @[@"我的订单", @"我的优惠券", @"我的中奖纪录", @"我的收藏", @"我的帖子",@"意见反馈",@"分享下载",@"设置"];
-    _image = @[@"dingdan(1).png",@"youhuiquan(1).png",@"zhongjiangjilu(1).png",@"shoucang(1).png",@"tiezi(1).png",@"jianyi(1).png",@"fenxiang(1).png",@"shezhi(1).png"];
+    _image = @[@"dingdan.png",@"youhuiquan.png",@"zhongjiangjilu.png",@"shoucang.png",@"tiezi.png",@"jianyi.png",@"fenxiang.png",@"shezhi.png"];
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 64, width, height);
     _tableView.dataSource = self;
