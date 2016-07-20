@@ -80,6 +80,7 @@
 		95104D7C1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D7B1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m */; };
 		9510E1C11D24EC26002F70C5 /* AlarmClockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9510E1BF1D24EC26002F70C5 /* AlarmClockManager.m */; };
 		9510E1C21D24EC26002F70C5 /* YdRemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9510E1C01D24EC26002F70C5 /* YdRemindViewController.m */; };
+		95148C6F1D3F76A100156FCB /* read(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95148C6E1D3F76A100156FCB /* read(1).png */; };
 		951A41A91CFE661C00FD81D6 /* bx.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41A81CFE661C00FD81D6 /* bx.png */; };
 		951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A41AC1CFE67FB00FD81D6 /* YddianyuanViewController.m */; };
 		951A41B21CFEA98900FD81D6 /* yyy_result_window.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41AF1CFEA98900FD81D6 /* yyy_result_window.png */; };
@@ -112,7 +113,6 @@
 		95206A9D1D38A838002BB3B5 /* dingdan(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A921D38A838002BB3B5 /* dingdan(1).png */; };
 		95206A9E1D38A838002BB3B5 /* fenxiang(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A931D38A838002BB3B5 /* fenxiang(1).png */; };
 		95206A9F1D38A838002BB3B5 /* jianyi(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A941D38A838002BB3B5 /* jianyi(1).png */; };
-		95206AA01D38A838002BB3B5 /* read(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A951D38A838002BB3B5 /* read(1).png */; };
 		95206AA11D38A838002BB3B5 /* shezhi(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A961D38A838002BB3B5 /* shezhi(1).png */; };
 		95206AA21D38A838002BB3B5 /* shoucang(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A971D38A838002BB3B5 /* shoucang(1).png */; };
 		95206AA31D38A838002BB3B5 /* tiezi(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A981D38A838002BB3B5 /* tiezi(1).png */; };
@@ -453,6 +453,7 @@
 		9510E1BE1D24EC26002F70C5 /* AlarmClockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClockManager.h; sourceTree = "<group>"; };
 		9510E1BF1D24EC26002F70C5 /* AlarmClockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClockManager.m; sourceTree = "<group>"; };
 		9510E1C01D24EC26002F70C5 /* YdRemindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRemindViewController.m; sourceTree = "<group>"; };
+		95148C6E1D3F76A100156FCB /* read(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "read(1).png"; sourceTree = "<group>"; };
 		951A41A81CFE661C00FD81D6 /* bx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bx.png; sourceTree = "<group>"; };
 		951A41AB1CFE67FB00FD81D6 /* YddianyuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YddianyuanViewController.h; sourceTree = "<group>"; };
 		951A41AC1CFE67FB00FD81D6 /* YddianyuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YddianyuanViewController.m; sourceTree = "<group>"; };
@@ -515,7 +516,6 @@
 		95206A921D38A838002BB3B5 /* dingdan(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dingdan(1).png"; sourceTree = "<group>"; };
 		95206A931D38A838002BB3B5 /* fenxiang(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenxiang(1).png"; sourceTree = "<group>"; };
 		95206A941D38A838002BB3B5 /* jianyi(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jianyi(1).png"; sourceTree = "<group>"; };
-		95206A951D38A838002BB3B5 /* read(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "read(1).png"; sourceTree = "<group>"; };
 		95206A961D38A838002BB3B5 /* shezhi(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shezhi(1).png"; sourceTree = "<group>"; };
 		95206A971D38A838002BB3B5 /* shoucang(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoucang(1).png"; sourceTree = "<group>"; };
 		95206A981D38A838002BB3B5 /* tiezi(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tiezi(1).png"; sourceTree = "<group>"; };
@@ -1414,7 +1414,6 @@
 				95206A921D38A838002BB3B5 /* dingdan(1).png */,
 				95206A931D38A838002BB3B5 /* fenxiang(1).png */,
 				95206A941D38A838002BB3B5 /* jianyi(1).png */,
-				95206A951D38A838002BB3B5 /* read(1).png */,
 				95206A961D38A838002BB3B5 /* shezhi(1).png */,
 				95206A971D38A838002BB3B5 /* shoucang(1).png */,
 				95206A981D38A838002BB3B5 /* tiezi(1).png */,
@@ -1681,6 +1680,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				95148C6E1D3F76A100156FCB /* read(1).png */,
 				95206A911D38A838002BB3B5 /* 未命名文件夹 */,
 				953EF4781D372A01003D9FE7 /* read.png */,
 				95E38EB81D1D240B006BCF6C /* daigouyao.png */,
@@ -2435,7 +2435,6 @@
 				9509565D1CC74C3700A10A5A /* 小人@2x.png in Resources */,
 				95C3726E1CB5F5780083AC90 /* 首页@3x.png in Resources */,
 				9509BCE41D2207A2006B4962 /* option_c2.png in Resources */,
-				95206AA01D38A838002BB3B5 /* read(1).png in Resources */,
 				95E38EBD1D1D240B006BCF6C /* youhuijuan.png in Resources */,
 				95206A771D3883B3002BB3B5 /* UMSocialLocalizable.strings in Resources */,
 				D2109B0F1D3786F400FA2E8C /* JMUIChattingKitResource.bundle in Resources */,
@@ -2520,6 +2519,7 @@
 				95024D3F1D113D5900B7F7D8 /* shoucang.png in Resources */,
 				951A41B41CFEA98900FD81D6 /* yyy_zjjl.png in Resources */,
 				9509BCE11D2207A2006B4962 /* option_b2.png in Resources */,
+				95148C6F1D3F76A100156FCB /* read(1).png in Resources */,
 				95C372521CB5F5780083AC90 /* iconfont-search@3x.png in Resources */,
 				95024D3D1D113D5900B7F7D8 /* jianyi.png in Resources */,
 				9509565F1CC75FE600A10A5A /* sexnv@3x.png in Resources */,

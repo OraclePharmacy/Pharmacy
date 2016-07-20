@@ -45,8 +45,8 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"与我相关" style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
