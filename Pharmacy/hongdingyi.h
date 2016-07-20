@@ -17,13 +17,7 @@
 //其中斌
 //#define service_host @"http://192.168.1.180:8080"
 //小展
-
-<<<<<<< Updated upstream
-#define service_host @"http://192.168.1.124:8080"
-=======
 //#define service_host @"http://192.168.1.124:8080"
->>>>>>> Stashed changes
-
 //外网
 #define service_host @"http://125.211.221.232:60082"
 
