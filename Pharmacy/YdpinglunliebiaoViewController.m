@@ -14,7 +14,7 @@
 #import "lianjie.h"
 #import "YdfabiaopinglunViewController.h"
 #import "UIImageView+WebCache.h"
-
+#import "MJRefresh.h"
 @implementation YdpinglunliebiaoViewController
 {
     CGFloat width;
@@ -22,9 +22,29 @@
     
     NSArray *arr;
     
+    int ye;
+    int coun;
+    
 }
+-(void)viewWillAppear:(BOOL)animated{
+    
+    ye = 1;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+    
+    [self jiekou];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ye = 1;
     
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -46,7 +66,28 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
+}
+-(void)loadNewdata{
+    
+    ye = 1;
     [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
 }
 
 -(void)jiekou
@@ -70,8 +111,8 @@
 
     //出入参数：
   
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"50",@"pageSize",@"1",@"pageNo",nil];
-    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"5",@"pageSize",[NSString stringWithFormat:@"%d",ye],@"pageNo",nil];
+    NSLog(@"%d",ye);
     NSLog(@"评论列表%@",datadic);
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -97,6 +138,8 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                coun=[[datadic objectForKey:@"count"] intValue];
                 
                 arr = [datadic objectForKey:@"commentList"];
                 

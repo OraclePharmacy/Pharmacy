@@ -34,6 +34,7 @@
 #import "YdmendianxinxiViewController.h"
 #import "huoqumendianyouhuijuan.h"
 #import "YdNewsViewController.h"
+#import "MJRefresh.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -107,6 +108,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    remenzixunarray = [[NSMutableArray alloc]init];
+    
     panduan=0;
     pickerview=[[UIView alloc] init];
     pickerview.hidden = YES;
@@ -144,12 +148,29 @@
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
     //表头
     [self SearchView];
     //调用定位
     [self initializeLocationService];
+}
+-(void)loadNewdata{
+    
+    [self bargaingoodsjiekou];
+    [self tejieyaopinjiekou];
+    [self rementiezi];
+    [self remenzixun];
+    [self bannerjiekou];
+    
+    [self.tableview.mj_header endRefreshing];
     
 }
+
 //导航标题  添加View
 -(void)SearchView
 {
@@ -651,7 +672,7 @@
 }
 #pragma mark ---- 热门资讯接口
 -(void)remenzixun{
-    remenzixunarray = [[NSMutableArray alloc]init];
+   
     
     //userID    暂时不用改
     NSString * userID=@"0";

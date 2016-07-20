@@ -16,21 +16,56 @@
 #import "UIImageView+WebCache.h"
 #import "YdFaTieViewController.h"
 #import "YdTieZiXiangQingViewController.h"
+#import "MJRefresh.h"
+
 @interface YdJiaoLiuViewController ()
 {
     CGFloat width;
     CGFloat height;
     
     NSArray *arr;
+    int coun;
+    int ye;
 }
 @end
 
 @implementation YdJiaoLiuViewController
 -(void)viewWillAppear:(BOOL)animated{
     
+    ye = 1;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+    
     [self jiekou];
 }
-
+-(void)loadNewdata{
+    
+    ye = 1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +92,8 @@
     //设置导航栏左按钮
     self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"发帖" style:UIBarButtonItemStyleDone target:self action:@selector(fatie)];
     
+
+    
 //    [self jiekou];
 }
 -(void)jiekou
@@ -78,7 +115,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"id",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"id",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -101,6 +138,8 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                coun=[[datadic objectForKey:@"count"] intValue];
                 
                 arr = [datadic objectForKey:@"vipTopicList"];
                 

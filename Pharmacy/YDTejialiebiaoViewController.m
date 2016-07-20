@@ -16,11 +16,13 @@
 #import "UIImageView+WebCache.h"
 #import "Color+Hex.h"
 #import "YdDrugsViewController.h"
-
+#import "MJRefresh.h"
 @interface YDTejialiebiaoViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSMutableArray*proList;
     float width;
    
+    int ye;
+    int coun;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -48,9 +50,43 @@
     self.tableview.dataSource = self;
     
     width = [UIScreen mainScreen].bounds.size.width;
+    
+    ye = 1;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+
     [self jiekou];
     
 }
+-(void)loadNewdata{
+    
+    ye = 1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
+}
+
 -(void)jiekou{
     //userID    暂时不用改
     NSString * userID=@"0";
@@ -72,7 +108,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"1",@"pageNo",@"6",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -99,6 +135,8 @@
                 
                 proList = [NSMutableArray arrayWithArray:[datadic objectForKey:@"proList"] ];
       
+                coun=[[datadic objectForKey:@"count"] intValue];
+                
                 [self.tableview reloadData];
                 
             }

@@ -16,12 +16,16 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 @interface YdDrugJumpViewController ()
 {
     CGFloat width;
     CGFloat height;
     
     NSArray *arr;
+    
+    int coun;
+    int ye;
 }
 @end
 
@@ -43,9 +47,42 @@
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
+    ye = 1;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+    
     [self jiekou];
+}
+-(void)loadNewdata{
+    
+    ye = 1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
     
 }
+-(void)loadNewData{
+    
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
+}
+
+
 -(void)jiekou
 {
         [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
@@ -67,7 +104,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_bookNo,@"level3Name",@"5",@"pageNo",@"1",@"pageSize",nil];
+     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_bookNo,@"level3Name",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
         NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -93,6 +130,8 @@
                     NSDictionary*datadic=[responseObject valueForKey:@"data"];
                     
                     arr = [NSArray arrayWithArray:[datadic objectForKey:@"productList"]];
+                    
+                    coun=[[datadic objectForKey:@"count"] intValue];
                     
                     [self.tableview reloadData];
     

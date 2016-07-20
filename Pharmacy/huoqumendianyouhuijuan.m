@@ -15,6 +15,7 @@
 #import "WarningBox.h"
 #import "Color+Hex.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 
 @interface huoqumendianyouhuijuan ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -22,6 +23,9 @@
     CGFloat width;
     CGFloat height;
     NSString *str2;
+    
+    int ye;
+    int coun;
 }
 
 @end
@@ -31,6 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    ye = 1;
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -49,14 +56,42 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
     
     [self jiekou];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)loadNewdata{
+    
+    ye = 1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
 }
+-(void)loadNewData{
+
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
+}
+
+
+
 
 -(void)jiekou
 {
@@ -81,8 +116,12 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSString*vip;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1130",@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"officeId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -106,6 +145,8 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
 
+                coun=[[datadic objectForKey:@"count"] intValue];
+                
                 arr = [datadic objectForKey:@"couponInfoList"];
               
                 [self.tableview reloadData];

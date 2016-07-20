@@ -14,6 +14,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import "MJRefresh.h"
 @interface YdBloodViewController ()
 {
     CGFloat height;
@@ -60,8 +61,20 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    
     [self huoqu];
 }
+-(void)loadNewdata{
+    
+
+    [self huoqu];
+    
+    [self.tableview.mj_header endRefreshing];
+    
+}
+
 //获取血压血糖
 -(void)huoqu
 {
