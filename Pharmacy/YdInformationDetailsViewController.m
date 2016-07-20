@@ -17,7 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "UMSocial.h"
-@interface YdInformationDetailsViewController ()<MPMediaPickerControllerDelegate>
+@interface YdInformationDetailsViewController ()<MPMediaPickerControllerDelegate,UMSocialUIDelegate>
 {
     CGFloat width;
     CGFloat height;

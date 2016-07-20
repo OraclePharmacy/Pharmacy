@@ -147,6 +147,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"我点了");
     
     if (indexPath.row == 0)
     {

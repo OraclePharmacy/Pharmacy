@@ -14,7 +14,7 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import "UMSocial.h"
-@interface YdTextDetailsViewController ()<UIWebViewDelegate>
+@interface YdTextDetailsViewController ()<UIWebViewDelegate,UMSocialUIDelegate>
 {
     int zan;
     NSString *dian;

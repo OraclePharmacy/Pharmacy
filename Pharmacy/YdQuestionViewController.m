@@ -239,11 +239,11 @@
 -(void)liaotian
 {
     
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"tt_admin"];
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"hhl_admin"];
     if (conversation == nil) {
         
         
-        [JMSGConversation createSingleConversationWithUsername:@"tt_admin" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGConversation createSingleConversationWithUsername:@"hhl_admin" completionHandler:^(id resultObject, NSError *error) {
             
             if (error) {
                 NSLog(@"创建会话失败-*-*-*%@",error);

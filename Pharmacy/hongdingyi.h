@@ -18,10 +18,14 @@
 //#define service_host @"http://192.168.1.180:8080"
 //小展
 
+<<<<<<< Updated upstream
 #define service_host @"http://192.168.1.124:8080"
+=======
+//#define service_host @"http://192.168.1.124:8080"
+>>>>>>> Stashed changes
 
 //外网
-//#define service_host @"http://125.211.221.232:60082"
+#define service_host @"http://125.211.221.232:60082"
 
 /**
  *  计算机签名地址，当服务对外使用端口映射时使用，此地址是真实地址
