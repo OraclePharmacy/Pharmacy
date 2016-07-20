@@ -13,12 +13,18 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
-
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
 
 @interface YdyuwoxiangguanViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     CGFloat width;
     CGFloat height;
+    
+    NSArray *arr;
+    
+    int ye;
+    int coun;
 }
 @property(strong,nonatomic) UITableView *tableview;
 @end
@@ -35,7 +41,7 @@
     self.tableview.frame = CGRectMake(0, 64, width, height);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
-    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];
     
     //状态栏名称
@@ -44,8 +50,42 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    
+    ye = 1;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+    
+    [self jiekou];
+    
 }
-
+-(void)loadNewdata{
+    
+    ye = 1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    
+    if (ye*3 >coun+2) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
+    
+}
 -(void)jiekou
 {
     //userID    暂时不用改
@@ -70,7 +110,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"1",@"pageNo",@"1",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -94,7 +134,11 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                NSLog(@"%@",datadic);
+                coun=[[datadic objectForKey:@"count"] intValue];
+                
+                arr = [datadic objectForKey:@"vipReplyList"];
+                
+                NSLog(@"==========%@==========",datadic);
                 
                 [self.tableview reloadData];
                 
@@ -123,12 +167,12 @@
 //cell
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return arr.count;
 }
 //cell高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 111;
+    return 85;
 }
 //header高
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -150,12 +194,77 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
 
-    
+    if ([arr[indexPath.row] objectForKey:@"list"] == nil)
+    {
+        
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(10, 10, 40, 40);
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        image.layer.cornerRadius = 20;
+        image.layer.masksToBounds = YES;
+        [cell.contentView addSubview:image];
+        
+        UILabel *name = [[UILabel alloc]init];
+        name.frame = CGRectMake(60, 10, 180, 20);
+        name.font = [UIFont systemFontOfSize:15];
+        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        [cell.contentView addSubview:name];
+        
+        UILabel *time = [[UILabel alloc]init];
+        time.frame = CGRectMake(60, 30, 180, 20);
+        time.font = [UIFont systemFontOfSize:15];
+        time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"replyTime"] ];
+        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:time];
+        
+        UILabel *pinglun = [[UILabel alloc]init];
+        pinglun.frame = CGRectMake(60, 55, width - 70, 20);
+        pinglun.font = [UIFont systemFontOfSize:15];
+        pinglun.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"reply"] ];
+        pinglun.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:pinglun];
+        
+    }
+    else
+    {
+        
+        UIImageView *image = [[UIImageView alloc]init];
+        image.frame = CGRectMake(10, 10, 40, 40);
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        image.layer.cornerRadius = 20;
+        image.layer.masksToBounds = YES;
+        [cell.contentView addSubview:image];
+        
+        UILabel *name = [[UILabel alloc]init];
+        name.frame = CGRectMake(60, 10, 180, 20);
+        name.font = [UIFont systemFontOfSize:15];
+        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        [cell.contentView addSubview:name];
+        
+        UILabel *time = [[UILabel alloc]init];
+        time.frame = CGRectMake(60, 30, 180, 20);
+        time.font = [UIFont systemFontOfSize:13];
+        time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"replyTime"] ];
+        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [cell.contentView addSubview:time];
+        
+        UILabel *pinglun = [[UILabel alloc]init];
+        pinglun.frame = CGRectMake(60, 55, width - 70, 20);
+        pinglun.font = [UIFont systemFontOfSize:13];
+        pinglun.text = [NSString stringWithFormat:@"回复@%@:%@",[[arr[indexPath.row] objectForKey:@"list"][0] objectForKey:@"nickNameOther"],[arr[indexPath.row] objectForKey:@"reply"]];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:pinglun.text];
+        NSString*stt = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"list"][0] objectForKey:@"nickNameOther"]];
+        pinglun.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"32be60" alpha:1] range:NSMakeRange(2, stt.length + 1)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
+        pinglun.attributedText = attributedString;
+        [cell.contentView addSubview:pinglun];
+        
+    }
 
-    
-    
-    
-    
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
