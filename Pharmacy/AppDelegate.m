@@ -169,6 +169,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"\n\n\n\n device  token   \n\n\n\n%@\n\n\n\n\n\n",deviceToken);
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
+    
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    NSDictionary*dic=[NSDictionary dictionaryWithContentsOfFile:path1];
+    NSString*alias=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phoneNumber"]];
+    NSLog(@"%@",alias);
+    [JPUSHService setAlias:alias callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    
+}
+-(void)tagsAliasCallback:(int)iResCode
+                    tags:(NSSet*)tags
+                   alias:(NSString*)alias
+{
+    NSLog(@"\n\n\n\n\n\n\n\n\nrescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
+
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

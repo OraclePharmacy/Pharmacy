@@ -88,7 +88,8 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -176,9 +177,9 @@
         //根据计算文字的大小
         
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13]};
-        CGFloat length = [[arr[i] objectForKey:@"name"] boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
+        CGFloat length = [[arr[i] objectForKey:@"diseaseName"] boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
         //为button赋值
-        [button setTitle:[arr[i] objectForKey:@"name"] forState:UIControlStateNormal];
+        [button setTitle:[arr[i] objectForKey:@"diseaseName"] forState:UIControlStateNormal];
         //设置button的frame
         button.frame = CGRectMake(10 + w, h, length + 15 , 30);
         //当button的位置超出屏幕边缘时换行 320 只是button所在父视图的宽度
@@ -294,17 +295,16 @@
         
         switch (buttonIndex) {
             case 0:
-                // 相机
-                sourceType = UIImagePickerControllerSourceTypeCamera;
+                // 取消
                 return;
             case 1:
-                // 相册
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                // 相机
+                sourceType = UIImagePickerControllerSourceTypeCamera;
                 break;
                 
             case 2:
-                
-                // 取消
+                // 相册
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 break;
         }
     }

@@ -298,7 +298,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -499,7 +499,7 @@
         @try
         {
            //NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -643,7 +643,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             //NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -1837,7 +1837,7 @@
                 }
             }
             @catch (NSException * e) {
-                [WarningBox warningBoxModeText:@"" andView:self.view];
+                [WarningBox warningBoxModeText:@"请仔细检查网络！" andView:self.view];
                 
             }
             
@@ -2023,7 +2023,7 @@ int nicaicai=0;
                 }
             }
             @catch (NSException * e) {
-                [WarningBox warningBoxModeText:@"" andView:self.view];
+                [WarningBox warningBoxModeText:@"请仔细检查网络！" andView:self.view];
                 
             }
             
