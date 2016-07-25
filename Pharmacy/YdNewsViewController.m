@@ -15,13 +15,14 @@
     CGFloat height;
 }
 @property (nonatomic,strong) UITableView *tableview;
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdNewsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -37,6 +38,8 @@
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [self.view addSubview:self.tableview];
     
 }
@@ -111,7 +114,8 @@
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    //线消失
+    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
