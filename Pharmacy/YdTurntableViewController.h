@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YdTurntableViewController : UIViewController
-
+@property (nonatomic,strong)NSString*uu;
 @end

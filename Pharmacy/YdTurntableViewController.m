@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     i=0;
@@ -30,8 +31,8 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
      _webview.delegate=self;
-    NSString * path=@"http://www.baidu.com";
-    NSURL *url=[NSURL URLWithString:path];
+    
+    NSURL *url=[NSURL URLWithString:_uu];
     [_webview loadRequest:[NSURLRequest requestWithURL:url]];
     
 }

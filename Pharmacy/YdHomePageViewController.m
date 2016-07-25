@@ -108,7 +108,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
     remenzixunarray = [[NSMutableArray alloc]init];
     
     panduan=0;
@@ -648,12 +648,12 @@
         @try
         {
 //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"responseObject%@",responseObject);
+            NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                rementieziarray = [datadic objectForKey:@"vipTopicList"];
+                rementieziarray = [datadic objectForKey:@"vipTopicListHot"];
                 
                 [self.tableview reloadData];
                 
@@ -695,11 +695,8 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"3",@"pageSize",@"1002",@"id",vip,@"vipId", nil];
+   
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"3",@"pageSize",@"1002",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
