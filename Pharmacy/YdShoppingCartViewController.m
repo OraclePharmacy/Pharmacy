@@ -28,12 +28,17 @@
     UITextField *num;
 
     NSMutableArray* yikaishi;
+    
+    UILabel *label;
 }
 
 @end
 
 @implementation YdShoppingCartViewController
 -(void)viewWillAppear:(BOOL)animated{
+    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
     NSUserDefaults * user=[NSUserDefaults standardUserDefaults];
     if ([[user objectForKey:@"wancheng"] intValue]==1) {
         yikaishi=nil;
@@ -41,13 +46,7 @@
         _tijiao.hidden=YES;
         [user setObject:@"0" forKey:@"wancheng"];
        
-        
-        
-        
         //添加一张没有物品的图片
-    
-    
-    
     
     }else{
     
@@ -69,16 +68,29 @@
         _lianxidianzhnag.hidden=YES;
         _tijiao.hidden=YES;
         
-        
-        
         //添加一张没有物品的图片
-        
-        
-        
-        
+    
     }
     }
     NSLog(@"刚进来\n\n%@",yikaishi);
+    
+    if (yikaishi == nil)
+    {
+        _tableview.hidden = YES;
+    
+        label = [[UILabel alloc]init];
+        label.frame = CGRectMake(0, 114, width, 30);
+        label.font = [UIFont systemFontOfSize:17];
+        label.text = @"对不起,你还没有添加药品!";
+        label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:label];
+    }
+    else
+    {
+        [label removeFromSuperview];
+        _tableview.hidden = NO;
+    }
     [_tableview reloadData];
 }
 - (void)viewDidLoad {
@@ -92,7 +104,8 @@
     //状态栏名称
     self.navigationItem.title = @"全部订单";
     //设置self.view背景颜色
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     self.tableview.dataSource = self;
@@ -144,6 +157,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
+    cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
@@ -299,6 +313,15 @@
 }
     
 }
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    return baseView;
+}
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (aa == 2) {
