@@ -154,7 +154,7 @@
                 NSString * userID=@"0";
                 
                 //请求地址   地址不同 必须要改
-                NSString * url =@"/modifypwd";
+                NSString * url =@"/modifypwdVip";
                 
                 //时间戳
                 NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -167,8 +167,12 @@
                 manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
                 SBJsonWriter *writer = [[SBJsonWriter alloc]init];
                 //出入参数：
-                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"18345559961",@"loginName",_NewPassText.text,@"newpassword", _OldPassText.text,@"oldpassword",nil];
-                
+                NSString*loginName;
+                NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+                NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+                loginName=[NSString stringWithFormat:@"%@",[pp objectForKey:@"loginName"]];
+                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:loginName,@"loginName",_NewPassText.text,@"newpassword", _OldPassText.text,@"oldpassword",nil];
+                NSLog(@"\n\n\n\n%@\n\n\n\n",datadic);
                 NSString*jsonstring=[writer stringWithObject:datadic];
                 
                 //获取签名
@@ -192,7 +196,7 @@
                             NSDictionary*datadic=[responseObject valueForKey:@"data"];
                             NSLog(@"%@",datadic);
                             
-                            [self.navigationController popViewControllerAnimated:YES];
+                            [self.navigationController popToRootViewControllerAnimated:YES];
                             
                         }
                         

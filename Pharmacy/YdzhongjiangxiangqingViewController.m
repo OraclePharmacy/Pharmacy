@@ -348,8 +348,11 @@
         NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-        
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",@"67a3c6f913d24373b4a7917ba8a987ff",@"storeId",@"1130",@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
+        NSString*zhid;
+        NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+        zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",zhid,@"storeId",vip,@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
         NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         

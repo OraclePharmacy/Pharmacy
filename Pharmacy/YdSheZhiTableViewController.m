@@ -70,7 +70,7 @@
         NSFileManager *fm = [NSFileManager defaultManager];
         if ([fm fileExistsAtPath:Rempath]){
             NSLog(@"我要去登录页面，啊啊啊啊啊啊啊啊");
-            [fm removeItemAtPath:Rempath error:nil];
+       
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             

@@ -18,6 +18,7 @@
 #import <JMessage/JMessage.h>
 @interface ViewController ()
 {
+    NSMutableDictionary *Passdic;
     NSString *Rempath;
     int m;
 }
@@ -30,8 +31,7 @@
     //导航栏名称
     self.navigationItem.title = @"登录";
     
-    self.PhoneText.text = @"13333332222";
-    self.PasswordText.text = @"111111";
+    
     
     self.LoginButton.layer.cornerRadius = 5;
     self.LoginButton.layer.masksToBounds = YES;
@@ -53,12 +53,16 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithContentsOfFile:Rempath];
     
     if ([fm fileExistsAtPath:Rempath]){
+        if ([[dic objectForKey:@"phonetext"]isEqualToString:@""]) {
+            
+        }else{
         NSLog(@"12331111%@",dic);
         m = 1;
         [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
         [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
         _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
         _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
+        }
     }else{
         
     }
@@ -235,13 +239,17 @@
                             
                         }
                         
-                        
-                        
+                        [Passdic writeToFile:Rempath atomically:NO];
+                        NSLog(@"\n\n\n\nhaha\n\n\n\n%@",Passdic);
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
                         NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
+                        
+                       [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
+                        
+                        
                         [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
                             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                             if (error) {
@@ -309,21 +317,35 @@
         
         m=1;
         
-        NSMutableDictionary *Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
+        Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
         
         if ([fm fileExistsAtPath:Rempath]){
-            NSLog(@"1");
-            
-        }else{
-            if (_PhoneText.text.length==0&&_PasswordText.text.length==0){
+            if (_PhoneText.text.length==0&&_PasswordText.text.length==0)
+            {
                 NSLog(@"啥都没输入还想记住密码？");
-            }else{
+            }
+            else{
                 // NSLog(@"2")
                 [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
                 [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
                 NSLog(@"我记住你了!!!");
                 
-                [Passdic writeToFile:Rempath atomically:NO];
+                
+                NSLog(@"%@",Passdic);
+            }
+       
+        }
+        else{
+            if (_PhoneText.text.length==0&&_PasswordText.text.length==0){
+                NSLog(@"啥都没输入还想记住密码？");
+            }
+            else{
+                // NSLog(@"2")
+                [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+                [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
+                NSLog(@"我记住你了!!!");
+                
+                
                 NSLog(@"%@",Passdic);
             }
         }
@@ -333,8 +355,8 @@
         if ([fm fileExistsAtPath:Rempath]){
             [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
             NSLog(@"我怎么把你忘了");
-            [fm removeItemAtPath:Rempath error:nil];
             
+            Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"phonetext",@"",@"password", nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         }else{
