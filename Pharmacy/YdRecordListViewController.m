@@ -22,15 +22,17 @@
     CGFloat height;
     NSArray * emrList;
     int ye;
-    
-    
+    UILabel *label;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
+
 @end
 
 @implementation YdRecordListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableview.tableFooterView = [[UIView alloc] init];
     ye=1;
     
     width = [UIScreen mainScreen].bounds.size.width;
@@ -126,9 +128,26 @@
             NSLog(@"－＊－＊－＊－＊－＊－＊电子病历列表返回＊－＊－＊－＊－\n\n\n%@",responseObject);
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             emrList=[NSArray arrayWithArray:[[responseObject objectForKey:@"data" ] objectForKey:@"emrList"]];
-            
+            NSLog(@"%@",emrList);
+            if (emrList.count == 0)
+            {
+                _tableview.hidden = YES;
+                
+                label = [[UILabel alloc]init];
+                label.frame = CGRectMake(0, 114, width, 30);
+                label.font = [UIFont systemFontOfSize:17];
+                label.text = @"对不起,你还没有添加药品!";
+                label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                label.textAlignment = NSTextAlignmentCenter;
+                [self.view addSubview:label];
+            }
+            else
+            {
+                [label removeFromSuperview];
+                _tableview.hidden = NO;
+            }
+
             [_tableview reloadData];
-            
             
         }
         @catch (NSException * e) {

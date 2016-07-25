@@ -25,14 +25,17 @@
     NSMutableArray *tupian1;
     
     int ccc;
+    
+    UILabel *label;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdYaoXiangViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     changshang1 = [[NSMutableArray alloc]init];
     name1 = [[NSMutableArray alloc]init];
     time1 = [[NSMutableArray alloc]init];

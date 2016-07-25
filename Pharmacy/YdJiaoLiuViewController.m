@@ -27,10 +27,13 @@
     int coun;
     int ye;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdJiaoLiuViewController
 -(void)viewWillAppear:(BOOL)animated{
+    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     
     ye = 1;
     
@@ -75,7 +78,7 @@
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -180,15 +183,9 @@
 {
     return 111;
 }
-//header高
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return 0;
-}
-//自定义header
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.view;
+    return [[UISwitch alloc] init];
 }
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -282,6 +279,7 @@
     [self.navigationController pushViewController:TieZiXiangQing animated:YES];
 
 }
+
 -(void)fanhui
 {
     //返回上一页

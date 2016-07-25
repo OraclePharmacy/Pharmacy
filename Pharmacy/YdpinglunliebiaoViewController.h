@@ -12,4 +12,6 @@
 
 @property (strong,nonatomic) NSString *tieziID;
 @property (strong,nonatomic) UITableView *tableview;
+@property (nonatomic, strong) UIView *tableFooterView;
+
 @end

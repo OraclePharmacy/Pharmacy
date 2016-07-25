@@ -47,6 +47,7 @@
     NSMutableArray *time_array;
     NSArray *jiajia;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 
 @end
 
@@ -308,7 +309,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
+
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
     

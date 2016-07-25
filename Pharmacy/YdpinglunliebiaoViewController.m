@@ -26,8 +26,9 @@
     int coun;
     
 }
+
 -(void)viewWillAppear:(BOOL)animated{
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     ye = 1;
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
@@ -40,7 +41,6 @@
     
     [self jiekou];
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

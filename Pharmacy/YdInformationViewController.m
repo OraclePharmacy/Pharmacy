@@ -706,5 +706,11 @@
     }
     
 }
-
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 1)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    return baseView;
+}
 @end

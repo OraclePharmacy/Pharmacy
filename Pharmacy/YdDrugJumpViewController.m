@@ -26,14 +26,17 @@
     
     int coun;
     int ye;
+    
+    UILabel *label;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdDrugJumpViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -41,6 +44,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //状态栏名称
     self.navigationItem.title = _bookNo;
+    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -132,6 +138,24 @@
                     arr = [NSArray arrayWithArray:[datadic objectForKey:@"productList"]];
                     
                     coun=[[datadic objectForKey:@"count"] intValue];
+                    
+                    if (arr.count == 0)
+                    {
+                        _tableview.hidden = YES;
+                        
+                        label = [[UILabel alloc]init];
+                        label.frame = CGRectMake(0, 114, width, 30);
+                        label.font = [UIFont systemFontOfSize:17];
+                        label.text = @"对不起,没有找到相关药品!";
+                        label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                        label.textAlignment = NSTextAlignmentCenter;
+                        [self.view addSubview:label];
+                    }
+                    else
+                    {
+                        [label removeFromSuperview];
+                        _tableview.hidden = NO;
+                    }
                     
                     [self.tableview reloadData];
     
