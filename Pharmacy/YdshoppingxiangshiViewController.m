@@ -59,6 +59,8 @@
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
@@ -159,7 +161,14 @@
     [self.view endEditing:YES];
     
 }
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 10)];
+    baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    
+    return baseView;
 
+}
 - (IBAction)tijiao:(id)sender {
     
     //userID    暂时不用改
