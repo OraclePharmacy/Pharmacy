@@ -44,8 +44,8 @@
 
 @implementation YdInformationViewController
 -(void)viewWillAppear:(BOOL)animated{
-//    [self wenzizixun];
-   
+    //    [self wenzizixun];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,7 +54,8 @@
     arr=[NSArray array];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+    diantainewsListForInterface=[[NSMutableArray alloc] init];
+
     //设置分段控制器的默认选项
     self.Segmented.selectedSegmentIndex = 0;
     //解决tableview多出的白条
@@ -77,30 +78,50 @@
     
     MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = footer;
-
     
-     //进入界面   给zhi赋值
-     zhi = 1;
-     [self zixunleibie];
+    
+    //进入界面   给zhi赋值
+    zhi = 1;
+    [self zixunleibie];
 }
 -(void)loadNewdata{
-    ye=1;
-    [self zixunleibie];
+    if (zhi!=1) {
+        diantaiye=1;
+        diantainewsListForInterface=[[NSMutableArray alloc] init];
+        [self jiankangdiantai];
+    }else{
+        ye=1;
+        [self wenzizixun:str];
+    }
     [self.tableview.mj_header endRefreshing];
-    
 }
 -(void)loadNewData{
-    NSLog(@"%d,%d",ye,coun);
-    if (ye*3 >coun+2) {
-        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-        
-        [self.tableview.mj_footer endRefreshing];
-    }else{
-        if (ye==1) {
-            ye=2;
+    if (zhi!=1) {
+        if (diantaiye*5 >coun+4) {
+            [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+            
+            [self.tableview.mj_footer endRefreshing];
+        }else{
+            if (diantaiye==1) {
+                diantaiye=2;
+            }
+            [self jiankangdiantai];
+            [self.tableview.mj_footer endRefreshing];
         }
-    [self zixunleibie];
-    [self.tableview.mj_footer endRefreshing];
+
+    }else{
+        NSLog(@"%d,%d",ye,coun);
+        if (ye*5 >coun+4) {
+            [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+            
+            [self.tableview.mj_footer endRefreshing];
+        }else{
+            if (ye==1) {
+                ye=2;
+            }
+            [self wenzizixun:str];
+            [self.tableview.mj_footer endRefreshing];
+        }
     }
 }
 -(void)tab
@@ -191,12 +212,13 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 arr= [[responseObject objectForKey:@"data"] objectForKey:@"newsCatelog"];
-                NSLog(@"%lu",(unsigned long)arr.count);
+                NSLog(@"\n\n\n\n%@",arr);
                 [self wenzizixun:[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]]];
+                str=[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
             }
             
         }
@@ -235,7 +257,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",hehe,@"id", nil];
-   
+    
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -310,7 +332,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",diantaiye],@"pageNo",@"13",@"pageSize",@"",@"id", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",diantaiye],@"pageNo",@"5",@"pageSize",@"",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -326,33 +348,36 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        @try
-        {
-            
+//        @try
+//        {
+        
             NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
-                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                NSDictionary*datadic1=[responseObject valueForKey:@"data"];
+                coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
                 if (diantaiye!=1) {
-                    for (NSDictionary*dd in [datadic objectForKey:@"newsListForInterface"]) {
+                    for (NSDictionary*dd in [datadic1 objectForKey:@"newsListForInterface"]) {
                         [diantainewsListForInterface addObject:dd];
                         
                     }
                 }else{
-                    diantainewsListForInterface=[datadic objectForKey:@"newsListForInterface"];
+                    diantainewsListForInterface=[NSMutableArray arrayWithArray: [datadic1 objectForKey:@"newsListForInterface" ]];
                 }
-                NSLog(@"%@",datadic);
+                
+                diantaiye++;
+                NSLog(@"%@",datadic1);
                 
                 [_tableview reloadData];
                 
             }
-           
-        }
-        @catch (NSException * e) {
             
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
-        }
+//        }
+//        @catch (NSException * e) {
+//            
+//            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+//            
+//        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -360,39 +385,35 @@
         NSLog(@"错误：%@",error);
         
     }];
-
+    
 }
 
 //scrollview上面button点击事件
 - (void)handleClick:(UIButton *)btn
 {
+    newsListForInterface=[[NSMutableArray alloc] init];
     str = [[NSString alloc]init];
     
     //u.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
     if (btn.tag == 300)
     {
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
-        btn.selected = YES;
     }
     else if (btn.tag == 301)
     {
         str = [NSString stringWithFormat:@"%@",[arr[1] objectForKey:@"id"]];;
-        btn.selected = NO;
     }
     else if (btn.tag == 302)
     {
         str = [NSString stringWithFormat:@"%@",[arr[2] objectForKey:@"id"]];;
-        btn.selected = NO;
     }
     else if (btn.tag == 303)
     {
         str = [NSString stringWithFormat:@"%@",[arr[3] objectForKey:@"id"]];;
-        btn.selected = NO;
     }
     else if (btn.tag == 304)
     {
         str = [NSString stringWithFormat:@"%@",[arr[4] objectForKey:@"id"]];;
-        btn.selected = NO;
     }
     
     [self wenzizixun:str];
@@ -441,6 +462,7 @@
         }
         else
         {
+            
             return newsListForInterface.count;
         }
     }
@@ -484,15 +506,21 @@
         if (indexPath.section == 0) {
             //创建scrollview
             [self tab];
+            
             //创建图片
             UIImageView *img = [[UIImageView alloc]init];
             img.frame = CGRectMake(0, 30, width, 150);
             img.backgroundColor = [UIColor colorWithHexString:@"943545" alpha:1];
-            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
-            
+            NSString*path;
+            if (newsListForInterface.count==0) {
+                
+            }else{
+                path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
+            }
             [img sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
             [cell.contentView addSubview:_scrollView];
             [cell.contentView addSubview:img];
+            
         }
         else
         {
@@ -535,12 +563,12 @@
             laiyuan.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"source"]];
             laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             
-//这是啥玩意
+            //这是啥玩意
             UIButton *fenxiang = [[UIButton alloc] init];
             fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
             fenxiang.backgroundColor = [UIColor clearColor];
             [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
-//看不懂
+            //看不懂
             
             UILabel *fenxianglabel = [[UILabel alloc]init];
             fenxianglabel.frame = CGRectMake(0,0,70,20);
@@ -702,6 +730,8 @@
         YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
         InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"id"]];
         InformationDetails.liexing=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"type"]];
+        
+        InformationDetails.doc=[NSDictionary dictionaryWithDictionary:diantainewsListForInterface[indexPath.row]];
         [self.navigationController pushViewController:InformationDetails animated:YES];
     }
     

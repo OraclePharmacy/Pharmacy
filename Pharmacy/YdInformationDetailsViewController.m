@@ -43,7 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"\n\n\n%@\n\n\n",_doc);
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     //状态栏名称
@@ -62,35 +62,62 @@
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(5, 69, width - 10, 20);
     title.font = [UIFont systemFontOfSize:13];
-    title.text = @"标题";
+    title.text = [NSString stringWithFormat:@"%@",[_doc objectForKey:@"title"]];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     [self.view addSubview:title];
     
     UILabel *laiyuan = [[UILabel alloc]init];
     laiyuan.frame = CGRectMake(5, CGRectGetMaxY(title.frame), 100, 20);
     laiyuan.font = [UIFont systemFontOfSize:13];
-    laiyuan.text = @"来源:网络";
+    laiyuan.text = [NSString stringWithFormat:@"来源:%@",[_doc objectForKey:@"source"]];
     laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     [self.view addSubview:laiyuan];
     
     UILabel *shijian = [[UILabel alloc]init];
     shijian.frame = CGRectMake(width - 155, CGRectGetMaxY(title.frame), 150, 20);
     shijian.font = [UIFont systemFontOfSize:13];
-    shijian.text = @"2016-04-27 14:03:01";
+    shijian.text = [NSString stringWithFormat:@"%@",[_doc objectForKey:@"createTime"]];
     shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     shijian.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:shijian];
     
-    UILabel *jianjie = [[UILabel alloc]init];
-    jianjie.frame = CGRectMake(5, CGRectGetMaxY(laiyuan.frame), width - 10, 20);
-    jianjie.font = [UIFont systemFontOfSize:13];
-    jianjie.text = @"简介:方式打开垃圾分类萨科技风";
-    jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    [self.view addSubview:jianjie];
     
+    
+    UIScrollView *scl=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    
+    UILabel *jianjie = [[UILabel alloc]init];
+    jianjie.frame = CGRectMake(5, CGRectGetMaxY(laiyuan.frame), width - 10, 100);
+    
+    jianjie.text = [NSString stringWithFormat:@"简介:%@",[_doc objectForKey:@"subtitle"]];
+    jianjie.numberOfLines=0;
+    
+    
+    if (width==414)
+        jianjie.font=[UIFont systemFontOfSize:16.0f];
+    else
+        jianjie.font=[UIFont systemFontOfSize:14.0f];
+    
+     jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    
+    //
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:jianjie.text];;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:5];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, jianjie.text.length)];
+    
+    jianjie.attributedText = attributedString;
+    [jianjie sizeToFit];
+    
+    [scl addSubview:jianjie];
+    
+    scl.contentSize=CGSizeMake(width, 70+CGRectGetMaxY(jianjie.frame));
+    
+    [self.view addSubview:scl];
+    
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[_doc objectForKey:@"picUrl"]] ;
     image = [[UIImageView alloc]init];
     image.frame = CGRectMake(5, CGRectGetMaxY(jianjie.frame) + 5, width - 10, 150);
-    //image.image = [UIImage imageNamed:@""];
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     image.backgroundColor = [UIColor grayColor];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];

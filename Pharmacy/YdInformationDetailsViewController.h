@@ -11,4 +11,5 @@
 @interface YdInformationDetailsViewController : UIViewController
 @property (nonatomic , strong)NSString * hahaha;
 @property (nonatomic , strong)NSString * liexing;
+@property (nonatomic , strong)NSDictionary*doc;
 @end
