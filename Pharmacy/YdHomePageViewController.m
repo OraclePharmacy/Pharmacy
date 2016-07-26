@@ -43,6 +43,7 @@
     UITableViewCell *cell;
     UITextField *SearchText;
     NSMutableArray *arrImage;
+    NSMutableArray *titarr;
     NSArray *arr;
     
     NSString*MDID;
@@ -301,8 +302,8 @@
 //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                
-                
+                titarr=[[NSMutableArray alloc] init];
+                arrImage=[[NSMutableArray alloc] init];
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"newsList"];
@@ -312,7 +313,7 @@
                 for (int i = 0; i < arr.count; i++) {
                     
                     [arrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[arr[i] objectForKey:@"url"]]];
-                    
+                    [titarr addObject:[arr[i] objectForKey:@"title"]];
                 }
                 
                 
@@ -696,7 +697,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
    
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"3",@"pageSize",@"1002",@"id", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"1002",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -794,10 +795,10 @@
     }
     else if (section == 5)
     {
-        if(remenzixunarray.count<4){
+        if(remenzixunarray.count<5){
             return remenzixunarray.count;
         }else
-            return 3;
+            return 4;
     }
     else if (section == 6)
     {
@@ -992,7 +993,7 @@
             {
                 YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
                                                             images:arrImage
-                                                            titles:nil
+                                                            titles:titarr
                                                   placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
@@ -1082,7 +1083,7 @@
                 originalcost.font = [UIFont systemFontOfSize:11];
                 originalcost.textAlignment = NSTextAlignmentCenter;
                 originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-                originalcost.text = [NSString stringWithFormat:@"%@",[proList[i] objectForKey:@"prodPrice"]];
+                originalcost.text = [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"prodPrice"]];
                 //特价
                 UILabel *specialoffer = [[UILabel alloc] init];
                 specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);

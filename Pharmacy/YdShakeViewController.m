@@ -24,6 +24,8 @@
     NSTimer *time;
     NSTimer *time1;
     
+    NSDictionary*chuan;
+    
     CGFloat width;
     CGFloat height;
     
@@ -87,6 +89,7 @@
 // 实现花环闪动效果
 -(void)zhongjiang
 {
+    
     j++;
     
     if ( j < array1.count)
@@ -96,6 +99,42 @@
     else{
         //停止
         [time1 setFireDate:[NSDate distantFuture]];
+        UILabel *dengji = [[UILabel alloc]init];
+        dengji.frame = CGRectMake(0, height / 6, width, 30);
+        dengji.textColor = [UIColor whiteColor];
+        dengji.font = [UIFont systemFontOfSize:16];
+        dengji.textAlignment = NSTextAlignmentCenter;
+        
+        
+        
+//        dengji.text = @"几等奖";
+        
+        
+        [self.beijing addSubview:dengji];
+        
+        UILabel *jieguo = [[UILabel alloc]init];
+        jieguo.frame = CGRectMake(0, CGRectGetMaxY(dengji.frame) +10, width, 30);
+        jieguo.textColor = [UIColor whiteColor];
+        jieguo.font = [UIFont systemFontOfSize:15];
+        jieguo.textAlignment = NSTextAlignmentCenter;
+        jieguo.text = [chuan objectForKey:@"results"];
+        [self.beijing addSubview:jieguo];
+        
+        
+        UIButton *fanhui = [[UIButton alloc]init];
+        fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
+        [fanhui setTitle:@"返回" forState:UIControlStateNormal];
+        [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        fanhui.layer.cornerRadius = 5;
+        fanhui.layer.masksToBounds = YES;
+        fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
+        fanhui.layer.borderWidth =1;
+        [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:fanhui];
+
+        self.bian.hidden = YES;
+        self.dong.hidden = YES;
+        self.beijing.image = [UIImage imageNamed:@"yyy_zhongjiang.png"];
     }
     
 }
@@ -158,7 +197,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==4444) {
                 UIButton *fanhui = [[UIButton alloc]init];
@@ -173,42 +212,9 @@
                 [self.view addSubview:fanhui];
             }
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                chuan=[[NSDictionary alloc] init];
+                chuan=[responseObject valueForKey:@"data"];
                 
-                NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                
-                self.bian.hidden = YES;
-                self.dong.hidden = YES;
-                self.beijing.image = [UIImage imageNamed:@"yyy_zhongjiang.png"];
-                
-                UILabel *dengji = [[UILabel alloc]init];
-                dengji.frame = CGRectMake(0, height / 6, width, 30);
-                dengji.textColor = [UIColor whiteColor];
-                dengji.font = [UIFont systemFontOfSize:16];
-                dengji.textAlignment = NSTextAlignmentCenter;
-                dengji.text = @"几等奖";
-                [self.beijing addSubview:dengji];
-                
-                UILabel *jieguo = [[UILabel alloc]init];
-                jieguo.frame = CGRectMake(0, CGRectGetMaxY(dengji.frame) +10, width, 30);
-                jieguo.textColor = [UIColor whiteColor];
-                jieguo.font = [UIFont systemFontOfSize:15];
-                jieguo.textAlignment = NSTextAlignmentCenter;
-                jieguo.text = [datadic objectForKey:@"results"];
-                [self.beijing addSubview:jieguo];
-                
-                
-                UIButton *fanhui = [[UIButton alloc]init];
-                fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
-                [fanhui setTitle:@"返回" forState:UIControlStateNormal];
-                [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                fanhui.layer.cornerRadius = 5;
-                fanhui.layer.masksToBounds = YES;
-                fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
-                fanhui.layer.borderWidth =1;
-                [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:fanhui];
-                
-
             }
         }
         @catch (NSException * e) {
@@ -241,12 +247,11 @@
     //摇动结束
     if (event.subtype == UIEventSubtypeMotionShake) {
         
-        
+        [self jiekou];
         //延时效果  ＊前为延迟时间  单位  秒
         //摇动结束时  手机停止摇动  执行
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.bian.hidden = NO;
-            [self jiekou];
             time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
             
             j = 0 ;

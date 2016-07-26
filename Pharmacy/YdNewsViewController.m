@@ -8,11 +8,19 @@
 
 #import "YdNewsViewController.h"
 #import "Color+Hex.h"
-
+#import "WarningBox.h"
+#import "AFHTTPSessionManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
+#import "MJRefresh.h"
 @interface YdNewsViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
+    int coun;
+    int ye;
     CGFloat width;
     CGFloat height;
+    NSMutableArray*pushLogList;
 }
 @property (nonatomic,strong) UITableView *tableview;
 @property (nonatomic, strong) UIView *tableFooterView;
@@ -22,10 +30,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+      ye=1;
     self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+    pushLogList=[[NSMutableArray alloc] init];
     //状态栏名称
     self.navigationItem.title = @"消 息";
     //设置导航栏左按钮
@@ -42,9 +51,101 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [self.view addSubview:self.tableview];
     
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
+    self.tableview.mj_header = header;
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
+    
+
+    [self jiekou];
+    
+}
+-(void)loadNewdata{
+    pushLogList=[[NSMutableArray alloc] init];
+    ye=1;
+    [self jiekou];
+    [self.tableview.mj_header endRefreshing];
+    
+}
+-(void)loadNewData{
+    NSLog(@"%d,%d",ye,coun);
+    if (ye*10 >coun+9) {
+        [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
+        
+        [self.tableview.mj_footer endRefreshing];
+    }else{
+        if (ye==1) {
+            ye=2;
+        }
+        [self jiekou];
+        [self.tableview.mj_footer endRefreshing];
+    }
 }
 
+-(void)jiekou{
+    [WarningBox warningBoxModeIndeterminate:nil andView:self.view];
+    
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/function/queryPushLogList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSString*vip;
+    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"10",@"pageSize",@"1",@"pageNo", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        NSLog(@"%@",responseObject);
+        NSArray*poop=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"pushLogList"]];
+        coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
+        if (ye!=1) {
+            for (NSDictionary*dd in poop) {
+                [pushLogList addObject:dd];
+            }
+        }else{
+            pushLogList =[NSMutableArray arrayWithArray:poop];
+        }
+        ye++;
+     
+        [_tableview reloadData];
 
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+
+    }];
+
+}
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

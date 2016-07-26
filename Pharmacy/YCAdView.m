@@ -128,7 +128,7 @@
     //灰色遮罩层
     UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_scrollView.frame)-30, kADView_Width, 30)];
     grayView.backgroundColor = [UIColor blackColor];
-    grayView.alpha = 0.3;
+    grayView.alpha = 0.7;
     [self addSubview:grayView];
     
     _labTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, grayView.frame.size.width-10, 30)];
