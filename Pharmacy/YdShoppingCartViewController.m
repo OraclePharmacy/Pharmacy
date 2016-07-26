@@ -26,12 +26,13 @@
     UIView * di;
     
     UITextField *num;
-
+    
     NSMutableArray* yikaishi;
     
     UILabel *label;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *dianzhangshu;
 @end
 
 @implementation YdShoppingCartViewController
@@ -45,39 +46,39 @@
         _lianxidianzhnag.hidden=YES;
         _tijiao.hidden=YES;
         [user setObject:@"0" forKey:@"wancheng"];
-       
+        
         //添加一张没有物品的图片
-    
+        
     }else{
-    
-    NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-    
-    NSLog(@"%@",countwenjian);
-    NSFileManager *file=[NSFileManager defaultManager];
-    if([file fileExistsAtPath:countwenjian]){
-        yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-        _lianxidianzhnag.hidden=NO;
-        _tijiao.hidden=NO;
-        if (yikaishi.count==0) {
+        
+        NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+        
+        NSLog(@"%@",countwenjian);
+        NSFileManager *file=[NSFileManager defaultManager];
+        if([file fileExistsAtPath:countwenjian]){
+            yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+            _lianxidianzhnag.hidden=NO;
+            _tijiao.hidden=NO;
+            if (yikaishi.count==0) {
+                yikaishi=nil;
+                _lianxidianzhnag.hidden=YES;
+                _tijiao.hidden=YES;
+            }
+        }else{
             yikaishi=nil;
             _lianxidianzhnag.hidden=YES;
             _tijiao.hidden=YES;
+            
+            //添加一张没有物品的图片
+            
         }
-    }else{
-        yikaishi=nil;
-        _lianxidianzhnag.hidden=YES;
-        _tijiao.hidden=YES;
-        
-        //添加一张没有物品的图片
-    
-    }
     }
     NSLog(@"刚进来\n\n%@",yikaishi);
     
     if (yikaishi == nil)
     {
         _tableview.hidden = YES;
-    
+        
         label = [[UILabel alloc]init];
         label.frame = CGRectMake(0, 114, width, 30);
         label.font = [UIFont systemFontOfSize:17];
@@ -88,6 +89,25 @@
     }
     else
     {
+        NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+        NSArray* arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+        for (int i=0; i<arr.count; i++) {
+            if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
+                float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+                [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
+            }else{
+                float s=[[arr[i] objectForKey:@"prodPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+                [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
+            }
+        }
+        float jine;
+        
+        for (int i=0; i<arr.count; i++) {
+            jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
+        }
+        [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
+        
+        
         [label removeFromSuperview];
         _tableview.hidden = NO;
     }
@@ -126,7 +146,7 @@
 }
 //限制输入框长度
 -(void)NumberLength
-{   
+{
     int MaxLen = 4;
     NSString* szText = [num text];
     if ([num.text length]> MaxLen)
@@ -163,7 +183,7 @@
     image.frame = CGRectMake(10, 10, 80, 80);
     [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[yikaishi[indexPath.row]objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
     image.layer.cornerRadius=30;
-  
+    
     //药品名称
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(100, 10, 200, 20);
@@ -190,7 +210,7 @@
         yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         yuanjia.font =[UIFont systemFontOfSize:13];
     }
-   
+    
     
     
     //生产厂家
@@ -200,14 +220,14 @@
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     changjia.font =[UIFont systemFontOfSize:13];
     //changjia.backgroundColor = [UIColor colorWithHexString:@"646464" alpha:1];
-   
+    
     
     UILabel *vender = [[UILabel alloc]init];
     vender.frame = CGRectMake( 160, 50, width - 160 , 20);
     vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
     vender.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     vender.font =[UIFont systemFontOfSize:12];
-   
+    
     
     
     //添加数量按钮
@@ -268,8 +288,8 @@
     //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
-   
-   
+    
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -282,35 +302,35 @@
 {
     if (aa == 2) {
         
-         return  UITableViewCellEditingStyleDelete;   //返回此值时,Cell上不会出现Delete按键,即Cell不做任何响应
+        return  UITableViewCellEditingStyleDelete;   //返回此值时,Cell上不会出现Delete按键,即Cell不做任何响应
     }
-   
+    
     return 0;
 }
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath //对选中的Cell根据editingStyle进行操作
 {
     if (aa == 2) {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        //删除字典内容
-        
-        [yikaishi removeObjectAtIndex:indexPath.row];
-        NSLog(@"0.0%@",yikaishi);
-        
-        if (yikaishi.count==0) {
-            //yikaishi=nil;
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            
+            //删除字典内容
+            
+            [yikaishi removeObjectAtIndex:indexPath.row];
+            NSLog(@"0.0%@",yikaishi);
+            
+            if (yikaishi.count==0) {
+                //yikaishi=nil;
+            }
+            
+            [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.tableview reloadData];
+        }
+        else if (editingStyle == UITableViewCellEditingStyleInsert)
+        {
+            [self.tableview reloadData];
         }
         
-        [self.tableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [self.tableview reloadData];
     }
-    else if (editingStyle == UITableViewCellEditingStyleInsert)
-    {
-        [self.tableview reloadData];
-    }
-    
-}
     
 }
 
@@ -350,12 +370,12 @@
     //显示订单详情，包括总价钱等等
     YdshoppingxiangshiViewController *shoppingxiangshi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shoppingxiangshi"];
     [self.navigationController pushViewController:shoppingxiangshi animated:YES];
-
+    
 }
 -(void)bianij
 {
     aa=2;
-
+    
     self.navigationItem.rightBarButtonItem = right1;
     [self.tableview reloadData];
     
@@ -373,21 +393,21 @@
     //    lab.textAlignment = NSTextAlignmentLeft;
     lab.textAlignment = NSTextAlignmentCenter;
     lab.text = @"*  向左侧拉删除";
-
+    
     
 }
 -(void)textFieldDidChange :(UITextField *)theTextField
 {
-        UITableViewCell *cell=(UITableViewCell*)[[theTextField superview] superview ];
-        
-        NSIndexPath *index=[self.tableview indexPathForCell:cell];
-        
-        UILabel*oo=[cell viewWithTag:index.row+999];
-        
-        oo.text=[NSString stringWithFormat:@"%d",[oo.text intValue]];
-        
-        NSString*qw=oo.text;
-        [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
+    UITableViewCell *cell=(UITableViewCell*)[[theTextField superview] superview ];
+    
+    NSIndexPath *index=[self.tableview indexPathForCell:cell];
+    
+    UILabel*oo=[cell viewWithTag:index.row+999];
+    
+    oo.text=[NSString stringWithFormat:@"%d",[oo.text intValue]];
+    
+    NSString*qw=oo.text;
+    [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
     
 }
 
@@ -395,11 +415,27 @@
 {
     NSLog(@"zheshiji  %@",yikaishi);
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-  
+    
     [yikaishi writeToFile:countwenjian atomically:YES];
-
+    
     aa=1;
-            
+   
+    NSArray* arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+    for (int i=0; i<arr.count; i++) {
+        if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
+            float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
+        }else{
+            float s=[[arr[i] objectForKey:@"prodPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
+            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
+        }
+    }
+    float jine;
+    
+    for (int i=0; i<arr.count; i++) {
+        jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
+    }
+    [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = right;
     
     [self.tableview reloadData];
@@ -458,10 +494,8 @@
 
 
 - (IBAction)dianzhanganniu:(id)sender {
+    //合计金额
     
-    //聊天界面，聊天的对象是店长。。。。
-    YdlianxidianzhangViewController *lianxidianzhang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"lianxidianzhang"];
-    [self.navigationController pushViewController:lianxidianzhang animated:YES];
     
 }
 @end
