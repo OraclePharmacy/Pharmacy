@@ -107,7 +107,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1040",@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -132,7 +132,7 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"myOrder"];
-                
+               
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
                 [self.tableview reloadData];
@@ -157,30 +157,26 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return arr.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arr.count;
+    return 1;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 186;
+    return CGRectGetMaxY(queren.frame) + 3;
 }
 //header 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    CGFloat kuan = width - 20;
-    CGFloat gao = 166;
-    
     static NSString *id1 =@"wodedingdan";
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -188,94 +184,119 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
     
-    cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-    
-    UIView *beijing = [[UIView alloc]init];
-    beijing.frame = CGRectMake(10, 10, kuan, gao);
-    beijing.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-    
-    UIView *beijinger = [[UIView alloc]init];
-    beijinger.frame = CGRectMake(1, 1, kuan - 2, gao - 2);
-    beijinger.backgroundColor = [UIColor colorWithHexString:@"ffffff" alpha:1];
-    [beijing addSubview:beijinger];
-    
-    UILabel *name = [[UILabel alloc]init];
-    name.frame = CGRectMake(5, 5, kuan / 2 , 20);
-    name.font = [UIFont systemFontOfSize:13];
-    name.text = [NSString stringWithFormat:@"收  药  人:  %@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"name"]];
-    name.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:name];
-    
-    UILabel *dianhua = [[UILabel alloc]init];
-    dianhua.frame = CGRectMake(kuan / 2, 5, kuan / 2 - 5 , 20);
-    dianhua.font = [UIFont systemFontOfSize:13];
-    dianhua.text = [NSString stringWithFormat:@"联系电话:%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"phoneNumber"]];
-    dianhua.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:dianhua];
-    
-    UILabel *zhuangtai = [[UILabel alloc]init];
-    zhuangtai.frame = CGRectMake(5, 26, kuan - 10, 20);
-    zhuangtai.font = [UIFont systemFontOfSize:13];
-    zhuangtai.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    
-    if ([[arr[indexPath.row] objectForKey:@"states"] isEqual:@"0"]) {
-        zhuangtai.text = @"订单状态:  已处理";
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    //门店名
+    UILabel *Ydname = [[UILabel alloc]init];
+    Ydname.frame = CGRectMake(5, 0, (width - 10)/2, 30);
+    Ydname.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    Ydname.text = [[arr[indexPath.section] objectForKey:@"office"]  objectForKey:@"name"];
+    Ydname.font = [UIFont systemFontOfSize:14];
+    [cell.contentView addSubview:Ydname];
+    //订单状态
+    UILabel *Ddzhuangtai = [[UILabel alloc]init];
+    Ddzhuangtai.frame = CGRectMake(width - (width - 10)/2 - 5 , 0, (width - 10)/2, 30);
+    Ddzhuangtai.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
+    if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"0"]) {
+        Ddzhuangtai.text = @"订单状态:  已处理";
     }
-    else if ([[arr[indexPath.row] objectForKey:@"states"] isEqual:@"1"]) {
-        zhuangtai.text = @"订单状态:  已发货";
+    else if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"1"]) {
+        Ddzhuangtai.text = @"订单状态:  已发货";
     }
-    else if ([[arr[indexPath.row] objectForKey:@"states"] isEqual:@"2"]) {
-        zhuangtai.text = @"订单状态:  已完成";
+    else if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"2"]) {
+        Ddzhuangtai.text = @"订单状态:  已完成";
     }
-    else if ([[arr[indexPath.row] objectForKey:@"states"] isEqual:@"3"]) {
-        zhuangtai.text = @"订单状态:  未处理";
+    else if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"3"]) {
+        Ddzhuangtai.text = @"订单状态:  未处理";
     }
-
-    [beijinger addSubview:zhuangtai];
-    
-    UILabel *jiedan = [[UILabel alloc]init];
-    jiedan.frame = CGRectMake(5, 47, kuan - 10, 20);
-    jiedan.font = [UIFont systemFontOfSize:13];
-    jiedan.text = [NSString stringWithFormat:@"接单门店:  %@",[[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"office"] objectForKey:@"name"]];
-    jiedan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:jiedan];
-
-    UILabel *dizhi = [[UILabel alloc]init];
-    dizhi.frame = CGRectMake(5, 68, kuan - 10, 20);
-    dizhi.font = [UIFont systemFontOfSize:13];
-    dizhi.text = [NSString stringWithFormat:@"送药地址:  %@",[arr[indexPath.row] objectForKey:@"reciAddress"]];
-    dizhi.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:dizhi];
-    
-    UILabel *shijian = [[UILabel alloc]init];
-    shijian.frame = CGRectMake(5, 89, kuan - 10, 20);
-    shijian.font = [UIFont systemFontOfSize:13];
-    shijian.text = [NSString stringWithFormat:@"接单时间:  %@",[arr[indexPath.row] objectForKey:@"orderTime"]];
-    shijian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:shijian];
-    
-    UILabel *paisong = [[UILabel alloc]init];
-    paisong.frame = CGRectMake(5, 110, kuan - 10, 20);
-    paisong.font = [UIFont systemFontOfSize:13];
-    if ([[arr[indexPath.row] objectForKey:@"sendTime"] isEqualToString:@""]) {
-         paisong.text = @"派送时间:";
+    Ddzhuangtai.font = [UIFont systemFontOfSize:14];
+    Ddzhuangtai.textAlignment = NSTextAlignmentRight;
+    [cell.contentView addSubview:Ddzhuangtai];
+    //收药人
+    UILabel *Syren = [[UILabel alloc]init];
+    Syren.frame = CGRectMake(5, CGRectGetMaxY(Ydname.frame), 60, 20);
+    Syren.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    Syren.text = @"收药人:";
+    Syren.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:Syren];
+    //收药人返回数据
+    UILabel *SyrenFH = [[UILabel alloc]init];
+    SyrenFH.frame = CGRectMake(65,CGRectGetMaxY(Ydname.frame),width - 70,20);
+    SyrenFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    SyrenFH.text = [[arr[indexPath.section] objectForKey:@"vipinfo"] objectForKey:@"name"];
+    SyrenFH.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:SyrenFH];
+    //联系电话
+    UILabel *Phone = [[UILabel alloc]init];
+    Phone.frame = CGRectMake(5,CGRectGetMaxY(Syren.frame),60,20);
+    Phone.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    Phone.text = @"联系电话:";
+    Phone.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:Phone];
+    //联系电话返回数据
+    UILabel *PhoneFH = [[UILabel alloc]init];
+    PhoneFH.frame = CGRectMake(65,CGRectGetMaxY(Syren.frame),width - 70,20);
+    PhoneFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    PhoneFH.text = [[arr[indexPath.section] objectForKey:@"vipinfo"] objectForKey:@"phoneNumber"];
+    PhoneFH.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:PhoneFH];
+    //送药地址
+    UILabel *Sydizhi = [[UILabel alloc]init];
+    Sydizhi.frame = CGRectMake(5,CGRectGetMaxY(Phone.frame),60,20);
+    Sydizhi.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    Sydizhi.text = @"送药地址:";
+    Sydizhi.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:Sydizhi];
+    //送药地址返回数据
+    UILabel *SydizhiFH = [[UILabel alloc]init];
+    SydizhiFH.frame = CGRectMake(65,CGRectGetMaxY(Phone.frame),width - 70,20);
+    SydizhiFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    SydizhiFH.text = [arr[indexPath.section] objectForKey:@"reciAddress"];
+    SydizhiFH.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:SydizhiFH];
+    //接单时间
+    UILabel *Jdtime = [[UILabel alloc]init];
+    Jdtime.frame = CGRectMake(5,CGRectGetMaxY(SydizhiFH.frame),60,20);
+    Jdtime.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    Jdtime.text = @"接单时间:";
+    Jdtime.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:Jdtime];
+    //接单时间返回
+    UILabel *JdtimeFH = [[UILabel alloc]init];
+    JdtimeFH.frame = CGRectMake(65,CGRectGetMaxY(SydizhiFH.frame),width - 70,20);
+    JdtimeFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    JdtimeFH.text = [arr[indexPath.section] objectForKey:@"orderTime"];
+    JdtimeFH.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:JdtimeFH];
+    //派送时间
+    UILabel *Pstime = [[UILabel alloc]init];
+    Pstime.frame = CGRectMake(5,CGRectGetMaxY(JdtimeFH.frame),60,20);
+    Pstime.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    Pstime.text = @"派送时间:";
+    Pstime.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:Pstime];
+    //派送时间返回
+    UILabel *PstimeFH = [[UILabel alloc]init];
+    PstimeFH.frame = CGRectMake(65,CGRectGetMaxY(JdtimeFH.frame),width - 70,20);
+    PstimeFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    if (NULL == [arr[indexPath.section] objectForKey:@"sendTime"] ) {
+        
+        PstimeFH.text = @"暂时没有派送信息,请耐心等待";
     }
-    else
-    {
-        paisong.text = [NSString stringWithFormat:@"派送时间:  %@",[arr[indexPath.row] objectForKey:@"sendTime"]];
+    else{
+        
+        PstimeFH.text = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"sendTime"]];
     }
-    paisong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-
-    [beijinger addSubview:paisong];
-    
+    PstimeFH.font = [UIFont systemFontOfSize:13];
+    [cell.contentView addSubview:PstimeFH];
+    //背景
+    UIView *Beijing = [[UIView alloc]init];
+    Beijing.frame = CGRectMake(0, 30, width, CGRectGetMaxY(PstimeFH.frame) - 30);
+    Beijing.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:0.5];
+    [cell.contentView addSubview:Beijing];
+    //确认按钮
     queren = [[UIButton alloc]init];
     queren.tag = 100 + indexPath.row;
-    queren.frame = CGRectMake(30 , 136, kuan - 60, 20);
+    queren.frame = CGRectMake(width - 80 , CGRectGetMaxY(Beijing.frame) + 3, 60, 24);
     [queren setTitle:@"确认收货" forState:UIControlStateNormal];
     [queren setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
     queren.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
@@ -283,10 +304,8 @@
     queren.layer.masksToBounds = YES;
     queren.titleLabel.font    = [UIFont systemFontOfSize: 13];
     [queren addTarget:self action:@selector(queren) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:queren];
     
-    [beijinger addSubview:queren];
-
-    [cell.contentView addSubview:beijing];
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
