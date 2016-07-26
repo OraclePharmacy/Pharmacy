@@ -255,6 +255,18 @@
     dianzan.textAlignment = NSTextAlignmentRight;
     dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
 
+    UIImageView *remen  = [[UIImageView alloc]init];
+    remen.frame = CGRectMake(width - 50 , 0, 50, 50);
+    if ([[arr[indexPath.row] objectForKey:@"isTop"] isEqualToString:@"1" ]) {
+        
+        remen.image = [UIImage imageNamed:@"hot.png"];
+        
+    }
+    else
+    {
+        
+    }
+    [cell.contentView addSubview:remen];
     
     [cell.contentView addSubview:touxiang];
     [cell.contentView addSubview:name];

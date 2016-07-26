@@ -23,13 +23,14 @@
     UITableViewCell *cell;
 }
 @property (strong,nonatomic)UISegmentedControl *segmentedControl;
-
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdSearchResultViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableview.tableFooterView = [[UIView alloc] init];
     
     zhi = 1;
     

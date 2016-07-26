@@ -119,7 +119,7 @@
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
     vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1040",@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -138,12 +138,14 @@
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的中奖纪录%@",responseObject);
+           
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"vipTopicDetail"];
+                
+                NSLog(@"=====================%@==========================",arr);
                 
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
@@ -258,7 +260,28 @@
     dianzan.textAlignment = NSTextAlignmentRight;
     dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     
+    UIImageView *shenhe = [[UIImageView alloc]init];
+    shenhe.frame = CGRectMake(width - 50 , 0, 50, 50);
+    if ([[arr[indexPath.row] objectForKey:@"aduitFlag"]isEqualToString:@""]||NULL == [arr[indexPath.row] objectForKey:@"aduitFlag"]) {
+        
+        shenhe.image = [UIImage imageNamed: @"shz.png"];
+    }
+    else if ([[arr[indexPath.row] objectForKey:@"aduitFlag"]isEqualToString:@"1"]){
+        
+        if ([[arr[indexPath.row] objectForKey:@"isTop"] isEqualToString:@"1" ]) {
+            
+            shenhe.image = [UIImage imageNamed:@"hot.png"];
+        }
+        else{
+            
+        }
+    }
+    else if ([[arr[indexPath.row] objectForKey:@"aduitFlag"]isEqualToString:@"0"]){
+        
+        shenhe.image = [UIImage imageNamed: @"wtg.png"];
+    }
     
+    [cell.contentView addSubview:shenhe];
     [cell.contentView addSubview:touxiang];
     [cell.contentView addSubview:name];
     [cell.contentView addSubview:biaoti];
