@@ -16,6 +16,8 @@
 #import "UIImageView+WebCache.h"
 #import "YdShoppingCartViewController.h"
 #import "YdshoppingxiangshiViewController.h"
+#import "mememeViewController.h"
+#import <JMessage/JMessage.h>
 @interface YdDrugsViewController ()<UITextFieldDelegate>
 {
     CGFloat width;
@@ -24,7 +26,7 @@
     NSString *shuliangCunFang;
     NSArray *arr;
    
-    
+    NSDictionary*dataha;
     
     NSMutableDictionary *xianshiarr;
     
@@ -36,7 +38,10 @@
 @end
 
 @implementation YdDrugsViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = false;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -52,8 +57,8 @@
     height = [UIScreen mainScreen].bounds.size.height;
     
     //解决tableview多出的白条
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    self.automaticallyAdjustsScrollViewInsets = false;
+   
     //状态栏名称
     self.navigationItem.title = @"药品详情";
     //self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -86,7 +91,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
     [self jiekou];
-    [self xialan];
+    [self dianzhangid];
 }
 int popop=0;
 //调用接口
@@ -111,7 +116,7 @@ int popop=0;
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_yaopinID,@"id", nil];
-    NSLog(@"%@",_yaopinID);
+//    NSLog(@"%@",_yaopinID);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -129,7 +134,7 @@ int popop=0;
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
+//            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 popop=1;
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -151,7 +156,7 @@ int popop=0;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
+//        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -401,10 +406,91 @@ int popop=0;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
 }
+//店长的聊天ID
+-(void)dianzhangid{
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/getByOfficeId";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSString*officeid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:officeid,@"id", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] intValue]==0) {
+            dataha=[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+
+}
 //联系店长
 - (IBAction)lianxidianzhang:(id)sender {
     //聊天   固定  id
+    [self liaotian];
+    
 }
+-(void)liaotian
+{
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]]];
+    [conversation allMessages:^(id resultObject, NSError *error) {
+        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
+    }];
+    if (conversation == nil) {
+        
+        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
+        
+        [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"创建会话返回\n\n%@",resultObject);
+            if (error) {
+                NSLog(@"创建会话失败%@",error);
+                return ;
+            }
+            
+            mememeViewController *conversationVC = [mememeViewController new];
+            conversationVC.conversation = (JMSGConversation *)resultObject;
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }];
+    } else {
+        
+        mememeViewController *conversationVC = [mememeViewController new];
+        conversationVC.conversation = conversation;
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }
+    
+}
+
 //减号
 - (IBAction)jian:(id)sender {
     if ([_shuliang.text isEqualToString:@""]||[_shuliang.text intValue]==0) {

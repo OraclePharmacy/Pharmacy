@@ -53,7 +53,7 @@
         
         NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
         
-        NSLog(@"%@",countwenjian);
+//        NSLog(@"%@",countwenjian);
         NSFileManager *file=[NSFileManager defaultManager];
         if([file fileExistsAtPath:countwenjian]){
             yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
@@ -73,7 +73,7 @@
             
         }
     }
-    NSLog(@"刚进来\n\n%@",yikaishi);
+//    NSLog(@"刚进来\n\n%@",yikaishi);
     
     if (yikaishi == nil)
     {
@@ -316,7 +316,7 @@
             //删除字典内容
             
             [yikaishi removeObjectAtIndex:indexPath.row];
-            NSLog(@"0.0%@",yikaishi);
+//            NSLog(@"0.0%@",yikaishi);
             
             if (yikaishi.count==0) {
                 //yikaishi=nil;
@@ -414,7 +414,7 @@
 
 -(void)baocun
 {
-    NSLog(@"zheshiji  %@",yikaishi);
+//    NSLog(@"zheshiji  %@",yikaishi);
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
     
     [yikaishi writeToFile:countwenjian atomically:YES];
@@ -432,10 +432,14 @@
         }
     }
     float jine;
+    jine =0;
     
     for (int i=0; i<arr.count; i++) {
+        NSLog(@"%@",[arr[i] objectForKey:@"zongjia"]);
         jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
+        NSLog(@"%.2f",jine);
     }
+    
     [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = right;
     
@@ -482,8 +486,9 @@
     NSString*qw=oo.text;
     
     int wq=[qw intValue];
-    if ([oo.text intValue]==1) {
-        
+    
+    if ([oo.text intValue]==1||[oo.text intValue]==0) {
+        qw=@"1";
     }else
         qw =[NSString stringWithFormat:@"%d", wq-1];
     
