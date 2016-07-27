@@ -376,8 +376,16 @@
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
 
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"storeId",couponId,@"id",nameField.text,@"storeCode",couId,@"couId",@"",@"awardId",nil];
-        //NSLog(@"datadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
+        NSString *nameFieldtext = [[NSString alloc]init];
+        if (nameField.text.length == 0) {
+            nameFieldtext = @"";
+        }
+        else
+        {
+            nameFieldtext = nameField.text;
+        }
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"storeId",couponId,@"id",nameFieldtext,@"storeCode",couId,@"couId",@"",@"awardId",nil];
+        NSLog(@"datadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名

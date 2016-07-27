@@ -282,7 +282,7 @@
     
     UILabel *lingqu = [[UILabel alloc]init];
     lingqu.frame = CGRectMake(0, 55, 70, 20);
-    lingqu.text = @"立即领取";
+   
     lingqu.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     lingqu.font = [UIFont systemFontOfSize:10];
     lingqu.textAlignment = NSTextAlignmentCenter;
@@ -293,6 +293,8 @@
         
         if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"])
         {
+            lingqu.text = @"立即领取";
+            
             name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
             
             youtu.image = [UIImage imageNamed:@"hh.png"];
@@ -302,6 +304,8 @@
         }
         else
         {
+            lingqu.text = @"立即领取";
+            
             name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
             
             youtu.image = [UIImage imageNamed:@"ll.png"];
@@ -313,15 +317,23 @@
     {
         if ([[arr[indexPath.section] objectForKey:@"couponType"] isEqualToString:@"4"])
         {
+            lingqu.text = @"已领取";
+            
             name.textColor = [UIColor colorWithHexString:@"f24f52" alpha:1];
-            youtu.image = [UIImage imageNamed:@".png"];
+            
+            youtu.image = [UIImage imageNamed:@"hh.png"];
+            
             laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
 
         }
         else
         {
+            lingqu.text = @"已领取";
+
             name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
-            youtu.image = [UIImage imageNamed:@".png"];
+            
+            youtu.image = [UIImage imageNamed:@"ll.png"];
+            
             laiyuan.text =@"合作商家";
             
         }
