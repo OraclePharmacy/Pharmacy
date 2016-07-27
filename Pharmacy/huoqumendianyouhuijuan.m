@@ -139,7 +139,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"门店优惠卷列表%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -430,7 +430,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
         
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     

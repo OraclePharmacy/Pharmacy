@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdSheZhiTableViewController : UITableViewController
+@interface YdSheZhiTableViewController : UITableViewController<UIAlertViewDelegate>
 
 @end
