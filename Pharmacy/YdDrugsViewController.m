@@ -13,7 +13,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "YdShoppingCartViewController.h"
 #import "YdshoppingxiangshiViewController.h"
 @interface YdDrugsViewController ()<UITextFieldDelegate>
@@ -398,13 +398,18 @@ int popop=0;
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:YES];
+}
 //联系店长
 - (IBAction)lianxidianzhang:(id)sender {
     //聊天   固定  id
 }
 //减号
 - (IBAction)jian:(id)sender {
+    if ([_shuliang.text isEqualToString:@""]||[_shuliang.text intValue]==0) {
+        _shuliang.text=@"1";
+    }else{
     int shu= [_shuliang.text intValue];
     if(shu==1)
     {
@@ -418,7 +423,7 @@ int popop=0;
     }
     
     [_shuliang resignFirstResponder];
-    
+    }
     
 }
 //加号
@@ -507,7 +512,7 @@ int ll=0;
 //在UITextField 编辑之前调用方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
+    _shuliang.keyboardType=UIKeyboardTypeNumberPad;
 }
 //在UITextField 编辑完成调用方法
 - (void)textFieldDidEndEditing:(UITextField *)textField

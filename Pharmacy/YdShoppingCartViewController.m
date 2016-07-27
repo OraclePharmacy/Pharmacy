@@ -239,6 +239,7 @@
     //数量输入框
     num = [[UITextField alloc]init];
     num.delegate=self;
+    num.keyboardType=UIKeyboardTypeNumberPad;
     num.font = [UIFont systemFontOfSize:12];
     num.layer.borderColor = [[UIColor grayColor] CGColor];
     [num addTarget:self action:@selector(NumberLength) forControlEvents:UIControlEventEditingChanged];

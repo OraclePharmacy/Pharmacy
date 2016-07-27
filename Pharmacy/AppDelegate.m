@@ -54,7 +54,7 @@
     [UMSocialData setAppKey:@"573ecc1ee0f55a834f0011fb"];
     
     //设置微信AppId、appSecret，分享url
-    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wx3f0e5b3522c2f6b1" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.baidu.com"];
     //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
     [UMSocialQQHandler setQQWithAppId:@"1104922260" appKey:@"rRqcJM43g8GFv6mE" url:@"http://www.umeng.com/social"];
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
