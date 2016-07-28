@@ -27,7 +27,7 @@
     int ye;
     int coun;
 }
-
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation huoqumendianyouhuijuan
@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     ye = 1;
     
     width = [UIScreen mainScreen].bounds.size.width;

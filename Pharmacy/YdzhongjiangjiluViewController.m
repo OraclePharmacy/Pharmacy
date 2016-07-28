@@ -27,6 +27,7 @@
     int ye;
     int coun;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdzhongjiangjiluViewController
@@ -34,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -44,13 +46,13 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
-    
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];
+    self.tableview.tableFooterView = [[UIView alloc] init];
     
     ye = 1;
     

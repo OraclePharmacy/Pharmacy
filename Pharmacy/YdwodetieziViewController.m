@@ -28,12 +28,14 @@
     int ye;
     int coun;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdwodetieziViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -53,6 +55,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];
+    self.tableview.tableFooterView = [[UIView alloc] init];
     
     ye = 1;
     

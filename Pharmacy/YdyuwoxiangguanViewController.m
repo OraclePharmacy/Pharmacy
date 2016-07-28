@@ -27,13 +27,14 @@
     int coun;
 }
 @property(strong,nonatomic) UITableView *tableview;
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdyuwoxiangguanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
