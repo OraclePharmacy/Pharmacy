@@ -89,6 +89,7 @@
     }
     else
     {
+        label.text=@"";
         NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
         NSArray* arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
         for (int i=0; i<arr.count; i++) {

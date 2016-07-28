@@ -33,8 +33,17 @@
 @end
 
 @implementation YdDrugJumpViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+  
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] isEqualToString:@"2"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"heheda"];
+    }
+    NSLog(@"\n\n\n-----------    %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] );
+}
 - (void)viewDidLoad {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] isEqualToString:@"0"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"heheda"];
+    }
     [super viewDidLoad];
     self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
@@ -130,7 +139,7 @@
             @try
             {
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"详情，返回信息 ， 三级药品  %@",responseObject);
+//                NSLog(@"详情，返回信息 ， 三级药品  %@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
     
                     NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -173,7 +182,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
+//            NSLog(@"错误：%@",error);
             
         }];
         
@@ -205,7 +214,7 @@
 
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 80, 80)];
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row]objectForKey:@"picUrl" ]] ;
-    NSLog(@"%@",path);
+//    NSLog(@"%@",path);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
    
     
@@ -239,7 +248,7 @@
     jiage.font = [UIFont systemFontOfSize:10];
     //jiage.textAlignment = NSTextAlignmentCenter;
     jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    NSLog(@"是不是处方药\n\n\n%@",[arr[indexPath.row] objectForKey:@"prescription"]);
+//    NSLog(@"是不是处方药\n\n\n%@",[arr[indexPath.row] objectForKey:@"prescription"]);
     if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
         jiage.text=@"非处方药";
     }else{

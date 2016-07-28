@@ -38,10 +38,7 @@
 @end
 
 @implementation YdDrugsViewController
--(void)viewWillAppear:(BOOL)animated{
-    //解决tableview多出的白条
-    self.automaticallyAdjustsScrollViewInsets = false;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -51,14 +48,12 @@
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
-    arr = @[@"药 品 名 称 :",@"拼   音   码 :",@"通 用 名 称 :",@"药 品 简 介 :",@"药 品 类 别 :",@"药 品 规 格 :",@"生 产 企 业 :",@"商 品 编 号 :",@"上 架 标 识 :",@"说   明   书 :",@"包          装 :",@"批 准 文 号 :",@"是否为处方:"];
+    arr = @[@"药 品 名 称 :",@"拼   音   码 :",@"通 用 名 称 :",@"药 品 简 介 :",@"药 品 类 别 :",@"药 品 规 格 :",@"生 产 企 业 :",@"商 品 编 号 :",@"说   明   书 :",@"包          装 :",@"批 准 文 号 :",@"是否为处方:"];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
     //解决tableview多出的白条
-    self.automaticallyAdjustsScrollViewInsets = false;
-   
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //状态栏名称
     self.navigationItem.title = @"药品详情";
     //self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -134,7 +129,7 @@ int popop=0;
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-//            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
+            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 popop=1;
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -261,7 +256,8 @@ int popop=0;
     if (indexPath.section == 0) {
         UIImageView *image = [[UIImageView alloc] init];
         image.frame = CGRectMake(0, 0, width, 150);
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[xianshiarr objectForKey:@"picUrl"]];
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[xianshiarr objectForKey:@"product"] objectForKey:@"picUrl"]];
+        NSLog(@"%@",xianshiarr);
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
         
         [cell.contentView addSubview:image];
@@ -356,29 +352,29 @@ int popop=0;
             }else
             shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prodCode"]];
         }
+//        else if (indexPath.row == 8) {
+//            
+//            shuju.text = @"";//[NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
+//        }
         else if (indexPath.row == 8) {
-            
-            shuju.text = @"";//[NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
-        }
-        else if (indexPath.row == 9) {
             if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
             shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"instructions"]];
         }
-        else if (indexPath.row == 10) {
+        else if (indexPath.row == 9) {
             if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
             shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"package"]];
         }
-        else if (indexPath.row == 11) {
+        else if (indexPath.row == 10) {
             if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
             shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"approvalNumber"]];
         }
-        else if (indexPath.row == 12) {
+        else if (indexPath.row == 11) {
             if (tianjiaxinxi.count==0) {
                 shuju.text=@"";
             }else
