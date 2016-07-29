@@ -12,7 +12,8 @@
 
 @property (strong,nonatomic) NSString *yaopinID;
 
-@property (strong,nonatomic) UITableView *tableview;
+//@property (strong,nonatomic) UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property (weak, nonatomic) IBOutlet UIButton *lainxidianzhang;
 - (IBAction)lianxidianzhang:(id)sender;
