@@ -219,23 +219,44 @@
         }
         else if (indexPath.row == 2)
         {
+            //判断是否登录
+            //    if(/*没登录*/){
+            //        /*跳转*/
+            //    }else{
+
             YdRemindViewController *Remind = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"remind"];
             [self.navigationController pushViewController:Remind animated:YES];
+//        }
         }
         else if (indexPath.row == 3)
-        {
+        {    //判断是否登录
+            //    if(/*没登录*/){
+            //        /*跳转*/
+            //    }else{
+
             YdBloodViewController *Blood = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"blood"];
             [self.navigationController pushViewController:Blood animated:YES];
+            //}
         }
         else if (indexPath.row == 4)
-        {
+        {    //判断是否登录
+            //    if(/*没登录*/){
+            //        /*跳转*/
+            //    }else{
+
             YdElectronicsViewController *Electronics = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"electronics"];
             [self.navigationController pushViewController:Electronics animated:YES];
+//        }
         }
         else if (indexPath.row == 5)
-        {
+        {    //判断是否登录
+            //    if(/*没登录*/){
+            //        /*跳转*/
+            //    }else{
+
             YdYaoXiangViewController *YaoXiang =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaoxiang"];
             [self.navigationController pushViewController:YaoXiang animated:YES];
+//        }
         }
     }
     else if (indexPath.section == 1)

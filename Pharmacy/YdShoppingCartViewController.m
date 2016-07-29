@@ -57,6 +57,7 @@
         NSFileManager *file=[NSFileManager defaultManager];
         if([file fileExistsAtPath:countwenjian]){
             yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+            NSLog(@"\n\n\n%@\n\n\n",yikaishi);
             _lianxidianzhnag.hidden=NO;
             _tijiao.hidden=NO;
             if (yikaishi.count==0) {
@@ -182,9 +183,10 @@
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
-    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[yikaishi[indexPath.row]objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]);
     image.layer.cornerRadius=30;
-    
+
     //药品名称
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(100, 10, 200, 20);
@@ -362,16 +364,36 @@
 }
 
 - (IBAction)tijiaoanniu:(id)sender {
+
+    //判断是否登录
+    //    if(/*没登录*/){
+    //        /*跳转*/
+    //    }else{
     
     
-    //需要判断各种情况，使下一个界面可有正常显示，如果少东西，则提示框显示是跳跳转到其他界面补全信息;
     
-    
-    
-    
-    //显示订单详情，包括总价钱等等
+//需要判断各种情况，使下一个界面可有正常显示，如果少东西，则提示框显示是跳跳转到其他界面补全信息;
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    NSFileManager *fm =[NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:path1]) {
+        NSDictionary*gerenxinxi=[NSDictionary dictionaryWithContentsOfFile:path1];
+
+        NSLog(@"\n\n\n\n-----\n\n\n\n%@",gerenxinxi);
+        
+        if (((NSString*)[gerenxinxi objectForKey:@"name"]).length==0||((NSString*)[gerenxinxi objectForKey:@"area"]).length==0) {
+            NSLog(@"\n\n\n\ndengyu    0\n\n\n\n");
+            [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
+        }else{
+//显示订单详情，包括总价钱等等
     YdshoppingxiangshiViewController *shoppingxiangshi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shoppingxiangshi"];
     [self.navigationController pushViewController:shoppingxiangshi animated:YES];
+        }
+    }
+   
+    
+   
+//}
+  
     
 }
 -(void)bianij

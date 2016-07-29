@@ -39,6 +39,7 @@
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
     arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+    NSLog(@"\n\n\narr\n\n\n%@\n\n\n",arr);
     for (int i=0; i<arr.count; i++) {
         if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
             float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
@@ -100,7 +101,8 @@
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
-    //[image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[yikaishi[indexPath.row]objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]);
     //image.layer.cornerRadius=30;
     image.backgroundColor = [UIColor grayColor];
     [cell.contentView addSubview:image];

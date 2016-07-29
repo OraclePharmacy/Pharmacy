@@ -283,13 +283,17 @@
 }
 //tableview点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    //判断是否登录
+    //    if(/*没登录*/){
+    //        /*跳转*/
+    //    }else{
+
     YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
     TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
     TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
     TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
     [self.navigationController pushViewController:TieZiXiangQing animated:YES];
-
+//}
 }
 
 -(void)fanhui

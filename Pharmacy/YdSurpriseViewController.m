@@ -34,14 +34,23 @@
 
 //有奖问答
 - (IBAction)AnswerButton:(id)sender {
+    //判断是否登录
+    //    if(/*没登录*/){
+    //        /*跳转*/
+    //    }else{
+
     //跳转到有奖问答页面
     YdAnswerViewController *Answer = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"answer"];
     [self.navigationController pushViewController:Answer animated:YES];
-
+//}
 }
 //大转盘
 - (IBAction)TurntableButton:(id)sender {
-    
+    //判断是否登录
+    //    if(/*没登录*/){
+    //        /*跳转*/
+    //    }else{
+
     [WarningBox warningBoxModeIndeterminate:@"" andView:self.view];
     
     //userID    暂时不用改
@@ -97,16 +106,21 @@
         [WarningBox warningBoxHide:YES andView:self.view];
     }];
     
-    
+//    }
    
 }
 
 //摇一摇
 - (IBAction)ShakeButton:(id)sender {
+    //判断是否登录
+    //    if(/*没登录*/){
+    //        /*跳转*/
+    //    }else{
+
     //跳摇一摇
     YdShakeViewController *Shake = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shake"];
     [self.navigationController pushViewController:Shake animated:YES];
-
+//}
 }
 
 -(void)fanhui

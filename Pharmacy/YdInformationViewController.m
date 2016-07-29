@@ -715,8 +715,13 @@
 //tableview点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //判断是否登录
+//    if(/*没登录*/){
+//        /*跳转*/
+//    }else{
     if(zhi == 1)
     {
+        
         //跳转文字资讯详情
         YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
         //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
@@ -734,7 +739,7 @@
         InformationDetails.doc=[NSDictionary dictionaryWithDictionary:diantainewsListForInterface[indexPath.row]];
         [self.navigationController pushViewController:InformationDetails animated:YES];
     }
-    
+//    }
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     

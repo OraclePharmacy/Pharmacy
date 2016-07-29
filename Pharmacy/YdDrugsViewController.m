@@ -531,7 +531,7 @@ int popop=0;
         
         if([file fileExistsAtPath:countwenjian])
         {
-            
+            NSLog(@"%@",xianshiarr);
             //   获取文件里的数据
             arrr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
             int ioi=0;
@@ -539,6 +539,7 @@ int popop=0;
                 if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
                     ioi=1;
                     [arrr[i] setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+                     NSLog(@"%@",xianshiarr);
                     [arrr writeToFile:countwenjian atomically:YES];
                     [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -548,6 +549,7 @@ int popop=0;
             if (ioi==0) {
                 
                 [arrr addObject:xianshiarr];
+                 NSLog(@"%@",xianshiarr);
                 [arrr writeToFile:countwenjian atomically:YES];
                 [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
                 [self.navigationController popViewControllerAnimated:YES];

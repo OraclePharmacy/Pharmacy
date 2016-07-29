@@ -1070,6 +1070,7 @@
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
                 [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
+                NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]);
                 //名称
                 UILabel *name = [[UILabel alloc]init];
                 name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
