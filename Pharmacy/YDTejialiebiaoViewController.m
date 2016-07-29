@@ -26,6 +26,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YDTejialiebiaoViewController
@@ -33,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableview.tableFooterView = [[UIView alloc] init];
     //Tab bar 颜色
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     //状态栏名称
@@ -166,7 +168,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 116;
+    return 110;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *id1 =@"cell1";
@@ -177,53 +179,51 @@
     }
     
     UIImageView *image = [[UIImageView alloc]init];
-    image.frame = CGRectMake(5, 5, 80, 80);
+    image.frame = CGRectMake(5, 5, 100, 100);
     //image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[proList[indexPath.row] objectForKey:@"picUrl"]] ;
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     
     UILabel *name = [[UILabel alloc]init];
-    name.frame = CGRectMake(90, 5, width - 95, 20);
+    name.frame = CGRectMake(110, 5, width - 115, 20);
     name.font = [UIFont systemFontOfSize:15];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.text = [NSString stringWithFormat:@"%@",[proList[indexPath.row] objectForKey:@"commonName"]];
     
-    UILabel *chufang = [[UILabel alloc]init];
-    chufang.frame = CGRectMake(90, 25, width - 95 , 20);
-    chufang.font = [UIFont systemFontOfSize:13];
-    chufang.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
-    //?????    chufang.text = [NSString stringWithFormat:@"%@",[_yaopin[indexPath.row] objectForKey:@"prescription"]];
+    UILabel *changjia = [[UILabel alloc]init];
+    changjia.frame = CGRectMake(110, 25, width - 115, 20);
+    changjia.font = [UIFont systemFontOfSize:12];
+    changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    changjia.text = [NSString stringWithFormat:@"生产厂家:%@",[proList[indexPath.row] objectForKey:@"manufacturer"]];
     
     UILabel *guige = [[UILabel alloc]init];
-    guige.frame = CGRectMake(90, 45, width - 95, 20);
-    guige.font = [UIFont systemFontOfSize:11];
+    guige.frame = CGRectMake(110, 45, width - 115, 20);
+    guige.font = [UIFont systemFontOfSize:12];
     guige.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    guige.text = [NSString stringWithFormat:@"%@",[proList[indexPath.row] objectForKey:@"specification"]];
+    guige.text = [NSString stringWithFormat:@"规格:%@",[proList[indexPath.row] objectForKey:@"specification"]];
     
-    UILabel *changjia = [[UILabel alloc]init];
-    changjia.frame = CGRectMake(90, 64, width - 95, 20);
-    changjia.font = [UIFont systemFontOfSize:11];
-    changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    changjia.text = [NSString stringWithFormat:@"%@",[proList[indexPath.row] objectForKey:@"manufacturer"]];
+    UILabel *yuanjian = [[UILabel alloc]init];
+    yuanjian.frame = CGRectMake(110, 65, width - 115, 20);
+    yuanjian.font = [UIFont systemFontOfSize:12];
+    yuanjian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    yuanjian.text = [NSString stringWithFormat:@"原价:%@",[proList[indexPath.row] objectForKey:@"prodPrice"]];
     
-    UILabel *jianjie = [[UILabel alloc]init];
-    jianjie.frame = CGRectMake(5, 85, width - 10, 30);
-    jianjie.font = [UIFont systemFontOfSize:11];
-    jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    jianjie.numberOfLines = 2;
-    jianjie.text = [NSString stringWithFormat:@"药品简介:%@",[proList[indexPath.row] objectForKey:@"summary"]];
-    
+    UILabel *tejia = [[UILabel alloc]init];
+    tejia.frame = CGRectMake(110, 85, width  - 115, 20);
+    tejia.font = [UIFont systemFontOfSize:12];
+    tejia.textColor = [UIColor redColor];
+    tejia.text = [NSString stringWithFormat:@"特价:%@",[proList[indexPath.row] objectForKey:@"specPrice"]];
     
     UIView *xian = [[UIView alloc]init];
-    xian.frame = CGRectMake(0, 115, width, 1);
+    xian.frame = CGRectMake(0, 109, width, 1);
     xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     
     [cell.contentView addSubview:image];
     [cell.contentView addSubview:name];
-    [cell.contentView addSubview:chufang];
     [cell.contentView addSubview:guige];
     [cell.contentView addSubview:changjia];
-    [cell.contentView addSubview:jianjie];
+    [cell.contentView addSubview:yuanjian];
+    [cell.contentView addSubview:tejia];
     [cell.contentView addSubview:xian];
     
     //cell点击不变色
