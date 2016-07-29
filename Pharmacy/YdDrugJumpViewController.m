@@ -33,18 +33,8 @@
 @end
 
 @implementation YdDrugJumpViewController
--(void)viewWillAppear:(BOOL)animated{
-  
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] isEqualToString:@"2"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"heheda"];
-    }
-    NSLog(@"\n\n\n-----------    %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] );
-}
 - (void)viewDidLoad {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"heheda"] isEqualToString:@"0"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"heheda"];
-    }
-    [super viewDidLoad];
+       [super viewDidLoad];
     self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;

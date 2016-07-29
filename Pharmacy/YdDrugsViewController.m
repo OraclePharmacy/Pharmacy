@@ -59,12 +59,10 @@
     //self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     _shuliang.delegate=self;
-    self.tableview = [[UITableView alloc]init];
-    self.tableview.frame = CGRectMake(0, 64, width, height  - 104);
     self.tableview.backgroundColor= [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    [self.view addSubview:self.tableview];
+    
     
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
@@ -129,7 +127,7 @@ int popop=0;
         @try
         {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject－－－－－－\n\n%@",responseObject);
+            NSLog(@"responseObject－－－－－－\n\n%@\n\n",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 popop=1;
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
