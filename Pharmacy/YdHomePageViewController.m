@@ -387,14 +387,14 @@
     
     if (width == 414)
     {
-        [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [one setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
-        [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [two setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
-        [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [three setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
-        [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [four setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-60,0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(10, 25, 30, 25)];
+        [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-60,0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(10, 25, 30, 25)];
+        [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-60,0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(10, 25, 30, 25)];
+        [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-60,0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(10, 25, 30, 25)];
     }
     else if (width == 375)
     {
