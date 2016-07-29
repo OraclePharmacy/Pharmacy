@@ -2353,35 +2353,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-qv-QF9">
-                                <rect key="frame" x="580" y="580" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-qv-QF9">
+                                <rect key="frame" x="535" y="538" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="JJm-BS-WRW"/>
-                                    <constraint firstAttribute="width" constant="20" id="ocu-lh-jwi"/>
+                                    <constraint firstAttribute="width" constant="30" id="HZ0-n3-RbQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="ju0-QB-mcp"/>
                                 </constraints>
                                 <connections>
                                     <action selector="fenxiang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="kLn-cI-kYY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es2-pf-IRo">
-                                <rect key="frame" x="560" y="580" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es2-pf-IRo">
+                                <rect key="frame" x="446" y="538" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="4z2-re-W8c"/>
-                                    <constraint firstAttribute="width" constant="20" id="MyQ-n2-f8c"/>
+                                    <constraint firstAttribute="width" constant="30" id="T3a-GP-Fah"/>
+                                    <constraint firstAttribute="height" constant="30" id="lzo-3s-UJR"/>
                                 </constraints>
                                 <connections>
                                     <action selector="shoucang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="gdy-S0-UH4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-33-ene">
-                                <rect key="frame" x="540" y="580" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-33-ene">
+                                <rect key="frame" x="388" y="538" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="EVh-JJ-kFG"/>
-                                    <constraint firstAttribute="height" constant="20" id="vwp-qn-tE0"/>
+                                    <constraint firstAttribute="width" constant="30" id="3z8-Qq-EFg"/>
+                                    <constraint firstAttribute="height" constant="30" id="lix-rs-v6O"/>
                                 </constraints>
                                 <connections>
                                     <action selector="dianzan:" destination="PIe-HG-mSW" eventType="touchUpInside" id="PnL-gR-IlY"/>
@@ -2390,16 +2390,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="top" id="5Sl-ox-Wc2"/>
-                            <constraint firstItem="geY-33-ene" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="6Ue-a6-ODk"/>
-                            <constraint firstAttribute="trailing" secondItem="Ezk-Jk-KVc" secondAttribute="trailing" id="Eqe-2o-69D"/>
-                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="leading" secondItem="qCU-CA-pim" secondAttribute="leading" id="KgY-66-qON"/>
-                            <constraint firstItem="es2-pf-IRo" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="L4N-8c-1JY"/>
-                            <constraint firstItem="Cou-qv-QF9" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" id="gC5-ND-fjL"/>
-                            <constraint firstItem="Cou-qv-QF9" firstAttribute="leading" secondItem="es2-pf-IRo" secondAttribute="trailing" id="gRf-so-QSd"/>
-                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" constant="20" id="jao-a7-dWC"/>
-                            <constraint firstAttribute="trailing" secondItem="Cou-qv-QF9" secondAttribute="trailing" id="zKe-ZM-8df"/>
-                            <constraint firstItem="es2-pf-IRo" firstAttribute="leading" secondItem="geY-33-ene" secondAttribute="trailing" id="zQM-F8-X2b"/>
+                            <constraint firstItem="Cou-qv-QF9" firstAttribute="leading" secondItem="es2-pf-IRo" secondAttribute="trailing" constant="10" id="6kg-fZ-M3m"/>
+                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Cou-qv-QF9" secondAttribute="bottom" constant="35" id="PJe-Dn-heb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="cgx-JS-OA7"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="geY-33-ene" secondAttribute="bottom" constant="35" id="fZR-eJ-jg5"/>
+                            <constraint firstAttribute="trailing" secondItem="Cou-qv-QF9" secondAttribute="trailing" constant="20" id="h91-7W-kYY"/>
+                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="s5l-0F-4Oz"/>
+                            <constraint firstItem="es2-pf-IRo" firstAttribute="leading" secondItem="geY-33-ene" secondAttribute="trailing" constant="10" id="yRe-tI-8Db"/>
+                            <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="geY-33-ene" secondAttribute="bottom" constant="35" id="ykp-0a-SRu"/>
                         </constraints>
                     </view>
                     <connections>
