@@ -182,6 +182,7 @@
 		95ADBC051D4F4DD1006DCC97 /* people1.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC011D4F4DD1006DCC97 /* people1.png */; };
 		95ADBC061D4F4DD1006DCC97 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC021D4F4DD1006DCC97 /* bg.png */; };
 		95ADBC071D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */; };
+		95ADBC091D4F4E25006DCC97 /* hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC081D4F4E25006DCC97 /* hot.png */; };
 		95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60521D1391C2002E4A71 /* ModelClock.m */; };
 		95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722B1CB5F5780083AC90 /* 1213465@2x.png */; };
 		95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722C1CB5F5780083AC90 /* 1213465@3x.png */; };
@@ -643,6 +644,7 @@
 		95ADBC011D4F4DD1006DCC97 /* people1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people1.png; sourceTree = "<group>"; };
 		95ADBC021D4F4DD1006DCC97 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_and_delivery_unchecked.png; sourceTree = "<group>"; };
+		95ADBC081D4F4E25006DCC97 /* hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hot.png; sourceTree = "<group>"; };
 		95AE60511D1391C2002E4A71 /* ModelClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelClock.h; sourceTree = "<group>"; };
 		95AE60521D1391C2002E4A71 /* ModelClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelClock.m; sourceTree = "<group>"; };
 		95C3722B1CB5F5780083AC90 /* 1213465@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@2x.png"; sourceTree = "<group>"; };
@@ -1425,6 +1427,7 @@
 		95206A911D38A838002BB3B5 /* 未命名文件夹 */ = {
 			isa = PBXGroup;
 			children = (
+				95ADBC081D4F4E25006DCC97 /* hot.png */,
 				95ADBC001D4F4DD1006DCC97 /* people2.png */,
 				95ADBC011D4F4DD1006DCC97 /* people1.png */,
 				95ADBC021D4F4DD1006DCC97 /* bg.png */,
@@ -2437,6 +2440,7 @@
 				950956611CC7600D00A10A5A /* sex1@3x.png in Resources */,
 				95206AA31D38A838002BB3B5 /* tiezi(1).png in Resources */,
 				95ED97471CC4B64A006F92B8 /* iconfont-fenxiang@3x.png in Resources */,
+				95ADBC091D4F4E25006DCC97 /* hot.png in Resources */,
 				959F9E3F1CBDFA3E00C5D019 /* 组-1-拷贝@3x.png in Resources */,
 				95C3726D1CB5F5780083AC90 /* 首页@2x.png in Resources */,
 				950BC6F61D12986000817E4A /* hb_yjwd.png in Resources */,
