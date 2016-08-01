@@ -535,6 +535,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vA1-wB-Qm0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2a-nO-f7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3766,12 +3767,12 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ufq-5l-Hu4"/>
+                        <segue destination="PMT-VI-vgQ" kind="relationship" relationship="rootViewController" id="5wP-5V-3i2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQd-k1-Orl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2166" y="403"/>
+            <point key="canvasLocation" x="-735" y="-341"/>
         </scene>
     </scenes>
     <resources>
