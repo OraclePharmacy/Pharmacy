@@ -21,6 +21,7 @@
     NSMutableDictionary *Passdic;
     NSString *Rempath;
     int m;
+    BOOL isRemember;
 }
 @end
 
@@ -29,18 +30,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //导航栏名称
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationItem.title = @"登录";
-    
-    
-    
+//    self.tabBarController.tabBar.hidden=YES;
+//    self.navigationController.navigationBarHidden=NO;
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     self.LoginButton.layer.cornerRadius = 5;
     self.LoginButton.layer.masksToBounds = YES;
     
-//    [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
-//    [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
-//    [self.RememberButton setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,0)];
-//    [self.RememberButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
+    //    [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+    //    [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
+    //    [self.RememberButton setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,0)];
+    //    [self.RememberButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    isRemember=NO;
     
     [self TextFieldSetUp];
 }
@@ -49,23 +52,18 @@
 -(void)viewWillAppear:(BOOL)animated{
     Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
     NSLog(@"%@",NSHomeDirectory());
-    NSFileManager *fm = [NSFileManager defaultManager];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithContentsOfFile:Rempath];
-    
-    if ([fm fileExistsAtPath:Rempath]){
-        if ([[dic objectForKey:@"phonetext"]isEqualToString:@""]) {
-            
-        }else{
-        NSLog(@"12331111%@",dic);
-        m = 1;
+    NSString *isZiDongdenglu =  [[NSUserDefaults standardUserDefaults]objectForKey:@"zddl"];
+   
+    if ([isZiDongdenglu  isEqual: @"1"]) {
+        isRemember = YES;
         [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
         [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
         _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
         _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
-        }
-    }else{
-        
     }
+
+    
 }
 
 //点击编辑区以外的地方键盘消失
@@ -238,7 +236,7 @@
                             [fm removeItemAtPath:path error:NULL];
                             
                         }
-                        
+                        Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
                         [Passdic writeToFile:Rempath atomically:NO];
                         NSLog(@"\n\n\n\nhaha\n\n\n\n%@",Passdic);
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
@@ -247,7 +245,7 @@
                         NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
                         
-                       [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
+                        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                         
                         
                         [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
@@ -310,64 +308,28 @@
 }
 
 - (IBAction)RememberButton:(id)sender {
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    
-    if(m==0){
+    NSUserDefaults*user =  [NSUserDefaults standardUserDefaults];
+    if(isRemember==NO){
+        isRemember=YES;
+        [user setObject:@"1" forKey:@"zddl"];
         
-        m=1;
-        
-        Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
-        
-        if ([fm fileExistsAtPath:Rempath]){
-            if (_PhoneText.text.length==0&&_PasswordText.text.length==0)
-            {
-                NSLog(@"啥都没输入还想记住密码？");
-            }
-            else{
-                // NSLog(@"2")
-                [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
-                [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
-                NSLog(@"我记住你了!!!");
-                
-                
-                NSLog(@"%@",Passdic);
-            }
-       
-        }
-        else{
-            if (_PhoneText.text.length==0&&_PasswordText.text.length==0){
-                NSLog(@"啥都没输入还想记住密码？");
-            }
-            else{
-                // NSLog(@"2")
-                [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
-                [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
-                NSLog(@"我记住你了!!!");
-                
-                
-                NSLog(@"%@",Passdic);
-            }
-        }
-        
-    }else{
-        m=0;
-        if ([fm fileExistsAtPath:Rempath]){
-            [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-            NSLog(@"我怎么把你忘了");
-            
-            Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"phonetext",@"",@"password", nil];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            
-        }else{
-            NSLog(@"你这个人怎么这样那");
-        }
-        
+        [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
+        [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
         
     }
-    
-
+    else{
+        [user setObject:@"0" forKey:@"zddl"];
+        isRemember=NO;
+       [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            
+    }
     
 }
-
+//返回
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
 @end

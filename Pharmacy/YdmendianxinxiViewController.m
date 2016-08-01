@@ -15,6 +15,7 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import "YdScanViewController.h"
+#import "tiaodaodenglu.h"
 
 @interface YdmendianxinxiViewController ()
 {
@@ -311,10 +312,14 @@
 }
 -(void)pingjiamendian
 {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
     //跳转到扫描页面
     YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
     Scan.str = @"1";
     [self.navigationController pushViewController:Scan animated:YES];
+    }
 }
 -(void)pingjiadianyuan
 {

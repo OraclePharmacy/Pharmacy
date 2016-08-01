@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController<UITextFieldDelegate>
 
+@property (strong, nonatomic) NSString*ke;
 //手机号
 @property (weak, nonatomic) IBOutlet UITextField *PhoneText;
 //密码

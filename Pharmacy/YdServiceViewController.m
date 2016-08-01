@@ -16,6 +16,7 @@
 #import "YdJiaoLiuViewController.h"
 #import "YdYaoXiangViewController.h"
 #import "Color+Hex.h"
+#import "tiaodaodenglu.h"
 @interface YdServiceViewController ()
 {
     
@@ -220,43 +221,43 @@
         else if (indexPath.row == 2)
         {
             //判断是否登录
-            //    if(/*没登录*/){
-            //        /*跳转*/
-            //    }else{
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+               [tiaodaodenglu jumpToLogin:self.navigationController];
+                    }else{
 
             YdRemindViewController *Remind = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"remind"];
             [self.navigationController pushViewController:Remind animated:YES];
-//        }
+        }
         }
         else if (indexPath.row == 3)
         {    //判断是否登录
-            //    if(/*没登录*/){
-            //        /*跳转*/
-            //    }else{
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+               [tiaodaodenglu jumpToLogin:self.navigationController];
+                }else{
 
             YdBloodViewController *Blood = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"blood"];
             [self.navigationController pushViewController:Blood animated:YES];
-            //}
+            }
         }
         else if (indexPath.row == 4)
         {    //判断是否登录
-            //    if(/*没登录*/){
-            //        /*跳转*/
-            //    }else{
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+                }else{
 
             YdElectronicsViewController *Electronics = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"electronics"];
             [self.navigationController pushViewController:Electronics animated:YES];
-//        }
+        }
         }
         else if (indexPath.row == 5)
         {    //判断是否登录
-            //    if(/*没登录*/){
-            //        /*跳转*/
-            //    }else{
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+                    }else{
 
             YdYaoXiangViewController *YaoXiang =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaoxiang"];
             [self.navigationController pushViewController:YaoXiang animated:YES];
-//        }
+        }
         }
     }
     else if (indexPath.section == 1)

@@ -10,6 +10,8 @@
 #import "Color+Hex.h"
 #import "YdModifyViewController.h"
 #import "guanyuViewController.h"
+#import "WarningBox.h"
+#import "tiaodaodenglu.h"
 @interface YdSheZhiTableViewController ()
 @property (nonatomic, strong) UIView *tableFooterView;
 @end
@@ -40,11 +42,13 @@
     {
         if (indexPath.row == 0)
         {
-            
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
             YdModifyViewController *ModifyViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"modify"];
             
             [self.navigationController pushViewController:ModifyViewController animated:YES];
-            
+            }
         }
         else if (indexPath.row == 1)
         {
@@ -74,28 +78,22 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-        NSString *Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
-    
-        NSFileManager *fm = [NSFileManager defaultManager];
-    
-        if ([fm fileExistsAtPath:Rempath]){
-    
-            NSLog(@"我要去登录页面，啊啊啊啊啊啊啊啊");
-    
-            [self.navigationController popToRootViewControllerAnimated:YES];
-    
-        }else{
-    
-            NSLog(@"你这个人怎么这样那");
-        }
-    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+      [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    }else{
+        [WarningBox warningBoxModeText:@"还未登录..." andView:self.view];
+        
+       
+    }
 }
 
 //返回
 -(void)fanhui
 {
     //返回上一页
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 

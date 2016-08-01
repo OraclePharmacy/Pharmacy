@@ -301,6 +301,8 @@
 		D226248C1D010986002A8689 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248B1D010986002A8689 /* libz.tbd */; };
 		D226248E1D01098E002A8689 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248D1D01098E002A8689 /* libsqlite3.0.tbd */; };
 		D22624931D0109B5002A8689 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D226248F1D0109B5002A8689 /* JMessage.framework */; };
+		D226F5341D4EDBEB00A06E4E /* denglu.m in Sources */ = {isa = PBXBuildFile; fileRef = D226F5331D4EDBEB00A06E4E /* denglu.m */; };
+		D226F5371D4F24B500A06E4E /* tiaodaodenglu.m in Sources */ = {isa = PBXBuildFile; fileRef = D226F5361D4F24B500A06E4E /* tiaodaodenglu.m */; };
 		D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */; };
 		D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3321CEE9A81000454FE /* MJRefreshBackFooter.m */; };
 		D23EA35C1CEE9A81000454FE /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EA3341CEE9A81000454FE /* MJRefreshComponent.m */; };
@@ -794,6 +796,10 @@
 		D226248B1D010986002A8689 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D226248D1D01098E002A8689 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D226248F1D0109B5002A8689 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
+		D226F5321D4EDBEB00A06E4E /* denglu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = denglu.h; sourceTree = "<group>"; };
+		D226F5331D4EDBEB00A06E4E /* denglu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = denglu.m; sourceTree = "<group>"; };
+		D226F5351D4F24B500A06E4E /* tiaodaodenglu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiaodaodenglu.h; sourceTree = "<group>"; };
+		D226F5361D4F24B500A06E4E /* tiaodaodenglu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tiaodaodenglu.m; sourceTree = "<group>"; };
 		D23EA32F1CEE9A81000454FE /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D23EA3301CEE9A81000454FE /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		D23EA3311CEE9A81000454FE /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -2007,6 +2013,10 @@
 			children = (
 				9505D6D21C9A7B27006F6850 /* ViewController.h */,
 				9505D6D31C9A7B27006F6850 /* ViewController.m */,
+				D226F5321D4EDBEB00A06E4E /* denglu.h */,
+				D226F5331D4EDBEB00A06E4E /* denglu.m */,
+				D226F5351D4F24B500A06E4E /* tiaodaodenglu.h */,
+				D226F5361D4F24B500A06E4E /* tiaodaodenglu.m */,
 			);
 			name = "登录";
 			sourceTree = "<group>";
@@ -2638,6 +2648,7 @@
 				953717091CE6B18E00CA959D /* YdyouhuiquanViewController.m in Sources */,
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
 				95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */,
+				D226F5371D4F24B500A06E4E /* tiaodaodenglu.m in Sources */,
 				D23EA35B1CEE9A81000454FE /* MJRefreshBackFooter.m in Sources */,
 				D201E8E61CF6DD2C00E890EB /* huoqumendianyouhuijuan.m in Sources */,
 				9505D7311C9A9CE3006F6850 /* YdScanViewController.m in Sources */,
@@ -2721,6 +2732,7 @@
 				D23EA35C1CEE9A81000454FE /* MJRefreshComponent.m in Sources */,
 				95609E831CABC72000AF65E4 /* URLEncode.m in Sources */,
 				D23EE57D1CBB4BC1000A9F01 /* AFNetworkReachabilityManager.m in Sources */,
+				D226F5341D4EDBEB00A06E4E /* denglu.m in Sources */,
 				95609EFB1CABC74E00AF65E4 /* SDWebImagePrefetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2899,7 +2911,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0a40b06d-7dbb-4c63-a4c8-e2de4b06eecb";
+				PROVISIONING_PROFILE = "f223064e-1b62-4c7a-9367-3fc27cc3ab3c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};
@@ -2933,7 +2945,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0a40b06d-7dbb-4c63-a4c8-e2de4b06eecb";
+				PROVISIONING_PROFILE = "f223064e-1b62-4c7a-9367-3fc27cc3ab3c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};

@@ -35,6 +35,8 @@
 #import "huoqumendianyouhuijuan.h"
 #import "YdNewsViewController.h"
 #import "MJRefresh.h"
+#import "denglu.h"
+#import "tiaodaodenglu.h"
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -100,16 +102,18 @@
 @implementation YdHomePageViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
         if(nicaicai==1)
             [self zidongdingwei];
     }
+    self.navigationController.navigationBarHidden=NO;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+   
     remenzixunarray = [[NSMutableArray alloc]init];
     
     panduan=0;
@@ -118,7 +122,7 @@
     
     arrImage = [[NSMutableArray alloc]init];
     presentarrImage = [[NSMutableArray alloc]init];
-
+    
     
     width = [UIScreen mainScreen].bounds.size.width;
     heigth = [UIScreen mainScreen].bounds.size.height;
@@ -159,6 +163,25 @@
     [self SearchView];
     //调用定位
     [self initializeLocationService];
+    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+        
+    }else{
+        NSString*Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
+        
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        if ([fm fileExistsAtPath:Rempath]){
+            
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"zddl"] isEqualToString:@"0"] ) {
+                
+            }else{
+                [denglu zidongdenglu:self.view];
+            }
+        }
+        
+    }
 }
 -(void)loadNewdata{
     
@@ -299,7 +322,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 titarr=[[NSMutableArray alloc] init];
@@ -342,13 +365,13 @@
 #pragma  第二组  四个按钮
 -(void)fourButton
 {
-//    //第一个按钮
-//    UIButton *one = [[UIButton alloc]init];
-//    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
-//    [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
-//    [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
-//
-
+    //    //第一个按钮
+    //    UIButton *one = [[UIButton alloc]init];
+    //    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
+    //    [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
+    //    [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
+    //
+    
     UIButton *one = [[UIButton alloc]init];
     one.frame = CGRectMake(0, 0, width / 4, 95 );
     [one setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
@@ -381,7 +404,7 @@
     four.titleLabel.font = [UIFont systemFontOfSize:13];
     [four setImage:[UIImage imageNamed:@"youhuijuan.png"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
-
+    
     
     NSLog(@"%f",self.view.bounds.size.width);
     
@@ -423,7 +446,7 @@
     [cell.contentView addSubview:two];
     [cell.contentView addSubview:three];
     [cell.contentView addSubview:four];
-
+    
 }
 //第一个按钮点击事件
 -(void)one
@@ -435,25 +458,34 @@
 //第二个按钮点击事件
 -(void)two
 {
-    YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
-    [self.navigationController pushViewController:Question animated:YES];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
+        YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
+        [self.navigationController pushViewController:Question animated:YES];
+    }
 }
 //第三个按钮点击事件
 -(void)three
-{
+{if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    [tiaodaodenglu jumpToLogin:self.navigationController];
+}else{
     YdPurchasingViewController *Purchasing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"purchasing"];
     [self.navigationController pushViewController:Purchasing animated:YES];
-    
+}
 }
 //第四个按钮点击事件
 -(void)four
-{
+{if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    [tiaodaodenglu jumpToLogin:self.navigationController];
+}else{
     huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
     
     [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
-//    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-//    youhuiquan.panduan = @"2";
-//    [self.navigationController pushViewController:youhuiquan animated:YES];
+    //    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+    //    youhuiquan.panduan = @"2";
+    //    [self.navigationController pushViewController:youhuiquan animated:YES];
+}
 }
 #pragma  mark ---- 积分礼品接口
 //接口
@@ -499,8 +531,8 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           //NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
+            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -579,7 +611,7 @@
         @try
         {
             
-           // NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
+            // NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -648,7 +680,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"=================%@===================",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -677,7 +709,7 @@
 }
 #pragma mark ---- 热门资讯接口
 -(void)remenzixun{
-   
+    
     
     //userID    暂时不用改
     NSString * userID=@"0";
@@ -696,7 +728,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   
+    
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"1002",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -717,7 +749,7 @@
         @try
         {
             
-           // NSLog(@"%@",responseObject);
+            // NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -872,7 +904,7 @@
             if (rementieziarray.count==0) {
                 return 0;
             }else
-            return 30;
+                return 30;
         }
         else if (section == 5)
         {if (remenzixunarray.count==0) {
@@ -898,20 +930,20 @@
             if(rementieziarray.count==0){
                 
             }else{
-            
-            UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-            baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-            
-            UILabel * tou = [[UILabel alloc]init];
-            tou.frame = CGRectMake(8, 5, 100, 20);
-            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            tou.font = [UIFont systemFontOfSize:15];
-            tou.text = @"热门帖子";
-        
-            [baseView addSubview:tou];
-
-            
-            return baseView;
+                
+                UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+                baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+                
+                UILabel * tou = [[UILabel alloc]init];
+                tou.frame = CGRectMake(8, 5, 100, 20);
+                tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                tou.font = [UIFont systemFontOfSize:15];
+                tou.text = @"热门帖子";
+                
+                [baseView addSubview:tou];
+                
+                
+                return baseView;
             }
         }
         else if (section == 5)
@@ -919,18 +951,18 @@
             if (remenzixunarray.count==0) {
                 
             }else{
-            UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
-            baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-            
-            UILabel * tou = [[UILabel alloc]init];
-            tou.frame = CGRectMake(8, 5, 100, 20);
-            tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            tou.font = [UIFont systemFontOfSize:15];
-            tou.text = @"热门资讯";
-            
-            [baseView addSubview:tou];
-            
-            return baseView;
+                UIView * baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+                baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+                
+                UILabel * tou = [[UILabel alloc]init];
+                tou.frame = CGRectMake(8, 5, 100, 20);
+                tou.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+                tou.font = [UIFont systemFontOfSize:15];
+                tou.text = @"热门资讯";
+                
+                [baseView addSubview:tou];
+                
+                return baseView;
             }
         }
         else if (section == 6)
@@ -998,19 +1030,23 @@
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
                     NSLog(@"%ld",(long)index);
-                if (index == 0) {
-                    YdmendianxinxiViewController *mendianxinxi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
-                    [self.navigationController pushViewController:mendianxinxi animated:YES];
-                }
-                else
-                {
-                    YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-                    //门店id
-                    NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
-                    banner.xixi = sst;
-                    NSLog(@"sst:%@",sst);
-                    [self.navigationController pushViewController:banner animated:YES];
-                }
+                    if (index == 0) {
+                        YdmendianxinxiViewController *mendianxinxi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
+                        [self.navigationController pushViewController:mendianxinxi animated:YES];
+                    }
+                    else
+                    {
+                        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                            [tiaodaodenglu jumpToLogin:self.navigationController];
+                        }else{
+                        YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+                        //门店id
+                        NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
+                        banner.xixi = sst;
+                        NSLog(@"sst:%@",sst);
+                        [self.navigationController pushViewController:banner animated:YES];
+                        }
+                    }
                     
                 };
                 
@@ -1328,7 +1364,7 @@
             fenxianglabel.font = [UIFont systemFontOfSize:13];
             fenxianglabel.textAlignment = NSTextAlignmentRight;
             [cell.contentView addSubview:fenxianglabel];
-        
+            
             UILabel *shoucanglabel = [[UILabel alloc]init];
             shoucanglabel.frame = CGRectMake(width - 110, 125, 100, 30);
             shoucanglabel.text =[NSString stringWithFormat:@"阅读量: %@",[remenzixunarray[indexPath.row] objectForKey:@"viewCount"]];
@@ -1354,7 +1390,7 @@
         }
         else if (indexPath.section == 6)
         {
-        
+            
             CGFloat w = 0;//保存前一个button的宽以及前一个button距离屏幕边缘的距离
             CGFloat h =0;//用来控制button距离父视图的高
             for (int i = 0; i < 8; i++)
@@ -1363,7 +1399,7 @@
                 button.tag = 100 + i;
                 [button addTarget:self action:@selector(bingzheng) forControlEvents:UIControlEventTouchUpInside];
                 [button setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
-
+                
                 [button setTitle:@"111" forState:UIControlStateNormal];
                 //设置button的frame
                 button.frame = CGRectMake(w, h, width / 4 , 40);
@@ -1376,9 +1412,9 @@
                 }
                 w = button.frame.size.width + button.frame.origin.x;
                 [cell.contentView addSubview:button];
-            
+                
+            }
         }
-    }
         
     }
     //cell点击不变色
@@ -1446,7 +1482,7 @@
 {    //特价药品列表
     YDTejialiebiaoViewController*tejia=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tejialiebiao"];
     [self.navigationController pushViewController:tejia animated:YES];
-
+    
     
 }
 //积分礼品展示  礼品详情
@@ -1470,10 +1506,13 @@
 
 //扫描
 -(void)scanning{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+[tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
     //跳转到扫描页面
     YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
     [self.navigationController pushViewController:News animated:YES];
-    
+    }
 }
 //病症
 -(void)bingzheng
@@ -1962,6 +2001,7 @@ int nicaicai=0;
                 [WarningBox warningBoxHide:YES andView:self.view];
                 
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
+                    [WarningBox warningBoxHide:YES andView:self.view];
                     panduan=1;
                     NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                     
@@ -1989,6 +2029,7 @@ int nicaicai=0;
                     
                 }
                 else if ([[responseObject objectForKey:@"code"] intValue]==0){
+                    [WarningBox warningBoxHide:YES andView:self.view];
                     //5个门店的列表
                     panduan=2;
                     wocalede=[NSArray array];
@@ -2001,6 +2042,7 @@ int nicaicai=0;
                 }
             }
             @catch (NSException * e) {
+                [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"请仔细检查网络！" andView:self.view];
                 
             }
@@ -2015,9 +2057,11 @@ int nicaicai=0;
         
     }
     else if (panduan==2){
+        [WarningBox warningBoxHide:YES andView:self.view];
         wocalei.hidden=NO;
         
     }else{
+        [WarningBox warningBoxHide:YES andView:self.view];
         [self sanji];
     }
     

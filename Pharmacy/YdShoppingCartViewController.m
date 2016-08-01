@@ -13,7 +13,7 @@
 #import "YdshoppingxiangshiViewController.h"
 #import "YdlianxidianzhangViewController.h"
 #import "WarningBox.h"
-
+#import "tiaodaodenglu.h"
 @interface YdShoppingCartViewController ()
 {
     
@@ -366,9 +366,9 @@
 - (IBAction)tijiaoanniu:(id)sender {
 
     //判断是否登录
-    //    if(/*没登录*/){
-    //        /*跳转*/
-    //    }else{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+        }else{
     
     
     
@@ -392,7 +392,7 @@
    
     
    
-//}
+}
   
     
 }

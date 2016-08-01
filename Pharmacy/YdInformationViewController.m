@@ -17,6 +17,7 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
+#import "tiaodaodenglu.h"
 @interface YdInformationViewController ()
 {
     UICollectionView * CollectionView;
@@ -716,9 +717,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //判断是否登录
-//    if(/*没登录*/){
-//        /*跳转*/
-//    }else{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    
+    }else{
     if(zhi == 1)
     {
         
@@ -739,7 +741,7 @@
         InformationDetails.doc=[NSDictionary dictionaryWithDictionary:diantainewsListForInterface[indexPath.row]];
         [self.navigationController pushViewController:InformationDetails animated:YES];
     }
-//    }
+    }
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
