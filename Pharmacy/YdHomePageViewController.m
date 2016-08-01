@@ -649,7 +649,7 @@
         @try
         {
 //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
+            NSLog(@"=================%@===================",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -1239,7 +1239,7 @@
             shijian.frame = CGRectMake(180, 65, width - 185, 20);
             shijian.font = [UIFont systemFontOfSize:13];
             shijian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"createTime"]];
-            shijian.textAlignment = NSTextAlignmentCenter;
+            shijian.textAlignment = NSTextAlignmentRight;
             shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             
             UILabel *yuedu = [[UILabel alloc]init];
@@ -1256,7 +1256,19 @@
             dianzan.textAlignment = NSTextAlignmentRight;
             dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             
+            UIImageView *remen  = [[UIImageView alloc]init];
+            remen.frame = CGRectMake(width - 50 ,0, 50, 50);
+            if ([[rementieziarray[indexPath.row] objectForKey:@"isTop"] isEqualToString:@"1" ]) {
+                
+                remen.image = [UIImage imageNamed:@"hot.png"];
+                
+            }
+            else
+            {
+                
+            }
             
+            [cell.contentView addSubview:remen];
             [cell.contentView addSubview:touxiang];
             [cell.contentView addSubview:name];
             [cell.contentView addSubview:biaoti];
@@ -1290,10 +1302,11 @@
             //content.backgroundColor = [UIColor grayColor];
             
             UILabel *time = [[UILabel alloc]init];
-            time.frame = CGRectMake(width - 120, 100, 110, 20);
-            time.font = [UIFont systemFontOfSize:10];
+            time.frame = CGRectMake(width - 150, 100, 145, 20);
+            time.font = [UIFont systemFontOfSize:13];
             time.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"createTime"]];
-            time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            time.textAlignment = NSTextAlignmentRight;
             time.numberOfLines = 2;
             //time.backgroundColor = [UIColor grayColor];
             
