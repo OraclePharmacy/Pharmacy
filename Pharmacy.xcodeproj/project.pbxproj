@@ -178,6 +178,10 @@
 		959F9E5B1CBE23A900C5D019 /* YdchatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5A1CBE23A900C5D019 /* YdchatViewController.m */; };
 		959F9E5E1CBE23EF00C5D019 /* YdRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */; };
 		95A301E01D2FA1510084C81E /* YdyuwoxiangguanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A301DF1D2FA1510084C81E /* YdyuwoxiangguanViewController.m */; };
+		95ADBC041D4F4DD1006DCC97 /* people2.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC001D4F4DD1006DCC97 /* people2.png */; };
+		95ADBC051D4F4DD1006DCC97 /* people1.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC011D4F4DD1006DCC97 /* people1.png */; };
+		95ADBC061D4F4DD1006DCC97 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC021D4F4DD1006DCC97 /* bg.png */; };
+		95ADBC071D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */; };
 		95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60521D1391C2002E4A71 /* ModelClock.m */; };
 		95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722B1CB5F5780083AC90 /* 1213465@2x.png */; };
 		95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722C1CB5F5780083AC90 /* 1213465@3x.png */; };
@@ -635,6 +639,10 @@
 		959F9E5D1CBE23EF00C5D019 /* YdRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRecommendViewController.m; sourceTree = "<group>"; };
 		95A301DE1D2FA1510084C81E /* YdyuwoxiangguanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdyuwoxiangguanViewController.h; sourceTree = "<group>"; };
 		95A301DF1D2FA1510084C81E /* YdyuwoxiangguanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdyuwoxiangguanViewController.m; sourceTree = "<group>"; };
+		95ADBC001D4F4DD1006DCC97 /* people2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people2.png; sourceTree = "<group>"; };
+		95ADBC011D4F4DD1006DCC97 /* people1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people1.png; sourceTree = "<group>"; };
+		95ADBC021D4F4DD1006DCC97 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_and_delivery_unchecked.png; sourceTree = "<group>"; };
 		95AE60511D1391C2002E4A71 /* ModelClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelClock.h; sourceTree = "<group>"; };
 		95AE60521D1391C2002E4A71 /* ModelClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelClock.m; sourceTree = "<group>"; };
 		95C3722B1CB5F5780083AC90 /* 1213465@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@2x.png"; sourceTree = "<group>"; };
@@ -1417,6 +1425,10 @@
 		95206A911D38A838002BB3B5 /* 未命名文件夹 */ = {
 			isa = PBXGroup;
 			children = (
+				95ADBC001D4F4DD1006DCC97 /* people2.png */,
+				95ADBC011D4F4DD1006DCC97 /* people1.png */,
+				95ADBC021D4F4DD1006DCC97 /* bg.png */,
+				95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */,
 				95206A921D38A838002BB3B5 /* dingdan(1).png */,
 				95206A931D38A838002BB3B5 /* fenxiang(1).png */,
 				95206A941D38A838002BB3B5 /* jianyi(1).png */,
@@ -2456,6 +2468,7 @@
 				95206A8A1D3883B3002BB3B5 /* README.txt in Resources */,
 				95206AA71D38A838002BB3B5 /* zhongjiangjilu(1).png in Resources */,
 				95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */,
+				95ADBC061D4F4DD1006DCC97 /* bg.png in Resources */,
 				95206A7C1D3883B3002BB3B5 /* UMShareEditViewController.xib in Resources */,
 				951A41B31CFEA98900FD81D6 /* yyy_result.png in Resources */,
 				950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */,
@@ -2486,6 +2499,7 @@
 				95C3724F1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png in Resources */,
 				95C3726B1CB5F5780083AC90 /* 问药师@2x.png in Resources */,
 				95206A871D3883B3002BB3B5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				95ADBC051D4F4DD1006DCC97 /* people1.png in Resources */,
 				95206AA41D38A838002BB3B5 /* unread(1).png in Resources */,
 				9505D71E1C9A8727006F6850 /* 7008.wav in Resources */,
 				95C372591CB5F5780083AC90 /* 圆角矩形-6@2x.png in Resources */,
@@ -2542,8 +2556,10 @@
 				9505D7281C9A9BE5006F6850 /* IMG_0798.jpg in Resources */,
 				95206AA21D38A838002BB3B5 /* shoucang(1).png in Resources */,
 				95F7F7071CFBE93C00EF30B7 /* share(1).png in Resources */,
+				95ADBC041D4F4DD1006DCC97 /* people2.png in Resources */,
 				95206A7A1D3883B3002BB3B5 /* UMSCommentInputController.xib in Resources */,
 				959F9E3C1CBDFA3E00C5D019 /* 2@3x.png in Resources */,
+				95ADBC071D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png in Resources */,
 				95C372531CB5F5780083AC90 /* Multiple-Email-Thread-拷贝-2@2x.png in Resources */,
 				9509BCE61D2207A2006B4962 /* option_d2.png in Resources */,
 				95024D3B1D113D5900B7F7D8 /* dingdan.png in Resources */,
@@ -2887,8 +2903,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2911,7 +2927,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f223064e-1b62-4c7a-9367-3fc27cc3ab3c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};
@@ -2921,8 +2937,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2945,7 +2961,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f223064e-1b62-4c7a-9367-3fc27cc3ab3c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};

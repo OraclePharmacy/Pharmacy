@@ -1679,7 +1679,7 @@
         <!--Yd Wire View Controller-->
         <scene sceneID="w2F-ur-IiA">
             <objects>
-                <viewController storyboardIdentifier="wire" id="Po1-UE-pU9" customClass="YdWireViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wire" hidesBottomBarWhenPushed="YES" id="Po1-UE-pU9" customClass="YdWireViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bhi-pM-wg3"/>
                         <viewControllerLayoutGuide type="bottom" id="0fg-es-vY9"/>
@@ -1693,6 +1693,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5o-di-X5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2624" y="403"/>
+        </scene>
+        <!--Ydmingcheng View Controller-->
+        <scene sceneID="kJI-vP-Xh1">
+            <objects>
+                <viewController storyboardIdentifier="mingcheng" id="lHa-ND-3gl" customClass="YdmingchengViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HZz-q8-9IW"/>
+                        <viewControllerLayoutGuide type="bottom" id="LIR-73-jB5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HWl-Fl-4dH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5yI-YA-jjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624" y="1098"/>
+        </scene>
+        <!--YdB Zxiangqing View Controller-->
+        <scene sceneID="dud-42-akD">
+            <objects>
+                <viewController storyboardIdentifier="bzxiangqing" id="BER-Kz-BY8" customClass="YdBZxiangqingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZWA-R3-ctu"/>
+                        <viewControllerLayoutGuide type="bottom" id="gNp-v9-zaJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fgn-Rx-io0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PCs-WS-8kH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624" y="1782"/>
         </scene>
         <!--Yd Remind View Controller-->
         <scene sceneID="CD8-OW-EDp">
