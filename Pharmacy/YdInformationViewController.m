@@ -44,9 +44,9 @@
 @end
 
 @implementation YdInformationViewController
--(void)viewWillAppear:(BOOL)animated{
-    //    [self wenzizixun];
-    
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

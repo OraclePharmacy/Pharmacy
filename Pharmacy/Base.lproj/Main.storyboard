@@ -2394,8 +2394,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-qv-QF9">
-                                <rect key="frame" x="535" y="538" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-qv-QF9">
+                                <rect key="frame" x="550" y="535" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="HZ0-n3-RbQ"/>
                                     <constraint firstAttribute="height" constant="30" id="ju0-QB-mcp"/>
@@ -2404,8 +2404,8 @@
                                     <action selector="fenxiang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="kLn-cI-kYY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es2-pf-IRo">
-                                <rect key="frame" x="446" y="538" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es2-pf-IRo">
+                                <rect key="frame" x="510" y="535" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="T3a-GP-Fah"/>
                                     <constraint firstAttribute="height" constant="30" id="lzo-3s-UJR"/>
@@ -2414,8 +2414,8 @@
                                     <action selector="shoucang:" destination="PIe-HG-mSW" eventType="touchUpInside" id="gdy-S0-UH4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-33-ene">
-                                <rect key="frame" x="388" y="538" width="20" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-33-ene">
+                                <rect key="frame" x="470" y="535" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="3z8-Qq-EFg"/>
                                     <constraint firstAttribute="height" constant="30" id="lix-rs-v6O"/>
@@ -2430,6 +2430,7 @@
                             <constraint firstItem="Cou-qv-QF9" firstAttribute="leading" secondItem="es2-pf-IRo" secondAttribute="trailing" constant="10" id="6kg-fZ-M3m"/>
                             <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Cou-qv-QF9" secondAttribute="bottom" constant="35" id="PJe-Dn-heb"/>
                             <constraint firstAttribute="bottomMargin" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="cgx-JS-OA7"/>
+                            <constraint firstAttribute="bottom" secondItem="Cou-qv-QF9" secondAttribute="bottom" constant="35" id="e3n-Vm-qUB"/>
                             <constraint firstAttribute="bottomMargin" secondItem="geY-33-ene" secondAttribute="bottom" constant="35" id="fZR-eJ-jg5"/>
                             <constraint firstAttribute="trailing" secondItem="Cou-qv-QF9" secondAttribute="trailing" constant="20" id="h91-7W-kYY"/>
                             <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="s5l-0F-4Oz"/>
