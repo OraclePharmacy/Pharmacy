@@ -37,6 +37,7 @@
 
 @implementation YdShoppingCartViewController
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
