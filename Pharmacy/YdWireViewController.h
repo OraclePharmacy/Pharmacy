@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdWireViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface YdWireViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @end

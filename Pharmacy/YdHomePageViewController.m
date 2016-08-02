@@ -423,24 +423,24 @@
     else if (width == 375)
     {
         [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [one setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(10, 15, 25, 15)];
         [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [two setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(10, 15, 25, 15)];
         [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [three setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(10, 15, 25, 15)];
         [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-70,0)];
-        [four setImageEdgeInsets:UIEdgeInsetsMake(-10, 10, 10, 0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(10, 15, 25, 15)];
     }
     else if (self.view.bounds.size.width == 320)
     {
-        [one setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
-        [one setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
-        [two setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
-        [two setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
-        [three setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
-        [three setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
-        [four setTitleEdgeInsets:UIEdgeInsetsMake(5,-72,-70,0)];
-        [four setImageEdgeInsets:UIEdgeInsetsMake(10, 5, 20, 5)];
+        [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-75,0)];
+        [one setImageEdgeInsets:UIEdgeInsetsMake(15, 10, 20, 10)];
+        [two setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-75,0)];
+        [two setImageEdgeInsets:UIEdgeInsetsMake(15, 10, 20, 10)];
+        [three setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-75,0)];
+        [three setImageEdgeInsets:UIEdgeInsetsMake(15, 10, 20, 10)];
+        [four setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-75,0)];
+        [four setImageEdgeInsets:UIEdgeInsetsMake(15, 10, 20, 10)];
     }
     
     [cell.contentView addSubview:one];
