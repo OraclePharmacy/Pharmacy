@@ -19,6 +19,9 @@
     NSArray *erji;
     NSDictionary *dic2;
     int panduan;
+    
+    UIButton *zhuanshen;
+    UIImageView *beijing;
 }
 @property (strong,nonatomic)UISegmentedControl *segmentedControl;
 @property (strong,nonatomic)UITableView *tableview1;
@@ -80,13 +83,26 @@
 -(void)tupian
 {
     //最下面
-    UIImageView *beijing = [[UIImageView alloc]init];
+    beijing = [[UIImageView alloc]init];
     beijing.frame = CGRectMake(0, 64, width, height - 64);
     beijing.image = [UIImage imageNamed:@"bg.png"];
     [self.view addSubview:beijing];
     
     CGFloat viewgao = height - 64;
     CGFloat viewkuan = width;
+    
+    zhuanshen = [[UIButton alloc]init];
+    zhuanshen.frame = CGRectMake(width - 70 ,height - 100 ,50 ,50 );
+    [zhuanshen setTitle:@"转身" forState:UIControlStateNormal];
+    [zhuanshen setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+    zhuanshen.titleLabel.font = [UIFont systemFontOfSize:17];
+    zhuanshen.layer.cornerRadius = 25;
+    zhuanshen.layer.masksToBounds = YES;
+    zhuanshen.layer.borderWidth = 3;
+    zhuanshen.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    [zhuanshen addTarget:self action:@selector(biaoqian:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view bringSubviewToFront:zhuanshen];
+    [self.view addSubview:zhuanshen];
     
     //第二层
     UIImageView *renti = [[UIImageView alloc]init];
@@ -99,15 +115,171 @@
         //头部
         UIButton *tou = [[UIButton alloc]init];
         tou.frame = CGRectMake((width - width / 8.5)/2 , width / 8.5 / 2, width / 8.5, width / 8.5);
-        tou.backgroundColor = [UIColor redColor];
+        [tou setTitle:@"头部" forState:UIControlStateNormal];
+        [tou setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        tou.titleLabel.font = [UIFont systemFontOfSize:20];
         [beijing bringSubviewToFront:tou];
         [beijing addSubview:tou];
         //肩部
-        UIButton *jian = [[UIButton alloc]init];
-        jian.frame = CGRectMake(width / 8.5 * 2.5,width / 8.5 / 2 + width / 8.5 ,width / 8.5,width / 8.5);
-        jian.backgroundColor = [UIColor redColor];
-        [beijing bringSubviewToFront:jian];
-        [beijing addSubview:jian];
+        UIButton *zuojian = [[UIButton alloc]init];
+        zuojian.frame = CGRectMake(width / 8.5 * 2.5,width / 8.5 / 2 + width / 8.5 *1.5 ,width / 8.5,width / 8.5 /2);
+        [zuojian setTitle:@"肩部" forState:UIControlStateNormal];
+        [zuojian setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuojian.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuojian];
+        [beijing addSubview:zuojian];
+        
+        UIButton *youjian = [[UIButton alloc]init];
+        youjian.frame = CGRectMake(width / 8.5 * 2.5 + width / 8.5 * 2.5  ,width / 8.5 / 2 + width / 8.5 *1.5 ,width / 8.5,width / 8.5 /2);
+        [youjian setTitle:@"肩部" forState:UIControlStateNormal];
+        [youjian setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youjian.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youjian];
+        [beijing addSubview:youjian];
+        //胸部
+        UIButton *xiong = [[UIButton alloc]init];
+        xiong.frame = CGRectMake(CGRectGetMaxX(zuojian.frame),CGRectGetMaxY(youjian.frame) + (width / 8.5 ) * 0.2,CGRectGetMinX(youjian.frame) - CGRectGetMaxX(zuojian.frame),width / 8.5 );
+        [xiong setTitle:@"胸部" forState:UIControlStateNormal];
+        [xiong setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        xiong.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:xiong];
+        [beijing addSubview:xiong];
+        //上臂
+        UIButton *zuoshang = [[UIButton alloc]init];
+        zuoshang.frame = CGRectMake(width / 8.5 *2,CGRectGetMaxY(xiong.frame) * 0.9,width / 8.5,width / 8.5 / 2);
+        [zuoshang setTitle:@"上臂" forState:UIControlStateNormal];
+        [zuoshang setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoshang.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoshang];
+        [beijing addSubview:zuoshang];
+        
+        UIButton *youshang = [[UIButton alloc]init];
+        youshang.frame = CGRectMake(CGRectGetMaxX(zuoshang.frame) + width / 8.5 *2.5,CGRectGetMaxY(xiong.frame) * 0.9,width / 8.5,width / 8.5 / 2);
+        [youshang setTitle:@"上臂" forState:UIControlStateNormal];
+        [youshang setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youshang.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youshang];
+        [beijing addSubview:youshang];
+        //腹部
+        UIButton *fu = [[UIButton alloc]init];
+        fu.frame = CGRectMake(CGRectGetMinX(xiong.frame),CGRectGetMaxY(youshang.frame),CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame),width / 8.5 * 1.3);
+        [fu setTitle:@"腹部" forState:UIControlStateNormal];
+        [fu setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        fu.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:fu];
+        [beijing addSubview:fu];
+        //腰部
+        UIButton *yao = [[UIButton alloc]init];
+        yao.frame = CGRectMake(CGRectGetMinX(xiong.frame),CGRectGetMaxY(fu.frame) + width / 8.5 * 1.3 * 0.2,CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame),width / 8.5 * 0.6);
+        [yao setTitle:@"腰部" forState:UIControlStateNormal];
+        [yao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        yao.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:yao];
+        [beijing addSubview:yao];
+        //前臂
+        UIButton *zuoqian = [[UIButton alloc]init];
+        zuoqian.frame = CGRectMake(width / 8.5 * 1.7,CGRectGetMaxY(fu.frame) + width / 8.5 * 1.3 * 0.2,(CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame)) * 0.6,width / 8.5 * 0.6);
+        [zuoqian setTitle:@"前臂" forState:UIControlStateNormal];
+        [zuoqian setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoqian.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoqian];
+        [beijing addSubview:zuoqian];
+        
+        UIButton *youqian = [[UIButton alloc]init];
+        youqian.frame = CGRectMake(CGRectGetMaxX(yao.frame) + (CGRectGetMinX(yao.frame)-CGRectGetMaxX(zuoqian.frame)) ,CGRectGetMaxY(fu.frame) + width / 8.5 * 1.3 * 0.2,(CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame)) * 0.6,width / 8.5 * 0.6);
+        [youqian setTitle:@"前臂" forState:UIControlStateNormal];
+        [youqian setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youqian.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youqian];
+        [beijing addSubview:youqian];
+        //生殖器官
+        UIButton *shengzhi = [[UIButton alloc]init];
+        shengzhi.frame = CGRectMake(CGRectGetMinX(xiong.frame) ,CGRectGetMaxY(yao.frame) + width / 8.5 * 0.5,CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame),width / 8.5 * 0.5);
+        [shengzhi setTitle:@"生殖器官" forState:UIControlStateNormal];
+        [shengzhi setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        shengzhi.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:shengzhi];
+        [beijing addSubview:shengzhi];
+        //手
+        UIButton *zuoshou = [[UIButton alloc]init];
+        zuoshou.frame = CGRectMake(width / 8.5 * 1.6 ,CGRectGetMaxY(shengzhi.frame) ,(CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame)) * 0.6,width / 8.5 * 0.5);
+        [zuoshou setTitle:@"手" forState:UIControlStateNormal];
+        [zuoshou setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoshou.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoshou];
+        [beijing addSubview:zuoshou];
+        
+        UIButton *youshou = [[UIButton alloc]init];
+        youshou.frame = CGRectMake(CGRectGetMinX(shengzhi.frame) - CGRectGetMaxX(zuoshou.frame) + CGRectGetMaxX(shengzhi.frame) ,CGRectGetMaxY(shengzhi.frame) ,(CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame)) * 0.6,width / 8.5 * 0.5);
+        [youshou setTitle:@"手" forState:UIControlStateNormal];
+        [youshou setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youshou.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youshou];
+        [beijing addSubview:youshou];
+        //大腿
+        UIButton *zuoda = [[UIButton alloc]init];
+        zuoda.frame = CGRectMake(width / 8.5 *3,CGRectGetMaxY(shengzhi.frame)+width/8.5*0.5,width / 8.5 ,width / 8.5 * 0.5);
+        [zuoda setTitle:@"大腿" forState:UIControlStateNormal];
+        [zuoda setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoda.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoda];
+        [beijing addSubview:zuoda];
+        
+        UIButton *youda = [[UIButton alloc]init];
+        youda.frame = CGRectMake(CGRectGetMaxX(zuoda.frame) + width / 8.5 / 2,CGRectGetMaxY(shengzhi.frame)+width/8.5*0.5,width / 8.5 ,width / 8.5 * 0.5);
+        [youda setTitle:@"大腿" forState:UIControlStateNormal];
+        [youda setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youda.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youda];
+        [beijing addSubview:youda];
+        //膝盖
+        UIButton *zuoxi = [[UIButton alloc]init];
+        zuoxi.frame = CGRectMake(width / 8.5 *3.2,CGRectGetMaxY(zuoda.frame)+width/8.5*1.2,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [zuoxi setTitle:@"膝盖" forState:UIControlStateNormal];
+        [zuoxi setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoxi.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoxi];
+        [beijing addSubview:zuoxi];
+        
+        UIButton *youxi = [[UIButton alloc]init];
+        youxi.frame = CGRectMake(CGRectGetMaxX(zuoxi.frame) + width / 8.5 * 0.5,CGRectGetMaxY(zuoda.frame)+width/8.5*1.2,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [youxi setTitle:@"膝盖" forState:UIControlStateNormal];
+        [youxi setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youxi.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youxi];
+        [beijing addSubview:youxi];
+        //小腿
+        UIButton *zuoxiao = [[UIButton alloc]init];
+        zuoxiao.frame = CGRectMake(width / 8.5 *3.2,CGRectGetMaxY(zuoxi.frame)+width/8.5*1.5,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [zuoxiao setTitle:@"小腿" forState:UIControlStateNormal];
+        [zuoxiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoxiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoxiao];
+        [beijing addSubview:zuoxiao];
+        
+        UIButton *youxiao = [[UIButton alloc]init];
+        youxiao.frame = CGRectMake(CGRectGetMaxX(zuoxiao.frame) + width / 8.5 * 0.5,CGRectGetMaxY(zuoxi.frame)+width/8.5*1.5,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [youxiao setTitle:@"小腿" forState:UIControlStateNormal];
+        [youxiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youxiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youxiao];
+        [beijing addSubview:youxiao];
+        //脚
+        UIButton *zuojiao = [[UIButton alloc]init];
+        zuojiao.frame = CGRectMake(width / 8.5 *3.2,viewgao - width / 8.5 *0.5 * 2,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [zuojiao setTitle:@"脚" forState:UIControlStateNormal];
+        [zuojiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuojiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuojiao];
+        [beijing addSubview:zuojiao];
+        
+        UIButton *youjiao = [[UIButton alloc]init];
+        youjiao.frame = CGRectMake(CGRectGetMaxX(zuojiao.frame) + width / 8.5 * 0.5,viewgao - width / 8.5 *0.5 * 2,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [youjiao setTitle:@"脚" forState:UIControlStateNormal];
+        [youjiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youjiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youjiao];
+        [beijing addSubview:youjiao];
         
     }
     else if (panduan == 2){
@@ -116,6 +288,24 @@
         
     }
     
+}
+- (void)biaoqian:(UIButton *)btn{
+    
+    if (btn == zhuanshen) {
+        
+        if (panduan == 1) {
+            [beijing removeFromSuperview];
+            panduan = 2;
+            [self tupian];
+        }
+        else
+        {
+            [beijing removeFromSuperview];
+            panduan = 1;
+            [self tupian];
+        }
+        
+    }
     
 }
 #pragma  mark --- tableview

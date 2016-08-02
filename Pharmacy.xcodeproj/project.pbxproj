@@ -258,6 +258,11 @@
 		95EBA8731CBB9B2400A48D80 /* YdQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */; };
 		95ED97471CC4B64A006F92B8 /* iconfont-fenxiang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ED97451CC4B64A006F92B8 /* iconfont-fenxiang@3x.png */; };
 		95ED97481CC4B64A006F92B8 /* iconfont-tubiao1shoucang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ED97461CC4B64A006F92B8 /* iconfont-tubiao1shoucang@3x.png */; };
+		95EFDB1E1D5024F5006557DC /* 人体背面4.png in Resources */ = {isa = PBXBuildFile; fileRef = 95EFDB1C1D5024F5006557DC /* 人体背面4.png */; };
+		95EFDB1F1D5024F5006557DC /* 人体正面3.png in Resources */ = {isa = PBXBuildFile; fileRef = 95EFDB1D1D5024F5006557DC /* 人体正面3.png */; };
+		95EFDB221D506D5D006557DC /* YdmingchengViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EFDB211D506D5D006557DC /* YdmingchengViewController.m */; };
+		95EFDB251D506D77006557DC /* YdBZxiangqingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EFDB241D506D77006557DC /* YdBZxiangqingViewController.m */; };
+		95EFDB271D506DBF006557DC /* zizhen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95EFDB261D506DBF006557DC /* zizhen.plist */; };
 		95F1E03F1CB7A72300614502 /* shake_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0351CB7A72300614502 /* shake_background.png */; };
 		95F1E0401CB7A72300614502 /* shake_fangshe.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0361CB7A72300614502 /* shake_fangshe.png */; };
 		95F1E0411CB7A72300614502 /* shake_yyy.png in Resources */ = {isa = PBXBuildFile; fileRef = 95F1E0371CB7A72300614502 /* shake_yyy.png */; };
@@ -743,6 +748,13 @@
 		95EBA8721CBB9B2400A48D80 /* YdQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdQuestionViewController.m; sourceTree = "<group>"; };
 		95ED97451CC4B64A006F92B8 /* iconfont-fenxiang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-fenxiang@3x.png"; sourceTree = "<group>"; };
 		95ED97461CC4B64A006F92B8 /* iconfont-tubiao1shoucang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-tubiao1shoucang@3x.png"; sourceTree = "<group>"; };
+		95EFDB1C1D5024F5006557DC /* 人体背面4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人体背面4.png"; sourceTree = "<group>"; };
+		95EFDB1D1D5024F5006557DC /* 人体正面3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人体正面3.png"; sourceTree = "<group>"; };
+		95EFDB201D506D5D006557DC /* YdmingchengViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdmingchengViewController.h; sourceTree = "<group>"; };
+		95EFDB211D506D5D006557DC /* YdmingchengViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdmingchengViewController.m; sourceTree = "<group>"; };
+		95EFDB231D506D77006557DC /* YdBZxiangqingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdBZxiangqingViewController.h; sourceTree = "<group>"; };
+		95EFDB241D506D77006557DC /* YdBZxiangqingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdBZxiangqingViewController.m; sourceTree = "<group>"; };
+		95EFDB261D506DBF006557DC /* zizhen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zizhen.plist; sourceTree = "<group>"; };
 		95F1E0351CB7A72300614502 /* shake_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_background.png; sourceTree = "<group>"; };
 		95F1E0361CB7A72300614502 /* shake_fangshe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_fangshe.png; sourceTree = "<group>"; };
 		95F1E0371CB7A72300614502 /* shake_yyy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shake_yyy.png; sourceTree = "<group>"; };
@@ -1427,6 +1439,8 @@
 		95206A911D38A838002BB3B5 /* 未命名文件夹 */ = {
 			isa = PBXGroup;
 			children = (
+				95EFDB1C1D5024F5006557DC /* 人体背面4.png */,
+				95EFDB1D1D5024F5006557DC /* 人体正面3.png */,
 				95ADBC081D4F4E25006DCC97 /* hot.png */,
 				95ADBC001D4F4DD1006DCC97 /* people2.png */,
 				95ADBC011D4F4DD1006DCC97 /* people1.png */,
@@ -1652,8 +1666,13 @@
 		959F9E461CBE1F2900C5D019 /* 用药咨询 */ = {
 			isa = PBXGroup;
 			children = (
+				95EFDB261D506DBF006557DC /* zizhen.plist */,
 				959F9E481CBE1FF700C5D019 /* YdWireViewController.h */,
 				959F9E491CBE1FF700C5D019 /* YdWireViewController.m */,
+				95EFDB201D506D5D006557DC /* YdmingchengViewController.h */,
+				95EFDB211D506D5D006557DC /* YdmingchengViewController.m */,
+				95EFDB231D506D77006557DC /* YdBZxiangqingViewController.h */,
+				95EFDB241D506D77006557DC /* YdBZxiangqingViewController.m */,
 			);
 			name = "用药咨询";
 			sourceTree = "<group>";
@@ -2517,6 +2536,7 @@
 				95C372681CB5F5780083AC90 /* 资讯@3x.png in Resources */,
 				95206A9E1D38A838002BB3B5 /* fenxiang(1).png in Resources */,
 				9509BCE31D2207A2006B4962 /* option_c1.png in Resources */,
+				95EFDB271D506DBF006557DC /* zizhen.plist in Resources */,
 				950BC6F71D12986000817E4A /* hb_yyy.png in Resources */,
 				953EF4791D372A01003D9FE7 /* read.png in Resources */,
 				95C372671CB5F5780083AC90 /* 资讯@2x.png in Resources */,
@@ -2552,6 +2572,7 @@
 				95024D3D1D113D5900B7F7D8 /* jianyi.png in Resources */,
 				9509565F1CC75FE600A10A5A /* sexnv@3x.png in Resources */,
 				9505D6D71C9A7B27006F6850 /* Main.storyboard in Resources */,
+				95EFDB1E1D5024F5006557DC /* 人体背面4.png in Resources */,
 				95F7F7041CFBE93C00EF30B7 /* clicklike_light(1).png in Resources */,
 				9505D72B1C9A9BE5006F6850 /* IMG_0801.jpg in Resources */,
 				9505D7271C9A9BE5006F6850 /* IMG_0797.jpg in Resources */,
@@ -2585,6 +2606,7 @@
 				95206A9F1D38A838002BB3B5 /* jianyi(1).png in Resources */,
 				95206A7F1D3883B3002BB3B5 /* UMSnsAccountViewController.xib in Resources */,
 				95F1E0451CB7A72300614502 /* shake_yyy_right60.png in Resources */,
+				95EFDB1F1D5024F5006557DC /* 人体正面3.png in Resources */,
 				D23EA3681CEE9A81000454FE /* MJRefresh.bundle in Resources */,
 				95206A7B1D3883B3002BB3B5 /* UMSCommentInputControlleriPad.xib in Resources */,
 				95C3725A1CB5F5780083AC90 /* 圆角矩形-6@3x.png in Resources */,
@@ -2618,6 +2640,7 @@
 				9505D6D41C9A7B27006F6850 /* ViewController.m in Sources */,
 				D23EA3641CEE9A81000454FE /* MJRefreshBackStateFooter.m in Sources */,
 				95206E9A1D0D3F14004BEF11 /* YdzhongjiangxiangqingViewController.m in Sources */,
+				95EFDB251D506D77006557DC /* YdBZxiangqingViewController.m in Sources */,
 				953717151CE6FCCE00CA959D /* YdzhongjiangjiluViewController.m in Sources */,
 				D212B5411CF7D15D001B5EAB /* YDTejialiebiaoViewController.m in Sources */,
 				95F440CD1CD047A000B66D8C /* UULineChart.m in Sources */,
@@ -2654,6 +2677,7 @@
 				D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */,
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
 				95F440C81CD047A000B66D8C /* UUBar.m in Sources */,
+				95EFDB221D506D5D006557DC /* YdmingchengViewController.m in Sources */,
 				95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */,
 				9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */,
 				95609EA71CABC72E00AF65E4 /* SBJsonTokeniser.m in Sources */,
