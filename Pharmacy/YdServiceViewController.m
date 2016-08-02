@@ -67,7 +67,7 @@
     CollectionView =[[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, width,height-64-40)collectionViewLayout:flowLayout];
     
     CollectionView.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
-
+    
     //注册单元格
     
     [CollectionView registerClass:[UICollectionViewCell class]forCellWithReuseIdentifier:identifier];
@@ -146,7 +146,7 @@
     }
     else
     {
-       
+        
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.3);
         image.image = [UIImage imageNamed:@"IMG_0800.jpg"];
@@ -187,7 +187,7 @@
 //Header高度
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-    
+        
         CGSize size={width,
             collectionView.bounds.size.height*0.1};
         return size;
@@ -209,9 +209,12 @@
     {
         if (indexPath.row == 0)
         {
-            YdJiaoLiuViewController *JiaoLiu =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
-            [self.navigationController pushViewController:JiaoLiu animated:YES];
-
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
+                YdJiaoLiuViewController *JiaoLiu =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jiaoliu"];
+                [self.navigationController pushViewController:JiaoLiu animated:YES];
+            }
         }
         else if (indexPath.row == 1)
         {
@@ -222,42 +225,42 @@
         {
             //判断是否登录
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
-               [tiaodaodenglu jumpToLogin:self.navigationController];
-                    }else{
-
-            YdRemindViewController *Remind = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"remind"];
-            [self.navigationController pushViewController:Remind animated:YES];
-        }
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
+                
+                YdRemindViewController *Remind = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"remind"];
+                [self.navigationController pushViewController:Remind animated:YES];
+            }
         }
         else if (indexPath.row == 3)
         {    //判断是否登录
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
-               [tiaodaodenglu jumpToLogin:self.navigationController];
-                }else{
-
-            YdBloodViewController *Blood = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"blood"];
-            [self.navigationController pushViewController:Blood animated:YES];
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
+                
+                YdBloodViewController *Blood = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"blood"];
+                [self.navigationController pushViewController:Blood animated:YES];
             }
         }
         else if (indexPath.row == 4)
         {    //判断是否登录
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
-                }else{
-
-            YdElectronicsViewController *Electronics = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"electronics"];
-            [self.navigationController pushViewController:Electronics animated:YES];
-        }
+            }else{
+                
+                YdElectronicsViewController *Electronics = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"electronics"];
+                [self.navigationController pushViewController:Electronics animated:YES];
+            }
         }
         else if (indexPath.row == 5)
         {    //判断是否登录
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
-                    }else{
-
-            YdYaoXiangViewController *YaoXiang =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaoxiang"];
-            [self.navigationController pushViewController:YaoXiang animated:YES];
-        }
+            }else{
+                
+                YdYaoXiangViewController *YaoXiang =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"yaoxiang"];
+                [self.navigationController pushViewController:YaoXiang animated:YES];
+            }
         }
     }
     else if (indexPath.section == 1)
@@ -268,10 +271,10 @@
     
     
     //跳转到详细病症
-//    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-//    DrugJump.imageName = DiseaseImageArray[indexPath.row];
-//    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
-//    [self.navigationController pushViewController:DrugJump animated:YES];
+    //    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
+    //    DrugJump.imageName = DiseaseImageArray[indexPath.row];
+    //    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
+    //    [self.navigationController pushViewController:DrugJump animated:YES];
     
     return;
 }
@@ -289,7 +292,7 @@
     [Doctorsrecommended addTarget:self action:@selector(Doctorsrecommendedff) forControlEvents:UIControlEventTouchUpInside];
     Doctorsrecommended.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     [CollectionView addSubview:Doctorsrecommended];
-
+    
 }
 -(void)Doctorsrecommendedff
 {

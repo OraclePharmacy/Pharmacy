@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"\n\n\n\n\nhahahaha\n\n\n\n%@\n\n\n\n\n",_logname);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     //解决tableview多出的白条
@@ -274,7 +274,7 @@
         zixun.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
         zixun.layer.cornerRadius =5;
         zixun.layer.masksToBounds = YES;
-        [zixun addTarget:self action:@selector(liaotian) forControlEvents:UIControlEventTouchUpInside];
+        [zixun addTarget:self action:@selector(liaotian:) forControlEvents:UIControlEventTouchUpInside];
 
         
         cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -287,9 +287,10 @@
     
     return cell;
 }
--(void)liaotian
+-(void)liaotian:(UIButton*)tt
 {
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"hhl_admin"];
+    
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:_logname];
     [conversation allMessages:^(id resultObject, NSError *error) {
         NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
     }];
@@ -297,7 +298,7 @@
         
         [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
         
-        [JMSGConversation createSingleConversationWithUsername:@"hhl_admin" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGConversation createSingleConversationWithUsername:_logname completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             NSLog(@"创建会话返回\n\n%@",resultObject);
             if (error) {

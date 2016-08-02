@@ -114,7 +114,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     remenzixunarray = [[NSMutableArray alloc]init];
     
     panduan=0;
@@ -462,15 +462,19 @@
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
+        [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
         YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
         
         [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSLog(@"创建会话返回\n\n%@",resultObject);
             if (error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
                 NSLog(@" 登录出错");
                 [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                 return ;
             }
+            [WarningBox warningBoxHide:YES andView:self.view];
             NSLog(@"JMessage 登录成功");
             [self.navigationController pushViewController:Question animated:YES];
         }];
@@ -479,25 +483,27 @@
 }
 //第三个按钮点击事件
 -(void)three
-{if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
-    [tiaodaodenglu jumpToLogin:self.navigationController];
-}else{
-    YdPurchasingViewController *Purchasing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"purchasing"];
-    [self.navigationController pushViewController:Purchasing animated:YES];
-}
+{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
+        YdPurchasingViewController *Purchasing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"purchasing"];
+        [self.navigationController pushViewController:Purchasing animated:YES];
+    }
 }
 //第四个按钮点击事件
 -(void)four
-{if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
-    [tiaodaodenglu jumpToLogin:self.navigationController];
-}else{
-    huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
-    
-    [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
-    //    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-    //    youhuiquan.panduan = @"2";
-    //    [self.navigationController pushViewController:youhuiquan animated:YES];
-}
+{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
+        huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
+        
+        [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
+        //    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+        //    youhuiquan.panduan = @"2";
+        //    [self.navigationController pushViewController:youhuiquan animated:YES];
+    }
 }
 #pragma  mark ---- 积分礼品接口
 //接口
@@ -1051,12 +1057,12 @@
                         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                             [tiaodaodenglu jumpToLogin:self.navigationController];
                         }else{
-                        YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
-                        //门店id
-                        NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
-                        banner.xixi = sst;
-                        NSLog(@"sst:%@",sst);
-                        [self.navigationController pushViewController:banner animated:YES];
+                            YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+                            //门店id
+                            NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
+                            banner.xixi = sst;
+                            NSLog(@"sst:%@",sst);
+                            [self.navigationController pushViewController:banner animated:YES];
                         }
                     }
                     
@@ -1459,18 +1465,26 @@
     {
         wocalei.hidden=YES;
         if (indexPath.section == 5) {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
             //跳转文字资讯详情
             YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
             //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
             TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
             [self.navigationController pushViewController:TextDetails animated:YES];
+            }
         }
         else if (indexPath.section == 4) {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                [tiaodaodenglu jumpToLogin:self.navigationController];
+            }else{
             YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
             TieZiXiangQing.tieziId = [rementieziarray[indexPath.row] objectForKey:@"id"];
             TieZiXiangQing.bingzheng = [rementieziarray[indexPath.row] objectForKey:@"diseaseName"];
             TieZiXiangQing.touxiang1 = [rementieziarray[indexPath.row] objectForKey:@"photo"];
             [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+            }
         }
         
     }
@@ -1519,11 +1533,11 @@
 //扫描
 -(void)scanning{
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
-[tiaodaodenglu jumpToLogin:self.navigationController];
+        [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
-    //跳转到扫描页面
-    YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
-    [self.navigationController pushViewController:News animated:YES];
+        //跳转到扫描页面
+        YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
+        [self.navigationController pushViewController:News animated:YES];
     }
 }
 //病症

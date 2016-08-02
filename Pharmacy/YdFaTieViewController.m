@@ -88,7 +88,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
@@ -115,7 +115,7 @@
     }];
     
     
-
+    
 }
 
 //点击编辑区以外的地方键盘消失
@@ -133,7 +133,7 @@
     self.biaotiText.layer.cornerRadius = 8;
     self.biaotiText.layer.borderColor = [[UIColor colorWithHexString:@"e2e2e2" alpha:1] CGColor];
     self.biaotiText.layer.borderWidth =1;
-
+    
 }
 //textview 设置
 -(void)textviewshezhi
@@ -194,9 +194,9 @@
         self.scrollView.pagingEnabled = YES;
         
         self.scrollView.delegate = self;
-
+        
     }
-
+    
     //设置可滑动大小
     self.scrollView.contentSize = CGSizeMake(width - 20 , height / 3);
     //隐藏滚动条
@@ -221,7 +221,7 @@
     self.image1.layer.masksToBounds = YES;
     [self.image1 setUserInteractionEnabled:YES];
     [self.image1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
-
+    
     self.image2.layer.cornerRadius = 8;
     self.image2.layer.masksToBounds = YES;
     [self.image2 setUserInteractionEnabled:YES];
@@ -233,7 +233,7 @@
     [self.image3 setUserInteractionEnabled:YES];
     [self.image3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
     //self.image3.hidden = YES;
-
+    
 }
 //image点击事件
 -(void)clickCategory:(UITapGestureRecognizer*)image
@@ -369,7 +369,7 @@
     if (po==1) {
         
         _image1.image = [UIImage imageWithData:imageData];
-       
+        
     }else if(po==2){
         
         _image2.image = [UIImage imageWithData:imageData];
@@ -381,7 +381,7 @@
     }else{
         
     }
-
+    
 }
 
 -(void)fanhui
@@ -394,103 +394,118 @@
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
+}
+-(void)wancheng{
+    [self.view endEditing:YES];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStyleDone target:self action:@selector(fabu)];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self.view endEditing:YES];
+    return YES;
+}
 -(void)fabu
 {
     [self.view endEditing:YES];
-    NSMutableArray * heheda=[[NSMutableArray alloc] init];
-    NSFileManager *fm1=[NSFileManager defaultManager];
-    NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/fatie"];
-    NSString *picpath=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
-    NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
-    NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
-    NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
-    for (int i=0; i<apq.count; i++) {
-        if ([fm1 fileExistsAtPath: apq[i]]) {
-            [heheda addObject:apq[i]];
-        }
-    }
-    
-    NSString*now;
-    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    now = [formatter stringFromDate:[NSDate date]];
-    
-    
-    
-    [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/share/saveMyTopic";
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-    //出入参数：
-    
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",self.biaotiText.text,@"title",self.neirongText.text,@"context",now,@"createTime",bingzheng,@"id",nil];
-    NSLog(@"传值%@",datadic);
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    
-    [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i=0; i<heheda.count; i++) {
-            //对图片进行多个上传
-            
-            UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
-            NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
-            NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-            // 设置时间格式
-            fm.dateFormat = @"yyyyMMddHHmmss";
-            NSString *str = [fm stringFromDate:[NSDate date]];
-            NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
-            NSLog(@"filename------%@",fileName);
-            [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
+    if (_biaotiText.text.length==0||_neirongText.text.length==0||bingzheng.length==0) {
+        [WarningBox warningBoxModeText:@"请填写完成信息" andView:self.view];
+    }else{
+        NSMutableArray * heheda=[[NSMutableArray alloc] init];
+        NSFileManager *fm1=[NSFileManager defaultManager];
+        NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/fatie"];
+        NSString *picpath=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
+        NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
+        NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
+        NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
+        for (int i=0; i<apq.count; i++) {
+            if ([fm1 fileExistsAtPath: apq[i]]) {
+                [heheda addObject:apq[i]];
+            }
         }
         
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
+        NSString*now;
+        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        now = [formatter stringFromDate:[NSDate date]];
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        @try
-        {
+        
+        
+        [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
+        NSString*vip;
+        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+        
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/share/saveMyTopic";
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        //出入参数：
+        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",self.biaotiText.text,@"title",self.neirongText.text,@"context",now,@"createTime",bingzheng,@"id",nil];
+        NSLog(@"传值%@",datadic);
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        
+        [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            for (int i=0; i<heheda.count; i++) {
+                //对图片进行多个上传
+                
+                UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
+                NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
+                NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                fm.dateFormat = @"yyyyMMddHHmmss";
+                NSString *str = [fm stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
+                NSLog(@"filename------%@",fileName);
+                [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
+            }
             
-            NSLog(@"发帖返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
-            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                self.neirongText.text = @"";
-                self.biaotiText.text = @"";
-                //返回上一页
-                [self.navigationController popViewControllerAnimated:YES];
-                [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
-                NSFileManager *defaultManager;
-                defaultManager = [NSFileManager defaultManager];
-                NSString*path=[NSString stringWithFormat:@"%@/Documents/fatie",NSHomeDirectory()];
-                [defaultManager removeItemAtPath:path error:NULL];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                
+                NSLog(@"发帖返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    self.neirongText.text = @"";
+                    self.biaotiText.text = @"";
+                    //返回上一页
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
+                    NSFileManager *defaultManager;
+                    defaultManager = [NSFileManager defaultManager];
+                    NSString*path=[NSString stringWithFormat:@"%@/Documents/fatie",NSHomeDirectory()];
+                    [defaultManager removeItemAtPath:path error:NULL];
+                    
+                }
+                
+                
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                 
             }
             
             
-        }
-        @catch (NSException * e) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
             
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
-        }
+        }];
         
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-        
-    }];
-
-    
+    }
     
 }
 

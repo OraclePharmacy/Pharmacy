@@ -229,7 +229,7 @@
     gaoyatext.layer.borderWidth =1;
     gaoyatext.layer.cornerRadius = 5.0;
     gaoyatext.placeholder = @"请输入高压";
-
+    gaoyatext.keyboardType=UIKeyboardTypeDecimalPad;
     UILabel *diya = [[UILabel alloc]init];
     diya.frame = CGRectMake(CGRectGetMaxX(gaoyatext.frame) + 5, 5, (width-25)/6, 20);
     diya.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
@@ -244,7 +244,7 @@
     diyatext.layer.borderWidth =1;
     diyatext.layer.cornerRadius = 5.0;
     diyatext.placeholder = @"请输入低压";
-    
+    diyatext.keyboardType=UIKeyboardTypeDecimalPad;
     UIButton *xueya = [[UIButton alloc]init];
     xueya.frame = CGRectMake(30, 35, width - 60, 20);
     xueya.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -279,7 +279,7 @@
     fanqiangtext.layer.borderWidth =1;
     fanqiangtext.layer.cornerRadius = 5.0;
     fanqiangtext.placeholder = @"请输入餐前血糖";
-    
+    fanqiangtext.keyboardType=UIKeyboardTypeDecimalPad;
     
     
     UILabel *fanhou = [[UILabel alloc]init];
@@ -296,7 +296,7 @@
     fanhoutext.layer.borderWidth =1;
     fanhoutext.layer.cornerRadius = 5.0;
     fanhoutext.placeholder = @"请输入餐后血糖";
-    
+    fanhoutext.keyboardType=UIKeyboardTypeDecimalPad;
     UIButton *xuetang = [[UIButton alloc]init];
     xuetang.frame = CGRectMake(30, 100, width - 60, 20);
     xuetang.titleLabel.font = [UIFont systemFontOfSize:13];

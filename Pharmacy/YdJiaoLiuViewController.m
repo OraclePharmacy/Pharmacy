@@ -78,7 +78,7 @@
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-
+    
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -95,9 +95,9 @@
     //设置导航栏左按钮
     self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"发帖" style:UIBarButtonItemStyleDone target:self action:@selector(fatie)];
     
-
     
-//    [self jiekou];
+    
+    //    [self jiekou];
 }
 -(void)jiekou
 {
@@ -165,7 +165,7 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
 
 //section
@@ -210,14 +210,14 @@
     name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
     name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-
+    
     
     UILabel *biaoti = [[UILabel alloc]init];
     biaoti.frame = CGRectMake(90, 5, width - 95, 20);
     biaoti.font = [UIFont systemFontOfSize:15];
     biaoti.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"title"]];
     biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-
+    
     
     UILabel *fubiaoti = [[UILabel alloc]init];
     fubiaoti.frame = CGRectMake(90, 25, width - 95, 40);
@@ -254,7 +254,7 @@
     dianzan.text = [NSString stringWithFormat:@"点赞量:%@",[arr[indexPath.row] objectForKey:@"likeNums"]];
     dianzan.textAlignment = NSTextAlignmentRight;
     dianzan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-
+    
     UIImageView *remen  = [[UIImageView alloc]init];
     remen.frame = CGRectMake(width - 50 , 0, 50, 50);
     if ([[arr[indexPath.row] objectForKey:@"isTop"] isEqualToString:@"1" ]) {
@@ -286,14 +286,14 @@
     //判断是否登录
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
-        }else{
-
-    YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
-    TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
-    TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
-    TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
-    [self.navigationController pushViewController:TieZiXiangQing animated:YES];
-}
+    }else{
+        
+        YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
+        TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
+        TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
+        TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
+        [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+    }
 }
 
 -(void)fanhui
@@ -303,8 +303,18 @@
 }
 -(void)fatie
 {
-    YdFaTieViewController*FaTie = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fatie"];
-    [self.navigationController pushViewController:FaTie animated:YES];
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    NSFileManager *fm =[NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:path1]) {
+        NSDictionary*gerenxinxi=[NSDictionary dictionaryWithContentsOfFile:path1];
+        if (((NSString*)[gerenxinxi objectForKey:@"name"]).length==0||((NSString*)[gerenxinxi objectForKey:@"area"]).length==0) {
+            NSLog(@"\n\n\n\ndengyu    0\n\n\n\n");
+            [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
+        }else{
+            YdFaTieViewController*FaTie = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fatie"];
+            [self.navigationController pushViewController:FaTie animated:YES];
+        }
+    }
 }
 
 @end

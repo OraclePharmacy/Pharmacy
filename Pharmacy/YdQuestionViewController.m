@@ -207,7 +207,7 @@
     zixun.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     zixun.layer.cornerRadius =5;
     zixun.layer.masksToBounds = YES;
-    [zixun addTarget:self action:@selector(liaotian) forControlEvents:UIControlEventTouchUpInside];
+    [zixun addTarget:self action:@selector(liaotian:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *neirong = [[UILabel alloc]init];
     neirong.frame = CGRectMake(CGRectGetMaxX(touxiang.frame) + 10,38, width - CGRectGetMaxX(touxiang.frame) - 20 ,16);
@@ -236,14 +236,18 @@
 
     return cell;
 }
--(void)liaotian
+-(void)liaotian:(UIButton*)tt
 {
+    UITableViewCell *cell=(UITableViewCell*)[[tt superview] superview ];
     
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:@"hhl_admin"];
+    NSIndexPath *index=[self.tableview indexPathForCell:cell];
+    
+    
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"loginName"]]];
     if (conversation == nil) {
         
         
-        [JMSGConversation createSingleConversationWithUsername:@"hhl_admin" completionHandler:^(id resultObject, NSError *error) {
+        [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
             
             if (error) {
                 NSLog(@"创建会话失败-*-*-*%@",error);
@@ -269,6 +273,7 @@
     
      YdPharmacistDetailsViewController *PharmacistDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pharmacistdetails"];
      PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
+    PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"loginName"]];
      NSLog(@"%@",PharmacistDetails.yaoshiid);
      [self.navigationController pushViewController:PharmacistDetails animated:YES];
     

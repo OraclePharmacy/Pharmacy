@@ -74,7 +74,7 @@
             
         }
     }
-    //    NSLog(@"刚进来\n\n%@",yikaishi);
+        NSLog(@"刚进来\n\n%@",yikaishi);
     
     if (yikaishi == nil)
     {
