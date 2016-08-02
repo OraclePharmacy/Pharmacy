@@ -248,22 +248,16 @@
                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                         
                         
-                        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                            if (error) {
-                                NSLog(@" 登录出错");
-                                return ;
-                            }
-                            NSLog(@"JMessage 登录成功");
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 
                                 YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
                                 [self.navigationController pushViewController:Root animated:YES];
                                 
                             });
-                        }];
                         
                         
+                    
+
                         
                         
                     }

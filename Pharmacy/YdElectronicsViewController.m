@@ -33,7 +33,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     po=0;
     //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"列表" style:UIBarButtonItemStyleDone target:self action:@selector(liebiao)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"我的电子病历" style:UIBarButtonItemStyleDone target:self action:@selector(liebiao)];
     
     self.tijiao.layer.cornerRadius = 8;
     self.tijiao.layer.masksToBounds = YES;

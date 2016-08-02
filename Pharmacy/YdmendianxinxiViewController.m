@@ -21,7 +21,7 @@
 {
     CGFloat width;
     CGFloat height;
-    
+    UILabel *lable;
     NSArray *arr;
     NSDictionary *mendiandion;
     NSArray *dianyuanarray;
@@ -50,7 +50,7 @@
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-
+    
     [self jiekou];
 }
 
@@ -104,8 +104,6 @@
                 
                 dianyuanarray = [mendiandion objectForKey:@"userList"];
                 
-               // NSLog(@"%@",dianyuanarray);
-                
                 [self.tableview reloadData];
                 
             }
@@ -123,7 +121,7 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -171,6 +169,30 @@
     }
     else if (indexPath.section == 1)
     {
+        if(indexPath.row==0){
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            s=[NSString stringWithFormat:@"%@",[mendiandion objectForKey:@"remarks"] ];
+            
+            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lable.text=s;
+            [lable setFrame:CGRectMake(80, 0, rect.size.width-40, rect.size.height)];
+            
+            return lable.frame.size.height+1;
+            
+        }
         return 40;
     }
     else if (indexPath.section == 2)
@@ -207,12 +229,16 @@
         jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         jianjie.font = [UIFont systemFontOfSize:13];
         if (indexPath.row == 0)
-        {
-            jianjie.text = [mendiandion objectForKey:@"remarks"];
-            [cell.contentView addSubview:jianjie];
+        { lable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10,width - 90, 20)];
+            lable.numberOfLines=0;
+            lable.font=[UIFont systemFontOfSize:14];
+            lable.textColor=[UIColor colorWithHexString:@"323232"];
+            
+            [cell.contentView addSubview:lable];
         }
         else if (indexPath.row == 1)
         {
+            
             jianjie.text =  [mendiandion objectForKey:@"address"];
             [cell.contentView addSubview:jianjie];
         }
@@ -292,7 +318,7 @@
         haoping.font = [UIFont systemFontOfSize:13];
         haoping.text = [NSString stringWithFormat:@"好评率:%@%%",[dianyuanarray[indexPath.row] objectForKey:@"evaluateRate"]];
         [cell.contentView addSubview:haoping];
-
+        
         UIButton * mendian = [[UIButton alloc]init];
         mendian.frame = CGRectMake(215, 50, 100, 20);
         [mendian setTitle:@"评价店员" forState:UIControlStateNormal];
@@ -315,20 +341,22 @@
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
-    //跳转到扫描页面
-    YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
-    Scan.str = @"1";
-    [self.navigationController pushViewController:Scan animated:YES];
+        //跳转到扫描页面
+        YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
+        Scan.str = @"1";
+        [self.navigationController pushViewController:Scan animated:YES];
     }
 }
 -(void)pingjiadianyuan
-{
+{ if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    [tiaodaodenglu jumpToLogin:self.navigationController];
+}else{
     //跳转到扫描页面
     YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
     Scan.str = @"2";
     [self.navigationController pushViewController:Scan animated:YES];
 }
-
+}
 -(void)fanhui
 {
     //返回上一页

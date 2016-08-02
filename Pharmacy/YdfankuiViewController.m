@@ -153,6 +153,13 @@
     
 
 }
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
+}
+-(void)wancheng{
+    [self.view endEditing:YES];
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
+}
 -(void)textViewDidChange:(UITextView *)textView
 {
     

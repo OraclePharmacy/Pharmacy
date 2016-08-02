@@ -278,12 +278,12 @@ int popop=0;
                 cell.textLabel.text = @"特          价 :";
                 shuju.textColor = [UIColor redColor];
                  
-                shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"specPrice"]];
+                shuju.text = [NSString stringWithFormat:@"¥%@",[xianshiarr objectForKey:@"specPrice"]];
             }
             else if (indexPath.row == 1) {
                 cell.textLabel.text = @"原          价 :";
                
-                shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr  objectForKey:@"prodPrice"]];
+                shuju.text = [NSString stringWithFormat:@"¥%@",[xianshiarr  objectForKey:@"prodPrice"]];
             }
         }
         else
@@ -451,7 +451,18 @@ int popop=0;
 //联系店长
 - (IBAction)lianxidianzhang:(id)sender {
     //聊天   固定  id
-    [self liaotian];
+    
+    [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        if (error) {
+            NSLog(@" 登录出错");
+            [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+            return ;
+        }
+        [self liaotian];
+        NSLog(@"JMessage 登录成功");
+    }];
+    
     
 }
 -(void)liaotian

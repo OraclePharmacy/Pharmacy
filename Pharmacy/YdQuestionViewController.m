@@ -250,14 +250,14 @@
                 return ;
             }
             mememeViewController*xixi=[mememeViewController new];
-//            xixi.conversation=(JMSGConversation *)resultObject;
+            xixi.conversation=(JMSGConversation *)resultObject;
             [self.navigationController pushViewController:xixi animated:YES];
             
             
         }];
     } else {
         mememeViewController*xixi=[mememeViewController new];
-//        xixi.conversation=conversation;
+        xixi.conversation=conversation;
         [self.navigationController pushViewController:xixi animated:YES];
         
     }

@@ -37,6 +37,7 @@
 #import "MJRefresh.h"
 #import "denglu.h"
 #import "tiaodaodenglu.h"
+#import <JMessage/JMessage.h>
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat width;
@@ -462,7 +463,18 @@
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
-        [self.navigationController pushViewController:Question animated:YES];
+        
+        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if (error) {
+                NSLog(@" 登录出错");
+                [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+                return ;
+            }
+            NSLog(@"JMessage 登录成功");
+            [self.navigationController pushViewController:Question animated:YES];
+        }];
+        
     }
 }
 //第三个按钮点击事件
@@ -1358,7 +1370,7 @@
             laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             
             UILabel *fenxianglabel = [[UILabel alloc]init];
-            fenxianglabel.frame = CGRectMake(width - 215, 125, 100, 30);
+            fenxianglabel.frame = CGRectMake(width - 110, 125, 100, 30);
             fenxianglabel.text =[NSString stringWithFormat:@"点赞量: %@",[remenzixunarray[indexPath.row] objectForKey:@"clickLikeCount"]];
             fenxianglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             fenxianglabel.font = [UIFont systemFontOfSize:13];
@@ -1366,7 +1378,7 @@
             [cell.contentView addSubview:fenxianglabel];
             
             UILabel *shoucanglabel = [[UILabel alloc]init];
-            shoucanglabel.frame = CGRectMake(width - 110, 125, 100, 30);
+            shoucanglabel.frame = CGRectMake(width - 215, 125, 100, 30);
             shoucanglabel.text =[NSString stringWithFormat:@"阅读量: %@",[remenzixunarray[indexPath.row] objectForKey:@"viewCount"]];
             shoucanglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             shoucanglabel.font = [UIFont systemFontOfSize:13];
