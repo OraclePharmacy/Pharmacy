@@ -284,8 +284,88 @@
     }
     else if (panduan == 2){
         
-    renti.image = [UIImage imageNamed:@"people1.png"];
+        renti.image = [UIImage imageNamed:@"people1.png"];
         
+        //颈部
+        UIButton *jing = [[UIButton alloc]init];
+        jing.frame = CGRectMake((width - width / 8.5) / 2,width / 8.5 * 1.3,width / 8.5, width / 8.5);
+        [jing setTitle:@"颈部" forState:UIControlStateNormal];
+        [jing setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        jing.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:jing];
+        [beijing addSubview:jing];
+        //背部
+        UIButton *bei = [[UIButton alloc]init];
+        bei.frame = CGRectMake((width - width / 8.5) / 2,CGRectGetMaxY(jing.frame) + width/8.5 * 1,width / 8.5, width / 8.5);
+        [bei setTitle:@"背部" forState:UIControlStateNormal];
+        [bei setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        bei.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:bei];
+        [beijing addSubview:bei];
+        //腰部
+        UIButton *yao = [[UIButton alloc]init];
+        yao.frame = CGRectMake((width - width / 8.5) / 2,CGRectGetMaxY(bei.frame) + width/8.5 * 0.5,width / 8.5, width / 8.5);
+        [yao setTitle:@"腰部" forState:UIControlStateNormal];
+        [yao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        yao.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:yao];
+        [beijing addSubview:yao];
+        //肘部
+        UIButton *zuozhou = [[UIButton alloc]init];
+        zuozhou.frame = CGRectMake(width / 8.5 * 1.8,CGRectGetMaxY(bei.frame) + width/8.5 * 0.2,width / 8.5, width / 8.5);
+        [zuozhou setTitle:@"肘部" forState:UIControlStateNormal];
+        [zuozhou setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuozhou.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:zuozhou];
+        [beijing addSubview:zuozhou];
+        
+        UIButton *youzhou = [[UIButton alloc]init];
+        youzhou.frame = CGRectMake(width - width / 8.5 * 1.8 - width / 8.5,CGRectGetMaxY(bei.frame) + width/8.5 * 0.2,width / 8.5, width / 8.5);
+        [youzhou setTitle:@"肘部" forState:UIControlStateNormal];
+        [youzhou setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youzhou.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:youzhou];
+        [beijing addSubview:youzhou];
+        //臀部
+        UIButton *tun = [[UIButton alloc]init];
+        tun.frame = CGRectMake((width - width / 8.5) / 2,CGRectGetMaxY(yao.frame) + width/8.5 * 0.5,width / 8.5, width / 8.5);
+        [tun setTitle:@"臀部" forState:UIControlStateNormal];
+        [tun setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        tun.titleLabel.font = [UIFont systemFontOfSize:20];
+        [beijing bringSubviewToFront:tun];
+        [beijing addSubview:tun];
+        //大腿
+        UIButton *zuoda = [[UIButton alloc]init];
+        zuoda.frame = CGRectMake(width / 8.5 *2.9,CGRectGetMaxY(tun.frame)+width/8.5*0.5,width / 8.5 ,width / 8.5 * 0.5);
+        [zuoda setTitle:@"大腿" forState:UIControlStateNormal];
+        [zuoda setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoda.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoda];
+        [beijing addSubview:zuoda];
+        
+        UIButton *youda = [[UIButton alloc]init];
+        youda.frame = CGRectMake(CGRectGetMaxX(zuoda.frame) + width / 8.5 / 2,CGRectGetMaxY(tun.frame)+width/8.5*0.5,width / 8.5 ,width / 8.5 * 0.5);
+        [youda setTitle:@"大腿" forState:UIControlStateNormal];
+        [youda setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youda.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youda];
+        [beijing addSubview:youda];
+        //小腿
+        UIButton *zuoxiao = [[UIButton alloc]init];
+        zuoxiao.frame = CGRectMake(width / 8.5 *2.8,CGRectGetMaxY(zuoda.frame)+width/8.5*2.5,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [zuoxiao setTitle:@"小腿" forState:UIControlStateNormal];
+        [zuoxiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        zuoxiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:zuoxiao];
+        [beijing addSubview:zuoxiao];
+        
+        UIButton *youxiao = [[UIButton alloc]init];
+        youxiao.frame = CGRectMake(CGRectGetMaxX(zuoxiao.frame) + width / 8.5 * 1,CGRectGetMaxY(zuoda.frame)+width/8.5*2.5,width / 8.5 *0.8 ,width / 8.5 * 0.5);
+        [youxiao setTitle:@"小腿" forState:UIControlStateNormal];
+        [youxiao setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
+        youxiao.titleLabel.font = [UIFont systemFontOfSize:18];
+        [beijing bringSubviewToFront:youxiao];
+        [beijing addSubview:youxiao];
     }
     
 }
