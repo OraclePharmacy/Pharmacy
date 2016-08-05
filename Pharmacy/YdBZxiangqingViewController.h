@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YdBZxiangqingViewController : UIViewController
+@interface YdBZxiangqingViewController : UIViewController<UIWebViewDelegate>
 
 @property(strong,nonatomic) NSString *mingcheng;
 
