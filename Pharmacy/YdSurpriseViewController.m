@@ -21,7 +21,10 @@
 @end
 
 @implementation YdSurpriseViewController
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //状态栏名称

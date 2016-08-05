@@ -11,7 +11,7 @@
         <!--登录-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="view" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="view" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -137,7 +137,7 @@
         <!--注册-->
         <scene sceneID="jYm-ND-Drk">
             <objects>
-                <viewController storyboardIdentifier="register" id="ewx-e9-uCB" customClass="YdRegisterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="register" hidesBottomBarWhenPushed="YES" id="ewx-e9-uCB" customClass="YdRegisterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qwf-fX-fet"/>
                         <viewControllerLayoutGuide type="bottom" id="PUV-hf-PYr"/>
@@ -317,7 +317,7 @@
         <!--忘记密码-->
         <scene sceneID="bLh-Po-JoK">
             <objects>
-                <viewController storyboardIdentifier="forget" id="eoE-Zo-Y4c" customClass="YdForgetViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="forget" hidesBottomBarWhenPushed="YES" id="eoE-Zo-Y4c" customClass="YdForgetViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Akd-KD-PdG"/>
                         <viewControllerLayoutGuide type="bottom" id="aAe-wp-K3O"/>
@@ -438,7 +438,7 @@
         <!--修改密码-->
         <scene sceneID="6tu-eY-xTa">
             <objects>
-                <viewController storyboardIdentifier="modify" id="YNl-hW-uMR" customClass="YdModifyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="modify" hidesBottomBarWhenPushed="YES" id="YNl-hW-uMR" customClass="YdModifyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sfy-Nb-GhQ"/>
                         <viewControllerLayoutGuide type="bottom" id="id7-cE-Sdn"/>
@@ -525,7 +525,7 @@
         <!--Yd Root View Controller-->
         <scene sceneID="O6j-vP-MPa">
             <objects>
-                <viewController storyboardIdentifier="root" id="PMT-VI-vgQ" customClass="YdRootViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="root" hidesBottomBarWhenPushed="YES" id="PMT-VI-vgQ" customClass="YdRootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qFb-to-ple"/>
                         <viewControllerLayoutGuide type="bottom" id="CzR-ZS-mQn"/>
@@ -544,7 +544,7 @@
         <!--Yd Left View Controller-->
         <scene sceneID="ReD-7Z-M5I">
             <objects>
-                <viewController storyboardIdentifier="left" id="4Gv-9d-j1h" customClass="YdLeftViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="left" hidesBottomBarWhenPushed="YES" id="4Gv-9d-j1h" customClass="YdLeftViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PxQ-mu-xJo"/>
                         <viewControllerLayoutGuide type="bottom" id="HNd-cq-7SS"/>
@@ -580,7 +580,7 @@
         <!--Yd Wo De Ding Dan View Controller-->
         <scene sceneID="nKZ-py-A1Y">
             <objects>
-                <viewController storyboardIdentifier="wodedingdan" id="fZ7-8e-sVY" customClass="YdWoDeDingDanViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wodedingdan" hidesBottomBarWhenPushed="YES" id="fZ7-8e-sVY" customClass="YdWoDeDingDanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mHa-po-Hiy"/>
                         <viewControllerLayoutGuide type="bottom" id="ddL-0f-QP6"/>
@@ -598,7 +598,7 @@
         <!--Ydyouhuiquan View Controller-->
         <scene sceneID="ksu-U2-UyH">
             <objects>
-                <viewController storyboardIdentifier="youhuiquan" id="4hq-B3-IyD" customClass="YdyouhuiquanViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="youhuiquan" hidesBottomBarWhenPushed="YES" id="4hq-B3-IyD" customClass="YdyouhuiquanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RMR-MO-m3I"/>
                         <viewControllerLayoutGuide type="bottom" id="37Y-5U-2GH"/>
@@ -616,7 +616,7 @@
         <!--Ydwodetiezi View Controller-->
         <scene sceneID="vGD-uR-mml">
             <objects>
-                <viewController storyboardIdentifier="wodetiezi" id="Jio-q8-dwb" customClass="YdwodetieziViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wodetiezi" hidesBottomBarWhenPushed="YES" id="Jio-q8-dwb" customClass="YdwodetieziViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3rI-mC-NnA"/>
                         <viewControllerLayoutGuide type="bottom" id="99e-yu-2MJ"/>
@@ -634,7 +634,7 @@
         <!--Ydwodeshoucang View Controller-->
         <scene sceneID="aJ7-qe-yRq">
             <objects>
-                <viewController storyboardIdentifier="wodeshoucang" id="e1N-aC-oUF" customClass="YdwodeshoucangViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wodeshoucang" hidesBottomBarWhenPushed="YES" id="e1N-aC-oUF" customClass="YdwodeshoucangViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Ru-7W-JhH"/>
                         <viewControllerLayoutGuide type="bottom" id="osx-fF-GeZ"/>
@@ -652,7 +652,7 @@
         <!--Ydzhongjiangjilu View Controller-->
         <scene sceneID="19Z-QZ-Mb4">
             <objects>
-                <viewController storyboardIdentifier="zhongjiangjilu" id="jZw-Nr-iuy" customClass="YdzhongjiangjiluViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="zhongjiangjilu" hidesBottomBarWhenPushed="YES" id="jZw-Nr-iuy" customClass="YdzhongjiangjiluViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qBo-KU-xE3"/>
                         <viewControllerLayoutGuide type="bottom" id="JjP-au-XXx"/>
@@ -670,7 +670,7 @@
         <!--Yd She Zhi Table View Controller-->
         <scene sceneID="ccu-Gv-yjn">
             <objects>
-                <tableViewController storyboardIdentifier="shezhi" id="cIZ-za-IzT" customClass="YdSheZhiTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="shezhi" hidesBottomBarWhenPushed="YES" id="cIZ-za-IzT" customClass="YdSheZhiTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xKA-tL-BcQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -762,7 +762,7 @@
         <!--Ydfankui View Controller-->
         <scene sceneID="g8i-lZ-7e5">
             <objects>
-                <viewController storyboardIdentifier="fankui" id="CT2-ZW-uQe" customClass="YdfankuiViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fankui" hidesBottomBarWhenPushed="YES" id="CT2-ZW-uQe" customClass="YdfankuiViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mcm-Gg-dtZ"/>
                         <viewControllerLayoutGuide type="bottom" id="kKU-qH-xfL"/>
@@ -780,7 +780,7 @@
         <!--Ydfenxiangxiazai View Controller-->
         <scene sceneID="v8M-ck-xof">
             <objects>
-                <viewController storyboardIdentifier="fenxiangxiazai" id="kJj-Jp-A56" customClass="YdfenxiangxiazaiViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fenxiangxiazai" hidesBottomBarWhenPushed="YES" id="kJj-Jp-A56" customClass="YdfenxiangxiazaiViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ti-PL-bJs"/>
                         <viewControllerLayoutGuide type="bottom" id="0Jb-Sc-oKy"/>
@@ -1451,7 +1451,7 @@
         <!--Yd Tie Zi Xiang Qing View Controller-->
         <scene sceneID="FoH-n9-jbO">
             <objects>
-                <viewController storyboardIdentifier="tiezixiangqing" id="h5v-4a-3Aw" customClass="YdTieZiXiangQingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tiezixiangqing" hidesBottomBarWhenPushed="YES" id="h5v-4a-3Aw" customClass="YdTieZiXiangQingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBG-UX-OKO"/>
                         <viewControllerLayoutGuide type="bottom" id="1ba-of-h4z"/>
@@ -1661,7 +1661,7 @@
         <!--Ydyaopinxiangqing View Controller-->
         <scene sceneID="qMV-bj-We0">
             <objects>
-                <viewController storyboardIdentifier="yaopinxiangqing" id="cuW-6W-DZP" customClass="YdyaopinxiangqingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="yaopinxiangqing" hidesBottomBarWhenPushed="YES" id="cuW-6W-DZP" customClass="YdyaopinxiangqingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OfE-UT-Tin"/>
                         <viewControllerLayoutGuide type="bottom" id="DuW-Cq-2PP"/>
@@ -1697,7 +1697,7 @@
         <!--Ydmingcheng View Controller-->
         <scene sceneID="kJI-vP-Xh1">
             <objects>
-                <viewController storyboardIdentifier="mingcheng" id="lHa-ND-3gl" customClass="YdmingchengViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mingcheng" hidesBottomBarWhenPushed="YES" id="lHa-ND-3gl" customClass="YdmingchengViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HZz-q8-9IW"/>
                         <viewControllerLayoutGuide type="bottom" id="LIR-73-jB5"/>
@@ -1715,7 +1715,7 @@
         <!--YdB Zxiangqing View Controller-->
         <scene sceneID="dud-42-akD">
             <objects>
-                <viewController storyboardIdentifier="bzxiangqing" id="BER-Kz-BY8" customClass="YdBZxiangqingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bzxiangqing" hidesBottomBarWhenPushed="YES" id="BER-Kz-BY8" customClass="YdBZxiangqingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZWA-R3-ctu"/>
                         <viewControllerLayoutGuide type="bottom" id="gNp-v9-zaJ"/>
@@ -1733,7 +1733,7 @@
         <!--Ydmingchengsearch View Controller-->
         <scene sceneID="h8g-xL-LgQ">
             <objects>
-                <viewController storyboardIdentifier="mingchengsearch" id="une-vt-M69" customClass="YdmingchengsearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mingchengsearch" hidesBottomBarWhenPushed="YES" id="une-vt-M69" customClass="YdmingchengsearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q0V-HC-niB"/>
                         <viewControllerLayoutGuide type="bottom" id="xIr-rF-dBm"/>
@@ -1966,7 +1966,7 @@
         <!--Yd Record List View Controller-->
         <scene sceneID="EC5-S7-Ywl">
             <objects>
-                <viewController storyboardIdentifier="recordlist" id="b02-zO-hvo" customClass="YdRecordListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recordlist" hidesBottomBarWhenPushed="YES" id="b02-zO-hvo" customClass="YdRecordListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tse-e4-6Jm"/>
                         <viewControllerLayoutGuide type="bottom" id="gEh-i1-4ed"/>
@@ -2003,7 +2003,7 @@
         <!--Dianzixiangqing-->
         <scene sceneID="ys6-8M-aVJ">
             <objects>
-                <viewController storyboardIdentifier="dianzixiangqing" id="VGK-3E-8G6" customClass="dianzixiangqing" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dianzixiangqing" hidesBottomBarWhenPushed="YES" id="VGK-3E-8G6" customClass="dianzixiangqing" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x4J-BF-qFM"/>
                         <viewControllerLayoutGuide type="bottom" id="34j-lf-tJj"/>
@@ -2121,7 +2121,7 @@
         <!--Ydjilu View Controller-->
         <scene sceneID="Mt5-AV-h2k">
             <objects>
-                <viewController storyboardIdentifier="jilu" id="EfT-Qv-5gp" customClass="YdjiluViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jilu" hidesBottomBarWhenPushed="YES" id="EfT-Qv-5gp" customClass="YdjiluViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ebw-ls-GH3"/>
                         <viewControllerLayoutGuide type="bottom" id="khG-ya-mSG"/>
@@ -2232,7 +2232,7 @@
         <!--Ydchat View Controller-->
         <scene sceneID="Rsm-dp-ij2">
             <objects>
-                <viewController storyboardIdentifier="chat" id="jEt-eT-2Aa" customClass="YdchatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chat" hidesBottomBarWhenPushed="YES" id="jEt-eT-2Aa" customClass="YdchatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z1P-uX-ymz"/>
                         <viewControllerLayoutGuide type="bottom" id="u4I-KN-iZB"/>
@@ -2250,7 +2250,7 @@
         <!--Yd Recommend View Controller-->
         <scene sceneID="L39-U1-uvW">
             <objects>
-                <viewController storyboardIdentifier="recommend" id="KH1-04-OoL" customClass="YdRecommendViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recommend" hidesBottomBarWhenPushed="YES" id="KH1-04-OoL" customClass="YdRecommendViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ddM-Qm-rKf"/>
                         <viewControllerLayoutGuide type="bottom" id="o6c-MF-Z60"/>
@@ -2268,7 +2268,7 @@
         <!--Ydzhongjiangxiangqing View Controller-->
         <scene sceneID="eog-0f-aHJ">
             <objects>
-                <viewController storyboardIdentifier="zhongjiangxiangqing" id="SvW-oe-xIV" customClass="YdzhongjiangxiangqingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="zhongjiangxiangqing" hidesBottomBarWhenPushed="YES" id="SvW-oe-xIV" customClass="YdzhongjiangxiangqingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ShS-q1-wlf"/>
                         <viewControllerLayoutGuide type="bottom" id="gJN-Np-5pc"/>
@@ -2286,7 +2286,7 @@
         <!--Guanyu View Controller-->
         <scene sceneID="4G2-GJ-t8O">
             <objects>
-                <viewController storyboardIdentifier="guanyu" id="wIi-OI-Yxr" customClass="guanyuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="guanyu" hidesBottomBarWhenPushed="YES" id="wIi-OI-Yxr" customClass="guanyuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qsq-Wz-yu1"/>
                         <viewControllerLayoutGuide type="bottom" id="bHP-xw-zYs"/>
@@ -2326,7 +2326,7 @@
         <!--Huoqumendianyouhuijuan-->
         <scene sceneID="aCQ-0b-NcN">
             <objects>
-                <viewController storyboardIdentifier="mendianyouhuijuan" id="bqU-Tu-ThK" customClass="huoqumendianyouhuijuan" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mendianyouhuijuan" hidesBottomBarWhenPushed="YES" id="bqU-Tu-ThK" customClass="huoqumendianyouhuijuan" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZYz-Aj-Pfg"/>
                         <viewControllerLayoutGuide type="bottom" id="sLq-Tl-G2I"/>
@@ -2344,7 +2344,7 @@
         <!--Ydyuwoxiangguan View Controller-->
         <scene sceneID="lf0-bn-9QN">
             <objects>
-                <viewController storyboardIdentifier="yuwoxiangguan" id="tAb-bj-i12" customClass="YdyuwoxiangguanViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="yuwoxiangguan" hidesBottomBarWhenPushed="YES" id="tAb-bj-i12" customClass="YdyuwoxiangguanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fNR-HK-jtS"/>
                         <viewControllerLayoutGuide type="bottom" id="BbR-6K-Njq"/>
@@ -2739,7 +2739,7 @@
         <!--Ydlianxidianzhang View Controller-->
         <scene sceneID="tAc-Hs-czp">
             <objects>
-                <viewController storyboardIdentifier="lianxidianzhang" id="ehd-PU-drq" customClass="YdlianxidianzhangViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lianxidianzhang" hidesBottomBarWhenPushed="YES" id="ehd-PU-drq" customClass="YdlianxidianzhangViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nsw-IW-Urm"/>
                         <viewControllerLayoutGuide type="bottom" id="wcu-kA-8NR"/>
@@ -2863,7 +2863,7 @@
         <!--Yddianyuan View Controller-->
         <scene sceneID="usH-VU-f4I">
             <objects>
-                <viewController storyboardIdentifier="dianyuan" id="MxM-NR-OiX" customClass="YddianyuanViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dianyuan" hidesBottomBarWhenPushed="YES" id="MxM-NR-OiX" customClass="YddianyuanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZAF-ao-u8v"/>
                         <viewControllerLayoutGuide type="bottom" id="uxD-Q4-g3a"/>
@@ -3057,7 +3057,7 @@
         <!--View Controller-->
         <scene sceneID="qf9-Mn-Ams">
             <objects>
-                <viewController id="1zm-6z-Wlg" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="1zm-6z-Wlg" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0wN-2j-gRP"/>
                         <viewControllerLayoutGuide type="bottom" id="Xgz-ta-bHR"/>
@@ -3462,7 +3462,7 @@
         <!--Yd Turntable View Controller-->
         <scene sceneID="rwK-Op-8jn">
             <objects>
-                <viewController storyboardIdentifier="turntable" id="XPZ-UV-OQn" customClass="YdTurntableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="turntable" hidesBottomBarWhenPushed="YES" id="XPZ-UV-OQn" customClass="YdTurntableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mXn-2p-CXx"/>
                         <viewControllerLayoutGuide type="bottom" id="xc5-Hm-lVJ"/>
@@ -3532,7 +3532,7 @@
         <!--Yd Answer View Controller-->
         <scene sceneID="JxU-Vv-VSE">
             <objects>
-                <viewController storyboardIdentifier="answer" id="nOA-bc-ms3" customClass="YdAnswerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="answer" hidesBottomBarWhenPushed="YES" id="nOA-bc-ms3" customClass="YdAnswerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hWe-8f-pFj"/>
                         <viewControllerLayoutGuide type="bottom" id="WDb-KJ-kRM"/>
@@ -3550,7 +3550,7 @@
         <!--Yd Shop View Controller-->
         <scene sceneID="joO-lK-F43">
             <objects>
-                <viewController storyboardIdentifier="shop" id="qmm-ui-5qy" customClass="YdShopViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shop" hidesBottomBarWhenPushed="YES" id="qmm-ui-5qy" customClass="YdShopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FmV-nG-WTY"/>
                         <viewControllerLayoutGuide type="bottom" id="lQO-vS-Oib"/>
@@ -3587,7 +3587,7 @@
         <!--Yd Shake View Controller-->
         <scene sceneID="Iqc-RA-w16">
             <objects>
-                <viewController storyboardIdentifier="shake" id="Wf3-hv-vdX" customClass="YdShakeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shake" hidesBottomBarWhenPushed="YES" id="Wf3-hv-vdX" customClass="YdShakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SP9-cx-5cJ"/>
                         <viewControllerLayoutGuide type="bottom" id="yBo-WH-rfi"/>
@@ -3631,24 +3631,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kf-Nh-2Ku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4224" y="-3313"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ZuQ-9q-axo">
-            <objects>
-                <viewController id="Wpb-3h-Aej" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zHL-Aa-xmR"/>
-                        <viewControllerLayoutGuide type="bottom" id="Oxs-GY-EwM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dPz-bR-ABW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cch-qF-ndi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1281" y="-5961"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="CWr-ht-rfP">
