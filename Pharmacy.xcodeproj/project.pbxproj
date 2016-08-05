@@ -226,6 +226,8 @@
 		95CA50F71CA0E74A006CBC72 /* YdDrugJumpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CA50F61CA0E74A006CBC72 /* YdDrugJumpViewController.m */; };
 		95CA50F91CA121F7006CBC72 /* disease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95CA50F81CA121F7006CBC72 /* disease.plist */; };
 		95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D4CD621CAD0855003CD827 /* YCAdView.m */; };
+		95D6E1351D52CC8B00D71CA4 /* bodydatabase.db in Resources */ = {isa = PBXBuildFile; fileRef = 95D6E1341D52CC8B00D71CA4 /* bodydatabase.db */; };
+		95D6E1381D5335CA00D71CA4 /* YdmingchengsearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6E1371D5335CA00D71CA4 /* YdmingchengsearchViewController.m */; };
 		95D817111CACE96D006BE2DB /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95D817101CACE96D006BE2DB /* area.plist */; };
 		95E0EC601CC5BC3E00B87690 /* iconfont-zanzan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */; };
 		95E0EC621CC5C6C400B87690 /* 组-11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E0EC611CC5C6C400B87690 /* 组-11@3x.png */; };
@@ -701,6 +703,9 @@
 		95CA50F81CA121F7006CBC72 /* disease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = disease.plist; sourceTree = "<group>"; };
 		95D4CD611CAD0855003CD827 /* YCAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAdView.h; sourceTree = "<group>"; };
 		95D4CD621CAD0855003CD827 /* YCAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAdView.m; sourceTree = "<group>"; };
+		95D6E1341D52CC8B00D71CA4 /* bodydatabase.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bodydatabase.db; sourceTree = "<group>"; };
+		95D6E1361D5335CA00D71CA4 /* YdmingchengsearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdmingchengsearchViewController.h; sourceTree = "<group>"; };
+		95D6E1371D5335CA00D71CA4 /* YdmingchengsearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdmingchengsearchViewController.m; sourceTree = "<group>"; };
 		95D817101CACE96D006BE2DB /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		95E0EC5F1CC5BC3E00B87690 /* iconfont-zanzan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-zanzan@3x.png"; sourceTree = "<group>"; };
 		95E0EC611CC5C6C400B87690 /* 组-11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-11@3x.png"; sourceTree = "<group>"; };
@@ -1666,6 +1671,7 @@
 		959F9E461CBE1F2900C5D019 /* 用药咨询 */ = {
 			isa = PBXGroup;
 			children = (
+				95D6E1341D52CC8B00D71CA4 /* bodydatabase.db */,
 				95EFDB261D506DBF006557DC /* zizhen.plist */,
 				959F9E481CBE1FF700C5D019 /* YdWireViewController.h */,
 				959F9E491CBE1FF700C5D019 /* YdWireViewController.m */,
@@ -1673,6 +1679,8 @@
 				95EFDB211D506D5D006557DC /* YdmingchengViewController.m */,
 				95EFDB231D506D77006557DC /* YdBZxiangqingViewController.h */,
 				95EFDB241D506D77006557DC /* YdBZxiangqingViewController.m */,
+				95D6E1361D5335CA00D71CA4 /* YdmingchengsearchViewController.h */,
+				95D6E1371D5335CA00D71CA4 /* YdmingchengsearchViewController.m */,
 			);
 			name = "用药咨询";
 			sourceTree = "<group>";
@@ -2538,6 +2546,7 @@
 				9509BCE31D2207A2006B4962 /* option_c1.png in Resources */,
 				95EFDB271D506DBF006557DC /* zizhen.plist in Resources */,
 				950BC6F71D12986000817E4A /* hb_yyy.png in Resources */,
+				95D6E1351D52CC8B00D71CA4 /* bodydatabase.db in Resources */,
 				953EF4791D372A01003D9FE7 /* read.png in Resources */,
 				95C372671CB5F5780083AC90 /* 资讯@2x.png in Resources */,
 				95C372551CB5F5780083AC90 /* Multiple-Email-Thread@2x.png in Resources */,
@@ -2662,6 +2671,7 @@
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
 				951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
+				95D6E1381D5335CA00D71CA4 /* YdmingchengsearchViewController.m in Sources */,
 				9505D7141C9A7FFF006F6850 /* YdRootViewController.m in Sources */,
 				9505D70D1C9A7FF7006F6850 /* RECommonFunctions.m in Sources */,
 				95EA79501C9BA8A10093829A /* YdForgetViewController.m in Sources */,

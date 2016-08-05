@@ -9,7 +9,7 @@
 #import "YdWireViewController.h"
 #import "Color+Hex.h"
 #import "YdmingchengViewController.h"
-
+#define FORCE_RECOPY_DB NO
 #define ziti [UIFont systemFontOfSize:18]
 @interface YdWireViewController ()
 {
@@ -21,6 +21,18 @@
     NSArray *erji;
     NSDictionary *dic2;
     int panduan;
+    NSString *destinationPath;
+    
+    NSString *nsNameStr;
+    NSString *nsPlaceStr;
+    int _id;
+    NSString *buwei;
+    NSString *buweiID;
+    
+    NSMutableArray *arr;
+    UITableView *choose;
+    UIView *alertview;
+    UIView *alert;
     
     UIButton *zhuanshen;
     UIImageView *beijing;
@@ -50,11 +62,12 @@
     UIButton *zuozhou;
     UIButton *youzhou;
     UIButton *tun;
-    
-    UIAlertView *alertview;
+    UIButton *quxiao;
     
     CGFloat dazi;
     CGFloat xiaozi;
+    CGFloat gao;
+    CGFloat zi;
 }
 @property (strong,nonatomic)UISegmentedControl *segmentedControl;
 @property (strong,nonatomic)UITableView *tableview1;
@@ -64,6 +77,30 @@
 
 @implementation YdWireViewController
 
+- (void)copyDatabaseIfNeeded {
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    destinationPath = [documentsPath stringByAppendingPathComponent:@"bodydatabase.db"];
+    
+    void (^copyDb)(void) = ^(void){
+        NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"bodydatabase" ofType:@"db"];
+        NSAssert1(sourcePath, @"source db does not exist at path %@",sourcePath);
+        
+        NSError *copyError = nil;
+        if( ![fm copyItemAtPath:sourcePath toPath:destinationPath error:&copyError] ) {
+            NSLog(@"ERROR | db could not be copied: %@", copyError);
+        }
+    };
+    if( FORCE_RECOPY_DB && [fm fileExistsAtPath:destinationPath] ) {
+        [fm removeItemAtPath:destinationPath error:NULL];
+        copyDb();
+    }
+    else if( ![fm fileExistsAtPath:destinationPath] ) {
+        NSLog(@"INFO | db file needs copying");
+        copyDb();
+    }
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //手机尺寸
@@ -71,16 +108,22 @@
     {
         dazi = 20;
         xiaozi = 18;
+        gao = 45;
+        zi = 18;
     }
     else if (self.view.bounds.size.width == 375)
     {
         dazi = 18;
         xiaozi = 16;
+        gao = 35;
+        zi = 15;
     }
     else if (self.view.bounds.size.width == 320)
     {
         dazi = 16;
         xiaozi = 14;
+        gao = 30;
+        zi = 13;
     }
     //控制是身体为正面
     panduan = 1;
@@ -94,6 +137,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self copyDatabaseIfNeeded];
     [self tupian];
     //分段控制器
     [self fenduan];
@@ -127,6 +171,48 @@
         [self tableview];
     }
     
+}
+-(void)xuanze
+{
+    alertview = [[UIView alloc]init];
+    alertview.frame = CGRectMake(0, 0, width, height);
+    alertview.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:0.5];
+    [self.view addSubview:alertview];
+    
+    alert = [[UIView alloc]init];
+    alert.frame = CGRectMake(60, (height - gao*(arr.count) )/2, width - 120, gao * (arr.count ) +  gao);
+    alert.backgroundColor = [UIColor  colorWithHexString:@"f4f4f4" alpha:1];
+    alert.layer.cornerRadius = 10;
+    alert.layer.masksToBounds = YES;
+    [alertview addSubview:alert];
+    
+    CGFloat alertviewXmax =CGRectGetMaxX(alert.frame);
+    CGFloat alertviewXmin =CGRectGetMinX(alert.frame);
+    CGFloat alertviewkuan = alertviewXmax - alertviewXmin;
+    
+    CGFloat alertviewYmax =CGRectGetMaxY(alert.frame);
+    CGFloat alertviewYmin =CGRectGetMinY(alert.frame);
+    CGFloat alertviewgao = alertviewYmax - alertviewYmin;
+    
+    choose = [[UITableView alloc]init];
+    choose.frame = CGRectMake(0, 0, alertviewkuan, alertviewgao - gao);
+    choose.backgroundColor = [UIColor greenColor];
+    choose.delegate = self;
+    choose.dataSource = self;
+    choose.layer.cornerRadius = 5;
+    choose.layer.masksToBounds = YES;
+    [alert addSubview:choose];
+    
+    quxiao = [[UIButton alloc]init];
+    quxiao.frame = CGRectMake(0,CGRectGetMaxY(choose.frame),alertviewkuan,gao);
+    [quxiao setTitle:@"取消" forState:UIControlStateNormal];
+    [quxiao setTitleColor:[UIColor colorWithHexString:@"007AFF" alpha:1] forState:UIControlStateNormal];
+    quxiao.titleLabel.font = [UIFont systemFontOfSize:xiaozi];
+    [quxiao addTarget:self action:@selector(biaoqian:) forControlEvents:UIControlEventTouchUpInside];
+    quxiao.backgroundColor = [UIColor colorWithHexString:@"ffffff" alpha:1];
+    quxiao.layer.cornerRadius = 5;;
+    quxiao.layer.masksToBounds = YES;
+    [alert addSubview:quxiao];
 }
 #pragma  mark --- 图片
 -(void)tupian
@@ -420,6 +506,8 @@
     
 }
 - (void)biaoqian:(UIButton *)btn{
+    buwei = [[NSString alloc]init];
+    buweiID = [[NSString alloc]init];
     //转身
     if (btn == zhuanshen) {
         
@@ -435,11 +523,72 @@
             [self tupian];
         }
     }
+    else if (btn == quxiao) {
+        [alertview removeFromSuperview];
+    }
     else {
         
         if (btn == tou || btn == xiong || btn == fu || btn == yao || btn == jing || btn == tun ) {
-            alertview = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
-            [alertview show];
+            
+            if (btn == tou) {
+                buwei = @"头部";
+                buweiID = @"1";
+            }
+            else if (btn == xiong) {
+                buwei = @"胸部";
+                buweiID = @"12";
+            }
+            else if (btn == fu) {
+                buwei = @"腹部";
+                buweiID = @"19";
+            }
+            else if (btn == yao) {
+                buwei = @"腰部";
+                buweiID = @"29";
+            }
+            else if (btn == jing) {
+                buwei = @"颈部";
+                buweiID = @"9";
+            }
+            else if (btn == tun) {
+                buwei = @"臀部";
+                buweiID = @"33";
+            }
+            
+            const char *dbpath = [destinationPath UTF8String];
+            
+            sqlite3_stmt *statement;
+            
+            arr = [[NSMutableArray alloc]init];
+            
+            [arr addObject:buwei];
+            
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                NSString *sqlQuery = @"SELECT * FROM bodybean";
+                if (sqlite3_prepare_v2(dataBase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+                    while (sqlite3_step(statement) == SQLITE_ROW) {
+                        char *name = (char*)sqlite3_column_text(statement, 1);
+                        nsNameStr = [[NSString alloc]initWithUTF8String:name];
+                        
+                        _id = sqlite3_column_int(statement, 0);
+                        
+                        char *Place = (char*)sqlite3_column_text(statement, 2);
+                        nsPlaceStr = [[NSString alloc]initWithUTF8String:Place];
+                       
+                        if ([nsPlaceStr isEqualToString:buweiID]) {
+                        
+                            [arr addObject:nsNameStr];
+                            
+                        }
+                        
+                    }
+                }
+                sqlite3_close(dataBase);
+                
+                [self xuanze];
+                
+            }
+            
         }
         else if (btn == shengzhi){
             UIAlertView *shengzhialart = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"男",@"女", nil];
@@ -447,8 +596,47 @@
         }
         else
         {
+            NSString *chuan = [[NSString alloc]init];
+             if (btn == zuojian || btn == youjian)
+             {
+                 chuan = @"肩";
+             }
+            else if (btn == zuoshang || btn == youshang)
+            {
+                chuan = @"上臂";
+            }
+            else if (btn == zuoqian || btn == youqian)
+            {
+                chuan = @"前臂";
+            }
+            else if (btn == zuoshou || btn == youshou)
+            {
+                chuan = @"手";
+            }
+            else if (btn == zuoda || btn == youda)
+            {
+                chuan = @"大腿";
+            }
+            else if (btn == zuoxi || btn == youxi)
+            {
+                chuan = @"膝盖";
+            }
+            else if (btn == zuoxiao || btn == youxiao)
+            {
+                chuan = @"小腿";
+            }
+            else if (btn == zuojiao || btn == zuojiao)
+            {
+                chuan = @"脚";
+            }
+            else if (btn == zuozhou || btn == youzhou)
+            {
+                chuan = @"肘部";
+            }
+            
             //  跳页
             YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
+            mingcheng.sanji  = chuan;
             [self.navigationController pushViewController:mingcheng animated:YES];
         }
         
@@ -456,23 +644,59 @@
 }
 //alert点击事件
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    buwei = [[NSString alloc]init];
+    buweiID = [[NSString alloc]init];
     
-    if (alertView == alertview) {
         if (buttonIndex==1) {
-            
+            buwei = @"男性生殖";
+            buweiID = @"57";
+            [self shiyishi];
         }
         else if (buttonIndex==2){
-            
+            buwei = @"女性生殖";
+            buweiID = @"63";
+            [self shiyishi];
+        }
+        else{
             
         }
-    }
-    else
-    {
-        alertview = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
+}
+
+-(void)shiyishi
+{
+    const char *dbpath = [destinationPath UTF8String];
+    
+    sqlite3_stmt *statement;
+    
+    arr = [[NSMutableArray alloc]init];
+    
+    [arr addObject:buwei];
+    
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        NSString *sqlQuery = @"SELECT * FROM bodybean";
+        if (sqlite3_prepare_v2(dataBase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+            while (sqlite3_step(statement) == SQLITE_ROW) {
+                char *name = (char*)sqlite3_column_text(statement, 1);
+                nsNameStr = [[NSString alloc]initWithUTF8String:name];
+                
+                _id = sqlite3_column_int(statement, 0);
+                
+                char *Place = (char*)sqlite3_column_text(statement, 2);
+                nsPlaceStr = [[NSString alloc]initWithUTF8String:Place];
+                
+                if ([nsPlaceStr isEqualToString:buweiID]) {
+                    
+                    [arr addObject:nsNameStr];
+                    
+                }
+                
+            }
+        }
+        sqlite3_close(dataBase);
         
-        [alertview show];
+        [self xuanze];
+        
     }
-   
 
 }
 #pragma  mark --- tableview
@@ -507,12 +731,17 @@
 {
     if (tableView == self.tableview1) {
         return yiji.count;
+    }else if (tableView == choose) {
+        return arr.count;
     }
     return erji.count;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+    if (tableView == choose){
+        return 45;
+    }
         return 50;
 }
 //编辑Cell
@@ -564,14 +793,38 @@
         bgColorView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
         [cell setSelectedBackgroundView:bgColorView];
     }
+    else if (tableView == choose)
+    {
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *tishi = [[UILabel alloc]init];
+        tishi.frame = CGRectMake(0, 0,CGRectGetMaxX(choose.frame) - CGRectGetMinX(choose.frame), 45);
+        tishi.text = [NSString stringWithFormat:@"%@",arr[indexPath.row]];
+        tishi.textColor = [UIColor colorWithHexString:@"007AFF" alpha:1];
+        tishi.font = [UIFont systemFontOfSize:zi];
+        tishi.textAlignment = NSTextAlignmentCenter;
+        [cell.contentView addSubview:tishi];
+        
+        UIView *xian = [[UIView alloc]init];
+        xian.frame = CGRectMake(0, 44, CGRectGetMaxX(choose.frame) - CGRectGetMinX(choose.frame), 1);
+        xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+        [cell.contentView addSubview:xian];
+        
+        //自定义cell选中颜色
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+        [cell setSelectedBackgroundView:bgColorView];
+    }
     //cell点击不变色
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
     self.tableview1.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableview2.separatorStyle = UITableViewCellSelectionStyleNone;
+    choose.separatorStyle = UITableViewCellAccessoryNone;
     //隐藏滑动条
     self.tableview1.showsVerticalScrollIndicator =NO;
     self.tableview2.showsVerticalScrollIndicator =NO;
+    choose.showsVerticalScrollIndicator = NO;
     
     return cell;
 
@@ -595,6 +848,15 @@
         YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
         mingcheng.sanji = [erji[indexPath.row] objectForKey:@"name"];
         [self.navigationController pushViewController:mingcheng animated:YES];
+    }
+    else if (tableView == choose){
+        
+        [alertview removeFromSuperview];
+        //  跳页
+        YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
+        mingcheng.sanji = [NSString stringWithFormat:@"%@",arr[indexPath.row]];
+        [self.navigationController pushViewController:mingcheng animated:YES];
+        
     }
 
 }

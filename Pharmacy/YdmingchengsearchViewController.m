@@ -1,41 +1,45 @@
 //
-//  YdmingchengViewController.m
+//  YdmingchengsearchViewController.m
 //  Pharmacy
 //
-//  Created by suokun on 16/8/1.
+//  Created by suokun on 16/8/4.
 //  Copyright © 2016年 sk. All rights reserved.
 //
 
-#import "YdmingchengViewController.h"
+#import "YdmingchengsearchViewController.h"
 #import "Color+Hex.h"
 #import "YdBZxiangqingViewController.h"
-#import "YdmingchengsearchViewController.h"
 #define FORCE_RECOPY_DB NO
-@interface YdmingchengViewController ()
+@interface YdmingchengsearchViewController ()
 {
     CGFloat width;
     CGFloat height;
+    
+    UISearchBar *searchbar;
+    
     NSMutableArray *arr;
+    
 }
-@property (strong,nonatomic)UITableView *tableview;
+@property (nonatomic,strong) UITableView *tableview;
 @end
 
-@implementation YdmingchengViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    //获取屏幕高度
-    width = [UIScreen mainScreen].bounds.size.width;
-    height = [UIScreen mainScreen].bounds.size.height;
-    //设置导航栏左按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iconfont-search@2x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(search)];
+@implementation YdmingchengsearchViewController
+-(void)viewWillAppear:(BOOL)animated
+{
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //状态栏名称
-    self.navigationItem.title = @"病症名称";
+    [self.tableview reloadData];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
     
-    [self copyDatabaseIfNeeded];
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@" " style:UIBarButtonItemStyleDone target:self action:@selector(wu)];
+    
+    [self CreateSearch];
     
 }
 
@@ -70,8 +74,8 @@
     arr = [[NSMutableArray alloc]init];
     
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        
-        NSString *sqlQuery = [[NSString alloc]initWithFormat:@"SELECT * FROM bodysick where place LIKE '%%%@%%'",self.sanji];
+        NSLog(@"%@",searchbar.text);
+        NSString *sqlQuery = [[NSString alloc]initWithFormat:@"SELECT * FROM bodysick where name LIKE '%%%@%%'",searchbar.text];
         //NSString *sqlQuery = @"SELECT * FROM bodysick where place LIKE '%肝%'";
         if (sqlite3_prepare_v2(dataBase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
             while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -79,17 +83,17 @@
                 char *name = (char*)sqlite3_column_text(statement, 1);
                 NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
                 
-//                int _id = sqlite3_column_int(statement, 0);
-//                
-//                char *Place = (char*)sqlite3_column_text(statement, 5);
-//                NSString *nsPlaceStr = [[NSString alloc]initWithUTF8String:Place];
+                //                int _id = sqlite3_column_int(statement, 0);
+                //
+                //                char *Place = (char*)sqlite3_column_text(statement, 5);
+                //                NSString *nsPlaceStr = [[NSString alloc]initWithUTF8String:Place];
                 [arr addObject:nsNameStr];
                 
             }
         }
         
         sqlite3_close(dataBase);
-        
+        NSLog(@"%@",arr);
         self.tableview = [[UITableView alloc]init];
         self.tableview.frame = CGRectMake(0, 64, width, height - 64);
         self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -100,6 +104,7 @@
         
     }
 }
+
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -156,19 +161,49 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    searchbar.text = @"";
     //  跳页
-    YdBZxiangqingViewController *BZxiangqing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"bzxiangqing"];
-    
-    BZxiangqing.mingcheng = [NSString stringWithFormat:@"%@",arr[indexPath.row]];
-    
-    [self.navigationController pushViewController:BZxiangqing animated:YES];
+    YdBZxiangqingViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"bzxiangqing"];
+    mingcheng.mingcheng  = [NSString stringWithFormat:@"%@",arr[indexPath.row]];
+    [self.navigationController pushViewController:mingcheng animated:NO];
     
 }
--(void)search
+
+
+-(void)CreateSearch
 {
-    YdmingchengsearchViewController *mingchengsearch = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingchengsearch"];
+    //创建textfield
+    //设置基本属性
+    searchbar = [[UISearchBar alloc]init];
     
-    [self.navigationController pushViewController:mingchengsearch animated:YES];
+    searchbar.frame = CGRectMake(0 , 64, 100 , 30);
+    
+    searchbar.placeholder = @"请输入病症名称";
+    
+    searchbar.text = @"";
+    
+    searchbar.layer.borderColor = [[UIColor grayColor] CGColor];
+    
+    searchbar.delegate = self;
+    
+    self.navigationItem.titleView = searchbar;
+    
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    [self copyDatabaseIfNeeded];
+    
+}
+
+//点击编辑区以外的地方键盘消失
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [searchbar resignFirstResponder];
+    
+}
+
+-(void)wu{
 }
 
 -(void)fanhui

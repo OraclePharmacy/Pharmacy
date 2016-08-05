@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1729,6 +1729,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCs-WS-8kH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2624" y="1782"/>
+        </scene>
+        <!--Ydmingchengsearch View Controller-->
+        <scene sceneID="h8g-xL-LgQ">
+            <objects>
+                <viewController storyboardIdentifier="mingchengsearch" id="une-vt-M69" customClass="YdmingchengsearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q0V-HC-niB"/>
+                        <viewControllerLayoutGuide type="bottom" id="xIr-rF-dBm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YEW-9t-6OC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQU-Dg-emg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2618" y="2442"/>
         </scene>
         <!--Yd Remind View Controller-->
         <scene sceneID="CD8-OW-EDp">

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "sqlite3.h"
 @interface YdmingchengViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
+{
+    sqlite3 *dataBase;
+}
 @property (nonatomic,strong) NSString *sanji;
 
 @end

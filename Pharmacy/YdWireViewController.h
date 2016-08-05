@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "sqlite3.h"
 @interface YdWireViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
-
+{
+    sqlite3 *dataBase;
+}
 @end
