@@ -71,9 +71,9 @@
     [shuju addObject:@"5:30"];
     [shuju addObject:@"6:00"];
     [shuju addObject:@"6:30"];
-    [shuju addObject:@"14:00"];
-    [shuju addObject:@"14:01"];
-    [shuju addObject:@"15:16"];
+    [shuju addObject:@"7:00"];
+    [shuju addObject:@"7:30"];
+    [shuju addObject:@"8:00"];
     [shuju addObject:@"8:30"];
     [shuju addObject:@"9:00"];
     [shuju addObject:@"9:30"];
@@ -90,8 +90,8 @@
     [shuju addObject:@"15:00"];
     [shuju addObject:@"15:30"];
     [shuju addObject:@"16:10"];
-    [shuju addObject:@"16:11"];
-    [shuju addObject:@"16:12"];
+    [shuju addObject:@"16:30"];
+    [shuju addObject:@"17:00"];
     [shuju addObject:@"17:30"];
     [shuju addObject:@"18:00"];
     [shuju addObject:@"18:30"];
