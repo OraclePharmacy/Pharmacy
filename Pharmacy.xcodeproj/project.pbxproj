@@ -293,8 +293,6 @@
 		95FD88391D265DA8009B00C2 /* YdjiluViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FD88381D265DA8009B00C2 /* YdjiluViewController.m */; };
 		D201E8E61CF6DD2C00E890EB /* huoqumendianyouhuijuan.m in Sources */ = {isa = PBXBuildFile; fileRef = D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */; };
 		D20AC3921CED9BEC003A52AC /* dianzixiangqing.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AC3911CED9BEC003A52AC /* dianzixiangqing.m */; };
-		D2109B0E1D3786F400FA2E8C /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2109B0B1D3786F400FA2E8C /* JMUIChattingKit.framework */; };
-		D2109B0F1D3786F400FA2E8C /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2109B0C1D3786F400FA2E8C /* JMUIChattingKitResource.bundle */; };
 		D2109B101D3786F400FA2E8C /* JMUICommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2109B0D1D3786F400FA2E8C /* JMUICommon.framework */; };
 		D212B5411CF7D15D001B5EAB /* YDTejialiebiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */; };
 		D212B5441CF7EDA7001B5EAB /* YDJifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D212B5431CF7EDA7001B5EAB /* YDJifenViewController.m */; };
@@ -341,6 +339,8 @@
 		D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */; };
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
+		D2D380F61D5961FA008A3469 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D380F41D5961FA008A3469 /* JMUIChattingKit.framework */; };
+		D2D380F71D5961FA008A3469 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2D380F51D5961FA008A3469 /* JMUIChattingKitResource.bundle */; };
 		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -800,8 +800,6 @@
 		D201E8E51CF6DD2C00E890EB /* huoqumendianyouhuijuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = huoqumendianyouhuijuan.m; sourceTree = "<group>"; };
 		D20AC3901CED9BEC003A52AC /* dianzixiangqing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dianzixiangqing.h; sourceTree = "<group>"; };
 		D20AC3911CED9BEC003A52AC /* dianzixiangqing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dianzixiangqing.m; sourceTree = "<group>"; };
-		D2109B0B1D3786F400FA2E8C /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
-		D2109B0C1D3786F400FA2E8C /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D2109B0D1D3786F400FA2E8C /* JMUICommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUICommon.framework; sourceTree = "<group>"; };
 		D212B53F1CF7D15D001B5EAB /* YDTejialiebiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDTejialiebiaoViewController.h; sourceTree = "<group>"; };
 		D212B5401CF7D15D001B5EAB /* YDTejialiebiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDTejialiebiaoViewController.m; sourceTree = "<group>"; };
@@ -879,6 +877,8 @@
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D2D380F41D5961FA008A3469 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
+		D2D380F51D5961FA008A3469 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
 		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -888,6 +888,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D380F61D5961FA008A3469 /* JMUIChattingKit.framework in Frameworks */,
 				95206A901D388411002BB3B5 /* libstdc++.tbd in Frameworks */,
 				95206A8E1D388404002BB3B5 /* libsqlite3.tbd in Frameworks */,
 				95206A8C1D3883F7002BB3B5 /* libiconv.tbd in Frameworks */,
@@ -896,7 +897,6 @@
 				95206A831D3883B3002BB3B5 /* libWeiboSDK.a in Frameworks */,
 				D226248C1D010986002A8689 /* libz.tbd in Frameworks */,
 				95206A891D3883B3002BB3B5 /* libWeChatSDK.a in Frameworks */,
-				D2109B0E1D3786F400FA2E8C /* JMUIChattingKit.framework in Frameworks */,
 				D226248A1D010977002A8689 /* MobileCoreServices.framework in Frameworks */,
 				95206A881D3883B3002BB3B5 /* libSocialWechat.a in Frameworks */,
 				D22624881D010967002A8689 /* AudioToolbox.framework in Frameworks */,
@@ -1090,8 +1090,8 @@
 			children = (
 				95206A3E1D3883B3002BB3B5 /* UMSocial_Sdk_5.2.1 */,
 				95206A591D3883B3002BB3B5 /* UMSocial_Sdk_Extra_Frameworks */,
-				D2109B0B1D3786F400FA2E8C /* JMUIChattingKit.framework */,
-				D2109B0C1D3786F400FA2E8C /* JMUIChattingKitResource.bundle */,
+				D2D380F41D5961FA008A3469 /* JMUIChattingKit.framework */,
+				D2D380F51D5961FA008A3469 /* JMUIChattingKitResource.bundle */,
 				D2109B0D1D3786F400FA2E8C /* JMUICommon.framework */,
 				D226248F1D0109B5002A8689 /* JMessage.framework */,
 				D226248D1D01098E002A8689 /* libsqlite3.0.tbd */,
@@ -2490,7 +2490,6 @@
 				9509BCE41D2207A2006B4962 /* option_c2.png in Resources */,
 				95E38EBD1D1D240B006BCF6C /* youhuijuan.png in Resources */,
 				95206A771D3883B3002BB3B5 /* UMSocialLocalizable.strings in Resources */,
-				D2109B0F1D3786F400FA2E8C /* JMUIChattingKitResource.bundle in Resources */,
 				950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */,
 				95F7F7061CFBE93C00EF30B7 /* collection_light(1).png in Resources */,
 				950956631CC7602F00A10A5A /* sex2@3x.png in Resources */,
@@ -2504,6 +2503,7 @@
 				951A41B31CFEA98900FD81D6 /* yyy_result.png in Resources */,
 				950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */,
 				95024D401D113D5900B7F7D8 /* tiezi.png in Resources */,
+				D2D380F71D5961FA008A3469 /* JMUIChattingKitResource.bundle in Resources */,
 				95F1E0441CB7A72300614502 /* shake_yyy_right30.png in Resources */,
 				95206A9D1D38A838002BB3B5 /* dingdan(1).png in Resources */,
 				95CA50F91CA121F7006CBC72 /* disease.plist in Resources */,
