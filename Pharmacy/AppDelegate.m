@@ -21,7 +21,7 @@
 
 #pragma mark - 应用代理方法
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(localNotification) name:@"轮回公子" object:nil];
     [JMessage addDelegate:self withConversation:nil];
     /// Required - 启动 JMessage SDK
     [JMessage setupJMessage:launchOptions
@@ -37,6 +37,14 @@
                                                           UIUserNotificationTypeSound |
                                                           UIUserNotificationTypeAlert)
                                               categories:nil];
+        if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
+            
+            [self localNotification];
+            
+        }else{
+            [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
+        }
+
     } else {
         /// categories 必须为nil
         [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
@@ -63,105 +71,160 @@
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
     
-//*-*-*-*-*-*--*-*-*-*-*-*-*-*-**-**-*-*-*-**-*-***-*-**-*-*-*-**-*-**-*-*-*-*-*-*-
-    
-    
-    //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
-//    if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
-//        [self addLocalNotification:nil];
-//    }else{
-//        [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
-//    }
-    
+
     return YES;
 }
 
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    // Override point for customization after application launch.
-//    
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//    return YES;
-//}
-//
-////配置系统回调
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    BOOL result = [UMSocialSnsService handleOpenURL:url];
-//    if (result == FALSE) {
-//        //调用其他SDK，例如支付宝SDK等
-//    }
-//    return result;
-//}
+
+#pragma mark ----本地通知
+-(void)localNotification
+{
+    [[UIApplication sharedApplication]cancelAllLocalNotifications];
+    NSString * path1 = [NSHomeDirectory() stringByAppendingString:@"/Documents/durgRemindList.plist"];
+    
+    NSMutableArray * pathArray1 = [[NSMutableArray alloc]init];
+//    NSMutableArray *timeArray = [[NSMutableArray alloc]init];
+    
+    NSMutableArray *array = [[NSMutableArray alloc]initWithContentsOfFile:path1];
+    
+    //获取用户id
+    
+    NSString *yhidString = [NSString stringWithFormat:@"%d",[[[NSUserDefaults standardUserDefaults]objectForKey:@"hyid"] intValue]];
+    
+    //获取某一个id的内容
+    for (int i = 0 ; i < array.count; i++) {
+        
+        if ([[array[i] objectForKey:@"yhid"] isEqualToString:yhidString]) {
+            
+            [pathArray1 addObject:[array[i] objectForKey:@"neirong"]];
+        }
+    }
+    
+    for (NSDictionary *dic in pathArray1) {
+        
+        if ([[dic objectForKey:@"ison"] isEqualToString:@"1"]) {
+            
+            NSArray *mnt = [[dic objectForKey:@"riqi"] componentsSeparatedByString:@" "];
+            
+            //
+            
+            NSMutableArray *arr=[[NSMutableArray alloc] init];
+            
+            for (NSString *ser in mnt) {
+                
+                if (![ser isEqualToString:@"无"])
+                    
+                    [arr addObject:ser];
+            }
+      
+            for (NSString *str in arr) {
+                
+                int mm = [self createTimeInterval:str];
+                
+                [self naozhong:mm ];
+                
+            }
+        }
+    }
+}
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    
+    [application registerForRemoteNotifications];
+    
+    if (notificationSettings.types!=UIUserNotificationTypeNone) {
+        [self localNotification];
+    }
+}
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"康速达提示您!"
+                          
+                                                    message:notification.alertBody
+                          
+                                                   delegate:nil
+                          
+                                          cancelButtonTitle:@"确定"
+                          
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    
+    //这里，你就可以通过notification的userinfo，干一些你想做的事情了
+    
+    application.applicationIconBadgeNumber -= 1;
+}
+
+-(void)naozhong:(int)time
+{
+    UIApplication *app  = [UIApplication sharedApplication];
+    
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    if (notification) {
+        
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:time];
+        
+        // 设置重复间隔
+        
+        notification.repeatInterval = kCFCalendarUnitDay;
+        
+        
+        // 设置提醒的文字内容
+        
+        notification.alertBody   = @"用药时间到！您该用药了！";
+        
+        notification.alertAction = @"打开";
+        
+        notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
+        
+        // 通知提示音 使用默认的
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.soundName =@"7008.wav";
+        // 设置应用程序右上角的提醒个数
+        // notification.applicationIconBadgeNumber++;
+        
+        // 将通知添加到系统中
+        [app scheduleLocalNotification:notification];
+    }
+}
 
 
-//#pragma mark - 通知
-//
-////本地通知回调函数，当应用程序收到本地通知时调用（应用在前台时调用，切换到后台则你调用此方法）
-//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-//    //从外部通知点击进入的一个状态
-//    if (application.applicationState==UIApplicationStateInactive) {
-//        
-//        //通知中心👉进入监听👉跳转页面
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentView" object:nil];
-//        
-//        
-//    }
-//    
-//    
-//    ///获取通知所带的数据
-//    NSString *details = [notification.userInfo objectForKey:@"key"];
-//    
-//    //设置警示框，使用UIAlertController
-//    UIAlertController *alertControler=[UIAlertController alertControllerWithTitle:@"通知" message:details preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction *cancelAction=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//    
-//    UIAlertAction *okAction=[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-//    
-//    [alertControler addAction:cancelAction];
-//    
-//    [alertControler addAction:okAction];
-//    
-//    [self.window.rootViewController presentViewController:alertControler animated:YES completion:nil];
-//    
-//    
-//    //更新显示的角标个数
-//    NSInteger badge=[UIApplication sharedApplication] .applicationIconBadgeNumber;
-//    
-//    
-//    badge--;
-//    
-//    badge=badge>=0?badge:0;
-//    
-//    [UIApplication sharedApplication].applicationIconBadgeNumber=badge;
-//    
-//}
-//
-//
-//// 在需要移除某个通知时调用下面方法
-//// 取消某个本地推送通知
-//- (void)cancelLocalNotificationWithKey:(NSString *)key{
-//    
-//    //获取所有本地推送通知数组
-//    NSArray *localNotifications=[UIApplication sharedApplication].scheduledLocalNotifications;
-//    //遍历通知数组
-//    for (UILocalNotification *notification in localNotifications) {
-//        NSDictionary *userInfo=notification.userInfo;
-//        if (userInfo) {
-//            
-//            //根据设置通知参数时指定的key来获取通知参数
-//            NSString *info=[userInfo objectForKey:key];
-//            
-//            //如果找到需要取消的通知，则取消通知
-//            if (info!=nil) {
-//                [[UIApplication sharedApplication] cancelLocalNotification:notification];
-//                break;
-//            }
-//            
-//            
-//        }
-//    }
-//}
+-(int)createTimeInterval:(NSString*)timeDate
+{
+    NSArray *array = [timeDate componentsSeparatedByString:@":"];
+    
+    // int weekday1 = [array[0] intValue];
+    int hour1 = [array[0] intValue];
+    int minute1 = [array [1] intValue];
+    
+    NSDate *nowTime = [NSDate date];
+    NSCalendar *calemdar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute |NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *dateComponent = [calemdar components:unitFlags fromDate:nowTime];
+    
+    //int weekday = (int)[dateComponent weekday];
+    int hour = (int)[dateComponent hour];
+    int minute = (int)[dateComponent minute];
+    
+    int sedconds = [self hour:(hour1 - hour)] + [self min:(minute1 - minute)];
+    
+    
+    return sedconds;
+}
+-(int)hour:(int)hour
+{
+    hour = [self min:60]*hour;
+    return hour;
+}
+
+-(int)min:(int)min
+{
+    min *=60;
+    return min;
+}
+
+
+
 
 #pragma mark-----   JPUSH
 - (void)application:(UIApplication *)application

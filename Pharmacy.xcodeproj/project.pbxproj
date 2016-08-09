@@ -78,7 +78,6 @@
 		95104D731D07F2520040EA4B /* guanyuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D721D07F2520040EA4B /* guanyuViewController.m */; };
 		95104D781D07F3790040EA4B /* YdfankuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D771D07F3790040EA4B /* YdfankuiViewController.m */; };
 		95104D7C1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D7B1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m */; };
-		9510E1C11D24EC26002F70C5 /* AlarmClockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9510E1BF1D24EC26002F70C5 /* AlarmClockManager.m */; };
 		9510E1C21D24EC26002F70C5 /* YdRemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9510E1C01D24EC26002F70C5 /* YdRemindViewController.m */; };
 		95148C6F1D3F76A100156FCB /* read(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95148C6E1D3F76A100156FCB /* read(1).png */; };
 		951A41A91CFE661C00FD81D6 /* bx.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41A81CFE661C00FD81D6 /* bx.png */; };
@@ -132,6 +131,8 @@
 		9537CFC71CC9D21F0031021A /* time_line_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9537CFC61CC9D21F0031021A /* time_line_mark.png */; };
 		9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */; };
 		953EF4791D372A01003D9FE7 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 953EF4781D372A01003D9FE7 /* read.png */; };
+		9549FB651D599EC4004591E1 /* TianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9549FB611D599EC4004591E1 /* TianTableViewCell.m */; };
+		9549FB661D599EC4004591E1 /* DurgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9549FB641D599EC4004591E1 /* DurgTableViewCell.m */; };
 		95609E821CABC72000AF65E4 /* mmm5.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E7F1CABC72000AF65E4 /* mmm5.m */; };
 		95609E831CABC72000AF65E4 /* URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E811CABC72000AF65E4 /* URLEncode.m */; };
 		95609E9E1CABC72E00AF65E4 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95609E861CABC72E00AF65E4 /* NSObject+SBJson.m */; };
@@ -183,7 +184,6 @@
 		95ADBC061D4F4DD1006DCC97 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC021D4F4DD1006DCC97 /* bg.png */; };
 		95ADBC071D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */; };
 		95ADBC091D4F4E25006DCC97 /* hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 95ADBC081D4F4E25006DCC97 /* hot.png */; };
-		95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE60521D1391C2002E4A71 /* ModelClock.m */; };
 		95C3724D1CB5F5780083AC90 /* 1213465@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722B1CB5F5780083AC90 /* 1213465@2x.png */; };
 		95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722C1CB5F5780083AC90 /* 1213465@3x.png */; };
 		95C3724F1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95C3722D1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png */; };
@@ -464,8 +464,6 @@
 		95104D771D07F3790040EA4B /* YdfankuiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdfankuiViewController.m; sourceTree = "<group>"; };
 		95104D7A1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdfenxiangxiazaiViewController.h; sourceTree = "<group>"; };
 		95104D7B1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdfenxiangxiazaiViewController.m; sourceTree = "<group>"; };
-		9510E1BE1D24EC26002F70C5 /* AlarmClockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClockManager.h; sourceTree = "<group>"; };
-		9510E1BF1D24EC26002F70C5 /* AlarmClockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClockManager.m; sourceTree = "<group>"; };
 		9510E1C01D24EC26002F70C5 /* YdRemindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdRemindViewController.m; sourceTree = "<group>"; };
 		95148C6E1D3F76A100156FCB /* read(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "read(1).png"; sourceTree = "<group>"; };
 		951A41A81CFE661C00FD81D6 /* bx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bx.png; sourceTree = "<group>"; };
@@ -557,6 +555,10 @@
 		9537CFC91CC9D8690031021A /* YdPurchasingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdPurchasingViewController.h; sourceTree = "<group>"; };
 		9537CFCA1CC9D8690031021A /* YdPurchasingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdPurchasingViewController.m; sourceTree = "<group>"; };
 		953EF4781D372A01003D9FE7 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
+		9549FB611D599EC4004591E1 /* TianTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TianTableViewCell.m; sourceTree = "<group>"; };
+		9549FB621D599EC4004591E1 /* TianTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TianTableViewCell.h; sourceTree = "<group>"; };
+		9549FB631D599EC4004591E1 /* DurgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurgTableViewCell.h; sourceTree = "<group>"; };
+		9549FB641D599EC4004591E1 /* DurgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurgTableViewCell.m; sourceTree = "<group>"; };
 		95609E7E1CABC72000AF65E4 /* mmm5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmm5.h; sourceTree = "<group>"; };
 		95609E7F1CABC72000AF65E4 /* mmm5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mmm5.m; sourceTree = "<group>"; };
 		95609E801CABC72000AF65E4 /* URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLEncode.h; sourceTree = "<group>"; };
@@ -652,8 +654,6 @@
 		95ADBC021D4F4DD1006DCC97 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		95ADBC031D4F4DD1006DCC97 /* pay_and_delivery_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_and_delivery_unchecked.png; sourceTree = "<group>"; };
 		95ADBC081D4F4E25006DCC97 /* hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hot.png; sourceTree = "<group>"; };
-		95AE60511D1391C2002E4A71 /* ModelClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelClock.h; sourceTree = "<group>"; };
-		95AE60521D1391C2002E4A71 /* ModelClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelClock.m; sourceTree = "<group>"; };
 		95C3722B1CB5F5780083AC90 /* 1213465@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@2x.png"; sourceTree = "<group>"; };
 		95C3722C1CB5F5780083AC90 /* 1213465@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1213465@3x.png"; sourceTree = "<group>"; };
 		95C3722D1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-erweimasaomiaotubiao@2x.png"; sourceTree = "<group>"; };
@@ -1658,10 +1658,10 @@
 		959F9E451CBE1F1E00C5D019 /* 用药提醒 */ = {
 			isa = PBXGroup;
 			children = (
-				9510E1BE1D24EC26002F70C5 /* AlarmClockManager.h */,
-				9510E1BF1D24EC26002F70C5 /* AlarmClockManager.m */,
-				95AE60511D1391C2002E4A71 /* ModelClock.h */,
-				95AE60521D1391C2002E4A71 /* ModelClock.m */,
+				9549FB611D599EC4004591E1 /* TianTableViewCell.m */,
+				9549FB621D599EC4004591E1 /* TianTableViewCell.h */,
+				9549FB631D599EC4004591E1 /* DurgTableViewCell.h */,
+				9549FB641D599EC4004591E1 /* DurgTableViewCell.m */,
 				959F9E4B1CBE203300C5D019 /* YdRemindViewController.h */,
 				9510E1C01D24EC26002F70C5 /* YdRemindViewController.m */,
 			);
@@ -2658,7 +2658,6 @@
 				95F440C91CD047A000B66D8C /* UUBarChart.m in Sources */,
 				95609EA11CABC72E00AF65E4 /* SBJsonStreamParserAccumulator.m in Sources */,
 				95D4CD631CAD0855003CD827 /* YCAdView.m in Sources */,
-				9510E1C11D24EC26002F70C5 /* AlarmClockManager.m in Sources */,
 				95E0EC6D1CC60B7300B87690 /* YdPersonalInformationViewController.m in Sources */,
 				95609EF41CABC74E00AF65E4 /* NSData+ImageContentType.m in Sources */,
 				95609F001CABC74E00AF65E4 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -2669,6 +2668,7 @@
 				95609E9F1CABC72E00AF65E4 /* SBJsonParser.m in Sources */,
 				95E604CB1D056B200057BA0C /* YdSheZhiTableViewController.m in Sources */,
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
+				9549FB661D599EC4004591E1 /* DurgTableViewCell.m in Sources */,
 				951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
 				95D6E1381D5335CA00D71CA4 /* YdmingchengsearchViewController.m in Sources */,
@@ -2688,8 +2688,8 @@
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
 				95F440C81CD047A000B66D8C /* UUBar.m in Sources */,
 				95EFDB221D506D5D006557DC /* YdmingchengViewController.m in Sources */,
-				95AE60541D1391C2002E4A71 /* ModelClock.m in Sources */,
 				9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */,
+				9549FB651D599EC4004591E1 /* TianTableViewCell.m in Sources */,
 				95609EA71CABC72E00AF65E4 /* SBJsonTokeniser.m in Sources */,
 				95609EF91CABC74E00AF65E4 /* SDWebImageDownloaderOperation.m in Sources */,
 				95609EFE1CABC74E00AF65E4 /* UIImage+MultiFormat.m in Sources */,

@@ -7,45 +7,39 @@
 //
 
 #import "YdRemindViewController.h"
-#import "AppDelegate.h"
 #import "Color+Hex.h"
-#import "ModelClock.h"
-#import "AlarmClockManager.h"
+#import "DurgTableViewCell.h"
+#import "TianTableViewCell.h"
 
-@interface YdRemindViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIAlertViewDelegate>
+@interface YdRemindViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
-    CGFloat width;
-    CGFloat height;
     
-    UITableView *myTable;
-        
-    UIButton *myButton,*mySender;
-    UIPickerView *myPicker;
-        
-        
-    NSMutableArray *arr1, *arr ,*allArr;
-        
-    UINavigationController *myNavigation;
-        
-    //选中的时间
-    NSMutableArray *chooseTime;
-        
-        
-    int cishu;
-        
-    int number;
-        
-    UILocalNotification *notification;
-        
-    int k;
+    UITableView *remindTable;
     
-    UIButton *queding;
-    UIButton *quxiao;
-    UIView *view;
-    UIView *xian;
-    NSMutableString *time;
-    NSMutableArray *time_array;
-    NSArray *jiajia;
+    float width,height;
+    
+    UIView *back;
+    
+    NSTimer *ttm;
+    
+    int shu;
+    
+    int flagg;
+    
+    int sectionn;
+    
+    
+    NSMutableArray *pathArray;   //读取plist文件里的内容
+    int deleteInt;               //要删除第几个闹钟
+    NSString *path;              //保存闹钟plist文件的路径
+    int mm;   //判断是否发送通知
+    
+    UIView *popview;
+    
+    NSMutableArray *shuju;
+    
+    UIPickerView *pp;
+    
 }
 @property (nonatomic, strong) UIView *tableFooterView;
 
@@ -53,511 +47,796 @@
 
 @implementation YdRemindViewController
 
-- (void)queding {
-    
-    NSMutableArray *choose=[[NSMutableArray alloc]init];
-   
- if (number==1) {
-        [chooseTime addObject: arr1[[myPicker selectedRowInComponent:0]]];
-     [choose addObject:arr1[[myPicker selectedRowInComponent:0]]];
-    }
-    else if (number==2){
-        [chooseTime addObject:[NSString stringWithFormat:@"%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]]]];
-         [choose addObject:[NSString stringWithFormat:@"%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]]]];
-    }
-    else if (number==3){
-        [chooseTime addObject:[NSString stringWithFormat:@"%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]]]];
-         [choose addObject:[NSString stringWithFormat:@"%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]]]];
-    }
-    else if (number==4){
-        [chooseTime addObject:[NSString stringWithFormat:@"%@,%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]],arr1[[myPicker selectedRowInComponent:3]]]];
-          [choose addObject:[NSString stringWithFormat:@"%@,%@,%@,%@",arr1[[myPicker selectedRowInComponent:0]],arr1[[myPicker selectedRowInComponent:1]],arr1[[myPicker selectedRowInComponent:2]],arr1[[myPicker selectedRowInComponent:3]]]];
-    }
-    
-    NSMutableString *time_last=[[NSMutableString alloc]init];
-    time_last=time;
-    time=[[NSMutableString alloc]init];
-    for (int i=0; i<[choose count]; i++) {
-        
-        [time appendString:[choose objectAtIndex:i]];
-        
-    }
-    
-    if ([time_last isEqualToString:time]) {
-        [time appendString:@"1"];
-    }
-    [time_array addObject:time];
-    
-
-    for (NSString *strItem in chooseTime) {
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        
-        [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
-        
-        NSString *strNow = [dateFormatter stringFromDate:[NSDate date]];
-        
-        NSArray *arrTimes = [strItem componentsSeparatedByString:@","];
-        
-        for (NSString *strAddDate in arrTimes) {
-            
-            NSString *strTime = [NSString stringWithFormat:@"%@ %@", strNow, strAddDate];
-            
-            [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-//            dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-//            [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-            NSDate *date = [dateFormatter dateFromString:strTime];
-            
-            ModelClock *clock = [[ModelClock alloc] init];
-            
-            clock.date = date;
-            
-            [[AlarmClockManager shareManager] addNewClock:clock :time];
-            
-        }
-    }
-    
-       if (k==0) {
-        
-        
-        cishu++;
-        //刷新tableview
-        [myTable reloadData];
-        
-        myTable.hidden=NO;
-        
-        [view removeFromSuperview];
-        [myPicker removeFromSuperview];
-        [queding removeFromSuperview];
-        [quxiao removeFromSuperview];
-        k=1;
-    }
-    
-    else{
-        NSLog(@"NO");
-        
-    }
-
-}
--(void)quxiao
-{
-    [view removeFromSuperview];
-    [myPicker removeFromSuperview];
-    [queding removeFromSuperview];
-    [quxiao removeFromSuperview];
-}
-- (void)tianjia
-{
-    
-    NSLog(@"新建闹钟");
-    
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"闹钟" message:@"提醒几次" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一次",@"两次",@"三次",@"四次", nil];
-    [alertview show];
-    
-}
--(void)timeNsarry{
-    
-    [myPicker removeFromSuperview];
-    
-    arr1=[[NSMutableArray alloc] init];
-    
-    [arr1 addObject:@"14:03"];
-    [arr1 addObject:@"14:02"];
-    [arr1 addObject:@"14:04"];
-    [arr1 addObject:@"13:45"];
-    [arr1 addObject:@"12:01"];
-    [arr1 addObject:@"12:02"];
-    [arr1 addObject:@"12:03"];
-    [arr1 addObject:@"04:00"];
-    [arr1 addObject:@"04:30"];
-    [arr1 addObject:@"05:00"];
-    [arr1 addObject:@"05:30"];
-    [arr1 addObject:@"06:00"];
-    [arr1 addObject:@"07:30"];
-    [arr1 addObject:@"08:55"];
-    [arr1 addObject:@"08:30"];
-    [arr1 addObject:@"09:00"];
-    [arr1 addObject:@"09:30"];
-    [arr1 addObject:@"10:00"];
-    [arr1 addObject:@"10:30"];
-    [arr1 addObject:@"11:00"];
-    [arr1 addObject:@"11:30"];
-    [arr1 addObject:@"12:00"];
-    [arr1 addObject:@"12:30"];
-    [arr1 addObject:@"13:00"];
-    [arr1 addObject:@"13:30"];
-    [arr1 addObject:@"14:00"];
-    [arr1 addObject:@"14:30"];
-    [arr1 addObject:@"15:00"];
-    [arr1 addObject:@"15:30"];
-    [arr1 addObject:@"16:00"];
-    [arr1 addObject:@"16:30"];
-    [arr1 addObject:@"17:06"];
-    [arr1 addObject:@"17:12"];
-    [arr1 addObject:@"17:30"];
-    [arr1 addObject:@"18:00"];
-    [arr1 addObject:@"18:30"];
-    [arr1 addObject:@"19:00"];
-    
-    [arr1 addObject:@"19:30"];
-    [arr1 addObject:@"20:00"];
-    [arr1 addObject:@"20:30"];
-    [arr1 addObject:@"21:00"];
-    [arr1 addObject:@"21:30"];
-    [arr1 addObject:@"22:00"];
-    [arr1 addObject:@"22:30"];
-    [arr1 addObject:@"23:00"];
-    [arr1 addObject:@"23:30"];
-    [arr1 addObject:@"00:00"];
-    
-    
-    view = [[UIView alloc]init];
-    view.frame = CGRectMake(0, self.view.frame.size.height - self.view.frame.size.height / 3.5 - 25,  self.view.frame.size.width, self.view.frame.size.height / 3.5 + 25);
-    view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-    [self.view addSubview:view];
-    
-    myPicker=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 25, self.view.frame.size.width, view.frame.size.height - 25)];
-    myPicker.delegate=self;
-    myPicker.dataSource=self;
-    
-    myPicker.backgroundColor=[UIColor clearColor];
-    [view addSubview:myPicker];
-    
-    queding = [[UIButton alloc]init];
-    queding.frame = CGRectMake(self.view.frame.size.width - 50, 0, 50, 25);
-    [queding setTitle:@"确定" forState:UIControlStateNormal];
-    queding.titleLabel.font = [UIFont systemFontOfSize:17];
-    [queding setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [queding addTarget:self action:@selector(queding) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:queding];
-    
-    quxiao = [[UIButton alloc]init];
-    quxiao.frame = CGRectMake(0, 0, 50, 25);
-    [quxiao setTitle:@"取消" forState:UIControlStateNormal];
-    quxiao.titleLabel.font = [UIFont systemFontOfSize:17];
-    [quxiao setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [quxiao addTarget:self action:@selector(quxiao) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:quxiao];
-    
-    xian = [[UIView alloc]init];
-    xian.frame = CGRectMake(0, 25, self.view.frame.size.width, 1);
-    xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
-    [view addSubview:xian];
-    
-    allArr=[[NSMutableArray alloc] init];
-    
-    if (number==1) {
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:0]]];
-        
-    }
-    
-    else if (number==2){
-        
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:0]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:1]]];
-        
-    }
-    
-    else if (number==3){
-        
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:0]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:1]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:2]]];
-        
-    }
-    else if (number==4){
-        
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:0]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:1]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:2]]];
-        [allArr addObject:arr1[[myPicker selectedRowInComponent:3]]];
-        
-    }
-    
-}
-
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    k=0;
-    
-    if (buttonIndex==1) {
-        number=1;
-        [self timeNsarry];
-    }
-    else if (buttonIndex==2){
-        
-        number=2;
-        [self timeNsarry];
-    }
-    else if (buttonIndex==3){
-        
-        number=3;
-        [self timeNsarry];
-    }
-    else if (buttonIndex==4){
-        
-        number=4;
-        [self timeNsarry];
-    }
-    
-    
-    
-}
-
-
-
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tableview.tableFooterView = [[UIView alloc] init];
-
-    //多出空白处
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    //状态栏名称
-    self.navigationItem.title = @"用药提醒";
+    [super viewDidLoad];
+    
+    self.view.backgroundColor=[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1];
+    
+    flagg=0;
+    
+    shu=0;
+    
+    shuju=[[NSMutableArray alloc] init];
+    
+    [shuju addObject:@"1:00"];
+    [shuju addObject:@"1:30"];
+    [shuju addObject:@"2:00"];
+    [shuju addObject:@"2:30"];
+    [shuju addObject:@"3:00"];
+    [shuju addObject:@"3:30"];
+    [shuju addObject:@"4:00"];
+    [shuju addObject:@"4:30"];
+    [shuju addObject:@"5:00"];
+    [shuju addObject:@"5:30"];
+    [shuju addObject:@"6:00"];
+    [shuju addObject:@"6:30"];
+    [shuju addObject:@"14:00"];
+    [shuju addObject:@"14:01"];
+    [shuju addObject:@"15:16"];
+    [shuju addObject:@"8:30"];
+    [shuju addObject:@"9:00"];
+    [shuju addObject:@"9:30"];
+    [shuju addObject:@"10:00"];
+    [shuju addObject:@"10:30"];
+    [shuju addObject:@"11:00"];
+    [shuju addObject:@"11:30"];
+    [shuju addObject:@"12:00"];
+    [shuju addObject:@"12:30"];
+    [shuju addObject:@"13:00"];
+    [shuju addObject:@"13:30"];
+    [shuju addObject:@"14:00"];
+    [shuju addObject:@"14:30"];
+    [shuju addObject:@"15:00"];
+    [shuju addObject:@"15:30"];
+    [shuju addObject:@"16:10"];
+    [shuju addObject:@"16:11"];
+    [shuju addObject:@"16:12"];
+    [shuju addObject:@"17:30"];
+    [shuju addObject:@"18:00"];
+    [shuju addObject:@"18:30"];
+    [shuju addObject:@"19:00"];
+    [shuju addObject:@"19:30"];
+    [shuju addObject:@"20:00"];
+    [shuju addObject:@"20:30"];
+    [shuju addObject:@"21:00"];
+    [shuju addObject:@"21:30"];
+    [shuju addObject:@"22:00"];
+    [shuju addObject:@"22:30"];
+    [shuju addObject:@"23:00"];
+    [shuju addObject:@"23:30"];
+    [shuju addObject:@"24:00"];
+    [shuju addObject:@"无"];
+    
+    
+    width=[[UIScreen mainScreen] bounds].size.width;
+    
+    height=[[UIScreen mainScreen] bounds].size.height;
+    
+    self.title = @"用药提醒";
+    //self.title 的字体大小、颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName , [UIFont systemFontOfSize:18], NSFontAttributeName,nil]];
+    
+    
+    
+    //左按钮；
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    
+    popview=[[UIView alloc] initWithFrame:CGRectMake(0, height, width, 280)];
+    popview.backgroundColor=[UIColor whiteColor];
+    
+    UILabel *text1=[[UILabel alloc] initWithFrame:CGRectMake(0, 4, width/4, 20)];
+    
+    text1.textColor=[UIColor blackColor];
+    text1.textAlignment=NSTextAlignmentCenter;
+    
+    text1.text=@"第一次";
+    
+    UILabel *text2=[[UILabel alloc] initWithFrame:CGRectMake(width/4, 4, width/4, 20)];
+    text2.textColor=[UIColor blackColor];
+    text2.textAlignment=NSTextAlignmentCenter;
+    text2.text=@"第二次";
+    
+    
+    UILabel *text3=[[UILabel alloc] initWithFrame:CGRectMake(width/2, 4, width/4, 20)];
+    text3.textColor=[UIColor blackColor];
+    text3.textAlignment=NSTextAlignmentCenter;
+    text3.text=@"第三次";
+    
+    
+    UILabel *text4=[[UILabel alloc] initWithFrame:CGRectMake(width*3/4, 4, width/4, 20)];
+    text4.textColor=[UIColor blackColor];
+    text4.textAlignment=NSTextAlignmentCenter;
+    text4.text=@"第四次";
+    
+    [popview addSubview:text1];
+    [popview addSubview:text2];
+    [popview addSubview:text3];
+    [popview addSubview:text4];
+    
+    pp=[[UIPickerView alloc] initWithFrame:CGRectMake(0, 24, width, 160)];
+    
+    pp.dataSource=self;
+    pp.delegate=self;
+    
+    [pp selectRow:12 inComponent:0 animated:NO];
+    [pp selectRow:12 inComponent:1 animated:NO];
+    [pp selectRow:12 inComponent:2 animated:NO];
+    [pp selectRow:12 inComponent:3 animated:NO];
+    
+    [popview addSubview:pp];
+    
+    
+    back=[[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    
+    //    UIButton *sd=[[UIButton alloc] initWithFrame:CGRectMake(30, 100, 50, 30)];
+    //    [sd setTitle:@"dasd" forState:UIControlStateNormal];
+    //
+    //    [sd addTarget:self action:@selector(tianjia) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    [back addSubview:sd];
+    
+    back.backgroundColor=[UIColor grayColor];
+    back.alpha=0.0f;
+    
+    [self.view addSubview:back];
+    
+    
+    
+    UIButton *queding=[[UIButton alloc] initWithFrame:CGRectMake(0, 180, width, 44)];
+    
+    [queding setTitle:@"确定" forState:UIControlStateNormal];
+    [queding setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    queding.backgroundColor=[UIColor colorWithRed:117.0/255 green:180.0/255 blue:100.0/255 alpha:1];
+    
+    [queding addTarget:self action:@selector(choossok) forControlEvents:UIControlEventTouchUpInside];
+    
+    [popview addSubview:queding];
+    
+    UIButton *queding1=[[UIButton alloc] initWithFrame:CGRectMake(0, 234, width, 44)];
+    
+    [queding1 setTitle:@"取消" forState:UIControlStateNormal];
+    [queding1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [queding1 addTarget:self action:@selector(choossno) forControlEvents:UIControlEventTouchUpInside];
+    
+    queding1.backgroundColor=[UIColor grayColor];
+    
+    [popview addSubview:queding1];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    remindTable=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, width, height - 64)];
+    
+    remindTable.backgroundColor = [UIColor clearColor];
+    remindTable.delegate = self;
+    remindTable.dataSource = self;
+    [self.view addSubview:remindTable];
+    
+    [self.view addSubview:popview];
+    
+    
+    
+//    //清除tableView多余的分割线
+//    function *fun = [[function alloc]init];
+//    
+//    [fun setExtraCellLineHidden:remindTable];
+    
+    
+    
+    //    pathArray=[[NSMutableArray alloc] init];
+    //
+    //    [pathArray addObject:@"1"];
+    //    [pathArray addObject:@"2"];
+    //    [pathArray addObject:@"3"];
+    //    [pathArray addObject:@"4"];
+    
+    path = [NSHomeDirectory() stringByAppendingString:@"/Documents/durgRemindList.plist"];
+    
+    pathArray = [[NSMutableArray alloc]init];
+    
+    
+    // Do any additional setup after loading the view.
+}
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]init] initWithTitle:@"添加闹钟" style:UIBarButtonItemStyleDone target:self action:@selector(tianjia)];
+-(void)choossok{
     
-    k=0;
-    time=[[NSMutableString alloc]init];
-    time_array=[[NSMutableArray alloc]init];
-    chooseTime = [[NSMutableArray alloc]init];
+    [UIView animateWithDuration:0.7 animations:^{
+        
+        popview.frame=CGRectMake(0, height, width, 280);
+        
+        back.alpha=0.0f;
+        back.hidden=YES;
+        
+        // [remindTable reloadData];
+        
+    }completion:nil];
     
-    NSString *fileName=[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),@"my,plist"];
-    arr=[NSMutableArray arrayWithContentsOfFile:fileName];
+    // [self.view sendSubviewToBack:back];
+    NSLog(@"yes");
     
-    myTable=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
-    myTable.backgroundColor=[UIColor clearColor];
+    NSString *str1=shuju[[pp selectedRowInComponent:0]];
+    NSString *str2=shuju[[pp selectedRowInComponent:1]];
+    NSString *str3=shuju[[pp selectedRowInComponent:2]];
+    NSString *str4=shuju[[pp selectedRowInComponent:3]];
     
-    myTable.delegate=self;
-    myTable.dataSource=self;
     
-    [self.view addSubview:myTable];
     
-    cishu=0;
+    int aa=0,bb=0,cc=0,dd=0;
     
-    if (cishu==0) {
-        myTable.hidden=YES;
+    NSMutableArray *asd=[[NSMutableArray alloc] init];
+    
+    if (![str1 isEqualToString:@"无"]){
+        aa=1;
+        //  [asd addObject:str1];
+    }
+    if (![str2 isEqualToString:@"无"]){
+        bb=1;
+        //  [asd addObject:str2];
+    }
+    if (![str3 isEqualToString:@"无"]){
+        cc=1;
+        // [asd addObject:str3];
+    }
+    if (![str4 isEqualToString:@"无"]){
+        dd=1;
+        //  [asd addObject:str4];
     }
     
+    [asd addObject:str1];
+    [asd addObject:str2];
+    [asd addObject:str3];
+    [asd addObject:str4];
+    
+    NSString *riqi=[asd componentsJoinedByString:@" "];
+    
+    int oo=aa+bb+cc+dd;
+    
+    NSString *tit;
+    
+    switch (oo) {
+        case 1:
+            tit=@"一日一次";
+            break;
+        case 2:
+            tit=@"一日二次";
+            break;
+        case 3:
+            tit=@"一日三次";
+            break;
+        case 4:
+            tit=@"一日四次";
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    NSDictionary *dic=@{@"title":tit,@"riqi":riqi,@"ison":@"0"};
+    
+    NSString *yhidString = [NSString stringWithFormat:@"%d",[[[NSUserDefaults standardUserDefaults]objectForKey:@"hyid"] intValue]];
+    
+    NSDictionary *asdd=@{@"yhid":yhidString,@"neirong":dic};
+    
+    if (flagg!=8) {
+        
+        
+        NSMutableArray *arrasd=[[NSMutableArray alloc] initWithContentsOfFile:path];
+        
+        if (arrasd!=nil) {
+            
+            [arrasd addObject:asdd];
+        }
+        else
+        {
+            arrasd=[[NSMutableArray alloc] init];
+            [arrasd addObject:asdd];
+        }
+        
+        NSLog(@"asdd-%@-%@",arrasd,path);
+        
+        [arrasd writeToFile:path atomically:YES];
+        
+    }
+    else{
+        
+        NSMutableArray *arrasd=[[NSMutableArray alloc] initWithContentsOfFile:path];
+        
+        [arrasd removeObjectAtIndex:sectionn];
+        [arrasd insertObject:asdd atIndex:sectionn];
+        
+        
+        NSLog(@"asdd-gai-%@-%@",arrasd,path);
+        
+        [arrasd writeToFile:path atomically:YES];
+        
+        flagg=0;
+        
+    }
+    
+    [self readDurgRemindPlist];
+    
+    NSLog(@"pathasd-----%@",pathArray);
+    
+    [remindTable reloadData];
+    
+    
+}
+
+-(void)poppp
+{
+    // flagg=0;
+    
+    NSLog(@"dsd-weisha");
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)choossno{
+    
+    
+    [UIView animateWithDuration:0.7 animations:^{
+        
+        popview.frame=CGRectMake(0, height, width, 280);
+        
+        back.alpha=0.0f;
+        back.hidden=YES;
+        
+        
+        
+    }completion:nil];
+    
+    flagg=0;
+    
+    //[self.view sendSubviewToBack:back];
+    
+    NSLog(@"no");
 }
 
 
-#pragma mark - UIPickerViewDataSource
-//返回几列
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return number;
-    
-}
-//每列有几个列表项
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
-    return [arr1 count];
-    
-    
+    return [shuju count];
 }
 
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    
+    return 4;
+}
 
-#pragma mark - UIPickerViewDelegate
-//返回制定列表项的文本标题
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    return arr1 [row];
-    
+    return [shuju objectAtIndex:row];
 }
 
 
-#pragma mark - UITableViewDatasouse
-
-//返回多少组
--(NSInteger):(UITableView *)tableView{
+- (void)viewWillAppear:(BOOL)animated
+{
     
-    return 1;
-}
-//返回多少行
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return cishu;
-}
-
-#pragma mark - UITableViewDelegate
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *str=@"cell";
-    
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:str];
-    if (cell==nil) {
-        
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
-        
+    [self readDurgRemindPlist];    //调用读文件的方法,判断是否显示提醒视图
+    [remindTable reloadData];  //更新tableViee数据
+    if (mm == 1) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"轮回公子" object:nil];
     }
-    /**************************消除重叠************************/
-    NSArray *arr2=[cell.contentView subviews];
-    
-    for (UIView *vv in arr2) {
-        [vv removeFromSuperview];
-    }
-    /**********************************************************/
-    
-    cell.textLabel.frame=CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 50);
-    cell.textLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:17];
-    cell.textLabel.textColor=[UIColor colorWithHexString:@"323232" alpha:1];
-    cell.textLabel.backgroundColor=[UIColor clearColor];
-    cell.textLabel.text=chooseTime[indexPath.row] ;
-    
-    
-    //去掉tableview的杠
-    myTable.separatorStyle=UITableViewCellSelectionStyleNone;
-    // 添加下划线
-    UIView *view1=[[UIView alloc] initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 1)];
-    view1.backgroundColor=[UIColor colorWithHexString:@"e2e2e2" alpha:1];
-    
-    [cell.contentView addSubview:view1];
-    
-    UISwitch *kai = [[UISwitch alloc]init];
-    kai.frame = CGRectMake(self.view.frame.size.width - 60, 15, 30, 15);
-    kai.tag = 10 + indexPath.row;
-    [kai setOn:YES animated:YES];
-    [kai addTarget: self action:@selector(switchIsChanged:) forControlEvents:UIControlEventValueChanged];
-    [cell.contentView addSubview:kai];
-    
-    return cell;
-    
-}
-//开关
--(void)switchIsChanged:(UISwitch *)paramSender{
-    NSLog(@"Sender is=%@",paramSender);
-    
-    if([paramSender isOn]){//如果开关状态为ON
-        
-   
-        
-    }else{
-        [self cancelLocalNotificationWithKey:[time_array objectAtIndex:paramSender.tag-10] :(int)paramSender.tag-10];
-    }
-}
-//行的高度
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 50;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
-    return section;
-    
     
 }
 
-- (void)registerLocalNotification:(NSInteger)interval :(NSString *)ss{
+-(void)readDurgRemindPlist{
     
     
     
+    NSMutableArray *array = [[NSMutableArray alloc]initWithContentsOfFile:path];
     
-    //初始化本地通知
-    notification=[[UILocalNotification alloc] init];
+    //获取用户id
     
-    //设置触发通知的时间（方法参数传入的时间）
-    /****************这该咋写**************************/
+    NSLog(@"array--%@",array);
     
-    NSDate *fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-    notification.fireDate=fireDate;
+    NSString *yhidString = [NSString stringWithFormat:@"%d",[[[NSUserDefaults standardUserDefaults]objectForKey:@"hyid"] intValue]];
     
-    //时区
-    notification.timeZone=[NSTimeZone defaultTimeZone];
-    //通知主体内容
-    notification.alertBody=@"aaaa内容";
-    //通知的动作（解锁时下面一小行小字，滑动来。。。后面的字）
-    notification.alertAction=@"偷偷";
-    //应用程序角标，默认为0（不显示角标）
-    notification.applicationIconBadgeNumber=1;
-    //通知的参数，通过key值来标识这个通知
-    NSDictionary *userDict=[NSDictionary dictionaryWithObject:ss forKey:@"key"];
-    notification.userInfo=userDict;
+    [pathArray removeAllObjects];
+    // NSLog(@"ge--%d",[array count]);
     
-    
-    // ios8后，需要能响应registerUserNotificationSettings:方法，才能得到授权
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        //设置通知类型
-        UIUserNotificationType type=UIUserNotificationTypeAlert |UIUserNotificationTypeBadge |UIUserNotificationTypeSound;
-        UIUserNotificationSettings *settings=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+    if (array !=nil && [array count]>0) {
         
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        NSLog(@"you");
         
-        //通知重复的时间间隔，可以是天，周，月（实际最小单位是分钟）
-        notification.repeatInterval=kCFCalendarUnitDay;
+        //获取某一个id的内容
+        for (int i = 0 ; i < array.count; i++) {
+            
+            NSString *key1=[array[i] objectForKey:@"yhid"];
+            
+            BOOL flag=[key1 isEqualToString:yhidString];
+            
+            if (flag) {
+                
+                NSLog(@"sssss--%@--%@",key1,yhidString);
+                
+                [pathArray addObject:[array[i] objectForKey:@"neirong"]];
+                
+            }
+            
+        }
     }
     
     else{
         
-        //通知重复的时间间隔，可以是天，周，月（实际最小单位是分钟）
-        notification.repeatInterval=NSCalendarUnitDay;
+        NSLog(@"meiyou");
+    }
+    
+    NSLog(@"patha--%@",pathArray);
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return [pathArray count]+1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (section==0) {
+        return 0;
+    }
+    else
+        return 16;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==[pathArray count]) {
+        return 60;
+    }
+    return 80;
+    
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    if (section==[pathArray count]-1)
+//    return 60;
+//    else
+//        return 0;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//
+//    if (section==[pathArray count]-1) {
+//
+//
+//    UIView *vvc=[[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 60)];
+//    //vvc.backgroundColor=[UIColor greenColor];
+//
+//    UIView *topline=[[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
+//    topline.backgroundColor=[UIColor lightGrayColor];
+//
+//    UIView *botline=[[UIView alloc] initWithFrame:CGRectMake(0, 59, width, 1)];
+//    botline.backgroundColor=[UIColor lightGrayColor];
+//
+//    UIButton *add=[[UIButton alloc] initWithFrame:CGRectMake(width/3.0, 20, width/3.0, 30)];
+//
+//    [add setImage:[UIImage imageNamed:@"icon_add.png"] forState:UIControlStateNormal];
+//
+//    [add setTitle:@"添加提醒" forState:UIControlStateNormal];
+//
+//    [add setTitleColor:[UIColor colorWithRed:117.0/255 green:180.0/255 blue:100.0/255 alpha:1] forState:UIControlStateNormal];
+//
+//    [add setImageEdgeInsets:UIEdgeInsetsMake(-15, -20, 0, 0)];
+//    [add setTitleEdgeInsets:UIEdgeInsetsMake(-17, -10, 0, 0)];
+//
+//    add.titleLabel.font=[UIFont systemFontOfSize:15.0f];
+//
+//    [add addTarget:self action:@selector(tianjia) forControlEvents:UIControlEventTouchUpInside];
+//
+////[vvc addSubview:topline];
+//    [vvc addSubview:botline];
+//
+//    [vvc addSubview:add];
+//
+//    return vvc;
+//    }
+//    else
+//        return nil;
+//
+//}
+
+- (void)tianjia{
+    
+    
+    if (ttm!=nil)
+        [ttm invalidate];
+    
+    ttm=nil;
+    
+    shu=0;
+    
+    [self.view bringSubviewToFront:back];
+    [self.view bringSubviewToFront:popview];
+    
+    back.hidden=NO;
+    
+    ttm= [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(bian) userInfo:nil repeats:YES];
+    
+    [UIView animateWithDuration:1 animations:^{
+        
+        popview.frame=CGRectMake(0, height-280, width, 280);
+        
+    }completion:nil];
+    
+    
+}
+
+- (void)bian{
+    
+    shu++;
+    
+    back.alpha=shu*0.1;
+    
+    if (shu==8) {
+        
+        [ttm invalidate];
+        
+        ttm=nil;
+        
+        shu=0;
+    }
+    
+    NSLog(@"---%d",shu);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    //cell.width1=width;
+    
+    if (indexPath.section==[pathArray count]) {
+        
+        
+        NSLog(@"meizhixing");
+        
+        TianTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mmod"];
+        
+        if (!cell) {
+            cell = [[TianTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mmod"];
+        }
+        
+        
+        cell.botline.frame= CGRectMake(0, 59, width, 1);
+        cell.botline.backgroundColor=[UIColor lightGrayColor];
+        
+        cell.add.frame=CGRectMake(0, 0, width, 60);
+        
+//        [cell.add setImage:[UIImage imageNamed:@"icon_add.png"] forState:UIControlStateNormal];
+        
+        [cell.add setTitle:@"添加提醒" forState:UIControlStateNormal];
+        
+        [cell.add setTitleColor:[UIColor colorWithRed:117.0/255 green:180.0/255 blue:100.0/255 alpha:1] forState:UIControlStateNormal];
+        
+//        [cell.add setImageEdgeInsets:UIEdgeInsetsMake(-15, -20, 0, 0)];
+//        [cell.add setTitleEdgeInsets:UIEdgeInsetsMake(-17, -10, 0, 0)];
+        
+        cell.add.titleLabel.font=[UIFont systemFontOfSize:15.0f];
+        
+        [cell.add addTarget:self action:@selector(tianjia) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        return cell;
+        
         
     }
     
-    // 执行通知注册
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-}
--(void)cancelLocalNotificationWithKey:(NSString *)key :(int)flag {
-    // 获取所有本地通知数组
-    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
-    
-    for (UILocalNotification *loc in localNotifications) {
-        NSDictionary *userInfo = loc.userInfo;
-        if (userInfo) {
-            // 根据设置通知参数时指定的key来获取通知参数
-            NSString *info =  [userInfo objectForKey:@"key"];;
-            
-            // 如果找到需要取消的通知，则取消
-            if (info != nil) {
-                
-                NSString *strItem=[chooseTime objectAtIndex:flag];
-                    
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    
-                    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
-                    
-                    NSString *strNow = [dateFormatter stringFromDate:[NSDate date]];
-                    
-                    NSArray *arrTimes = [strItem componentsSeparatedByString:@","];
-                    
-                    for (NSString *strAddDate in arrTimes) {
-                        
-                        NSString *strTime = [NSString stringWithFormat:@"%@ %@", strNow, strAddDate];
-                        
-                        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-//                        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-//                        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-                        NSDate *date = [dateFormatter dateFromString:strTime];
-                        
-                        ModelClock *clock = [[ModelClock alloc] init];
-                        
-                        clock.date = date;
-                        
-                        [[AlarmClockManager shareManager] removeClock:clock ];
-                        
-                        [[UIApplication sharedApplication] cancelLocalNotification:loc];
-                        
-                        break;
-                        
-                    }
-                }
-
+    else{
+        
+        DurgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        
+        if (!cell) {
+            cell = [[DurgTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
+        
+        NSLog(@"zhixingmei");
+        
+        cell.topline.frame=CGRectMake(0, 0, width, 1);
+        cell.botline.frame=CGRectMake(0, 79, width, 1);
+        cell.sw.frame=CGRectMake(width-66, 30, 30, 20);
+        
+        cell.ll1.text=[[pathArray objectAtIndex:indexPath.section] objectForKey:@"title"];
+        
+        NSString *asd= [[pathArray objectAtIndex:indexPath.section] objectForKey:@"riqi"];
+        
+        NSArray *mnb=[asd componentsSeparatedByString:@" "];
+        NSMutableArray *rt=[[NSMutableArray alloc] init];
+        
+        for (NSString *ser in mnb) {
+            
+            if (![ser isEqualToString:@"无"])
+                
+                [rt addObject:ser];
+        }
+        
+        
+        
+        cell.ll2.text=[rt componentsJoinedByString:@" "];
+        
+        BOOL kk=[[[pathArray objectAtIndex:indexPath.section] objectForKey:@"ison"] isEqualToString:@"0"];
+        
+        NSLog(@"kk---%d",kk);
+        
+        [cell.sw setOn:((kk)? NO :YES)];
+        
+        cell.sw.tag=100+indexPath.section;
+        
+        [cell.sw addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventValueChanged];
+        
+        
+        return cell;
+        
     }
 }
-//导航左按钮
+
+
+-(void)qiehuan:(UISwitch *)ss{
+    
+    int mmm=(int)ss.tag-100;
+    
+    NSString *status;
+    
+    if (ss.isOn) {
+        status=@"1";
+    }
+    else
+        status=@"0";
+    
+    NSMutableArray *wqe=[[NSMutableArray alloc] initWithContentsOfFile:path];
+    
+    NSDictionary *dic=[wqe[mmm] objectForKey:@"neirong"];
+    
+    NSLog(@"status--%@",dic);
+    
+    [dic setValue:status forKey:@"ison"];
+    
+    [wqe writeToFile:path atomically:YES];
+    
+    NSLog(@"mm---%d",mmm);
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"轮回公子" object:nil];
+    
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ([pathArray count]>(int)indexPath.section) {
+        
+        NSLog(@"ssdds");
+        
+        flagg=8;
+        
+        DurgTableViewCell *cc=(DurgTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        
+        cc.selectionStyle=UITableViewCellSelectionStyleNone;
+        
+        NSLog(@"---%d",(int)indexPath.section);
+        
+        sectionn=(int)indexPath.section;
+        
+        NSMutableArray *fdata=[[NSMutableArray alloc] initWithContentsOfFile:path];
+        NSDictionary *dfg=[fdata objectAtIndex:indexPath.section];
+        
+        NSArray *riri=[[[dfg objectForKey:@"neirong"] objectForKey:@"riqi"] componentsSeparatedByString:@" "];
+        
+        int mm1=(int)[shuju indexOfObject:riri[0]];
+        int mm2=(int)[shuju indexOfObject:riri[1]];
+        int mm3=(int)[shuju indexOfObject:riri[2]];
+        int mm4=(int)[shuju indexOfObject:riri[3]];
+        
+        [pp selectRow:mm1 inComponent:0 animated:YES];
+        [pp selectRow:mm2 inComponent:1 animated:YES];
+        
+        [pp selectRow:mm3 inComponent:2 animated:YES];
+        
+        [pp selectRow:mm4 inComponent:3 animated:YES];
+        
+        [self tianjia];
+        
+    }
+    
+    else{
+        
+        NSLog(@"ssdds---000");
+        
+        TianTableViewCell *ce=(TianTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        
+        ce.selectionStyle=UITableViewCellSelectionStyleNone;
+        
+    }
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section!=[pathArray count])
+        return YES;
+    else
+        return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [remindTable setEditing:NO];
+        
+        [pathArray removeObjectAtIndex:indexPath.section];
+        
+        NSMutableArray *wew=[[NSMutableArray alloc] initWithContentsOfFile:path];
+        
+        NSLog(@"wew--%@",wew);
+        
+        [wew removeObjectAtIndex:indexPath.section];
+        
+        [wew writeToFile:path atomically:YES];
+        //
+        //        NSMutableArray *wew1=[[NSMutableArray alloc] initWithContentsOfFile:path];
+        //
+        //        NSLog(@"wew--%@",wew1);
+        //
+        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"轮回公子" object:nil];
+        
+        [remindTable reloadData];
+        
+        
+        
+        // Delete the row from the data source.
+        // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"dsss");
+    
+    return UITableViewCellEditingStyleDelete;
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(void)fanhui
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 @end
