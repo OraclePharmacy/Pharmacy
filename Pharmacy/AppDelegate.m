@@ -253,6 +253,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"\n\n\n\n 处理收到的通知\n\n\n\n\n%@\n\n\n\n\n",userInfo);
     // Required - 处理收到的通知
     [JPUSHService handleRemoteNotification:userInfo];
+    //进入前台清空角标
+    if (application.applicationState == UIApplicationStateActive) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
+
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -261,6 +266,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // IOS 7 Support Required
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
+    //进入前台清空角标
+    if (application.applicationState == UIApplicationStateActive) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
+
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     //Optional
