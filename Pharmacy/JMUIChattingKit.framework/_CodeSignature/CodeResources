@@ -242,7 +242,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		0umTpOmoBIZLnORTPKoRvASgDO8=
+		AmzwrW6ig1cRrmwUdG+KzlfeM+0=
 		</data>
 		<key>JMUIChattingKitResource.bundle/JMUIInputToolbar.xib</key>
 		<data>
@@ -438,75 +438,15 @@
 		</data>
 		<key>JMUIInputToolbar.nib</key>
 		<data>
-		xIBYwjh7ls0H8E8h0qhmYlKe6TQ=
+		K3CPyJmNdkpbobAdZVcmw6TF9ZU=
 		</data>
 		<key>JMUIMoreView.nib</key>
 		<data>
-		DqRl1e/EwVIrV7C5eVbls6yftTE=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/Info.plist</key>
-		<data>
-		ie5V3BhMYsxj9zKyBNTV7QAxOT8=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIAlbumTableViewCell.nib</key>
-		<data>
-		HErS+ow13Arv50E8tM+kNhmrqpM=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIAlbumViewController.nib</key>
-		<data>
-		opljeFn0QpcM9zLFAv+Pl0MKWzQ=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIMultiSelectPhotosKitResource</key>
-		<data>
-		qMxBhv4EZyxUWiV816Y65MZYcyo=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIMultiSelectPhotosViewController.nib</key>
-		<data>
-		W6hHzov3TJSaxrCWykiXh7U+LRQ=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoBrowserCollectionViewCell.nib</key>
-		<data>
-		dSxhC2zy2/Y+NNtdlZ4vQnLqnxM=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoBrowserViewController.nib</key>
-		<data>
-		AxMQjyItfALnyKX4shmv0qI/SjY=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoSelectViewController.nib</key>
-		<data>
-		ztv8N0G13D6D2glk0DgpH4cEG1U=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIThumbImageCollectionViewCell.nib</key>
-		<data>
-		sKiMzaGb4C2q/XHV99TXQKuzwbQ=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked.png</key>
-		<data>
-		BmA7ylIAe1KZMhCErREQHzx4Mgc=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked@2x.png</key>
-		<data>
-		YKUm4lnYaS8G6/ngbK4IeQreTUI=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked@3x.png</key>
-		<data>
-		m2ItT4lJe9Wnkm8W+0eA7CcNL3E=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked.png</key>
-		<data>
-		3AErFu+ys3Cz/qtGrH5e4V0MrBw=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked@2x.png</key>
-		<data>
-		zIFcEuuyP76tajDkJQNR1FUjUvI=
-		</data>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked@3x.png</key>
-		<data>
-		Lufi3BZx1TAxLgAMrF7KEg9hidw=
+		qVZghojazv7aRuEZKfZysW1OZKc=
 		</data>
 		<key>JMUIShowTimeCell.nib</key>
 		<data>
-		b85+9SsffQYU0YPmAGejY8lumJg=
+		UYXZ0HfWMd5pJ2HXyZT4V91Ylqs=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1692,198 +1632,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xIBYwjh7ls0H8E8h0qhmYlKe6TQ=
+			K3CPyJmNdkpbobAdZVcmw6TF9ZU=
 			</data>
 			<key>hash2</key>
 			<data>
-			8kOphQ76Gpqv9Jh3c1Swub7sDdwmscIa/OwBf+7wJBU=
+			XFXL7yNT/YKN7ndsaql1KvB9hCPxB+lne83cCh8kdVM=
 			</data>
 		</dict>
 		<key>JMUIMoreView.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			DqRl1e/EwVIrV7C5eVbls6yftTE=
+			qVZghojazv7aRuEZKfZysW1OZKc=
 			</data>
 			<key>hash2</key>
 			<data>
-			z6vhk2ajaV/hfWoDlsMoThIgFRgutpvCGKFl97MAoM4=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/Info.plist</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ie5V3BhMYsxj9zKyBNTV7QAxOT8=
-			</data>
-			<key>hash2</key>
-			<data>
-			MKzJS0TF7TBmySCWSfLDQ2sStEoFYiAVTUy0LXNk9IM=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIAlbumTableViewCell.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			HErS+ow13Arv50E8tM+kNhmrqpM=
-			</data>
-			<key>hash2</key>
-			<data>
-			vuNhf2+WyPFuJqnzUjj9I4HveyVy3rYwTk+I3IXVZbY=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIAlbumViewController.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			opljeFn0QpcM9zLFAv+Pl0MKWzQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			pzrgKQtCVNw0rKfW2BHfRgHSNl1l4Vgt768u2b0oTrs=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIMultiSelectPhotosKitResource</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			qMxBhv4EZyxUWiV816Y65MZYcyo=
-			</data>
-			<key>hash2</key>
-			<data>
-			xYpSn+gfxpN4DR1nelDdfIhQvDTx7niURmOkWkVoVPc=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIMultiSelectPhotosViewController.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			W6hHzov3TJSaxrCWykiXh7U+LRQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			ps60cLhkJ5QBacudK+7v5Ioi/R3d6E52fSlTBQ263DE=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoBrowserCollectionViewCell.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			dSxhC2zy2/Y+NNtdlZ4vQnLqnxM=
-			</data>
-			<key>hash2</key>
-			<data>
-			FB8DEoH79ypS/v4dyx5hMiprhH+nrifUjlN5efIrmH0=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoBrowserViewController.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			AxMQjyItfALnyKX4shmv0qI/SjY=
-			</data>
-			<key>hash2</key>
-			<data>
-			I9m+1qKriTp+fiDn2+00JS4CePpUq5krsH+tASabykE=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIPhotoSelectViewController.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ztv8N0G13D6D2glk0DgpH4cEG1U=
-			</data>
-			<key>hash2</key>
-			<data>
-			A6X5KaoriKocz4FaSxlVph7YLQJnnXsXW0NPjEpPNno=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/JMUIThumbImageCollectionViewCell.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			sKiMzaGb4C2q/XHV99TXQKuzwbQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			bsJm1cNrlbm96GCJfyYoKWP8Rp1QLEFKUpBhwSJ5Xv8=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			BmA7ylIAe1KZMhCErREQHzx4Mgc=
-			</data>
-			<key>hash2</key>
-			<data>
-			zy39gKz1ACIgehAht6aQzZN1erqXmvkiUJoP1sBplEA=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked@2x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			YKUm4lnYaS8G6/ngbK4IeQreTUI=
-			</data>
-			<key>hash2</key>
-			<data>
-			V/0l2tHAK9BQYUtT+2+ekE6XW9emYzbroGIsGInQlYg=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_no_picked@3x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			m2ItT4lJe9Wnkm8W+0eA7CcNL3E=
-			</data>
-			<key>hash2</key>
-			<data>
-			mUFyIBw71BLKtxM3P8lXFCUbrBONabAfi3z6iO+k6k0=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3AErFu+ys3Cz/qtGrH5e4V0MrBw=
-			</data>
-			<key>hash2</key>
-			<data>
-			TglI3xrle9f3RMqSYU1cl2n3llUkEjCrVubMGxfqdrw=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked@2x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			zIFcEuuyP76tajDkJQNR1FUjUvI=
-			</data>
-			<key>hash2</key>
-			<data>
-			hZltvZ25LC18kYPrUEchufnJq5w8QTFBEa3PyjjatIU=
-			</data>
-		</dict>
-		<key>JMUIMultiSelectPhotosKitResource.bundle/image_picked@3x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Lufi3BZx1TAxLgAMrF7KEg9hidw=
-			</data>
-			<key>hash2</key>
-			<data>
-			l7Z9GC4F6/7MZHkaBb+leIjbwc9k6bqioxaPW7Fh7mU=
+			zSSa8o1GPsHhTx6QMj1GtDMOmrQqh3PxlRH1HsNMBws=
 			</data>
 		</dict>
 		<key>JMUIShowTimeCell.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			b85+9SsffQYU0YPmAGejY8lumJg=
+			UYXZ0HfWMd5pJ2HXyZT4V91Ylqs=
 			</data>
 			<key>hash2</key>
 			<data>
-			qLZAwKlw7d2cZEB6mxrf9xnbyCvgU19+nULr5W5cpUc=
+			+LgnOiytdXlZJkRIf2IFLsdw2o7ehdFhJco7H8IoFzw=
 			</data>
 		</dict>
 	</dict>

@@ -21,7 +21,9 @@
 
 #pragma mark - 应用代理方法
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
      [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(localNotification) name:@"轮回公子" object:nil];
+    
     [JMessage addDelegate:self withConversation:nil];
     /// Required - 启动 JMessage SDK
     [JMessage setupJMessage:launchOptions
