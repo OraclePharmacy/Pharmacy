@@ -32,18 +32,15 @@
 @end
 
 @implementation YdYaoXiangViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tableview.tableFooterView = [[UIView alloc] init];
+- (void)viewWillAppear:(BOOL)animated
+{
+    
     changshang1 = [[NSMutableArray alloc]init];
     name1 = [[NSMutableArray alloc]init];
     time1 = [[NSMutableArray alloc]init];
     cishu2 = [[NSMutableArray alloc]init];
     tupian1 = [[NSMutableArray alloc]init];
-    
-    width = [UIScreen mainScreen].bounds.size.width;
-    height = [UIScreen mainScreen].bounds.size.height;
+
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
@@ -68,6 +65,17 @@
         ccc = 2;
         
     }
+    
+    [self.tableview reloadData];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableview.tableFooterView = [[UIView alloc] init];
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
+    
+ 
     
     //状态栏名称
     self.navigationItem.title = @"智慧药箱";

@@ -58,7 +58,8 @@
     shu=0;
     
     shuju=[[NSMutableArray alloc] init];
-    
+    [shuju addObject:@"0:00"];
+    [shuju addObject:@"0:30"];
     [shuju addObject:@"1:00"];
     [shuju addObject:@"1:30"];
     [shuju addObject:@"2:00"];
@@ -105,7 +106,6 @@
     [shuju addObject:@"22:30"];
     [shuju addObject:@"23:00"];
     [shuju addObject:@"23:30"];
-    [shuju addObject:@"24:00"];
     [shuju addObject:@"无"];
     
     
@@ -205,15 +205,7 @@
     
     [popview addSubview:queding1];
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     remindTable=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, width, height - 64)];
     
     remindTable.backgroundColor = [UIColor clearColor];
@@ -223,21 +215,6 @@
     
     [self.view addSubview:popview];
     
-    
-    
-//    //清除tableView多余的分割线
-//    function *fun = [[function alloc]init];
-//    
-//    [fun setExtraCellLineHidden:remindTable];
-    
-    
-    
-    //    pathArray=[[NSMutableArray alloc] init];
-    //
-    //    [pathArray addObject:@"1"];
-    //    [pathArray addObject:@"2"];
-    //    [pathArray addObject:@"3"];
-    //    [pathArray addObject:@"4"];
     
     path = [NSHomeDirectory() stringByAppendingString:@"/Documents/durgRemindList.plist"];
     
@@ -269,26 +246,25 @@
     NSString *str4=shuju[[pp selectedRowInComponent:3]];
     
     
-    
     int aa=0,bb=0,cc=0,dd=0;
     
     NSMutableArray *asd=[[NSMutableArray alloc] init];
     
     if (![str1 isEqualToString:@"无"]){
         aa=1;
-        //  [asd addObject:str1];
+        
     }
     if (![str2 isEqualToString:@"无"]){
         bb=1;
-        //  [asd addObject:str2];
+        
     }
     if (![str3 isEqualToString:@"无"]){
         cc=1;
-        // [asd addObject:str3];
+        
     }
     if (![str4 isEqualToString:@"无"]){
         dd=1;
-        //  [asd addObject:str4];
+        
     }
     
     [asd addObject:str1];
@@ -483,7 +459,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return [pathArray count]+1;
+    return pathArray.count+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -497,60 +473,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==[pathArray count]) {
+    if (indexPath.section==pathArray.count) {
         return 60;
     }
     return 80;
     
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    if (section==[pathArray count]-1)
-//    return 60;
-//    else
-//        return 0;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//
-//    if (section==[pathArray count]-1) {
-//
-//
-//    UIView *vvc=[[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 60)];
-//    //vvc.backgroundColor=[UIColor greenColor];
-//
-//    UIView *topline=[[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
-//    topline.backgroundColor=[UIColor lightGrayColor];
-//
-//    UIView *botline=[[UIView alloc] initWithFrame:CGRectMake(0, 59, width, 1)];
-//    botline.backgroundColor=[UIColor lightGrayColor];
-//
-//    UIButton *add=[[UIButton alloc] initWithFrame:CGRectMake(width/3.0, 20, width/3.0, 30)];
-//
-//    [add setImage:[UIImage imageNamed:@"icon_add.png"] forState:UIControlStateNormal];
-//
-//    [add setTitle:@"添加提醒" forState:UIControlStateNormal];
-//
-//    [add setTitleColor:[UIColor colorWithRed:117.0/255 green:180.0/255 blue:100.0/255 alpha:1] forState:UIControlStateNormal];
-//
-//    [add setImageEdgeInsets:UIEdgeInsetsMake(-15, -20, 0, 0)];
-//    [add setTitleEdgeInsets:UIEdgeInsetsMake(-17, -10, 0, 0)];
-//
-//    add.titleLabel.font=[UIFont systemFontOfSize:15.0f];
-//
-//    [add addTarget:self action:@selector(tianjia) forControlEvents:UIControlEventTouchUpInside];
-//
-////[vvc addSubview:topline];
-//    [vvc addSubview:botline];
-//
-//    [vvc addSubview:add];
-//
-//    return vvc;
-//    }
-//    else
-//        return nil;
-//
-//}
+
 
 - (void)tianjia{
     
@@ -684,6 +614,7 @@
         return cell;
         
     }
+    
 }
 
 
@@ -783,7 +714,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"前%lu",(unsigned long)pathArray.count);
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         [remindTable setEditing:NO];
@@ -810,12 +741,8 @@
         [remindTable reloadData];
         
         
-        
-        // Delete the row from the data source.
-        // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
     }
-    
+    NSLog(@"后%lu",(unsigned long)pathArray.count);
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -825,15 +752,6 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 -(void)fanhui
 {
     //返回上一页
