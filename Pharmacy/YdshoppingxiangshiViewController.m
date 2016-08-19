@@ -205,11 +205,8 @@
         [liebiao1 addObject:liebiao];
     }
     
-    NSString*vip;
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSString*zhid;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
     NSUserDefaults *dd = [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[dd objectForKey:@"officeid"]];
     

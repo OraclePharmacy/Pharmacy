@@ -685,7 +685,7 @@
 -(void)baocun
 {
     //NSLog(@"%@%@%@%@%@%@%@",textField1.text,textField2.text,textField3.text,textField4.text,textField5.text,textField6.text,sex);
-    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField4.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
+    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
         [WarningBox warningBoxModeText:@"请输入完整的信息!" andView:self.view];
     }else{
         if ([sex isEqual:@""]) {
@@ -700,12 +700,9 @@
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
             //出入参数：
-            NSString*vip;
-            NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-            NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-            vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+          NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
             NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",vip,@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
-            
+            NSLog(@"%@",datadic);
             NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
             
             

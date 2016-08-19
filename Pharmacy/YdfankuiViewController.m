@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     width = [UIScreen mainScreen].bounds.size.width;
@@ -78,7 +78,6 @@
 -(void)tijiao
 {
     [self.view endEditing:YES];
-    
     if (self.pinglunText.text.length > 0)
     {
         //userID    暂时不用改
@@ -102,7 +101,9 @@
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
         zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",self.pinglunText.text,@"context",nil];
+        NSString*fankui=[NSString stringWithFormat:@"%@", self.pinglunText.text];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",fankui,@"context",nil];
+        NSLog(@"%@",datadic);
         
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -119,10 +120,10 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
+            NSLog(@"%@",responseObject);
             @try
             {
-                //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-               // NSLog(@"responseObject%@",responseObject);
+                
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     self.pinglunText.text = @"";
@@ -130,15 +131,14 @@
 //                    [self.navigationController popViewControllerAnimated:YES];
                     [WarningBox warningBoxModeText:@"您的意见我们已收到，谢谢您的支持" andView:self.view];
                     
+                }else{
+                    [WarningBox warningBoxModeText:@"意见反馈失败，请重试..." andView:self.view];
                 }
             }
             @catch (NSException * e) {
                 
                 [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
             }
-            
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];

@@ -105,10 +105,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+ NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"10",@"pageSize",@"1",@"pageNo", nil];
     

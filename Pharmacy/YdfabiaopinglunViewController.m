@@ -116,11 +116,7 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-        //出入参数：
+       NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
         NSLog(@"帖子%@",_tieziID );
         if ([_tieziID isEqualToString:@""]||_tieziID==nil||[_tieziID isEqual:[NSNull null]])
         {

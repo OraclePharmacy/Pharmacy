@@ -70,10 +70,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.xixi,@"id", vip,@"vipId",nil];
     
@@ -174,10 +171,7 @@
 
 //收藏
 - (IBAction)shoucang:(id)sender {
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     if (cang == 1) {
         
         [self.shoucang setBackgroundImage:[UIImage imageNamed:@"collection_light(1).png"] forState:UIControlStateNormal];
@@ -310,11 +304,7 @@
 
 //点赞
 - (IBAction)dianzan:(id)sender {
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    if (zan == 1) {
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    if (zan == 1) {
         
         [self.dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_light.png"] forState:UIControlStateNormal];
         

@@ -175,11 +175,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",vip,@"vipId", nil];
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",vip,@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -197,7 +193,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+           [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==4444) {
                 UIButton *fanhui = [[UIButton alloc]init];
@@ -214,7 +210,16 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 chuan=[[NSDictionary alloc] init];
                 chuan=[responseObject valueForKey:@"data"];
-                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.bian.hidden = NO;
+                    time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
+                    
+                    j = 0 ;
+                    //
+                    //            [time1 setFireDate:[NSDate distantPast]];
+                    
+                });
+
             }
         }
         @catch (NSException * e) {
@@ -250,16 +255,7 @@
         [self jiekou];
         //延时效果  ＊前为延迟时间  单位  秒
         //摇动结束时  手机停止摇动  执行
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.bian.hidden = NO;
-            time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
-            
-            j = 0 ;
-            //
-            //            [time1 setFireDate:[NSDate distantPast]];
-            
-        });
-        //摇奖结束出现
+               //摇奖结束出现
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             

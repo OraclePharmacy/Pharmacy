@@ -244,6 +244,7 @@
                         NSLog(@"%@",NSHomeDirectory());
                         NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
+                        [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];
                         
                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                         

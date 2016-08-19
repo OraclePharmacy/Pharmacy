@@ -84,10 +84,7 @@
     
 }
 -(void)jiekou{
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];    //userID    暂时不用改
+  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"]; //userID    暂时不用改
     NSString * userID=@"0";
     
     //请求地址   地址不同 必须要改

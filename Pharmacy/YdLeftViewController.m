@@ -20,7 +20,8 @@
 #import "YdfankuiViewController.h"
 #import "YdfenxiangxiazaiViewController.h"
 #import "tiaodaodenglu.h"
-
+#import "hongdingyi.h"
+#import "UIImageView+WebCache.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -108,7 +109,27 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     [denglu addTarget:self action:@selector(denglule) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
-        image.image = [UIImage imageNamed:@"小人@2x.png"];
+        NSString *path1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path1];
+        
+        
+        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
+        NSFileManager*fm=[NSFileManager defaultManager];
+        if ([fm fileExistsAtPath:path]) {
+            image.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
+            
+        }else if([pp objectForKey:@"photo"]!=nil){
+            NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[pp objectForKey:@"photo"]]];
+            NSLog(@"%@",url);
+            [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
+            
+        }else
+            image.image =[UIImage imageNamed:@"小人@2x.png"];
+    
+
+        
+        
+//        image.image = [UIImage imageNamed:@"小人@2x.png"];
         [denglu setTitle:@"个人信息" forState:UIControlStateNormal];
     }else{
     

@@ -61,11 +61,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id", vip,@"vipId",nil];
+  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id", vip,@"vipId",nil];
     NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -237,10 +233,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+     NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"type",vip,@"vipId",@"0",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -305,10 +298,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+       NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"type",vip,@"vipId",@"1",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -378,10 +368,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"flag",vip,@"vipId",@"0",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -446,11 +433,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"flag",vip,@"vipId",@"1",@"clickMark", nil];
+      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"flag",vip,@"vipId",@"1",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         

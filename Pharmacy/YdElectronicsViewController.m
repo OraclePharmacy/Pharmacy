@@ -238,10 +238,7 @@
     //后台写的跟个傻逼似的 擦
     
     [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     
     //请求地址   地址不同 必须要改
     NSString * url =@"/basic/saveEmr";

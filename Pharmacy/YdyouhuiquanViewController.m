@@ -22,7 +22,7 @@
     CGFloat width;
     CGFloat height;
     
-    NSArray *arr;
+    NSMutableArray *arr;
     UITextField *nameField;
     
     NSString *couponId;
@@ -82,7 +82,7 @@
 }
 -(void)loadNewData{
     
-    if (ye*3 >coun+2) {
+    if (ye*5 >coun+4) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         
         [self.tableview.mj_footer endRefreshing];
@@ -115,12 +115,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -144,10 +139,18 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                arr = [datadic objectForKey:@"list"];
+                NSArray*mg = [datadic objectForKey:@"list"];
                 
                 coun=[[datadic objectForKey:@"count"] intValue];
-                
+                if (ye!=1) {
+                    for (NSDictionary*dd in mg) {
+                        [arr addObject:dd];
+                    }
+                }else{
+                    arr=[NSMutableArray arrayWithArray:mg];
+                }
+                ye++;
+
                 [self.tableview reloadData];
                 
             }
@@ -205,7 +208,12 @@
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 5, 65, 65);
     image.backgroundColor = [UIColor grayColor];
+    
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.section] objectForKey:@"url"]];
+    NSLog(@"%@",path);
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    
+   
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     [cell.contentView addSubview:image];
     
@@ -370,10 +378,7 @@
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
      
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
+     NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSString*zhid;
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];

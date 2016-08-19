@@ -22,7 +22,7 @@
     
     UIButton *queren;
     
-    NSArray *arr;
+    NSMutableArray *arr;
     int ye;
     int coun;
 }
@@ -72,7 +72,7 @@
 }
 -(void)loadNewData{
     
-    if (ye*3 >coun+2) {
+    if (ye*5 >coun+4) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         
         [self.tableview.mj_footer endRefreshing];
@@ -104,11 +104,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    
+  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -132,13 +128,18 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                
-                arr = [datadic objectForKey:@"myOrder"];
-               
-                coun=[[datadic objectForKey:@"count"] intValue];
-                
+                 coun=[[datadic objectForKey:@"count"] intValue];
+                 NSArray*mg= [datadic objectForKey:@"myOrder"];
+                if (ye!=1) {
+                    for (NSDictionary*dd in mg) {
+                        [arr addObject:dd];
+                    }
+                }else{
+                    arr=[NSMutableArray arrayWithArray:mg];
+                }
+                ye++;
                 [self.tableview reloadData];
-                
+            
             }
         }
         @catch (NSException * e) {
@@ -306,6 +307,9 @@
     queren.layer.masksToBounds = YES;
     queren.titleLabel.font    = [UIFont systemFontOfSize: 13];
     [queren addTarget:self action:@selector(queren) forControlEvents:UIControlEventTouchUpInside];
+    if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"2"]) {
+        
+    }else
     [cell.contentView addSubview:queren];
     
     //cell点击不变色
@@ -340,13 +344,9 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSString*vip;
-        NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-        NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-        vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-        
+    
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"id"]],@"id",@"2",@"states",nil];
-        
+        NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名

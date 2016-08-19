@@ -85,12 +85,8 @@
     NSString*officeid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId", nil];
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",/* ,@"paprId",*/ nil];
     NSLog(@"12345%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -159,11 +155,7 @@
     NSString*officeid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSString*vip;
-    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-    vip=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
-    NSLog(@"j=========================%d",j);
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSLog(@"j=========================%d",j);
     NSString *stt = [NSString stringWithFormat:@"%d",j];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",stt,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
     NSLog(@"%@",datadic);

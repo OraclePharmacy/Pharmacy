@@ -81,10 +81,10 @@
                 
                 NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                 [vipInfoReturnList writeToFile:path1 atomically:YES];
-                NSLog(@"%@",NSHomeDirectory());
+                NSLog(@"%@",vipInfoReturnList);
                 NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                 [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
-                
+                [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];
                 [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                 
                 
