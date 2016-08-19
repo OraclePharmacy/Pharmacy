@@ -24,6 +24,11 @@
     
     int i ;
     int j ;
+    
+    int answer1;
+    int answer2;
+    int answer3;
+    int answer4;
 }
 @property (nonatomic,strong) UILabel *wenti;
 @property (nonatomic,strong) UIButton *daan1;
@@ -51,6 +56,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     i = 0 ; j = 0 ;
+    answer1 = 0; answer2 = 0;answer3 = 0;answer4 = 0;
+
     xuanxiang = [[NSString alloc]init];
 
     width = [UIScreen mainScreen].bounds.size.width;
@@ -353,59 +360,98 @@
 {
     if (btn == self.daan1)
     {
-        self.daan1.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
         self.daan1=btn;
-        if (xuanxiang.length == 0) {
-            xuanxiang = @"a";
-            //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+        if (answer1 == 0) {
+            self.daan1.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
+            if (xuanxiang.length == 0) {
+                xuanxiang = @"a";
+                answer1 = 1;
+                //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+            else{
+                xuanxiang = [xuanxiang stringByAppendingString:@"a"];
+                answer1 = 1;
+                //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
         }
         else{
-            xuanxiang = [xuanxiang stringByAppendingString:@"a"];
-            //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            self.daan1.selected = NO;
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"a" withString:@""];
+            answer1 = 1;
         }
-        
     }
     else if (btn == self.daan2)
     {
-        self.daan2.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
         self.daan2=btn;
-        if (xuanxiang.length == 0) {
-            xuanxiang = @"b";
-           // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
-        }
-        else{
-            xuanxiang = [xuanxiang stringByAppendingString:@"b"];
-           // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
-        }
+        if (answer2 == 0) {
 
+            self.daan2.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
+            if (xuanxiang.length == 0) {
+                xuanxiang = @"b";
+                // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+            else{
+                xuanxiang = [xuanxiang stringByAppendingString:@"b"];
+                // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+
+        }
+        else
+        {
+            self.daan2.selected = NO;
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"b" withString:@""];
+            answer2 = 1;
+        }
+        
+       
     }
     else if (btn == self.daan3)
     {
-        self.daan3.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
         self.daan3=btn;
-        if (xuanxiang.length == 0) {
-            xuanxiang = @"c";
-          //  [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+        if (answer3 == 0) {
+            
+            self.daan3.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
+            if (xuanxiang.length == 0) {
+                xuanxiang = @"c";
+                //  [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+            else{
+                xuanxiang = [xuanxiang stringByAppendingString:@"c"];
+                // [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+
         }
         else{
-            xuanxiang = [xuanxiang stringByAppendingString:@"c"];
-           // [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            self.daan3.selected = NO;
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"c" withString:@""];
+            answer3 = 1;
         }
-
+        
+       
     }
     else if (btn == self.daan4)
     {
-        self.daan4.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
         self.daan4=btn;
-        if (xuanxiang.length == 0) {
-            xuanxiang = @"d";
-         //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
-        }
-        else{
-            xuanxiang = [xuanxiang stringByAppendingString:@"d"];
-         //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
-        }
+        if (answer4 == 0) {
+            self.daan4.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
+            if (xuanxiang.length == 0) {
+                xuanxiang = @"d";
+                //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
+            else{
+                xuanxiang = [xuanxiang stringByAppendingString:@"d"];
+                //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
+            }
 
+        }else
+        {
+            self.daan4.selected = NO;
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"d" withString:@""];
+            answer4 = 1;
+        }
+        
+        
+        
     }
     else if (btn == self.quding)
     {
