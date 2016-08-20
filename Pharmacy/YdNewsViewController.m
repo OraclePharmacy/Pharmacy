@@ -64,7 +64,7 @@
     
 }
 -(void)loadNewdata{
-    pushLogList=[[NSMutableArray alloc] init];
+//    pushLogList=[[NSMutableArray alloc] init];
     ye=1;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
@@ -73,6 +73,7 @@
 -(void)loadNewData{
     NSLog(@"%d,%d",ye,coun);
     if (ye*10 >coun+9) {
+        
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         
         [self.tableview.mj_footer endRefreshing];
@@ -87,7 +88,7 @@
 
 -(void)jiekou{
     [WarningBox warningBoxModeIndeterminate:nil andView:self.view];
-    
+    NSLog(@"%d",ye);
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -107,7 +108,7 @@
     //出入参数：
  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"10",@"pageSize",@"1",@"pageNo", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"10",@"pageSize",[NSString stringWithFormat:@"%d",ye],@"pageNo", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -126,20 +127,23 @@
         NSLog(@"%@",responseObject);
         NSArray*poop=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"pushLogList"]];
         coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
+        NSLog(@"%d",ye);
         if (ye!=1) {
             for (NSDictionary*dd in poop) {
                 [pushLogList addObject:dd];
             }
         }else{
+          
             pushLogList =[NSMutableArray arrayWithArray:poop];
         }
+        NSLog(@"%lu",(unsigned long)pushLogList.count);
         ye++;
-     
+        
         [_tableview reloadData];
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-
+        NSLog(@"%@",error);
     }];
 
 }
@@ -151,7 +155,7 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return pushLogList.count;
 }
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -191,7 +195,8 @@
     
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(5, 0, width - 20, 30);
-    title.text = @"sfjskdfh";
+    NSLog(@"%lu",(unsigned long)pushLogList.count);
+    title.text = [NSString stringWithFormat:@"%@",[pushLogList[indexPath.row] objectForKey:@"pushContent"]];
     title.font = [UIFont systemFontOfSize:15];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     [bai addSubview:title];
@@ -203,7 +208,7 @@
     
     UILabel *time = [[UILabel alloc]init];
     time.frame = CGRectMake(5, 31, width - 20, 30);
-    time.text = @"fsdflk";
+    time.text = [NSString stringWithFormat:@"%@",[pushLogList[indexPath.row] objectForKey:@"pushTime"]];;
     time.font = [UIFont systemFontOfSize:13];
     time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     time.textAlignment = NSTextAlignmentRight;

@@ -25,7 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(keyboardWasShown:)
+     
+                                                 name:UIKeyboardDidShowNotification object:nil];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     width = [UIScreen mainScreen].bounds.size.width;
@@ -41,6 +45,10 @@
     
     [self kongjian];
     
+}
+-(void)keyboardWasShown:(NSNotification*)ss{
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
 }
 -(void)kongjian
 {

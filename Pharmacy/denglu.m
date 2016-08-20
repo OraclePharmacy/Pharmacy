@@ -27,7 +27,7 @@
         if ([[edic objectForKey:@"phonetext"] isEqualToString:@""]||[[edic objectForKey:@"password"] isEqualToString:@""]) {
             
         }else{
-    [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:view];
+//    [WarningBox warningBoxModeIndeterminate:@"登录中..." andView:view];
     
     //userID    暂时不用改
     NSString * userID=@"0";

@@ -32,7 +32,9 @@
 @end
 
 @implementation YdwodetieziViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    ye=1;[self jiekou];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -67,7 +69,7 @@
     MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = footer;
     
-    [self jiekou];
+    
 }
 -(void)loadNewdata{
     

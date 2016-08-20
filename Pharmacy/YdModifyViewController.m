@@ -147,6 +147,9 @@
         }
         else if ([self mima:self.NewPassText.text])
         {
+            if ([self.OldPassText.text isEqual:self.NewPassText.text]) {
+                [WarningBox warningBoxModeText:@"新密码与久密码一样哟~" andView:self.view];
+            }else{
             if ([self.NewPassText.text isEqualToString:self.AgainPassText.text]) {
                 
                 [WarningBox warningBoxModeIndeterminate:@"密码修改中..." andView:self.view];
@@ -190,14 +193,30 @@
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
-                        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                        
                         NSLog(@"%@",responseObject);
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            
+                            [WarningBox warningBoxModeText:@"密码修改成功~" andView:self.view];
                             NSDictionary*datadic=[responseObject valueForKey:@"data"];
                             NSLog(@"%@",datadic);
+                            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+                                [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+                              NSString*  Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
+                               
+                                NSMutableDictionary*dd=[NSMutableDictionary dictionaryWithContentsOfFile:Rempath];
+                                [dd setObject:@"" forKey:@"password"];
+                                
+                                [dd writeToFile:Rempath atomically:NO];
+                            }
                             
-                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              
+                                [self.navigationController popToRootViewControllerAnimated:YES];
+                                
+                                
+                            });
+
+                          
                             
                         }
                         
@@ -223,7 +242,7 @@
                 [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
                 
             }
-
+            }
         }
     }
     //为空

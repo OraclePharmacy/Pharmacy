@@ -31,7 +31,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
-        
+    
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
 }
@@ -45,9 +45,9 @@
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
-            YdModifyViewController *ModifyViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"modify"];
-            
-            [self.navigationController pushViewController:ModifyViewController animated:YES];
+                YdModifyViewController *ModifyViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"modify"];
+                
+                [self.navigationController pushViewController:ModifyViewController animated:YES];
             }
         }
         else if (indexPath.row == 1)
@@ -57,9 +57,9 @@
             
             [alert show];
             
-
+            
         }
-
+        
     }
     else if (indexPath.section == 1)
     {
@@ -78,14 +78,16 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
-      [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
-        [self.navigationController popViewControllerAnimated:YES];
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-    }else{
-        [WarningBox warningBoxModeText:@"还未登录..." andView:self.view];
+    if (buttonIndex==0) {
         
-       
+    }else{
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController setNavigationBarHidden:YES animated:NO];
+        }else{
+            [WarningBox warningBoxModeText:@"还未登录..." andView:self.view];
+        }
     }
 }
 

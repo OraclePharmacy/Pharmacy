@@ -209,7 +209,7 @@
     image.frame = CGRectMake(10, 5, 65, 65);
     image.backgroundColor = [UIColor grayColor];
     
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.section] objectForKey:@"url"]];
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.section] objectForKey:@"couponInfo"]objectForKey:@"url"]];
     NSLog(@"%@",path);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     
@@ -349,7 +349,7 @@
             [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
             
             nameField = [alert textFieldAtIndex:0];
-            nameField.placeholder = @"请输入一个名称";
+            nameField.placeholder = @"请输入一个兑换码";
             
             [alert show];
             
@@ -417,9 +417,9 @@
                     
                     arr = [datadic objectForKey:@"list"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self jiekou];
+                       ye=1;  [self jiekou];
+                       
                     
-                    [self.tableview reloadData];
 
                     });
                                         

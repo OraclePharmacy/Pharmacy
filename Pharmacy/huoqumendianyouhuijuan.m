@@ -387,6 +387,7 @@
 {
     if (buttonIndex == 0)
     {
+        ye=1;
         [self jiekou];
     }
     else if (buttonIndex == 1)
