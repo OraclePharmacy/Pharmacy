@@ -25,7 +25,7 @@
     hud.yOffset = 160;
     //hud.xOffset = 30;
     [hud setRemoveFromSuperViewOnHide:YES];
-    [hud hide:YES afterDelay:2];
+    [hud hide:YES afterDelay:1.3];
     
 }
 /**
