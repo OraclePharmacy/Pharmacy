@@ -88,16 +88,16 @@
                 [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                 
                 
-                [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-                    [MBProgressHUD hideAllHUDsForView:view animated:YES];
-                    if (error) {
-                        NSLog(@" 登录出错");
-                        return ;
-                    }
-                    NSLog(@"JMessage 登录成功");
-               
-                }];
-                
+//                [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+//                    [MBProgressHUD hideAllHUDsForView:view animated:YES];
+//                    if (error) {
+//                        NSLog(@" 登录出错");
+//                        return ;
+//                    }
+//                    NSLog(@"JMessage 登录成功");
+//               
+//                }];
+//                
                 
                 
                 
