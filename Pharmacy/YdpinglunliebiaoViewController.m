@@ -20,7 +20,7 @@
     CGFloat width;
     CGFloat height;
     
-    NSArray *arr;
+    NSMutableArray *arr;
     
     int ye;
     int coun;
@@ -69,16 +69,17 @@
 }
 -(void)loadNewdata{
     
-    ye = 1;
+    ye = 1; MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
 }
 -(void)loadNewData{
     
-    if (ye*3 >coun+2) {
+    if (ye*8 >coun+7) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-        
+        self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];
     }else{
         if (ye==1) {
@@ -111,8 +112,9 @@
 
     //出入参数：
   
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"5",@"pageSize",[NSString stringWithFormat:@"%d",ye],@"pageNo",nil];
-    NSLog(@"%d",ye);
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"8",@"pageSize",[NSString stringWithFormat:@"%d",ye],@"pageNo",nil];
+    NSLog(@"  ---------tiezi-------%@",datadic);
+    
     NSLog(@"评论列表%@",datadic);
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -125,7 +127,7 @@
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
-    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -141,8 +143,16 @@
                 
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
-                arr = [datadic objectForKey:@"commentList"];
-                
+                NSArray*mg = [datadic objectForKey:@"commentList"];
+                if (ye!=1) {
+                    for (NSDictionary*dd in mg) {
+                        [arr addObject:dd];
+                    }
+                }else{
+                    arr=[NSMutableArray arrayWithArray:mg];
+                }
+                ye++;
+
                 [self.tableview reloadData];
             }
         }

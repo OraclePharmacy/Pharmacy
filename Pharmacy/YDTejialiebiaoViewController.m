@@ -68,16 +68,17 @@
 }
 -(void)loadNewdata{
     
-    ye = 1;
+    ye = 1; MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
 }
 -(void)loadNewData{
     
-    if (ye*3 >coun+2) {
+    if (ye*10>coun+9) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-        
+        self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];
     }else{
         if (ye==1) {
@@ -110,7 +111,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -123,7 +124,7 @@
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
-    [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];

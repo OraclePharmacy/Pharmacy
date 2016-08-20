@@ -72,15 +72,16 @@
 -(void)loadNewdata{
     
     ye = 1;
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
 }
 -(void)loadNewData{
-
-    if (ye*5 >coun+4) {
+    if (ye*10 >coun+9) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-        
+        self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];
     }else{
         if (ye==1) {
@@ -89,12 +90,7 @@
         [self jiekou];
         [self.tableview.mj_footer endRefreshing];
     }
-    
 }
-
-
-
-
 -(void)jiekou
 {
     
@@ -119,7 +115,7 @@
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"5",@"pageSize",nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

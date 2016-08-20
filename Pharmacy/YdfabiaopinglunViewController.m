@@ -28,7 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSDictionary* s=[NSDictionary dictionaryWithObjectsAndKeys:@"哈哈哈",@"ij", nil];
+    NSLog(@"%@",s);
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -43,11 +44,11 @@
     
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
 }
 -(void)wancheng{
     [self.view endEditing:YES];
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
 }
 -(void)kongjian
 {
@@ -66,10 +67,10 @@
     tishi.font = [UIFont systemFontOfSize:13];
     tishi.text = @"请添加内容...";
     [self.pinglunText addSubview:tishi];
-
+    
     self.pinglunNutton.layer.cornerRadius = 5;
     self.pinglunNutton.layer.masksToBounds = YES;
-
+    
 }
 -(void)textViewDidChange:(UITextView *)textView
 {
@@ -85,7 +86,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     [self.pinglunText resignFirstResponder];
-
+    
 }
 
 -(void)fanhui
@@ -116,17 +117,15 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-       NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
-        NSLog(@"帖子%@",_tieziID );
-        if ([_tieziID isEqualToString:@""]||_tieziID==nil||[_tieziID isEqual:[NSNull null]])
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
+        NSLog(@"\n\n\n\n\n帖子%@,%@",_tieziID ,_pinglunID);
+        if ([_pinglunID isEqualToString:@""]||_pinglunID==nil||[_pinglunID isEqual:[NSNull null]])
         {
-            _tieziID = @"";
-        }
-        else
-        {
-           _pinglunID = @"";
+            _pinglunID = @"";
         }
       
+        
+        
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
         NSLog(@"发表评论%@",datadic);
         
@@ -140,7 +139,7 @@
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
-        [manager GET:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -168,11 +167,11 @@
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
             NSLog(@"错误：%@",error);
         }];
-
+        
     }
     else
     {
-         [WarningBox warningBoxModeText:@"评论不能为空!!!" andView:self.view];
+        [WarningBox warningBoxModeText:@"评论不能为空!!!" andView:self.view];
     }
     
 }

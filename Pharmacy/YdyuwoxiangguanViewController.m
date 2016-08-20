@@ -69,7 +69,8 @@
 }
 -(void)loadNewdata{
     
-    ye = 1;
+    ye = 1; MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = footer;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
@@ -78,7 +79,7 @@
     
     if (ye*8 >coun+7) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-        
+        self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];
     }else{
         if (ye==1) {
