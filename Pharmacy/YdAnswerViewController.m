@@ -470,6 +470,8 @@
             [self.quding removeFromSuperview];
             [self.image removeFromSuperview];
             
+            answer1 = 0; answer2 = 0; answer3 = 0; answer4 = 0;
+            
             NSString * str1 = [arr[i] objectForKey:@"answer"];
             
             if ([str1 isEqualToString:xuanxiang] )
@@ -498,6 +500,8 @@
             [self.daan4 removeFromSuperview];
             [self.quding removeFromSuperview];
             [self.image removeFromSuperview];
+            
+            answer1 = 0; answer2 = 0; answer3 = 0; answer4 = 0;
             
             NSString * str1 = [arr[i] objectForKey:@"answer"];
             
