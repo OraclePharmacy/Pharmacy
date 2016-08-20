@@ -98,6 +98,7 @@
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
 @property(strong,nonatomic) UIScrollView *scrollView;
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdHomePageViewController
@@ -114,7 +115,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     remenzixunarray = [[NSMutableArray alloc]init];
     
     panduan=0;

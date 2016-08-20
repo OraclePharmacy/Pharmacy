@@ -124,19 +124,19 @@
     [self.view addSubview:image];
     
     shoucang = [[UIButton alloc]init];
-    shoucang.frame = CGRectMake(width - 70, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    shoucang.frame = CGRectMake(width - 90, CGRectGetMaxY(image.frame) + 10, 20, 20);
    // [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
     dianzan = [[UIButton alloc]init];
-    dianzan.frame = CGRectMake(width - 45, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    dianzan.frame = CGRectMake(width - 60, CGRectGetMaxY(image.frame) + 10, 20, 20);
     //[dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
     [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dianzan];
     
     fenxiang = [[UIButton alloc]init];
-    fenxiang.frame = CGRectMake(width - 20, CGRectGetMaxY(image.frame) + 10, 15, 15);
+    fenxiang.frame = CGRectMake(width - 30, CGRectGetMaxY(image.frame) + 10, 20, 20);
     [fenxiang setBackgroundImage:[UIImage imageNamed:@"share(1).png"] forState:UIControlStateNormal];
     [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fenxiang];
@@ -564,8 +564,8 @@
     NSLog(@"%@",sFileNamePath);
     
     
-    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
-    //MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://dlqncdn.miaopai.com/stream/VT40C6y1OVXhEdOt5kpgcg__.mp4"]];
+    //MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
+    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8"]];
     
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];

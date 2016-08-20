@@ -2408,7 +2408,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Jk-KVc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
@@ -2446,14 +2446,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cou-qv-QF9" firstAttribute="leading" secondItem="es2-pf-IRo" secondAttribute="trailing" constant="10" id="6kg-fZ-M3m"/>
+                            <constraint firstAttribute="trailing" secondItem="Ezk-Jk-KVc" secondAttribute="trailing" id="LfD-xN-BMP"/>
                             <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="Cou-qv-QF9" secondAttribute="bottom" constant="35" id="PJe-Dn-heb"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="leading" secondItem="qCU-CA-pim" secondAttribute="leading" id="YSz-ja-ppZ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="cgx-JS-OA7"/>
                             <constraint firstAttribute="bottom" secondItem="Cou-qv-QF9" secondAttribute="bottom" constant="35" id="e3n-Vm-qUB"/>
                             <constraint firstAttribute="bottomMargin" secondItem="geY-33-ene" secondAttribute="bottom" constant="35" id="fZR-eJ-jg5"/>
                             <constraint firstAttribute="trailing" secondItem="Cou-qv-QF9" secondAttribute="trailing" constant="20" id="h91-7W-kYY"/>
                             <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="es2-pf-IRo" secondAttribute="bottom" constant="35" id="s5l-0F-4Oz"/>
+                            <constraint firstItem="Ezk-Jk-KVc" firstAttribute="top" secondItem="qCU-CA-pim" secondAttribute="top" id="xpj-xB-HyT"/>
                             <constraint firstItem="es2-pf-IRo" firstAttribute="leading" secondItem="geY-33-ene" secondAttribute="trailing" constant="10" id="yRe-tI-8Db"/>
                             <constraint firstItem="GIe-2D-Vu3" firstAttribute="top" secondItem="geY-33-ene" secondAttribute="bottom" constant="35" id="ykp-0a-SRu"/>
+                            <constraint firstItem="geY-33-ene" firstAttribute="top" secondItem="Ezk-Jk-KVc" secondAttribute="bottom" constant="35" id="zvu-jU-W19"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2465,7 +2469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQM-ym-eov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2037" y="9486"/>
+            <point key="canvasLocation" x="2002" y="9470"/>
         </scene>
         <!--Yd Information Details View Controller-->
         <scene sceneID="CK9-o6-a1q">

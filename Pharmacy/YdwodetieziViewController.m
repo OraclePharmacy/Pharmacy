@@ -27,6 +27,8 @@
     
     int ye;
     int coun;
+    
+    UILabel *label;
 }
 @property (nonatomic, strong) UIView *tableFooterView;
 @end
@@ -145,6 +147,11 @@
                 
                 NSArray*mg = [datadic objectForKey:@"vipTopicDetail"];
                 
+                if (mg == nil) {
+                    [self kongbai];
+                    label.text = @"对不起,您没有发布任何消息!";
+                }
+                
                 NSLog(@"=====================%@==========================",arr);
                 
                 coun=[[datadic objectForKey:@"count"] intValue];
@@ -163,19 +170,36 @@
             }
         }
         @catch (NSException * e) {
-            
+            [self kongbai];
+            label.text = @"";
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self kongbai];
+        label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
     
 }
+
+
+-(void)kongbai
+{
+    _tableview.hidden = YES;
+    
+    label = [[UILabel alloc]init];
+    label.frame = CGRectMake(0, 114, width, 30);
+    label.font = [UIFont systemFontOfSize:17];
+    label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+}
+
 //section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

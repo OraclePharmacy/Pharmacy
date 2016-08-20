@@ -30,6 +30,8 @@
     
     int ye;
     int coun;
+    
+    UILabel *label;
 }
 @property (nonatomic, strong) UIView *tableFooterView;
 @end
@@ -141,6 +143,12 @@
                 
                 NSArray*mg = [datadic objectForKey:@"list"];
                 
+                if (mg == nil)
+                {
+                    [self kongbai];
+                    label.text = @"对不起,你还没有领取优惠券!";
+                }
+                
                 coun=[[datadic objectForKey:@"count"] intValue];
                 if (ye!=1) {
                     for (NSDictionary*dd in mg) {
@@ -158,18 +166,31 @@
         @catch (NSException * e) {
             
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
+            [self kongbai];
+            label.text = @"";
         }
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self kongbai];
+        label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
 //        NSLog(@"错误：%@",error);
     }];
     
 }
-
+-(void)kongbai
+{
+    _tableview.hidden = YES;
+    
+    label = [[UILabel alloc]init];
+    label.frame = CGRectMake(0, 114, width, 30);
+    label.font = [UIFont systemFontOfSize:17];
+    label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+}
 
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
