@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950094111D6AE064004656FB /* denglu123.m in Sources */ = {isa = PBXBuildFile; fileRef = 950094101D6AE064004656FB /* denglu123.m */; };
 		95024D3B1D113D5900B7F7D8 /* dingdan.png in Resources */ = {isa = PBXBuildFile; fileRef = 95024D331D113D5900B7F7D8 /* dingdan.png */; };
 		95024D3C1D113D5900B7F7D8 /* fenxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 95024D341D113D5900B7F7D8 /* fenxiang.png */; };
 		95024D3D1D113D5900B7F7D8 /* jianyi.png in Resources */ = {isa = PBXBuildFile; fileRef = 95024D351D113D5900B7F7D8 /* jianyi.png */; };
@@ -362,6 +363,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9500940F1D6AE064004656FB /* denglu123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = denglu123.h; sourceTree = "<group>"; };
+		950094101D6AE064004656FB /* denglu123.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = denglu123.m; sourceTree = "<group>"; };
 		95024D331D113D5900B7F7D8 /* dingdan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dingdan.png; sourceTree = "<group>"; };
 		95024D341D113D5900B7F7D8 /* fenxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fenxiang.png; sourceTree = "<group>"; };
 		95024D351D113D5900B7F7D8 /* jianyi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jianyi.png; sourceTree = "<group>"; };
@@ -2059,6 +2062,8 @@
 				D226F5331D4EDBEB00A06E4E /* denglu.m */,
 				D226F5351D4F24B500A06E4E /* tiaodaodenglu.h */,
 				D226F5361D4F24B500A06E4E /* tiaodaodenglu.m */,
+				9500940F1D6AE064004656FB /* denglu123.h */,
+				950094101D6AE064004656FB /* denglu123.m */,
 			);
 			name = "登录";
 			sourceTree = "<group>";
@@ -2738,6 +2743,7 @@
 				95609EF71CABC74E00AF65E4 /* SDWebImageDecoder.m in Sources */,
 				953717111CE6D5C500CA959D /* YdwodeshoucangViewController.m in Sources */,
 				95609EA31CABC72E00AF65E4 /* SBJsonStreamParserState.m in Sources */,
+				950094111D6AE064004656FB /* denglu123.m in Sources */,
 				95104D731D07F2520040EA4B /* guanyuViewController.m in Sources */,
 				95104D781D07F3790040EA4B /* YdfankuiViewController.m in Sources */,
 				9502A4B11C9D3F1300578339 /* YdShoppingCartViewController.m in Sources */,

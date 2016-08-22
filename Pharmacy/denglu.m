@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import "denglu123.h"
 #import <JMessage/JMessage.h>
 
 @implementation denglu
@@ -88,18 +89,8 @@
                 [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                 
                 
-//                [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-//                    [MBProgressHUD hideAllHUDsForView:view animated:YES];
-//                    if (error) {
-//                        NSLog(@" 登录出错");
-//                        return ;
-//                    }
-//                    NSLog(@"JMessage 登录成功");
-//               
-//                }];
-//                
-                
-                
+                denglu123 *deng123 = [[denglu123 alloc]init ];
+                [deng123 sssddaaa];
                 
             }
             else{
