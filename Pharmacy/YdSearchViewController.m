@@ -257,6 +257,13 @@
     //隐藏键盘
     [self.navigationItem.titleView endEditing:YES];
     
+    if (searchbar.text.length == 0)
+    {
+        [WarningBox warningBoxModeText:@"请输入查找内容..." andView:self.view];
+    }
+    else
+    {
+    
     [WarningBox warningBoxModeIndeterminate:@"搜索中..." andView:self.view];
     //userID    暂时不用改
     NSString * userID=@"0";
@@ -330,7 +337,7 @@
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
-
+    }
 }
 //导航栏左按钮方法
 -(void)fanhui

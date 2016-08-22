@@ -43,7 +43,7 @@
     [super viewDidLoad];
     
     imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-14@3x.png",nil];
-    lablearray = [NSArray arrayWithObjects:@"病友交流",@"用药咨询",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
+    lablearray = [NSArray arrayWithObjects:@"病友交流",@"自我诊断",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
     
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;

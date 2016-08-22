@@ -132,8 +132,8 @@
                 zhuyi=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"precautions"]] componentsSeparatedByString:@"\n"];;
                 zhiliao=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"cnTreatPlan"]] componentsSeparatedByString:@"\n"];
                 //少子段
-                yaopin=[diseaseInfo objectForKey:@"lst"];
-                NSLog(@"-*-*-*-**-*%@",yaopin );
+                yaopin=[diseaseInfo objectForKey:@"lst"] ;
+                NSLog(@"-*-*-*-**-*%@",[[[diseaseInfo objectForKey:@"lst"][0] objectForKey:@"addedProduct" ] objectForKey:@"id"]);
                 [_tableview reloadData];
                 
             }
@@ -393,20 +393,20 @@
 -(void)handleSingleTapFrom3{
     NSLog(@"3");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@"id"]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][2] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 
 }
 -(void)handleSingleTapFrom2{
     NSLog(@"2");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"id"]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][1] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 }
 -(void)handleSingleTapFrom1{
     NSLog(@"1");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
-    dd.yaopinID=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"id"]];
+    dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][0] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 }
 #pragma  mark ---点击 展开---合并
