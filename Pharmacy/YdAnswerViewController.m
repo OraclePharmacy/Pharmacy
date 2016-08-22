@@ -29,6 +29,8 @@
     int answer2;
     int answer3;
     int answer4;
+    
+    int sb;
 }
 @property (nonatomic,strong) UILabel *wenti;
 @property (nonatomic,strong) UIButton *daan1;
@@ -164,7 +166,8 @@
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSLog(@"j=========================%d",j);
     NSString *stt = [NSString stringWithFormat:@"%d",j];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",stt,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
+    NSString *sst = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"paperId"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:sst,@"paperId",vip,@"vipId",officeid,@"officeId",stt,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
     NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -191,8 +194,13 @@
                 
                 arr = [datadic objectForKey:@"paperGiftList"];
                 
+                sb = 1 ;
                 [self zuihouxianshi];
-                
+            }
+            else if([[responseObject objectForKey:@"code"] intValue]==4444)
+            {
+                sb = 2 ;
+                [self zuihouxianshi];
             }
             
         }
@@ -337,24 +345,53 @@
     [self.shangyiye addTarget:self action:@selector(daan:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.shangyiye];
     
-    if ( j == 100 )
+    if (sb == 1)
     {
-        self.jieguo.text = @"答 题 结 束";
-        self.fenshuwei.text = @"您 的 分 数 为";
-        self.fenshu.text = [NSString stringWithFormat:@"%d 分",j];
-        self.jiangpin.text = [NSString stringWithFormat:@"您 的 奖 品 为\n%@",[arr[0] objectForKey:@"giftName"]];
-        self.kuxiaoimage.image = [UIImage imageNamed:@"xl.png"];
+        
+        if ( j == 100 )
+        {
+            self.jieguo.text = @"答 题 结 束";
+            self.fenshuwei.text = @"您 的 分 数 为";
+            self.fenshu.text = [NSString stringWithFormat:@"%d 分",j];
+            self.jiangpin.text = [NSString stringWithFormat:@"您 的 奖 品 为\n%@",[arr[0] objectForKey:@"giftName"]];
+            self.kuxiaoimage.image = [UIImage imageNamed:@"xl.png"];
+        }
+        else
+        {
+            
+            self.jieguo.text = @"答 题 结 束";
+            self.fenshuwei.text = @"您 的 分 数 为";
+            self.fenshu.text = [NSString stringWithFormat:@"%d分",j];
+            self.jiangpin.text = @"您 没 有 获 得 奖 品\n下 次 继 续 努 力";
+            self.kuxiaoimage.image = [UIImage imageNamed:@"kl.png"];
+            
+        }
+
     }
     else
     {
-        self.jieguo.text = @"答 题 结 束";
-        self.fenshuwei.text = @"您 的 分 数 为";
-        self.fenshu.text = [NSString stringWithFormat:@"%d分",j];
-        self.jiangpin.text = @"您 没 有 获 得 奖 品\n下 次 继 续 努 力";
-        self.kuxiaoimage.image = [UIImage imageNamed:@"kl.png"];
+        if ( j == 100 )
+        {
+            self.jieguo.text = @"答 题 结 束";
+            self.fenshuwei.text = @"您 的 分 数 为";
+            self.fenshu.text = [NSString stringWithFormat:@"%d 分",j];
+            self.jiangpin.text = @"您 已 经 答 过 题 了\n不 要 太 贪 心 哦";
+            self.kuxiaoimage.image = [UIImage imageNamed:@"kl.png"];
+        }
+        else
+        {
+            
+            self.jieguo.text = @"答 题 结 束";
+            self.fenshuwei.text = @"您 的 分 数 为";
+            self.fenshu.text = [NSString stringWithFormat:@"%d分",j];
+            self.jiangpin.text = @"您 没 有 获 得 奖 品\n下 次 继 续 努 力";
+            self.kuxiaoimage.image = [UIImage imageNamed:@"kl.png"];
+            
+        }
 
     }
-
+    
+  
 }
 -(void)daan:(UIButton *)btn
 {
@@ -364,19 +401,19 @@
         if (answer1 == 0) {
             self.daan1.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
             if (xuanxiang.length == 0) {
-                xuanxiang = @"a";
+                xuanxiang = @"A";
                 answer1 = 1;
                 //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
             else{
-                xuanxiang = [xuanxiang stringByAppendingString:@"a"];
+                xuanxiang = [xuanxiang stringByAppendingString:@"A"];
                 answer1 = 1;
                 //[self.daan1 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
         }
         else{
             self.daan1.selected = NO;
-            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"a" withString:@""];
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"A" withString:@""];
             answer1 = 0;
         }
     }
@@ -387,12 +424,12 @@
 
             self.daan2.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
             if (xuanxiang.length == 0) {
-                xuanxiang = @"b";
+                xuanxiang = @"B";
                 answer2 = 1;
                 // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
             else{
-                xuanxiang = [xuanxiang stringByAppendingString:@"b"];
+                xuanxiang = [xuanxiang stringByAppendingString:@"B"];
                 answer2 = 1;
                 // [self.daan2 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
@@ -401,7 +438,7 @@
         else
         {
             self.daan2.selected = NO;
-            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"b" withString:@""];
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"B" withString:@""];
             answer2 = 0;
         }
     }
@@ -412,12 +449,12 @@
             
             self.daan3.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
             if (xuanxiang.length == 0) {
-                xuanxiang = @"c";
+                xuanxiang = @"C";
                 answer3 = 1;
                 //  [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
             else{
-                xuanxiang = [xuanxiang stringByAppendingString:@"c"];
+                xuanxiang = [xuanxiang stringByAppendingString:@"C"];
                 answer3 = 1;
                 // [self.daan3 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
@@ -425,7 +462,7 @@
         }
         else{
             self.daan3.selected = NO;
-            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"c" withString:@""];
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"C" withString:@""];
             answer3 = 0;
         }
     }
@@ -435,12 +472,12 @@
         if (answer4 == 0) {
             self.daan4.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
             if (xuanxiang.length == 0) {
-                xuanxiang = @"d";
+                xuanxiang = @"D";
                 answer4 = 1;
                 //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
             else{
-                xuanxiang = [xuanxiang stringByAppendingString:@"d"];
+                xuanxiang = [xuanxiang stringByAppendingString:@"D"];
                 answer4 = 1;
                 //   [self.daan4 setBackgroundColor:[UIColor colorWithHexString:@"32be60" alpha:1]];
             }
@@ -448,13 +485,18 @@
         }else
         {
             self.daan4.selected = NO;
-            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"d" withString:@""];
+            xuanxiang = [xuanxiang stringByReplacingOccurrencesOfString:@"D" withString:@""];
             answer4 = 0;
         }
     }
     else if (btn == self.quding)
     {
         
+        if (xuanxiang.length == 0) {
+            [WarningBox warningBoxModeText:@"您没有选择答案,请选择您的答案!" andView:self.view];
+        }
+        else
+        {
         if ( i == arr.count - 1) {
 
             self.daan1.selected = NO;
@@ -505,6 +547,22 @@
             
             NSString * str1 = [arr[i] objectForKey:@"answer"];
             
+            NSMutableString *string = [[NSMutableString alloc ]init];
+            [string insertString:xuanxiang atIndex:0];
+            for (int p=0; p<[string length]-1; p++) {
+                for (int q=p+1; q<[string length]; q++) {
+                    int asciiCode1 = [string characterAtIndex:p];
+                    int asciiCode2 =[string characterAtIndex:q];
+                    if (asciiCode1>asciiCode2) {
+                        NSString *string2 =[NSString stringWithFormat:@"%c",asciiCode2];
+                        NSString *string3 =[NSString stringWithFormat:@"%c",asciiCode1];
+                        [string replaceCharactersInRange:NSMakeRange(i, 1) withString:string2];
+                        [string replaceCharactersInRange:NSMakeRange(j, 1) withString:string3];
+                    }
+                }
+            }
+            xuanxiang = [NSString  stringWithFormat:@"%@",string];
+            
             if ([str1 isEqualToString:xuanxiang] )
             {
                 j = j + 10 ;
@@ -520,7 +578,7 @@
             
             [self kongjian];
         }
-        
+        }
     }
     else if (btn == self.shangyiye)
     {
