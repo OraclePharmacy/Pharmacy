@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YdPharmacistDetailsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
+@property ( strong , nonatomic) NSString * pop;
 @property ( strong , nonatomic) NSString * logname;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong , nonatomic) NSString*yaoshiid;

@@ -476,6 +476,7 @@ int popop=0;
 }
 -(void)liaotian
 {
+    NSLog(@"%@",dataha);
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]]];
     [conversation allMessages:^(id resultObject, NSError *error) {
         NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
@@ -494,6 +495,7 @@ int popop=0;
             }
             
             mememeViewController *conversationVC = [mememeViewController new];
+            conversationVC.opo=[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"office"] objectForKey:@"name"] ];
             conversationVC.conversation = (JMSGConversation *)resultObject;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }];
@@ -501,6 +503,7 @@ int popop=0;
         
         mememeViewController *conversationVC = [mememeViewController new];
         conversationVC.conversation = conversation;
+        conversationVC.opo=[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"office"] objectForKey:@"name"] ];
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
     

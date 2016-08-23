@@ -47,7 +47,8 @@
 @implementation YdServiceViewController
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -547,32 +548,26 @@
     else if (indexPath.section == 1)
     {
     
-        JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"loginName"]]];
-        if (conversation == nil) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            [tiaodaodenglu jumpToLogin:self.navigationController];
+        }else{
+            [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
             
-            
-            [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
-                
+            [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [WarningBox warningBoxHide:YES  andView:self.view];
                 if (error) {
-                    NSLog(@"创建会话失败-*-*-*%@",error);
+                    NSLog(@" 登录出错");
+                    [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                     return ;
                 }
-                mememeViewController*xixi=[mememeViewController new];
-                xixi.conversation=(JMSGConversation *)resultObject;
-                [self.navigationController pushViewController:xixi animated:YES];
-                
-                
+                [self liaotian:indexPath.row];
+                NSLog(@"JMessage 登录成功");
             }];
-        } else {
-            mememeViewController*xixi=[mememeViewController new];
-            xixi.conversation=conversation;
-            [self.navigationController pushViewController:xixi animated:YES];
-            
         }
-        
-        NSLog(@"聊天界面");    }
+
     
-    
+    }
    // 跳转到详细病症
 //        YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
 //        DrugJump.imageName = DiseaseImageArray[indexPath.row];
@@ -581,6 +576,43 @@
     
     return;
 }
+
+
+-(void)liaotian:(NSUInteger)ss
+{
+    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"loginName"]]];
+    [conversation allMessages:^(id resultObject, NSError *error) {
+        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
+    }];
+    if (conversation == nil) {
+        
+        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
+        
+        [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [WarningBox warningBoxHide:YES andView:self.view];
+            
+            if (error) {
+                NSLog(@"创建会话失败%@",error);
+                return ;
+            }
+            
+            mememeViewController *conversationVC = [mememeViewController new];
+            conversationVC.conversation = (JMSGConversation *)resultObject;
+            conversationVC.opo=[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"name"]];
+            NSLog(@"\n\n\n\n---***---***%@\n\n\n\n\n",conversationVC.opo);
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }];
+    } else {
+        
+        mememeViewController *conversationVC = [mememeViewController new];
+        conversationVC.conversation = conversation;
+        conversationVC.opo=[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"name"]];
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }
+    
+}
+
 
 
 //推荐医生

@@ -310,12 +310,14 @@
             
             mememeViewController *conversationVC = [mememeViewController new];
         conversationVC.conversation = (JMSGConversation *)resultObject;
+            conversationVC.opo=_pop;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }];
     } else {
         
         mememeViewController *conversationVC = [mememeViewController new];
         conversationVC.conversation = conversation;
+        conversationVC.opo=_pop;
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
 

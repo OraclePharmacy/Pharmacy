@@ -10,6 +10,6 @@
 #import <JMUIChattingKit/JMUIChattingViewController.h>
 
 @interface mememeViewController :  JMUIConversationViewController
-
+@property(nonatomic,strong)NSString*opo;
 
 @end

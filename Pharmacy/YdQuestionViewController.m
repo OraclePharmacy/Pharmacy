@@ -243,7 +243,7 @@
     UITableViewCell *cell=(UITableViewCell*)[[tt superview] superview ];
     
     NSIndexPath *index=[self.tableview indexPathForCell:cell];
-    
+    NSLog(@"%@",arr);
     
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"loginName"]]];
     if (conversation == nil) {
@@ -257,6 +257,7 @@
             }
             mememeViewController*xixi=[mememeViewController new];
             xixi.conversation=(JMSGConversation *)resultObject;
+            xixi.opo=[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"name"]];
             [self.navigationController pushViewController:xixi animated:YES];
             
             
@@ -264,6 +265,7 @@
     } else {
         mememeViewController*xixi=[mememeViewController new];
         xixi.conversation=conversation;
+       xixi.opo=[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"name"]];
         [self.navigationController pushViewController:xixi animated:YES];
         
     }
@@ -276,6 +278,7 @@
      YdPharmacistDetailsViewController *PharmacistDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pharmacistdetails"];
      PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
      PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"loginName"]];
+    PharmacistDetails.pop=[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"name"]];
      NSLog(@"%@",PharmacistDetails.yaoshiid);
      [self.navigationController pushViewController:PharmacistDetails animated:YES];
     
