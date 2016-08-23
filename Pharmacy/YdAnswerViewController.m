@@ -395,6 +395,7 @@
 }
 -(void)daan:(UIButton *)btn
 {
+   
     if (btn == self.daan1)
     {
         self.daan1=btn;
@@ -556,8 +557,8 @@
                     if (asciiCode1>asciiCode2) {
                         NSString *string2 =[NSString stringWithFormat:@"%c",asciiCode2];
                         NSString *string3 =[NSString stringWithFormat:@"%c",asciiCode1];
-                        [string replaceCharactersInRange:NSMakeRange(i, 1) withString:string2];
-                        [string replaceCharactersInRange:NSMakeRange(j, 1) withString:string3];
+                        [string replaceCharactersInRange:NSMakeRange(p, 1) withString:string2];
+                        [string replaceCharactersInRange:NSMakeRange(q, 1) withString:string3];
                     }
                 }
             }

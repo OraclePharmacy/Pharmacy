@@ -13,7 +13,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
-@interface YdbannerViewController ()<UIWebViewDelegate>
+#import "UMSocial.h"
+@interface YdbannerViewController ()<UMSocialUIDelegate,UIWebViewDelegate>
 {
     int zan;
     NSString *dian;
@@ -437,8 +438,18 @@
 
 //分享
 - (IBAction)fenxiang:(id)sender {
+    //这里写分享功能
     
-    NSLog(@"分享");
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    
+    [UMSocialData defaultData].extConfig.title = @"索坤接招！！";
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"507fcab25270157b37000010"
+                                      shareText:@"索坤  你是大傻子！！"
+                                     shareImage:[UIImage imageNamed:@"IMG_0797.jpg"]
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
+                                       delegate:self];
+    
     
 }
 @end
