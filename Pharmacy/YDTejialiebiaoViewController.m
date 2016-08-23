@@ -207,13 +207,13 @@
     yuanjian.frame = CGRectMake(110, 65, width - 115, 20);
     yuanjian.font = [UIFont systemFontOfSize:12];
     yuanjian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    yuanjian.text = [NSString stringWithFormat:@"原价:%@",[proList[indexPath.row] objectForKey:@"prodPrice"]];
+    yuanjian.text = [NSString stringWithFormat:@"原价:%.2f",[[proList[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
     
     UILabel *tejia = [[UILabel alloc]init];
     tejia.frame = CGRectMake(110, 85, width  - 115, 20);
     tejia.font = [UIFont systemFontOfSize:12];
     tejia.textColor = [UIColor redColor];
-    tejia.text = [NSString stringWithFormat:@"特价:%@",[proList[indexPath.row] objectForKey:@"specPrice"]];
+    tejia.text = [NSString stringWithFormat:@"特价:%.2f",[[proList[indexPath.row] objectForKey:@"specPrice"]floatValue]];
     
     UIView *xian = [[UIView alloc]init];
     xian.frame = CGRectMake(0, 109, width, 1);

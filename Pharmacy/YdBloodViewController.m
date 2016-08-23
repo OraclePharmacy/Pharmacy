@@ -265,6 +265,7 @@
 //血糖
 -(void)xuetang
 {
+    
     UILabel *fanqian = [[UILabel alloc]init];
     fanqian.frame = CGRectMake(5, 70, (width-25)/6, 20);
     fanqian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
@@ -317,142 +318,162 @@
 //上传血糖
 -(void)xuetangbutton
 {
-    [WarningBox warningBoxModeIndeterminate:@"正在上传..." andView:self.view];
     
-    //userID    暂时不用改
-    NSString * userID=@"0";
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/function/saveBodyCheck";
-    
-    //时间戳
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-    NSString *xuetangstring = [NSString stringWithFormat:@"%@,%@",fanqiangtext.text,fanhoutext.text];
-    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
-    //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血糖",@"checkItem",xuetangstring,@"result",currentTime,@"checkTime", nil];
-    
-    NSString*jsonstring=[writer stringWithObject:datadic];
-    
-    //获取签名
-    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-    
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    
-    //电泳借口需要上传的数据
-    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    if (fanqiangtext.text.length == 0 || fanhoutext.text.length == 0) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [WarningBox warningBoxHide:YES andView:self.view];
+         [WarningBox warningBoxModeText:@"上传数据不能为空" andView:self.view];
+    }
+    else
+    {
+        [WarningBox warningBoxModeIndeterminate:@"正在上传..." andView:self.view];
         
-        @try
-        { 
-            NSLog(@"%@",responseObject);
-            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+        //userID    暂时不用改
+        NSString * userID=@"0";
+        
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/function/saveBodyCheck";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        NSString *xuetangstring = [NSString stringWithFormat:@"%@,%@",fanqiangtext.text,fanhoutext.text];
+        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血糖",@"checkItem",xuetangstring,@"result",currentTime,@"checkTime", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            
+            @try
+            {
+                NSLog(@"%@",responseObject);
+                if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                    
+                    fanqiangtext.text = @"";
+                    fanhoutext.text = @"";
+                    
+                    [self huoqu];
+                }
                 
-                fanqiangtext.text = @"";
-                fanhoutext.text = @"";
-
-                [self huoqu];
+                
             }
-         
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
             
-        }
-        @catch (NSException * e) {
             
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
-        }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
         
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-    }];
+
+    }
+    
     
 }
 //上传血压
 -(void)xueyabutton
 {
-    [WarningBox warningBoxModeIndeterminate:@"正在上传..." andView:self.view];
     
-    //userID    暂时不用改
-    NSString * userID=@"0";
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/function/saveBodyCheck";
-    
-    //时间戳
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-    NSString *xueyastring = [NSString stringWithFormat:@"%@,%@",gaoyatext.text,diyatext.text];
-    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
-    //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血压",@"checkItem",xueyastring,@"result",currentTime,@"checkTime", nil];
-    
-    NSString*jsonstring=[writer stringWithObject:datadic];
-    
-    //获取签名
-    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-    
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    
-    //电泳借口需要上传的数据
-    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+     if (gaoyatext.text.length == 0 || diyatext.text.length == 0) {
+         
+         [WarningBox warningBoxModeText:@"上传数据不能为空" andView:self.view];
+     }
+    else
+    {
+        [WarningBox warningBoxModeIndeterminate:@"正在上传..." andView:self.view];
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [WarningBox warningBoxHide:YES andView:self.view];
+        //userID    暂时不用改
+        NSString * userID=@"0";
         
-        @try
-        {
-            NSLog(@"%@",responseObject);
-            if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/function/saveBodyCheck";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        //  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        NSString *xueyastring = [NSString stringWithFormat:@"%@,%@",gaoyatext.text,diyatext.text];
+        NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血压",@"checkItem",xueyastring,@"result",currentTime,@"checkTime", nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            
+            @try
+            {
+                NSLog(@"%@",responseObject);
+                if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                    
+                    gaoyatext.text = @"";
+                    diyatext.text = @"";
+                    
+                    [self huoqu];
+                }
                 
-                gaoyatext.text = @"";
-                diyatext.text = @"";
                 
-                [self huoqu];
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
             }
             
             
-        }
-        @catch (NSException * e) {
-            
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
-        }
-        
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-    }];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
 
+    }
+    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
