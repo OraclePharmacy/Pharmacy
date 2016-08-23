@@ -273,7 +273,7 @@
     
      YdPharmacistDetailsViewController *PharmacistDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pharmacistdetails"];
      PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
-    PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"loginName"]];
+     PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"loginName"]];
      NSLog(@"%@",PharmacistDetails.yaoshiid);
      [self.navigationController pushViewController:PharmacistDetails animated:YES];
     

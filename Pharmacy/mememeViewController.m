@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tabBarController.tabBar.hidden=YES;
     //状态栏名称
     self.navigationItem.title = @"聊天";
     //设置导航栏左按钮

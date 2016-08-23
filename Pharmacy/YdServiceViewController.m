@@ -23,6 +23,7 @@
 #import "WarningBox.h"
 #import "UIImageView+WebCache.h"
 #import "tiaodaodenglu.h"
+#import "mememeViewController.h"
 @interface YdServiceViewController ()
 {
     
@@ -545,9 +546,31 @@
     }
     else if (indexPath.section == 1)
     {
-        YdchatViewController *chat = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"chat"];
-        [self.navigationController pushViewController:chat animated:YES];
-    }
+    
+        JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"loginName"]]];
+        if (conversation == nil) {
+            
+            
+            [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
+                
+                if (error) {
+                    NSLog(@"创建会话失败-*-*-*%@",error);
+                    return ;
+                }
+                mememeViewController*xixi=[mememeViewController new];
+                xixi.conversation=(JMSGConversation *)resultObject;
+                [self.navigationController pushViewController:xixi animated:YES];
+                
+                
+            }];
+        } else {
+            mememeViewController*xixi=[mememeViewController new];
+            xixi.conversation=conversation;
+            [self.navigationController pushViewController:xixi animated:YES];
+            
+        }
+        
+        NSLog(@"聊天界面");    }
     
     
    // 跳转到详细病症
