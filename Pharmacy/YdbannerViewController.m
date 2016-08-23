@@ -42,6 +42,31 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _webview.delegate=self;
+    //取消右侧，下侧滚动条，去处上下滚动边界的黑色背景
+    for (UIView *_aView in [_webview subviews])
+    {
+        if ([_aView isKindOfClass:[UIScrollView class]])
+        {
+            [(UIScrollView *)_aView setShowsVerticalScrollIndicator:NO];
+            //右侧的滚动条
+            
+            [(UIScrollView *)_aView setShowsHorizontalScrollIndicator:NO];
+            //下侧的滚动条
+            
+            for (UIView *_inScrollview in _aView.subviews)
+            {
+                if ([_inScrollview isKindOfClass:[UIImageView class]])
+                {
+                    _inScrollview.hidden = YES;  //上下滚动出边界时的黑色的图片
+                }
+            }
+        }
+    }
+    
+    //    禁用UIWebView左右滚动
+    
+    [(UIScrollView *)[[_webview subviews] objectAtIndex:0] setBounces:NO];
+    
     //导航栏标题
     self.navigationItem.title = @"活动详情";
     //设置self.view背景颜色

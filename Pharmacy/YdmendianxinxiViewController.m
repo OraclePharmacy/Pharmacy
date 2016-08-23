@@ -26,13 +26,14 @@
     NSDictionary *mendiandion;
     NSArray *dianyuanarray;
 }
+@property (nonatomic, strong) UIView *tableFooterView;
 @end
 
 @implementation YdmendianxinxiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableview.tableFooterView = [[UIView alloc] init];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     

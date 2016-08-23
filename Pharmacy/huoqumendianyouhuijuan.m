@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableview.tableFooterView = [[UIView alloc] init];
+
     ye = 1;
     
     width = [UIScreen mainScreen].bounds.size.width;
@@ -47,6 +47,7 @@
     _tableview.frame = CGRectMake(0, 64, width, height - 64);
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    self.tableview.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:_tableview];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];

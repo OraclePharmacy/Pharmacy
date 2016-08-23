@@ -282,12 +282,12 @@ int popop=0;
                 cell.textLabel.text = @"特          价 :";
                 shuju.textColor = [UIColor redColor];
                 
-                shuju.text = [NSString stringWithFormat:@"¥%@",[xianshiarr objectForKey:@"specPrice"]];
+                shuju.text = [NSString stringWithFormat:@"¥%.2f",[[xianshiarr objectForKey:@"specPrice"]floatValue]];
             }
             else if (indexPath.row == 1) {
                 cell.textLabel.text = @"原          价 :";
                 
-                shuju.text = [NSString stringWithFormat:@"¥%@",[xianshiarr  objectForKey:@"prodPrice"]];
+                shuju.text = [NSString stringWithFormat:@"¥%.2f",[[xianshiarr  objectForKey:@"prodPrice"]floatValue]];
             }
         }
         else

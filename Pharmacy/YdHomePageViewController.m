@@ -1265,7 +1265,7 @@
                 originalcost.font = [UIFont systemFontOfSize:11];
                 originalcost.textAlignment = NSTextAlignmentCenter;
                 originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-                originalcost.text = [NSString stringWithFormat:@"¥%@",[proList[i] objectForKey:@"prodPrice"]];
+                originalcost.text = [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"prodPrice"]floatValue]];
                 //特价
                 UILabel *specialoffer = [[UILabel alloc] init];
                 specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
