@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Color+Hex.h"
 #import "WarningBox.h"
+#import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import "SBJson.h"
 #import "hongdingyi.h"
@@ -17,11 +18,12 @@
 #import "UIImageView+WebCache.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "UMSocial.h"
-@interface YdInformationDetailsViewController ()<MPMediaPickerControllerDelegate,UMSocialUIDelegate>
+@interface YdInformationDetailsViewController ()<NSURLSessionDownloadDelegate,MPMediaPickerControllerDelegate,UMSocialUIDelegate>
 {
     CGFloat width;
     CGFloat height;
     
+    NSURL *uuuu;
     UIButton *dianzan;
     UIButton *fenxiang;
     UIButton *shoucang;
@@ -36,6 +38,9 @@
     
     int bo ;
 }
+
+/**全局管理的对话*/
+@property(nonatomic, strong)NSURLSession *session;
 
 @end
 
@@ -97,7 +102,7 @@
     else
         jianjie.font=[UIFont systemFontOfSize:14.0f];
     
-     jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     
     //
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:jianjie.text];;
@@ -125,7 +130,7 @@
     
     shoucang = [[UIButton alloc]init];
     shoucang.frame = CGRectMake(width - 90, CGRectGetMaxY(image.frame) + 10, 20, 20);
-   // [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+    // [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
@@ -164,7 +169,7 @@
         cang = 1;
         [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
     }
-
+    
     
 }
 //点击手势
@@ -181,9 +186,12 @@
             [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
         }
         else if (bo == 2){
-             [self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,shareUrl]);
+            [self downloadFile2:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            
+            
         }
-    
+        
         NSLog(@"imageView1");
         
     }
@@ -213,7 +221,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"type",vip,@"vipId",@"0",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -278,7 +286,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-       NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"type",vip,@"vipId",@"1",@"mark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -322,7 +330,7 @@
     }
     
     
-
+    
 }
 //点赞
 -(void)dianzan
@@ -349,7 +357,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"flag",vip,@"vipId",@"0",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -414,7 +422,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-       NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",@"1",@"flag",vip,@"vipId",@"1",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -458,7 +466,7 @@
     }
     
 }
- //分享
+//分享
 -(void)fenxiang
 {
     //这里写分享功能
@@ -471,7 +479,7 @@
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
                                        delegate:self];
     
-
+    
     
 }
 
@@ -507,7 +515,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_hahaha,@"id",vip,@"vipId",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -538,7 +546,7 @@
             NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
             if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
                 bo = 1;
-               // [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+                // [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
             }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
             {
                 bo = 2;
@@ -560,38 +568,80 @@
     
     
 }
--(void)shipinbofang:(NSString *)sFileNamePath{
+
+- (void)downloadFile2:(NSString *)ss
+{
+    [WarningBox warningBoxModeIndeterminate:@"视频加载中...." andView:self.view];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ss] cachePolicy:1 timeoutInterval:15];
+    [[self.session downloadTaskWithRequest:request]resume];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self shipinbofang:uuuu];
+//    });
+}
+
+#pragma mark - 代理方法
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    
+    NSString *pathFile = [NSTemporaryDirectory() stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
+    uuuu =[NSURL fileURLWithPath:pathFile];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           [self shipinbofang:uuuu];
+    });
+ 
+}
+// 懒加载
+- (NSURLSession *)session
+{
+    if(_session == nil)
+    {
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
+    }
+    return _session;
+}
+
+-(void)shipinbofang:(NSURL *)sFileNamePath{
     NSLog(@"%@",sFileNamePath);
-    
-    
-    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:sFileNamePath]];
-//    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-    
-    
-   
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    [movie.moviePlayer prepareToPlay];
-    
-    [self presentMoviePlayerViewControllerAnimated:movie];
-    
-    [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-    
-    
-    
-    [movie.view setBackgroundColor:[UIColor clearColor]];
-    
-    
-    
-    [movie.view setFrame:self.view.bounds];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self
-     
-                                           selector:@selector(movieFinishedCallback:)
-     
-                                               name:MPMoviePlayerPlaybackDidFinishNotification
-     
-                                             object:movie.moviePlayer];
+    if (NULL==sFileNamePath) {
+        NSLog(@"没走");
+    }else{
+    @try {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
+        //    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+        
+        
+        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        
+        [movie.moviePlayer prepareToPlay];
+        
+        [self presentMoviePlayerViewControllerAnimated:movie];
+        
+        [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+        
+        
+        
+        [movie.view setBackgroundColor:[UIColor clearColor]];
+        
+        
+        
+        [movie.view setFrame:self.view.bounds];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+         
+                                                selector:@selector(movieFinishedCallback:)
+         
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+         
+                                                  object:movie.moviePlayer];
+        
+        
+    } @catch (NSException *exception) {
+        
+    }
+    }
 }
 
 -(void)movieFinishedCallback:(NSNotification*)notify{
@@ -610,11 +660,11 @@
      
      
      
-                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                   name:MPMoviePlayerPlaybackDidFinishNotification
      
      
      
-                                                object:theMovie];
+                                                 object:theMovie];
     
     
     
