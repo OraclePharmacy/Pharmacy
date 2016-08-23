@@ -82,7 +82,7 @@
     CollectionView.dataSource = self;
     
     
-    //[self tuijian];
+    [self tuijian];
     [self.view addSubview:CollectionView];
     
 }
@@ -93,7 +93,7 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 
 {
-    return 1;
+    return 2;
 }
 
 //设置元素的的大小框
@@ -459,11 +459,11 @@
     }
     
     
-    //跳转到详细病症
-    //    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-    //    DrugJump.imageName = DiseaseImageArray[indexPath.row];
-    //    DrugJump.bookNo = DiseaseLableArray[indexPath.row];
-    //    [self.navigationController pushViewController:DrugJump animated:YES];
+   // 跳转到详细病症
+//        YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
+//        DrugJump.imageName = DiseaseImageArray[indexPath.row];
+//        DrugJump.bookNo = DiseaseLableArray[indexPath.row];
+//        [self.navigationController pushViewController:DrugJump animated:YES];
     
     return;
 }
