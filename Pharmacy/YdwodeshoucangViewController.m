@@ -140,7 +140,7 @@
                 
                NSArray*mg = [datadic objectForKey:@"collectList"];
                 
-                if (mg == nil) {
+                if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起 ,您还没有收藏!";
                 }

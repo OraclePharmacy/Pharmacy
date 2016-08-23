@@ -134,7 +134,7 @@
                  coun=[[datadic objectForKey:@"count"] intValue];
                  NSArray*mg= [datadic objectForKey:@"myOrder"];
                 
-                if (mg == nil) {
+                if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起,您暂时没有订单!";
                 }

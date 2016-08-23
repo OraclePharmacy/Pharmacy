@@ -143,7 +143,7 @@
                 
                NSArray*mg = [datadic objectForKey:@"awardetailList"];
                 
-                if (mg == nil) {
+                if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起，你还没有中奖!";
                 }

@@ -148,7 +148,7 @@
                 
                 NSArray*mg = [datadic objectForKey:@"vipTopicDetail"];
                 
-                if (mg == nil) {
+                if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起,您没有发布任何消息!";
                 }

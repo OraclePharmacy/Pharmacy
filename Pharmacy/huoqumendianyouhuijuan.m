@@ -143,7 +143,7 @@
                 
                 NSArray*mg = [datadic objectForKey:@"couponInfoList"];
                 
-                if (mg == nil) {
+                if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起,还没有可领取的优惠券!";
                 }
