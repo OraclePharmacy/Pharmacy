@@ -199,7 +199,8 @@
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    //隐藏滑动条
+    self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
 }
 

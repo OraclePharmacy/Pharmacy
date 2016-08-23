@@ -221,6 +221,8 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //线消失
     self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    //隐藏滑动条
+    self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
 }
 

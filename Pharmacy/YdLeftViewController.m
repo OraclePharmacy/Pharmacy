@@ -177,6 +177,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
+    //隐藏滑动条
+    self.tableView.showsVerticalScrollIndicator =NO;
     return cell;
 }
 

@@ -562,7 +562,8 @@
         
         [cell.add addTarget:self action:@selector(tianjia) forControlEvents:UIControlEventTouchUpInside];
         
-        
+        //隐藏滑动条
+        self.tableview.showsVerticalScrollIndicator =NO;
         return cell;
         
         
@@ -610,7 +611,8 @@
         
         [cell.sw addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventValueChanged];
         
-        
+        //隐藏滑动条
+        self.tableview.showsVerticalScrollIndicator =NO;
         return cell;
         
     }

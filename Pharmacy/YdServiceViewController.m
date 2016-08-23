@@ -265,7 +265,7 @@
         [cell.contentView addSubview:lab1];
         cell.backgroundColor = [UIColor whiteColor];
     }
-    
+
     return cell;
     
 }

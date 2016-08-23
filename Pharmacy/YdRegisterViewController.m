@@ -410,6 +410,8 @@
     }
     [cell.contentView addSubview:name];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //隐藏滑动条
+    self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

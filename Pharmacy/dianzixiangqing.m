@@ -133,7 +133,8 @@
     
     
     [cell addSubview:imageview];
-    
+    //隐藏滑动条
+    self.tableview.showsVerticalScrollIndicator =NO;
     return cell;
     
 }
