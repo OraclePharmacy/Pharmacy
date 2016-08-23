@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
+#import "WarningBox.h"
 @interface YdBZxiangqingViewController ()
 {
     CGFloat width;
@@ -31,6 +32,8 @@
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error){
                                if (error) {
+                                   
+                                   [WarningBox warningBoxModeText:@"网络连接超时请重新选择" andView:self.view];
                                    NSLog(@"Httperror: %@%ld", error.localizedDescription, error.code);
                                } else {
                                    NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
@@ -44,18 +47,24 @@
                                    
                                    NSDictionary *content = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];//转换数据格式
                                    NSLog(@"%@",content);
-                                   NSMutableString *str=[[NSMutableString alloc]init];
-                                   [str appendString:[content objectForKey:@"name"]];
-                                   [str appendString:[content objectForKey:@"causetext"]];
-                                   [str appendString:[content objectForKey:@"description"]];
-                                   [str appendString:[content objectForKey:@"detailtext"]];
-                                   [str appendString:[content objectForKey:@"disease"]];
-                                   [str appendString:[content objectForKey:@"drug"]];
-                                   [str appendString:[content objectForKey:@"place"]];
-                                   [str appendString:[content objectForKey:@"message"]];
-                                   
-                                   [web loadHTMLString:str baseURL:nil];
-
+                                   if ([[content objectForKey:@"status"] integerValue] == 1)
+                                   {
+                                       
+                                       NSMutableString *str=[[NSMutableString alloc]init];
+                                       [str appendString:[content objectForKey:@"name"]];
+                                       [str appendString:[content objectForKey:@"causetext"]];
+                                       [str appendString:[content objectForKey:@"description"]];
+                                       [str appendString:[content objectForKey:@"detailtext"]];
+                                       [str appendString:[content objectForKey:@"disease"]];
+                                       [str appendString:[content objectForKey:@"drug"]];
+                                       [str appendString:[content objectForKey:@"place"]];
+                                       [str appendString:[content objectForKey:@"message"]];
+                                       
+                                       [web loadHTMLString:str baseURL:nil];
+                                   }
+                                   else if ([[content objectForKey:@"status"] integerValue] == 0){
+                                       [WarningBox warningBoxModeText:@"网络连接超时请重新选择" andView:self.view];
+                                   }
                                }
                            }];
 }
