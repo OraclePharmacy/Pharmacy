@@ -16,6 +16,12 @@
 #import "YdJiaoLiuViewController.h"
 #import "YdYaoXiangViewController.h"
 #import "Color+Hex.h"
+#import "AFNetworking 3.0.4/AFHTTPSessionManager.h"
+#import "SBJson.h"
+#import "hongdingyi.h"
+#import "lianjie.h"
+#import "WarningBox.h"
+#import "UIImageView+WebCache.h"
 #import "tiaodaodenglu.h"
 @interface YdServiceViewController ()
 {
@@ -31,6 +37,9 @@
     NSArray *imagearray;
     //文字
     NSArray *lablearray;
+    
+    NSArray *arr;
+    NSMutableArray *arrImage;
 }
 @end
 
@@ -41,10 +50,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-14@3x.png",nil];
-    lablearray = [NSArray arrayWithObjects:@"病友交流",@"自我诊断",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
-    
+
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -84,8 +90,91 @@
     
     [self tuijian];
     [self.view addSubview:CollectionView];
+    [self jiekou];
     
 }
+
+-(void)jiekou
+{
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/function/pharmacistInfoList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",@"3",@"pageSize",@"1",@"pageNo", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //            NSLog(@"%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                NSLog(@"dicdatadic%@",datadic);
+                
+                
+                arr = [datadic objectForKey:@"pharmacistInfoList"];
+                
+                
+                for (int i = 0; i < arr.count; i++) {
+                    
+                    [arrImage addObject:[NSString stringWithFormat:@"%@%@",service_host,[arr[i] objectForKey:@"photo"]]];
+                    
+                    
+                }
+                
+                imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-14@3x.png",nil];
+                lablearray = [NSArray arrayWithObjects:@"病友交流",@"自我诊断",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
+                
+                [CollectionView reloadData];
+                
+            }
+            
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        //NSLog(@"错误：%@",error);
+    }];
+    
+}
+
+
 
 #pragma mark - collectionView delegate
 
@@ -114,7 +203,7 @@
     if (section == 0) {
         return 6;
     }
-    return 3;
+    return arr.count;
     
 }
 //设置元素内容
@@ -152,19 +241,21 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.3);
-        image.image = [UIImage imageNamed:@"IMG_0800.jpg"];
-        image.backgroundColor = [UIColor grayColor];
+        NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",arrImage[indexPath.section]]];
+        [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
         
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(0, image.bounds.size.height + gao*0.1, kuan, gao*0.15);
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.text = @"111213132";
+        lab.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
+        //lab.text = @"1111";
         lab.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         
         UILabel *lab1 = [[UILabel alloc]init];
         lab1.frame = CGRectMake(0, image.bounds.size.height + gao*0.25, kuan, gao*0.1);
         lab1.textAlignment = NSTextAlignmentCenter;
-        lab1.text = @"111213132";
+        lab1.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"qualification"]];
+       // lab1.text = @"222";
         lab1.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         lab1.font = [UIFont systemFontOfSize:13];
         
@@ -478,7 +569,7 @@
     Doctorsrecommended.frame = CGRectMake(0, (CollectionView.bounds.size.height)*0.6, width, (CollectionView.bounds.size.height)*0.1);
     [Doctorsrecommended setTitle:@"推荐医生" forState:UIControlStateNormal];
     [Doctorsrecommended setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1] forState:UIControlStateNormal];
-    [Doctorsrecommended addTarget:self action:@selector(Doctorsrecommendedff) forControlEvents:UIControlEventTouchUpInside];
+    //[Doctorsrecommended addTarget:self action:@selector(Doctorsrecommendedff) forControlEvents:UIControlEventTouchUpInside];
     Doctorsrecommended.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     [CollectionView addSubview:Doctorsrecommended];
     
