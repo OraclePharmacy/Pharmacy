@@ -35,6 +35,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     _neirong.numberOfLines=0;
+    self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self jiekou];
 }
 -(void)jiekou{
@@ -139,6 +140,7 @@
     [cell addSubview:imageview];
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
+    
     return cell;
     
 }

@@ -433,7 +433,9 @@
     UILabel*oo=[cell viewWithTag:index.row+999];
     
     oo.text=[NSString stringWithFormat:@"%d",[oo.text intValue]];
-    
+//    if([oo.text isEqualToString:@"0"]){
+//        oo.text=[NSString stringWithFormat:@"1"];
+//    }
     NSString*qw=oo.text;
     [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
     
@@ -458,16 +460,16 @@
             [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
         }
     }
-    float jine;
-    jine =0;
-    
-    for (int i=0; i<arr.count; i++) {
-        NSLog(@"%@",[arr[i] objectForKey:@"zongjia"]);
-        jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
-        NSLog(@"%.2f",jine);
-    }
-    
-    [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
+//    float jine;
+//    jine =0;
+//    
+//    for (int i=0; i<arr.count; i++) {
+//        NSLog(@"%@",[arr[i] objectForKey:@"zongjia"]);
+//        jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
+//        NSLog(@"%.2f",jine);
+//    }
+//    
+//    [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = right;
     
     [self.tableview reloadData];
