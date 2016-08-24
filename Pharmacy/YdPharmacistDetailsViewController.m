@@ -33,9 +33,7 @@
 @end
 
 @implementation YdPharmacistDetailsViewController
--(void)viewWillAppear:(BOOL)animated{
-     self.tabBarController.tabBar.hidden=YES;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"\n\n\n\n\nhahahaha\n\n\n\n%@\n\n\n\n\n",_logname);
