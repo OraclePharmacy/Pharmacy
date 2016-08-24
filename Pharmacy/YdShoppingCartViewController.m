@@ -200,12 +200,12 @@
     if ([[yikaishi[indexPath.row] objectForKey:@"specProdFlag"] intValue]==1) {
         
         yuanjia.frame = CGRectMake(100, 30, 70, 20);
-        yuanjia.text = [NSString stringWithFormat:@"原价:%@",[yikaishi[indexPath.row] objectForKey:@"prodPrice"]];
+        yuanjia.text = [NSString stringWithFormat:@"原价:%.2f",[[yikaishi[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
         yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         yuanjia.font =[UIFont systemFontOfSize:13];
         
         tejia.frame = CGRectMake(170, 30, 70, 20);
-        tejia.text = [NSString stringWithFormat:@"特价:%@",[yikaishi[indexPath.row] objectForKey:@"specPrice"]];
+        tejia.text = [NSString stringWithFormat:@"特价:%.2F",[[yikaishi[indexPath.row] objectForKey:@"specPrice"]floatValue]];
         tejia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         tejia.font =[UIFont systemFontOfSize:13];
     }else{
