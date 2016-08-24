@@ -443,36 +443,24 @@
 
 -(void)baocun
 {
-    //    NSLog(@"zheshiji  %@",yikaishi);
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-    
     [yikaishi writeToFile:countwenjian atomically:YES];
-    
     aa=1;
-    
-    NSArray* arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-    for (int i=0; i<arr.count; i++) {
-        if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
-            float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
-            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
-        }else{
-            float s=[[arr[i] objectForKey:@"prodPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
-            [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
+    NSMutableArray *aaa=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+    int lk=0;
+    for (int i=0; i<aaa.count+lk; i++) {
+        NSLog(@"%@",aaa);
+        if([[aaa[i-lk] objectForKey:@"shuliang"]isEqualToString:@"0"]){
+            NSLog(@"%d",i-lk);
+
+            [aaa removeObjectAtIndex:i-lk];lk++;
+            
+
         }
     }
-//    float jine;
-//    jine =0;
-//    
-//    for (int i=0; i<arr.count; i++) {
-//        NSLog(@"%@",[arr[i] objectForKey:@"zongjia"]);
-//        jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
-//        NSLog(@"%.2f",jine);
-//    }
-//    
-//    [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
+  
+    [aaa writeToFile:countwenjian atomically:YES];
     self.navigationItem.rightBarButtonItem = right;
-    
-    [self.tableview reloadData];
     [self viewWillAppear:YES];
 }
 -(void)xiaoshi
