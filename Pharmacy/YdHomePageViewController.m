@@ -38,6 +38,7 @@
 #import "denglu.h"
 #import "tiaodaodenglu.h"
 #import <JMessage/JMessage.h>
+#import "GuideViewController.h"
 
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -105,17 +106,42 @@
 @implementation YdHomePageViewController
 
 -(void)viewWillAppear:(BOOL)animated{
-    
-    if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
-        if(nicaicai==1)
-            [self zidongdingwei];
+    NSString *cunzai=[NSString stringWithFormat:@"%@/Documents/cun.plist",NSHomeDirectory()];
+    NSFileManager *fm=[NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:cunzai])
+    {
+        if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
+            if(nicaicai==1)
+                [self zidongdingwei];
+        }
+        self.navigationController.navigationBarHidden=NO;
     }
-    self.navigationController.navigationBarHidden=NO;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *cunzai=[NSString stringWithFormat:@"%@/Documents/cun.plist",NSHomeDirectory()];
+    
+    NSFileManager *fm=[NSFileManager defaultManager];
+    
+    
+    //    启动
+    // if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
+    
+    if (![fm fileExistsAtPath:cunzai])
+    {
+        // [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        [@"sada" writeToFile:cunzai atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        
+        NSLog(@"第一次启动");
+        
+        [GuideViewController sharedGuide];
+        [GuideViewController show];
+        
+    }
+    
+    
+    
     self.tableview.tableFooterView = [[UIView alloc] init];
     remenzixunarray = [[NSMutableArray alloc]init];
     
@@ -484,7 +510,7 @@
         [dic writeToFile:filename atomically:YES];
         
     }
-
+    
     YdSurpriseViewController *Surprise = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"superise"];
     [self.navigationController pushViewController:Surprise animated:YES];
     
@@ -806,7 +832,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"",@"id",@"1",@"pageNo",@"1",@"pageSize", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -1597,22 +1623,22 @@
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
-            //跳转文字资讯详情
-            YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
-            //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
-            TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
-            [self.navigationController pushViewController:TextDetails animated:YES];
+                //跳转文字资讯详情
+                YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+                //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+                TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
+                [self.navigationController pushViewController:TextDetails animated:YES];
             }
         }
         else if (indexPath.section == 4) {
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
-            YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
-            TieZiXiangQing.tieziId = [rementieziarray[indexPath.row] objectForKey:@"id"];
-            TieZiXiangQing.bingzheng = [rementieziarray[indexPath.row] objectForKey:@"diseaseName"];
-            TieZiXiangQing.touxiang1 = [rementieziarray[indexPath.row] objectForKey:@"photo"];
-            [self.navigationController pushViewController:TieZiXiangQing animated:YES];
+                YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
+                TieZiXiangQing.tieziId = [rementieziarray[indexPath.row] objectForKey:@"id"];
+                TieZiXiangQing.bingzheng = [rementieziarray[indexPath.row] objectForKey:@"diseaseName"];
+                TieZiXiangQing.touxiang1 = [rementieziarray[indexPath.row] objectForKey:@"photo"];
+                [self.navigationController pushViewController:TieZiXiangQing animated:YES];
             }
         }
         

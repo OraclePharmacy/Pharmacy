@@ -342,6 +342,7 @@
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
 		D2D367441D6D8581004AAE54 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */; };
 		D2D367451D6D8581004AAE54 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */; };
+		D2D3674A1D6D9D3B004AAE54 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D367491D6D9D3B004AAE54 /* GuideViewController.m */; };
 		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -882,6 +883,10 @@
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
 		D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
+		D2D367471D6D9D3B004AAE54 /* GuideImageName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageName.h; sourceTree = "<group>"; };
+		D2D367481D6D9D3B004AAE54 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		D2D367491D6D9D3B004AAE54 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		D2D3674B1D6D9E20004AAE54 /* MacroUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroUtil.h; sourceTree = "<group>"; };
 		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
 		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1091,6 +1096,7 @@
 		9505D7011C9A7B34006F6850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D2D367461D6D9D30004AAE54 /* 前导页 */,
 				D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */,
 				D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */,
 				95206A3E1D3883B3002BB3B5 /* UMSocial_Sdk_5.2.1 */,
@@ -2355,6 +2361,17 @@
 			name = shishi;
 			sourceTree = "<group>";
 		};
+		D2D367461D6D9D30004AAE54 /* 前导页 */ = {
+			isa = PBXGroup;
+			children = (
+				D2D367471D6D9D3B004AAE54 /* GuideImageName.h */,
+				D2D367481D6D9D3B004AAE54 /* GuideViewController.h */,
+				D2D367491D6D9D3B004AAE54 /* GuideViewController.m */,
+				D2D3674B1D6D9E20004AAE54 /* MacroUtil.h */,
+			);
+			name = "前导页";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2719,6 +2736,7 @@
 				9505D7341C9A9D08006F6850 /* YdScanJumpViewController.m in Sources */,
 				959F9E501CBE206600C5D019 /* YdBloodViewController.m in Sources */,
 				9502A4A01C9CF3CA00578339 /* YdSearchResultViewController.m in Sources */,
+				D2D3674A1D6D9D3B004AAE54 /* GuideViewController.m in Sources */,
 				95609EA01CABC72E00AF65E4 /* SBJsonStreamParser.m in Sources */,
 				95609F011CABC74E00AF65E4 /* UIImageView+WebCache.m in Sources */,
 				95609EF31CABC74E00AF65E4 /* MKAnnotationView+WebCache.m in Sources */,
