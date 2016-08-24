@@ -98,7 +98,7 @@
 }
 -(void)loadNewData{
     if (zhi!=1) {
-        if (diantaiye*5 >coun+4) {
+        if (diantaiye*5 >coun+4||5>coun) {
             [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
             
             [self.tableview.mj_footer endRefreshing];
@@ -112,7 +112,7 @@
 
     }else{
         NSLog(@"%d,%d",ye,coun);
-        if (ye*5 >coun+4) {
+        if (ye*5 >coun+4||5>coun) {
             [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
             
             [self.tableview.mj_footer endRefreshing];

@@ -74,7 +74,7 @@
 }
 -(void)loadNewData{
     NSLog(@"%d,%d",ye,coun);
-    if (ye*10 >coun+9) {
+    if (ye*10 >coun+9||10>coun) {
         
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         self.tableview.mj_footer=nil;

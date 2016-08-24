@@ -75,7 +75,7 @@
 }
 -(void)loadNewData{
     
-    if (ye*3 >coun+2) {
+    if (ye*3 >coun+2||3>coun) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];

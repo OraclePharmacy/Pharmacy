@@ -68,7 +68,9 @@
 }
 -(void)loadNewdata{
     
-    ye = 1; MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    ye = 1;
+    
+    MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = footer;
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
@@ -76,7 +78,7 @@
 }
 -(void)loadNewData{
     
-    if (ye*10>coun+9) {
+    if (ye*10 >coun+9||10>coun) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
         self.tableview.mj_footer=nil;
         [self.tableview.mj_footer endRefreshing];
