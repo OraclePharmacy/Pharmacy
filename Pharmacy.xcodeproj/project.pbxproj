@@ -340,8 +340,8 @@
 		D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE5791CBB4BC1000A9F01 /* AFURLResponseSerialization.m */; };
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
-		D2ED81051D6D26570028A3D0 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2ED81031D6D26570028A3D0 /* JMUIChattingKit.framework */; };
-		D2ED81061D6D26570028A3D0 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2ED81041D6D26570028A3D0 /* JMUIChattingKitResource.bundle */; };
+		D2D367441D6D8581004AAE54 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */; };
+		D2D367451D6D8581004AAE54 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */; };
 		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -880,8 +880,8 @@
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		D2ED81031D6D26570028A3D0 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
-		D2ED81041D6D26570028A3D0 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
+		D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
+		D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
 		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -891,7 +891,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2ED81051D6D26570028A3D0 /* JMUIChattingKit.framework in Frameworks */,
+				D2D367441D6D8581004AAE54 /* JMUIChattingKit.framework in Frameworks */,
 				95206A901D388411002BB3B5 /* libstdc++.tbd in Frameworks */,
 				95206A8E1D388404002BB3B5 /* libsqlite3.tbd in Frameworks */,
 				95206A8C1D3883F7002BB3B5 /* libiconv.tbd in Frameworks */,
@@ -1091,8 +1091,8 @@
 		9505D7011C9A7B34006F6850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D2ED81031D6D26570028A3D0 /* JMUIChattingKit.framework */,
-				D2ED81041D6D26570028A3D0 /* JMUIChattingKitResource.bundle */,
+				D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */,
+				D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */,
 				95206A3E1D3883B3002BB3B5 /* UMSocial_Sdk_5.2.1 */,
 				95206A591D3883B3002BB3B5 /* UMSocial_Sdk_Extra_Frameworks */,
 				D2109B0D1D3786F400FA2E8C /* JMUICommon.framework */,
@@ -2508,7 +2508,7 @@
 				951A41B31CFEA98900FD81D6 /* yyy_result.png in Resources */,
 				950A5AAA1CC85E7600A04F95 /* iconfont-xinshouyetubiao@3x.png in Resources */,
 				95024D401D113D5900B7F7D8 /* tiezi.png in Resources */,
-				D2ED81061D6D26570028A3D0 /* JMUIChattingKitResource.bundle in Resources */,
+				D2D367451D6D8581004AAE54 /* JMUIChattingKitResource.bundle in Resources */,
 				95F1E0441CB7A72300614502 /* shake_yyy_right30.png in Resources */,
 				95206A9D1D38A838002BB3B5 /* dingdan(1).png in Resources */,
 				95CA50F91CA121F7006CBC72 /* disease.plist in Resources */,

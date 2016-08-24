@@ -214,7 +214,7 @@
 		</data>
 		<key>Headers/JMUIInputToolbar.xib</key>
 		<data>
-		Q1OO4m6GaBW6WW7nYEq8dLgWC08=
+		quzdv/Eq0ObmZ1nImGF0+BS47kQ=
 		</data>
 		<key>Headers/JMUIInputView.h</key>
 		<data>
@@ -230,7 +230,7 @@
 		</data>
 		<key>Headers/JMUIMoreView.xib</key>
 		<data>
-		tATuQ3qkbxCowhQRpKdEUKev53A=
+		jrDUtyJ+mDhHQO0Ymwr1djITomE=
 		</data>
 		<key>Headers/JMUIRecordAnimationView.h</key>
 		<data>
@@ -238,11 +238,11 @@
 		</data>
 		<key>Headers/JMUIShowTimeCell.xib</key>
 		<data>
-		VENNTfOTd+lFYtv/6lxnablEgDc=
+		V+PLFUTUIYtezt9FR9lyEqkaYwI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1HtmvN5DsVbXdDhV0BgnOxau6fU=
+		AmzwrW6ig1cRrmwUdG+KzlfeM+0=
 		</data>
 		<key>JMUIChattingKitResource.bundle/JMUIInputToolbar.xib</key>
 		<data>
@@ -438,15 +438,15 @@
 		</data>
 		<key>JMUIInputToolbar.nib</key>
 		<data>
-		K3CPyJmNdkpbobAdZVcmw6TF9ZU=
+		JYewNGnM0gH5NxPoz+N68rpdfSw=
 		</data>
 		<key>JMUIMoreView.nib</key>
 		<data>
-		RIsH5Bo+6lVgOlkEmJbdrSMPCmM=
+		xslJMQb15pi1/LFXjwoXaOOaVr0=
 		</data>
 		<key>JMUIShowTimeCell.nib</key>
 		<data>
-		UYXZ0HfWMd5pJ2HXyZT4V91Ylqs=
+		8CO2cmAXlsIl9h4r80yrcSULc28=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1027,11 +1027,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Q1OO4m6GaBW6WW7nYEq8dLgWC08=
+			quzdv/Eq0ObmZ1nImGF0+BS47kQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			SGnLcn2G3phShTF+ORun0HcIKaS4m0lJbK56m2cyCOg=
+			f8OUbAX6L0V5G5OorT9kzQA6jpxMxJInZ+/d/s7omZ0=
 			</data>
 		</dict>
 		<key>Headers/JMUIInputView.h</key>
@@ -1071,11 +1071,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tATuQ3qkbxCowhQRpKdEUKev53A=
+			jrDUtyJ+mDhHQO0Ymwr1djITomE=
 			</data>
 			<key>hash2</key>
 			<data>
-			VpGcYFrh4CxTDkpQgQ131/L2TXn47JREdTQSnlgXh+A=
+			qDrCE3syAfdqcpxbjz+E/j8K12fV4NdJj6saTGSF9oI=
 			</data>
 		</dict>
 		<key>Headers/JMUIRecordAnimationView.h</key>
@@ -1093,11 +1093,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VENNTfOTd+lFYtv/6lxnablEgDc=
+			V+PLFUTUIYtezt9FR9lyEqkaYwI=
 			</data>
 			<key>hash2</key>
 			<data>
-			vAPif7qI0UwNObJEvbhDQAYMmHHl7y8i3Rsl5cKOtaE=
+			/4NTzkeZOP6j8bN5Kahgb55P/hYotITrJ/ma1RN+1ZQ=
 			</data>
 		</dict>
 		<key>JMUIChattingKitResource.bundle/JMUIInputToolbar.xib</key>
@@ -1632,33 +1632,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			K3CPyJmNdkpbobAdZVcmw6TF9ZU=
+			JYewNGnM0gH5NxPoz+N68rpdfSw=
 			</data>
 			<key>hash2</key>
 			<data>
-			XFXL7yNT/YKN7ndsaql1KvB9hCPxB+lne83cCh8kdVM=
+			RxrvM2jWSLF1Ju5dhwAIGeL5PhnPEL8pZmBbGj7ol44=
 			</data>
 		</dict>
 		<key>JMUIMoreView.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RIsH5Bo+6lVgOlkEmJbdrSMPCmM=
+			xslJMQb15pi1/LFXjwoXaOOaVr0=
 			</data>
 			<key>hash2</key>
 			<data>
-			iF8xh97EAH4fawQ9ppjAUsABSktZ+tJkbGz65tSTiAs=
+			PqL+hwyIkr4vKtn5fBITlI59JuCye0Ves00RM582YaY=
 			</data>
 		</dict>
 		<key>JMUIShowTimeCell.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UYXZ0HfWMd5pJ2HXyZT4V91Ylqs=
+			8CO2cmAXlsIl9h4r80yrcSULc28=
 			</data>
 			<key>hash2</key>
 			<data>
-			+LgnOiytdXlZJkRIf2IFLsdw2o7ehdFhJco7H8IoFzw=
+			dyt/OFbHHGH//UIHElTQFX8WfNus+AMx6cVoG4yN4Hg=
 			</data>
 		</dict>
 	</dict>
