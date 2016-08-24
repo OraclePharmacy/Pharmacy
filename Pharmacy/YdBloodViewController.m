@@ -321,7 +321,7 @@
     
     if (fanqiangtext.text.length == 0 || fanhoutext.text.length == 0) {
         
-         [WarningBox warningBoxModeText:@"上传数据不能为空" andView:self.view];
+         [WarningBox warningBoxModeText:@"上传数据不完整" andView:self.view];
     }
     else
     {
@@ -402,7 +402,7 @@
     
      if (gaoyatext.text.length == 0 || diyatext.text.length == 0) {
          
-         [WarningBox warningBoxModeText:@"上传数据不能为空" andView:self.view];
+         [WarningBox warningBoxModeText:@"上传数据不完整" andView:self.view];
      }
     else
     {
