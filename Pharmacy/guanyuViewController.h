@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface guanyuViewController : UIViewController
+@interface guanyuViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @end
