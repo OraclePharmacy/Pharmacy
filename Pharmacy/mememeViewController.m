@@ -31,6 +31,7 @@
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
+    self.tabBarController.tabBar.hidden=NO;
     
 }
 /*
