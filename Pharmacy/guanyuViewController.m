@@ -37,7 +37,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
     self.tableview = [[UITableView alloc]init];
-    self.tableview.frame = CGRectMake(0, 64, width, height - 104);
+    self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.tableFooterView = [[UIView alloc] init];
