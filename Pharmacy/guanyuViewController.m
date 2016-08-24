@@ -18,7 +18,7 @@
 {
     CGFloat width;
     CGFloat height;
-    
+    UILabel*lable;
     NSArray *shang;
     NSDictionary *data;
 }
@@ -120,7 +120,34 @@
     
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==4) {
+        if (indexPath.row==1) {
+            NSString* s=[[NSString alloc] init];
+            s=[NSString stringWithFormat:@"%@",[[data objectForKey:@"office"] objectForKey:@"remarks"]];
+            //根据lable返回行高
+            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lable.text=s;
+            [lable setFrame:CGRectMake(20, 0, rect.size.width, rect.size.height)];
+            
+            return lable.frame.size.height+1;
+ 
+        }
+    }
+    return 44;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 5;
@@ -169,7 +196,13 @@
         }
         if (indexPath.section == 4) {
             
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[[data objectForKey:@"office"] objectForKey:@"remarks"]];
+            lable=[[UILabel alloc] init];
+            lable.numberOfLines=0;
+            lable.font=[UIFont systemFontOfSize:14];
+            lable.textColor=[UIColor colorWithHexString:@"323232"];
+            
+            [cell addSubview:lable];
+
         }
     }
 
