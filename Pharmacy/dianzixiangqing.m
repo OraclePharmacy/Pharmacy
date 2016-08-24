@@ -16,6 +16,7 @@
 
 @interface dianzixiangqing ()<UITableViewDelegate,UITableViewDataSource>
 {
+    NSMutableArray *hehe;
     NSDictionary *xq;
 }
 @property (weak, nonatomic) IBOutlet UILabel *biaoti;
@@ -107,8 +108,14 @@
 }
 #pragma mark  -----tableview 整理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *aa=[xq objectForKey:@"urls"];
-    return aa.count;
+    NSArray *aa=[NSArray arrayWithArray:[xq objectForKey:@"urls"]];
+    hehe=[NSMutableArray array];
+    for (NSString * ss  in aa) {
+        if (![ss isEqualToString:@""]) {
+            [hehe addObject:ss];
+        }
+    }
+    return hehe.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -126,11 +133,8 @@
     }
 
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tableview.frame.size.width, _tableview.frame.size.width)];
-    [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[xq objectForKey:@"urls"][indexPath.row]]] placeholderImage:[UIImage imageNamed: @"IMG_0798.jpg" ]];
     
-    NSLog(@"%@",[NSString stringWithFormat:@"%@/hyb/%@",service_host,[xq objectForKey:@"urls"][indexPath.row]]);
-    
-    
+     [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.section]]] placeholderImage:[UIImage imageNamed: @"IMG_0798.jpg" ]];
     
     [cell addSubview:imageview];
     //隐藏滑动条
