@@ -229,8 +229,10 @@
         jianjie.frame = CGRectMake( 80, 10, width - 90, 20);
         jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         jianjie.font = [UIFont systemFontOfSize:13];
+        
         if (indexPath.row == 0)
-        { lable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10,width - 90, 20)];
+        {
+            lable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10,width - 90, 20)];
             lable.numberOfLines=0;
             lable.font=[UIFont systemFontOfSize:14];
             lable.textColor=[UIColor colorWithHexString:@"323232"];
@@ -279,7 +281,7 @@
             [cell.contentView addSubview:haoping];
             
             UIButton * mendian = [[UIButton alloc]init];
-            mendian.frame = CGRectMake(215, 10, 100, 20);
+            mendian.frame = CGRectMake(width - 120, 10, 100, 20);
             [mendian setTitle:@"评价门店" forState:UIControlStateNormal];
             [mendian setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
             mendian.titleLabel.font = [UIFont systemFontOfSize: 13.0];
@@ -300,7 +302,7 @@
         [cell.contentView addSubview:image];
         
         UILabel *name = [[UILabel alloc]init];
-        name.frame = CGRectMake( 80, 10, 100, 20);
+        name.frame = CGRectMake( 80, 10, width - 90, 20);
         name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         name.font = [UIFont systemFontOfSize:15];
         name.text = [NSString stringWithFormat:@"%@",[dianyuanarray[indexPath.row] objectForKey:@"name"]];
@@ -321,7 +323,7 @@
         [cell.contentView addSubview:haoping];
         
         UIButton * mendian = [[UIButton alloc]init];
-        mendian.frame = CGRectMake(215, 50, 100, 20);
+        mendian.frame = CGRectMake(width - 120, 50, 100, 20);
         [mendian setTitle:@"评价店员" forState:UIControlStateNormal];
         [mendian setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
         mendian.titleLabel.font = [UIFont systemFontOfSize: 13.0];
