@@ -3815,6 +3815,44 @@
             </objects>
             <point key="canvasLocation" x="-735" y="-341"/>
         </scene>
+        <!--Qdy View Controller-->
+        <scene sceneID="9Z8-kp-aTd">
+            <objects>
+                <viewController id="Kkg-Xw-3fR" customClass="QdyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VAv-KQ-6uc"/>
+                        <viewControllerLayoutGuide type="bottom" id="jNL-Pk-mgk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PAb-WJ-BoE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quc-HX-ZPO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="30j-Mq-5H1">
+                                <rect key="frame" x="280" y="513" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="30j-Mq-5H1" secondAttribute="bottom" constant="50" id="5gW-JM-Aj5"/>
+                            <constraint firstAttribute="trailing" secondItem="quc-HX-ZPO" secondAttribute="trailing" id="DgP-6e-Sdh"/>
+                            <constraint firstItem="quc-HX-ZPO" firstAttribute="leading" secondItem="PAb-WJ-BoE" secondAttribute="leading" id="bHL-Gw-tBe"/>
+                            <constraint firstItem="quc-HX-ZPO" firstAttribute="top" secondItem="PAb-WJ-BoE" secondAttribute="top" id="gqo-fI-BKG"/>
+                            <constraint firstItem="30j-Mq-5H1" firstAttribute="centerX" secondItem="PAb-WJ-BoE" secondAttribute="centerX" id="tBm-9k-uyg"/>
+                            <constraint firstAttribute="bottom" secondItem="quc-HX-ZPO" secondAttribute="bottom" id="ueC-Pp-cAO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="page" destination="30j-Mq-5H1" id="MEG-vi-dxl"/>
+                        <outlet property="scrollview" destination="quc-HX-ZPO" id="cZE-Ii-40g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MmY-Qe-cWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="-5969"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IMG_0797.jpg" width="1080" height="1920"/>

@@ -121,6 +121,7 @@
 		95206AA61D38A838002BB3B5 /* youhuiquan(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A9B1D38A838002BB3B5 /* youhuiquan(1).png */; };
 		95206AA71D38A838002BB3B5 /* zhongjiangjilu(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 95206A9C1D38A838002BB3B5 /* zhongjiangjilu(1).png */; };
 		95206E9A1D0D3F14004BEF11 /* YdzhongjiangxiangqingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95206E991D0D3F14004BEF11 /* YdzhongjiangxiangqingViewController.m */; };
+		9523ACFF1D6D8E8F00FED765 /* QdyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9523ACFE1D6D8E8F00FED765 /* QdyViewController.m */; };
 		952A1A081CD843D600582D26 /* 组-13@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A071CD843D600582D26 /* 组-13@3x.png */; };
 		952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 952A1A091CD8440700582D26 /* 组-14@3x.png */; };
 		952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952A1A0C1CD844FA00582D26 /* YdJiaoLiuViewController.m */; };
@@ -540,6 +541,8 @@
 		95206A9C1D38A838002BB3B5 /* zhongjiangjilu(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhongjiangjilu(1).png"; sourceTree = "<group>"; };
 		95206E981D0D3F14004BEF11 /* YdzhongjiangxiangqingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdzhongjiangxiangqingViewController.h; sourceTree = "<group>"; };
 		95206E991D0D3F14004BEF11 /* YdzhongjiangxiangqingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdzhongjiangxiangqingViewController.m; sourceTree = "<group>"; };
+		9523ACFD1D6D8E8F00FED765 /* QdyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QdyViewController.h; sourceTree = "<group>"; };
+		9523ACFE1D6D8E8F00FED765 /* QdyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QdyViewController.m; sourceTree = "<group>"; };
 		952A1A071CD843D600582D26 /* 组-13@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-13@3x.png"; sourceTree = "<group>"; };
 		952A1A091CD8440700582D26 /* 组-14@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组-14@3x.png"; sourceTree = "<group>"; };
 		952A1A0B1CD844FA00582D26 /* YdJiaoLiuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdJiaoLiuViewController.h; sourceTree = "<group>"; };
@@ -1081,6 +1084,8 @@
 				9505D7261C9A9BE5006F6850 /* IMG_0801.jpg */,
 				9505D7161C9A8378006F6850 /* @3x_xx_06.png */,
 				9505D6D51C9A7B27006F6850 /* Main.storyboard */,
+				9523ACFD1D6D8E8F00FED765 /* QdyViewController.h */,
+				9523ACFE1D6D8E8F00FED765 /* QdyViewController.m */,
 				9505D6D81C9A7B27006F6850 /* Assets.xcassets */,
 				9505D6DA1C9A7B27006F6850 /* LaunchScreen.storyboard */,
 				9505D6DD1C9A7B27006F6850 /* Info.plist */,
@@ -2720,6 +2725,7 @@
 				959F9E501CBE206600C5D019 /* YdBloodViewController.m in Sources */,
 				9502A4A01C9CF3CA00578339 /* YdSearchResultViewController.m in Sources */,
 				95609EA01CABC72E00AF65E4 /* SBJsonStreamParser.m in Sources */,
+				9523ACFF1D6D8E8F00FED765 /* QdyViewController.m in Sources */,
 				95609F011CABC74E00AF65E4 /* UIImageView+WebCache.m in Sources */,
 				95609EF31CABC74E00AF65E4 /* MKAnnotationView+WebCache.m in Sources */,
 				95F7F70C1CFC16A400EF30B7 /* YdmendianxinxiViewController.m in Sources */,
