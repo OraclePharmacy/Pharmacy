@@ -446,16 +446,16 @@
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
     [yikaishi writeToFile:countwenjian atomically:YES];
     aa=1;
+    
+    
+    
     NSMutableArray *aaa=[NSMutableArray arrayWithContentsOfFile:countwenjian];
     int lk=0;
     for (int i=0; i<aaa.count+lk; i++) {
         NSLog(@"%@",aaa);
         if([[aaa[i-lk] objectForKey:@"shuliang"]isEqualToString:@"0"]){
-            NSLog(@"%d",i-lk);
-
-            [aaa removeObjectAtIndex:i-lk];lk++;
-            
-
+            [aaa removeObjectAtIndex:i-lk];
+            lk++;
         }
     }
   

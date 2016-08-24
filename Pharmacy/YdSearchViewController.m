@@ -15,14 +15,14 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 
-@interface YdSearchViewController ()
+@interface YdSearchViewController ()<UISearchBarDelegate>
 {
     
     CGFloat width;
     CGFloat height;
     
     int ye;
-    UITextField *SearchText;
+
     
     UISearchBar *searchbar;
     
@@ -231,7 +231,7 @@
     //创建textfield
     //设置基本属性
     searchbar = [[UISearchBar alloc]init];
-    
+    searchbar.delegate=self;
     searchbar.frame = CGRectMake(0 , 0, 100, 20);
     
     searchbar.placeholder = @"输入药品、病症";
@@ -243,13 +243,21 @@
     self.navigationItem.titleView = searchbar;
 
 }
+
 //点击编辑区以外的地方键盘消失
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     [searchbar resignFirstResponder];
     
 }
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 
+{
+    
+    [self search];
+    
+    
+}
 
 //导航栏右按钮方法
 -(void)search
