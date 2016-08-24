@@ -235,71 +235,76 @@
     now = [formatter stringFromDate:[NSDate date]];
     
     
-    //后台写的跟个傻逼似的 擦
-    
-    [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
-  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/basic/saveEmr";
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-    //出入参数：
-    
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_titleText.text,@"title",_writeText.text,@"emrDesc",vip,@"vipId",now,@"tjsj", nil];
-    NSLog(@"%@",datadic);
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i=0; i<heheda.count; i++) {
-            //对图片进行多个上传
-            UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
-            NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
-            NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-            // 设置时间格式
-            fm.dateFormat = @"yyyyMMddHHmmss";
-            NSString *str = [fm stringFromDate:[NSDate date]];
-            NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
-            NSLog(@"filename------%@",fileName);
-            [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
-        }
+    if(_titleText.text.length == 0 || _writeText.text.length == 0)
+    {
+        [WarningBox warningBoxModeText:@"请填写所有信息" andView:self.view];
+    }
+    else
+    {
+        [WarningBox warningBoxModeIndeterminate:@"正在上传...." andView:self.view];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/basic/saveEmr";
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        @try
-        {
-            
-            NSLog(@"电子病历返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
-            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
-                NSFileManager *defaultManager;
-                defaultManager = [NSFileManager defaultManager];
-                NSString*path=[NSString stringWithFormat:@"%@/Documents/dianzibinglitupian",NSHomeDirectory()];
-                [defaultManager removeItemAtPath:path error:NULL];
-                
-            }else{
-                [WarningBox warningBoxModeIndeterminate:@"上传失败!" andView:self.view];
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        //出入参数：
+        
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_titleText.text,@"title",_writeText.text,@"emrDesc",vip,@"vipId",now,@"tjsj", nil];
+        NSLog(@"%@",datadic);
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            for (int i=0; i<heheda.count; i++) {
+                //对图片进行多个上传
+                UIImage *Img=[UIImage imageWithContentsOfFile:heheda[i]];
+                NSData *data= UIImageJPEGRepresentation(Img, 0.5); //如果用jpg方法需添加jpg压缩方法
+                NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                fm.dateFormat = @"yyyyMMddHHmmss";
+                NSString *str = [fm stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
+                NSLog(@"filename------%@",fileName);
+                [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
             }
             
-        }
-        @catch (NSException * e) {
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
             
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                
+                NSLog(@"电子病历返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
+                    NSFileManager *defaultManager;
+                    defaultManager = [NSFileManager defaultManager];
+                    NSString*path=[NSString stringWithFormat:@"%@/Documents/dianzibinglitupian",NSHomeDirectory()];
+                    [defaultManager removeItemAtPath:path error:NULL];
+                    
+                }else{
+                    [WarningBox warningBoxModeIndeterminate:@"上传失败!" andView:self.view];
+                }
+                
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                
+            }
             
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-        
-    }];
-
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+            
+        }];
     
-}
+    }
+    
+   }
 @end
