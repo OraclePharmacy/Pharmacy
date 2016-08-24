@@ -211,6 +211,7 @@
     remindTable.backgroundColor = [UIColor clearColor];
     remindTable.delegate = self;
     remindTable.dataSource = self;
+    remindTable.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:remindTable];
     
     [self.view addSubview:popview];
