@@ -58,7 +58,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self wangluo];
-    //[self shipinbofang:nil];
+ 
     
 }
 //创建cell显示控件
@@ -186,14 +186,19 @@
             [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
         }
         else if (bo == 2){
-            NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,shareUrl]);
+            NSArray*aa1=[shareUrl componentsSeparatedByString:@"/"];
+            NSString*niu=[NSString stringWithFormat:@"%@",aa1[aa1.count-1]];
+            NSString *shipinlujing=[NSString stringWithFormat:@"/private%@/tmp/%@",NSHomeDirectory(),niu];
+            
+            NSLog(@"%@",shipinlujing);
+            
+            NSFileManager*fm=[NSFileManager defaultManager];
+            if ([fm fileExistsAtPath:shipinlujing]) {
+                NSURL *chuan1=[NSURL fileURLWithPath:shipinlujing];
+                [self shipinbofang:chuan1];
+            }else
             [self downloadFile2:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
-            
-            
         }
-        
-        NSLog(@"imageView1");
-        
     }
 }
 //收藏
@@ -550,7 +555,7 @@
             }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
             {
                 bo = 2;
-                //[self shipinbofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+               
             }
             
             
@@ -574,9 +579,7 @@
     [WarningBox warningBoxModeIndeterminate:@"视频加载中...." andView:self.view];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ss] cachePolicy:1 timeoutInterval:15];
     [[self.session downloadTaskWithRequest:request]resume];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self shipinbofang:uuuu];
-//    });
+
 }
 
 #pragma mark - 代理方法
@@ -584,11 +587,13 @@
 {
     
     NSString *pathFile = [NSTemporaryDirectory() stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
+    NSLog(@"\n\n\n--------------******视频下载路径*******-----------\n\n\n%@\n",pathFile);
+    NSLog(@"\n\n%@\n\n",NSHomeDirectory());
     uuuu =[NSURL fileURLWithPath:pathFile];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            [self shipinbofang:uuuu];
     });
- 
+
 }
 // 懒加载
 - (NSURLSession *)session
@@ -602,7 +607,7 @@
 }
 
 -(void)shipinbofang:(NSURL *)sFileNamePath{
-    NSLog(@"%@",sFileNamePath);
+    NSLog(@"\n\n----***\n%@\n\n",sFileNamePath);
     if (NULL==sFileNamePath) {
         NSLog(@"没走");
     }else{
@@ -610,9 +615,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
         //    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-        
-        
-        
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         
         [movie.moviePlayer prepareToPlay];
