@@ -177,7 +177,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
-    
+    //线消失
+    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    //禁止滑动
+    self.tableview.scrollEnabled =NO;
     return cell;
 }
 
