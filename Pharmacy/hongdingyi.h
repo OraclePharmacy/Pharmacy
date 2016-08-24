@@ -17,7 +17,7 @@
 //其中斌
 //#define service_host @"http://192.168.1.180:8080"
 //小展
-#define service_host @"http://192.168.1.110:8080"
+#define service_host @"http://192.168.1.103:8080"
 //外网
 //#define service_host @"http://125.211.221.232:60082"
 
