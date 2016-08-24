@@ -123,7 +123,7 @@
         @try
         {
             NSLog(@"－＊－＊－＊－＊－＊－＊电子病历列表返回＊－＊－＊－＊－\n\n\n%@",responseObject);
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             emrList=[NSArray arrayWithArray:[[responseObject objectForKey:@"data" ] objectForKey:@"emrList"]];
             NSLog(@"%@",emrList);
             if (emrList.count == 0)

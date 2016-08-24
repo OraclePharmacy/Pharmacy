@@ -139,7 +139,7 @@
         @try
         {
             NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品列表＊－＊－＊－＊－\n\n\n%@",responseObject);
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 

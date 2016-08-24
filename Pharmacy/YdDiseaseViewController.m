@@ -120,7 +120,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             NSLog(@"－＊－＊－＊－＊＊病症详情接口－＊－＊－＊－＊－＊\n\n\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {

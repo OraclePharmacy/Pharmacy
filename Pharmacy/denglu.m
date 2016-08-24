@@ -94,7 +94,7 @@
                 
             }
             else{
-                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:view];
+               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:view];
             }
         }
         @catch (NSException * e) {

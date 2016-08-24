@@ -727,7 +727,7 @@
                 [WarningBox warningBoxHide:YES andView:self.view];
                 @try
                 {
-                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                    //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     NSLog(@"上传个人信息返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                         //把上传的数据存到本地

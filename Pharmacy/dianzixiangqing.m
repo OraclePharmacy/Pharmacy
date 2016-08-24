@@ -78,7 +78,7 @@
         @try
         {
             NSLog(@"－＊－＊－＊－＊－＊－＊电子病历详情返回＊－＊－＊－＊－\n\n\n%@",responseObject);
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             xq=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data" ] objectForKey:@"Emr"]];
             
             [self fuzhi];

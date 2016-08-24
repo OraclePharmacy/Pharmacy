@@ -130,7 +130,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
 //                NSLog(@"详情，返回信息 ， 三级药品  %@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
     
