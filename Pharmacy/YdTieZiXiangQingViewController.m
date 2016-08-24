@@ -284,13 +284,13 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+                    //[WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
                     
                 }
             }
             @catch (NSException * e) {
                 
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                //[WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                 
             }
             

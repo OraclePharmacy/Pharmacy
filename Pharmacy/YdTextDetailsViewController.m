@@ -256,7 +256,7 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+                   // [WarningBox warningBoxModeText:@"收藏成功" andView:self.view];
                     
                 }
             }
@@ -321,7 +321,7 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
+                    //[WarningBox warningBoxModeText:@"取消收藏" andView:self.view];
                     
                 }
             }
@@ -391,7 +391,7 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
+                    //[WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
                     
                 }
             }
@@ -455,7 +455,7 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
+                    //[WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
                     
                 }
             }

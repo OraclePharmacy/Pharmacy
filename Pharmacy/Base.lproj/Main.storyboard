@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ueS-9d-teE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -2783,7 +2783,7 @@
         <!--Jifen View Controller-->
         <scene sceneID="GiS-RU-q8W">
             <objects>
-                <viewController storyboardIdentifier="jifen" id="ATd-rF-hqq" customClass="YDJifenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="jifen" hidesBottomBarWhenPushed="YES" id="ATd-rF-hqq" customClass="YDJifenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aTz-Ja-faW"/>
                         <viewControllerLayoutGuide type="bottom" id="fgR-Us-Lpa"/>
@@ -2799,10 +2799,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="q9o-5M-Faq" firstAttribute="top" secondItem="aTz-Ja-faW" secondAttribute="bottom" id="L6B-56-r04"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="q9o-5M-Faq" secondAttribute="trailing" constant="-20" id="mNf-UV-sSf"/>
-                            <constraint firstItem="q9o-5M-Faq" firstAttribute="leading" secondItem="Mbf-bV-EB5" secondAttribute="leadingMargin" constant="-20" id="p1i-Nf-KBg"/>
-                            <constraint firstItem="fgR-Us-Lpa" firstAttribute="top" secondItem="q9o-5M-Faq" secondAttribute="bottom" id="xyS-Sj-TCI"/>
+                            <constraint firstItem="q9o-5M-Faq" firstAttribute="leading" secondItem="Mbf-bV-EB5" secondAttribute="leading" id="55j-1M-8oX"/>
+                            <constraint firstItem="q9o-5M-Faq" firstAttribute="top" secondItem="aTz-Ja-faW" secondAttribute="bottom" id="Auw-i7-8BO"/>
+                            <constraint firstAttribute="trailing" secondItem="q9o-5M-Faq" secondAttribute="trailing" id="pJf-rm-XyN"/>
+                            <constraint firstItem="fgR-Us-Lpa" firstAttribute="top" secondItem="q9o-5M-Faq" secondAttribute="bottom" id="ryb-gu-vTo"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2834,7 +2834,7 @@
         <!--Tejialiebiao View Controller-->
         <scene sceneID="8B8-Jx-o9X">
             <objects>
-                <viewController storyboardIdentifier="tejialiebiao" id="YRX-Az-4Bu" customClass="YDTejialiebiaoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tejialiebiao" hidesBottomBarWhenPushed="YES" id="YRX-Az-4Bu" customClass="YDTejialiebiaoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xbF-iM-Y3a"/>
                         <viewControllerLayoutGuide type="bottom" id="1XX-nI-yyr"/>
@@ -2850,10 +2850,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="E5Z-d0-1nH" firstAttribute="top" secondItem="xbF-iM-Y3a" secondAttribute="bottom" id="BLd-y3-n9X"/>
-                            <constraint firstItem="E5Z-d0-1nH" firstAttribute="leading" secondItem="f8b-Mr-pSi" secondAttribute="leadingMargin" constant="-20" id="GSw-ZH-pV6"/>
-                            <constraint firstItem="1XX-nI-yyr" firstAttribute="top" secondItem="E5Z-d0-1nH" secondAttribute="bottom" id="grr-tK-ecU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="E5Z-d0-1nH" secondAttribute="trailing" constant="-20" id="vQX-Kn-1wS"/>
+                            <constraint firstAttribute="trailing" secondItem="E5Z-d0-1nH" secondAttribute="trailing" id="1Uv-n0-sfd"/>
+                            <constraint firstItem="1XX-nI-yyr" firstAttribute="top" secondItem="E5Z-d0-1nH" secondAttribute="bottom" id="Viz-4s-UUe"/>
+                            <constraint firstItem="E5Z-d0-1nH" firstAttribute="leading" secondItem="f8b-Mr-pSi" secondAttribute="leading" id="Xtp-06-Yua"/>
+                            <constraint firstItem="E5Z-d0-1nH" firstAttribute="top" secondItem="xbF-iM-Y3a" secondAttribute="bottom" id="f2y-My-zPA"/>
                         </constraints>
                     </view>
                     <connections>
