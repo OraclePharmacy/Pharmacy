@@ -215,7 +215,7 @@
 
 - (IBAction)baocun:(id)sender {
     
-    if (self.name.text.length == 0 || self.changshang.text.length == 0 || self.time.text.length == 0 || self.cishu.text.length == 0)
+    if (self.name.text.length == 0 || self.changshang.text.length == 0 || self.time.text.length == 0 || self.cishu.text.length == 0 || imageData == nil)
     {
         
          [WarningBox warningBoxModeText:@"请填写全部内容" andView:self.view];
