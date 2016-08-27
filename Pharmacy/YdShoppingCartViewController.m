@@ -237,7 +237,9 @@
     //添加数量按钮
     UIButton *add = [[UIButton alloc]init];
     add.frame = CGRectMake(100, 72, 16, 16);
-    [add setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
+    [add setTitle:@"-" forState:UIControlStateNormal];
+    [add setTitleColor:[UIColor colorWithHexString:@"32BE60"] forState:UIControlStateNormal];
+    add.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [add addTarget:self action:@selector(jian:) forControlEvents:UIControlEventTouchUpInside];
     
     //数量输入框
@@ -252,7 +254,9 @@
     //删减数量按钮
     UIButton *reduce = [[UIButton alloc]init];
     reduce.frame = CGRectMake(200,72, 16, 16);
-    [reduce setImage:[UIImage imageNamed:@"IMG_0799.jpg"] forState:UIControlStateNormal];
+    [reduce setTitle:@"+" forState:UIControlStateNormal];
+    [reduce setTitleColor:[UIColor colorWithHexString:@"32BE60"] forState:UIControlStateNormal];
+    reduce.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [reduce addTarget:self action:@selector(jia:) forControlEvents:UIControlEventTouchUpInside];
     
     if (aa == 1 )

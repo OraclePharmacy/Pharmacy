@@ -619,7 +619,7 @@
             }
             else if (btn == zuoxi || btn == youxi)
             {
-                chuan = @"膝盖";
+                chuan = @"膝部";
             }
             else if (btn == zuoxiao || btn == youxiao)
             {
@@ -627,7 +627,7 @@
             }
             else if (btn == zuojiao || btn == zuojiao)
             {
-                chuan = @"脚";
+                chuan = @"足部";
             }
             else if (btn == zuozhou || btn == youzhou)
             {
