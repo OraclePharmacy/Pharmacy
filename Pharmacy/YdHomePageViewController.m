@@ -39,6 +39,7 @@
 #import "tiaodaodenglu.h"
 #import <JMessage/JMessage.h>
 #import "GuideViewController.h"
+#import "YdDrugJumpViewController.h"
 
 @interface YdHomePageViewController ()<CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -96,6 +97,12 @@
     int q ;
     int p ;
     UIButton *bingzheng;
+    
+    NSArray *bingzhengarr;
+    
+    UILabel *label;
+    int coun;
+    int ye;
 }
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
@@ -124,6 +131,7 @@
     
     NSFileManager *fm=[NSFileManager defaultManager];
     
+    bingzhengarr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
     
     //    启动
     // if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
@@ -832,8 +840,8 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",@"",@"id",@"1",@"pageNo",@"1",@"pageSize", nil];
+    
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -1568,10 +1576,10 @@
             {
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
                 button.tag = 100 + i;
-                [button addTarget:self action:@selector(bingzheng) forControlEvents:UIControlEventTouchUpInside];
+                [button addTarget:self action:@selector(bingzheng:) forControlEvents:UIControlEventTouchUpInside];
                 [button setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
                 
-                [button setTitle:@"111" forState:UIControlStateNormal];
+                [button setTitle:bingzhengarr[i] forState:UIControlStateNormal];
                 //设置button的frame
                 button.frame = CGRectMake(w, h, width / 4 , 40);
                 //当button的位置超出屏幕边缘时换行 320 只是button所在父视图的宽度
@@ -1696,10 +1704,13 @@
     }
 }
 //病症
--(void)bingzheng
+-(void)bingzheng:(UIButton *)btn
 {
-    NSLog(@"第一排:%ld",bingzheng.tag - 100);
-    NSLog(@"第二排:%ld",bingzheng.tag - 200 + 4);
+    NSLog(@"%ld",(long)btn.tag);
+    //跳转到详细病症
+    YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
+    DrugJump.bookNo = [arr[btn.tag-100] objectForKey:@"level3Name"];
+    [self.navigationController pushViewController:DrugJump animated:YES];
 }
 #pragma mark ----- 创建三级联动
 -(void)sanji
