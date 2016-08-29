@@ -65,6 +65,11 @@
     [output setMetadataObjectTypes:[NSArray arrayWithObjects:AVMetadataObjectTypeEAN13Code,AVMetadataObjectTypeEAN8Code,AVMetadataObjectTypeCode128Code,AVMetadataObjectTypeQRCode, nil]];
     //5.设置  预览图层
     AVCaptureVideoPreviewLayer*preview=[AVCaptureVideoPreviewLayer layerWithSession:session];
+    UIImageView* image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"123.png"]];
+    float w=[UIScreen mainScreen].bounds.size.width;
+    float h=[UIScreen mainScreen].bounds.size.height;
+    image.frame=CGRectMake(0, 64, w, h-124);
+    [self.view addSubview:image];
     //5.1设置preview的属性
     [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //5.2设置preview的大小
@@ -127,8 +132,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-              //  [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
+                NSLog(@"%@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     if ([_str isEqual:@"1"])
@@ -144,12 +148,11 @@
                         [self.navigationController pushViewController:dianyuan animated:YES];
                     }
     
-                   
-                    
-                    
-                
                 }
-                
+                else{
+                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",responseObject[@"msg"]] andView:self.view];
+                      [self readqrcode];
+                }
                 
             }
             @catch (NSException * e) {
