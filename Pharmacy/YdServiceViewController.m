@@ -52,7 +52,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     //多出空白处
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -136,13 +136,9 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //            NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                NSLog(@"dicdatadic%@",datadic);
-                
                 
                 arr = [datadic objectForKey:@"pharmacistInfoList"];
                 
@@ -171,7 +167,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
     
 }
@@ -257,7 +252,7 @@
         lab1.frame = CGRectMake(0, image.bounds.size.height + gao*0.25, kuan, gao*0.1);
         lab1.textAlignment = NSTextAlignmentCenter;
         lab1.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"qualification"]];
-       // lab1.text = @"222";
+        // lab1.text = @"222";
         lab1.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         lab1.font = [UIFont systemFontOfSize:13];
         
@@ -266,7 +261,7 @@
         [cell.contentView addSubview:lab1];
         cell.backgroundColor = [UIColor whiteColor];
     }
-
+    
     return cell;
     
 }
@@ -311,9 +306,7 @@
                 
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
-                //NSLog(@"path = %@",path);
                 NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-                //NSLog(@"path = %@",filename);
                 //判断是否已经创建文件
                 if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                     
@@ -325,8 +318,6 @@
                     
                     bingyoujiaoliu++;
                     
-                    NSLog(@"bingyoujiaoliu:%d",bingyoujiaoliu);
-                    
                     NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[NSString stringWithFormat:@"%d",bingyoujiaoliu],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                     
                     [dic1 writeToFile:filename atomically:YES];
@@ -334,8 +325,6 @@
                 }else {
                     
                     NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"1",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
-                    
-                    //NSLog(@"%@",dic);
                     [dic writeToFile:filename atomically:YES];
                     
                 }
@@ -348,9 +337,7 @@
             
             NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
             NSString *path=[paths objectAtIndex:0];
-            //NSLog(@"path = %@",path);
             NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-            //NSLog(@"path = %@",filename);
             //判断是否已经创建文件
             if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                 
@@ -362,8 +349,6 @@
                 
                 zizhen++;
                 
-                NSLog(@"zizhen:%d",zizhen);
-                
                 NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[NSString stringWithFormat:@"%d",zizhen],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                 
                 [dic1 writeToFile:filename atomically:YES];
@@ -371,8 +356,6 @@
             }else {
                 
                 NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"1",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
-                
-                //NSLog(@"%@",dic);
                 [dic writeToFile:filename atomically:YES];
                 
             }
@@ -388,9 +371,7 @@
                 
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
-                //NSLog(@"path = %@",path);
                 NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-                //NSLog(@"path = %@",filename);
                 //判断是否已经创建文件
                 if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                     
@@ -402,8 +383,6 @@
                     
                     yongyaotixing++;
                     
-                    NSLog(@"yongyaotixing:%d",yongyaotixing);
-                    
                     NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[NSString stringWithFormat:@"%d",yongyaotixing],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                     
                     [dic1 writeToFile:filename atomically:YES];
@@ -412,7 +391,6 @@
                     
                     NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"1",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
                     
-                    //NSLog(@"%@",dic);
                     [dic writeToFile:filename atomically:YES];
                     
                 }
@@ -429,9 +407,7 @@
                 
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
-                //NSLog(@"path = %@",path);
                 NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-                //NSLog(@"path = %@",filename);
                 //判断是否已经创建文件
                 if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                     
@@ -443,8 +419,6 @@
                     
                     xueyaxuetang++;
                     
-                    NSLog(@"xueyaxuetang:%d",xueyaxuetang);
-                    
                     NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[NSString stringWithFormat:@"%d",xueyaxuetang],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                     
                     [dic1 writeToFile:filename atomically:YES];
@@ -453,7 +427,6 @@
                     
                     NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"1",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
                     
-                    //NSLog(@"%@",dic);
                     [dic writeToFile:filename atomically:YES];
                     
                 }
@@ -470,9 +443,7 @@
                 
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
-                //NSLog(@"path = %@",path);
                 NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-                //NSLog(@"path = %@",filename);
                 //判断是否已经创建文件
                 if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                     
@@ -484,8 +455,6 @@
                     
                     dianzibingli++;
                     
-                    NSLog(@"dianzibingli:%d",dianzibingli);
-                    
                     NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[NSString stringWithFormat:@"%d",dianzibingli],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                     
                     [dic1 writeToFile:filename atomically:YES];
@@ -494,7 +463,6 @@
                     
                     NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"1",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
                     
-                    //NSLog(@"%@",dic);
                     [dic writeToFile:filename atomically:YES];
                     
                 }
@@ -511,9 +479,7 @@
                 
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
-                //NSLog(@"path = %@",path);
                 NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-                //NSLog(@"path = %@",filename);
                 //判断是否已经创建文件
                 if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                     
@@ -525,8 +491,6 @@
                     
                     zhihuiyaoxiang++;
                     
-                    NSLog(@"zhihuiyaoxiang:%d",zhihuiyaoxiang);
-                    
                     NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[NSString stringWithFormat:@"%d",zhihuiyaoxiang],@"zhihuiyaoxiang",nil];
                     
                     [dic1 writeToFile:filename atomically:YES];
@@ -535,7 +499,6 @@
                     
                     NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"1",@"zhihuiyaoxiang",nil]; //写入数据
                     
-                    //NSLog(@"%@",dic);
                     [dic writeToFile:filename atomically:YES];
                     
                 }
@@ -547,7 +510,7 @@
     }
     else if (indexPath.section == 1)
     {
-    
+        
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
@@ -557,22 +520,13 @@
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [WarningBox warningBoxHide:YES  andView:self.view];
                 if (error) {
-                    NSLog(@" 登录出错");
                     [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                     return ;
                 }
                 [self liaotian:indexPath.row];
-                NSLog(@"JMessage 登录成功");
             }];
         }
-
-    
     }
-   // 跳转到详细病症
-//        YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-//        DrugJump.imageName = DiseaseImageArray[indexPath.row];
-//        DrugJump.bookNo = DiseaseLableArray[indexPath.row];
-//        [self.navigationController pushViewController:DrugJump animated:YES];
     
     return;
 }
@@ -582,7 +536,6 @@
 {
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"loginName"]]];
     [conversation allMessages:^(id resultObject, NSError *error) {
-        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
     }];
     if (conversation == nil) {
         
@@ -593,14 +546,12 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             
             if (error) {
-                NSLog(@"创建会话失败%@",error);
                 return ;
             }
             
             mememeViewController *conversationVC = [mememeViewController new];
             conversationVC.conversation = (JMSGConversation *)resultObject;
             conversationVC.opo=[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"name"]];
-            NSLog(@"\n\n\n\n---***---***%@\n\n\n\n\n",conversationVC.opo);
             [self.navigationController pushViewController:conversationVC animated:YES];
         }];
     } else {

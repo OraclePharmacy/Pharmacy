@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDictionary* s=[NSDictionary dictionaryWithObjectsAndKeys:@"哈哈哈",@"ij", nil];
-    NSLog(@"%@",s);
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -126,7 +125,6 @@
                 manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
                 SBJsonWriter *writer = [[SBJsonWriter alloc]init];
                 NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
-                NSLog(@"\n\n\n\n\n帖子%@,%@",_tieziID ,_pinglunID);
                 if ([_pinglunID isEqualToString:@""]||_pinglunID==nil||[_pinglunID isEqual:[NSNull null]])
                 {
                     _pinglunID = @"";
@@ -135,7 +133,6 @@
                 
                 
                 NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
-                NSLog(@"发表评论%@",datadic);
                 
                 NSString*jsonstring=[writer stringWithObject:datadic];
                 
@@ -153,8 +150,6 @@
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
-                        //  [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                        NSLog(@"responseObject%@",responseObject);
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             
                             self.pinglunText.text = @"";
@@ -173,7 +168,6 @@
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [WarningBox warningBoxHide:YES andView:self.view];
                     [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-                    NSLog(@"错误：%@",error);
                 }];
             }
         }

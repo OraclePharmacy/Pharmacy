@@ -62,7 +62,6 @@
 //界面控件设置
 -(void)jiemian
 {
-    NSLog(@"%lu",(unsigned long)imagearray.count);
     //头像
     _touxiang.layer.cornerRadius = 40;
     _touxiang.layer.masksToBounds = YES;
@@ -158,40 +157,14 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"=============arr===================%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 arr = [datadic objectForKey:@"vipTopicDetail"];
                 dian = [datadic objectForKey:@"clickMark"];
-                NSLog(@"=============arr===================%@",dian);
                 imagearray = [arr objectForKey:@"urls"];
                 
-                //设置图片显示
-                //                if (imagearray.count == 0) {
-                //                    _image1.hidden = YES;
-                //                    _image2.hidden = YES;
-                //                    _image3.hidden = YES;
-                //                }
-                //                else if (imagearray.count == 1) {
-                //
-                //                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
-                //                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-                //                    _image1.hidden = NO;
-                //                    _image2.hidden = YES;
-                //                    _image3.hidden = YES;
-                //                }
-                //                else if (imagearray.count == 2) {
-                //                    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
-                //                    [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-                //                    NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
-                //                    [_image2 sd_setImageWithURL:[NSURL URLWithString:path1] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-                //                    _image1.hidden = NO;
-                //                    _image2.hidden = NO;
-                //                    _image3.hidden = YES;
-                //                }
-                //                else if (imagearray.count == 2) {
                 NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url1"]];
                 [_image1 sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"" ]];
                 NSString*path1=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"url2"]];
@@ -220,7 +193,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -278,27 +250,10 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                //[WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
-            
+      
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -343,27 +298,10 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-//                    [WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
 

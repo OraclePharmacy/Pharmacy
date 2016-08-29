@@ -74,7 +74,6 @@
     arr = [[NSMutableArray alloc]init];
     
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSLog(@"%@",searchbar.text);
         NSString *sqlQuery = [[NSString alloc]initWithFormat:@"SELECT * FROM bodysick where name LIKE '%%%@%%'",searchbar.text];
         //NSString *sqlQuery = @"SELECT * FROM bodysick where place LIKE '%肝%'";
         if (sqlite3_prepare_v2(dataBase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -93,7 +92,6 @@
         }
         
         sqlite3_close(dataBase);
-        NSLog(@"%@",arr);
         self.tableview = [[UITableView alloc]init];
         self.tableview.frame = CGRectMake(0, 64, width, height - 64);
         self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];

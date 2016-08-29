@@ -56,7 +56,7 @@
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     diantainewsListForInterface=[[NSMutableArray alloc] init];
-
+    
     //设置分段控制器的默认选项
     self.Segmented.selectedSegmentIndex = 0;
     //解决tableview多出的白条
@@ -109,9 +109,8 @@
             [self jiankangdiantai];
             [self.tableview.mj_footer endRefreshing];
         }
-
+        
     }else{
-        NSLog(@"%d,%d",ye,coun);
         if (ye*5 >coun+4||5>coun) {
             [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
             
@@ -217,7 +216,6 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 arr= [[responseObject objectForKey:@"data"] objectForKey:@"newsCatelog"];
-                NSLog(@"\n\n\n\n%@",arr);
                 [self wenzizixun:[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]]];
                 str=[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
             }
@@ -232,7 +230,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
 }
@@ -277,7 +274,6 @@
         @try
         {
             
-            NSLog(@"文字咨询返回列表－－－－－%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -286,13 +282,11 @@
                 if (ye!=1) {
                     for (NSDictionary*dd in mg) {
                         [newsListForInterface addObject:dd];
-                        NSLog(@"是啥--%@", newsListForInterface);
                     }
                 }else{
                     newsListForInterface=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-                NSLog(@"%@",datadic);
                 
                 [_tableview reloadData];
                 
@@ -309,8 +303,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-        
     }];
     
 }
@@ -349,41 +341,25 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-//        @try
-//        {
         
-            NSLog(@"%@",responseObject);
-            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                
-                NSDictionary*datadic1=[responseObject valueForKey:@"data"];
-                coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
-                if (diantaiye!=1) {
-                    for (NSDictionary*dd in [datadic1 objectForKey:@"newsListForInterface"]) {
-                        [diantainewsListForInterface addObject:dd];
-                        
-                    }
-                }else{
-                    diantainewsListForInterface=[NSMutableArray arrayWithArray: [datadic1 objectForKey:@"newsListForInterface" ]];
-                }
-                
-                diantaiye++;
-                NSLog(@"%@",datadic1);
-                
-                [_tableview reloadData];
-                
-            }
+        if ([[responseObject objectForKey:@"code"] intValue]==0000) {
             
-//        }
-//        @catch (NSException * e) {
-//            
-//            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-//            
-//        }
-        
+            NSDictionary*datadic1=[responseObject valueForKey:@"data"];
+            coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
+            if (diantaiye!=1) {
+                for (NSDictionary*dd in [datadic1 objectForKey:@"newsListForInterface"]) {
+                    [diantainewsListForInterface addObject:dd];
+                    
+                }
+            }else{
+                diantainewsListForInterface=[NSMutableArray arrayWithArray: [datadic1 objectForKey:@"newsListForInterface" ]];
+            }
+            diantaiye++;
+            [_tableview reloadData];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
     
@@ -394,8 +370,6 @@
 {
     newsListForInterface=[[NSMutableArray alloc] init];
     str = [[NSString alloc]init];
-    
-    //u.selected = YES;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO
     if (btn.tag == 300)
     {
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
@@ -469,7 +443,6 @@
     }
     else
     {
-        NSLog(@"%lu",diantainewsListForInterface.count);
         return diantainewsListForInterface.count;
     }
 }
@@ -526,7 +499,6 @@
         else
         {
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
-            NSLog(@"%@",path);
             UIImageView *image = [[UIImageView alloc]init];
             image.frame = CGRectMake(10, 10, 100 , 100);
             [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
@@ -706,11 +678,9 @@
 //这是啥玩意
 -(void)fenxiang
 {
-    NSLog(@"分享");
 }
 -(void)shoucang
 {
-    NSLog(@"收藏");
 }
 //看不懂
 //tableview点击事件
@@ -719,28 +689,28 @@
     //判断是否登录
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
-    
+        
     }else{
-    if(zhi == 1)
-    {
-        
-        //跳转文字资讯详情
-        YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
-        //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
-        TextDetails.xixi=[NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"id"]];
-        [self.navigationController pushViewController:TextDetails animated:YES];
-        
-    }
-    else
-    {
-        //跳转健康电台详情
-        YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
-        InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"id"]];
-        InformationDetails.liexing=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"type"]];
-        
-        InformationDetails.doc=[NSDictionary dictionaryWithDictionary:diantainewsListForInterface[indexPath.row]];
-        [self.navigationController pushViewController:InformationDetails animated:YES];
-    }
+        if(zhi == 1)
+        {
+            
+            //跳转文字资讯详情
+            YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+            //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+            TextDetails.xixi=[NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"id"]];
+            [self.navigationController pushViewController:TextDetails animated:YES];
+            
+        }
+        else
+        {
+            //跳转健康电台详情
+            YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
+            InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"id"]];
+            InformationDetails.liexing=[NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"type"]];
+            
+            InformationDetails.doc=[NSDictionary dictionaryWithDictionary:diantainewsListForInterface[indexPath.row]];
+            [self.navigationController pushViewController:InformationDetails animated:YES];
+        }
     }
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

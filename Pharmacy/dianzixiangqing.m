@@ -31,7 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"---***---\n%@\n\n",_emrid);
     _tableview.delegate=self;
     _tableview.dataSource=self;
     _neirong.numberOfLines=0;
@@ -77,8 +76,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"－＊－＊－＊－＊－＊－＊电子病历详情返回＊－＊－＊－＊－\n\n\n%@",responseObject);
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             xq=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data" ] objectForKey:@"Emr"]];
             
             [self fuzhi];
@@ -95,7 +92,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
 
     

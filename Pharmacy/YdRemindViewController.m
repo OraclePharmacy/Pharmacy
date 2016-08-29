@@ -234,12 +234,8 @@
         back.alpha=0.0f;
         back.hidden=YES;
         
-        // [remindTable reloadData];
         
     }completion:nil];
-    
-    // [self.view sendSubviewToBack:back];
-    NSLog(@"yes");
     
     NSString *str1=shuju[[pp selectedRowInComponent:0]];
     NSString *str2=shuju[[pp selectedRowInComponent:1]];
@@ -319,8 +315,6 @@
             [arrasd addObject:asdd];
         }
         
-        NSLog(@"asdd-%@-%@",arrasd,path);
-        
         [arrasd writeToFile:path atomically:YES];
         
     }
@@ -331,9 +325,6 @@
         [arrasd removeObjectAtIndex:sectionn];
         [arrasd insertObject:asdd atIndex:sectionn];
         
-        
-        NSLog(@"asdd-gai-%@-%@",arrasd,path);
-        
         [arrasd writeToFile:path atomically:YES];
         
         flagg=0;
@@ -342,7 +333,6 @@
     
     [self readDurgRemindPlist];
     
-    NSLog(@"pathasd-----%@",pathArray);
     
     [remindTable reloadData];
     
@@ -351,10 +341,6 @@
 
 -(void)poppp
 {
-    // flagg=0;
-    
-    NSLog(@"dsd-weisha");
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -374,9 +360,6 @@
     
     flagg=0;
     
-    //[self.view sendSubviewToBack:back];
-    
-    NSLog(@"no");
 }
 
 
@@ -415,16 +398,11 @@
     
     //获取用户id
     
-    NSLog(@"array--%@",array);
-    
     NSString *yhidString = [NSString stringWithFormat:@"%d",[[[NSUserDefaults standardUserDefaults]objectForKey:@"hyid"] intValue]];
     
     [pathArray removeAllObjects];
-    // NSLog(@"ge--%d",[array count]);
     
     if (array !=nil && [array count]>0) {
-        
-        NSLog(@"you");
         
         //获取某一个id的内容
         for (int i = 0 ; i < array.count; i++) {
@@ -434,9 +412,7 @@
             BOOL flag=[key1 isEqualToString:yhidString];
             
             if (flag) {
-                
-                NSLog(@"sssss--%@--%@",key1,yhidString);
-                
+            
                 [pathArray addObject:[array[i] objectForKey:@"neirong"]];
                 
             }
@@ -446,11 +422,7 @@
     
     else{
         
-        NSLog(@"meiyou");
     }
-    
-    NSLog(@"patha--%@",pathArray);
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -524,7 +496,6 @@
         shu=0;
     }
     
-    NSLog(@"---%d",shu);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -535,8 +506,6 @@
     
     if (indexPath.section==[pathArray count]) {
         
-        
-        NSLog(@"meizhixing");
         
         TianTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mmod"];
         
@@ -578,8 +547,6 @@
             cell = [[DurgTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
         
-        NSLog(@"zhixingmei");
-        
         cell.topline.frame=CGRectMake(0, 0, width, 1);
         cell.botline.frame=CGRectMake(0, 79, width, 1);
         cell.sw.frame=CGRectMake(width-66, 30, 30, 20);
@@ -603,8 +570,6 @@
         cell.ll2.text=[rt componentsJoinedByString:@" "];
         
         BOOL kk=[[[pathArray objectAtIndex:indexPath.section] objectForKey:@"ison"] isEqualToString:@"0"];
-        
-        NSLog(@"kk---%d",kk);
         
         [cell.sw setOn:((kk)? NO :YES)];
         
@@ -637,13 +602,9 @@
     
     NSDictionary *dic=[wqe[mmm] objectForKey:@"neirong"];
     
-    NSLog(@"status--%@",dic);
-    
     [dic setValue:status forKey:@"ison"];
     
     [wqe writeToFile:path atomically:YES];
-    
-    NSLog(@"mm---%d",mmm);
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
@@ -657,15 +618,12 @@
     
     if ([pathArray count]>(int)indexPath.section) {
         
-        NSLog(@"ssdds");
         
         flagg=8;
         
         DurgTableViewCell *cc=(DurgTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
         
         cc.selectionStyle=UITableViewCellSelectionStyleNone;
-        
-        NSLog(@"---%d",(int)indexPath.section);
         
         sectionn=(int)indexPath.section;
         
@@ -692,8 +650,6 @@
     
     else{
         
-        NSLog(@"ssdds---000");
-        
         TianTableViewCell *ce=(TianTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
         
         ce.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -717,7 +673,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"前%lu",(unsigned long)pathArray.count);
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         [remindTable setEditing:NO];
@@ -726,17 +681,11 @@
         
         NSMutableArray *wew=[[NSMutableArray alloc] initWithContentsOfFile:path];
         
-        NSLog(@"wew--%@",wew);
         
         [wew removeObjectAtIndex:indexPath.section];
         
         [wew writeToFile:path atomically:YES];
-        //
-        //        NSMutableArray *wew1=[[NSMutableArray alloc] initWithContentsOfFile:path];
-        //
-        //        NSLog(@"wew--%@",wew1);
-        //
-        
+    
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"轮回公子" object:nil];
@@ -745,12 +694,9 @@
         
         
     }
-    NSLog(@"后%lu",(unsigned long)pathArray.count);
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"dsss");
     
     return UITableViewCellEditingStyleDelete;
 }

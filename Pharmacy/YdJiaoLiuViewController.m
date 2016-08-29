@@ -138,8 +138,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"responseObject%@",responseObject);
+
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -147,8 +146,6 @@
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
                 arr = [datadic objectForKey:@"vipTopicList"];
-                
-                NSLog(@"%@",arr);
                 
                 [self.tableview reloadData];
                 
@@ -164,7 +161,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -312,7 +308,6 @@
     if ([fm fileExistsAtPath:path1]) {
         NSDictionary*gerenxinxi=[NSDictionary dictionaryWithContentsOfFile:path1];
         if (((NSString*)[gerenxinxi objectForKey:@"name"]).length==0||((NSString*)[gerenxinxi objectForKey:@"area"]).length==0) {
-            NSLog(@"\n\n\n\ndengyu    0\n\n\n\n");
             [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
         }else{
             YdFaTieViewController*FaTie = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fatie"];

@@ -39,7 +39,6 @@
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
     arr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-    NSLog(@"\n\n\narr\n\n\n%@\n\n\n",arr);
     for (int i=0; i<arr.count; i++) {
         if ([[arr[i] objectForKey:@"specProdFlag"] intValue]==1) {
             float s=[[arr[i] objectForKey:@"specPrice"] floatValue]*[[arr[i] objectForKey:@"shuliang"] floatValue];
@@ -102,14 +101,12 @@
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
     [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]);
     //image.layer.cornerRadius=30;
     image.backgroundColor = [UIColor grayColor];
     [cell.contentView addSubview:image];
     //药品名称
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(100, 10, 200, 20);
-    //name.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.font =[UIFont systemFontOfSize:15];
     name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
@@ -256,7 +253,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     

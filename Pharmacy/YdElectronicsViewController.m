@@ -256,7 +256,6 @@
             //出入参数：
             
             NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_titleText.text,@"title",_writeText.text,@"emrDesc",vip,@"vipId",now,@"tjsj", nil];
-            NSLog(@"%@",datadic);
             NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
             
             [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -269,19 +268,16 @@
                     fm.dateFormat = @"yyyyMMddHHmmss";
                     NSString *str = [fm stringFromDate:[NSDate date]];
                     NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
-                    NSLog(@"filename------%@",fileName);
                     [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
                 }
                 
             } progress:^(NSProgress * _Nonnull uploadProgress) {
-                //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 @try
                 {
                     
-                    NSLog(@"电子病历返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                         [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
                         NSFileManager *defaultManager;
@@ -303,7 +299,6 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-                NSLog(@"错误：%@",error);
                 
             }];
         }

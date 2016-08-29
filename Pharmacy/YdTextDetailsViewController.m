@@ -29,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",_xixi);
     _halou.hidden=YES;
     //状态栏名称
     self.navigationItem.title = @"文字资讯";
@@ -62,7 +61,6 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id", vip,@"vipId",nil];
-    NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -80,13 +78,11 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 NSString*path=[NSString stringWithFormat:@"%@/hyb%@",service_host,[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"]];
                 
                 dian = [[responseObject objectForKey:@"data"] objectForKey:@"clickMark"];
                 shou = [[responseObject objectForKey:@"data"] objectForKey:@"mark"];
-                NSLog(@"===============================%@",shou);
                 
                 [self kongjian];
                 
@@ -105,7 +101,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
 
@@ -204,7 +199,6 @@
     if(response.responseCode == UMSResponseCodeSuccess)
     {
         //得到分享到的平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
     }
 }
 
@@ -270,7 +264,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -335,7 +328,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -405,7 +397,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -449,27 +440,10 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
-            
+       
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         

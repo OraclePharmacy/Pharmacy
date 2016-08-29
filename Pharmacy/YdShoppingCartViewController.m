@@ -54,11 +54,9 @@
         
         NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
         
-        //        NSLog(@"%@",countwenjian);
         NSFileManager *file=[NSFileManager defaultManager];
         if([file fileExistsAtPath:countwenjian]){
             yikaishi=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-            NSLog(@"\n\n\n%@\n\n\n",yikaishi);
             _lianxidianzhnag.hidden=NO;
             _tijiao.hidden=NO;
             if (yikaishi.count==0) {
@@ -75,7 +73,6 @@
             
         }
     }
-        NSLog(@"刚进来\n\n%@",yikaishi);
     
     if (yikaishi == nil)
     {
@@ -185,7 +182,6 @@
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
     [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]);
     image.layer.cornerRadius=30;
     
     //药品名称
@@ -324,8 +320,6 @@
             //删除字典内容
             
             [yikaishi removeObjectAtIndex:indexPath.row];
-            //            NSLog(@"0.0%@",yikaishi);
-            
             if (yikaishi.count==0) {
                 //yikaishi=nil;
             }
@@ -383,12 +377,10 @@
         if ([fm fileExistsAtPath:path1]) {
             NSDictionary*gerenxinxi=[NSDictionary dictionaryWithContentsOfFile:path1];
             
-            NSLog(@"\n\n\n\n-----\n\n\n\n%@",gerenxinxi);
             if (aa==2) {
                     [WarningBox warningBoxModeText:@"请先保存数据" andView:self.view];
                         }else{
                 if (((NSString*)[gerenxinxi objectForKey:@"name"]).length==0||((NSString*)[gerenxinxi objectForKey:@"area"]).length==0) {
-                NSLog(@"\n\n\n\ndengyu    0\n\n\n\n");
                 [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
 
                 }else{
@@ -456,7 +448,6 @@
     NSMutableArray *aaa=[NSMutableArray arrayWithContentsOfFile:countwenjian];
     int lk=0;
     for (int i=0; i<aaa.count+lk; i++) {
-        NSLog(@"%@",aaa);
         if([[aaa[i-lk] objectForKey:@"shuliang"]isEqualToString:@"0"]){
             [aaa removeObjectAtIndex:i-lk];
             lk++;

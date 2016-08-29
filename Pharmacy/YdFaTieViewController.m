@@ -88,9 +88,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
-            NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -111,7 +108,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -210,7 +206,6 @@
     
     bingzheng = [arr[btn.tag - 100] objectForKey:@"id"];
     
-    NSLog(@"+++++++++++++++++++++++++++%@",bingzheng);
     
 }
 //image 设置
@@ -249,8 +244,6 @@
         
         [self choosephoto];
         
-        NSLog(@"imageView1");
-        
     }
     else if(viewClicked == self.image2)
     {
@@ -260,8 +253,6 @@
         
         [self choosephoto];
         
-        NSLog(@"imageView2");
-        
     }
     else if(viewClicked == self.image3)
     {
@@ -270,8 +261,6 @@
         po=3;
         
         [self choosephoto];
-        
-        NSLog(@"imageView3");
         
     }
     
@@ -443,7 +432,6 @@
         //出入参数：
         
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",self.biaotiText.text,@"title",self.neirongText.text,@"context",now,@"createTime",bingzheng,@"id",nil];
-        NSLog(@"传值%@",datadic);
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
         
         
@@ -458,19 +446,15 @@
                 fm.dateFormat = @"yyyyMMddHHmmss";
                 NSString *str = [fm stringFromDate:[NSDate date]];
                 NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
-                NSLog(@"filename------%@",fileName);
                 [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
             }
             
         } progress:^(NSProgress * _Nonnull uploadProgress) {
-            //        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-                
-                NSLog(@"发帖返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     self.neirongText.text = @"";
                     self.biaotiText.text = @"";
@@ -498,7 +482,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
             
         }];
         

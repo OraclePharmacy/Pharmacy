@@ -122,10 +122,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"－＊－＊－＊－＊－＊－＊电子病历列表返回＊－＊－＊－＊－\n\n\n%@",responseObject);
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             emrList=[NSArray arrayWithArray:[[responseObject objectForKey:@"data" ] objectForKey:@"emrList"]];
-            NSLog(@"%@",emrList);
             if (emrList.count == 0)
             {
                 _tableview.hidden = YES;
@@ -157,7 +154,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
 
 }
@@ -165,7 +161,6 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"%lu",(unsigned long)emrList.count);
     return emrList.count;
 }
 //行
@@ -247,7 +242,6 @@
     NSString * emrid=[NSString stringWithFormat:@"%@",[emrList[indexPath.section] objectForKey:@"id"] ];
     xq.emrid=emrid;
     [self.navigationController pushViewController:xq animated:YES];
-    NSLog(@"%@",emrid);
 }
 -(void)fanhui
 {

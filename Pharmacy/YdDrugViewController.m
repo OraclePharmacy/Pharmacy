@@ -108,7 +108,6 @@
     UIImageView *iv = (UIImageView*)[cell viewWithTag:1];
     //为单元个添加图片
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[rowNo]objectForKey:@"picUrl" ]] ;
-    NSLog(@"%@",path);
     [iv sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     //通过tag属性获取单元格内的lable控件
     UILabel *lable = (UILabel *)[cell viewWithTag:2];
@@ -441,7 +440,6 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:ss,@"level2Name",nil];
-    NSLog(@"\n\n%@",ss);
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -453,16 +451,12 @@
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
-    //NSLog(@"  %@",dic);
-    
     [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-//            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"药品三级列表\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -477,13 +471,11 @@
         @catch (NSException * e) {
             
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
 

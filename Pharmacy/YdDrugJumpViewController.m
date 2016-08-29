@@ -38,7 +38,6 @@
     self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    NSLog(@"_bookNo_bookNo_bookNo%@",_bookNo);
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     //状态栏名称
@@ -133,8 +132,6 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-                //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-//                NSLog(@"详情，返回信息 ， 三级药品  %@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
     
                     NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -177,7 +174,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-//            NSLog(@"错误：%@",error);
             
         }];
         
@@ -209,7 +205,6 @@
 
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 80, 80)];
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row]objectForKey:@"picUrl" ]] ;
-//    NSLog(@"%@",path);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
    
     
@@ -241,9 +236,7 @@
     
     UILabel *jiage = [[UILabel alloc]initWithFrame:CGRectMake(120, 70, width -140, 20)];
     jiage.font = [UIFont systemFontOfSize:10];
-    //jiage.textAlignment = NSTextAlignmentCenter;
     jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-//    NSLog(@"是不是处方药\n\n\n%@",[arr[indexPath.row] objectForKey:@"prescription"]);
     if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
         jiage.text=@"非处方药";
     }else{

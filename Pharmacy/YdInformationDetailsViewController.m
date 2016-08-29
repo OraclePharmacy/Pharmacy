@@ -48,7 +48,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"\n\n\n%@\n\n\n",_doc);
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     //状态栏名称
@@ -190,7 +189,6 @@
             NSString*niu=[NSString stringWithFormat:@"%@",aa1[aa1.count-1]];
             NSString *shipinlujing=[NSString stringWithFormat:@"/private%@/tmp/%@",NSHomeDirectory(),niu];
             
-            NSLog(@"%@",shipinlujing);
             
             NSFileManager*fm=[NSFileManager defaultManager];
             if ([fm fileExistsAtPath:shipinlujing]) {
@@ -263,7 +261,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -328,7 +325,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -399,7 +395,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -464,7 +459,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -495,7 +489,6 @@
     if(response.responseCode == UMSResponseCodeSuccess)
     {
         //得到分享到的平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
     }
 }
 
@@ -530,26 +523,21 @@
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
-    NSLog(@"%@",url1);
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"%@",dic);
     [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try{
             
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"－＊－＊－＊－＊－＊详情接口＊－＊－＊＊－\n\n\n%@",responseObject);
             shareUrl=[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"];
             dian = [[responseObject objectForKey:@"data"] objectForKey:@"clickMark"];
             shou = [[responseObject objectForKey:@"data"] objectForKey:@"mark"];
             
             [self kongjian];
             
-            
-            NSLog(@"%@",[NSString stringWithFormat:@"-------%@%@",service_host,shareUrl]);
-            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
+                        if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
                 bo = 1;
                 // [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
             }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
@@ -568,7 +556,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -587,8 +574,7 @@
 {
     
     NSString *pathFile = [NSTemporaryDirectory() stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
-    NSLog(@"\n\n\n--------------******视频下载路径*******-----------\n\n\n%@\n",pathFile);
-    NSLog(@"\n\n%@\n\n",NSHomeDirectory());
+ 
     uuuu =[NSURL fileURLWithPath:pathFile];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            [self shipinbofang:uuuu];
@@ -607,9 +593,7 @@
 }
 
 -(void)shipinbofang:(NSURL *)sFileNamePath{
-    NSLog(@"\n\n----***\n%@\n\n",sFileNamePath);
     if (NULL==sFileNamePath) {
-        NSLog(@"没走");
     }else{
     @try {
         [WarningBox warningBoxHide:YES andView:self.view];

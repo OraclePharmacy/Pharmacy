@@ -95,7 +95,6 @@
     ary4 =[NSArray arrayWithArray:[oo objectForKey:@"fanhou"]];
     aa =[NSArray arrayWithArray:[oo objectForKey:@"xueyaarraytime"]];
     bb =[NSArray arrayWithArray:[oo objectForKey:@"xuetangarraytime"]];
-    NSLog(@"\n%@\n%@\n%@\n%@\n",ary,ary2,ary3,ary4);
     if (path.section==0) {
         switch (path.row) {
             case 0:

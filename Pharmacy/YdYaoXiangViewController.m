@@ -44,7 +44,6 @@
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
-    NSLog(@"path = %@",path);
     NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
     
     //判断是否已经创建文件
@@ -192,7 +191,6 @@
         [time1 removeObjectAtIndex:indexPath.row];
         [cishu2 removeObjectAtIndex:indexPath.row];
         [tupian1 removeObjectAtIndex:indexPath.row];
-        NSLog(@"0.0%@,%@,%@,%@",name1,changshang1,time1,cishu2);
         
         if (changshang1.count==0) {
             //yikaishi=nil;

@@ -35,7 +35,6 @@
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
-    NSLog(@"path = %@",path);
     NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
     
     //判断是否已经创建文件
@@ -271,7 +270,6 @@
         NSString *filename=[path stringByAppendingPathComponent:@"zhihui.plist"];
         NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name1,@"name",changshang1,@"changshang",time1,@"time",cishu1,@"cishu",tupian1,@"tupian",nil]; //写入数据
         
-        //NSLog(@"%@",dic);
         [dic writeToFile:filename atomically:YES];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加成功" message:@"您已添加成功,是否继续添加?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
