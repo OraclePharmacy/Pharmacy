@@ -38,7 +38,7 @@
     self.tableview.tableFooterView = [[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+    NSLog(@"_bookNo_bookNo_bookNo%@",_bookNo);
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     //状态栏名称

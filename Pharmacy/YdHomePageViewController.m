@@ -1709,7 +1709,7 @@
     NSLog(@"%ld",(long)btn.tag);
     //跳转到详细病症
     YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
-    DrugJump.bookNo = [arr[btn.tag-100] objectForKey:@"level3Name"];
+    DrugJump.bookNo = bingzhengarr[btn.tag-100] ;
     [self.navigationController pushViewController:DrugJump animated:YES];
 }
 #pragma mark ----- 创建三级联动
