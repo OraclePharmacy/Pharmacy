@@ -150,7 +150,6 @@
     i = 0;
     //检测到摇动
     [time setFireDate:[NSDate distantPast]];
-    NSLog(@"dianole");
 }
 
 -(void)jiekou
@@ -193,8 +192,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-          // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
+
             if ([[responseObject objectForKey:@"code"] intValue]==4444) {
                 UIButton *fanhui = [[UIButton alloc]init];
                 fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
@@ -232,7 +230,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -240,8 +237,7 @@
 - (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
 
 {
-    //摇动取消
-    //NSLog(@"yaodong");
+
 }
 
 
@@ -260,7 +256,6 @@
             
             
         });
-        //NSLog(@"结束");
     }
 }
 -(void)fanhui

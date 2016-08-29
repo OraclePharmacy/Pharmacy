@@ -100,12 +100,10 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-//            NSLog(@"%@",responseObject);
+           
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                NSLog(@"dicdatadic%@",datadic);
 
                 
                 arr = [datadic objectForKey:@"pharmacistInfoList"];
@@ -132,7 +130,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
     
 }
@@ -245,7 +242,6 @@
     UITableViewCell *cell=(UITableViewCell*)[[tt superview] superview ];
     
     NSIndexPath *index=[self.tableview indexPathForCell:cell];
-    NSLog(@"%@",arr);
     
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"loginName"]]];
     if (conversation == nil) {
@@ -254,7 +250,6 @@
         [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[index.section] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
             
             if (error) {
-                NSLog(@"创建会话失败-*-*-*%@",error);
                 return ;
             }
             mememeViewController*xixi=[mememeViewController new];
@@ -272,7 +267,6 @@
         
     }
 
-    NSLog(@"聊天界面");
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -281,7 +275,6 @@
      PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
      PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"loginName"]];
     PharmacistDetails.pop=[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"name"]];
-     NSLog(@"%@",PharmacistDetails.yaoshiid);
      [self.navigationController pushViewController:PharmacistDetails animated:YES];
     
 }

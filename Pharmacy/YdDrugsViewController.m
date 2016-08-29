@@ -71,7 +71,6 @@
     
     
     NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-    // NSLog(@"文件存放路径  %@",NSHomeDirectory());
     NSFileManager *file=[NSFileManager defaultManager];
     
     if([file fileExistsAtPath:countwenjian]){
@@ -114,7 +113,6 @@ int popop=0;
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_yaopinID,@"id", nil];
-    //    NSLog(@"%@",_yaopinID);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -131,8 +129,6 @@ int popop=0;
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject－－－－－－\n\n%@\n\n",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 popop=1;
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -154,7 +150,6 @@ int popop=0;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -260,7 +255,6 @@ int popop=0;
         UIImageView *image = [[UIImageView alloc] init];
         image.frame = CGRectMake(0, 0, width, 150);
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[xianshiarr objectForKey:@"product"] objectForKey:@"picUrl"]];
-        NSLog(@"%@",xianshiarr);
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
         
         [cell.contentView addSubview:image];
@@ -441,7 +435,6 @@ int popop=0;
     [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         if ([[responseObject objectForKey:@"code"] intValue]==0) {
             dataha=[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
             
@@ -449,7 +442,6 @@ int popop=0;
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
     }];
     
 }
@@ -465,22 +457,18 @@ int popop=0;
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [WarningBox warningBoxHide:YES  andView:self.view];
             if (error) {
-                NSLog(@" 登录出错");
                 [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                 return ;
             }
             [self liaotian];
-            NSLog(@"JMessage 登录成功");
         }];
     }
     
 }
 -(void)liaotian
 {
-    NSLog(@"%@",dataha);
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]]];
     [conversation allMessages:^(id resultObject, NSError *error) {
-        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
     }];
     if (conversation == nil) {
         
@@ -491,7 +479,6 @@ int popop=0;
             [WarningBox warningBoxHide:YES andView:self.view];
             
             if (error) {
-                NSLog(@"创建会话失败%@",error);
                 return ;
             }
             
@@ -550,13 +537,11 @@ int popop=0;
     }else{
         NSMutableArray * arrr=[NSMutableArray array];
         NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-        //  NSLog(@"文件存放路径  %@",NSHomeDirectory());
         NSFileManager *file=[NSFileManager defaultManager];
         [xianshiarr setValue:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
         
         if([file fileExistsAtPath:countwenjian])
         {
-            NSLog(@"%@",xianshiarr);
             //   获取文件里的数据
             arrr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
             int ioi=0;
@@ -564,7 +549,6 @@ int popop=0;
                 if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
                     ioi=1;
                     [arrr[i] setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
-                    NSLog(@"%@",xianshiarr);
                     [arrr writeToFile:countwenjian atomically:YES];
                     [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -574,7 +558,6 @@ int popop=0;
             if (ioi==0) {
                 
                 [arrr addObject:xianshiarr];
-                NSLog(@"%@",xianshiarr);
                 [arrr writeToFile:countwenjian atomically:YES];
                 [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -598,12 +581,9 @@ int ll=0;
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     float op;
     if ([string isEqual:@"0"]&& ll==0) {
-        //  NSLog(@"没事");
     }else if ([string isEqual:@""]) {
-        //  NSLog(@"%lu",[textField.text length]-1);
         op=[textField.text length]-1;
     }else{
-        // NSLog(@"%lu",[textField.text length]+1);
         op=[textField.text length]+1;
     }
     

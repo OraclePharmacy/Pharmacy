@@ -39,7 +39,6 @@
     self.tableview.tableFooterView = [[UIView alloc] init];
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
     //状态栏名称
-    NSLog(@"\n\n\n\n\nhgdhasgdjsagdsafjkdshfgdsgfs\n\n\n\n");
     self.navigationItem.title = @"积分礼品";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
@@ -138,8 +137,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品列表＊－＊－＊－＊－\n\n\n%@",responseObject);
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -165,7 +162,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
 
 }

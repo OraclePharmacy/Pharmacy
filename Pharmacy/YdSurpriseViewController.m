@@ -99,13 +99,11 @@
             YdTurntableViewController *Turntable = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"turntable"];
             
             Turntable.uu=[NSString stringWithFormat:@"%@/%@",service_host,[[responseObject objectForKey:@"data"] objectForKey:@"url"]];
-            NSLog(@"%@",Turntable.uu);
             [self.navigationController pushViewController:Turntable animated:YES];
         }
         if ([[responseObject objectForKey:@"code"] intValue]==4444) {
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
         }
-        NSLog(@"\n\n\n大转盘\n\n\n%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
     }];

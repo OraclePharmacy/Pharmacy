@@ -88,8 +88,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            
-            NSLog(@"\n标签返回值\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -112,7 +110,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
 
    
@@ -193,8 +190,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"-*-*-*-*-*-搜索－＊－＊－＊－%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -222,7 +217,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -311,18 +305,13 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 bingzheng = [datadic objectForKey:@"BzSearchList"];
                 yaopin = [datadic objectForKey:@"AddSearchList"];
-                
-//                NSLog(@"bingzheng%@",bingzheng);
-                  //NSLog(@"\n\n\n--*-*-*-*-*-yaopin\n\n%@",yaopin);
-                
+ 
                 //跳转到病症/药品界面
                 YdSearchResultViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"searchresult"];
                 SearchResult.bingzheng = bingzheng;
@@ -343,7 +332,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     }
 }

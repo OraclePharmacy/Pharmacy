@@ -204,8 +204,6 @@
     [fm createDirectoryAtPath:dicpath withIntermediateDirectories:NO attributes:nil error:nil];
     
     NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
-    
-    NSLog(@"%@",picpath);
     [fm createFileAtPath:picpath contents:imageData attributes:nil];
     if (po==1) {
 
@@ -249,13 +247,11 @@
     NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
     NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
     NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
-    NSLog(@"%@",apq);
     for (int i=0; i<apq.count; i++) {
         if ([fm1 fileExistsAtPath: apq[i]]) {
             [heheda addObject:apq[i]];
         }
     }
-    NSLog(@"%@  %lu",heheda,(unsigned long)heheda.count);
     //后台写的跟个傻逼似的 擦
     
     [WarningBox warningBoxModeIndeterminate:@"正在帮您代购药...." andView:self.view];
@@ -270,7 +266,6 @@
     //出入参数：
     
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",vip,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext.text,@"batchNo",_beizhu.text,@"remark", nil];
-    NSLog(@"%@",datadic);
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
     
@@ -285,12 +280,10 @@
             fm.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [fm stringFromDate:[NSDate date]];
             NSString *fileName = [NSString stringWithFormat:@"%@___%d.png", str,i];
-            NSLog(@"filename------%@",fileName);
             [formData appendPartWithFileData:data name:@"urls" fileName:fileName mimeType:@"image/jpeg"];
         }
      
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -324,7 +317,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
 

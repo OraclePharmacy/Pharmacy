@@ -73,7 +73,6 @@
     
 }
 -(void)loadNewData{
-    NSLog(@"%d,%d",ye,coun);
     if (ye*10 >coun+9||10>coun) {
         
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
@@ -90,7 +89,6 @@
 
 -(void)jiekou{
     [WarningBox warningBoxModeIndeterminate:nil andView:self.view];
-    NSLog(@"%d",ye);
     //userID    暂时不用改
     NSString * userID=@"0";
     
@@ -126,10 +124,8 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",responseObject);
         NSArray*poop=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"pushLogList"]];
         coun=[[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
-        NSLog(@"%d",ye);
         if (ye!=1) {
             for (NSDictionary*dd in poop) {
                 [pushLogList addObject:dd];
@@ -138,14 +134,12 @@
           
             pushLogList =[NSMutableArray arrayWithArray:poop];
         }
-        NSLog(@"%lu",(unsigned long)pushLogList.count);
         ye++;
         
         [_tableview reloadData];
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
     }];
 
 }
@@ -197,7 +191,6 @@
     
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(5, 0, width - 20, 30);
-    NSLog(@"%lu",(unsigned long)pushLogList.count);
     title.text = [NSString stringWithFormat:@"%@",[pushLogList[indexPath.row] objectForKey:@"pushContent"]];
     title.font = [UIFont systemFontOfSize:15];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];

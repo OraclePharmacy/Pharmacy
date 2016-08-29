@@ -132,8 +132,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            
-            NSLog(@"－＊－＊－＊－＊－特价药品列表 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -158,7 +156,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
 

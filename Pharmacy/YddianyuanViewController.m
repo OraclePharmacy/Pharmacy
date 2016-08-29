@@ -211,9 +211,9 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
+    NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"officeid"];
   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"1",@"type",vip,@"vipId",@"67a3c6f913d24373b4a7917ba8a987ff",@"objectId",nil];
-    NSLog(@"%@",datadic);
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"1",@"type",vip,@"vipId",officeid,@"objectId",nil];
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -248,7 +248,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     

@@ -100,8 +100,6 @@
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.xixi,@"id", vip,@"vipId",nil];
     
-    NSLog(@"入参%@",datadic);
-    
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -119,8 +117,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //NSLog(@"%@",responseObject);
-            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -131,8 +127,6 @@
                 NSDictionary *post = [datadic objectForKey:@"post"];
                 
                 NSString*path=[NSString stringWithFormat:@"%@/hyb%@",service_host,[post objectForKey:@"shareUrl"]];
-                
-                NSLog(@"path:%@",path);
                 
                 NSURL *url=[NSURL URLWithString:path];
                 
@@ -153,7 +147,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
     
@@ -256,7 +249,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -320,7 +312,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -388,7 +379,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
         
@@ -432,33 +422,14 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
-        
         
     }
     
-
 }
 
 //分享

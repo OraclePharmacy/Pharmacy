@@ -96,7 +96,6 @@
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",/* ,@"paprId",*/ nil];
-    NSLog(@"12345%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -113,9 +112,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            
-            NSLog(@"%@",responseObject);
-            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -123,8 +119,6 @@
                 arr = [datadic objectForKey:@"examList"];
                 
                  [self kongjian];
-                
-//                NSLog(@"%@",datadic);
             }
             
         }
@@ -137,7 +131,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         
     }];
     
@@ -164,11 +157,10 @@
     NSString*officeid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSLog(@"j=========================%d",j);
+   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSString *stt = [NSString stringWithFormat:@"%d",j];
     NSString *sst = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"paperId"]];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:sst,@"paperId",vip,@"vipId",officeid,@"officeId",stt,@"score",@"1",@"pageNo",@"1",@"pageSize", nil];
-    NSLog(@"%@",datadic);
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -185,9 +177,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            
-            NSLog(@"%@",responseObject);
-            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -213,8 +202,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-        
+       
     }];
 
 }

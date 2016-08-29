@@ -109,7 +109,6 @@
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    NSLog(@"%@",url1);
     
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
@@ -120,9 +119,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
-            NSLog(@"－＊－＊－＊－＊＊病症详情接口－＊－＊－＊－＊－＊\n\n\n\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 NSDictionary*dd=[NSDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"]];
                 diseaseInfo=[NSDictionary dictionaryWithDictionary:[dd objectForKey:@"diseaseInfo"]];
@@ -133,7 +129,6 @@
                 zhiliao=[[NSString stringWithFormat:@"%@",[diseaseInfo objectForKey:@"cnTreatPlan"]] componentsSeparatedByString:@"\n"];
                 //少子段
                 yaopin=[diseaseInfo objectForKey:@"lst"] ;
-                NSLog(@"-*-*-*-**-*%@",[[[diseaseInfo objectForKey:@"lst"][0] objectForKey:@"addedProduct" ] objectForKey:@"id"]);
                 [_tableview reloadData];
                 
             }
@@ -149,7 +144,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
         [_tableview reloadData];
     }];
 }
@@ -391,20 +385,17 @@
 }
 #pragma mark ---跳转药品详情
 -(void)handleSingleTapFrom3{
-    NSLog(@"3");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
     dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][2] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 
 }
 -(void)handleSingleTapFrom2{
-    NSLog(@"2");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
     dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][1] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];
 }
 -(void)handleSingleTapFrom1{
-    NSLog(@"1");
     YdDrugsViewController*dd=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugs"];
     dd.yaopinID=[NSString stringWithFormat:@"%@",[[[diseaseInfo objectForKey:@"lst"][0] objectForKey:@"addedProduct" ] objectForKey:@"id"]];
     [self.navigationController pushViewController:dd animated:YES];

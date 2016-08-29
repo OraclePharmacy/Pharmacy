@@ -34,8 +34,8 @@
     //导航栏名称
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationItem.title = @"登录";
-//    self.tabBarController.tabBar.hidden=YES;
-//    self.navigationController.navigationBarHidden=NO;
+    //    self.tabBarController.tabBar.hidden=YES;
+    //    self.navigationController.navigationBarHidden=NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     self.LoginButton.layer.cornerRadius = 5;
@@ -56,15 +56,20 @@
     NSLog(@"%@",NSHomeDirectory());
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithContentsOfFile:Rempath];
     NSString *isZiDongdenglu =  [[NSUserDefaults standardUserDefaults]objectForKey:@"zddl"];
-   
+    
     if ([isZiDongdenglu  isEqual: @"1"]) {
         isRemember = YES;
         [self.RememberButton setTitle:@"记住密码" forState:UIControlStateNormal];
         [self.RememberButton setImage:[UIImage imageNamed:@"time_line_mark.png"] forState:UIControlStateNormal];
-        _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
-        _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
+        if (NULL== dic ) {
+            _PhoneText.text =@"";
+            _PasswordText.text=@"";
+        }else{
+            _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
+            _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
+        }
     }
-
+    
     
 }
 
@@ -222,10 +227,10 @@
             [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [WarningBox warningBoxHide:YES andView:self.view];
+                
                 @try
                 {
-            
+                    
                     NSLog(@"登陆返回－－－＊＊＊－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                         
@@ -277,22 +282,23 @@
                             [dictionaryic writeToFile:filename atomically:YES];
                             
                         }
-
                         
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                
-                                YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
-                                [self.navigationController pushViewController:Root animated:YES];
-                                
-                            });
+                        
+//                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [WarningBox warningBoxHide:YES andView:self.view];
+                            YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                            [self.navigationController pushViewController:Root animated:YES];
+                            
+//                        });
                         
                     }
                     else{
+                        [WarningBox warningBoxHide:YES andView:self.view];
                         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     }
                 }
                 @catch (NSException * e) {
-                    
+                    [WarningBox warningBoxHide:YES andView:self.view];
                     [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                     
                 }
@@ -351,12 +357,12 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-
+            
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 //NSDictionary*datadic=[responseObject valueForKey:@"data"];
-            
+                
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path2=[paths objectAtIndex:0];
                 //NSLog(@"path = %@",path);
@@ -379,7 +385,7 @@
         NSLog(@"错误：%@",error);
     }];
     
-
+    
 }
 
 //忘记密码
@@ -412,8 +418,8 @@
     else{
         [user setObject:@"0" forKey:@"zddl"];
         isRemember=NO;
-       [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-            
+        [self.RememberButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        
     }
     
 }

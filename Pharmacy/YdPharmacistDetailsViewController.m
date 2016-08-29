@@ -38,7 +38,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"\n\n\n\n\nhahahaha\n\n\n\n%@\n\n\n\n\n",_logname);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     //解决tableview多出的白条
@@ -97,19 +96,14 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //            NSLog(@"%@",responseObject);
+         
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                //NSLog(@"datadicdatadicdatadicdatadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
-                
                 arr = [datadic objectForKey:@"pharmacistInfoDetail"];
                 
                 officearr = [arr valueForKey:@"office"];
-                
-                NSLog(@"%@",officearr);
                 
                 [self.tableview reloadData];
                 
@@ -125,7 +119,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
 
 }
@@ -296,7 +289,6 @@
     
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:_logname];
     [conversation allMessages:^(id resultObject, NSError *error) {
-        NSLog(@"\n\n\n\n\n\n\nsadasd\n\n\n\n%@",resultObject);
     }];
     if (conversation == nil) {
         
@@ -304,9 +296,7 @@
         
         [JMSGConversation createSingleConversationWithUsername:_logname completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            NSLog(@"创建会话返回\n\n%@",resultObject);
             if (error) {
-                NSLog(@"创建会话失败%@",error);
                 return ;
             }
             

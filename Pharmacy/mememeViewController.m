@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"\n\n\n\n%@",_opo);
     self.tabBarController.tabBar.hidden=YES;
     //状态栏名称
     self.navigationItem.title = _opo;

@@ -134,22 +134,12 @@
     bingzhengarr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
     
     //    启动
-    // if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"])
-    
     if (![fm fileExistsAtPath:cunzai])
     {
-        // [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         [@"sada" writeToFile:cunzai atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        
-        NSLog(@"第一次启动");
-        
         [GuideViewController sharedGuide];
         [GuideViewController show];
-        
     }
-    
-    
-    
     self.tableview.tableFooterView = [[UIView alloc] init];
     remenzixunarray = [[NSMutableArray alloc]init];
     
@@ -400,13 +390,6 @@
 #pragma  第二组  四个按钮
 -(void)fourButton
 {
-    //    //第一个按钮
-    //    UIButton *one = [[UIButton alloc]init];
-    //    one.frame = CGRectMake((width - 55 *4 )/5,10,55,75);
-    //    [one setBackgroundImage:[UIImage imageNamed:@"组-4@3x.png"] forState:UIControlStateNormal];
-    //    [one addTarget:self action:@selector(one) forControlEvents:UIControlEventTouchUpInside];
-    //
-    
     UIButton *one = [[UIButton alloc]init];
     one.frame = CGRectMake(0, 0, width / 4, 95 );
     [one setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1 ] forState:UIControlStateNormal];
@@ -439,10 +422,6 @@
     four.titleLabel.font = [UIFont systemFontOfSize:13];
     [four setImage:[UIImage imageNamed:@"youhuijuan.png"] forState:UIControlStateNormal];
     [four addTarget:self action:@selector(four) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    NSLog(@"%f",self.view.bounds.size.width);
-    
     if (width == 414)
     {
         [one setTitleEdgeInsets:UIEdgeInsetsMake(0,-70,-60,0)];
@@ -489,9 +468,7 @@
     
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
-    //NSLog(@"path = %@",path);
     NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-    //NSLog(@"path = %@",filename);
     //判断是否已经创建文件
     if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
         int yongjingxi;
@@ -501,9 +478,6 @@
         yongjingxi = [[dic objectForKey:@"yongjingxi"] intValue];
         
         yongjingxi++;
-        
-        NSLog(@"yongjingxi:%d",yongjingxi);
-        
         NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[NSString stringWithFormat:@"%d",yongjingxi],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
         
         [dic1 writeToFile:filename atomically:YES];
@@ -512,7 +486,6 @@
         
         NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"1",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
         
-        //NSLog(@"%@",dic);
         [dic writeToFile:filename atomically:YES];
         
     }
@@ -533,19 +506,17 @@
         
         [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            NSLog(@"创建会话返回\n\n%@",resultObject);
+         
             if (error) {
                 [WarningBox warningBoxHide:YES andView:self.view];
-                NSLog(@" 登录出错");
+               
                 [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                 return ;
             }
             
             NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
             NSString *path=[paths objectAtIndex:0];
-            //NSLog(@"path = %@",path);
             NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-            //NSLog(@"path = %@",filename);
             //判断是否已经创建文件
             if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                 
@@ -557,8 +528,6 @@
                 
                 wentaoshi++;
                 
-                NSLog(@"wenyaoshi:%d",wentaoshi);
-                
                 NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[NSString stringWithFormat:@"%d",wentaoshi],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
                 
                 [dic1 writeToFile:filename atomically:YES];
@@ -567,13 +536,11 @@
                 
                 NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"1",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
                 
-                //NSLog(@"%@",dic);
                 [dic writeToFile:filename atomically:YES];
                 
             }
             
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"JMessage 登录成功");
             [self.navigationController pushViewController:Question animated:YES];
         }];
         
@@ -588,9 +555,7 @@
         
         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path=[paths objectAtIndex:0];
-        //NSLog(@"path = %@",path);
         NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-        //NSLog(@"path = %@",filename);
         //判断是否已经创建文件
         if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
             
@@ -602,8 +567,6 @@
             
             daigouyao++;
             
-            NSLog(@"daigouyao:%d",daigouyao);
-            
             NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[NSString stringWithFormat:@"%d",daigouyao],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
             
             [dic1 writeToFile:filename atomically:YES];
@@ -612,7 +575,6 @@
             
             NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"1",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
             
-            //NSLog(@"%@",dic);
             [dic writeToFile:filename atomically:YES];
             
         }
@@ -630,9 +592,7 @@
         
         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path=[paths objectAtIndex:0];
-        //NSLog(@"path = %@",path);
         NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-        //NSLog(@"path = %@",filename);
         //判断是否已经创建文件
         if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
             
@@ -644,8 +604,6 @@
             
             youhuiquan++;
             
-            NSLog(@"youhuiquan:%d",youhuiquan);
-            
             NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[dic objectForKey:@"wenyaoshi"],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[NSString stringWithFormat:@"%d",youhuiquan],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
             
             [dic1 writeToFile:filename atomically:YES];
@@ -654,7 +612,6 @@
             
             NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"0",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"1",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
             
-            //NSLog(@"%@",dic);
             [dic writeToFile:filename atomically:YES];
             
         }
@@ -662,9 +619,6 @@
         huoqumendianyouhuijuan *huoqumendianyouhuijuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianyouhuijuan"];
         
         [self.navigationController pushViewController:huoqumendianyouhuijuan animated:YES];
-        //    YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-        //    youhuiquan.panduan = @"2";
-        //    [self.navigationController pushViewController:youhuiquan animated:YES];
     }
 }
 #pragma  mark ---- 积分礼品接口
@@ -744,7 +698,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
 }
 #pragma mark ---- 特价药品接口
@@ -788,8 +741,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            
-            // NSLog(@"－＊－＊－＊－＊－特价药品 -*-*-*--*\n\nn\%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -812,7 +763,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
     
     
@@ -855,7 +805,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"=================%@===================",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -876,7 +825,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
     }];
     
     
@@ -1200,7 +1148,6 @@
                                                   placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
-                    NSLog(@"%ld",(long)index);
                     if (index == 0) {
                         YdmendianxinxiViewController *mendianxinxi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
                         [self.navigationController pushViewController:mendianxinxi animated:YES];
@@ -1214,7 +1161,6 @@
                             //门店id
                             NSString *sst = [NSString stringWithFormat:@"%@",[arr[index] objectForKey:@"id"]];
                             banner.xixi = sst;
-                            NSLog(@"sst:%@",sst);
                             [self.navigationController pushViewController:banner animated:YES];
                         }
                     }
@@ -1277,7 +1223,6 @@
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
                 [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
-                NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]);
                 //名称
                 UILabel *name = [[UILabel alloc]init];
                 name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
@@ -1498,7 +1443,6 @@
             title.font = [UIFont systemFontOfSize:15];
             title.text =[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"title"] ];
             title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            //title.backgroundColor = [UIColor grayColor];
             
             UILabel *content = [[UILabel alloc]init];
             content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
@@ -1506,7 +1450,6 @@
             content.text = [NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"subtitle"] ];
             content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             content.numberOfLines = 2;
-            //content.backgroundColor = [UIColor grayColor];
             
             UILabel *time = [[UILabel alloc]init];
             time.frame = CGRectMake(width - 150, 100, 145, 20);
@@ -1515,8 +1458,6 @@
             time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             time.textAlignment = NSTextAlignmentRight;
             time.numberOfLines = 2;
-            //time.backgroundColor = [UIColor grayColor];
-            
             
             UIView *xian = [[UIView alloc] init];
             xian.frame = CGRectMake(0, 120, width, 1);
@@ -1603,11 +1544,9 @@
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;
             panduan=0;
-            //            MDID=[wocalei[indexPath.row-1]]
             
             NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
             [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1] objectForKey:@"id"]] forKey:@"officeid"];
-            NSLog(@"\n\n\nofficeid-----%@",[pp objectForKey:@"officeid"]);
             [self bannerjiekou];
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
@@ -1698,7 +1637,6 @@
 //病症
 -(void)bingzheng:(UIButton *)btn
 {
-    NSLog(@"%ld",(long)btn.tag);
     //跳转到详细病症
     YdDrugJumpViewController *DrugJump =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"drugjump"];
     DrugJump.bookNo = bingzhengarr[btn.tag-100] ;
@@ -1912,14 +1850,11 @@
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){
         pickerLabel = [[UILabel alloc] init];
-        // Setup label properties - frame, font, colors etc
-        //adjustsFontSizeToFitWidth property to YES
         pickerLabel.adjustsFontSizeToFitWidth = YES;
         [pickerLabel setTextAlignment:NSTextAlignmentLeft];
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
         [pickerLabel setFont:[UIFont boldSystemFontOfSize:15]];
     }
-    // Fill the label text here
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
     return pickerLabel;
 }
@@ -1984,8 +1919,6 @@
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        //NSLog(@"定位1111111111111111111%@",url1);
-        
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
@@ -2026,9 +1959,7 @@
                     panduan=2;
                     wocalede=[NSArray array];
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
-                    //NSLog(@"\n\n  wuge \n\n%@",responseObject);
-                    
-                    
+        
                     [wocalei reloadData];
                     
                     wocalei.hidden = NO;
@@ -2045,7 +1976,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            //NSLog(@"错误：%@",error);
         }];
     }
     
@@ -2105,11 +2035,9 @@ int nicaicai=0;
         }
         else if (error == nil && [array count] == 0)
         {
-            //NSLog(@"No results were returned.");
         }
         else if (error != nil)
         {
-            //NSLog(@"An error occurred = %@", error);
         }
     }];
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
@@ -2234,7 +2162,6 @@ int nicaicai=0;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            //NSLog(@"错误：%@",error);
         }];
         
         

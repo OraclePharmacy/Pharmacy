@@ -86,7 +86,6 @@
     [self.session stopRunning];
     //2.删除预览图层
     [self.previewLayer removeFromSuperlayer];
-    NSLog(@"%@",metadataObjects);
     
     //3。设置界面显示扫描结果
     if (metadataObjects.count>0) {
@@ -132,7 +131,6 @@
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
-                    NSLog(@"chenggongle ");
                     if ([_str isEqual:@"1"])
                     {
                          YdScanJumpViewController *SearchResult = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scanjump"];
@@ -163,7 +161,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
 
     }
