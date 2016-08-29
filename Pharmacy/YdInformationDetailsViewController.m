@@ -57,7 +57,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self wangluo];
- 
+    
     
 }
 //创建cell显示控件
@@ -129,13 +129,12 @@
     
     shoucang = [[UIButton alloc]init];
     shoucang.frame = CGRectMake(width - 90, CGRectGetMaxY(image.frame) + 10, 20, 20);
-    // [shoucang setBackgroundImage:[UIImage imageNamed:@"collection_dark(1).png"] forState:UIControlStateNormal];
+    
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
     dianzan = [[UIButton alloc]init];
     dianzan.frame = CGRectMake(width - 60, CGRectGetMaxY(image.frame) + 10, 20, 20);
-    //[dianzan setBackgroundImage:[UIImage imageNamed:@"clicklike_dark(1).png"] forState:UIControlStateNormal];
     [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dianzan];
     
@@ -195,7 +194,7 @@
                 NSURL *chuan1=[NSURL fileURLWithPath:shipinlujing];
                 [self shipinbofang:chuan1];
             }else
-            [self downloadFile2:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+                [self downloadFile2:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
         }
     }
 }
@@ -241,23 +240,6 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"收藏成功" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -305,23 +287,6 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"取消收藏" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -375,22 +340,6 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"点赞成功" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -439,22 +388,6 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    //[WarningBox warningBoxModeText:@"点赞取消" andView:self.view];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -537,13 +470,12 @@
             
             [self kongjian];
             
-                        if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
+            if ([[responseObject objectForKey:@"code"]isEqual:@"2222"]) {
                 bo = 1;
-                // [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
             }else if([[responseObject objectForKey:@"code"]isEqual:@"1111"])
             {
                 bo = 2;
-               
+                
             }
             
             
@@ -566,7 +498,7 @@
     [WarningBox warningBoxModeIndeterminate:@"视频加载中...." andView:self.view];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ss] cachePolicy:1 timeoutInterval:15];
     [[self.session downloadTaskWithRequest:request]resume];
-
+    
 }
 
 #pragma mark - 代理方法
@@ -574,12 +506,12 @@
 {
     
     NSString *pathFile = [NSTemporaryDirectory() stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
- 
+    
     uuuu =[NSURL fileURLWithPath:pathFile];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-           [self shipinbofang:uuuu];
+        [self shipinbofang:uuuu];
     });
-
+    
 }
 // 懒加载
 - (NSURLSession *)session
@@ -595,38 +527,37 @@
 -(void)shipinbofang:(NSURL *)sFileNamePath{
     if (NULL==sFileNamePath) {
     }else{
-    @try {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
-        //    MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        
-        [movie.moviePlayer prepareToPlay];
-        
-        [self presentMoviePlayerViewControllerAnimated:movie];
-        
-        [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-        
-        
-        
-        [movie.view setBackgroundColor:[UIColor clearColor]];
-        
-        
-        
-        [movie.view setFrame:self.view.bounds];
-        
-        [[NSNotificationCenter defaultCenter]addObserver:self
-         
-                                                selector:@selector(movieFinishedCallback:)
-         
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-         
-                                                  object:movie.moviePlayer];
-        
-        
-    } @catch (NSException *exception) {
-        
-    }
+        @try {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+            
+            [movie.moviePlayer prepareToPlay];
+            
+            [self presentMoviePlayerViewControllerAnimated:movie];
+            
+            [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+            
+            
+            
+            [movie.view setBackgroundColor:[UIColor clearColor]];
+            
+            
+            
+            [movie.view setFrame:self.view.bounds];
+            
+            [[NSNotificationCenter defaultCenter]addObserver:self
+             
+                                                    selector:@selector(movieFinishedCallback:)
+             
+                                                        name:MPMoviePlayerPlaybackDidFinishNotification
+             
+                                                      object:movie.moviePlayer];
+            
+            
+        } @catch (NSException *exception) {
+            
+        }
     }
 }
 

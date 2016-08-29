@@ -76,7 +76,7 @@
     NSString*officeid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-
+    
     //出入参数：
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",officeid,@"officeId",nil];
     
@@ -96,7 +96,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 data=[responseObject valueForKey:@"data"];
@@ -115,7 +114,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -143,7 +141,7 @@
             [lable setFrame:CGRectMake(20, 0, rect.size.width, rect.size.height)];
             
             return lable.frame.size.height+1;
- 
+            
         }
     }
     return 44;
@@ -202,10 +200,10 @@
             lable.textColor=[UIColor colorWithHexString:@"323232"];
             
             [cell addSubview:lable];
-
+            
         }
     }
-
+    
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
@@ -222,7 +220,7 @@
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
 
 

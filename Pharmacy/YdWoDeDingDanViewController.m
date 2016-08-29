@@ -107,7 +107,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -126,13 +126,11 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的订单%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                 coun=[[datadic objectForKey:@"count"] intValue];
-                 NSArray*mg= [datadic objectForKey:@"myOrder"];
+                coun=[[datadic objectForKey:@"count"] intValue];
+                NSArray*mg= [datadic objectForKey:@"myOrder"];
                 
                 if (mg.count == 0) {
                     [self kongbai];
@@ -148,7 +146,7 @@
                 }
                 ye++;
                 [self.tableview reloadData];
-            
+                
             }
         }
         @catch (NSException * e) {
@@ -164,9 +162,8 @@
         label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
-
+    
 }
 -(void)kongbai
 {
@@ -332,7 +329,7 @@
     if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"2"]) {
         
     }else
-    [cell.contentView addSubview:queren];
+        [cell.contentView addSubview:queren];
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -346,7 +343,6 @@
 
 -(void)queren
 {
-    //NSLog(@"%@",[arr[queren.tag - 100] objectForKey:@"states"]);
     if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"1"]) {
         
         //userID    暂时不用改
@@ -366,9 +362,8 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-    
+        
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"id"]],@"id",@"2",@"states",nil];
-        NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -385,10 +380,8 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-//                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"我的订单%@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-
+                    
                     [self.tableview reloadData];
                     
                 }
@@ -403,7 +396,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
     }
@@ -411,14 +403,14 @@
     {
         [WarningBox warningBoxModeText:@"订单已完成，无法进行操作！" andView:self.view];
     }
-     else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"3"])
+    else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"3"])
     {
         [WarningBox warningBoxModeText:@"暂未发货,不能收货！" andView:self.view];
     }
     else if ([[NSString stringWithFormat:@"%@",[arr[queren.tag - 100] objectForKey:@"states"]] isEqualToString:@"0"])
     {
         [WarningBox warningBoxModeText:@"正在处理中,请稍后..." andView:self.view];
-
+        
     }
 }
 

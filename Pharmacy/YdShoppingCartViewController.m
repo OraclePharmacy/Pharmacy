@@ -134,7 +134,7 @@
     right = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(bianij)];
     right1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(baocun)];
     self.navigationItem.rightBarButtonItem = right;
-
+    
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -190,7 +190,6 @@
     name.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"commonName"]];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.font =[UIFont systemFontOfSize:15];
-    //name.backgroundColor = [UIColor redColor];
     UILabel *yuanjia = [[UILabel alloc]init];
     UILabel *tejia = [[UILabel alloc]init];
     if ([[yikaishi[indexPath.row] objectForKey:@"specProdFlag"] intValue]==1) {
@@ -219,8 +218,6 @@
     changjia.text = @"生产厂家:";
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     changjia.font =[UIFont systemFontOfSize:13];
-    //changjia.backgroundColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    
     
     UILabel *vender = [[UILabel alloc]init];
     vender.frame = CGRectMake( 160, 50, width - 160 , 20);
@@ -289,8 +286,7 @@
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
@@ -378,11 +374,11 @@
             NSDictionary*gerenxinxi=[NSDictionary dictionaryWithContentsOfFile:path1];
             
             if (aa==2) {
-                    [WarningBox warningBoxModeText:@"请先保存数据" andView:self.view];
-                        }else{
+                [WarningBox warningBoxModeText:@"请先保存数据" andView:self.view];
+            }else{
                 if (((NSString*)[gerenxinxi objectForKey:@"name"]).length==0||((NSString*)[gerenxinxi objectForKey:@"area"]).length==0) {
-                [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
-
+                    [WarningBox warningBoxModeText:@"请先完善个人信息" andView:self.view];
+                    
                 }else{
                     //显示订单详情，包括总价钱等等
                     YdshoppingxiangshiViewController *shoppingxiangshi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shoppingxiangshi"];
@@ -414,7 +410,6 @@
     UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, height/2, width, 25)];
     lab.font = [UIFont systemFontOfSize:17];
     lab.textColor = [UIColor whiteColor];
-    //    lab.textAlignment = NSTextAlignmentLeft;
     lab.textAlignment = NSTextAlignmentCenter;
     lab.text = @"*  向左侧拉删除";
     
@@ -429,9 +424,7 @@
     UILabel*oo=[cell viewWithTag:index.row+999];
     
     oo.text=[NSString stringWithFormat:@"%d",[oo.text intValue]];
-//    if([oo.text isEqualToString:@"0"]){
-//        oo.text=[NSString stringWithFormat:@"1"];
-//    }
+    
     NSString*qw=oo.text;
     [yikaishi[index.row] setObject:qw forKey:@"shuliang"];
     
@@ -453,7 +446,7 @@
             lk++;
         }
     }
-  
+    
     [aaa writeToFile:countwenjian atomically:YES];
     self.navigationItem.rightBarButtonItem = right;
     [self viewWillAppear:YES];

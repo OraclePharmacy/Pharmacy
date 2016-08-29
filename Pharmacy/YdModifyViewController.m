@@ -29,7 +29,7 @@
     self.navigationItem.title = @"修改密码";
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
     
     [self TextFieldSetUp];
 }
@@ -143,105 +143,100 @@
     if (self.OldPassText.text.length > 0 && self.NewPassText.text.length > 0 && self.AgainPassText.text.length > 0)
     {
         if (![self mima:self.NewPassText.text]) {
-             [WarningBox warningBoxModeText:@"您的新密码格式不正确" andView:self.view];
+            [WarningBox warningBoxModeText:@"您的新密码格式不正确" andView:self.view];
         }
         else if ([self mima:self.NewPassText.text])
         {
             if ([self.OldPassText.text isEqual:self.NewPassText.text]) {
                 [WarningBox warningBoxModeText:@"新密码与久密码一样哟~" andView:self.view];
             }else{
-            if ([self.NewPassText.text isEqualToString:self.AgainPassText.text]) {
-                
-                [WarningBox warningBoxModeIndeterminate:@"密码修改中..." andView:self.view];
-                
-                //userID    暂时不用改
-                NSString * userID=@"0";
-                
-                //请求地址   地址不同 必须要改
-                NSString * url =@"/modifypwdVip";
-                
-                //时间戳
-                NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-                NSTimeInterval a=[dat timeIntervalSince1970];
-                NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-                
-                
-                //将上传对象转换为json格式字符串
-                AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-                manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-                SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-                //出入参数：
-                NSString*loginName;
-                NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-                NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
-                loginName=[NSString stringWithFormat:@"%@",[pp objectForKey:@"loginName"]];
-                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:loginName,@"loginName",_NewPassText.text,@"newpassword", _OldPassText.text,@"oldpassword",nil];
-                NSLog(@"\n\n\n\n%@\n\n\n\n",datadic);
-                NSString*jsonstring=[writer stringWithObject:datadic];
-                
-                //获取签名
-                NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-                
-                NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-                
-                
-                //电泳借口需要上传的数据
-                NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-                [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+                if ([self.NewPassText.text isEqualToString:self.AgainPassText.text]) {
                     
-                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    [WarningBox warningBoxHide:YES andView:self.view];
-                    @try
-                    {
+                    [WarningBox warningBoxModeIndeterminate:@"密码修改中..." andView:self.view];
+                    
+                    //userID    暂时不用改
+                    NSString * userID=@"0";
+                    
+                    //请求地址   地址不同 必须要改
+                    NSString * url =@"/modifypwdVip";
+                    
+                    //时间戳
+                    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+                    NSTimeInterval a=[dat timeIntervalSince1970];
+                    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+                    
+                    
+                    //将上传对象转换为json格式字符串
+                    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+                    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+                    //出入参数：
+                    NSString*loginName;
+                    NSString *path6 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
+                    NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path6];
+                    loginName=[NSString stringWithFormat:@"%@",[pp objectForKey:@"loginName"]];
+                    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:loginName,@"loginName",_NewPassText.text,@"newpassword", _OldPassText.text,@"oldpassword",nil];
+                    NSString*jsonstring=[writer stringWithObject:datadic];
+                    
+                    //获取签名
+                    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+                    
+                    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+                    
+                    
+                    //电泳借口需要上传的数据
+                    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+                    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
                         
-                        NSLog(@"%@",responseObject);
-                        if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            [WarningBox warningBoxModeText:@"密码修改成功~" andView:self.view];
-                            NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                            NSLog(@"%@",datadic);
-                            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
-                                [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
-                              NSString*  Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
-                               
-                                NSMutableDictionary*dd=[NSMutableDictionary dictionaryWithContentsOfFile:Rempath];
-                                [dd setObject:@"" forKey:@"password"];
+                    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                        [WarningBox warningBoxHide:YES andView:self.view];
+                        @try
+                        {
+                            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                                [WarningBox warningBoxModeText:@"密码修改成功~" andView:self.view];
+                                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+                                    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+                                    NSString*  Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
+                                    
+                                    NSMutableDictionary*dd=[NSMutableDictionary dictionaryWithContentsOfFile:Rempath];
+                                    [dd setObject:@"" forKey:@"password"];
+                                    
+                                    [dd writeToFile:Rempath atomically:NO];
+                                }
                                 
-                                [dd writeToFile:Rempath atomically:NO];
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    
+                                    [self.navigationController popToRootViewControllerAnimated:YES];
+                                    
+                                    
+                                });
+                                
+                                
+                                
                             }
                             
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                              
-                                [self.navigationController popToRootViewControllerAnimated:YES];
-                                
-                                
-                            });
-
-                          
+                            
+                        }
+                        @catch (NSException * e) {
+                            
+                            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                             
                         }
                         
-                        
-                    }
-                    @catch (NSException * e) {
-                        
-                        [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                        
-                    }
-
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    [WarningBox warningBoxHide:YES andView:self.view];
-                    [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-                    NSLog(@"错误：%@",error);
-                }];
-                
-                
-            }
-            else
-            {
-                
-                [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
-                
-            }
+                    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        [WarningBox warningBoxHide:YES andView:self.view];
+                        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                    }];
+                    
+                    
+                }
+                else
+                {
+                    
+                    [WarningBox warningBoxModeText:@"两次输入的密码不一致" andView:self.view];
+                    
+                }
             }
         }
     }

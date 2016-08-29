@@ -144,18 +144,6 @@
         [tabButton setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
         //选中
         [tabButton setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
-        //        //图片
-        //        UIImageView *imageview = [[UIImageView alloc]init];
-        //        imageview.frame = CGRectMake(0, 0, width/5, 30);
-        //        imageview.image = [UIImage imageNamed:@"IMG_0799.jpg"];
-        //        //名称
-        //        UILabel *name = [[UILabel alloc]init];
-        //        name.frame = CGRectMake(0, 0,  width/5, 30);
-        //        name.font = [UIFont systemFontOfSize:15];
-        //        name.textAlignment = NSTextAlignmentCenter;
-        //        name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        
-        //name.text = arr[i];
         
         self.scrollView.pagingEnabled = YES;
         
@@ -163,8 +151,6 @@
         
         
         [self.scrollView addSubview:tabButton];
-        //[tabButton addSubview:imageview];
-        //[tabButton addSubview:name];
         
     }
     //设置可滑动大小
@@ -508,7 +494,6 @@
             title.font = [UIFont systemFontOfSize:15];
             title.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"title"] ];
             title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            //title.backgroundColor = [UIColor grayColor];
             
             UILabel *content = [[UILabel alloc]init];
             content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
@@ -516,7 +501,6 @@
             content.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"subtitle"] ];
             content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             content.numberOfLines = 2;
-            //content.backgroundColor = [UIColor grayColor];
             
             UILabel *time = [[UILabel alloc]init];
             time.frame = CGRectMake(width - 120, 100, 110, 20);
@@ -524,7 +508,6 @@
             time.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"createTime"]];
             time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             time.numberOfLines = 2;
-            //time.backgroundColor = [UIColor grayColor];
             
             UIView *xian = [[UIView alloc] init];
             xian.frame = CGRectMake(0, 120, width, 1);

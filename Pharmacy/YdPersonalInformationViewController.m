@@ -105,14 +105,14 @@
     textField1.font = [UIFont systemFontOfSize:13];
     textField1.delegate=self;
     textField1.placeholder = @"请输入昵称";
-
+    
     textField2 = [[UITextField alloc]init];
     textField2.frame = CGRectMake(130, 10, width - 150, 20);
     textField2.textAlignment = NSTextAlignmentRight;
     textField2.font = [UIFont systemFontOfSize:13];
     textField2.delegate=self;
     textField2.placeholder = @"请输入姓名";
-
+    
     textField3 = [[UITextField alloc]init];
     textField3.frame = CGRectMake(130, 10, width - 150, 20);
     textField3.textAlignment = NSTextAlignmentRight;
@@ -135,7 +135,7 @@
     textField5.font = [UIFont systemFontOfSize:13];
     textField5.delegate=self;
     textField5.placeholder = @"请输入地区";
-
+    
     textField6 = [[UITextField alloc]init];
     textField6.frame = CGRectMake(130, 10, width - 150, 20);
     textField6.textAlignment = NSTextAlignmentRight;
@@ -172,7 +172,7 @@
         textField5.text=nil;
         textField6.text=nil;
     }else{
-    sex=[NSString stringWithFormat:@"%@",[dd objectForKey:@"sex"]];
+        sex=[NSString stringWithFormat:@"%@",[dd objectForKey:@"sex"]];
         if ([sex isEqual:@"男"]) {
             [nan setImage:[UIImage imageNamed:@"sexnan@3x.png"] forState:UIControlStateNormal];
             [nv setImage:[UIImage imageNamed:@"sex1@3x.png"] forState:UIControlStateNormal];
@@ -180,27 +180,26 @@
             [nan setImage:[UIImage imageNamed:@"sex2@3x.png"] forState:UIControlStateNormal];
             [nv setImage:[UIImage imageNamed:@"sexnv@3x.png"] forState:UIControlStateNormal];
         }
-    textField1.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"nickName"]];;
-    textField2.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"name"]];;
-    textField3.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"age"]];;
-    textField4.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"vipCode"]];;
-    textField5.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"area"]];;
-    textField6.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"detail"]];;
+        textField1.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"nickName"]];;
+        textField2.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"name"]];;
+        textField3.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"age"]];;
+        textField4.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"vipCode"]];;
+        textField5.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"area"]];;
+        textField6.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"detail"]];;
     }
     NSFileManager*fm=[NSFileManager defaultManager];
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
     if ([fm fileExistsAtPath:path]) {
-    toux.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
+        toux.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
         _image=toux.image;
     }else if([dd objectForKey:@"photo"]!=nil){
         //接取网络图片;   _image=tou.image;   toux.image=[UIImage ]
         NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[dd objectForKey:@"photo"]]];
-        NSLog(@"%@",url);
         [toux sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
         
     }else
-    toux.image =[UIImage imageNamed:@"小人@2x.png"];
-    }
+        toux.image =[UIImage imageNamed:@"小人@2x.png"];
+}
 
 //性别
 -(void)man
@@ -293,7 +292,6 @@
     //lable
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    //textField.backgroundColor = [UIColor redColor];
     
     if (indexPath.section == 0)
     {
@@ -331,14 +329,13 @@
         }else if (indexPath.row==5){
             [cell addSubview:textField6];
         }
-
+        
         
     }
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+    
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
@@ -427,7 +424,6 @@
         
         [self presentViewController:imagePickerController animated:NO completion:^{}];
         
-        //        [imagePickerController release];
     }
 }
 
@@ -463,11 +459,10 @@
     
     NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
     
-    NSLog(@"%@",picpath);
     [fm createFileAtPath:picpath contents:imageData attributes:nil];
-   
+    
     toux.image=[UIImage imageWithData:imageData];
-
+    
     
 }
 ///////////////----------以上是照相----------/////////////
@@ -512,20 +507,17 @@
     float w=[[UIScreen mainScreen] bounds].size.width;
     float h=[[UIScreen mainScreen] bounds].size.height;
     
-//    pickerview.backgroundColor=[UIColor redColor];
-//    picke.backgroundColor=[UIColor greenColor];
     
     pickerview.hidden=NO;
-    //self.bejing.hidden=NO;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil];
-   
-        
-        stateArray = [NSArray arrayWithContentsOfFile:path];
-        cityArray = [stateArray[0] objectForKey:@"cities"];
-        areaArray = [cityArray[0] objectForKey:@"areas"];
-        
     
-
+    
+    stateArray = [NSArray arrayWithContentsOfFile:path];
+    cityArray = [stateArray[0] objectForKey:@"cities"];
+    areaArray = [cityArray[0] objectForKey:@"areas"];
+    
+    
+    
     pickerview=[[UIView alloc] initWithFrame:CGRectMake(20, h, w-40, 200)];
     picke=[[UIPickerView alloc] initWithFrame:CGRectMake(20, 20, w-40, 200)];
     
@@ -571,13 +563,13 @@
 {
     if (component == 0) {
         NSString *state= [stateArray[row] objectForKey:@"state"];
-      
+        
         return state;
         
     }else if (component == 1){
         
         NSString *city= [cityArray[row] objectForKey:@"city"];
-       
+        
         return city;
     }else{
         
@@ -588,8 +580,8 @@
 {
     if (component == 0) {
         
-            cityArray = [stateArray[row] objectForKey:@"cities"];
-            areaArray = [cityArray[0]    objectForKey:@"areas" ];
+        cityArray = [stateArray[row] objectForKey:@"cities"];
+        areaArray = [cityArray[0]    objectForKey:@"areas" ];
         
         [pickerView reloadComponent:1];
         [pickerView selectRow:0 inComponent:1 animated:YES];
@@ -599,9 +591,9 @@
         }
         
     }else if(component == 1){
-       
-            areaArray = [cityArray[row] objectForKey:@"areas"];
-       
+        
+        areaArray = [cityArray[row] objectForKey:@"areas"];
+        
         
         [pickerView reloadComponent:2];
         if ([areaArray count] > 0) {
@@ -631,8 +623,7 @@
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){
         pickerLabel = [[UILabel alloc] init];
-        // Setup label properties - frame, font, colors etc
-        //adjustsFontSizeToFitWidth property to YES
+        
         pickerLabel.adjustsFontSizeToFitWidth = YES;
         [pickerLabel setTextAlignment:NSTextAlignmentLeft];
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
@@ -653,7 +644,7 @@
     cityDic = cityArray[[picke selectedRowInComponent:1]];
     
     NSString *city= [cityDic objectForKey:@"city"];
-   
+    
     NSString *area;
     if (areaArray.count > 0) {
         
@@ -667,15 +658,14 @@
     
     NSString *result = [[NSString alloc]initWithFormat:@"%@ %@ %@",state,city,area];
     
-    NSLog(@"\n－－－－－－－－\n%@\n－－－－－－\n",result);
     textField5.text=result;
     
-//    self.bejing.hidden = YES;
+    //    self.bejing.hidden = YES;
     
-   
+    
 }
 - (void)quxiao {
-//    self.bejing.hidden = YES;
+    //    self.bejing.hidden = YES;
     pickerview.hidden = YES;
 }
 ///////////////----------以上是三级联动----------/////////////
@@ -684,7 +674,6 @@
 //保存方法
 -(void)baocun
 {
-    //NSLog(@"%@%@%@%@%@%@%@",textField1.text,textField2.text,textField3.text,textField4.text,textField5.text,textField6.text,sex);
     if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
         [WarningBox warningBoxModeText:@"请输入完整的信息!" andView:self.view];
     }else{
@@ -700,9 +689,8 @@
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
             //出入参数：
-          NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+            NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
             NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",vip,@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
-            NSLog(@"%@",datadic);
             NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
             
             
@@ -718,17 +706,13 @@
                 fm.dateFormat = @"yyyyMMddHHmmss";
                 NSString *str = [fm stringFromDate:[NSDate date]];
                 NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-                NSLog(@"filename------%@",fileName);
                 [formData appendPartWithFileData:data name:@"photo" fileName:fileName mimeType:@"image/jpeg"];
             } progress:^(NSProgress * _Nonnull uploadProgress) {
-                NSLog(@"%.2f%%",uploadProgress.fractionCompleted*100);
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 @try
                 {
-                    //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                    NSLog(@"上传个人信息返回－－－＊＊＊＊－－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                         //把上传的数据存到本地
                         
@@ -755,7 +739,6 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [WarningBox warningBoxHide:YES andView:self.view];
                 [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-                NSLog(@"错误：%@",error);
                 
             }];
             

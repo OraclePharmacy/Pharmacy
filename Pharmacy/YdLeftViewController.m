@@ -45,7 +45,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -61,9 +61,9 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-   
+    
     [self.view addSubview:self.tableView];
-
+    
 }
 //设置状态栏
 - (BOOL)prefersStatusBarHidden
@@ -107,7 +107,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     denglu.backgroundColor = [UIColor clearColor];
     [denglu setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
     [denglu addTarget:self action:@selector(denglule) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         NSString *path1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path1];
@@ -120,32 +119,17 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
             
         }else if([pp objectForKey:@"photo"]!=nil){
             NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,[pp objectForKey:@"photo"]]];
-            NSLog(@"%@",url);
             [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
             
         }else
             image.image =[UIImage imageNamed:@"小人@2x.png"];
-    
-
-        
-        
-//        image.image = [UIImage imageNamed:@"小人@2x.png"];
         [denglu setTitle:@"个人信息" forState:UIControlStateNormal];
     }else{
-    
-    image.image = [UIImage imageNamed:@"小人@2x.png"];
-    [denglu setTitle:@"登录/注册" forState:UIControlStateNormal];
+        
+        image.image = [UIImage imageNamed:@"小人@2x.png"];
+        [denglu setTitle:@"登录/注册" forState:UIControlStateNormal];
     }
-//    if (denglu)
-//    {
-//        image.image = [UIImage imageNamed:@"小人@2x.png"];
-//        [denglu setTitle:@"登录/注册" forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        image.image = [UIImage imageNamed:@"小人@2x.png"];
-//        [denglu setTitle:@" 个人信息" forState:UIControlStateNormal];
-//    }
+    
     [baseView addSubview:image];
     [baseView addSubview:denglu];
     return baseView;
@@ -156,10 +140,10 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
-    YdPersonalInformationViewController *PersonalInformation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
-     
+        YdPersonalInformationViewController *PersonalInformation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"personalinformation"];
+        
         [self.navigationController pushViewController:PersonalInformation animated:YES];
-            }
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -170,7 +154,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     
     cell.imageView.image = [UIImage imageNamed:self.image[indexPath.row]];
-
+    
     cell.textLabel.text = self.lefs[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
@@ -185,8 +169,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"我点了");
-    
     if (indexPath.row == 0)
     {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
@@ -195,8 +177,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
             
         }
         else{
-        YdWoDeDingDanViewController *WoDeDingDan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodedingdan"];
-        [self.navigationController pushViewController:WoDeDingDan animated:YES];
+            YdWoDeDingDanViewController *WoDeDingDan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodedingdan"];
+            [self.navigationController pushViewController:WoDeDingDan animated:YES];
         }
     }
     else if (indexPath.row == 1)
@@ -204,19 +186,19 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-        YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
-        youhuiquan.panduan = @"1";
-        [self.navigationController pushViewController:youhuiquan animated:YES];
+            YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
+            youhuiquan.panduan = @"1";
+            [self.navigationController pushViewController:youhuiquan animated:YES];
         }
-
+        
     }
     else if (indexPath.row == 2)
     {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-        YdzhongjiangjiluViewController *zhongjiangjilu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
-        [self.navigationController pushViewController:zhongjiangjilu animated:YES];
+            YdzhongjiangjiluViewController *zhongjiangjilu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
+            [self.navigationController pushViewController:zhongjiangjilu animated:YES];
         }
     }
     else if (indexPath.row == 3)
@@ -224,8 +206,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-        YdwodeshoucangViewController *wodeshoucang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
-        [self.navigationController pushViewController:wodeshoucang animated:YES];
+            YdwodeshoucangViewController *wodeshoucang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
+            [self.navigationController pushViewController:wodeshoucang animated:YES];
         }
     }
     else if (indexPath.row == 4)
@@ -233,8 +215,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-        YdwodetieziViewController *wodetiezi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
-        [self.navigationController pushViewController:wodetiezi animated:YES];
+            YdwodetieziViewController *wodetiezi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
+            [self.navigationController pushViewController:wodetiezi animated:YES];
         }
     }
     else if (indexPath.row == 5)
@@ -242,8 +224,8 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-        YdfankuiViewController *fankui = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fankui"];
-        [self.navigationController pushViewController:fankui animated:YES];
+            YdfankuiViewController *fankui = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fankui"];
+            [self.navigationController pushViewController:fankui animated:YES];
         }
     }
     else if (indexPath.row == 6)
@@ -260,7 +242,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         [self.navigationController pushViewController:SheZhi animated:YES];
         
     }
-
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -270,7 +252,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

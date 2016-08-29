@@ -52,8 +52,6 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-  
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"领取" style:UIBarButtonItemStyleDone target:self action:@selector(shiyishi)];
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -71,7 +69,7 @@
     
     MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = footer;
-
+    
     [self jiekou];
     
 }
@@ -118,7 +116,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -136,8 +134,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"=============我的优惠券============%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -159,7 +156,7 @@
                     arr=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-
+                
                 [self.tableview reloadData];
                 
             }
@@ -177,7 +174,6 @@
         label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-//        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -226,16 +222,15 @@
     
     cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
-
+    
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 5, 65, 65);
     image.backgroundColor = [UIColor grayColor];
     
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.section] objectForKey:@"couponInfo"]objectForKey:@"url"]];
-    NSLog(@"%@",path);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     
-   
+    
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     [cell.contentView addSubview:image];
     
@@ -278,7 +273,7 @@
         youtu.image = [UIImage imageNamed:@"ll.png"];
         laiyuan.text = @"商家优惠券";
     }
-
+    
     [cell.contentView addSubview:laiyuan];
     
     NSString *a = [[arr[indexPath.section] objectForKey:@"couponInfo"] objectForKey:@"endTime"];
@@ -296,7 +291,7 @@
     lingqu.font = [UIFont systemFontOfSize:10];
     lingqu.textAlignment = NSTextAlignmentCenter;
     [youtu addSubview:lingqu];
-
+    
     
     UILabel *shuliang = [[UILabel alloc]init];
     shuliang.frame = CGRectMake(0, 0, 70, 20);
@@ -399,12 +394,12 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-     
-     NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSString*zhid;
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-
+        
         NSString *nameFieldtext = [[NSString alloc]init];
         if (nameField.text.length == 0) {
             nameFieldtext = @"";
@@ -414,14 +409,12 @@
             nameFieldtext = nameField.text;
         }
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",zhid,@"storeId",couponId,@"id",nameFieldtext,@"storeCode",couId,@"couId",@"",@"awardId",nil];
-        NSLog(@"datadicdatadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        //NSLog(@"flsdjkflsajflkjsdlkfjlksjflkjaslkfjlsdakfjlk%@",url1);
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
@@ -432,19 +425,18 @@
             @try
             {
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"我的优惠卷%@",responseObject);
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     NSDictionary*datadic=[responseObject valueForKey:@"data"];
                     
                     arr = [datadic objectForKey:@"list"];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                       ye=1;  [self jiekou];
-                       
-                    
-
+                        ye=1;  [self jiekou];
+                        
+                        
+                        
                     });
-                                        
+                    
                 }
             }
             @catch (NSException * e) {
@@ -457,7 +449,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-//            NSLog(@"错误：%@",error);
         }];
     }
 }
@@ -473,7 +464,7 @@
         //返回上一页
         [self.navigationController popViewControllerAnimated:YES];
     }
-   
+    
 }
 
 @end

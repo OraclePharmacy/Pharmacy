@@ -47,7 +47,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -67,7 +67,7 @@
     self.tableview.mj_footer = footer;
     
     [self jiekou];
-
+    
 }
 
 -(void)loadNewdata{
@@ -75,7 +75,7 @@
     ye = 1;
     MJRefreshAutoNormalFooter*footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = footer;
-
+    
     [self jiekou];
     [self.tableview.mj_header endRefreshing];
     
@@ -84,9 +84,9 @@
     
     if (ye*10 >coun+9||10>coun) {
         [WarningBox warningBoxModeText:@"已经是最后一页了!" andView:self.view];
-       
+        
         self.tableview.mj_footer = nil;
-
+        
         [self.tableview.mj_footer endRefreshing];
     }else{
         if (ye==1) {
@@ -117,7 +117,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -135,13 +135,11 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的中奖纪录%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-               NSArray*mg = [datadic objectForKey:@"awardetailList"];
+                NSArray*mg = [datadic objectForKey:@"awardetailList"];
                 
                 if (mg.count == 0) {
                     [self kongbai];
@@ -158,7 +156,7 @@
                     arr=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-
+                
                 
                 [self.tableview reloadData];
                 
@@ -177,7 +175,6 @@
         label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -221,7 +218,7 @@
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     static NSString *id1 =@"zhongjiang";
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -298,7 +295,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *sss = [arr[indexPath.section] objectForKey:@"id"];
-    NSLog(@"sssssssssssssss%@",sss);
     YdzhongjiangxiangqingViewController *zhongjiangxiangqing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangxiangqing"];
     zhongjiangxiangqing.jiangpinid = sss;
     if ( NULL == [arr[indexPath.section] objectForKey:@"couId"] )

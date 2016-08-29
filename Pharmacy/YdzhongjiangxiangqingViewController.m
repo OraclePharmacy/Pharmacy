@@ -51,7 +51,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];
-
+    
     [self jiekou];
 }
 
@@ -92,8 +92,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"我的中奖纪录%@",responseObject);
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -115,7 +114,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
     
@@ -187,7 +185,7 @@
     }
     
     return baseView;
-
+    
 }
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -205,67 +203,67 @@
     [cell.contentView addSubview:xian];
     cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     if (indexPath.section == 0) {
-    if (indexPath.row == 0)
-    {
-        UIImageView *touxiang = [[UIImageView alloc]init];
-        touxiang.frame = CGRectMake(0, 0, width, 150);
-        touxiang.layer.masksToBounds = YES;
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"photo"]];
-        [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-        [cell.contentView addSubview:touxiang];
-    }
-    else
-    {
-        cell.textLabel.text = arr1[indexPath.row];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
-        cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        cell.selectedBackgroundView = [[UIView alloc] init];
-        cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
-        UILabel *text = [[UILabel alloc]init];
-        text.frame = CGRectMake(100, 10, width -110, 30);
-        text.font = [UIFont systemFontOfSize:15];
-        text.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        [cell.contentView addSubview:text];
-        
-        if (indexPath.row == 1)
+        if (indexPath.row == 0)
         {
-            if ([[arr objectForKey:@"awardSource"] isEqualToString:@"1"])
-            {
-                 text.text = @"摇一摇";
-            }
-            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"2"])
-            {
-                text.text = @"大转盘";
-            }
-            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"3"])
-            {
-                text.text = @"有奖问答";
-            }
-            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"4"])
-            {
-                text.text = @"领取的优惠券";
-            }
-            else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
-            {
-                text.text = @"合作商家";
-            }
-
+            UIImageView *touxiang = [[UIImageView alloc]init];
+            touxiang.frame = CGRectMake(0, 0, width, 150);
+            touxiang.layer.masksToBounds = YES;
+            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"photo"]];
+            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            [cell.contentView addSubview:touxiang];
         }
-        else if (indexPath.row == 2)
+        else
         {
-            text.text = [NSString stringWithFormat:@"%@",[arr objectForKey:@"awardName"] ];
+            cell.textLabel.text = arr1[indexPath.row];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+            cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            cell.selectedBackgroundView = [[UIView alloc] init];
+            cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            
+            UILabel *text = [[UILabel alloc]init];
+            text.frame = CGRectMake(100, 10, width -110, 30);
+            text.font = [UIFont systemFontOfSize:15];
+            text.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            [cell.contentView addSubview:text];
+            
+            if (indexPath.row == 1)
+            {
+                if ([[arr objectForKey:@"awardSource"] isEqualToString:@"1"])
+                {
+                    text.text = @"摇一摇";
+                }
+                else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"2"])
+                {
+                    text.text = @"大转盘";
+                }
+                else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"3"])
+                {
+                    text.text = @"有奖问答";
+                }
+                else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"4"])
+                {
+                    text.text = @"领取的优惠券";
+                }
+                else if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
+                {
+                    text.text = @"合作商家";
+                }
+                
+            }
+            else if (indexPath.row == 2)
+            {
+                text.text = [NSString stringWithFormat:@"%@",[arr objectForKey:@"awardName"] ];
+            }
+            else if (indexPath.row == 3)
+            {
+                if (NULL == [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]]) {
+                    text.text=@"";
+                }else
+                    text.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]];
+                
+            }
+            
         }
-        else if (indexPath.row == 3)
-        {
-            if (NULL == [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]]) {
-                text.text=@"";
-            }else
-             text.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"office"] objectForKey:@"name"]];
-           
-        }
-        
-    }
     }
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -293,31 +291,31 @@
 }
 -(void)duihuan
 {
-
+    
     if ([self.panduan isEqualToString:@"0"]) {
         
         [WarningBox warningBoxModeText:@"您已兑换过，不可再次使用!" andView:self.view];
         
     }
     else if ([self.panduan isEqualToString:@"1"]){
-    if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
-        [alert show];
-        
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        
-        nameField = [alert textFieldAtIndex:0];
-        nameField.placeholder = @"请输入一个名称";
-        
-        [alert show];
-        
-    }
+        if ([[arr objectForKey:@"awardSource"] isEqualToString:@"5"])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+            [alert show];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"兑换" message:@"是否兑换优惠券?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            
+            nameField = [alert textFieldAtIndex:0];
+            nameField.placeholder = @"请输入一个名称";
+            
+            [alert show];
+            
+        }
     }
 }
 
@@ -342,13 +340,12 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-     NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSString*zhid;
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-
+        
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:self.jiangpinid,@"awardId",zhid,@"storeId",vip,@"vipId",nameField.text,@"storeCode",self.couId,@"couId",self.couInfoId,@"id",nil];
-        NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -363,28 +360,9 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-                //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-    
-                if ([[responseObject objectForKey:@"code"] intValue]==0000)
-                {
-                    
-                   //[self.navigationController popViewControllerAnimated:YES];
-                    
-                }
-            }
-            @catch (NSException * e) {
-                
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
-            }
-            
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
     }
 }

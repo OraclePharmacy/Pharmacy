@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     ye = 1;
     
     width = [UIScreen mainScreen].bounds.size.width;
@@ -58,7 +58,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
     self.tableview.mj_header = header;
     // 隐藏时间
@@ -115,7 +115,7 @@
     NSString*officeid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     officeid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",officeid,@"officeId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"10",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -134,12 +134,10 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            NSLog(@"门店优惠卷列表%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-
+                
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
                 NSArray*mg = [datadic objectForKey:@"couponInfoList"];
@@ -148,7 +146,7 @@
                     [self kongbai];
                     label.text = @"对不起,还没有可领取的优惠券!";
                 }
-            
+                
                 if (ye!=1) {
                     for (NSDictionary*dd in mg) {
                         [arr addObject:dd];
@@ -157,7 +155,7 @@
                     arr=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-
+                
                 [self.tableview reloadData];
                 
             }
@@ -175,7 +173,6 @@
         label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
     
 }
@@ -213,7 +210,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     static NSString *id1 =@"youhuiquan";
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -221,40 +218,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
     
-//    UIImageView *image = [[UIImageView alloc]init];
-//    image.frame = CGRectMake(10, 10, 60, 60);
-//    image.backgroundColor = [UIColor grayColor];
-//    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"url"]];
-//    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
-//    [cell.contentView addSubview:image];
-//    
-//    UILabel *name = [[UILabel alloc]init];
-//    name.frame = CGRectMake(80, 10, width - 90, 20);
-//    name.font = [UIFont systemFontOfSize:13];
-//    name.text = [NSString stringWithFormat:@"相关门店:%@",[[arr[indexPath.row] objectForKey:@"office"] objectForKey:@"name"] ];
-//    name.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-//    [cell.contentView addSubview:name];
-//    
-//    UILabel *jiage = [[UILabel alloc]init];
-//    jiage.frame = CGRectMake(80, 30, 100, 20);
-//    jiage.font = [UIFont systemFontOfSize:13];
-//    jiage.text = [NSString stringWithFormat:@"优惠金额:%@",[arr[indexPath.row] objectForKey:@"faceValue"] ];
-//    jiage.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-//    [cell.contentView addSubview:jiage];
-//    
-//    UILabel *shuliang = [[UILabel alloc]init];
-//    shuliang.frame = CGRectMake(80, 50, width - 90, 20);
-//    shuliang.font = [UIFont systemFontOfSize:13];
-//    shuliang.text = [NSString stringWithFormat:@"剩余数量:%@",[arr[indexPath.row] objectForKey:@"publishNums"] ];
-//    shuliang.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-//    [cell.contentView addSubview:shuliang];
-    
     
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 5, 65, 65);
     image.backgroundColor = [UIColor grayColor];
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.section] objectForKey:@"url"]];
-    NSLog(@"%@",path);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
     [cell.contentView addSubview:image];
     
@@ -306,12 +274,11 @@
     
     UILabel *lingqu = [[UILabel alloc]init];
     lingqu.frame = CGRectMake(0, 55, 70, 20);
-   
+    
     lingqu.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     lingqu.font = [UIFont systemFontOfSize:10];
     lingqu.textAlignment = NSTextAlignmentCenter;
     [youtu addSubview:lingqu];
-    NSLog(@"%@",[arr[indexPath.section] objectForKey:@"couponType"]);
     
     if ( [[arr[indexPath.section] objectForKey:@"isSend"] isEqualToString:@"1"]) {
         
@@ -348,12 +315,12 @@
             youtu.image = [UIImage imageNamed:@"hh.png"];
             
             laiyuan.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.section] objectForKey:@"office"] objectForKey:@"name"] ];
-
+            
         }
         else
         {
             lingqu.text = @"已领取";
-
+            
             name.textColor = [UIColor colorWithHexString:@"41aaec" alpha:1];
             
             youtu.image = [UIImage imageNamed:@"ll.png"];
@@ -361,13 +328,11 @@
             laiyuan.text =@"合作商家";
             
         }
-
+        
     }
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
@@ -377,11 +342,11 @@
 {
     NSString *str1  = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"publishNums"] ];
     
-     if ( [[arr[indexPath.section] objectForKey:@"isSend"] isEqualToString:@"0"])
-     {
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,您已经领取过了" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
-         [alert show];
-     }
+    if ( [[arr[indexPath.section] objectForKey:@"isSend"] isEqualToString:@"0"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"领取失败" message:@"对不起,您已经领取过了" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     else
     {
         if ([str1 isEqualToString:@"0"]) {
@@ -397,10 +362,10 @@
             str2 = [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
             
         }
-
+        
     }
     
-   }
+}
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -432,17 +397,14 @@
         NSString*zhid;
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-        //NSLog(@"%@",str2);
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str2,@"couponTypeId",vip,@"vipId",nil];
-        NSLog(@"datadicdatadicdatadicdatadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         
         NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        NSLog(@"%@",url1);
         //电泳借口需要上传的数据
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
@@ -452,8 +414,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             @try
             {
-               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-        
+                
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     [self jiekou];
@@ -472,9 +433,8 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
-
+        
     }
 }
 

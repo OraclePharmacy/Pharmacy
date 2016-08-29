@@ -64,7 +64,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
-     NSString *gerende=[NSString stringWithFormat:@"%@/Documents/GRxinxi.plist",NSHomeDirectory()];
+    NSString *gerende=[NSString stringWithFormat:@"%@/Documents/GRxinxi.plist",NSHomeDirectory()];
     NSDictionary*geren=[NSDictionary dictionaryWithContentsOfFile:gerende];
     NSUserDefaults*s=[NSUserDefaults standardUserDefaults];
     _dianhuahaoma.text=[NSString stringWithFormat:@"%@",[s objectForKey:@"shoujihao"]];
@@ -101,7 +101,6 @@
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
     [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
-    //image.layer.cornerRadius=30;
     image.backgroundColor = [UIColor grayColor];
     [cell.contentView addSubview:image];
     //药品名称
@@ -132,12 +131,10 @@
     changjia.text = @"生产厂家:";
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     changjia.font =[UIFont systemFontOfSize:13];
-    //changjia.backgroundColor = [UIColor colorWithHexString:@"646464" alpha:1];
     [cell.contentView addSubview:changjia];
     
     UILabel *vender = [[UILabel alloc]init];
     vender.frame = CGRectMake( 160, 70, width - 160 , 20);
-    //vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
     vender.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
     vender.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     vender.font =[UIFont systemFontOfSize:12];
@@ -146,8 +143,6 @@
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //线消失
-    //self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     
@@ -166,7 +161,7 @@
     baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     return baseView;
-
+    
 }
 - (IBAction)tijiao:(id)sender {
     
@@ -195,21 +190,20 @@
         
         [yaoId addObject:[arr[i] objectForKey:@"id"]];
         [shuId addObject:[arr[i] objectForKey:@"shuliang"]];
-//        NSDictionary *yaoid = [NSDictionary dictionaryWithObjectsAndKeys:[arr[i] objectForKey:@"id"], @"id",nil];
-//        NSDictionary *shuId = [NSDictionary dictionaryWithObjectsAndKeys:[arr[i] objectForKey:@"shuliang"], @"amount",nil];
+        
         liebiao = [NSDictionary dictionaryWithObjectsAndKeys:yaoId[i],@"id",shuId[i],@"amount", nil];
         
         [liebiao1 addObject:liebiao];
     }
     
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSString*zhid;
     NSUserDefaults *dd = [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[dd objectForKey:@"officeid"]];
     
     //会员ID  药品ID 数量   药品id与数量放到列表
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",liebiao1,@"vipBuyRec",zhid,@"officeId", nil];
-
+    
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -226,7 +220,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 

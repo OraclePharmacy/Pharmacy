@@ -111,8 +111,6 @@
         //出入参数：
         NSString*fankui=[NSString stringWithFormat:@"%@", self.pinglunText.text];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"vipId",fankui,@"context",nil];
-        NSLog(@"%@",datadic);
-        
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -128,15 +126,13 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",responseObject);
             @try
             {
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     self.pinglunText.text = @"";
-//                    //返回上一页
-//                    [self.navigationController popViewControllerAnimated:YES];
+                    //返回上一页
                     [WarningBox warningBoxModeText:@"您的意见我们已收到，谢谢您的支持" andView:self.view];
                     
                 }else{
@@ -150,7 +146,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
         }];
         
     }
@@ -159,14 +154,14 @@
         [WarningBox warningBoxModeText:@"意见不能为空!!!" andView:self.view];
     }
     
-
+    
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
 }
 -(void)wancheng{
     [self.view endEditing:YES];
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
 }
 -(void)textViewDidChange:(UITextView *)textView
 {

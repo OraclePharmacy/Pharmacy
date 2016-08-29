@@ -109,7 +109,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"8",@"pageSize",nil];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:vip,@"vipId",[NSString stringWithFormat:@"%d",ye],@"pageNo",@"8",@"pageSize",nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -127,7 +127,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -141,8 +140,6 @@
                     [self kongbai];
                     label.text = @"对不起,没有与您相关的信息!";
                 }
-                
-                NSLog(@"==========%@==========",datadic);
                 if (ye!=1) {
                     for (NSDictionary*dd in mg) {
                         [arr addObject:dd];
@@ -151,7 +148,7 @@
                     arr=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-
+                
                 [self.tableview reloadData];
                 
             }
@@ -169,9 +166,8 @@
         label.text = @"";
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
     }];
-
+    
 }
 -(void)kongbai
 {
@@ -219,7 +215,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-
+    
     if ([arr[indexPath.row] objectForKey:@"list"] == nil)
     {
         
@@ -290,7 +286,7 @@
         [cell.contentView addSubview:pinglun];
         
     }
-
+    
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //隐藏滑动条
@@ -300,7 +296,7 @@
 //tableview点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
+    
     
 }
 
