@@ -788,8 +788,42 @@
                     <view key="view" contentMode="scaleToFill" id="x3Z-59-OOP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="06g-IF-9Yq">
+                                <rect key="frame" x="225" y="30" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.78301282049999998" green="0.78301282049999998" blue="0.78301282049999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="AOF-gf-WMy"/>
+                                    <constraint firstAttribute="width" constant="150" id="tbi-I8-GKc"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upC-J5-w6S">
+                                <rect key="frame" x="200" y="200" width="200" height="35"/>
+                                <color key="backgroundColor" red="0.19607843137254902" green="0.74509803921568629" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="73x-T5-1cH"/>
+                                    <constraint firstAttribute="width" constant="200" id="IvK-f5-Qkz"/>
+                                </constraints>
+                                <state key="normal" title="分享">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="fenxiang:" destination="kJj-Jp-A56" eventType="touchUpInside" id="FMM-rg-Wsv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="upC-J5-w6S" firstAttribute="centerX" secondItem="x3Z-59-OOP" secondAttribute="centerX" id="BYf-P1-jw3"/>
+                            <constraint firstItem="06g-IF-9Yq" firstAttribute="centerX" secondItem="x3Z-59-OOP" secondAttribute="centerX" id="FPs-TM-yy0"/>
+                            <constraint firstItem="upC-J5-w6S" firstAttribute="top" secondItem="06g-IF-9Yq" secondAttribute="bottom" constant="20" id="HTE-X9-FU2"/>
+                            <constraint firstItem="06g-IF-9Yq" firstAttribute="top" secondItem="4ti-PL-bJs" secondAttribute="bottom" constant="10" id="kY0-sX-vom"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fenxiang" destination="upC-J5-w6S" id="ksB-WU-71s"/>
+                        <outlet property="image" destination="06g-IF-9Yq" id="LeW-CO-Ath"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ef-OT-CmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

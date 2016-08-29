@@ -10,4 +10,9 @@
 
 @interface YdfenxiangxiazaiViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+
+@property (weak, nonatomic) IBOutlet UIButton *fenxiang;
+- (IBAction)fenxiang:(id)sender;
+
 @end

@@ -22,6 +22,12 @@
     //状态栏名称
     self.navigationItem.title = @"分享下载";
     
+    self.fenxiang.layer.cornerRadius = 5;
+    self.fenxiang.layer.masksToBounds = YES;
+    
+    self.image.layer.cornerRadius = 5;
+    self.image.layer.masksToBounds = YES;
+    
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 }
@@ -34,4 +40,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
+- (IBAction)fenxiang:(id)sender {
+}
 @end
