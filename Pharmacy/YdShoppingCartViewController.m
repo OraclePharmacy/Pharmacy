@@ -137,7 +137,7 @@
     right = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(bianij)];
     right1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(baocun)];
     self.navigationItem.rightBarButtonItem = right;
-    
+
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
 }

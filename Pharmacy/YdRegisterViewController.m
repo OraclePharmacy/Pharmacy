@@ -701,7 +701,6 @@
                 
                 @try
                 {
-                   // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     NSLog(@"%@",responseObject);
                    
                 }
@@ -815,27 +814,10 @@
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
-                        
-                      // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                        NSLog(@"%@",[responseObject objectForKey:@"msg"]);
-                        
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             
-                            [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-                                
-                                if (error) {
-                                    NSLog(@"出错了");
-                                    return ;
-                                }
-                                NSLog(@"JMessage 注册成功");
-                                
-//                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                    
-//                                });
-                                
-                            }];
-    
+                            [self zhucejm];
+                            [self.navigationController popViewControllerAnimated:YES];
                         }
                         
                     }
@@ -874,7 +856,23 @@
     }
     
 }
+- (void)zhucejm{
+    [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",_PhoneText.text] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+        
+        if (error) {
+            [self zhucejm];
+            return ;
+        }
+        NSLog(@"JMessage 注册成功");
+        
+        //                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        
+        //                                });
+        
+    }];
 
+}
 - (void)queding {
     [pickerview removeFromSuperview];
     

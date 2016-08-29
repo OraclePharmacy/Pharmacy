@@ -59,6 +59,7 @@
         _animating = YES;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.4];
+        [UIView setAnimationsEnabled:NO];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(guideShown)];
         [GuideViewController sharedGuide].view.frame = [self onscreenFrame];

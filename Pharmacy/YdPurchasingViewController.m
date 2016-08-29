@@ -309,6 +309,8 @@
                     [self.navigationController popViewControllerAnimated:YES];
                 });
                
+            }else{
+                [WarningBox warningBoxModeText:@"上传失败" andView:self.view];
             }
             
         }

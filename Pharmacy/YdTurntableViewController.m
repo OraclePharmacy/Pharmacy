@@ -35,12 +35,7 @@
     
     
 }
--(void)webViewDidStartLoad:(UIWebView *)webView{
-//    NSString *vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-//    NSString*offceId=[[NSUserDefaults standardUserDefaults] objectForKey:@"officeid"];
-//    NSString*s=[NSString stringWithFormat:@"%@,%@",vip,offceId];
-//    [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"javascript:javacalljswithargs(' + %@ + ')",s]];
-}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *url = request.URL.absoluteString;
     NSLog(@"打印请求的URL-->%@", url);

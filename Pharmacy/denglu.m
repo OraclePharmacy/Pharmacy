@@ -82,7 +82,7 @@
                 
                 NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                 [vipInfoReturnList writeToFile:path1 atomically:YES];
-                NSLog(@"%@",vipInfoReturnList);
+                NSLog(@"个人信息内容：%@",vipInfoReturnList);
                 NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                 [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
                 [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];
@@ -94,7 +94,7 @@
                 
             }
             else{
-               // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:view];
+                [WarningBox warningBoxModeText:@"自动登录失败!" andView:view];
             }
         }
         @catch (NSException * e) {

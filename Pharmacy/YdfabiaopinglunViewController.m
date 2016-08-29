@@ -98,76 +98,85 @@
 - (IBAction)pinglunButton:(id)sender {
     
     [self.view endEditing:YES];
-    
+    NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    NSFileManager * fm=[NSFileManager defaultManager];
     if (self.pinglunText.text.length > 0)
     {
-        //userID    暂时不用改
-        NSString * userID=@"0";
-        
-        //请求地址   地址不同 必须要改
-        NSString * url =@"/share/saveReply";
-        
-        //时间戳
-        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSTimeInterval a=[dat timeIntervalSince1970];
-        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-        
-        
-        //将上传对象转换为json格式字符串
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
-        NSLog(@"\n\n\n\n\n帖子%@,%@",_tieziID ,_pinglunID);
-        if ([_pinglunID isEqualToString:@""]||_pinglunID==nil||[_pinglunID isEqual:[NSNull null]])
-        {
-            _pinglunID = @"";
-        }
-      
-        
-        
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
-        NSLog(@"发表评论%@",datadic);
-        
-        NSString*jsonstring=[writer stringWithObject:datadic];
-        
-        //获取签名
-        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp];
-        
-        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-        
-        //电泳借口需要上传的数据
-        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-        
-        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [WarningBox warningBoxHide:YES andView:self.view];
-            @try
-            {
-              //  [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-                NSLog(@"responseObject%@",responseObject);
-                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
-                    self.pinglunText.text = @"";
-                    //返回上一页
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
+        if (![fm fileExistsAtPath:path1]) {
+            [WarningBox warningBoxModeText:@"请先完善个人资料!" andView:self.view];
+        }else{
+            NSDictionary* du=[NSDictionary dictionaryWithContentsOfFile:path1];
+            if (NULL == [du objectForKey:@""]) {
+                [WarningBox warningBoxModeText:@"请先完善个人资料!" andView:self.view];
+            }else{
+                //userID    暂时不用改
+                NSString * userID=@"0";
+                
+                //请求地址   地址不同 必须要改
+                NSString * url =@"/share/saveReply";
+                
+                //时间戳
+                NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+                NSTimeInterval a=[dat timeIntervalSince1970];
+                NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+                
+                
+                //将上传对象转换为json格式字符串
+                AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+                SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+                NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];        //出入参数：
+                NSLog(@"\n\n\n\n\n帖子%@,%@",_tieziID ,_pinglunID);
+                if ([_pinglunID isEqualToString:@""]||_pinglunID==nil||[_pinglunID isEqual:[NSNull null]])
+                {
+                    _pinglunID = @"";
                 }
-            }
-            @catch (NSException * e) {
                 
-                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                 
+                
+                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
+                NSLog(@"发表评论%@",datadic);
+                
+                NSString*jsonstring=[writer stringWithObject:datadic];
+                
+                //获取签名
+                NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp];
+                
+                NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+                
+                //电泳借口需要上传的数据
+                NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+                
+                [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+                    
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    [WarningBox warningBoxHide:YES andView:self.view];
+                    @try
+                    {
+                        //  [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                        NSLog(@"responseObject%@",responseObject);
+                        if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                            
+                            self.pinglunText.text = @"";
+                            //返回上一页
+                            [self.navigationController popViewControllerAnimated:YES];
+                            
+                        }
+                    }
+                    @catch (NSException * e) {
+                        
+                        [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+                        
+                    }
+                    
+                    
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    [WarningBox warningBoxHide:YES andView:self.view];
+                    [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+                    NSLog(@"错误：%@",error);
+                }];
             }
-            
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [WarningBox warningBoxHide:YES andView:self.view];
-            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-            NSLog(@"错误：%@",error);
-        }];
-        
+        }
     }
     else
     {

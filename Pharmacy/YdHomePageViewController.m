@@ -359,8 +359,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            //NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 titarr=[[NSMutableArray alloc] init];
                 arrImage=[[NSMutableArray alloc] init];
@@ -368,7 +366,7 @@
                 
                 arr = [datadic objectForKey:@"newsList"];
                 
-                NSLog(@"轮播返回：%@",arr);
+                
                 
                 for (int i = 0; i < arr.count; i++) {
                     
@@ -713,8 +711,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //NSLog(@"－＊－＊－＊－＊－＊－＊积分礼品＊－＊－＊－＊－\n\n\n%@",responseObject);
-            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -859,7 +855,6 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            //            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             NSLog(@"=================%@===================",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
@@ -928,13 +923,11 @@
         @try
         {
             
-            // NSLog(@"%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 remenzixunarray=[datadic objectForKey:@"newsListForInterface"];
-                //NSLog(@"%@",datadic);
                 
                 [_tableview reloadData];
                 
@@ -951,7 +944,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        //NSLog(@"错误：%@",error);
         
     }];
     

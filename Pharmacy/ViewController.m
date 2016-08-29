@@ -225,7 +225,7 @@
                 [WarningBox warningBoxHide:YES andView:self.view];
                 @try
                 {
-                    //[WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
                     NSLog(@"登陆返回－－－＊＊＊－－－\n\n\n%@",responseObject);
                     if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
                         
@@ -240,7 +240,6 @@
                         }
                         Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
                         [Passdic writeToFile:Rempath atomically:NO];
-                        NSLog(@"\n\n\n\nhaha\n\n\n\n%@",Passdic);
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
@@ -253,9 +252,7 @@
                         
                         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                         NSString *path2=[paths objectAtIndex:0];
-                        //NSLog(@"path = %@",path);
                         NSString *filename=[path2 stringByAppendingPathComponent:@"baocun.plist"];
-                        //NSLog(@"path = %@",filename);
                         //判断是否已经创建文件
                         if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
                             
@@ -290,7 +287,9 @@
                             });
                         
                     }
-                    
+                    else{
+                        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                    }
                 }
                 @catch (NSException * e) {
                     
@@ -352,7 +351,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+
             NSLog(@"responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 

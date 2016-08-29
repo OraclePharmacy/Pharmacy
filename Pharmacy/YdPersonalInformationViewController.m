@@ -739,6 +739,8 @@
                         [self.navigationController popViewControllerAnimated:YES];
                         [self.navigationController setNavigationBarHidden:YES animated:NO];
                         
+                    }else{
+                        [WarningBox warningBoxModeText:@"上传失败" andView:self.view];
                     }
                     
                     

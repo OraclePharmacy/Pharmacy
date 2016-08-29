@@ -191,7 +191,7 @@
             lable.text=s;
             [lable setFrame:CGRectMake(80, 0, rect.size.width-40, rect.size.height)];
             
-            return lable.frame.size.height+1;
+            return lable.frame.size.height+1>40? lable.frame.size.height+1:40;
             
         }
         return 40;

@@ -476,12 +476,14 @@
                     self.biaotiText.text = @"";
                     //返回上一页
                     [self.navigationController popViewControllerAnimated:YES];
-                    [WarningBox warningBoxModeText:@"上传成功!" andView:self.view];
+                    [WarningBox warningBoxModeText:@"发布成功!" andView:self.view];
                     NSFileManager *defaultManager;
                     defaultManager = [NSFileManager defaultManager];
                     NSString*path=[NSString stringWithFormat:@"%@/Documents/fatie",NSHomeDirectory()];
                     [defaultManager removeItemAtPath:path error:NULL];
                     
+                }else{
+                    [WarningBox warningBoxModeText:@"发布失败!" andView:self.view];
                 }
                 
                 
