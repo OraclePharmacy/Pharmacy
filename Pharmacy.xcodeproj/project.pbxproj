@@ -76,6 +76,7 @@
 		950BC6F71D12986000817E4A /* hb_yyy.png in Resources */ = {isa = PBXBuildFile; fileRef = 950BC6F41D12986000817E4A /* hb_yyy.png */; };
 		950C5DE51CE1AF5700B9F662 /* detail_shopping_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */; };
 		950C5DE81CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */; };
+		950FFDAF1D7429ED007D0449 /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = 950FFDAE1D7429ED007D0449 /* 123.png */; };
 		95104D731D07F2520040EA4B /* guanyuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D721D07F2520040EA4B /* guanyuViewController.m */; };
 		95104D781D07F3790040EA4B /* YdfankuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D771D07F3790040EA4B /* YdfankuiViewController.m */; };
 		95104D7C1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95104D7B1D07F3BF0040EA4B /* YdfenxiangxiazaiViewController.m */; };
@@ -463,6 +464,7 @@
 		950C5DE41CE1AF5700B9F662 /* detail_shopping_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_shopping_cart.png; sourceTree = "<group>"; };
 		950C5DE61CE1B0B200B9F662 /* YdshoppingxiangshiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdshoppingxiangshiViewController.h; sourceTree = "<group>"; };
 		950C5DE71CE1B0B200B9F662 /* YdshoppingxiangshiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YdshoppingxiangshiViewController.m; sourceTree = "<group>"; };
+		950FFDAE1D7429ED007D0449 /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
 		95104D711D07F2520040EA4B /* guanyuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guanyuViewController.h; sourceTree = "<group>"; };
 		95104D721D07F2520040EA4B /* guanyuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guanyuViewController.m; sourceTree = "<group>"; };
 		95104D761D07F3790040EA4B /* YdfankuiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YdfankuiViewController.h; sourceTree = "<group>"; };
@@ -1739,6 +1741,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				950FFDAE1D7429ED007D0449 /* 123.png */,
 				952B2F001D713BB500EEE01B /* welcome.jpg */,
 				95148C6E1D3F76A100156FCB /* read(1).png */,
 				95206A911D38A838002BB3B5 /* 未命名文件夹 */,
@@ -2486,6 +2489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				952A1A0A1CD8440700582D26 /* 组-14@3x.png in Resources */,
+				950FFDAF1D7429ED007D0449 /* 123.png in Resources */,
 				95C372621CB5F5780083AC90 /* 矩形-20@3x.png in Resources */,
 				95C3725B1CB5F5780083AC90 /* 服务@2x.png in Resources */,
 				95206AA51D38A838002BB3B5 /* weidu(1).png in Resources */,
