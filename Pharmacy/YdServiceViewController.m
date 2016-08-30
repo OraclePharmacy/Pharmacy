@@ -242,9 +242,9 @@
     {
         
         UIImageView *image = [[UIImageView alloc]init];
-        image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.3);
+        image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.5);
         NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",arrImage[indexPath.section]]];
-        [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"daiti.png"]];
+        [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
         
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(0, image.bounds.size.height + gao*0.1, kuan, gao*0.15);
