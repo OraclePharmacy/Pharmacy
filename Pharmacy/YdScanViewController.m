@@ -158,7 +158,6 @@
             @catch (NSException * e) {
                 
                 [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -172,7 +171,8 @@
     
     //跳转到会员码页面
     YdGenerateViewController *Generate = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"generate"];
-    Generate.haha = @"2012021385";
+    NSString*hh=[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"];
+    Generate.haha = hh;
     [self.navigationController pushViewController:Generate animated:NO];
     
 }
