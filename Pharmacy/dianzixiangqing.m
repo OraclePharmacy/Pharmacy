@@ -131,7 +131,7 @@
 
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tableview.frame.size.width, _tableview.frame.size.width)];
     
-     [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.section]]] placeholderImage:[UIImage imageNamed: @"IMG_0798.jpg" ]];
+     [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.section]]] placeholderImage:[UIImage imageNamed: @"daiti.png" ]];
     
     [cell addSubview:imageview];
     //隐藏滑动条

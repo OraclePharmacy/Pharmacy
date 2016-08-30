@@ -88,6 +88,7 @@
 		951A41B31CFEA98900FD81D6 /* yyy_result.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41B01CFEA98900FD81D6 /* yyy_result.png */; };
 		951A41B41CFEA98900FD81D6 /* yyy_zjjl.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41B11CFEA98900FD81D6 /* yyy_zjjl.png */; };
 		951A41B81CFEB03500FD81D6 /* yyy_zhongjiang.png in Resources */ = {isa = PBXBuildFile; fileRef = 951A41B71CFEB03500FD81D6 /* yyy_zhongjiang.png */; };
+		951B37F51D752A1A003F6756 /* daiti.png in Resources */ = {isa = PBXBuildFile; fileRef = 951B37F41D752A1A003F6756 /* daiti.png */; };
 		95206A771D3883B3002BB3B5 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95206A3F1D3883B3002BB3B5 /* UMSocialLocalizable.strings */; };
 		95206A781D3883B3002BB3B5 /* libUMSocial_Sdk_5.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95206A4D1D3883B3002BB3B5 /* libUMSocial_Sdk_5.2.1.a */; };
 		95206A791D3883B3002BB3B5 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95206A4F1D3883B3002BB3B5 /* UMSCommentDetailController.xib */; };
@@ -480,6 +481,7 @@
 		951A41B01CFEA98900FD81D6 /* yyy_result.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yyy_result.png; sourceTree = "<group>"; };
 		951A41B11CFEA98900FD81D6 /* yyy_zjjl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yyy_zjjl.png; sourceTree = "<group>"; };
 		951A41B71CFEB03500FD81D6 /* yyy_zhongjiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yyy_zhongjiang.png; sourceTree = "<group>"; };
+		951B37F41D752A1A003F6756 /* daiti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daiti.png; sourceTree = "<group>"; };
 		95206A401D3883B3002BB3B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		95206A421D3883B3002BB3B5 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		95206A431D3883B3002BB3B5 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -1741,6 +1743,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				951B37F41D752A1A003F6756 /* daiti.png */,
 				950FFDAE1D7429ED007D0449 /* 123.png */,
 				952B2F001D713BB500EEE01B /* welcome.jpg */,
 				95148C6E1D3F76A100156FCB /* read(1).png */,
@@ -2631,6 +2634,7 @@
 				95024D3E1D113D5900B7F7D8 /* shezhi.png in Resources */,
 				950A5AAC1CC87F2400A04F95 /* 相机@2x.png in Resources */,
 				950956651CC7604F00A10A5A /* sexnan@3x.png in Resources */,
+				951B37F51D752A1A003F6756 /* daiti.png in Resources */,
 				95C3724E1CB5F5780083AC90 /* 1213465@3x.png in Resources */,
 				95E38EBC1D1D240B006BCF6C /* wenyaoshi.png in Resources */,
 				9509BCE01D2207A2006B4962 /* option_b1.png in Resources */,

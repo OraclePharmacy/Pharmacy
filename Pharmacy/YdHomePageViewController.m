@@ -1137,7 +1137,7 @@
             {
                 UIImageView *image = [[UIImageView alloc]init];
                 image.frame = CGRectMake(0, 0, width, 150);
-                image.image = [UIImage imageNamed:@"IMG_0797.jpg"];
+                image.image = [UIImage imageNamed:@"daiti.png"];
                 [cell.contentView addSubview:image];
             }
             else
@@ -1145,7 +1145,7 @@
                 YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
                                                             images:arrImage
                                                             titles:titarr
-                                                  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+                                                  placeholderImage:[UIImage imageNamed:@"daiti.png"]];
                 ycAdView.clickAdImage = ^(NSInteger index)
                 {
                     if (index == 0) {
@@ -1222,7 +1222,7 @@
                 //图片
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
-                [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
+                [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"daiti.png"]];
                 //名称
                 UILabel *name = [[UILabel alloc]init];
                 name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
@@ -1306,7 +1306,7 @@
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
                 NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
-                [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0799.jpg"]];
+                [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"daiti.png"]];
                 //名称
                 UILabel *name = [[UILabel alloc]init];
                 name.frame = CGRectMake(0, gao*0.55, kuan, gao*0.2);
@@ -1355,7 +1355,7 @@
             touxiang.layer.cornerRadius = 40;
             touxiang.layer.masksToBounds = YES;
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[rementieziarray[indexPath.row] objectForKey:@"photo"]];
-            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
             
             UILabel *name = [[UILabel alloc]init];
             name.frame = CGRectMake(5, 90, 80, 20);
@@ -1436,7 +1436,7 @@
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[remenzixunarray[indexPath.row] objectForKey:@"picUrl"]] ;
             UIImageView *image = [[UIImageView alloc]init];
             image.frame = CGRectMake(10, 10, 100 , 100);
-            [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
             
             UILabel *title = [[UILabel alloc]init];
             title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);

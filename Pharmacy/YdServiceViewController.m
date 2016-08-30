@@ -226,7 +226,7 @@
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake((kuan-kuan/2)/2, (gao-kuan/2)/3, kuan/2, kuan/2);
         image.image = [UIImage imageNamed:imagearray[indexPath.row]];
-        //image.backgroundColor = [UIColor redColor];
+        
         
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(0, CGRectGetMaxY(image.frame), kuan, gao-kuan);
@@ -244,7 +244,7 @@
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.3);
         NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",arrImage[indexPath.section]]];
-        [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+        [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"daiti.png"]];
         
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(0, image.bounds.size.height + gao*0.1, kuan, gao*0.15);

@@ -150,7 +150,7 @@
         image.frame = CGRectMake(5, 5, 80, 80);
         //image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[_yaopin[indexPath.row] objectForKey:@"picUrl"]] ;
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         
         UILabel *name = [[UILabel alloc]init];
         name.frame = CGRectMake(90, 5, width - 95, 20);

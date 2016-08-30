@@ -181,7 +181,7 @@
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);
-    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg"]];
+    [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"daiti.png"]];
     image.layer.cornerRadius=30;
     
     //药品名称

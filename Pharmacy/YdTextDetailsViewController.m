@@ -186,7 +186,7 @@
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"507fcab25270157b37000010"
                                       shareText:@"你是大傻子！！"
-                                     shareImage:[UIImage imageNamed:@"IMG_0797.jpg"]
+                                     shareImage:[UIImage imageNamed:@"daiti.png"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
                                        delegate:self];
     

@@ -255,7 +255,7 @@ int popop=0;
         UIImageView *image = [[UIImageView alloc] init];
         image.frame = CGRectMake(0, 0, width, 150);
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[xianshiarr objectForKey:@"product"] objectForKey:@"picUrl"]];
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         
         [cell.contentView addSubview:image];
         self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;

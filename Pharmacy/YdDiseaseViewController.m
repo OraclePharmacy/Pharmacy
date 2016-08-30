@@ -285,7 +285,7 @@
             
         }else if(yaopin.count==1){
             //一张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
@@ -298,7 +298,7 @@
             [cell addSubview:b1];
         }else if(yaopin.count==2){
             //两张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
@@ -308,7 +308,7 @@
             
             singleRecognizer1.numberOfTapsRequired = 1; // 单击
             [b1 addGestureRecognizer:singleRecognizer1];
-            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming2=[[UILabel alloc] initWithFrame:CGRectMake(width/3+5, width/3, width/3-10, 23)];
             ming2.text=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"commonName"]];
             ming2.font=[UIFont systemFontOfSize:12];
@@ -324,7 +324,7 @@
             [cell addSubview:ming2];
         }else{
             //三张图片
-            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[0] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming1=[[UILabel alloc] initWithFrame:CGRectMake(5, width/3, width/3-10, 23)];
             ming1.text=[NSString stringWithFormat:@"%@",[yaopin[0] objectForKey:@"commonName"]];
             ming1.font=[UIFont systemFontOfSize:12];
@@ -334,7 +334,7 @@
             
             singleRecognizer1.numberOfTapsRequired = 1; // 单击
             [b1 addGestureRecognizer:singleRecognizer1];
-            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[1] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming2=[[UILabel alloc] initWithFrame:CGRectMake(width/3+5, width/3, width/3-10, 23)];
             ming2.text=[NSString stringWithFormat:@"%@",[yaopin[1] objectForKey:@"commonName"]];
             ming2.font=[UIFont systemFontOfSize:12];
@@ -343,7 +343,7 @@
             singleRecognizer2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom2)];
             singleRecognizer2.numberOfTapsRequired = 1; // 单击
             [b2 addGestureRecognizer:singleRecognizer2];
-            [b3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[2] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"IMG_0800.jpg"]];
+            [b3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[yaopin[2] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed: @"daiti.png"]];
             UILabel*ming3=[[UILabel alloc] initWithFrame:CGRectMake(2*width/3+5, width/3, width/3-10, 23)];
             ming3.text=[NSString stringWithFormat:@"%@",[yaopin[2] objectForKey:@"commonName"]];
             ming3.font=[UIFont systemFontOfSize:12];

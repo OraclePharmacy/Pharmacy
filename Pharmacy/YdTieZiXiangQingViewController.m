@@ -66,7 +66,7 @@
     _touxiang.layer.cornerRadius = 40;
     _touxiang.layer.masksToBounds = YES;
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,_touxiang1];
-    [_touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    [_touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
     //昵称
     self.name.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"vipinfo"] objectForKey:@"name"]];
     self.name.font = [UIFont systemFontOfSize:15];

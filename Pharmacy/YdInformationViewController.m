@@ -481,7 +481,7 @@
             }else{
                 path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
             }
-            [img sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            [img sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
             [cell.contentView addSubview:_scrollView];
             [cell.contentView addSubview:img];
             
@@ -491,7 +491,7 @@
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
             UIImageView *image = [[UIImageView alloc]init];
             image.frame = CGRectMake(10, 10, 100 , 100);
-            [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+            [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
             
             UILabel *title = [[UILabel alloc]init];
             title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
@@ -573,7 +573,7 @@
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[diantainewsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 100 , 100);
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         
         UILabel *title = [[UILabel alloc]init];
         title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);

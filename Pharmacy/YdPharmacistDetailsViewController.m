@@ -193,11 +193,11 @@
         
         UIImageView *touxiang = [[UIImageView alloc]init];
         touxiang.frame = CGRectMake((width - 80) / 2, 35, 80, 80);
-        touxiang.image = [UIImage imageNamed:@"IMG_0797.jpg"];
+        touxiang.image = [UIImage imageNamed:@"小人@2x.png"];
         touxiang.layer.cornerRadius = 40;
         touxiang.layer.masksToBounds = YES;
         NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[arr[0] objectForKey:@"photo"]]];
-        [touxiang sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+        [touxiang sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
         
         
         UILabel *name = [[UILabel alloc]init];

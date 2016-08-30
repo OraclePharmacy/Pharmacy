@@ -210,10 +210,10 @@
     if (indexPath.section == 0) {
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(0, 0, width, 150);
-        image.backgroundColor = [UIColor grayColor];
+        
         
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[mendiandion objectForKey:@"photo"]];
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0801.jpg" ]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         [cell.contentView addSubview:image];
     }
     else if (indexPath.section == 1){
@@ -291,11 +291,11 @@
     {
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 60, 60);
-        image.backgroundColor = [UIColor grayColor];
+        
         image.layer.cornerRadius = 30;
         image.layer.masksToBounds = YES;
         NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[dianyuanarray[indexPath.row] objectForKey:@"photo"]];
-        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+        [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         [cell.contentView addSubview:image];
         
         UILabel *name = [[UILabel alloc]init];

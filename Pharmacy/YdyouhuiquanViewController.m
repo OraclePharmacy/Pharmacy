@@ -225,13 +225,13 @@
     
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 5, 65, 65);
-    image.backgroundColor = [UIColor grayColor];
+    
     
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.section] objectForKey:@"couponInfo"]objectForKey:@"url"]];
-    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     
     
-    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     [cell.contentView addSubview:image];
     
     UILabel *name = [[UILabel alloc]init];

@@ -182,7 +182,7 @@
     image.frame = CGRectMake(5, 5, 100, 100);
     //image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[proList[indexPath.row] objectForKey:@"picUrl"]] ;
-    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(110, 5, width - 115, 20);

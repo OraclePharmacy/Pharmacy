@@ -114,7 +114,7 @@
     UIImageView *iv = (UIImageView*)[cell viewWithTag:1];
     //为单元个添加图片
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[rowNo]objectForKey:@"picUrl" ]] ;
-    [iv sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"IMG_0800.jpg" ]];
+    [iv sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     //通过tag属性获取单元格内的lable控件
     UILabel *lable = (UILabel *)[cell viewWithTag:2];
     //为单元格内的UIlable控件设置文本

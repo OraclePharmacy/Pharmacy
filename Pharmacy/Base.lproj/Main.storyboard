@@ -77,7 +77,7 @@
                                     <action selector="ForgetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pJE-3s-NeY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="IMG_0797.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="xTu-oQ-1wj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="daiti.png" translatesAutoresizingMaskIntoConstraints="NO" id="xTu-oQ-1wj">
                                 <rect key="frame" x="265" y="74" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Xni-Vv-aOz"/>
@@ -2988,7 +2988,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19y-rl-ci9">
                                         <rect key="frame" x="0.0" y="0.0" width="480" height="130"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0797.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Saf-Ld-3dT">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daiti.png" translatesAutoresizingMaskIntoConstraints="NO" id="Saf-Ld-3dT">
                                                 <rect key="frame" x="165" y="28" width="150" height="75"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="E2g-Sh-sJX"/>
@@ -3023,7 +3023,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vw-sf-foS">
                                         <rect key="frame" x="0.0" y="132" width="480" height="240"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0797.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="i8c-FZ-rBG">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daiti.png" translatesAutoresizingMaskIntoConstraints="NO" id="i8c-FZ-rBG">
                                                 <rect key="frame" x="165" y="45" width="150" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="21a-CH-fl7"/>
@@ -3851,7 +3851,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_0797.jpg" width="1080" height="1920"/>
+        <image name="daiti.png" width="45" height="31"/>
         <image name="hb_dzp.png" width="640" height="317"/>
         <image name="hb_yjwd.png" width="640" height="317"/>
         <image name="hb_yyy.png" width="640" height="317"/>

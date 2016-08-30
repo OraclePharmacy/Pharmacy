@@ -185,7 +185,7 @@
     UIImageView *touxiang = [[UIImageView alloc]init];
     touxiang.frame = CGRectMake(10, 10, 60, 60);
     NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",arrImage[indexPath.section]]];
-    [touxiang sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"IMG_0797.jpg"]];
+    [touxiang sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
     touxiang.layer.cornerRadius = 30;
     touxiang.layer.masksToBounds = YES;
 
