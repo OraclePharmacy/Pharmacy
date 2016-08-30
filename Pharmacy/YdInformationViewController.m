@@ -18,6 +18,7 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 #import "tiaodaodenglu.h"
+#import "YdNewsViewController.h"
 @interface YdInformationViewController ()
 {
     UICollectionView * CollectionView;
@@ -70,6 +71,9 @@
     
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
+    
+    //设置导航栏右按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
@@ -702,5 +706,14 @@
     baseView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     return baseView;
+}
+-(void)scanning{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
+        //跳转到扫描页面
+        YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
+        [self.navigationController pushViewController:News animated:YES];
+    }
 }
 @end

@@ -15,6 +15,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "tiaodaodenglu.h"
+#import "YdNewsViewController.h"
 @interface YdDrugViewController ()
 {
     CGFloat width;
@@ -52,7 +54,11 @@
    
     _Tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     //设置导航栏左按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
+    
+    //设置导航栏右按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen ].bounds.size.height;
     
@@ -479,5 +485,14 @@
         
     }];
 
+}
+-(void)scanning{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        [tiaodaodenglu jumpToLogin:self.navigationController];
+    }else{
+        //跳转到扫描页面
+        YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
+        [self.navigationController pushViewController:News animated:YES];
+    }
 }
 @end

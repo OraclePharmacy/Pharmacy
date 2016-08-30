@@ -403,10 +403,10 @@
 {
     //这里写分享功能
     
-    [UMSocialData defaultData].extConfig.title = @"索坤接招！！";
+    [UMSocialData defaultData].extConfig.title = @"接招！！";
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"507fcab25270157b37000010"
-                                      shareText:@"索坤  你是大傻子！！"
+                                      shareText:@"你是大傻子！！"
                                      shareImage:[UIImage imageNamed:@"IMG_0797.jpg"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
                                        delegate:self];
