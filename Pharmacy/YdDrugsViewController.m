@@ -64,6 +64,7 @@
     //self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     _shuliang.delegate=self;
+    self.tableview.scrollEnabled =NO; //设置tableview 不能滚动
     self.tableview.backgroundColor= [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
