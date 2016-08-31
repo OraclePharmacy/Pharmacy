@@ -31,6 +31,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
+    self.tableView.scrollEnabled =NO; //设置tableview 不能滚动
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
