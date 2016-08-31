@@ -17,6 +17,7 @@
 @implementation YdTurntableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO; 
      self.automaticallyAdjustsScrollViewInsets = NO;
     NSURL *url = [NSURL URLWithString:_uu];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

@@ -42,10 +42,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+    j=0;
     // 设置允许摇一摇功能
     [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
     // 并让自己成为第一响应者
@@ -70,7 +71,7 @@
     time = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(jinru) userInfo:nil repeats:YES];
     //开始
     [time setFireDate:[NSDate distantPast]];
-
+    
 }
 //图片切换  实现手机摇动效果
 -(void)jinru
@@ -107,7 +108,7 @@
         
         
         
-//        dengji.text = @"几等奖";
+        //        dengji.text = @"几等奖";
         
         
         [self.beijing addSubview:dengji];
@@ -131,7 +132,7 @@
         fanhui.layer.borderWidth =1;
         [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:fanhui];
-
+        
         self.bian.hidden = YES;
         self.dong.hidden = YES;
         self.beijing.image = [UIImage imageNamed:@"yyy_zhongjiang.png"];
@@ -147,9 +148,12 @@
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 
 {
+    
     i = 0;
     //检测到摇动
     [time setFireDate:[NSDate distantPast]];
+    
+    
 }
 
 -(void)jiekou
@@ -164,7 +168,7 @@
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval a=[dat timeIntervalSince1970];
     NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
+    [WarningBox warningBoxModeIndeterminate:@"奖品正在路上..." andView:self.view];
     
     //将上传对象转换为json格式字符串
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -174,7 +178,7 @@
     NSString*zhid;
     NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
     zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",vip,@"vipId", nil];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",vip,@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -192,7 +196,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-
+            
             if ([[responseObject objectForKey:@"code"] intValue]==4444) {
                 UIButton *fanhui = [[UIButton alloc]init];
                 fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
@@ -212,12 +216,12 @@
                     self.bian.hidden = NO;
                     time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
                     
-                    j = 0 ;
+                    
                     //
                     //            [time1 setFireDate:[NSDate distantPast]];
                     
                 });
-
+                
             }
         }
         @catch (NSException * e) {
@@ -237,7 +241,7 @@
 - (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
 
 {
-
+    
 }
 
 
@@ -245,17 +249,20 @@
 - (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 
 {
-    //摇动结束
-    if (event.subtype == UIEventSubtypeMotionShake) {
-        
-        [self jiekou];
-        //延时效果  ＊前为延迟时间  单位  秒
-        //摇动结束时  手机停止摇动  执行
-               //摇奖结束出现
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (j==0) {
+        j=3;
+        //摇动结束
+        if (event.subtype == UIEventSubtypeMotionShake) {
             
-            
-        });
+            [self jiekou];
+            //延时效果  ＊前为延迟时间  单位  秒
+            //摇动结束时  手机停止摇动  执行
+            //摇奖结束出现
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                
+            });
+        }
     }
 }
 -(void)fanhui
