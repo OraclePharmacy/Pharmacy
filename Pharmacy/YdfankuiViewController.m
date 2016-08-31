@@ -48,7 +48,7 @@
 }
 -(void)keyboardWasShown:(NSNotification*)ss{
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(wancheng)];
 }
 -(void)kongjian
 {
