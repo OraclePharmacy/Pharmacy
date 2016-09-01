@@ -818,9 +818,12 @@
                         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                         //NSLog(@"responseObject:%@",responseObject);
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            
+                            [WarningBox warningBoxModeText:@"注册成功" andView:self.view];
                             [self zhucejm];
-                            [self.navigationController popViewControllerAnimated:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [self.navigationController popViewControllerAnimated:YES];
+ 
+                            });
                         }
                         
                     }

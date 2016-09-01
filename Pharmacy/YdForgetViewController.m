@@ -29,7 +29,7 @@
     self.CompleteButton.layer.masksToBounds = YES;
     
     //导航栏名称
-    self.navigationItem.title = @"重置密码";
+    self.navigationItem.title = @"忘记密码";
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
 
@@ -338,11 +338,19 @@
                     @try
                     {
                        // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                       
                         
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             [WarningBox warningBoxModeText:@"密码修改成功" andView:self.view];
-                            [self.navigationController popViewControllerAnimated:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [self.navigationController popViewControllerAnimated:YES];
+
+                            });
                             
+                            
+                        }else if ([[responseObject objectForKey:@"code"] intValue]==1111){
+                          
+                         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                         }
                         
                         
