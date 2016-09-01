@@ -89,7 +89,8 @@
 }
 
 -(void)fanhui
-{   NSFileManager *defaultManager;
+{
+    NSFileManager *defaultManager;
     defaultManager = [NSFileManager defaultManager];
     NSString*path=[NSString stringWithFormat:@"%@/Documents/dianzibinglitupian",NSHomeDirectory()];
     [defaultManager removeItemAtPath:path error:NULL];
@@ -284,6 +285,9 @@
                         defaultManager = [NSFileManager defaultManager];
                         NSString*path=[NSString stringWithFormat:@"%@/Documents/dianzibinglitupian",NSHomeDirectory()];
                         [defaultManager removeItemAtPath:path error:NULL];
+                    
+                        //返回上一页
+                        [self.navigationController popViewControllerAnimated:YES];
                         
                     }else{
                         [WarningBox warningBoxModeIndeterminate:@"上传失败!" andView:self.view];
