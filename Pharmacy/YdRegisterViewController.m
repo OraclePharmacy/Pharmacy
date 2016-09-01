@@ -1014,7 +1014,6 @@
 -(void)fanhui{
     //返回上一页面
     [self.navigationController popViewControllerAnimated:YES];
-     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)initializeLocationService {
     

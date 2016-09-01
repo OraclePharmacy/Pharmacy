@@ -428,6 +428,6 @@
 {
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 @end
