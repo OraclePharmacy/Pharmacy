@@ -18,12 +18,15 @@
 
 @implementation YdSheZhiTableViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     //状态栏名称
     self.navigationItem.title = @"设置";
