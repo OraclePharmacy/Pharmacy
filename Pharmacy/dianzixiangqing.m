@@ -136,7 +136,10 @@
     [cell addSubview:imageview];
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
-    
+    //cell点击不变色
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //线消失
+    self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
