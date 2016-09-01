@@ -131,7 +131,7 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 coun=[[datadic objectForKey:@"count"] intValue];
                 NSArray*mg= [datadic objectForKey:@"myOrder"];
-                
+                NSLog(@"mg:%@",mg);
                 if (mg.count == 0) {
                     [self kongbai];
                     label.text = @"对不起,您暂时没有订单!";
@@ -244,7 +244,7 @@
     UILabel *SyrenFH = [[UILabel alloc]init];
     SyrenFH.frame = CGRectMake(65,CGRectGetMaxY(Ydname.frame),width - 70,20);
     SyrenFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    SyrenFH.text = [[arr[indexPath.section] objectForKey:@"vipinfo"] objectForKey:@"name"];
+    SyrenFH.text = [[arr[indexPath.section] objectForKey:@"vipInfo"] objectForKey:@"name"];
     SyrenFH.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:SyrenFH];
     //联系电话
@@ -258,7 +258,7 @@
     UILabel *PhoneFH = [[UILabel alloc]init];
     PhoneFH.frame = CGRectMake(65,CGRectGetMaxY(Syren.frame),width - 70,20);
     PhoneFH.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    PhoneFH.text = [[arr[indexPath.section] objectForKey:@"vipinfo"] objectForKey:@"phoneNumber"];
+    PhoneFH.text = [[arr[indexPath.section] objectForKey:@"vipInfo"] objectForKey:@"phoneNumber"];
     PhoneFH.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:PhoneFH];
     //送药地址
@@ -382,6 +382,7 @@
             {
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
+                    [WarningBox warningBoxModeText:@"收货成功" andView:self.view];
                     [self.tableview reloadData];
                     
                 }

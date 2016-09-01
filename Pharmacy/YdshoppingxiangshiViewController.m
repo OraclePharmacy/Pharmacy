@@ -164,6 +164,8 @@
     
 }
 - (IBAction)tijiao:(id)sender {
+
+    [WarningBox warningBoxModeIndeterminate:@"正在提交.." andView:self.view];
     
     //userID    暂时不用改
     NSString * userID=@"0";
