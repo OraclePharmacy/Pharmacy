@@ -814,6 +814,9 @@
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
+                        
+                        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                        //NSLog(@"responseObject:%@",responseObject);
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             
                             [self zhucejm];
