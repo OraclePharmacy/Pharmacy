@@ -154,7 +154,8 @@
                     @try
                     {
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            [WarningBox warningBoxModeIndeterminate:@"评论成功" andView:self.view];
+                            [WarningBox warningBoxModeText:@"评论成功" andView:self.view];
+                
                             self.pinglunText.text = @"";
                             //返回上一页
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -163,7 +164,8 @@
                             
                             
                         }else{
-                            [WarningBox warningBoxModeIndeterminate:@"评论失败" andView:self.view];
+                            [WarningBox warningBoxModeText:@"评论失败" andView:self.view];
+                    
                         
                         }
                     }
