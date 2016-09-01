@@ -711,6 +711,7 @@
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [WarningBox warningBoxHide:YES andView:self.view];
+                NSLog(@"the==========%@",responseObject);
                 @try
                 {
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
@@ -718,7 +719,7 @@
                         
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
                         [datadic writeToFile:path atomically:YES];
-                        
+                        NSLog(@"%@",datadic);
                         //返回上一页
                         [self.navigationController popViewControllerAnimated:YES];
                         [self.navigationController setNavigationBarHidden:YES animated:NO];

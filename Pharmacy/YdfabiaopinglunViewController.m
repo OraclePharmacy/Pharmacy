@@ -98,6 +98,7 @@
     
     [self.view endEditing:YES];
     NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+    
     NSFileManager * fm=[NSFileManager defaultManager];
     if (self.pinglunText.text.length > 0)
     {
@@ -105,9 +106,11 @@
             [WarningBox warningBoxModeText:@"请先完善个人资料!" andView:self.view];
         }else{
             NSDictionary* du=[NSDictionary dictionaryWithContentsOfFile:path1];
-            if (NULL == [du objectForKey:@""]) {
+            if (NULL == [du objectForKey:@"age"]) {
                 [WarningBox warningBoxModeText:@"请先完善个人资料!" andView:self.view];
             }else{
+                
+                [WarningBox warningBoxModeIndeterminate:@"评论中..." andView:self.view];
                 //userID    暂时不用改
                 NSString * userID=@"0";
                 
@@ -151,11 +154,17 @@
                     @try
                     {
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                            
+                            [WarningBox warningBoxModeIndeterminate:@"评论成功" andView:self.view];
                             self.pinglunText.text = @"";
                             //返回上一页
-                            [self.navigationController popViewControllerAnimated:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [self.navigationController popViewControllerAnimated:YES];
+                            });
                             
+                            
+                        }else{
+                            [WarningBox warningBoxModeIndeterminate:@"评论失败" andView:self.view];
+                        
                         }
                     }
                     @catch (NSException * e) {

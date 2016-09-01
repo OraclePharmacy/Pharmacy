@@ -20,6 +20,8 @@
     
     NSString*Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
     
+
+    
     NSFileManager *fm = [NSFileManager defaultManager];
     
     
@@ -72,6 +74,9 @@
                         NSDictionary*datadic=[responseObject valueForKey:@"data"];
                         NSDictionary*vipInfoReturnList=[NSDictionary dictionaryWithDictionary:[datadic objectForKey:@"vipInfoReturnList"]];
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
+                        
+                        
+                        
                         NSFileManager*fm=[NSFileManager defaultManager];
                         if ([fm fileExistsAtPath:path]) {
                             
@@ -80,8 +85,12 @@
                         }
                         
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
+                       
+                        
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
-                        NSLog(@"个人信息内容：%@",vipInfoReturnList);
+                        
+                        
+                       
                         NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
                         [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];

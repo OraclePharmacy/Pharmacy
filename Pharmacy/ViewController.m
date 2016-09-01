@@ -254,7 +254,7 @@
                         
                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                         NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
-                        
+                         NSLog(@"个人信息内容：%@",vipInfoReturnList);
                         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                         NSString *path2=[paths objectAtIndex:0];
                         NSString *filename=[path2 stringByAppendingPathComponent:@"baocun.plist"];

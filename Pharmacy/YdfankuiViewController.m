@@ -134,6 +134,10 @@
                     self.pinglunText.text = @"";
                     //返回上一页
                     [WarningBox warningBoxModeText:@"您的意见我们已收到，谢谢您的支持" andView:self.view];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                        });
+                    
                     
                 }else{
                     [WarningBox warningBoxModeText:@"意见反馈失败，请重试..." andView:self.view];
