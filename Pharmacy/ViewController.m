@@ -253,7 +253,7 @@
                         [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];
                         
                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
-                        
+                        NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
                         
                         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                         NSString *path2=[paths objectAtIndex:0];

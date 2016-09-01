@@ -136,7 +136,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 }
 -(void)denglule
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
@@ -171,7 +171,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
 {
     if (indexPath.row == 0)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             
             [tiaodaodenglu jumpToLogin:self.navigationController];
             
@@ -183,7 +183,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 1)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             YdyouhuiquanViewController *youhuiquan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"youhuiquan"];
@@ -194,7 +194,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 2)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             YdzhongjiangjiluViewController *zhongjiangjilu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zhongjiangjilu"];
@@ -203,7 +203,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 3)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             YdwodeshoucangViewController *wodeshoucang = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodeshoucang"];
@@ -212,7 +212,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 4)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             YdwodetieziViewController *wodetiezi = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wodetiezi"];
@@ -221,7 +221,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 5)
     {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             YdfankuiViewController *fankui = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fankui"];

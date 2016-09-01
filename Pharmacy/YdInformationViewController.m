@@ -674,7 +674,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //判断是否登录
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
         
     }else{
@@ -708,7 +708,7 @@
     return baseView;
 }
 -(void)scanning{
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         //跳转到扫描页面

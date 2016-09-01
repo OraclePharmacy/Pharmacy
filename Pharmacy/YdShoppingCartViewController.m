@@ -361,7 +361,7 @@
 - (IBAction)tijiaoanniu:(id)sender {
     
     //判断是否登录
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         

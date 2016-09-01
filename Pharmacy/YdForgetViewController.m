@@ -352,8 +352,6 @@
                           
                          [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                         }
-                        
-                        
                     }
                     @catch (NSException * e) {
                         

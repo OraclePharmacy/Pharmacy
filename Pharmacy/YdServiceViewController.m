@@ -305,7 +305,7 @@
     {
         if (indexPath.row == 0)
         {
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 
@@ -370,7 +370,7 @@
         else if (indexPath.row == 2)
         {
             //判断是否登录
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 
@@ -406,7 +406,7 @@
         }
         else if (indexPath.row == 3)
         {    //判断是否登录
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 
@@ -442,7 +442,7 @@
         }
         else if (indexPath.row == 4)
         {    //判断是否登录
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 
@@ -478,7 +478,7 @@
         }
         else if (indexPath.row == 5)
         {    //判断是否登录
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 
@@ -516,7 +516,7 @@
     else if (indexPath.section == 1)
     {
         
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
             [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
@@ -595,7 +595,7 @@
     
 }
 -(void)scanning{
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         //跳转到扫描页面

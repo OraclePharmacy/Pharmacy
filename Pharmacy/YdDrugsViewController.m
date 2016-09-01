@@ -449,7 +449,7 @@ int popop=0;
 //联系店长
 - (IBAction)lianxidianzhang:(id)sender {
     //聊天   固定  id
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];

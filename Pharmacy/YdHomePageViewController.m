@@ -190,9 +190,10 @@
     [self SearchView];
     //调用定位
     [self initializeLocationService];
-    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
+//    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+    
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         
     }else{
         NSString*Rempath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/RememberPass.plist"];
@@ -498,7 +499,7 @@
 -(void)two
 {
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
@@ -549,7 +550,7 @@
 //第三个按钮点击事件
 -(void)three
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         
@@ -586,7 +587,7 @@
 //第四个按钮点击事件
 -(void)four
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         
@@ -1154,7 +1155,9 @@
                     }
                     else
                     {
-                        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+                        NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
+                        if (![[[NSUserDefaults standardUserDefaults]
+                               objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                             [tiaodaodenglu jumpToLogin:self.navigationController];
                         }else{
                             YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
@@ -1559,7 +1562,7 @@
     {
         wocalei.hidden=YES;
         if (indexPath.section == 5) {
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 //跳转文字资讯详情
@@ -1570,7 +1573,7 @@
             }
         }
         else if (indexPath.section == 4) {
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
@@ -1626,7 +1629,7 @@
 
 //扫描
 -(void)scanning{
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         //跳转到扫描页面

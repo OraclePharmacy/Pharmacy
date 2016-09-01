@@ -39,7 +39,7 @@
 //有奖问答
 - (IBAction)AnswerButton:(id)sender {
     //判断是否登录
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
        [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
 
@@ -51,7 +51,7 @@
 //大转盘
 - (IBAction)TurntableButton:(id)sender {
     //判断是否登录
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
 
@@ -115,7 +115,7 @@
 //摇一摇
 - (IBAction)ShakeButton:(id)sender {
     //判断是否登录
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
 [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
 
