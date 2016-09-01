@@ -41,8 +41,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableview.tableFooterView = [[UIView alloc] init];
-    
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -56,6 +54,7 @@
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    self.tableview.tableFooterView = [[UIView alloc] init];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.view addSubview:self.tableview];

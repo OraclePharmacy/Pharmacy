@@ -35,7 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableview.tableFooterView = [[UIView alloc] init];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     //状态栏名称
     self.navigationItem.title = @"我的订单";
@@ -50,6 +49,7 @@
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    self.tableview.tableFooterView = [[UIView alloc] init];
     self.tableview.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableview];
     
