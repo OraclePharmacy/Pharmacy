@@ -74,7 +74,7 @@
         }
     }
     
-    if (yikaishi == nil)
+    if (yikaishi.count == 0)
     {
         _tableview.hidden = YES;
         

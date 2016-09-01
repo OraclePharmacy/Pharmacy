@@ -321,6 +321,8 @@
                 //出入参数：
                 NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",_VerificationText.text,@"vaildCode", _PassText.text,@"newPassword",nil];
                 
+                NSLog(@"datadic:%@",datadic);
+                
                 NSString*jsonstring=[writer stringWithObject:datadic];
                 
                 //获取签名
@@ -339,15 +341,17 @@
                     {
                        // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                        
+                        NSLog(@"responseObject:%@",responseObject);
                         
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                            
                             [WarningBox warningBoxModeText:@"密码修改成功" andView:self.view];
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 [self.navigationController popViewControllerAnimated:YES];
 
                             });
-                            
-                            
+                        
                         }else if ([[responseObject objectForKey:@"code"] intValue]==1111){
                           
                          [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
