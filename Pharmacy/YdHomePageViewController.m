@@ -1204,7 +1204,7 @@
             
             UIView *xian = [[UIView alloc]init];
             xian.frame = CGRectMake(0, 20, width, 0.5);
-            xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
             
             
             [cell.contentView addSubview:biaoti];
@@ -1289,7 +1289,7 @@
             
             UIView *xian = [[UIView alloc]init];
             xian.frame = CGRectMake(0, 20, width, 0.5);
-            xian.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+            xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
             
             
             [cell.contentView addSubview:biaoti];
