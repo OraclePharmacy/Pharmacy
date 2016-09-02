@@ -586,7 +586,7 @@
         time.frame = CGRectMake(width - 150, 100, 145, 20);
         time.font = [UIFont systemFontOfSize:13];
         time.text = [NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"createTime"]];
-        time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+        time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
         time.numberOfLines = 2;
         //time.backgroundColor = [UIColor grayColor];
         

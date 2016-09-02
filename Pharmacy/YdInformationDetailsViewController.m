@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    width = [UIScreen mainScreen].bounds.size.width;
+    width = [UIScreen mainScreen].bounds.size.width - 20;
     height = [UIScreen mainScreen].bounds.size.height;
     //状态栏名称
     self.navigationItem.title = @"健康电台";
@@ -64,44 +64,41 @@
 -(void)kongjian
 {
     UILabel *title = [[UILabel alloc]init];
-    title.frame = CGRectMake(5, 69, width - 10, 20);
-    title.font = [UIFont systemFontOfSize:13];
+    title.frame = CGRectMake(20, 69, width - 20, 30);
+    title.font = [UIFont systemFontOfSize:17];
     title.text = [NSString stringWithFormat:@"%@",[_doc objectForKey:@"title"]];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     [self.view addSubview:title];
     
     UILabel *laiyuan = [[UILabel alloc]init];
-    laiyuan.frame = CGRectMake(5, CGRectGetMaxY(title.frame), 100, 20);
-    laiyuan.font = [UIFont systemFontOfSize:13];
+    laiyuan.frame = CGRectMake(20, CGRectGetMaxY(title.frame), 100, 30);
+    laiyuan.font = [UIFont systemFontOfSize:15];
     laiyuan.text = [NSString stringWithFormat:@"来源:%@",[_doc objectForKey:@"source"]];
-    laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    laiyuan.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     [self.view addSubview:laiyuan];
     
     UILabel *shijian = [[UILabel alloc]init];
-    shijian.frame = CGRectMake(width - 155, CGRectGetMaxY(title.frame), 150, 20);
+    shijian.frame = CGRectMake(width - 155, CGRectGetMaxY(title.frame), 150, 30);
     shijian.font = [UIFont systemFontOfSize:13];
     shijian.text = [NSString stringWithFormat:@"%@",[_doc objectForKey:@"createTime"]];
     shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     shijian.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:shijian];
-    
-    
-    
+
     UIScrollView *scl=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     
     UILabel *jianjie = [[UILabel alloc]init];
-    jianjie.frame = CGRectMake(5, CGRectGetMaxY(laiyuan.frame), width - 10, 100);
+    jianjie.frame = CGRectMake(20, CGRectGetMaxY(laiyuan.frame), width - 10, 100);
     
     jianjie.text = [NSString stringWithFormat:@"简介:%@",[_doc objectForKey:@"subtitle"]];
     jianjie.numberOfLines=0;
-    
-    
+
     if (width==414)
-        jianjie.font=[UIFont systemFontOfSize:16.0f];
+        jianjie.font=[UIFont systemFontOfSize:15.0f];
     else
-        jianjie.font=[UIFont systemFontOfSize:14.0f];
+        jianjie.font=[UIFont systemFontOfSize:13.0f];
     
-    jianjie.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    jianjie.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     
     //
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:jianjie.text];;
@@ -120,25 +117,27 @@
     
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[_doc objectForKey:@"picUrl"]] ;
     image = [[UIImageView alloc]init];
-    image.frame = CGRectMake(5, CGRectGetMaxY(jianjie.frame) + 5, width - 10, 150);
+    image.frame = CGRectMake(20, CGRectGetMaxY(jianjie.frame) + 5, width - 20, 160);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCategory:)]];
     [self.view addSubview:image];
     
     shoucang = [[UIButton alloc]init];
-    shoucang.frame = CGRectMake(width - 90, CGRectGetMaxY(image.frame) + 10, 20, 20);
-    
+    shoucang.frame = CGRectMake(width - 70, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    //shoucang.backgroundColor = [UIColor redColor];
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
     dianzan = [[UIButton alloc]init];
-    dianzan.frame = CGRectMake(width - 60, CGRectGetMaxY(image.frame) + 10, 20, 20);
+    dianzan.frame = CGRectMake(width - 110, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    //dianzan.backgroundColor = [UIColor redColor];
     [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dianzan];
     
     fenxiang = [[UIButton alloc]init];
-    fenxiang.frame = CGRectMake(width - 30, CGRectGetMaxY(image.frame) + 10, 20, 20);
+    fenxiang.frame = CGRectMake(width - 30, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    //fenxiang.backgroundColor = [UIColor redColor];
     [fenxiang setBackgroundImage:[UIImage imageNamed:@"share(1).png"] forState:UIControlStateNormal];
     [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fenxiang];
