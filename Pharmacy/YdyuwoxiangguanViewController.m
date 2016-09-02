@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableview.tableFooterView = [[UIView alloc] init];
+   
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -45,6 +45,7 @@
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+     self.tableview.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:self.tableview];
     
     //状态栏名称

@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
       ye=1;
-    self.tableview.tableFooterView = [[UIView alloc] init];
+
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     pushLogList=[[NSMutableArray alloc] init];
@@ -47,6 +47,7 @@
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    self.tableview.tableFooterView = [[UIView alloc] init];
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     [self.view addSubview:self.tableview];

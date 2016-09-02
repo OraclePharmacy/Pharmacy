@@ -171,7 +171,7 @@
             //根据lable返回行高
             NSString* s=[[NSString alloc] init];
             s=[NSString stringWithFormat:@"%@",[mendiandion objectForKey:@"remarks"] ];
-            
+             lable=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             
             NSAttributedString *attributedText =
@@ -186,7 +186,7 @@
                                                        context:nil];
             
             lable.text=s;
-            [lable setFrame:CGRectMake(80, 0, rect.size.width-40, rect.size.height)];
+            [lable setFrame:CGRectMake(80, 0, rect.size.width, rect.size.height)];
             
             return lable.frame.size.height+1>40? lable.frame.size.height+1:40;
             
@@ -229,7 +229,7 @@
         
         if (indexPath.row == 0)
         {
-            lable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10,width - 90, 20)];
+           
             lable.numberOfLines=0;
             lable.font=[UIFont systemFontOfSize:14];
             lable.textColor=[UIColor colorWithHexString:@"323232"];

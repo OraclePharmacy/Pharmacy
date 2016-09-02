@@ -19,7 +19,8 @@
 {
     NSMutableArray *hehe;
     NSDictionary *xq;
-    
+    UILabel *lablehaha;
+
     CGFloat width;
     CGFloat height;
 }
@@ -86,7 +87,6 @@
         {
             xq=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data" ]
                                                        objectForKey:@"Emr"]];
-            
             [_tableview reloadData];
             
         }
@@ -130,6 +130,31 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            s=[NSString stringWithFormat:@"%@",[xq objectForKey:@"emrDesc"] ];
+            lablehaha=[[UILabel alloc] init];
+            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            NSLog(@"%f       ,     %f",rect.size.width,rect.size.height);
+            
+            lablehaha.text=s;
+            [lablehaha setFrame:CGRectMake(20, 0, rect.size.width, rect.size.height)];
+            
+            return lablehaha.frame.size.height+1>40? lablehaha.frame.size.height+1:40;
+
+        }
         return 40;
     }
     return _tableview.frame.size.width+20;
@@ -160,15 +185,12 @@
             [cell.contentView addSubview:self.biaoti];
         }
         else if (indexPath.row == 1){
-            cell.textLabel.font = [UIFont systemFontOfSize:15];
-            cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            if ([xq objectForKey:@"emrDesc"] == nil) {
-                cell.textLabel.text = @"";
-            }
-            else{
-                cell.textLabel.text = [NSString stringWithFormat:@"%@",[xq objectForKey:@"emrDesc"]];
-            }
             
+            lablehaha.numberOfLines=0;
+            lablehaha.font=[UIFont systemFontOfSize:14];
+            lablehaha.textColor=[UIColor colorWithHexString:@"323232"];
+            
+            [cell.contentView addSubview:lablehaha];
         }
         else if (indexPath.row == 2){
 

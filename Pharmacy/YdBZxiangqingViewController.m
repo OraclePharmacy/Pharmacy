@@ -43,6 +43,7 @@
                                    
                                    UIWebView *web = [[UIWebView alloc]init];
                                    web.frame = CGRectMake(0, 64, width, height - 64);
+                                   [web.scrollView setShowsVerticalScrollIndicator:NO];//隐藏滚动条
                                    [self.view addSubview:web];
                                    
                                    NSDictionary *content = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];//转换数据格式
