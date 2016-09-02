@@ -13,16 +13,19 @@
 #import "SBJsonWriter.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
+#import "Color+Hex.h"
 
 @interface dianzixiangqing ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *hehe;
     NSDictionary *xq;
+    
+    CGFloat width;
+    CGFloat height;
 }
-@property (weak, nonatomic) IBOutlet UILabel *biaoti;
-@property (weak, nonatomic) IBOutlet UILabel *neirong;
+@property (strong, nonatomic) UILabel *biaoti;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (weak, nonatomic) IBOutlet UILabel *riqi;
+
 
 @end
 
@@ -31,9 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
+    
+    //解决tableview多出的白条
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _tableview.delegate=self;
     _tableview.dataSource=self;
-    _neirong.numberOfLines=0;
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self jiekou];
 }
@@ -76,9 +84,9 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-            xq=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data" ] objectForKey:@"Emr"]];
+            xq=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data" ]
+                                                       objectForKey:@"Emr"]];
             
-            [self fuzhi];
             [_tableview reloadData];
             
         }
@@ -98,26 +106,32 @@
     
     
 }
--(void)fuzhi{
-    _biaoti.text= [NSString stringWithFormat:@"%@",[xq objectForKey:@"title"]];
-    _neirong.text=[NSString stringWithFormat:@"%@",[xq objectForKey:@"emrDesc"]];
-    _riqi.text =  [NSString stringWithFormat:@"%@",[xq objectForKey:@"tjsj"]];
-}
 #pragma mark  -----tableview 整理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *aa=[NSArray arrayWithArray:[xq objectForKey:@"urls"]];
-    hehe=[NSMutableArray array];
-    for (NSString * ss  in aa) {
-        if (![ss isEqualToString:@""]) {
-            [hehe addObject:ss];
-        }
+    
+    if (section == 0) {
+        return 3;
     }
-    return hehe.count;
+    else if (section == 1)
+    {
+        NSArray *aa=[NSArray arrayWithArray:[xq objectForKey:@"urls"]];
+        hehe=[NSMutableArray array];
+        for (NSString * ss  in aa) {
+            if (![ss isEqualToString:@""]) {
+                [hehe addObject:ss];
+            }
+        }
+        return hehe.count;
+    }
+    return 0;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 40;
+    }
     return _tableview.frame.size.width+20;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,11 +143,56 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
 
-    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tableview.frame.size.width, _tableview.frame.size.width)];
-    
-     [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.section]]] placeholderImage:[UIImage imageNamed: @"daiti.png" ]];
-    
-    [cell addSubview:imageview];
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            self.biaoti = [[UILabel alloc]init];
+            self.biaoti.frame = CGRectMake(0, 0, width, 40);
+            self.biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            self.biaoti.font = [UIFont systemFontOfSize:15];
+            self.biaoti.textAlignment = NSTextAlignmentCenter;
+            if ([xq objectForKey:@"title"] == nil) {
+                self.biaoti.text = @"";
+            }
+            else{
+                self.biaoti.text= [NSString stringWithFormat:@"%@",[xq objectForKey:@"title"]];
+            }
+            [cell.contentView addSubview:self.biaoti];
+        }
+        else if (indexPath.row == 1){
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            if ([xq objectForKey:@"emrDesc"] == nil) {
+                cell.textLabel.text = @"";
+            }
+            else{
+                cell.textLabel.text = [NSString stringWithFormat:@"%@",[xq objectForKey:@"emrDesc"]];
+            }
+            
+        }
+        else if (indexPath.row == 2){
+
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            
+            if ([xq objectForKey:@"tjsj"] == nil) {
+                cell.textLabel.text = @"";
+            }
+            else{
+                cell.textLabel.text = [NSString stringWithFormat:@"%@",[xq objectForKey:@"tjsj"]];
+            }
+        }
+
+    }
+    else if (indexPath.section == 1)
+    {
+        UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tableview.frame.size.width, _tableview.frame.size.width)];
+        
+        [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.row]]] placeholderImage:[UIImage imageNamed: @"daiti.png" ]];
+        
+        [cell addSubview:imageview];
+    }
+   
     //隐藏滑动条
     self.tableview.showsVerticalScrollIndicator =NO;
     //cell点击不变色

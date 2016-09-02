@@ -78,6 +78,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
+            NSLog(@"responseObject:responseObject%@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 NSString*path=[NSString stringWithFormat:@"%@/hyb%@",service_host,[[responseObject objectForKey:@"data"] objectForKey:@"shareUrl"]];
                 
@@ -332,7 +333,8 @@
         //出入参数：
         NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_xixi,@"id",@"1",@"flag",vip,@"vipId",@"0",@"clickMark", nil];
-        
+        NSLog(@"_xixi:%@",_xixi);
+        NSLog(@"datadic:%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -346,6 +348,7 @@
         [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"responseObject:%@",responseObject);
             [WarningBox warningBoxHide:YES andView:self.view];
             
             

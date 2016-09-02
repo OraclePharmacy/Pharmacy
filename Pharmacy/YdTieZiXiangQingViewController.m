@@ -154,6 +154,7 @@
     [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"responseObject:responseObject%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
@@ -233,9 +234,10 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"2",@"flag",vip,@"vipId",@"0",@"clickMark", nil];
         
+        NSLog(@"datadic:%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -250,6 +252,7 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
+            NSLog(@"responseObject:%@",responseObject);
       
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];

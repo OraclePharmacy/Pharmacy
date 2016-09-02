@@ -714,6 +714,8 @@
                 NSLog(@"the==========%@",responseObject);
                 @try
                 {
+                    NSLog(@"responseObject:%@",responseObject);
+                    [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                         //把上传的数据存到本地
                         
