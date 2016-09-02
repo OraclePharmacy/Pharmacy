@@ -507,10 +507,10 @@
             content.numberOfLines = 2;
             
             UILabel *time = [[UILabel alloc]init];
-            time.frame = CGRectMake(width - 120, 100, 110, 20);
-            time.font = [UIFont systemFontOfSize:10];
+            time.frame = CGRectMake(width - 150, 100, 145, 20);
+            time.font = [UIFont systemFontOfSize:13];
             time.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"createTime"]];
-            time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+            time.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
             time.numberOfLines = 2;
             
             UIView *xian = [[UIView alloc] init];
@@ -519,7 +519,7 @@
             
             UILabel *laiyuan = [[UILabel alloc]init];
             laiyuan.frame = CGRectMake(10,130, 100, 20);
-            laiyuan.font = [UIFont systemFontOfSize:13];
+            laiyuan.font = [UIFont systemFontOfSize:15];
             laiyuan.text = [NSString stringWithFormat:@"%@",[newsListForInterface[indexPath.row] objectForKey:@"source"]];
             laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
             
@@ -528,28 +528,21 @@
             fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
             fenxiang.backgroundColor = [UIColor clearColor];
             [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
-            //看不懂
-            
             UILabel *fenxianglabel = [[UILabel alloc]init];
-            fenxianglabel.frame = CGRectMake(0,0,70,20);
-            fenxianglabel.text =[NSString stringWithFormat:@"阅读量: %@",[newsListForInterface[indexPath.row] objectForKey:@"viewCount"]];
-            fenxianglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-            fenxianglabel.font = [UIFont systemFontOfSize:11];
-            [fenxiang addSubview:fenxianglabel];
-            
-            
-            UIButton *shoucang = [[UIButton alloc] init];
-            shoucang.frame = CGRectMake(width - 140 ,130 ,20 ,20);
-            shoucang.backgroundColor = [UIColor clearColor];
-            [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
-            
+            fenxianglabel.frame = CGRectMake(width - 110, 125, 100, 30);
+            fenxianglabel.text =[NSString stringWithFormat:@"点赞量: %@",[newsListForInterface[indexPath.row] objectForKey:@"clickLikeCount"]];
+            fenxianglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            fenxianglabel.font = [UIFont systemFontOfSize:13];
+            fenxianglabel.textAlignment = NSTextAlignmentRight;
+            [cell.contentView addSubview:fenxianglabel];
             
             UILabel *shoucanglabel = [[UILabel alloc]init];
-            shoucanglabel.frame = CGRectMake(0,0,70,20);
-            shoucanglabel.text = [NSString stringWithFormat:@"点赞量: %@",[newsListForInterface[indexPath.row] objectForKey:@"clickLikeCount"]];
-            shoucanglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-            shoucanglabel.font = [UIFont systemFontOfSize:11];
-            [shoucang addSubview:shoucanglabel];
+            shoucanglabel.frame = CGRectMake(width - 215, 125, 100, 30);
+            shoucanglabel.text =[NSString stringWithFormat:@"阅读量: %@",[newsListForInterface[indexPath.row] objectForKey:@"viewCount"]];
+            shoucanglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+            shoucanglabel.font = [UIFont systemFontOfSize:13];
+            shoucanglabel.textAlignment = NSTextAlignmentRight;
+            [cell.contentView addSubview:shoucanglabel];
             
             UIView *xian1 = [[UIView alloc] init];
             xian1.frame = CGRectMake(0, 159, width, 1);
@@ -560,7 +553,6 @@
             [cell.contentView addSubview:content];
             [cell.contentView addSubview:xian];
             [cell.contentView addSubview:time];
-            [cell.contentView addSubview:shoucang];
             [cell.contentView addSubview:fenxiang];
             [cell.contentView addSubview:laiyuan];
             [cell.contentView addSubview:xian1];
@@ -591,8 +583,8 @@
         //content.backgroundColor = [UIColor grayColor];
         
         UILabel *time = [[UILabel alloc]init];
-        time.frame = CGRectMake(width - 120, 100, 110, 20);
-        time.font = [UIFont systemFontOfSize:10];
+        time.frame = CGRectMake(width - 150, 100, 145, 20);
+        time.font = [UIFont systemFontOfSize:13];
         time.text = [NSString stringWithFormat:@"%@",[diantainewsListForInterface[indexPath.row] objectForKey:@"createTime"]];
         time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         time.numberOfLines = 2;
@@ -614,28 +606,21 @@
         fenxiang.frame = CGRectMake(width - 70 ,130 ,20 ,20);
         fenxiang.backgroundColor = [UIColor clearColor];
         [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
-        
-        
         UILabel *fenxianglabel = [[UILabel alloc]init];
-        fenxianglabel.frame = CGRectMake(0,0,70,20);
-        fenxianglabel.text =[NSString stringWithFormat:@"阅读量: %@",[diantainewsListForInterface[indexPath.row] objectForKey:@"viewCount"]];
-        fenxianglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        fenxianglabel.font = [UIFont systemFontOfSize:11];
-        [fenxiang addSubview:fenxianglabel];
-        
-        
-        UIButton *shoucang = [[UIButton alloc] init];
-        shoucang.frame = CGRectMake(width - 140 ,130 ,20 ,20);
-        shoucang.backgroundColor = [UIColor clearColor];
-        [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
-        
+        fenxianglabel.frame = CGRectMake(width - 110, 125, 100, 30);
+        fenxianglabel.text =[NSString stringWithFormat:@"点赞量: %@",[diantainewsListForInterface[indexPath.row] objectForKey:@"clickLikeCount"]];
+        fenxianglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+        fenxianglabel.font = [UIFont systemFontOfSize:13];
+        fenxianglabel.textAlignment = NSTextAlignmentRight;
+        [cell.contentView addSubview:fenxianglabel];
         
         UILabel *shoucanglabel = [[UILabel alloc]init];
-        shoucanglabel.frame = CGRectMake(0,0,70,20);
-        shoucanglabel.text =[NSString stringWithFormat:@"点赞量: %@",[diantainewsListForInterface[indexPath.row] objectForKey:@"clickLikeCount"]];
-        shoucanglabel.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        shoucanglabel.font = [UIFont systemFontOfSize:11];
-        [shoucang addSubview:shoucanglabel];
+        shoucanglabel.frame = CGRectMake(width - 215, 125, 100, 30);
+        shoucanglabel.text =[NSString stringWithFormat:@"阅读量: %@",[diantainewsListForInterface[indexPath.row] objectForKey:@"viewCount"]];
+        shoucanglabel.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
+        shoucanglabel.font = [UIFont systemFontOfSize:13];
+        shoucanglabel.textAlignment = NSTextAlignmentRight;
+        [cell.contentView addSubview:shoucanglabel];
         
         UIView *xian1 = [[UIView alloc] init];
         xian1.frame = CGRectMake(0, 159, width, 1);
@@ -646,7 +631,6 @@
         [cell.contentView addSubview:content];
         [cell.contentView addSubview:xian];
         [cell.contentView addSubview:time];
-        [cell.contentView addSubview:shoucang];
         [cell.contentView addSubview:fenxiang];
         [cell.contentView addSubview:laiyuan];
         [cell.contentView addSubview:xian1];
