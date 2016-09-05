@@ -84,6 +84,7 @@
 //点击编辑区以外的地方键盘消失
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
     [self.pinglunText resignFirstResponder];
     
 }

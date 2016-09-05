@@ -113,22 +113,21 @@
     
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
+
         switch (buttonIndex) {
             case 0:
-                // 相机
-                sourceType = UIImagePickerControllerSourceTypeCamera;
+                // 取消
                 return;
             case 1:
-                // 相册
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                // 相机
+                sourceType = UIImagePickerControllerSourceTypeCamera;
                 break;
                 
             case 2:
-                
-                // 取消
+                // 相册
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 break;
-        }
+    }
     }
     else {
         if (buttonIndex == 0) {
