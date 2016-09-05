@@ -213,8 +213,10 @@
 
 {
     
-    UICollectionViewCell * cell =[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
+    UICollectionViewCell * cell =[collectionView cellForItemAtIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    }
     [cell sizeToFit];
     
     CGFloat kuan = cell.contentView.bounds.size.width;
