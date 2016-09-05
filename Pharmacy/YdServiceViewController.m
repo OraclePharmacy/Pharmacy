@@ -49,7 +49,7 @@
 @implementation YdServiceViewController
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    [self jiekou];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)viewDidLoad {
@@ -97,7 +97,7 @@
     
     [self tuijian];
     [self.view addSubview:CollectionView];
-    [self jiekou];
+    
     
 }
 
@@ -217,6 +217,12 @@
     if (cell == nil) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     }
+    for (id subView in cell.contentView.subviews) {//获取当前cell的全部子视图
+        
+        [subView removeFromSuperview];//移除全部子视图
+        
+    }
+
     [cell sizeToFit];
     
     CGFloat kuan = cell.contentView.bounds.size.width;
@@ -235,7 +241,7 @@
         lab.textAlignment = NSTextAlignmentCenter;
         lab.text = lablearray[indexPath.row];
         lab.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        
+        NSLog(@"%@",lab.text);
         [cell.contentView addSubview:image];
         [cell.contentView addSubview:lab];
         cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
