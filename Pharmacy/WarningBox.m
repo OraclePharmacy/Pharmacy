@@ -23,6 +23,7 @@
     hud.labelText = message;
     hud.labelFont = [UIFont systemFontOfSize:12];
     hud.yOffset = 160;
+    hud.userInteractionEnabled=NO;
     //hud.xOffset = 30;
     [hud setRemoveFromSuperViewOnHide:YES];
     [hud hide:YES afterDelay:1.3];
