@@ -304,7 +304,7 @@
 //上传血糖
 -(void)xuetangbutton
 {
-    
+    [self.view endEditing:YES];
     if (fanqiangtext.text.length == 0 && fanhoutext.text.length == 0) {
         
          [WarningBox warningBoxModeText:@"请填写信息" andView:self.view];
@@ -386,7 +386,7 @@
 //上传血压
 -(void)xueyabutton
 {
-    
+    [self.view endEditing:YES];
      if (gaoyatext.text.length == 0 || diyatext.text.length == 0) {
          
          [WarningBox warningBoxModeText:@"上传数据不完整" andView:self.view];
@@ -533,7 +533,10 @@
    
     return baseView;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.view endEditing:YES];
+}
 -(void)fanhui
 {
     //返回上一页
