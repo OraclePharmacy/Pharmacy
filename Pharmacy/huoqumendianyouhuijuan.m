@@ -20,6 +20,7 @@
 @interface huoqumendianyouhuijuan ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray*arr;
+    NSArray*mg;
     CGFloat width;
     CGFloat height;
     NSString *str2;
@@ -140,7 +141,9 @@
                 
                 coun=[[datadic objectForKey:@"count"] intValue];
                 
-                NSArray*mg = [datadic objectForKey:@"couponInfoList"];
+                mg = [datadic objectForKey:@"couponInfoList"];
+                
+                NSLog(@"couponInfoList%@",mg);
                 
                 if (mg.count == 0) {
                     [self kongbai];
@@ -190,7 +193,7 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return arr.count;
+    return mg.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -363,7 +366,7 @@
         }
         
     }
-    
+   
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
