@@ -23,6 +23,7 @@
     CGFloat height;
     
     NSMutableArray *arr;
+    NSArray*mg;
     UITextField *nameField;
     
     NSString *couponId;
@@ -138,7 +139,7 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                NSArray*mg = [datadic objectForKey:@"list"];
+                mg = [datadic objectForKey:@"list"];
                 
                 if (mg.count == 0)
                 {
@@ -191,7 +192,7 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return arr.count;
+    return mg.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
