@@ -19,6 +19,7 @@
     
     int i ;
     int j ;
+    int k;
     NSArray *array;
     NSArray *array1;
     NSTimer *time;
@@ -30,6 +31,7 @@
     CGFloat height;
     
     NSArray *zhongjiang;
+    NSString *yaoguole;
     
 }
 
@@ -98,30 +100,35 @@
         self.bian.image = [UIImage imageNamed:array1[j]];
     }
     else{
+        
         //停止
         [time1 setFireDate:[NSDate distantFuture]];
         UILabel *dengji = [[UILabel alloc]init];
         dengji.frame = CGRectMake(0, height / 6, width, 30);
         dengji.textColor = [UIColor whiteColor];
-        dengji.font = [UIFont systemFontOfSize:16];
+        dengji.font = [UIFont systemFontOfSize:18];
         dengji.textAlignment = NSTextAlignmentCenter;
-        
-        
-        
-        //        dengji.text = @"几等奖";
-        
-        
-        [self.beijing addSubview:dengji];
-        
+        //dengji.text = @"几等奖";
+
         UILabel *jieguo = [[UILabel alloc]init];
         jieguo.frame = CGRectMake(0, CGRectGetMaxY(dengji.frame) +10, width, 30);
         jieguo.textColor = [UIColor whiteColor];
         jieguo.font = [UIFont systemFontOfSize:15];
         jieguo.textAlignment = NSTextAlignmentCenter;
-        jieguo.text = [chuan objectForKey:@"results"];
-        [self.beijing addSubview:jieguo];
-        
-        
+        if (k == 0) {
+            
+            jieguo.text = yaoguole;
+            
+            [self.beijing addSubview:jieguo];
+        }
+        else if (k == 1){
+            
+            dengji.text = @"几等奖";
+            [self.beijing addSubview:dengji];
+            jieguo.text = [chuan objectForKey:@"results"];
+            [self.beijing addSubview:jieguo];
+            
+        }
         UIButton *fanhui = [[UIButton alloc]init];
         fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
         [fanhui setTitle:@"返回" forState:UIControlStateNormal];
@@ -198,18 +205,19 @@
         {
             
             if ([[responseObject objectForKey:@"code"] intValue]==4444) {
-                UIButton *fanhui = [[UIButton alloc]init];
-                fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
-                [fanhui setTitle:@"返回" forState:UIControlStateNormal];
-                [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                fanhui.layer.cornerRadius = 5;
-                fanhui.layer.masksToBounds = YES;
-                fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
-                fanhui.layer.borderWidth =1;
-                [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:fanhui];
+                k = 0;
+                chuan=[[NSDictionary alloc] init];
+                chuan=[responseObject valueForKey:@"data"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.bian.hidden = NO;
+                    time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
+                    yaoguole = [responseObject objectForKey:@"msg"];
+                    
+                });
+                
             }
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                k = 1;
                 chuan=[[NSDictionary alloc] init];
                 chuan=[responseObject valueForKey:@"data"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
