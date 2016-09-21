@@ -290,7 +290,7 @@ int popop=0;
         {
             if (indexPath.row == 0) {
                 cell.textLabel.text = @"价          格 :";
-                if (xianshiarr.count==0) {
+                if (xianshiarr.count==0 || NULL == [xianshiarr objectForKey:@"prodPrice"]) {
                     shuju.text=@"";
                 }else
                     shuju.text = [NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@"prodPrice"]];
@@ -303,49 +303,49 @@ int popop=0;
         cell.textLabel.text = arr[indexPath.row];
         
         if (indexPath.row == 0) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"name"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"name"]];
         }
         else if (indexPath.row == 1) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"pinyinCode"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"pinyinCode"]];
         }
         else if (indexPath.row == 2) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"commonName"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"commonName"]];
         }
         else if (indexPath.row == 3) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"summary"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"summary"]];
         }
         else if (indexPath.row == 4) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"level3Name"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"level3Name"]];
         }
         else if (indexPath.row == 5) {
-            if (xianshiarr.count==0) {
+            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"specification"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"specification"]];
         }
         else if (indexPath.row == 6) {
-            if (xianshiarr.count==0) {
+            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"manufacturer"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"manufacturer"]];
         }
         else if (indexPath.row == 7) {
-            if (xianshiarr.count==0) {
+            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"prodCode"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prodCode"]];
@@ -355,25 +355,25 @@ int popop=0;
         //            shuju.text = @"";//[NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
         //        }
         else if (indexPath.row == 8) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"instructions"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"instructions"]];
         }
         else if (indexPath.row == 9) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"package"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"package"]];
         }
         else if (indexPath.row == 10) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"approvalNumber"]) {
                 shuju.text=@"";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"approvalNumber"]];
         }
         else if (indexPath.row == 11) {
-            if (tianjiaxinxi.count==0) {
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"prescription"]) {
                 shuju.text=@"";
             }else
                 if ([[tianjiaxinxi objectForKey:@"prescription"] intValue]==1) {
