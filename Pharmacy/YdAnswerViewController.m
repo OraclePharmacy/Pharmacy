@@ -114,11 +114,22 @@
         {
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
-                NSDictionary*datadic=[responseObject valueForKey:@"data"];
-             
+                NSLog(@"datadic:%@",responseObject);
+                
+                NSDictionary*datadic=[responseObject objectForKey:@"data"];
+                
                 arr = [datadic objectForKey:@"examList"];
                 
-                 [self kongjian];
+                if (arr.count == 0) {
+                    
+                    [WarningBox warningBoxModeText:@"对不起，还没有试题！" andView:self.view];
+                    
+                }
+                else
+                {
+                    [self kongjian];
+                }
+                
             }
             
         }
