@@ -119,7 +119,7 @@
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
         NSString *stt = [NSString stringWithFormat:@"%@",obj.stringValue];
         NSLog(@"sttsttsttstt%@",stt);
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"7",@"officeId",stt,@"encode", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",stt,@"encode", nil];
         NSLog(@"datadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         //一二三四五六七八九十十一
