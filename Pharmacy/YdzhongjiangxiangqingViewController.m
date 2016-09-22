@@ -209,7 +209,7 @@
             touxiang.frame = CGRectMake(0, 0, width, 150);
             touxiang.layer.masksToBounds = YES;
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr objectForKey:@"photo"]];
-            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
+            [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
             [cell.contentView addSubview:touxiang];
         }
         else

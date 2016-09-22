@@ -113,6 +113,10 @@
 
 -(void)fanhui
 {
+    NSFileManager *defaultManager;
+    defaultManager = [NSFileManager defaultManager];
+    NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
+    [defaultManager removeItemAtPath:path error:NULL];
     //返回上一页
     [self.navigationController popViewControllerAnimated:YES];
 }

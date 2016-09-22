@@ -69,6 +69,7 @@
     float w=[UIScreen mainScreen].bounds.size.width;
     float h=[UIScreen mainScreen].bounds.size.height;
     image.frame=CGRectMake(0, 64, w, h-124);
+    image.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     [self.view addSubview:image];
     //5.1设置preview的属性
     [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -95,6 +96,7 @@
     //3。设置界面显示扫描结果
     if (metadataObjects.count>0) {
         AVMetadataMachineReadableCodeObject*obj=metadataObjects[0];
+        NSLog(@"objobjobj%@",obj);
         //userID    暂时不用改
         NSString * userID=@"0";
         
@@ -116,9 +118,11 @@
         NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
         zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
         NSString *stt = [NSString stringWithFormat:@"%@",obj.stringValue];
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:zhid,@"officeId",stt,@"encode", nil];
+        NSLog(@"sttsttsttstt%@",stt);
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"7",@"officeId",stt,@"encode", nil];
+        NSLog(@"datadicdatadic%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
-        
+        //一二三四五六七八九十十一
         //获取签名
         NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
         

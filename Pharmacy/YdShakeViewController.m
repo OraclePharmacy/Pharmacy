@@ -123,7 +123,7 @@
         }
         else if (k == 1){
             
-            dengji.text = @"几等奖";
+            dengji.text = [chuan objectForKey:@"level"];
             [self.beijing addSubview:dengji];
             jieguo.text = [chuan objectForKey:@"results"];
             [self.beijing addSubview:jieguo];
