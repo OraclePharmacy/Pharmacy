@@ -30,9 +30,13 @@
 @end
 
 @implementation YdmendianxinxiViewController
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableview.tableFooterView = [[UIView alloc] init];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
