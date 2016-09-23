@@ -236,7 +236,7 @@
     shijian.frame = CGRectMake(180, 65, width - 185, 20);
     shijian.font = [UIFont systemFontOfSize:13];
     shijian.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"createTime"]];
-    shijian.textAlignment = NSTextAlignmentCenter;
+    shijian.textAlignment = NSTextAlignmentRight;
     shijian.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
     
     UILabel *yuedu = [[UILabel alloc]init];
