@@ -747,6 +747,7 @@
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 proList = [datadic objectForKey:@"proList"];
+                NSLog(@"proList:%@",proList);
                 
                 [self.tableview reloadData];
                 
@@ -1239,17 +1240,26 @@
                 originalcost.font = [UIFont systemFontOfSize:11];
                 originalcost.textAlignment = NSTextAlignmentCenter;
                 originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-                originalcost.text = [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"prodPrice"]floatValue]];
+                
                 //特价
                 UILabel *specialoffer = [[UILabel alloc] init];
                 specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
                 specialoffer.font = [UIFont systemFontOfSize:13];
                 specialoffer.textAlignment = NSTextAlignmentCenter;
                 specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
-                specialoffer.text =  [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"specPrice"] floatValue]];
+                
+                if ([[proList[i] objectForKey:@"isShowMoney"]floatValue] == 1) {
+                    originalcost.text = [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"prodPrice"]floatValue]];
+                    specialoffer.text =  [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"specPrice"] floatValue]];
+                }
+                else if ([[proList[i] objectForKey:@"isShowMoney"]floatValue] == 0){
+                    originalcost.text = @"--";
+                    specialoffer.text = @"--";
+                }
+                
+                
                 
                 self.scrollView.pagingEnabled = YES;
-                
                 self.scrollView.delegate = self;
                 
                 
