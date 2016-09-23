@@ -212,7 +212,16 @@
     tejia.frame = CGRectMake(110, 85, width  - 115, 20);
     tejia.font = [UIFont systemFontOfSize:12];
     tejia.textColor = [UIColor redColor];
-    tejia.text = [NSString stringWithFormat:@"特价:%.2f",[[proList[indexPath.row] objectForKey:@"specPrice"]floatValue]];
+    
+    if (NULL == [proList[indexPath.row] objectForKey:@"specPrice"] || [[proList[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
+        tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        tejia.text = @"非特价要";
+    }
+    else
+    {
+        tejia.textColor = [UIColor redColor];
+        tejia.text = [NSString stringWithFormat:@"特价:%.2f",[[proList[indexPath.row] objectForKey:@"specPrice"]floatValue]];
+    }
     
     UIView *xian = [[UIView alloc]init];
     xian.frame = CGRectMake(0, 109, width, 1);

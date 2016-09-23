@@ -192,7 +192,7 @@
 //cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 130;
+    return 110;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -203,62 +203,119 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
 
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 80, 80)];
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row]objectForKey:@"picUrl" ]] ;
-    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
-   
+//    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 80, 80)];
+//    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row]objectForKey:@"picUrl" ]] ;
+//    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
+//   
+//    
+//    UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(120 , 10, width -140 , 20)];
+//    name.font = [UIFont systemFontOfSize:15];
+//    //name.textAlignment = NSTextAlignmentCenter;
+//    name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+//    name.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
+//    
+//    UILabel *changjia = [[UILabel alloc]initWithFrame:CGRectMake(120, 30, width -140, 20)];
+//    changjia.font = [UIFont systemFontOfSize:13];
+//    //changjia.textAlignment = NSTextAlignmentCenter;
+//    changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+//    if([arr[indexPath.row] objectForKey:@"manufacturer"]==nil){
+//        changjia.text=@"";
+//    }else
+//    changjia.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"manufacturer"]];
+//
+//    
+//    UILabel *guige = [[UILabel alloc]initWithFrame:CGRectMake(120, 50, width -140, 20)];
+//    guige.font = [UIFont systemFontOfSize:11];
+//    //guige.textAlignment = NSTextAlignmentCenter;
+//    guige.textColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+//    if([arr[indexPath.row] objectForKey:@"specification"]==nil){
+//        guige.text=@"";
+//    }else
+//    guige.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"specification"]];
+//
+//    
+//    UILabel *jiage = [[UILabel alloc]initWithFrame:CGRectMake(120, 70, width -140, 20)];
+//    jiage.font = [UIFont systemFontOfSize:10];
+//    jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+//    if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
+//        jiage.text=@"非处方药";
+//    }else{
+//        jiage.text=@"处方药";
+//    }
+//   
+//    UILabel *jianjie = [[UILabel alloc]initWithFrame:CGRectMake(20, 90, width - 40 , 40)];
+//    jianjie.font = [UIFont systemFontOfSize:12];
+//    //jianjie.textAlignment = NSTextAlignmentCenter;
+//    jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+//    if([[arr[indexPath.row] objectForKey:@"summary"]isEqual:@""]||[arr[indexPath.row] objectForKey:@"summary"]==nil){
+//        jianjie.text =[NSString stringWithFormat:@"药品简介: 暂无"];
+//    }else
+//    jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@"summary"]];
+//    jianjie.numberOfLines = 2;
+//    
+//    [cell.contentView addSubview:image];
+//    [cell.contentView addSubview:name];
+//    [cell.contentView addSubview:changjia];
+//    [cell.contentView addSubview:guige];
+//    [cell.contentView addSubview:jiage];
+//    [cell.contentView addSubview:jianjie];
     
-    UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(120 , 10, width -140 , 20)];
+    
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(5, 5, 100, 100);
+    //image.image = [UIImage imageNamed:@"IMG_0801.jpg"];
+    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"picUrl"]] ;
+    [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
+    
+    UILabel *name = [[UILabel alloc]init];
+    name.frame = CGRectMake(110, 5, width - 115, 20);
     name.font = [UIFont systemFontOfSize:15];
-    //name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     name.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
     
-    UILabel *changjia = [[UILabel alloc]initWithFrame:CGRectMake(120, 30, width -140, 20)];
-    changjia.font = [UIFont systemFontOfSize:13];
-    //changjia.textAlignment = NSTextAlignmentCenter;
+    UILabel *changjia = [[UILabel alloc]init];
+    changjia.frame = CGRectMake(110, 25, width - 115, 20);
+    changjia.font = [UIFont systemFontOfSize:12];
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    if([arr[indexPath.row] objectForKey:@"manufacturer"]==nil){
-        changjia.text=@"";
-    }else
-    changjia.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"manufacturer"]];
-
+    changjia.text = [NSString stringWithFormat:@"生产厂家:%@",[arr[indexPath.row] objectForKey:@"manufacturer"]];
     
-    UILabel *guige = [[UILabel alloc]initWithFrame:CGRectMake(120, 50, width -140, 20)];
-    guige.font = [UIFont systemFontOfSize:11];
-    //guige.textAlignment = NSTextAlignmentCenter;
-    guige.textColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-    if([arr[indexPath.row] objectForKey:@"specification"]==nil){
-        guige.text=@"";
-    }else
-    guige.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"specification"]];
-
+    UILabel *guige = [[UILabel alloc]init];
+    guige.frame = CGRectMake(110, 45, width - 115, 20);
+    guige.font = [UIFont systemFontOfSize:12];
+    guige.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    guige.text = [NSString stringWithFormat:@"规格:%@",[arr[indexPath.row] objectForKey:@"specification"]];
     
-    UILabel *jiage = [[UILabel alloc]initWithFrame:CGRectMake(120, 70, width -140, 20)];
-    jiage.font = [UIFont systemFontOfSize:10];
-    jiage.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    if ([[arr[indexPath.row] objectForKey:@"prescription"]isEqual:@"0"]) {
-        jiage.text=@"非处方药";
-    }else{
-        jiage.text=@"处方药";
+    UILabel *yuanjian = [[UILabel alloc]init];
+    yuanjian.frame = CGRectMake(110, 65, width - 115, 20);
+    yuanjian.font = [UIFont systemFontOfSize:12];
+    yuanjian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
+    yuanjian.text = [NSString stringWithFormat:@"原价:%.2f",[[arr[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
+    
+    UILabel *tejia = [[UILabel alloc]init];
+    tejia.frame = CGRectMake(110, 85, width  - 115, 20);
+    tejia.font = [UIFont systemFontOfSize:12];
+    if (NULL == [arr[indexPath.row] objectForKey:@"specPrice"] || [[arr[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
+        tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+        tejia.text = @"非特价要";
     }
-   
-    UILabel *jianjie = [[UILabel alloc]initWithFrame:CGRectMake(20, 90, width - 40 , 40)];
-    jianjie.font = [UIFont systemFontOfSize:12];
-    //jianjie.textAlignment = NSTextAlignmentCenter;
-    jianjie.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-    if([[arr[indexPath.row] objectForKey:@"summary"]isEqual:@""]||[arr[indexPath.row] objectForKey:@"summary"]==nil){
-        jianjie.text =[NSString stringWithFormat:@"药品简介: 暂无"];
-    }else
-    jianjie.text =[NSString stringWithFormat:@"药品简介:%@",[arr[indexPath.row] objectForKey:@"summary"]];
-    jianjie.numberOfLines = 2;
+    else
+    {
+        tejia.textColor = [UIColor redColor];
+        tejia.text = [NSString stringWithFormat:@"特价:%.2f",[[arr[indexPath.row] objectForKey:@"specPrice"]floatValue]];
+    }
+    
+    UIView *xian = [[UIView alloc]init];
+    xian.frame = CGRectMake(0, 109, width, 1);
+    xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
+    
     
     [cell.contentView addSubview:image];
     [cell.contentView addSubview:name];
-    [cell.contentView addSubview:changjia];
     [cell.contentView addSubview:guige];
-    [cell.contentView addSubview:jiage];
-    [cell.contentView addSubview:jianjie];
+    [cell.contentView addSubview:changjia];
+    [cell.contentView addSubview:yuanjian];
+    [cell.contentView addSubview:tejia];
+    [cell.contentView addSubview:xian];
     
     
     //隐藏滑动条
