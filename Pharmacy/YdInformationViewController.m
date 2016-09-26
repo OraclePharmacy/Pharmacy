@@ -363,10 +363,12 @@
     if (btn.tag == 300)
     {
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
+        NSLog(@"str:%@",str);
     }
     else if (btn.tag == 301)
     {
         str = [NSString stringWithFormat:@"%@",[arr[1] objectForKey:@"id"]];;
+         NSLog(@"str:%@",str);
     }
     else if (btn.tag == 302)
     {
@@ -474,7 +476,7 @@
             //创建图片
             UIImageView *img = [[UIImageView alloc]init];
             img.frame = CGRectMake(0, 30, width, 150);
-            img.backgroundColor = [UIColor colorWithHexString:@"943545" alpha:1];
+           // img.backgroundColor = [UIColor colorWithHexString:@"943545" alpha:1];
             NSString*path;
             if (newsListForInterface.count==0) {
                 
