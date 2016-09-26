@@ -23,6 +23,7 @@
     UIButton *queren;
     
     NSMutableArray *arr;
+    NSArray*mg;
     int ye;
     int coun;
     
@@ -130,7 +131,7 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 coun=[[datadic objectForKey:@"count"] intValue];
-                NSArray*mg= [datadic objectForKey:@"myOrder"];
+                mg= [datadic objectForKey:@"myOrder"];
                 NSLog(@"mg:%@",mg);
                 if (mg.count == 0) {
                     [self kongbai];
@@ -179,7 +180,7 @@
 //组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return arr.count;
+    return mg.count;
 }
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

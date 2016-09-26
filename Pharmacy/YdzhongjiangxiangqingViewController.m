@@ -357,9 +357,15 @@
         NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
         
         [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
-            
+
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [WarningBox warningBoxHide:YES andView:self.view];
+            
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                [WarningBox warningBoxModeText:@"兑换成功！" andView:self.view];
+                [self jiekou];
+            }
+           // [WarningBox warningBoxHide:YES andView:self.view];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];

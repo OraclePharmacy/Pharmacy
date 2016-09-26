@@ -180,19 +180,21 @@
         
         if (bo == 1) {
             [self yinyuebofang:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,shareUrl]);
         }
         else if (bo == 2){
             NSArray*aa1=[shareUrl componentsSeparatedByString:@"/"];
             NSString*niu=[NSString stringWithFormat:@"%@",aa1[aa1.count-1]];
             NSString *shipinlujing=[NSString stringWithFormat:@"/private%@/tmp/%@",NSHomeDirectory(),niu];
             
-            
+            NSLog(@" 本地储存：%@",shipinlujing);
             NSFileManager*fm=[NSFileManager defaultManager];
             if ([fm fileExistsAtPath:shipinlujing]) {
                 NSURL *chuan1=[NSURL fileURLWithPath:shipinlujing];
                 [self shipinbofang:chuan1];
             }else
                 [self downloadFile2:[NSString stringWithFormat:@"%@%@",service_host,shareUrl]];
+            NSLog(@"%@",[NSString stringWithFormat:@"%@%@",service_host,shareUrl]);
         }
     }
 }
@@ -524,6 +526,7 @@
 
 -(void)shipinbofang:(NSURL *)sFileNamePath{
     if (NULL==sFileNamePath) {
+        NSLog(@"url ==空");
     }else{
         @try {
             [WarningBox warningBoxHide:YES andView:self.view];
@@ -540,7 +543,7 @@
             
             [movie.view setBackgroundColor:[UIColor clearColor]];
             
-            
+            NSLog(@"空间技术");
             
             [movie.view setFrame:self.view.bounds];
             
@@ -554,7 +557,7 @@
             
             
         } @catch (NSException *exception) {
-            
+            NSLog(@"哈哈哈");
         }
     }
 }

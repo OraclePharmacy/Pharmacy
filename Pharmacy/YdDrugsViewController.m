@@ -534,6 +534,11 @@ int popop=0;
 //加入购物车
 - (IBAction)jiaru:(id)sender {
     
+    if (NULL == [xianshiarr  objectForKey:@"prodPrice"]) {
+        [WarningBox warningBoxModeText:@"该药品暂不出售！！！" andView:self.view];
+    }
+    else{
+        
     if ([_shuliang.text intValue]<1) {
         
     }else{
@@ -575,7 +580,7 @@ int popop=0;
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         }
-        
+    }
     }
 }
 #pragma  mark ----textField
