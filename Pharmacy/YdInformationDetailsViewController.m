@@ -124,19 +124,19 @@
     [self.view addSubview:image];
     
     shoucang = [[UIButton alloc]init];
-    shoucang.frame = CGRectMake(width - 70, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    shoucang.frame = CGRectMake(width - 65, CGRectGetMaxY(image.frame) + 20, 25, 25);
     //shoucang.backgroundColor = [UIColor redColor];
     [shoucang addTarget:self action:@selector(shoucang) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shoucang];
     
     dianzan = [[UIButton alloc]init];
-    dianzan.frame = CGRectMake(width - 110, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    dianzan.frame = CGRectMake(width - 105, CGRectGetMaxY(image.frame) + 20, 25, 25);
     //dianzan.backgroundColor = [UIColor redColor];
     [dianzan addTarget:self action:@selector(dianzan) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dianzan];
     
     fenxiang = [[UIButton alloc]init];
-    fenxiang.frame = CGRectMake(width - 30, CGRectGetMaxY(image.frame) + 25, 30, 30);
+    fenxiang.frame = CGRectMake(width - 25, CGRectGetMaxY(image.frame) + 20, 25, 25);
     //fenxiang.backgroundColor = [UIColor redColor];
     [fenxiang setBackgroundImage:[UIImage imageNamed:@"share(1).png"] forState:UIControlStateNormal];
     [fenxiang addTarget:self action:@selector(fenxiang) forControlEvents:UIControlEventTouchUpInside];
