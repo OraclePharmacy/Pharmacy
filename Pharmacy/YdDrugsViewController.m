@@ -13,7 +13,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "YdShoppingCartViewController.h"
 #import "YdshoppingxiangshiViewController.h"
 #import "mememeViewController.h"
