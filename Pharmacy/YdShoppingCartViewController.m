@@ -77,7 +77,7 @@
     if (yikaishi.count == 0)
     {
         _tableview.hidden = YES;
-        
+        label.hidden = NO; 
         label = [[UILabel alloc]init];
         label.frame = CGRectMake(0, 114, width, 30);
         label.font = [UIFont systemFontOfSize:17];
@@ -85,6 +85,7 @@
         label.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         label.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:label];
+        
     }
     else
     {
@@ -107,7 +108,7 @@
         }
         [_dianzhangshu setTitle:[NSString stringWithFormat:@"合计金额 : ¥%.2f",jine] forState:UIControlStateNormal];
         
-        
+        label.hidden = YES;
         [label removeFromSuperview];
         _tableview.hidden = NO;
     }
@@ -177,7 +178,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-    cell.contentView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     //药品图片
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 80, 80);

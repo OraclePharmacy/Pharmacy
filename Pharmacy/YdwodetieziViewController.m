@@ -24,7 +24,7 @@
     CGFloat height;
     
     NSMutableArray *arr;
-    
+    NSArray *mg;
     int ye;
     int coun;
     
@@ -144,7 +144,7 @@
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
-                NSArray*mg = [datadic objectForKey:@"vipTopicDetail"];
+                mg = [datadic objectForKey:@"vipTopicDetail"];
                 
                 if (mg.count == 0) {
                     [self kongbai];

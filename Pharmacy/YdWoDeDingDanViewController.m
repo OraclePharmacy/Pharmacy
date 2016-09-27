@@ -44,6 +44,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     width = [UIScreen mainScreen].bounds.size.width;
+    
     height = [UIScreen mainScreen].bounds.size.height;
     
     self.tableview = [[UITableView alloc]init];
