@@ -229,6 +229,11 @@
 
 
 #pragma mark-----   JPUSH
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"\n\n\n\n device  token   \n\n\n\n%@\n\n\n\n\n\n",deviceToken);
@@ -263,6 +268,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     NSLog(@"\n\n\n\n\n\n ios 7 \n\n\n\n\n%@\n\n\n\n\n",userInfo);
+    
     // IOS 7 Support Required
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
