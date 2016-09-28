@@ -41,7 +41,7 @@
 
 /**全局管理的对话*/
 @property(nonatomic, strong)NSURLSession *session;
-
+@property (nonatomic , strong)MPMoviePlayerViewController *movie;
 @end
 
 @implementation YdInformationDetailsViewController
@@ -530,22 +530,23 @@
     }else{
         @try {
             [WarningBox warningBoxHide:YES andView:self.view];
-            MPMoviePlayerViewController *movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
+           _movie = [[MPMoviePlayerViewController alloc]initWithContentURL:sFileNamePath];
+            
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
             
-            [movie.moviePlayer prepareToPlay];
+            [_movie.moviePlayer prepareToPlay];
             
-            [self presentMoviePlayerViewControllerAnimated:movie];
+            [self presentMoviePlayerViewControllerAnimated:_movie];
             
-            [movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+            [_movie.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
             
+            _movie.moviePlayer.movieSourceType=MPMovieSourceTypeFile;
             
-            
-            [movie.view setBackgroundColor:[UIColor clearColor]];
+            [_movie.view setBackgroundColor:[UIColor clearColor]];
             
             NSLog(@"空间技术");
             
-            [movie.view setFrame:self.view.bounds];
+            [_movie.view setFrame:self.view.bounds];
             
             [[NSNotificationCenter defaultCenter]addObserver:self
              
@@ -553,7 +554,7 @@
              
                                                         name:MPMoviePlayerPlaybackDidFinishNotification
              
-                                                      object:movie.moviePlayer];
+                                                      object:_movie.moviePlayer];
             
             
         } @catch (NSException *exception) {
