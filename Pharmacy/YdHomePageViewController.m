@@ -119,7 +119,14 @@
     {
         if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
             if(nicaicai==1)
-                [self zidongdingwei];
+            {
+                NSString *yixuanmendian;
+                if (NULL == [[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]) {
+                    yixuanmendian = @"请选择门店";
+                }else
+                yixuanmendian=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]];
+                SearchButton.titleLabel.text=yixuanmendian;
+            }
         }
         self.navigationController.navigationBarHidden=NO;
     }
@@ -191,7 +198,7 @@
     //调用定位
     [self initializeLocationService];
     
-//    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
+    //    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
     
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"NO"]) {
         
@@ -507,10 +514,10 @@
         
         [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         
+            
             if (error) {
                 [WarningBox warningBoxHide:YES andView:self.view];
-               
+                
                 [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
                 return ;
             }
@@ -852,7 +859,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    //id   传空    
+    //id   传空
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"1002",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -1127,7 +1134,11 @@
             name.textColor = [UIColor blueColor];
             name.text=@"请选择门店";
         }else{
-            name.text = [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
+            if (NULL == [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
+                name.text=[wocalede[indexPath.row-1] objectForKey:@"name"];
+            }else
+                name.text = [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
+            
         }
         [cell.contentView addSubview:name];
     }else{
@@ -1553,10 +1564,22 @@
     if (tableView==wocalei) {
         if (indexPath.row!=0) {
             
-            NSString*haha=[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"] ];
+            NSString*haha=[[NSString alloc] init];
+            if (NULL == [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
+                haha=[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1]objectForKey:@"name"] ];
+                [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1]objectForKey:@"name"]] forKey:@"yixuanmendian"];
+            }else
+                haha= [NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"] ];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]] forKey:@"yixuanmendian"];
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;
-            panduan=0;
+            NSLog(@"%d",panduan);
+            if (panduan!=2) {
+                panduan=1;
+            }else{
+                
+            }
+            
             
             NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
             [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1] objectForKey:@"id"]] forKey:@"officeid"];
@@ -1947,7 +1970,7 @@
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
                     NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                     
-                    
+                    [WarningBox warningBoxHide:YES andView:self.view];
                     shengg=[SSMap allKeys];
                     bianxing=[[NSMutableArray alloc] init];
                     
@@ -1969,10 +1992,11 @@
                 }
                 else if ([[responseObject objectForKey:@"code"] intValue]==0){
                     //5个门店的列表
+                    [WarningBox warningBoxHide:YES andView:self.view];
                     panduan=2;
                     wocalede=[NSArray array];
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
-        
+                    
                     [wocalei reloadData];
                     
                     wocalei.hidden = NO;
@@ -2017,6 +2041,7 @@
 }
 int nicaicai=0;
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    
     //将经度显示到label上
     jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
     //将纬度现实到label上
@@ -2026,7 +2051,9 @@ int nicaicai=0;
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
         if (array.count > 0){
+            
             CLPlacemark *placemark = [array objectAtIndex:0];
+            NSLog(@"%@",placemark);
             
             sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
             
@@ -2044,7 +2071,14 @@ int nicaicai=0;
                 //区
                 qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
             }
-            
+            if (sheng==nil||shi==nil||qu==nil) {
+                
+            }else{
+                if(nicaicai==0){
+                    nicaicai=1;
+                    [self zidongdingwei];
+                }
+            }
         }
         else if (error == nil && [array count] == 0)
         {
@@ -2053,22 +2087,28 @@ int nicaicai=0;
         {
         }
     }];
+    
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
-    [manager stopUpdatingLocation];
     panduan=0;
-    if (nicaicai==0) {
-        nicaicai=1;
-        //为了让定位只调用一遍
-        
-        [self zidongdingwei];
-    }
+    
+    
+    [manager stopUpdatingLocation];
+    
+    
+    //    if (nicaicai==0) {
+    //
+    //        //为了让定位只调用一遍
+    //
+    //
+    //    }else
+    //        [self zidongdingwei];
     
     
 }
 -(void)zidongdingwei{
+    NSLog(@"%d",panduan);
     if (panduan==0) {
-        [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
-        
+        [WarningBox warningBoxModeIndeterminate:@"定位中...." andView:self.view];
         //userID    暂时不用改
         NSString * userID=@"0";
         
@@ -2104,7 +2144,7 @@ int nicaicai=0;
         }
         
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
-        
+        NSLog(@"%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -2124,7 +2164,7 @@ int nicaicai=0;
                 
                 
                 [WarningBox warningBoxHide:YES andView:self.view];
-                
+                NSLog(@"%@",responseObject);
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
                     [WarningBox warningBoxHide:YES andView:self.view];
                     panduan=1;
@@ -2161,7 +2201,7 @@ int nicaicai=0;
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     
                     [wocalei reloadData];
-                    [wocalei reloadData];
+                    //                    [wocalei reloadData];
                     wocalei.hidden = NO;
                     
                 }
@@ -2173,6 +2213,7 @@ int nicaicai=0;
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];

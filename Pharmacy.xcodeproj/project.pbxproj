@@ -887,6 +887,7 @@
 		D23EE57A1CBB4BC1000A9F01 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D2CF97FB1DEC19B0002782F9 /* Pharmacy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pharmacy.entitlements; sourceTree = "<group>"; };
 		D2D367421D6D8581004AAE54 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
 		D2D367431D6D8581004AAE54 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D2D367471D6D9D3B004AAE54 /* GuideImageName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageName.h; sourceTree = "<group>"; };
@@ -1030,6 +1031,7 @@
 		9505D6CB1C9A7B27006F6850 /* Pharmacy */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF97FB1DEC19B0002782F9 /* Pharmacy.entitlements */,
 				9505D7021C9A7B59006F6850 /* Other */,
 				9505D7011C9A7B34006F6850 /* Model */,
 				9505D7001C9A7B31006F6850 /* View */,
@@ -2448,9 +2450,12 @@
 				TargetAttributes = {
 					9505D6C81C9A7B27006F6850 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = GP8BUACAG4;
+						DevelopmentTeam = QP77F498Q9;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -2977,8 +2982,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Pharmacy/Pharmacy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3001,7 +3007,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8a1130c0-7d34-4d01-97a5-c92bfed3d701";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};
@@ -3011,8 +3017,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Pharmacy/Pharmacy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3035,7 +3042,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = huiyuanbao2qi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8a1130c0-7d34-4d01-97a5-c92bfed3d701";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pharmacy";
 			};

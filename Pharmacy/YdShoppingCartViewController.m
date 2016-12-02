@@ -101,7 +101,7 @@
                 [arr[i] setValue:[NSString stringWithFormat:@"%.2f",s] forKey:@"zongjia"];
             }
         }
-        float jine;
+        float jine=0;
         
         for (int i=0; i<arr.count; i++) {
             jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
@@ -131,7 +131,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
-    
+    self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     right = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(bianij)];
     right1 = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(baocun)];
     self.navigationItem.rightBarButtonItem = right;

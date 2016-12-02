@@ -273,6 +273,7 @@
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
             SBJsonWriter *writer = [[SBJsonWriter alloc]init];
             //出入参数：
+            NSLog(@"%@\n%@\n%@\n%@\n%@",jing,wei,sheng,shi,qu);
             if (jing==nil) {
                 jing=@"";
             }
@@ -345,7 +346,7 @@
                         arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                         
                         [_tableview reloadData];
-                        [self.tableview reloadData];
+                       
                         self.tableview.hidden = NO;
                         
                     }
@@ -406,6 +407,9 @@
         name.textColor = [UIColor blueColor];
         name.text=@"请选择门店";
     }else{
+        if (NULL == [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
+            name.text=[arr[indexPath.row-1] objectForKey:@"name"];
+        }else
     name.text = [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
     }
     [cell.contentView addSubview:name];
@@ -420,7 +424,12 @@
     if (indexPath.row==0) {
         
     }else{
+        if (NULL == [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
+            self.StoreText.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"name"]];
+        }else
     self.StoreText.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]];
+        
+        
     str = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"id"]];
     
     self.tableview.hidden = YES;
@@ -701,6 +710,9 @@
                 
                 @try
                 {
+                    if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+                         [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+                    }
                     NSLog(@"%@",responseObject);
                    
                 }
@@ -796,8 +808,8 @@
                 manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
                 SBJsonWriter *writer = [[SBJsonWriter alloc]init];
                 //出入参数：
-                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",_PassText.text,@"password",_VerificationText.text,@"vaildCode", _RecommendedText.text,@"recommendedNumber",@"",@"office_id",nil];
-                
+                NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phoneNumber",_PassText.text,@"password",_VerificationText.text,@"vaildCode", _RecommendedText.text,@"recommendedNumber",str,@"office_id",nil];
+                NSLog(@"%@",datadic);
                 NSString*jsonstring=[writer stringWithObject:datadic];
                 
                 //获取签名

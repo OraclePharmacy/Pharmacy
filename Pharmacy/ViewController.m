@@ -282,15 +282,11 @@
                             [dictionaryic writeToFile:filename atomically:YES];
                             
                         }
-                        
-                        
 //                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [WarningBox warningBoxHide:YES andView:self.view];
                             YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
                             [self.navigationController pushViewController:Root animated:YES];
-                            
 //                        });
-                        
                     }
                     else{
                         [WarningBox warningBoxHide:YES andView:self.view];
@@ -300,7 +296,6 @@
                 @catch (NSException * e) {
                     [WarningBox warningBoxHide:YES andView:self.view];
                     [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                    
                 }
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -309,8 +304,6 @@
                 NSLog(@"错误：%@",error);
                 
             }];
-            
-            
         }
     }
     else
@@ -377,15 +370,11 @@
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
             
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         NSLog(@"错误：%@",error);
     }];
-    
-    
 }
 
 //忘记密码

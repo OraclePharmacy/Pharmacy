@@ -249,17 +249,11 @@
                 [WarningBox warningBoxHide:YES andView:self.view];
                 @try
                 {
-                   // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                   
                     NSLog(@"%@",responseObject);
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                        
-                        NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                        NSLog(@"%@",datadic);
-                        
-                        
-                        
+ 
                     }
-                    
                     
                 }
                 @catch (NSException * e) {
@@ -341,7 +335,7 @@
                     {
                        // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                        
-                        NSLog(@"responseObject:%@",responseObject);
+                        NSLog(@"\n忘记密码\nresponseObject:%@",responseObject);
                         
                         if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                             
