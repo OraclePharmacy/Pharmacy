@@ -135,9 +135,9 @@
                 }
                 
                 
-                
+               
                 NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_pinglunID,@"parentId",_pinglunText.text, @"reply",vip,@"vipId",_tieziID,@"id",nil];
-                
+                NSLog(@"\n 发表评论 入参 \n%@",datadic);
                 NSString*jsonstring=[writer stringWithObject:datadic];
                 
                 //获取签名
@@ -151,6 +151,7 @@
                 [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
                     
                 } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    NSLog(@"\n发表评论： %@",responseObject);
                     [WarningBox warningBoxHide:YES andView:self.view];
                     @try
                     {
@@ -178,6 +179,7 @@
                     
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    NSLog(@"\n发表评论： %@",error);
                     [WarningBox warningBoxHide:YES andView:self.view];
                     [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
                 }];

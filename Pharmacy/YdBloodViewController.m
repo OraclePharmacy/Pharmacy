@@ -387,11 +387,12 @@
 -(void)xueyabutton
 {
     [self.view endEditing:YES];
-     if (gaoyatext.text.length == 0 || diyatext.text.length == 0) {
-         
-         [WarningBox warningBoxModeText:@"上传数据不完整" andView:self.view];
-     }else if (gaoyatext.text.length == 0 && diyatext.text.length == 0){
-     [WarningBox warningBoxModeText:@"请填写信息" andView:self.view];
+    if (gaoyatext.text.length == 0 && diyatext.text.length == 0){
+        [WarningBox warningBoxModeText:@"请填写信息" andView:self.view];
+    
+    }else  if (gaoyatext.text.length == 0 || diyatext.text.length == 0) {
+        
+        [WarningBox warningBoxModeText:@"上传数据不完整" andView:self.view];
      
      }
     else

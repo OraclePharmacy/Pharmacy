@@ -102,7 +102,7 @@
             }
         }
         float jine=0;
-        
+        NSLog(@"%@",arr);
         for (int i=0; i<arr.count; i++) {
             jine+=[[arr[i] objectForKey:@"zongjia"] floatValue];
         }

@@ -124,7 +124,7 @@
                 if (NULL == [[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]) {
                     yixuanmendian = @"请选择门店";
                 }else
-                yixuanmendian=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]];
+                    yixuanmendian=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]];
                 SearchButton.titleLabel.text=yixuanmendian;
             }
         }
@@ -219,15 +219,16 @@
     }
 }
 -(void)loadNewdata{
-    
-    [self bargaingoodsjiekou];
-    [self tejieyaopinjiekou];
-    [self rementiezi];
-    [self remenzixun];
-    [self bannerjiekou];
-    
+    if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
+        [WarningBox warningBoxModeText:@"请先选择门店～" andView:self.view];
+    }else{
+        [self bargaingoodsjiekou];
+        [self tejieyaopinjiekou];
+        [self rementiezi];
+        [self remenzixun];
+        [self bannerjiekou];
+    }
     [self.tableview.mj_header endRefreshing];
-    
 }
 
 //导航标题  添加View
