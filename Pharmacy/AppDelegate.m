@@ -13,7 +13,9 @@
 #import "UMSocialQQHandler.h"
 #define JMSSAGE_APPKEY @"7f781ffb921114be6cb3d00b"
 #define CHANNEL @""
-@interface AppDelegate ()<JMessageDelegate>
+#import <JMessage/JMessage.h>
+#import <UserNotifications/UserNotifications.h>
+@interface AppDelegate () <JMessageDelegate,JPUSHRegisterDelegate>
 @end
 
 @implementation AppDelegate
@@ -32,28 +34,68 @@
            apsForProduction:NO
                    category:nil];
     
-    /// Required - 注册 APNs 通知
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        /// 可以添加自定义categories
-        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-                                                          UIUserNotificationTypeSound |
-                                                          UIUserNotificationTypeAlert)
-                                              categories:nil];
-        if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
-            
-            [self localNotification];
-            
-        }else{
-            [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
-        }
-
-    } else {
-        /// categories 必须为nil
-        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                          UIRemoteNotificationTypeSound |
-                                                          UIRemoteNotificationTypeAlert)
-                                              categories:nil];
+    // 注册apns通知
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) // iOS10
+    {
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+#endif
     }
+    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) // iOS8, iOS9
+    {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
+    }
+    else // iOS7
+    {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
+    }
+    
+    
+    //2.1.9版本新增获取registration id block接口。
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0)
+        {
+            // iOS10获取registrationID放到这里了, 可以存到缓存里, 用来标识用户单独发送推送
+            NSLog(@"registrationID获取成功：%@",registrationID);
+            [[NSUserDefaults standardUserDefaults] setObject:registrationID forKey:@"registrationID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
+            NSLog(@"%@",alias);
+            [JPUSHService setAlias:alias callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+        }
+        else
+        {
+            NSLog(@"registrationID获取失败，code：%d",resCode);
+        }
+    }];
+    
+    
+    
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//        /// 可以添加自定义categories
+//        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+//                                                          UIUserNotificationTypeSound |
+//                                                          UIUserNotificationTypeAlert)
+//                                              categories:nil];
+//        if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
+//            
+//            [self localNotification];
+//            
+//        }else{
+//            [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
+//        }
+//
+//    } else {
+//        /// categories 必须为nil
+//        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                          UIRemoteNotificationTypeSound |
+//                                                          UIRemoteNotificationTypeAlert)
+//                                              categories:nil];
+//    }
     [JPUSHService setupWithOption:launchOptions appKey:JMSSAGE_APPKEY channel:CHANNEL apsForProduction:NO];
     
     //友盟0.0
@@ -224,11 +266,93 @@
     min *=60;
     return min;
 }
+// 通知事件监听
+- (void)onReceiveNotificationEvent:(JMSGNotificationEvent *)event{
+    switch (event.eventType) {
+        case kJMSGEventNotificationReceiveFriendInvitation:
+            NSLog(@"1111Receive Friend Invitation Event ");
+            break;
+        case kJMSGEventNotificationAcceptedFriendInvitation:
+            NSLog(@"1111Accepted Friend Invitation Event ");
+            break;
+        case kJMSGEventNotificationDeclinedFriendInvitation:
+            NSLog(@"1111Declined Friend Invitation Event ");
+            break;
+        case kJMSGEventNotificationDeletedFriend:
+            NSLog(@"1111Deleted Friend Event ");
+            break;
+        case kJMSGEventNotificationReceiveServerFriendUpdate:
+            NSLog(@"1111Receive Server Friend Update Event ");
+            break;
+        case kJMSGEventNotificationLoginKicked:
+            NSLog(@"1111Login Kicked Event ");
+            break;
+        case kJMSGEventNotificationServerAlterPassword:
+            NSLog(@"1111Server Alter Password Event ");
+            break;
+        case kJMSGEventNotificationUserLoginStatusUnexpected:
+            NSLog(@"1111User login status unexpected Event ");
+            break;
+        default:
+            NSLog(@"1111Other Notification Event ");
+            break;
+    }
+}
+
 
 
 
 
 #pragma mark-----   JPUSH
+// iOS 10 Support
+/*
+ * @brief handle UserNotifications.framework [willPresentNotification:withCompletionHandler:]
+ * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
+ * @param notification 前台得到的的通知对象
+ * @param completionHandler 该callback中的options 请使用UNNotificationPresentationOptions
+ */
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
+    {
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSString *message = [NSString stringWithFormat:@"%@", [userInfo[@"aps"] objectForKey:@"alert"]];
+        NSLog(@"iOS10程序在前台时收到的推送: %@", message);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil, nil];
+        [alert show];
+    }
+    
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+}
+
+// iOS 10 Support
+/*
+* @brief handle UserNotifications.framework [didReceiveNotificationResponse:withCompletionHandler:]
+* @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
+* @param response 通知响应对象
+* @param completionHandler
+*/
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
+    {
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSString *message = [NSString stringWithFormat:@"%@", [userInfo[@"aps"] objectForKey:@"alert"]];
+        NSLog(@"iOS10程序关闭后通过点击推送进入程序弹出的通知: %@", message);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ,nil];
+        [alert show];
+    }
+    
+    completionHandler();  // 系统要求执行这个方法
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
@@ -236,14 +360,9 @@
 }
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"\n\n\n\n device  token   \n\n\n\n%@\n\n\n\n\n\n",deviceToken);
+    NSLog(@"\n\n\n\n 注册：device  token   \n\n\n\n%@\n\n\n\n\n\n",deviceToken);
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
-    
-    
-    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
-    NSLog(@"%@",alias);
-    [JPUSHService setAlias:alias callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     
 }
 -(void)tagsAliasCallback:(int)iResCode
@@ -255,7 +374,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"\n\n\n\n 处理收到的通知\n\n\n\n\n%@\n\n\n\n\n",userInfo);
+    NSLog(@"\n\n\n\n接收： 处理收到的通知\n\n\n\n\n%@\n\n\n\n\n",userInfo);
     // Required - 处理收到的通知
     [JPUSHService handleRemoteNotification:userInfo];
     //进入前台清空角标
@@ -282,7 +401,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     //Optional
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
-
 
 
 @end

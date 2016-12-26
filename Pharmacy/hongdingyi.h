@@ -17,7 +17,7 @@
 //其中斌
 //#define service_host @"http://192.168.1.110:8888"
 //小展
-#define service_host @"http://192.168.1.144:8080"
+#define service_host @"http://192.168.1.119:8080"
 //外网
 //#define service_host @"http://222.171.242.146:60082"
 
@@ -49,8 +49,9 @@
  */
 //#define appkey @"a739089463def36753784915"
 #define appkey @"d800528f235e4142b78a8c26c4d537d9"
+
 /**
- *  借口访问密码
+ *  接口访问密码
  *
  *  @return d241370da06042be992a4ca21fcac23e
  */

@@ -111,7 +111,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         NSString *path1 = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
         NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path1];
         
-        
         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
         NSFileManager*fm=[NSFileManager defaultManager];
         if ([fm fileExistsAtPath:path]) {

@@ -135,6 +135,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
+            NSLog(@"\n\n门店优惠\n\n  %@",responseObject);
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -159,7 +160,7 @@
                 }
                 ye++;
                 
-                [self.tableview reloadData];
+                [_tableview reloadData];
                 
             }
         }
@@ -419,28 +420,21 @@
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                    
+                    ye=1;
                     [self jiekou];
-                    
-                    [self.tableview reloadData];
-                    
+//                    [self.tableview reloadData];
                 }
             }
             @catch (NSException * e) {
                 
                 [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-                
             }
-            
-            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];
-        
     }
 }
-
 -(void)fanhui
 {
     //返回上一页

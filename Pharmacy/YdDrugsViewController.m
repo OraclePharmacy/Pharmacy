@@ -458,7 +458,17 @@ int popop=0;
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [WarningBox warningBoxHide:YES  andView:self.view];
             if (error) {
-                [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+                if (error.code == 863006) {
+                    NSLog(@"已经登陆");
+                    [self liaotian];
+                }else if(error.code == 863001){
+                    NSLog(@"没有此用户");
+                    [self imzhuce];
+                }else if (error.code == 801003){
+                    NSLog(@"没有此用户");
+                    [self imzhuce];
+                }
+                NSLog(@"%@",error);
                 return ;
             }
             [self liaotian];
@@ -466,6 +476,27 @@ int popop=0;
     }
     
 }
+-(void)imzhuce{
+    [WarningBox warningBoxHide:YES andView:self.view];
+    [WarningBox warningBoxModeText:@"正在注册用户...." andView:self.view];
+    [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]]
+                          password:@"111111"
+                 completionHandler:^(id resultObject, NSError *error) {
+                     [WarningBox warningBoxHide:YES andView:self.view];
+                     if (!error) {
+                         //注册成功
+                         [self lianxidianzhang:nil];
+                     } else {
+                         //注册失败
+                         NSLog(@"失败%@",error);
+                         [WarningBox warningBoxHide:YES andView:self.navigationController.view];
+                         [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+
+                         return ;
+                     }
+                 }];
+}
+
 -(void)liaotian
 {
     JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]]];

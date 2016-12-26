@@ -94,7 +94,7 @@
             NSFileManager *fileMger = [NSFileManager defaultManager];
             
             NSString *xiaoXiPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"RememberPass.plist"];
-            
+            [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"liansuoid"];
             //如果文件路径存在的话
             BOOL bRet = [fileMger fileExistsAtPath:xiaoXiPath];
             

@@ -206,7 +206,7 @@
 		</data>
 		<key>Headers/JMUIChattingViewController.h</key>
 		<data>
-		sRPaHHWAEqW0QDvfmXafFOeHFX8=
+		U4VESNosUtbZDgT35JUXICN2EBo=
 		</data>
 		<key>Headers/JMUIInputToolbar.h</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>Headers/JMUIInputToolbar.xib</key>
 		<data>
-		quzdv/Eq0ObmZ1nImGF0+BS47kQ=
+		Q1OO4m6GaBW6WW7nYEq8dLgWC08=
 		</data>
 		<key>Headers/JMUIInputView.h</key>
 		<data>
@@ -230,7 +230,7 @@
 		</data>
 		<key>Headers/JMUIMoreView.xib</key>
 		<data>
-		jrDUtyJ+mDhHQO0Ymwr1djITomE=
+		36tIKNegDViRSghcWwmJURCS+Ts=
 		</data>
 		<key>Headers/JMUIRecordAnimationView.h</key>
 		<data>
@@ -238,11 +238,11 @@
 		</data>
 		<key>Headers/JMUIShowTimeCell.xib</key>
 		<data>
-		V+PLFUTUIYtezt9FR9lyEqkaYwI=
+		VENNTfOTd+lFYtv/6lxnablEgDc=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		QOyZmwkYGyoyqQGuzuiHMiu2lbc=
+		Dfb4c8UBJGxwMm5v+ibl5JY+qCc=
 		</data>
 		<key>JMUIChattingKitResource.bundle/JMUIInputToolbar.xib</key>
 		<data>
@@ -438,15 +438,15 @@
 		</data>
 		<key>JMUIInputToolbar.nib</key>
 		<data>
-		JYewNGnM0gH5NxPoz+N68rpdfSw=
+		AY2ocRjNxeAMmBQeseFImXJSYCI=
 		</data>
 		<key>JMUIMoreView.nib</key>
 		<data>
-		xslJMQb15pi1/LFXjwoXaOOaVr0=
+		Z3m1jwhZTj0u3zXZBJEFGmGD7KI=
 		</data>
 		<key>JMUIShowTimeCell.nib</key>
 		<data>
-		8CO2cmAXlsIl9h4r80yrcSULc28=
+		E9tD41V5juM8zunYIZswt/rhORQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1005,11 +1005,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			sRPaHHWAEqW0QDvfmXafFOeHFX8=
+			U4VESNosUtbZDgT35JUXICN2EBo=
 			</data>
 			<key>hash2</key>
 			<data>
-			MAYyUEPDq8DzcIn9DEEzvSQNpe7jyg5rCS3QsO2Tl2o=
+			i4JfLlGbovE5ZQdrveZzM7fN2wDNagrlea7XyhOkBHQ=
 			</data>
 		</dict>
 		<key>Headers/JMUIInputToolbar.h</key>
@@ -1027,11 +1027,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			quzdv/Eq0ObmZ1nImGF0+BS47kQ=
+			Q1OO4m6GaBW6WW7nYEq8dLgWC08=
 			</data>
 			<key>hash2</key>
 			<data>
-			f8OUbAX6L0V5G5OorT9kzQA6jpxMxJInZ+/d/s7omZ0=
+			SGnLcn2G3phShTF+ORun0HcIKaS4m0lJbK56m2cyCOg=
 			</data>
 		</dict>
 		<key>Headers/JMUIInputView.h</key>
@@ -1071,11 +1071,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			jrDUtyJ+mDhHQO0Ymwr1djITomE=
+			36tIKNegDViRSghcWwmJURCS+Ts=
 			</data>
 			<key>hash2</key>
 			<data>
-			qDrCE3syAfdqcpxbjz+E/j8K12fV4NdJj6saTGSF9oI=
+			VMuEuaICRXMFmRTneDV1i1xZvuPCAII+8EUcZsQkcK8=
 			</data>
 		</dict>
 		<key>Headers/JMUIRecordAnimationView.h</key>
@@ -1093,11 +1093,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			V+PLFUTUIYtezt9FR9lyEqkaYwI=
+			VENNTfOTd+lFYtv/6lxnablEgDc=
 			</data>
 			<key>hash2</key>
 			<data>
-			/4NTzkeZOP6j8bN5Kahgb55P/hYotITrJ/ma1RN+1ZQ=
+			vAPif7qI0UwNObJEvbhDQAYMmHHl7y8i3Rsl5cKOtaE=
 			</data>
 		</dict>
 		<key>JMUIChattingKitResource.bundle/JMUIInputToolbar.xib</key>
@@ -1632,33 +1632,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			JYewNGnM0gH5NxPoz+N68rpdfSw=
+			AY2ocRjNxeAMmBQeseFImXJSYCI=
 			</data>
 			<key>hash2</key>
 			<data>
-			RxrvM2jWSLF1Ju5dhwAIGeL5PhnPEL8pZmBbGj7ol44=
+			8vuePzXD3Sur2EX5aEiQbfNeYmrFUHN4plMO+/5nS+0=
 			</data>
 		</dict>
 		<key>JMUIMoreView.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xslJMQb15pi1/LFXjwoXaOOaVr0=
+			Z3m1jwhZTj0u3zXZBJEFGmGD7KI=
 			</data>
 			<key>hash2</key>
 			<data>
-			PqL+hwyIkr4vKtn5fBITlI59JuCye0Ves00RM582YaY=
+			9m9hAhYx5khKewKEJboaOLcJyZmCTQzdIcG4kOIQKUM=
 			</data>
 		</dict>
 		<key>JMUIShowTimeCell.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8CO2cmAXlsIl9h4r80yrcSULc28=
+			E9tD41V5juM8zunYIZswt/rhORQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			dyt/OFbHHGH//UIHElTQFX8WfNus+AMx6cVoG4yN4Hg=
+			AnViscngA7xFDNcd4CaogciG/3sOwzpRUqlJBfhTBbY=
 			</data>
 		</dict>
 	</dict>
@@ -1679,6 +1679,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
@@ -1724,6 +1729,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

@@ -121,12 +121,21 @@
             if(nicaicai==1)
             {
                 NSString *yixuanmendian;
-                if (NULL == [[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]) {
+                NSString*xixixi=[[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"];
+                NSLog(@"*-*-*-*-*-*-*-%@",xixixi);
+                if (NULL == xixixi||[xixixi isEqual:[NSNull null]]||xixixi ==nil||[xixixi isEqualToString:@"(null)"]) {
                     yixuanmendian = @"请选择门店";
                 }else
                     yixuanmendian=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"yixuanmendian"]];
                 SearchButton.titleLabel.text=yixuanmendian;
             }
+        }
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"tiao"] isEqual:@"1"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"tiao"];
+            //调用定位
+            nicaicai=0;
+            [self initializeLocationService];
+            
         }
         self.navigationController.navigationBarHidden=NO;
     }
@@ -139,10 +148,14 @@
     NSFileManager *fm=[NSFileManager defaultManager];
     
     bingzhengarr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
-    
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"tiao"] isEqual:@"1"]){
+    [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isLogin"];
+    }
     //    启动
     if (![fm fileExistsAtPath:cunzai])
     {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"tiao"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"liansuoid"];
         [@"sada" writeToFile:cunzai atomically:YES encoding:NSUTF8StringEncoding error:nil];
         [GuideViewController sharedGuide];
         [GuideViewController show];
@@ -195,8 +208,10 @@
     
     //表头
     [self SearchView];
-    //调用定位
-    [self initializeLocationService];
+    
+    
+    
+//    [WarningBox warningBoxModeText:@"正在定位门店...." andView:self.view];
     
     //    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
     
@@ -209,14 +224,19 @@
         
         if ([fm fileExistsAtPath:Rempath]){
             
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"zddl"] isEqualToString:@"0"] ) {
-                
-            }else{
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"zddl"] isEqualToString:@"1"] ) {
                 [denglu zidongdenglu:self.view];
+               
+            }else{
+                 [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"liansuoid"];
             }
         }
-        
     }
+    
+    
+    //调用定位
+    [self initializeLocationService];
+    
 }
 -(void)loadNewdata{
     if ([SearchButton.titleLabel.text isEqual:@"请选择门店"]) {
@@ -511,49 +531,81 @@
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
         [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
-        YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
         
-        [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            
+        
+        NSString *shoujihao =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
+        NSLog(@"手机号：%@",shoujihao);
+        
+        [JMSGUser loginWithUsername:shoujihao password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             if (error) {
-                [WarningBox warningBoxHide:YES andView:self.view];
-                
-                [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+                if (error.code == 863006) {
+                    NSLog(@"已经登陆");
+                    [self jixu];
+                }else if(error.code == 863001){
+                    NSLog(@"没有此用户");
+                    [self imzhuce];
+                }else if (error.code == 801003){
+                    NSLog(@"没有此用户");
+                    [self imzhuce];
+                }
+
                 return ;
             }
-            
-            NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-            NSString *path=[paths objectAtIndex:0];
-            NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
-            //判断是否已经创建文件
-            if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
-                
-                int wentaoshi;
-                //读文件
-                NSDictionary* dic = [NSDictionary dictionaryWithContentsOfFile:filename];
-                
-                wentaoshi = [[dic objectForKey:@"wenyaoshi"] intValue];
-                
-                wentaoshi++;
-                
-                NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[NSString stringWithFormat:@"%d",wentaoshi],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
-                
-                [dic1 writeToFile:filename atomically:YES];
-                
-            }else {
-                
-                NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"1",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
-                
-                [dic writeToFile:filename atomically:YES];
-                
-            }
-            
-            [WarningBox warningBoxHide:YES andView:self.view];
-            [self.navigationController pushViewController:Question animated:YES];
+            [self jixu];
+           
         }];
         
     }
+}
+-(void)jixu{
+    YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
+    
+    
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
+    //判断是否已经创建文件
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
+        
+        int wentaoshi;
+        //读文件
+        NSDictionary* dic = [NSDictionary dictionaryWithContentsOfFile:filename];
+        
+        wentaoshi = [[dic objectForKey:@"wenyaoshi"] intValue];
+        
+        wentaoshi++;
+        
+        NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[NSString stringWithFormat:@"%d",wentaoshi],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
+        
+        [dic1 writeToFile:filename atomically:YES];
+        
+    }else {
+        
+        NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"1",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
+        
+        [dic writeToFile:filename atomically:YES];
+        
+    }
+ [self.navigationController pushViewController:Question animated:YES];
+}
+-(void)imzhuce{
+    [WarningBox warningBoxHide:YES andView:self.view];
+    [WarningBox warningBoxModeText:@"正在注册用户...." andView:self.view];
+    [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]]
+                          password:@"111111"
+                 completionHandler:^(id resultObject, NSError *error) {
+                     [WarningBox warningBoxHide:YES andView:self.view];
+                     if (!error) {
+                         //注册成功
+                         [self two];
+                     } else {
+                         //注册失败
+                         NSLog(@"失败%@",error);
+                         [WarningBox warningBoxHide:YES andView:self.navigationController.view];
+                         return ;
+                     }
+                 }];
 }
 //第三个按钮点击事件
 -(void)three
@@ -1569,9 +1621,10 @@
             if (NULL == [[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
                 haha=[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1]objectForKey:@"name"] ];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1]objectForKey:@"name"]] forKey:@"yixuanmendian"];
-            }else
+            }else{
                 haha= [NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"] ];
             [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]] forKey:@"yixuanmendian"];
+            }
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;
             NSLog(@"%d",panduan);
@@ -1948,8 +2001,9 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",nil];
-        
+        NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"liansuoid"];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",officeid,@"officeId",nil];
+        NSLog(@"datadic   %@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名
@@ -1965,7 +2019,7 @@
             @try{
                 
                 
-                
+            
                 [WarningBox warningBoxHide:YES andView:self.view];
                 
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
@@ -2095,7 +2149,7 @@ int nicaicai=0;
     
     [manager stopUpdatingLocation];
     
-    
+    [WarningBox warningBoxHide:YES andView:self.view];
     //    if (nicaicai==0) {
     //
     //        //为了让定位只调用一遍
@@ -2143,9 +2197,10 @@ int nicaicai=0;
         if (qu==nil) {
             qu=@"";
         }
-        
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",nil];
-        NSLog(@"%@",datadic);
+    
+        NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"liansuoid"];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",officeid,@"officeId",nil];
+        NSLog(@"*-*-*-*-%@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
         //获取签名

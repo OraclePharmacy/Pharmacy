@@ -14,6 +14,8 @@
 #import "WarningBox.h"
 #import "SBJsonWriter.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import <JMessage/JMessage.h>
+
 @interface YdPersonalInformationViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate>
 {
     CGFloat width;
@@ -42,8 +44,13 @@
     NSArray *cityArray;
     NSArray *areaArray;
     
+    NSArray*bingzhengarr;
+    
     NSDictionary *stateDic;
     NSDictionary *cityDic;
+    
+    
+    NSData*imageData;
     
 }
 @property (strong , nonatomic) UIImage * image;
@@ -66,7 +73,7 @@
     pickerview=[[UIView alloc] init];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+    bingzhengarr=[NSArray array];
     //状态栏名称
     self.navigationItem.title = @"个人信息";
     //解决tableview多出的白条
@@ -88,7 +95,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
-    
+    [self bingzhengjiekou];
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path];
     zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
@@ -98,6 +105,82 @@
     }else
         [self fuzhi:pp];
 }
+-(void)bingzhengjiekou
+{
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/product/attentionDisease";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSDictionary*datadic=[responseObject valueForKey:@"data"];
+                
+                bingzhengarr = [datadic objectForKey:@"attentionDiseaseList"];
+                
+                [self tan];
+                
+            }
+        }
+        @catch (NSException * e) {
+            
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+    }];
+    
+}
+-(void)tan{
+    
+    UIAlertController * alert = [[UIAlertController alloc] init];
+    for (int index = 0; index < bingzhengarr.count; index++) {
+        int  key = index+1;
+        UIAlertAction * action = [UIAlertAction actionWithTitle:bingzhengarr[key] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UILabel*ll=[[UILabel alloc] init];
+            ll.text = bingzhengarr[key];
+        }];
+        [alert addAction:action];
+    }
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(void)fuzhi:(NSDictionary*)dd{
     textField1 = [[UITextField alloc]init];
     textField1.frame = CGRectMake(130, 10, width - 150, 20);
@@ -181,6 +264,9 @@
             [nv setImage:[UIImage imageNamed:@"sexnv@3x.png"] forState:UIControlStateNormal];
         }
         textField1.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"nickName"]];;
+        if (NULL == [dd objectForKey:@"nickName"]) {
+            textField1.text=@"";
+        }
         textField2.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"name"]];;
         textField3.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"age"]];;
         textField4.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"vipCode"]];;
@@ -450,7 +536,7 @@
 }
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    imageData = UIImageJPEGRepresentation(currentImage, 0.5);
     // 获取沙盒目录
     NSFileManager *fm=[NSFileManager defaultManager];
     NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
@@ -714,6 +800,26 @@
                 NSLog(@"the==========%@",responseObject);
                 @try
                 {
+                    
+                    
+                    /*
+                     userFieldType:
+                     kJMSGUserFieldsNickname: 用户名
+                     kJMSGUserFieldsBirthday: 生日
+                     kJMSGUserFieldsSignature: 签名
+                     kJMSGUserFieldsGender: 性别
+                     kJMSGUserFieldsRegion: 区域
+                     kJMSGUserFieldsAvatar: 头像
+                     */
+                    [JMSGUser updateMyInfoWithParameter:imageData userFieldType:kJMSGUserFieldsAvatar  completionHandler:^(id resultObject, NSError *error) {
+                        if (!error) {
+                            NSLog(@"头像成功");
+                            //updateMyInfoWithPareter success
+                        } else {
+                            NSLog(@"头像失败----%@",error);
+                            //updateMyInfoWithPareter fail
+                        }
+                    }];
                     NSLog(@"responseObject:%@",responseObject);
                     [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {
@@ -722,9 +828,7 @@
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
                         [datadic writeToFile:path atomically:YES];
                         NSLog(@"%@",datadic);
-                        //返回上一页
-                        [self.navigationController popViewControllerAnimated:YES];
-                        [self.navigationController setNavigationBarHidden:YES animated:NO];
+                        [self jiguangtouxianggenggai:imageData];
                         
                     }else{
                         [WarningBox warningBoxModeText:@"上传失败" andView:self.view];
@@ -748,11 +852,19 @@
             
         }
     }
-    
-    
-    
 }
-
+-(void)jiguangtouxianggenggai:(NSData*)image{
+    
+    [JMSGUser updateMyInfoWithParameter:image userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
+        if (!error) {
+            //updateMyInfoWithPareter success
+            [self fanhui];
+        } else {
+            //updateMyInfoWithPareter fail
+            [super self];
+        }
+    }];
+}
 //返回
 -(void)fanhui
 {

@@ -38,7 +38,7 @@
     [super viewDidLoad];
     
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
-        
+    self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.width;
     
@@ -98,6 +98,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
+        NSLog(@"\n\n问药师返回列表：\n\n%@",responseObject);
         @try
         {
            

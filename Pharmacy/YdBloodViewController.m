@@ -436,7 +436,7 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
-            
+            NSLog(@"\n\n血压血糖返回信息:\n\n%@",responseObject);
             @try
             {
                 if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
@@ -457,6 +457,7 @@
             
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];

@@ -222,7 +222,7 @@
         [subView removeFromSuperview];//移除全部子视图
         
     }
-
+    
     [cell sizeToFit];
     
     CGFloat kuan = cell.contentView.bounds.size.width;
@@ -527,21 +527,59 @@
         if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-            [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
-            
-            [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                [WarningBox warningBoxHide:YES  andView:self.view];
-                if (error) {
-                    [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
-                    return ;
-                }
-                [self liaotian:indexPath.row];
-            }];
+            [self liaotiandenglu:indexPath];
         }
     }
     
     return;
+}
+-(void)liaotiandenglu:(NSIndexPath*)indexPath{
+    [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
+    
+    [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [WarningBox warningBoxHide:YES  andView:self.view];
+        if (error) {
+            if (error.code == 863006) {
+                NSLog(@"已经登陆");
+                [self liaotian:indexPath.row];
+            }else if(error.code == 863001){
+                NSLog(@"没有此用户");
+                [self imzhuce:indexPath];
+            }else if (error.code == 801003){
+                NSLog(@"没有此用户");
+                [self imzhuce:indexPath];
+            }
+
+            return ;
+        }
+        
+        if (error) {
+            [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
+            return ;
+        }
+        [self liaotian:indexPath.row];
+    }];
+    
+}
+-(void)imzhuce:(NSIndexPath*)indexPath{
+    [WarningBox warningBoxHide:YES andView:self.view];
+    [WarningBox warningBoxModeText:@"正在注册用户...." andView:self.view];
+    NSString*shoujihao =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
+    [JMSGUser registerWithUsername:shoujihao
+                          password:@"111111"
+                 completionHandler:^(id resultObject, NSError *error) {
+                     [WarningBox warningBoxHide:YES andView:self.view];
+                     if (!error) {
+                         //注册成功
+                         [self liaotiandenglu:indexPath];
+                     } else {
+                         //注册失败
+                         NSLog(@"失败%@",error);
+                         [WarningBox warningBoxHide:YES andView:self.navigationController.view];
+                         return ;
+                     }
+                 }];
 }
 
 
@@ -596,7 +634,7 @@
 -(void)Doctorsrecommendedff
 {
     //传值
-
+    
     //跳转推荐医生
     YdRecommendViewController *Recommend = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"recommend"];
     [self.navigationController pushViewController:Recommend animated:YES];

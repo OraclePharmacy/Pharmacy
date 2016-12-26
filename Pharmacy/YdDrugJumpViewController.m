@@ -130,6 +130,7 @@
     
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
+            NSLog(@"\n\n药品详情返回\n\n%@",responseObject);
             @try
             {
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {

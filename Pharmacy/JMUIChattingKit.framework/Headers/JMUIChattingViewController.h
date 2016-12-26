@@ -12,8 +12,7 @@
 #import "JMUIInputView.h"
 #import <JMessage/JMessage.h>
 #import "JMUIAudioPlayerHelper.h"
-#import <JMUICommon/XHVoiceRecordHelper.h>
-#import <JMUICommon/XHVoiceRecordHUD.h>
+#import <JMUICommon/JMUICommon.h>
 
 @interface JMUIConversationViewController : UIViewController<
 UITableViewDataSource,
@@ -24,7 +23,7 @@ JMessageDelegate
 >
 
 @property (strong, nonatomic)JMSGConversation *conversation;
-@property (strong, nonatomic)JMUIInputView *inputView;
+@property (strong, nonatomic)JMUIInputView *jmuiInputView;
 @property (strong, nonatomic)UITableView *messageListTable;
 
 /**

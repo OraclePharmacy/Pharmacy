@@ -26,7 +26,7 @@
     hud.userInteractionEnabled=NO;
     //hud.xOffset = 30;
     [hud setRemoveFromSuperViewOnHide:YES];
-    [hud hide:YES afterDelay:1.3];
+    [hud hide:YES afterDelay:1.5];
     
 }
 /**

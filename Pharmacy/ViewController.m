@@ -68,9 +68,12 @@
             _PhoneText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"phonetext"]];
             _PasswordText.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"password"]];
         }
+    }else{
+        NSDictionary*dda = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"phonetext",@"",@"password", nil];
+        [dda writeToFile:Rempath atomically:NO];
     }
-    
-    
+
+
 }
 
 //点击编辑区以外的地方键盘消失
@@ -243,14 +246,23 @@
                             [fm removeItemAtPath:path error:NULL];
                             
                         }
+                        NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
+                        if ( [[s objectForKey:@"zddl"]isEqual:@"0"]) {
+                             Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"phonetext",@"",@"password", nil];
+                        }else{
+                        
                         Passdic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_PhoneText.text,@"phonetext",_PasswordText.text,@"password", nil];
-                        [Passdic writeToFile:Rempath atomically:NO];
+                       
+                        }
+                         [Passdic writeToFile:Rempath atomically:NO];
+                        
                         NSString *path1 =[NSHomeDirectory() stringByAppendingString:@"/Documents/GRxinxi.plist"];
                         [vipInfoReturnList writeToFile:path1 atomically:YES];
                         NSLog(@"%@",NSHomeDirectory());
-                        NSUserDefaults*s= [NSUserDefaults standardUserDefaults];
+                        
                         [s setObject:[vipInfoReturnList objectForKey:@"loginName"] forKey:@"shoujihao"];
                         [s setObject:[vipInfoReturnList objectForKey:@"id"] forKey:@"vipId"];
+                        [s setObject:[[vipInfoReturnList objectForKey:@"office"] objectForKey:@"id"] forKey:@"liansuoid"];
                         
                         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"isLogin"];
                         NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]);
@@ -285,6 +297,7 @@
 //                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [WarningBox warningBoxHide:YES andView:self.view];
                             YdRootViewController *Root = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"root"];
+                        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"tiao"];
                             [self.navigationController pushViewController:Root animated:YES];
 //                        });
                     }
