@@ -36,6 +36,7 @@
     UITextField* textField5 ;
     UITextField* textField6 ;
     UITextField* textField7 ;
+    UITextField* textField8 ;
     
     UIView * pickerview;
     UIPickerView *picke;
@@ -80,7 +81,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _first = @[@"头像", @"昵称"];
-    _second = @[@"姓名",@"性别",@"年龄",@"会员卡号(选填)",@"地区",@"详细地址"];
+    _second = @[@"姓名",@"性别",@"年龄",@"会员卡号(选填)",@"地区",@"详细地址",@"关注病症"];
     
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
@@ -95,7 +96,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
-    [self bingzhengjiekou];
+    
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
     NSDictionary*pp=[NSDictionary dictionaryWithContentsOfFile:path];
     zhid=[NSString stringWithFormat:@"%@",[pp objectForKey:@"id"]];
@@ -145,8 +146,13 @@
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
-                
+                NSLog(@"%@",datadic);
                 bingzhengarr = [datadic objectForKey:@"attentionDiseaseList"];
+                NSLog(@"%@",bingzhengarr);
+                
+                
+                
+                
                 
                 [self tan];
                 
@@ -160,6 +166,7 @@
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
     }];
@@ -167,12 +174,15 @@
 }
 -(void)tan{
     
-    UIAlertController * alert = [[UIAlertController alloc] init];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"这是可以选择的关注病症哟" preferredStyle:UIAlertControllerStyleActionSheet];
     for (int index = 0; index < bingzhengarr.count; index++) {
-        int  key = index+1;
-        UIAlertAction * action = [UIAlertAction actionWithTitle:bingzhengarr[key] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            UILabel*ll=[[UILabel alloc] init];
-            ll.text = bingzhengarr[key];
+        int  key = index;
+        NSString*message=[NSString stringWithFormat:@"%@",[bingzhengarr[key] objectForKey:@"diseaseName"]];
+        UIAlertAction * action = [UIAlertAction actionWithTitle:message style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"%@",[bingzhengarr[key] objectForKey:@"diseaseName"]);
+            //给新家的lable填写信息;
+            textField8.text=[bingzhengarr[key] objectForKey:@"diseaseName"];
+            
         }];
         [alert addAction:action];
     }
@@ -227,6 +237,14 @@
     textField6.returnKeyType=UIReturnKeyDone;
     textField6.placeholder = @"请输入详细地址";
     
+    textField8 = [[UITextField alloc]init];
+    textField8.frame = CGRectMake(130, 10, width - 150, 20);
+    textField8.textAlignment = NSTextAlignmentRight;
+    textField8.font = [UIFont systemFontOfSize:13];
+    textField8.delegate=self;
+    textField8.returnKeyType=UIReturnKeyDone;
+    textField8.placeholder = @"请选择要关注的病症";
+    
     toux=[[UIImageView alloc] init];
     toux.userInteractionEnabled=YES;
     toux.frame=CGRectMake(width-80, 10, 60, 60);
@@ -254,6 +272,7 @@
         textField4.text=nil;
         textField5.text=nil;
         textField6.text=nil;
+        textField8.text=nil;
     }else{
         sex=[NSString stringWithFormat:@"%@",[dd objectForKey:@"sex"]];
         if ([sex isEqual:@"男"]) {
@@ -272,6 +291,7 @@
         textField4.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"vipCode"]];;
         textField5.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"area"]];;
         textField6.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"detail"]];;
+        textField8.text=[NSString stringWithFormat:@"%@",[dd objectForKey:@"bzType"]];;
     }
     NSFileManager*fm=[NSFileManager defaultManager];
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
@@ -315,7 +335,7 @@
     }
     else if (section == 1)
     {
-        return 6;
+        return 7;
     }
     return 0;
 }
@@ -414,6 +434,8 @@
             [cell addSubview:textField5];
         }else if (indexPath.row==5){
             [cell addSubview:textField6];
+        }else if (indexPath.row==6){
+            [cell addSubview:textField8];
         }
         
         
@@ -556,6 +578,9 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField==textField5) {
         [self sanji];
+        return NO;
+    }else if (textField==textField8){
+        [self bingzhengjiekou];
         return NO;
     }
     return YES;
@@ -760,7 +785,7 @@
 //保存方法
 -(void)baocun
 {
-    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]) {
+    if ([textField1.text isEqual:@""]||[textField2.text isEqual:@""]||[textField3.text isEqual:@""]||[textField5.text isEqual:@""]||[textField6.text isEqual:@""]||[textField8.text isEqual:@""]) {
         [WarningBox warningBoxModeText:@"请输入完整的信息!" andView:self.view];
     }else{
         if ([sex isEqual:@""]) {
@@ -776,7 +801,7 @@
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
             //出入参数：
             NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",vip,@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode", nil];
+            NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:textField5.text,@"area",textField6.text,@"detail",vip,@"vipId",textField1.text,@"nickName",textField2.text,@"name",sex,@"sex",textField3.text,@"age",textField4.text,@"vipCode",textField8.text,@"bzType", nil];
             NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
             
             
@@ -826,8 +851,17 @@
                         //把上传的数据存到本地
                         
                         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRxinxi.plist"];
-                        [datadic writeToFile:path atomically:YES];
-                        NSLog(@"%@",datadic);
+                        
+                        NSDictionary*nono=[NSDictionary dictionaryWithContentsOfFile:path];
+                        
+                        NSString*xixi=[NSString stringWithFormat:@"%@",[nono objectForKey:@"photo"]];
+                        
+                        NSMutableDictionary*zhuan=[NSMutableDictionary dictionaryWithDictionary:datadic];
+                        
+                        [zhuan setObject:xixi forKey:@"photo"];
+                        
+                        [zhuan writeToFile:path atomically:YES];
+                        
                         [self jiguangtouxianggenggai:imageData];
                         
                     }else{

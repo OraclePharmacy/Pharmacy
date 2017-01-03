@@ -147,7 +147,7 @@
     
     NSFileManager *fm=[NSFileManager defaultManager];
     
-    bingzhengarr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
+    bingzhengarr = @[@"高血压",@"高血脂",@"冠心病",@"流行性感冒",@"病毒性感冒",@"风寒感冒",@"风热感冒",@"暑湿感冒"];
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"tiao"] isEqual:@"1"]){
     [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isLogin"];
     }
@@ -869,6 +869,7 @@
         {
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
+                NSLog(@"%@",responseObject);
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
                 
                 rementieziarray = [datadic objectForKey:@"vipTopicListHot"];
@@ -1438,6 +1439,9 @@
             name.frame = CGRectMake(5, 90, 80, 20);
             name.font = [UIFont systemFontOfSize:15];
             name.text = [NSString stringWithFormat:@"%@",[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+            if (NULL == [rementieziarray[indexPath.row] objectForKey:@"vipinfo"]) {
+                name.text=@"系统管理员";
+            }
             name.textAlignment = NSTextAlignmentCenter;
             name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
             

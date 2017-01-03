@@ -259,7 +259,7 @@
             NSString * userID=@"0";
             
             //请求地址   地址不同 必须要改
-            NSString * url =@"/Store/getLocation";
+            NSString * url =@"/Store/getLonLat";
             
             //时间戳
             NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
