@@ -496,7 +496,7 @@
 - (void)downloadFile2:(NSString *)ss
 {
     [WarningBox warningBoxModeIndeterminate:@"视频加载中...." andView:self.view];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ss] cachePolicy:1 timeoutInterval:15];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ss] cachePolicy:1 timeoutInterval:150];
     [[self.session downloadTaskWithRequest:request]resume];
     
 }
@@ -544,11 +544,10 @@
             
             [_movie.view setBackgroundColor:[UIColor clearColor]];
             
-            NSLog(@"空间技术");
             
             [_movie.view setFrame:self.view.bounds];
             
-            [[NSNotificationCenter defaultCenter]addObserver:self
+            [[NSNotificationCenter defaultCenter] addObserver:self
              
                                                     selector:@selector(movieFinishedCallback:)
              

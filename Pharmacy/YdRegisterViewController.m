@@ -307,7 +307,7 @@
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 @try{
-                   
+                    
                     
                     
                     [WarningBox warningBoxHide:YES andView:self.view];
@@ -346,8 +346,12 @@
                         arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                         
                         [_tableview reloadData];
-                       
-                        self.tableview.hidden = NO;
+                        self.tableview.hidden = YES;
+                        if (NULL == [[arr[0] objectForKey:@"office"] objectForKey:@"name"]) {
+                            self.StoreText.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"name"]];
+                        }else
+                            self.StoreText.text = [NSString stringWithFormat:@"%@",[[arr[0] objectForKey:@"office"] objectForKey:@"name"]];
+                        str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
                         
                     }
                 }
@@ -410,7 +414,7 @@
         if (NULL == [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
             name.text=[arr[indexPath.row-1] objectForKey:@"name"];
         }else
-    name.text = [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
+            name.text = [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"];;
     }
     [cell.contentView addSubview:name];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -427,13 +431,13 @@
         if (NULL == [[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]) {
             self.StoreText.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"name"]];
         }else
-    self.StoreText.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]];
+            self.StoreText.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]];
         
         
-    str = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"id"]];
-    
-    self.tableview.hidden = YES;
-    self.bejing.hidden = YES;
+        str = [NSString stringWithFormat:@"%@",[arr[indexPath.row-1] objectForKey:@"id"]];
+        
+        self.tableview.hidden = YES;
+        self.bejing.hidden = YES;
     }
 }
 #pragma 创建三级联动
@@ -711,10 +715,10 @@
                 @try
                 {
                     if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-                         [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
+                        [WarningBox warningBoxModeText:@"验证码已发送" andView:self.view];
                     }
                     NSLog(@"%@",responseObject);
-                   
+                    
                 }
                 @catch (NSException * e) {
                     
@@ -834,7 +838,7 @@
                             [self zhucejm];
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 [self.navigationController popViewControllerAnimated:YES];
- 
+                                
                             });
                         }
                         
@@ -889,7 +893,7 @@
         //                                });
         
     }];
-
+    
 }
 - (void)queding {
     [pickerview removeFromSuperview];
@@ -920,100 +924,100 @@
         area = @"";
         
     }
- 
+    
     if (panduan==1) {
         
-    [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
-    
-    //userID    暂时不用改
-    NSString * userID=@"0";
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/Store/getLocation";
-    
-    //时间戳
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
-    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-    //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",nil];
-
-    NSString*jsonstring=[writer stringWithObject:datadic];
-    
-    //获取签名
-    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-    
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    NSLog(@"%@",url1);
-    //电泳借口需要上传的数据
-    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    NSLog(@"%@",dic);
-    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        [WarningBox warningBoxModeIndeterminate:@"定位门店中..." andView:self.view];
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        @try{
+        //userID    暂时不用改
+        NSString * userID=@"0";
         
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/Store/getLocation";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html",@"text/javascript", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",nil];
+        
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        
+        NSLog(@"%@",url1);
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        NSLog(@"%@",dic);
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
             
-            
-            [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",responseObject);
-            if([[responseObject objectForKey:@"code"] intValue]==1111){
-                NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            @try{
                 
                 
-                shengg=[SSMap allKeys];
-                bianxing=[[NSMutableArray alloc] init];
                 
-                for (int i=0; i<shengg.count; i++) {
+                [WarningBox warningBoxHide:YES andView:self.view];
+                NSLog(@"%@",responseObject);
+                if([[responseObject objectForKey:@"code"] intValue]==1111){
+                    NSDictionary* SSMap=[NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"SSMap"]];
                     
-                    NSMutableArray*meme1=[[NSMutableArray alloc] init];
-                    NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
-                    NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
-                    for (int y=0; y<xixi.count; y++) {
-                        [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                    
+                    shengg=[SSMap allKeys];
+                    bianxing=[[NSMutableArray alloc] init];
+                    
+                    for (int i=0; i<shengg.count; i++) {
+                        
+                        NSMutableArray*meme1=[[NSMutableArray alloc] init];
+                        NSArray *xixi=[SSMap objectForKey:[NSString stringWithFormat:@"%@",shengg[i]]];
+                        NSMutableDictionary*hehe1=[[NSMutableDictionary alloc] init];
+                        for (int y=0; y<xixi.count; y++) {
+                            [meme1 addObject: [xixi[y] objectForKey:@"name"]];
+                        }
+                        [hehe1 setObject:meme1 forKey:@"cities"];
+                        [hehe1 setObject:shengg[i] forKey:@"state"];
+                        [bianxing addObject:hehe1];
+                        
                     }
-                    [hehe1 setObject:meme1 forKey:@"cities"];
-                    [hehe1 setObject:shengg[i] forKey:@"state"];
-                    [bianxing addObject:hehe1];
+                    [self sanji];
                     
                 }
-                [self sanji];
-
+                else if ([[responseObject objectForKey:@"code"] intValue]==0){
+                    //5个门店的列表
+                    panduan=2;
+                    arr=[NSArray array];
+                    arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
+                    
+                    [_tableview reloadData];
+                    [self.tableview reloadData];
+                    self.tableview.hidden = NO;
+                    
+                    
+                    
+                }
             }
-            else if ([[responseObject objectForKey:@"code"] intValue]==0){
-                //5个门店的列表
-                panduan=2;
-                arr=[NSArray array];
-                arr=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
-                
-                [_tableview reloadData];
-                [self.tableview reloadData];
-                self.tableview.hidden = NO;
-                
-                
+            @catch (NSException * e) {
+                [WarningBox warningBoxModeText:@"" andView:self.view];
                 
             }
-        }
-        @catch (NSException * e) {
-            [WarningBox warningBoxModeText:@"" andView:self.view];
             
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-        NSLog(@"错误：%@",error);
-    }];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+            NSLog(@"错误：%@",error);
+        }];
     }
-
+    
     self.bejing.hidden = YES;
     
 }

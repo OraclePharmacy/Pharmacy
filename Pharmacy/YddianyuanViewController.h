@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YddianyuanViewController : UIViewController
-
+@property (nonatomic ,strong)NSString*objectid;
 @end

@@ -35,10 +35,7 @@
     [self readqrcode];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 -(void)readqrcode{
     float kuan=[[UIScreen mainScreen ] bounds].size.width;
     float gao=[[UIScreen mainScreen] bounds].size.height;
@@ -148,7 +145,7 @@
                     else
                     {
                         YddianyuanViewController *dianyuan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dianyuan"];
-                        
+                        dianyuan.objectid=_objecct;
                         [self.navigationController pushViewController:dianyuan animated:YES];
                     }
     

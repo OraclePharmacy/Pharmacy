@@ -13,7 +13,7 @@
 #import "SBJson.h"
 #import "hongdingyi.h"
 #import "lianjie.h"
-
+#import "YdmendianxinxiViewController.h"
 #import "RatingBar.h"
 
 @interface YddianyuanViewController ()<RatingBarDelegate,UITextViewDelegate>
@@ -82,7 +82,7 @@
     [self.ratingBar3 setImageDeselected:@"star_dark.png" halfSelected:@"bx.png" fullSelected:@"star_light.png" andDelegate:self];
     
     [self kongjian];
-
+    
 }
 
 -(void)kongjian
@@ -194,63 +194,74 @@
 }
 -(void)tijiaoanniu
 {
-    //userID    暂时不用改
-    NSString * userID=@"0";
-    
-    //请求地址   地址不同 必须要改
-    NSString * url =@"/function/saveAppraise";
-    
-    //时间戳
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
-    
-    //将上传对象转换为json格式字符串
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
-    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-    //出入参数：
-    NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"officeid"];
-  NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"1",@"type",vip,@"vipId",officeid,@"objectId",nil];
-    NSString*jsonstring=[writer stringWithObject:datadic];
-    
-    //获取签名
-    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
-    
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    //电泳借口需要上传的数据
-    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
-    
-    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+    if ([self.textview.text  isEqual:@""]||str1.length==0||str2.length==0||str3.length==0||dengji.length==0) {
+        [WarningBox warningBoxModeText:@"请输入完整信息！" andView:self.view];
+    }else{
+        //userID    暂时不用改
+        NSString * userID=@"0";
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        @try
-        {
-           // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+        //请求地址   地址不同 必须要改
+        NSString * url =@"/function/saveAppraise";
+        
+        //时间戳
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970];
+        NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+        
+        
+        //将上传对象转换为json格式字符串
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        //出入参数：
+        //    NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"officeid"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:str1,@"appraiseItem1",str2,@"appraiseItem2",str3,@"appraiseItem3",self.textview.text,@"content", dengji,@"level",@"1",@"type",vip,@"vipId",_objectid,@"objectId",nil];
+        NSString*jsonstring=[writer stringWithObject:datadic];
+        
+        //获取签名
+        NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+        
+        NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+        //电泳借口需要上传的数据
+        NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+        
+        [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
             
-            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            @try
+            {
+                // [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                    
+                    [WarningBox warningBoxModeText:@"评价成功！" andView:self.navigationController.view];
+                    
+                    YdmendianxinxiViewController *xln=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mendianxinxi"];
+                    for (UIViewController *controller in self.navigationController.viewControllers) {
+                        if ([controller isKindOfClass:[xln class]]) {
+                            [self.navigationController popToViewController:controller animated:YES];
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            @catch (NSException * e) {
+                
+                [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
                 
             }
             
-            
-        }
-        @catch (NSException * e) {
-            
-            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
-        }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        }];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
-    }];
-    
-    
+    }
 }
 
 -(void)textViewDidChange:(UITextView *)textView

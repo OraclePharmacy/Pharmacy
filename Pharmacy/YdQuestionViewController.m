@@ -193,14 +193,14 @@
     
     UILabel * name = [[UILabel alloc]init];
     name.frame = CGRectMake(CGRectGetMaxX(touxiang.frame) + 10, 10, width - 50 -CGRectGetMaxX(touxiang.frame) - 20 , 21);
-    name.text =  [NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"name"]];
+    name.text =  [NSString stringWithFormat:@"姓名:%@",[arr[indexPath.section] objectForKey:@"name"]];
     name.font = [UIFont systemFontOfSize:15];
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     
     
     
     UIButton *zixun = [[UIButton alloc]init];
-    zixun.frame = CGRectMake(width - 50, 10, 40, 21);
+    zixun.frame = CGRectMake(width - 50, 10, 40, 44);
     [zixun setTitle:@"咨询" forState:UIControlStateNormal];
     [zixun setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
     zixun.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -211,14 +211,14 @@
     
     UILabel *neirong = [[UILabel alloc]init];
     neirong.frame = CGRectMake(CGRectGetMaxX(touxiang.frame) + 10,38, width - CGRectGetMaxX(touxiang.frame) - 20 ,16);
-    neirong.text = [NSString stringWithFormat:@"药师类别:     %@",[arr[indexPath.section] objectForKey:@"specialty"]];
+    neirong.text = [NSString stringWithFormat:@"咨询次数:  %@ 次",[arr[indexPath.section] objectForKey:@"answerTime"]];
     neirong.font = [UIFont systemFontOfSize:13];
     neirong.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     
     
     UILabel *neirong1 = [[UILabel alloc]init];
     neirong1.frame = CGRectMake(CGRectGetMaxX(touxiang.frame) + 10,55, width - CGRectGetMaxX(touxiang.frame) - 20 ,16);
-    neirong1.text = [NSString stringWithFormat:@"药师资质:     %@",[arr[indexPath.section] objectForKey:@"qualification"]];
+    neirong1.text = [NSString stringWithFormat:@"好  评  率:  %@ %%",[arr[indexPath.section] objectForKey:@"highOpinion"]];
     neirong1.font = [UIFont systemFontOfSize:13];
     neirong1.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     

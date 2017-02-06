@@ -17,7 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import <JMessage/JMessage.h>
 #import "mememeViewController.h"
-
+#import "zizizhiViewController.h"
 @interface YdPharmacistDetailsViewController ()
 
 {
@@ -43,7 +43,7 @@
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _second = @[@"性别:",@"资格:",@"专业:",@"解答次数:"];
+    _second = @[@"性别:",@"电话:",@"经历:",@"专业:",@"资质:"];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -238,13 +238,16 @@
             
         }
         else if (indexPath.row == 1) {
-            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"specialty"]];
+            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"teleIphone"]];
         }
         else if (indexPath.row == 2) {
-            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"qualification"]];
+            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"mainExperience"]];
         }
         else if (indexPath.row == 3) {
-            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"answerTime"]];
+            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"specialty"]];
+        }
+        else if (indexPath.row == 4){
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
 
@@ -320,6 +323,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section ==1) {
+        if (indexPath.row==4) {
+            //跳转传值
+            zizizhiViewController*Shop = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zizhiaa"];
+            Shop.url = [arr[0] objectForKey:@"shareUrl"];
+            [self.navigationController pushViewController:Shop animated:YES];
+        }
+    }
     if (indexPath.section == 2) {
         //跳转传值
          YdShopViewController*Shop = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shop"];

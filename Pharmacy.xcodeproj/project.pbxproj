@@ -347,6 +347,7 @@
 		D2D4E7431E1102990080A156 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D4E7401E1102990080A156 /* JMUIChattingKit.framework */; };
 		D2D4E7441E1102990080A156 /* JMUIChattingKitResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2D4E7411E1102990080A156 /* JMUIChattingKitResource.bundle */; };
 		D2D4E7451E1102990080A156 /* JMUICommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D4E7421E1102990080A156 /* JMUICommon.framework */; };
+		D2DE7EBA1E2F48DF00FDFF34 /* zizizhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DE7EB91E2F48DF00FDFF34 /* zizizhiViewController.m */; };
 		D2F204CB1D01817C00276FAC /* mememeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F204CA1D01817C00276FAC /* mememeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -896,6 +897,8 @@
 		D2D4E7401E1102990080A156 /* JMUIChattingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUIChattingKit.framework; sourceTree = "<group>"; };
 		D2D4E7411E1102990080A156 /* JMUIChattingKitResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JMUIChattingKitResource.bundle; sourceTree = "<group>"; };
 		D2D4E7421E1102990080A156 /* JMUICommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMUICommon.framework; sourceTree = "<group>"; };
+		D2DE7EB81E2F48DF00FDFF34 /* zizizhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zizizhiViewController.h; sourceTree = "<group>"; };
+		D2DE7EB91E2F48DF00FDFF34 /* zizizhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zizizhiViewController.m; sourceTree = "<group>"; };
 		D2F204C91D01817C00276FAC /* mememeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mememeViewController.h; sourceTree = "<group>"; };
 		D2F204CA1D01817C00276FAC /* mememeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mememeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1007,6 +1010,8 @@
 			children = (
 				950536781CCF5F5C00BA1C43 /* YdShopViewController.h */,
 				950536791CCF5F5C00BA1C43 /* YdShopViewController.m */,
+				D2DE7EB81E2F48DF00FDFF34 /* zizizhiViewController.h */,
+				D2DE7EB91E2F48DF00FDFF34 /* zizizhiViewController.m */,
 			);
 			name = "门店";
 			sourceTree = "<group>";
@@ -2740,6 +2745,7 @@
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
 				95F440C81CD047A000B66D8C /* UUBar.m in Sources */,
 				95EFDB221D506D5D006557DC /* YdmingchengViewController.m in Sources */,
+				D2DE7EBA1E2F48DF00FDFF34 /* zizizhiViewController.m in Sources */,
 				9537CFCB1CC9D8690031021A /* YdPurchasingViewController.m in Sources */,
 				9549FB651D599EC4004591E1 /* TianTableViewCell.m in Sources */,
 				95609EA71CABC72E00AF65E4 /* SBJsonTokeniser.m in Sources */,

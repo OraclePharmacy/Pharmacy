@@ -13,4 +13,5 @@
 @property (strong , nonatomic)AVCaptureVideoPreviewLayer*previewLayer;
 
 @property (strong,nonatomic) NSString *str;
+@property (strong, nonatomic) NSString *objecct;
 @end

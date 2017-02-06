@@ -153,7 +153,6 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     
     cell.imageView.image = [UIImage imageNamed:self.image[indexPath.row]];
-    
     cell.textLabel.text = self.lefs[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"323232" alpha:1];

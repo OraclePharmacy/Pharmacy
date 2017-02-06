@@ -44,7 +44,7 @@
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
-    arr = @[@"门店简介:",@"门店地址:",@"负责人:",@""];
+    arr = @[@"门店简介:",@"门店地址:",@"营业时间:",@"送货范围:",@"负责人:",@""];
     
     //导航栏标题
     self.navigationItem.title = @"门店名称";
@@ -139,7 +139,7 @@
     }
     else if (section == 1)
     {
-        return 4;
+        return 6;
     }
     else if (section == 2)
     {
@@ -174,6 +174,9 @@
         if(indexPath.row==0){
             //根据lable返回行高
             NSString* s=[[NSString alloc] init];
+            if (NULL == [mendiandion objectForKey:@"remarks"]) {
+                s=@"";
+            }else
             s=[NSString stringWithFormat:@"%@",[mendiandion objectForKey:@"remarks"] ];
              lable=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
@@ -185,14 +188,14 @@
              {
              NSFontAttributeName: font
              }];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-40, CGFLOAT_MAX}
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-80, CGFLOAT_MAX}
                                                        options:NSStringDrawingUsesLineFragmentOrigin
                                                        context:nil];
             
             lable.text=s;
-            [lable setFrame:CGRectMake(80, 0, rect.size.width, rect.size.height)];
+            [lable setFrame:CGRectMake(80, 10, rect.size.width, rect.size.height)];
             
-            return lable.frame.size.height+1>40? lable.frame.size.height+1:40;
+            return lable.frame.size.height+16>40? lable.frame.size.height+16:40;
             
         }
         return 40;
@@ -216,7 +219,7 @@
         image.frame = CGRectMake(0, 0, width, 150);
         
         
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[mendiandion objectForKey:@"photo"]];
+        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[mendiandion objectForKey:@"picture"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
         [cell.contentView addSubview:image];
     }
@@ -248,6 +251,21 @@
         }
         else if (indexPath.row == 2)
         {
+            UILabel *yingye =[[UILabel alloc] init];
+            yingye.frame = CGRectMake( 80, 10, 280, 20);
+            yingye.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            yingye.font = [UIFont systemFontOfSize:13];
+            yingye.text = [mendiandion objectForKey:@"openDurTime"];
+            [cell.contentView addSubview:yingye];
+        }else if (indexPath.row==3){
+            UILabel *fanwei =[[UILabel alloc] init];
+            fanwei.frame = CGRectMake( 80, 10, 280, 20);
+            fanwei.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            fanwei.font = [UIFont systemFontOfSize:13];
+            fanwei.text = [mendiandion objectForKey:@"serviceScope"];
+            [cell.contentView addSubview:fanwei];
+        }else if (indexPath.row==4){
+            
             UILabel *fuzeren = [[UILabel alloc]init];
             fuzeren.frame = CGRectMake( 65, 10, 80, 20);
             fuzeren.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
@@ -263,7 +281,7 @@
             dianhua.textAlignment = NSTextAlignmentCenter;
             [cell.contentView addSubview:dianhua];
         }
-        else if (indexPath.row == 3)
+        else if (indexPath.row == 5)
         {
             UILabel *pingjia = [[UILabel alloc]init];
             pingjia.frame = CGRectMake( 5, 10, 100, 20);
@@ -324,11 +342,12 @@
         [cell.contentView addSubview:haoping];
         
         UIButton * mendian = [[UIButton alloc]init];
+        mendian.tag=600+indexPath.row;
         mendian.frame = CGRectMake(width - 120, 50, 100, 20);
         [mendian setTitle:@"评价店员" forState:UIControlStateNormal];
         [mendian setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateNormal];
         mendian.titleLabel.font = [UIFont systemFontOfSize: 13.0];
-        [mendian addTarget:self action:@selector(pingjiadianyuan) forControlEvents:UIControlEventTouchUpInside];
+        [mendian addTarget:self action:@selector(pingjiadianyuan:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:mendian];
         
     }
@@ -351,13 +370,24 @@
         [self.navigationController pushViewController:Scan animated:YES];
     }
 }
--(void)pingjiadianyuan
+-(void)pingjiadianyuan:(UIButton *)button
 { if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
     [tiaodaodenglu jumpToLogin:self.navigationController];
 }else{
+   
+    int bu;
+    bu=(int)button.tag-600;
+    NSString *objct=[NSString stringWithFormat:@"%@",[dianyuanarray[bu] objectForKey:@"id"]];
+    
+    
+
+    
+    
+    
     //跳转到扫描页面
     YdScanViewController *Scan = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scan"];
     Scan.str = @"2";
+    Scan.objecct=objct;
     [self.navigationController pushViewController:Scan animated:YES];
 }
 }

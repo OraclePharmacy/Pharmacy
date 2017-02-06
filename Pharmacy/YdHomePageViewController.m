@@ -103,6 +103,8 @@
     UILabel *label;
     int coun;
     int ye;
+    
+    UIView*beibei;
 }
 
 @property (strong,nonatomic) UICollectionView *Collectionview;
@@ -143,6 +145,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     NSString *cunzai=[NSString stringWithFormat:@"%@/Documents/cun.plist",NSHomeDirectory()];
     
     NSFileManager *fm=[NSFileManager defaultManager];
@@ -176,11 +179,14 @@
     
     gao = width/4/156*184;
     kuan = width/4;
-    
+    beibei = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    beibei.backgroundColor = [UIColor blackColor];
+    beibei.alpha = 0.5;
+    [self.view addSubview:beibei];
     wocalei=[[UITableView alloc] initWithFrame:CGRectMake((width-200)/2, (heigth-64-50-240)/2, 200, 240)];
     wocalei.delegate=self;
     wocalei.dataSource=self;
-    wocalei.hidden=YES;
+    wocalei.hidden=YES;beibei.hidden=YES;
     [wocalei.layer setBorderWidth:1];
     [wocalei.layer setCornerRadius:30];
     [wocalei.layer setBorderColor:[[UIColor greenColor] CGColor]];
@@ -232,8 +238,7 @@
             }
         }
     }
-    
-    
+//    [beibei addSubview:wocalei];
     //调用定位
     [self initializeLocationService];
     
@@ -325,6 +330,9 @@
 //选择门店按钮
 -(void)searchbutton
 {
+    if(wocalede.count==1){
+        panduan=0;
+    }
     //调用定位方法。。。
     [self zidongdingwei];
     //弹出列表
@@ -537,8 +545,12 @@
         NSLog(@"手机号：%@",shoujihao);
         
         [JMSGUser loginWithUsername:shoujihao password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-            [WarningBox warningBoxHide:YES andView:self.view];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [WarningBox warningBoxHide:YES andView:self.view];
+            });
+            
             if (error) {
+               
                 if (error.code == 863006) {
                     NSLog(@"已经登陆");
                     [self jixu];
@@ -549,19 +561,18 @@
                     NSLog(@"没有此用户");
                     [self imzhuce];
                 }
-
                 return ;
+            }else{
+                
+                [self jixu];
             }
-            [self jixu];
-           
         }];
-        
     }
 }
 -(void)jixu{
     YdQuestionViewController *Question = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"question"];
     
-    
+    [WarningBox warningBoxHide:YES andView:self.view];
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
     NSString *filename=[path stringByAppendingPathComponent:@"baocun.plist"];
@@ -579,13 +590,9 @@
         NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/[dic objectForKey:@"yongjingxi"],@"yongjingxi",/*2*/[NSString stringWithFormat:@"%d",wentaoshi],@"wenyaoshi",/*3*/[dic objectForKey:@"daigouyao"],@"daigouyao",/*4*/[dic objectForKey:@"youhuiquan"],@"youhuiquan",/*5*/[dic objectForKey:@"bingyoujiaoliu"],@"bingyoujiaoliu",/*6*/[dic objectForKey:@"zizhen"],@"zizhen",/*7*/[dic objectForKey:@"yongyaotixing"],@"yongyaotixing",/*8*/[dic objectForKey:@"xueyaxuetang"],@"xueyaxuetang",/*9*/[dic objectForKey:@"dianzibingli"],@"dianzibingli",/*10*/[dic objectForKey:@"zhihuiyaoxiang"],@"zhihuiyaoxiang",nil];
         
         [dic1 writeToFile:filename atomically:YES];
-        
     }else {
-        
         NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"1",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
-        
         [dic writeToFile:filename atomically:YES];
-        
     }
  [self.navigationController pushViewController:Question animated:YES];
 }
@@ -907,14 +914,13 @@
     NSTimeInterval a=[dat timeIntervalSince1970];
     NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
     
-    
     //将上传对象转换为json格式字符串
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-    //id   传空
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"1002",@"id", nil];
+    //id   不传空
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"9          ",@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -976,7 +982,11 @@
 //行
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {   if(tableView==wocalei){
-    return wocalede.count+1;
+    if (wocalede.count<=5) {
+        return wocalede.count+1;
+    }else
+        return 6;
+    
 }else{
     if (section == 0)
     {
@@ -1314,7 +1324,11 @@
                 specialoffer.textColor = [UIColor colorWithHexString:@"FC4753" alpha:1];
                 
                 if ([[proList[i] objectForKey:@"isShowMoney"]floatValue] == 1) {
-                    originalcost.text = [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"prodPrice"]floatValue]];
+                    
+                    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"prodPrice"]floatValue]]];
+                    [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+                    
+                    originalcost.attributedText = string;
                     specialoffer.text =  [NSString stringWithFormat:@"¥%.2f",[[proList[i] objectForKey:@"specPrice"] floatValue]];
                 }
                 else if ([[proList[i] objectForKey:@"isShowMoney"]floatValue] == 0){
@@ -1398,7 +1412,9 @@
                 originalcost.font = [UIFont systemFontOfSize:11];
                 originalcost.textAlignment = NSTextAlignmentCenter;
                 originalcost.textColor = [UIColor colorWithHexString:@"909090" alpha:1];
-                originalcost.text = [NSString stringWithFormat:@"¥%@",[presentarray[i] objectForKey:@"price"]];;
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%.2f",[[presentarray[i] objectForKey:@"price"] floatValue]]];
+                [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+                originalcost.attributedText = string;;
                 //积分
                 UILabel *specialoffer = [[UILabel alloc] init];
                 specialoffer.frame = CGRectMake(0, gao*0.85, kuan, gao*0.15);
@@ -1425,7 +1441,8 @@
             self.scrollView.showsHorizontalScrollIndicator = NO;
             
             
-        }else if (indexPath.section == 4)
+        }
+        else if (indexPath.section == 4)
         {
             
             UIImageView *touxiang = [[UIImageView alloc]init];
@@ -1630,7 +1647,7 @@
             [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]] forKey:@"yixuanmendian"];
             }
             [SearchButton setTitle:haha forState:UIControlStateNormal];
-            wocalei.hidden=YES;
+            wocalei.hidden=YES;beibei.hidden=YES;
             NSLog(@"%d",panduan);
             if (panduan!=2) {
                 panduan=1;
@@ -1652,13 +1669,14 @@
     }else
     {
         wocalei.hidden=YES;
+        beibei.hidden=YES;
         if (indexPath.section == 5) {
             if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
                 [tiaodaodenglu jumpToLogin:self.navigationController];
             }else{
                 //跳转文字资讯详情
                 YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
-                //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+              
                 TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
                 [self.navigationController pushViewController:TextDetails animated:YES];
             }
@@ -1680,7 +1698,7 @@
 }
 #pragma  mark ---好多按钮
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    wocalei.hidden=YES;
+    wocalei.hidden=YES;beibei.hidden=YES;
 }
 //特价药品展示   药品详情
 - (void)handleClick1:(UIButton *)btn{
@@ -2006,7 +2024,7 @@
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
         NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"liansuoid"];
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"longitude",@"",@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",officeid,@"officeId",nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",state,@"areaProvince", city,@"areaCity",area,@"areaQu",officeid,@"officeId",nil];
         NSLog(@"datadic   %@",datadic);
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -2058,7 +2076,20 @@
                     
                     [wocalei reloadData];
                     
-                    wocalei.hidden = NO;
+                   
+                    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forKey:@"yixuanmendian"];
+                    
+                    [SearchButton setTitle:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forState:UIControlStateNormal];
+                    wocalei.hidden=YES;beibei.hidden=YES;
+                    NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
+                    [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[0] objectForKey:@"id"]] forKey:@"officeid"];
+                    [self bannerjiekou];
+                    [self tejieyaopinjiekou];
+                    [self bargaingoodsjiekou];
+                    [self rementiezi];
+                    [self remenzixun];
+
+
                     
                     
                     
@@ -2261,8 +2292,19 @@ int nicaicai=0;
                     wocalede=[NSArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"mdList"]];
                     
                     [wocalei reloadData];
-                    //                    [wocalei reloadData];
-                    wocalei.hidden = NO;
+                    wocalei.hidden = YES;beibei.hidden=YES;
+                    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forKey:@"yixuanmendian"];
+                
+                [SearchButton setTitle:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forState:UIControlStateNormal];
+                wocalei.hidden=YES;beibei.hidden=YES;
+                    NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
+                    [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[0] objectForKey:@"id"]] forKey:@"officeid"];
+                    [self bannerjiekou];
+                    [self tejieyaopinjiekou];
+                    [self bargaingoodsjiekou];
+                    [self rementiezi];
+                    [self remenzixun];
+
                     
                 }
             }
@@ -2283,7 +2325,7 @@ int nicaicai=0;
     }
     else if (panduan==2){
         [WarningBox warningBoxHide:YES andView:self.view];
-        wocalei.hidden=NO;
+        wocalei.hidden=NO;beibei.hidden=NO;
         
     }else{
         [WarningBox warningBoxHide:YES andView:self.view];

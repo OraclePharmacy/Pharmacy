@@ -836,15 +836,15 @@
                      kJMSGUserFieldsRegion: 区域
                      kJMSGUserFieldsAvatar: 头像
                      */
-                    [JMSGUser updateMyInfoWithParameter:imageData userFieldType:kJMSGUserFieldsAvatar  completionHandler:^(id resultObject, NSError *error) {
-                        if (!error) {
-                            NSLog(@"头像成功");
-                            //updateMyInfoWithPareter success
-                        } else {
-                            NSLog(@"头像失败----%@",error);
-                            //updateMyInfoWithPareter fail
-                        }
-                    }];
+//                    [JMSGUser updateMyInfoWithParameter:imageData userFieldType:kJMSGUserFieldsAvatar  completionHandler:^(id resultObject, NSError *error) {
+//                        if (!error) {
+//                            NSLog(@"头像成功");
+//                            //updateMyInfoWithPareter success
+//                        } else {
+//                            NSLog(@"头像失败----%@",error);
+//                            //updateMyInfoWithPareter fail
+//                        }
+//                    }];
                     NSLog(@"responseObject:%@",responseObject);
                     [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                     if ([[responseObject objectForKey:@"code"] intValue]==0000) {

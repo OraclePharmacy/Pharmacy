@@ -399,6 +399,7 @@
     else if(index == 1){
         //点击分段控制前半段zhi赋值为2
         zhi = 2;
+        diantaiye=1;
         [self jiankangdiantai];
         //刷新tableview
         [self.tableview reloadData];

@@ -49,8 +49,8 @@
  */
 + (void) warningBoxHide:(BOOL)isHide andView:(UIView *)view{
     
-    [MBProgressHUD hideHUDForView:view animated:YES];
-    
+//    [MBProgressHUD hideHUDForView:view animated:YES];
+    [MBProgressHUD hideAllHUDsForView:view animated:YES];
 }
 
 

@@ -201,19 +201,22 @@
     changjia.frame = CGRectMake(110, 25, width - 115, 20);
     changjia.font = [UIFont systemFontOfSize:12];
     changjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    changjia.text = [NSString stringWithFormat:@"%@",[presentarray[indexPath.row] objectForKey:@"manufacturer"]];
+    changjia.text = [NSString stringWithFormat:@"厂家:%@",[presentarray[indexPath.row] objectForKey:@"manufacturer"]];
     
     UILabel *guige = [[UILabel alloc]init];
     guige.frame = CGRectMake(110, 45, width - 115, 20);
     guige.font = [UIFont systemFontOfSize:12];
     guige.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    guige.text = [NSString stringWithFormat:@"%@",[presentarray[indexPath.row] objectForKey:@"specification"]];
+    guige.text = [NSString stringWithFormat:@"规格:%@",[presentarray[indexPath.row] objectForKey:@"specification"]];
     
     UILabel *yuanjian = [[UILabel alloc]init];
     yuanjian.frame = CGRectMake(110, 65, width - 115, 20);
     yuanjian.font = [UIFont systemFontOfSize:12];
     yuanjian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-    yuanjian.text = [NSString stringWithFormat:@"￥%@",[presentarray[indexPath.row] objectForKey:@"price"]];
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"原价:¥%.2f",[[presentarray[indexPath.row] objectForKey:@"price"] floatValue]]];
+    [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+    yuanjian.attributedText = string;
     
     UILabel *tejia = [[UILabel alloc]init];
     tejia.frame = CGRectMake(110, 85, width  - 115, 20);

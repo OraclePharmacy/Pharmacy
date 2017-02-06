@@ -153,13 +153,10 @@
 }
 
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-
 {
-    
     i = 0;
     //检测到摇动
     [time setFireDate:[NSDate distantPast]];
-    
     
 }
 
@@ -216,20 +213,29 @@
                 });
                 
             }
-            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+            else if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 k = 1;
                 chuan=[[NSDictionary alloc] init];
                 chuan=[responseObject valueForKey:@"data"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     self.bian.hidden = NO;
                     time1 = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(zhongjiang) userInfo:nil repeats:YES];
-                    
-                    
-                    //
-                    //            [time1 setFireDate:[NSDate distantPast]];
-                    
+       
                 });
                 
+            }
+            else{
+                UIButton *fanhui = [[UIButton alloc]init];
+                fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
+                [fanhui setTitle:@"返回" forState:UIControlStateNormal];
+                [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                fanhui.layer.cornerRadius = 5;
+                fanhui.layer.masksToBounds = YES;
+                fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
+                fanhui.layer.borderWidth =1;
+                [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:fanhui];
+
             }
         }
         @catch (NSException * e) {
@@ -242,6 +248,17 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        UIButton *fanhui = [[UIButton alloc]init];
+        fanhui.frame = CGRectMake( 50, height - 100, width - 100, 30);
+        [fanhui setTitle:@"返回" forState:UIControlStateNormal];
+        [fanhui setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        fanhui.layer.cornerRadius = 5;
+        fanhui.layer.masksToBounds = YES;
+        fanhui.layer.borderColor = [UIColor whiteColor].CGColor;
+        fanhui.layer.borderWidth =1;
+        [fanhui addTarget:self action:@selector(fanhui) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:fanhui];
+
     }];
     
     
