@@ -215,7 +215,7 @@
     
     if (NULL == [proList[indexPath.row] objectForKey:@"specPrice"] || [[proList[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
         tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tejia.text = @"非特价要";
+        tejia.text = @"非特价药";
     }
     else
     {

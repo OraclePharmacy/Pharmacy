@@ -17,7 +17,7 @@
 #import "YdTextDetailsViewController.h"
 #import "YdInformationDetailsViewController.h"
 #import "MJRefresh.h"
-
+#import "YdbannerViewController.h"
 @interface YdwodeshoucangViewController ()
 {
     CGFloat width;
@@ -224,7 +224,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
     
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"picUrl"]] ;
+    NSString*path;
+    if ([arr[indexPath.row] objectForKey:@"poster"]==nil) {
+        path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"picUrl"]] ;
+    }else{
+        path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"poster"] objectForKey:@"url"]] ;
+    }
     UIImageView *image = [[UIImageView alloc]init];
     image.frame = CGRectMake(10, 10, 100 , 100);
     [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
@@ -232,14 +237,22 @@
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 10, width - CGRectGetMaxY(image.frame) - 20, 30);
     title.font = [UIFont systemFontOfSize:15];
-    title.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"title"] ];
+    if ([arr[indexPath.row] objectForKey:@"poster"]==nil) {
+        title.text=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"title"]] ;
+    }else{
+        title.text =[NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"poster"] objectForKey:@"title"] ];
+    }
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     //title.backgroundColor = [UIColor grayColor];
     
     UILabel *content = [[UILabel alloc]init];
     content.frame = CGRectMake(CGRectGetMaxX(image.frame) + 10, 60, width - CGRectGetMaxY(image.frame) - 20, 40);
     content.font = [UIFont systemFontOfSize:12];
-    content.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"subtitle"] ];
+    if ([arr[indexPath.row] objectForKey:@"poster"]==nil) {
+        content.text=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"subtitle"]] ;
+    }else{
+        content.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"poster"] objectForKey:@"title"] ];
+    }
     content.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     content.numberOfLines = 2;
     //content.backgroundColor = [UIColor grayColor];
@@ -247,7 +260,11 @@
     UILabel *time = [[UILabel alloc]init];
     time.frame = CGRectMake(width - 150, 100, 145, 20);
     time.font = [UIFont systemFontOfSize:13];
-    time.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"createTime"]];
+    if ([arr[indexPath.row] objectForKey:@"poster"]==nil) {
+        time.text=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"createTime"]] ;
+    }else{
+        time.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"poster"] objectForKey:@"publishTime"]];
+    }
     time.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     time.numberOfLines = 2;
     //time.backgroundColor = [UIColor grayColor];
@@ -258,9 +275,13 @@
     xian.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     
     UILabel *laiyuan = [[UILabel alloc]init];
-   laiyuan.frame = CGRectMake(10,130, 100, 20);
+    laiyuan.frame = CGRectMake(10,130, 100, 20);
     laiyuan.font = [UIFont systemFontOfSize:13];
-    laiyuan.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"source"]];
+    if ([arr[indexPath.row] objectForKey:@"poster"]==nil) {
+        laiyuan.text=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"source"]] ;
+    }else{
+        laiyuan.text = @"来源:海报";
+    }
     laiyuan.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     
     
@@ -311,24 +332,28 @@
 }
 //tableview点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([[arr[indexPath.row] objectForKey:@"type"] isEqualToString:@"0"])
-    {
-        //跳转文字资讯详情
-        YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
-        //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
-        TextDetails.xixi=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
-        [self.navigationController pushViewController:TextDetails animated:YES];
+    if([arr[indexPath.row] objectForKey:@"poster"]!=nil){
+        YdbannerViewController *banner = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"banner"];
+        banner.xixi=[NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"poster"] objectForKey:@"id"]];
+        [self.navigationController pushViewController:banner animated:YES];
+    }else{
+        
+        if ([[arr[indexPath.row] objectForKey:@"type"] isEqualToString:@"0"])
+        {
+            //跳转文字资讯详情
+            YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
+            //传值   [newsListForInterface[indexPath.row]objectForKey:@"type"];
+            TextDetails.xixi=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+            [self.navigationController pushViewController:TextDetails animated:YES];
+        }
+        else
+        {
+            YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
+            InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+            InformationDetails.liexing=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"type"]];
+            [self.navigationController pushViewController:InformationDetails animated:YES];
+        }
     }
-    else
-    {
-        YdInformationDetailsViewController *InformationDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"informationdetails"];
-        InformationDetails.hahaha=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
-        InformationDetails.liexing=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"type"]];
-        [self.navigationController pushViewController:InformationDetails animated:YES];
-    }
-    
-    
 }
 //返回
 -(void)fanhui

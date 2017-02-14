@@ -100,8 +100,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //office id
+    NSString*zhid;
+    NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+    zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
     //出入参数：
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_bingzhengID,@"id", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_bingzhengID,@"id",zhid,@"officeId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     

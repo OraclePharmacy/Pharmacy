@@ -50,7 +50,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self jiekou];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

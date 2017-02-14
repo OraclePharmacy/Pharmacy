@@ -889,12 +889,65 @@
 }
 -(void)jiguangtouxianggenggai:(NSData*)image{
     
+    NSString *shoujihao =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
+    NSLog(@"手机号：%@",shoujihao);
+    
+    [JMSGUser loginWithUsername:shoujihao password:@"111111" completionHandler:^(id resultObject, NSError *error) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [WarningBox warningBoxHide:YES andView:self.view];
+        });
+        
+        if (error) {
+            
+            if (error.code == 863006) {
+                NSLog(@"已经登陆");
+                [self jixu:image];
+            }else if(error.code == 863001){
+                NSLog(@"没有此用户");
+                [self imzhuce:image];
+            }else if (error.code == 801003){
+                NSLog(@"没有此用户");
+                [self imzhuce:image];
+            }
+            return ;
+        }else{
+            
+            [self jixu:image];
+        }
+    }];
+
+    
+    
+   
+}
+-(void)imzhuce:(NSData*)image{
+    [JMSGUser registerWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]]
+                          password:@"111111"
+                 completionHandler:^(id resultObject, NSError *error) {
+                     [WarningBox warningBoxHide:YES andView:self.view];
+                     if (!error) {
+                         //注册成功
+                         [self jiguangtouxianggenggai:image];
+                     } else {
+                         //注册失败
+                         NSLog(@"失败%@",error);
+                         [WarningBox warningBoxHide:YES andView:self.navigationController.view];
+                         return ;
+                     }
+                 }];
+
+}
+-(void)jixu:(NSData*)image{
     [JMSGUser updateMyInfoWithParameter:image userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
         if (!error) {
             //updateMyInfoWithPareter success
             [self fanhui];
         } else {
+            NSLog(@"%@",image);
             //updateMyInfoWithPareter fail
+            if (image == NULL) {
+                [self fanhui];
+            }
             [super self];
         }
     }];

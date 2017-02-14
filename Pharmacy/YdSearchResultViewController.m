@@ -248,7 +248,7 @@
         tejia.font = [UIFont systemFontOfSize:12];
         if (NULL == [_yaopin[indexPath.row] objectForKey:@"specPrice"] || [[_yaopin[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
             tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            tejia.text = @"非特价要";
+            tejia.text = @"非特价药";
         }
         else
         {

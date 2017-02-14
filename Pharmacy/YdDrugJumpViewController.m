@@ -303,7 +303,7 @@
     tejia.font = [UIFont systemFontOfSize:12];
     if (NULL == [arr[indexPath.row] objectForKey:@"specPrice"] || [[arr[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
         tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-        tejia.text = @"非特价要";
+        tejia.text = @"非特价药";
     }
     else
     {
