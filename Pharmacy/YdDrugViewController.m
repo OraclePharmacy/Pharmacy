@@ -45,9 +45,28 @@
 
 @implementation YdDrugViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    //设置导航栏右按钮
+    NSUserDefaults *ss =[NSUserDefaults standardUserDefaults];
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+
+}
+-(void)jieshou{
+    NSUserDefaults * ss=[NSUserDefaults standardUserDefaults];
+    //设置导航栏右按钮
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"111" object:nil];
     //初始化数组
     DiseaseLableArray = [[NSMutableArray alloc]init];
     DiseaseImageArray = [[NSMutableArray alloc]init];
@@ -56,8 +75,6 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-    //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen ].bounds.size.height;
@@ -114,6 +131,7 @@
     UIImageView *iv = (UIImageView*)[cell viewWithTag:1];
     //为单元个添加图片
     NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[rowNo]objectForKey:@"picUrl" ]] ;
+    iv.contentMode=UIViewContentModeScaleAspectFit;
     [iv sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
     //通过tag属性获取单元格内的lable控件
     UILabel *lable = (UILabel *)[cell viewWithTag:2];

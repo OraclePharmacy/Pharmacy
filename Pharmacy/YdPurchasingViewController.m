@@ -268,8 +268,8 @@
     //出入参数：
     
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_nametext.text,@"drugName",_guigetext.text,@"specification",vip,@"vipId",_changjiatext.text,@"manufacturer",_shuliangtext.text,@"amount",_pizhuntext.text,@"batchNo",_beizhu.text,@"remark", nil];
-    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
     
     [manager POST:url1 parameters:datadic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i=0; i<heheda.count; i++) {

@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"tiezixinxi"];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
@@ -222,7 +222,7 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 40, 40);
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
         image.layer.cornerRadius = 20;
         image.layer.masksToBounds = YES;
@@ -255,7 +255,7 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 40, 40);
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
         image.layer.cornerRadius = 20;
         image.layer.masksToBounds = YES;

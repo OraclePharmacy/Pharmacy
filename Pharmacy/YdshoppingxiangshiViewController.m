@@ -58,7 +58,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    self.tableview.tableFooterView=[[UIView alloc] init];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
@@ -224,8 +224,8 @@
         {
             
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
-                
-                [WarningBox warningBoxModeText:@"提交成功" andView:self.view];
+               
+                [WarningBox warningBoxModeText:@"提交成功" andView:self.navigationController.view];
                 
                 NSUserDefaults *user=[NSUserDefaults standardUserDefaults];
                 [user setObject:@"1" forKey:@"wancheng"];
@@ -234,6 +234,7 @@
                 defaultManager = [NSFileManager defaultManager];
                 NSString*path=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
                 [defaultManager removeItemAtPath:path error:NULL];
+                
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }

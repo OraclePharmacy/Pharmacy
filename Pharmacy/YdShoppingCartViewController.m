@@ -195,12 +195,14 @@
     UILabel *tejia = [[UILabel alloc]init];
     if ([[yikaishi[indexPath.row] objectForKey:@"specProdFlag"] intValue]==1) {
         
-        yuanjia.frame = CGRectMake(100, 30, 70, 20);
-        yuanjia.text = [NSString stringWithFormat:@"原价:%.2f",[[yikaishi[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
+        yuanjia.frame = CGRectMake(100, 30, 100, 20);
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"原价:%.2f",[[yikaishi[indexPath.row] objectForKey:@"prodPrice"]floatValue]]];
+        [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+        yuanjia.attributedText = string;
         yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         yuanjia.font =[UIFont systemFontOfSize:13];
         
-        tejia.frame = CGRectMake(170, 30, 70, 20);
+        tejia.frame = CGRectMake(210, 30, 100, 20);
         tejia.text = [NSString stringWithFormat:@"特价:%.2F",[[yikaishi[indexPath.row] objectForKey:@"specPrice"]floatValue]];
         tejia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         tejia.font =[UIFont systemFontOfSize:13];
@@ -210,9 +212,6 @@
         yuanjia.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         yuanjia.font =[UIFont systemFontOfSize:13];
     }
-    
-    
-    
     //生产厂家
     UILabel *changjia = [[UILabel alloc]init];
     changjia.frame = CGRectMake(100, 50, 60, 20);
@@ -225,8 +224,6 @@
     vender.text = [NSString stringWithFormat:@"%@",[[yikaishi[indexPath.row] objectForKey:@"product"] objectForKey:@"manufacturer"]];
     vender.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
     vender.font =[UIFont systemFontOfSize:12];
-    
-    
     
     //添加数量按钮
     UIButton *add = [[UIButton alloc]init];

@@ -31,13 +31,15 @@
     CGFloat height;
     int  coun;
     
+    //按钮变色；
+    int yans;
     
     NSArray *arr;
     NSString *str;
     
     NSMutableArray*newsListForInterface;
     NSMutableArray*diantainewsListForInterface;
-    
+    NSString* hulalala;
     int ye;
     int diantaiye;
 }
@@ -47,11 +49,33 @@
 @implementation YdInformationViewController
 -(void)viewWillAppear:(BOOL)animated
 {
+    //设置导航栏右按钮
+    NSUserDefaults *ss =[NSUserDefaults standardUserDefaults];
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
+-(void)jieshou{
+    NSUserDefaults * ss=[NSUserDefaults standardUserDefaults];
+    //设置导航栏右按钮
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+}
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    yans = 1;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"111" object:nil];
     ye=1;
+    hulalala=@"0";
+    NSLog(@"hulalala -==-   %lu",(unsigned long)hulalala);
     diantaiye=1;
     arr=[NSArray array];
     width = [UIScreen mainScreen].bounds.size.width;
@@ -72,8 +96,6 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-    //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewdata)];
@@ -132,7 +154,7 @@
 {
     self.scrollView=nil;
     //设置scrollView
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, width, 30)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, width, 40)];
     //for循环创建button
     int i ;
     for (i = 0; i < arr.count; i++) {
@@ -140,14 +162,23 @@
         UIButton *tabButton = [[UIButton alloc]init];
         tabButton.tag = 300+i;
         tabButton.titleLabel.font =  [UIFont systemFontOfSize:13];
-        tabButton.frame = CGRectMake(width/5*i, 0, width/5, 30);
+        tabButton.frame = CGRectMake(width/5*i, 0, width/5, 40);
         tabButton.backgroundColor = [UIColor clearColor];
+//        if (tabButton.tag-300 == (int)hulalala) {
+//            tabButton.titleLabel.tintColor = [UIColor colorWithHexString:@"34c083"];
+//        }else{
+            tabButton.titleLabel.tintColor = [UIColor blackColor];
+//        }
         [tabButton addTarget:self action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
         [tabButton setTitle:[NSString stringWithFormat:@"%@",[arr[i] objectForKey:@"cateName"]] forState:UIControlStateNormal];
         //默认
         [tabButton setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
         //选中
         [tabButton setTitleColor:[UIColor colorWithHexString:@"32be60" alpha:1] forState:UIControlStateSelected];
+        if (tabButton.tag - 300 == yans - 1) {
+//            tabButton.titleLabel.tintColor = [UIColor colorWithHexString:@"4fc676"];
+            [tabButton setTitleColor:[UIColor colorWithHexString:@"4fc676"] forState:UIControlStateNormal];
+        }
         
         self.scrollView.pagingEnabled = YES;
         
@@ -158,7 +189,7 @@
         
     }
     //设置可滑动大小
-    self.scrollView.contentSize = CGSizeMake(width/5*i, 30);
+    self.scrollView.contentSize = CGSizeMake(width/5*i, 40);
     //隐藏滚动条
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
@@ -362,24 +393,29 @@
     str = [[NSString alloc]init];
     if (btn.tag == 300)
     {
+        yans = 1;
         str = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"id"]];
         NSLog(@"str:%@",str);
     }
     else if (btn.tag == 301)
     {
+        yans = 2;
         str = [NSString stringWithFormat:@"%@",[arr[1] objectForKey:@"id"]];;
          NSLog(@"str:%@",str);
     }
     else if (btn.tag == 302)
     {
+        yans = 3;
         str = [NSString stringWithFormat:@"%@",[arr[2] objectForKey:@"id"]];;
     }
     else if (btn.tag == 303)
     {
+        yans = 4;
         str = [NSString stringWithFormat:@"%@",[arr[3] objectForKey:@"id"]];;
     }
     else if (btn.tag == 304)
     {
+        yans = 5;
         str = [NSString stringWithFormat:@"%@",[arr[4] objectForKey:@"id"]];;
     }
     
@@ -426,7 +462,7 @@
     if (zhi == 1) {
         if (section == 0)
         {
-            return 1;
+            return 2;
         }
         else
         {
@@ -446,7 +482,10 @@
     if (zhi == 1) {
         if (indexPath.section == 0)
         {
-            return 180;
+            if (indexPath.row == 0) {
+                return 40;
+            }else
+            return 150;
         }
         else
         {
@@ -471,23 +510,27 @@
     if (zhi == 1)
     {
         if (indexPath.section == 0) {
-            //创建scrollview
-            [self tab];
+            if (indexPath.row == 0) {
+                //创建scrollview
+                [self tab];
+                [cell.contentView addSubview:_scrollView];
+            }
+            else{
             
             //创建图片
             UIImageView *img = [[UIImageView alloc]init];
-            img.frame = CGRectMake(0, 30, width, 150);
+            img.frame = CGRectMake(0, 0, width, 150);
            // img.backgroundColor = [UIColor colorWithHexString:@"943545" alpha:1];
             NSString*path;
             if (newsListForInterface.count==0) {
                 
             }else{
-                path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[indexPath.row] objectForKey:@"picUrl"]] ;
+                path=[NSString stringWithFormat:@"%@%@",service_host,[newsListForInterface[0] objectForKey:@"picUrl"]] ;
             }
             [img sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
-            [cell.contentView addSubview:_scrollView];
-            [cell.contentView addSubview:img];
             
+            [cell.contentView addSubview:img];
+            }
         }
         else
         {

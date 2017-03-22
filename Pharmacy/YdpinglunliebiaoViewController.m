@@ -60,12 +60,12 @@
     [self.view addSubview:self.tableview];
     
     //状态栏名称
-    self.navigationItem.title = @"评  论";
+    self.navigationItem.title = @"评论列表";
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-
+    
 }
 -(void)loadNewdata{
     
@@ -109,11 +109,11 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
-
+    
     //出入参数：
-  
+    
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziID,@"id",@"8",@"pageSize",[NSString stringWithFormat:@"%d",ye],@"pageNo",nil];
-
+    
     NSString*jsonstring=[writer stringWithObject:datadic];
     
     //获取签名
@@ -130,7 +130,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-           
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -146,7 +146,7 @@
                     arr=[NSMutableArray arrayWithArray:mg];
                 }
                 ye++;
-
+                
                 [self.tableview reloadData];
             }
         }
@@ -203,7 +203,7 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 40, 40);
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
         image.layer.cornerRadius = 20;
         image.layer.masksToBounds = YES;
@@ -212,7 +212,11 @@
         UILabel *name = [[UILabel alloc]init];
         name.frame = CGRectMake(60, 10, 180, 20);
         name.font = [UIFont systemFontOfSize:15];
-        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        if (NULL == [[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]) {
+            name.text=@"系统管理员";
+        }else{
+            name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+        }
         name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
         [cell.contentView addSubview:name];
         
@@ -236,7 +240,7 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake(10, 10, 40, 40);
-        NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+        NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
         image.layer.cornerRadius = 20;
         image.layer.masksToBounds = YES;
@@ -266,9 +270,9 @@
         [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"32be60" alpha:1] range:NSMakeRange(2, stt.length + 1)]; // 0为起始位置 length是从起始位置开始 设置指定颜色的长度
         pinglun.attributedText = attributedString;
         [cell.contentView addSubview:pinglun];
-
+        
     }
-
+    
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

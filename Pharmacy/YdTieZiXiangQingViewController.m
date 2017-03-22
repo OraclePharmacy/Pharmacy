@@ -48,13 +48,13 @@
     height = [UIScreen mainScreen].bounds.size.height;
     
     //状态栏名称
-    self.navigationItem.title = @"病友交流";
+    self.navigationItem.title = @"帖子详情";
     //设置self.view背景颜色
     self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     //设置导航栏左按钮
-    self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"评论" style:UIBarButtonItemStyleDone target:self action:@selector(pinglun)];
+    self.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"查看评论" style:UIBarButtonItemStyleDone target:self action:@selector(pinglun)];
     
     [self jiekou];
     
@@ -65,10 +65,16 @@
     //头像
     _touxiang.layer.cornerRadius = 40;
     _touxiang.layer.masksToBounds = YES;
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,_touxiang1];
+    NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,_touxiang1];
+//    _touxiang.contentMode=UIViewContentModeScaleAspectFit;
     [_touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
     //昵称
-    self.name.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"vipinfo"] objectForKey:@"name"]];
+    if (NULL == [[arr objectForKey:@"vipinfo"] objectForKey:@"name"]) {
+        self.name.text = @"系统管理员";
+    }else{
+        self.name.text = [NSString stringWithFormat:@"%@",[[arr objectForKey:@"vipinfo"] objectForKey:@"name"]];
+        self.name.text=_named;
+    }
     self.name.font = [UIFont systemFontOfSize:15];
     //时间
     self.time.font = [UIFont systemFontOfSize:13];
@@ -110,7 +116,7 @@
         zhi = 1;
         [self.dianzan setBackgroundImage:[UIImage imageNamed:@"iconfont-zanzan@3x.png"] forState:UIControlStateNormal];
     }
-
+    
     
 }
 //textview禁止编辑
@@ -138,7 +144,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
-   NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+    NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
     NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",vip,@"vipId", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
@@ -253,7 +259,7 @@
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [WarningBox warningBoxHide:YES andView:self.view];
             NSLog(@"responseObject:%@",responseObject);
-      
+            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [WarningBox warningBoxHide:YES andView:self.view];
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
@@ -284,7 +290,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
         SBJsonWriter *writer = [[SBJsonWriter alloc]init];
         //出入参数：
-      NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
+        NSString*vip=[[NSUserDefaults standardUserDefaults] objectForKey:@"vipId"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:_tieziId,@"id",@"2",@"flag",vip,@"vipId",@"1",@"clickMark", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
@@ -307,7 +313,7 @@
             [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
         }];
         
-
+        
     }
     
     

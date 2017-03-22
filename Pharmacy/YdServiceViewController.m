@@ -25,6 +25,7 @@
 #import "tiaodaodenglu.h"
 #import "mememeViewController.h"
 #import "tiaodaodenglu.h"
+#import "YdPharmacistDetailsViewController.h"
 #import "YdNewsViewController.h"
 @interface YdServiceViewController ()
 {
@@ -50,22 +51,37 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self jiekou];
-    
+    //设置导航栏右按钮
+    NSUserDefaults *ss =[NSUserDefaults standardUserDefaults];
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //多出空白处
+    self.navigationController.navigationBar.translucent = YES;
+}
+-(void)jieshou{
+    NSUserDefaults * ss=[NSUserDefaults standardUserDefaults];
+    //设置导航栏右按钮
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //多出空白处
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"111" object:nil];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-    //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
     
     identifier = @"cell";
     
@@ -155,7 +171,7 @@
                     
                 }
                 
-                imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1-拷贝-2@3x.png",@"组-1-拷贝@3x.png",@"组-14@3x.png",nil];
+                imagearray = [NSArray arrayWithObjects:@"组-13@3x.png",@"2@3x.png",@"3@3x.png",@"组-1@3x.png",@"组-1-拷贝-2@3x.png",@"组-14@3x.png",nil];
                 lablearray = [NSArray arrayWithObjects:@"病友交流",@"自我诊断",@"用药提醒",@"血压血糖",@"电子病历",@"智慧药箱", nil];
                 
                 [CollectionView reloadData];
@@ -241,7 +257,7 @@
         lab.textAlignment = NSTextAlignmentCenter;
         lab.text = lablearray[indexPath.row];
         lab.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        NSLog(@"%@",lab.text);
+//        NSLog(@"%@",lab.text);
         [cell.contentView addSubview:image];
         [cell.contentView addSubview:lab];
         cell.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
@@ -251,7 +267,8 @@
         
         UIImageView *image = [[UIImageView alloc]init];
         image.frame = CGRectMake((kuan-(kuan/1.5))/2,gao*0.1, kuan/1.5,kuan/1.5);
-        NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",arrImage[indexPath.section]]];
+        image.contentMode=UIViewContentModeScaleAspectFit;
+        NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"photo"]]];
         [image sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"小人@2x.png"]];
         
         UILabel *lab = [[UILabel alloc]init];
@@ -264,7 +281,7 @@
         UILabel *lab1 = [[UILabel alloc]init];
         lab1.frame = CGRectMake(0, image.bounds.size.height + gao*0.25, kuan, gao*0.1);
         lab1.textAlignment = NSTextAlignmentCenter;
-        lab1.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"qualification"]];
+        lab1.text = [NSString stringWithFormat:@"好评率:%@%%",[arr[indexPath.row] objectForKey:@"highOpinion"]];
         // lab1.text = @"222";
         lab1.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
         lab1.font = [UIFont systemFontOfSize:13];
@@ -307,10 +324,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if (indexPath.section == 0)
     {
+        //病友交流
         if (indexPath.row == 0)
         {
             if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
@@ -345,6 +361,7 @@
                 [self.navigationController pushViewController:JiaoLiu animated:YES];
             }
         }
+        //自我诊断
         else if (indexPath.row == 1)
         {
             
@@ -375,6 +392,7 @@
             YdWireViewController *Wire = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wire"];
             [self.navigationController pushViewController:Wire animated:YES];
         }
+        //用药提醒
         else if (indexPath.row == 2)
         {
             //判断是否登录
@@ -412,6 +430,7 @@
                 [self.navigationController pushViewController:Remind animated:YES];
             }
         }
+        //血压血糖
         else if (indexPath.row == 3)
         {    //判断是否登录
             if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
@@ -448,6 +467,7 @@
                 [self.navigationController pushViewController:Blood animated:YES];
             }
         }
+        //电子病历
         else if (indexPath.row == 4)
         {    //判断是否登录
             if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
@@ -484,6 +504,7 @@
                 [self.navigationController pushViewController:Electronics animated:YES];
             }
         }
+        //智慧药箱
         else if (indexPath.row == 5)
         {    //判断是否登录
             if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
@@ -523,100 +544,21 @@
     }
     else if (indexPath.section == 1)
     {
-        
+        //推荐的医生聊天
         if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
             [tiaodaodenglu jumpToLogin:self.navigationController];
         }else{
-            [self liaotiandenglu:indexPath];
+//            [self liaotiandenglu:indexPath];
+            YdPharmacistDetailsViewController *PharmacistDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pharmacistdetails"];
+            PharmacistDetails.yaoshiid = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"id"]];
+            PharmacistDetails.logname =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"loginName"]];
+            PharmacistDetails.pop=[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"name"]];
+            [self.navigationController pushViewController:PharmacistDetails animated:YES];
         }
     }
     
     return;
 }
--(void)liaotiandenglu:(NSIndexPath*)indexPath{
-    [WarningBox warningBoxModeIndeterminate:@"登录聊天" andView:self.view];
-    
-    [JMSGUser loginWithUsername:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]] password:@"111111" completionHandler:^(id resultObject, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        [WarningBox warningBoxHide:YES  andView:self.view];
-        if (error) {
-            if (error.code == 863006) {
-                NSLog(@"已经登陆");
-                [self liaotian:indexPath.row];
-            }else if(error.code == 863001){
-                NSLog(@"没有此用户");
-                [self imzhuce:indexPath];
-            }else if (error.code == 801003){
-                NSLog(@"没有此用户");
-                [self imzhuce:indexPath];
-            }
-
-            return ;
-        }
-        
-        if (error) {
-            [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
-            return ;
-        }
-        [self liaotian:indexPath.row];
-    }];
-    
-}
--(void)imzhuce:(NSIndexPath*)indexPath{
-    [WarningBox warningBoxHide:YES andView:self.view];
-    [WarningBox warningBoxModeText:@"正在注册用户...." andView:self.view];
-    NSString*shoujihao =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"shoujihao"]];
-    [JMSGUser registerWithUsername:shoujihao
-                          password:@"111111"
-                 completionHandler:^(id resultObject, NSError *error) {
-                     [WarningBox warningBoxHide:YES andView:self.view];
-                     if (!error) {
-                         //注册成功
-                         [self liaotiandenglu:indexPath];
-                     } else {
-                         //注册失败
-                         NSLog(@"失败%@",error);
-                         [WarningBox warningBoxHide:YES andView:self.navigationController.view];
-                         return ;
-                     }
-                 }];
-}
-
-
--(void)liaotian:(NSUInteger)ss
-{
-    JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"loginName"]]];
-    [conversation allMessages:^(id resultObject, NSError *error) {
-    }];
-    if (conversation == nil) {
-        
-        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
-        
-        [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [WarningBox warningBoxHide:YES andView:self.view];
-            
-            if (error) {
-                return ;
-            }
-            
-            mememeViewController *conversationVC = [mememeViewController new];
-            conversationVC.conversation = (JMSGConversation *)resultObject;
-            conversationVC.opo=[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"name"]];
-            [self.navigationController pushViewController:conversationVC animated:YES];
-        }];
-    } else {
-        
-        mememeViewController *conversationVC = [mememeViewController new];
-        conversationVC.conversation = conversation;
-        conversationVC.opo=[NSString stringWithFormat:@"%@",[arr[ss] objectForKey:@"name"]];
-        [self.navigationController pushViewController:conversationVC animated:YES];
-    }
-    
-}
-
-
-
 //推荐医生
 -(void)tuijian
 {
@@ -626,7 +568,7 @@
     Doctorsrecommended.frame = CGRectMake(0, (CollectionView.bounds.size.height)*0.6, width, (CollectionView.bounds.size.height)*0.1);
     [Doctorsrecommended setTitle:@"推荐医生" forState:UIControlStateNormal];
     [Doctorsrecommended setTitleColor:[UIColor colorWithHexString:@"646464" alpha:1] forState:UIControlStateNormal];
-    //[Doctorsrecommended addTarget:self action:@selector(Doctorsrecommendedff) forControlEvents:UIControlEventTouchUpInside];
+    
     Doctorsrecommended.backgroundColor = [UIColor colorWithHexString:@"e2e2e2" alpha:1];
     [CollectionView addSubview:Doctorsrecommended];
     
@@ -644,7 +586,7 @@
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"YES"]) {
         [tiaodaodenglu jumpToLogin:self.navigationController];
     }else{
-        //跳转到扫描页面
+        //跳转到信箱页面
         YdNewsViewController *News = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"news"];
         [self.navigationController pushViewController:News animated:YES];
     }

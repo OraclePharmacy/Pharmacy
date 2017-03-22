@@ -26,6 +26,8 @@
     
     NSDictionary *ddd;
     
+    UILabel *lable,*lable1;
+    
     NSArray *arr;
     NSArray *officearr;
 }
@@ -150,6 +152,58 @@
     if (indexPath.section == 0) {
         return 150;
     }
+    else if (indexPath.row == 2){
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            if (NULL == [arr[0] objectForKey:@"mainExperience"]) {
+                s=@"";
+            }else
+                s=[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"mainExperience"]];
+            lable=[[UILabel alloc] init];
+            UIFont *font = [UIFont fontWithName:@"Arial" size:15];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-80, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lable.text=s;
+            [lable setFrame:CGRectMake(80, 10, rect.size.width, rect.size.height)];
+            
+            return lable.frame.size.height+16>40? lable.frame.size.height+16:40;
+
+    }else if (indexPath.row == 3){
+        
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            if (NULL == [arr[0] objectForKey:@"specialty"]) {
+                s=@"";
+            }else
+                s=[NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"specialty"]];
+            lable1=[[UILabel alloc] init];
+            UIFont *font = [UIFont systemFontOfSize:14];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-80, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lable1.text=s;
+            [lable1 setFrame:CGRectMake(80, 10, rect.size.width, rect.size.height)];
+            return lable1.frame.size.height+16>40? lable1.frame.size.height+16:40;
+    }
     return 40;
 }
 //header 高度
@@ -189,10 +243,11 @@
 
     if (indexPath.section == 0 )
     {
-        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1 ];
+        cell.contentView.backgroundColor = [UIColor colorWithHexString:@"50c777" alpha:1 ];
         
         UIImageView *touxiang = [[UIImageView alloc]init];
         touxiang.frame = CGRectMake((width - 80) / 2, 35, 80, 80);
+        touxiang.contentMode=UIViewContentModeScaleAspectFit;
         touxiang.image = [UIImage imageNamed:@"小人@2x.png"];
         touxiang.layer.cornerRadius = 40;
         touxiang.layer.masksToBounds = YES;
@@ -241,16 +296,26 @@
             text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"teleIphone"]];
         }
         else if (indexPath.row == 2) {
-            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"mainExperience"]];
+            
+            text.numberOfLines=0;
+            text.font=[UIFont systemFontOfSize:14];
+            if (lable.frame.size.height+16 <=40) {
+                lable.textAlignment=NSTextAlignmentRight;
+                text.textAlignment = NSTextAlignmentRight;
+            }
+            text.frame = lable.frame;
+            text.text = lable.text;
         }
         else if (indexPath.row == 3) {
-            text.text = [NSString stringWithFormat:@"%@",[arr[0] objectForKey:@"specialty"]];
+            
+            text.numberOfLines=0;
+            text.font=[UIFont systemFontOfSize:14];
+            text.frame = lable1.frame;
+            text.text = lable1.text;
         }
         else if (indexPath.row == 4){
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        
-
         [cell.contentView addSubview:text];
         
     }
@@ -295,11 +360,11 @@
     }];
     if (conversation == nil) {
         
-        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
+//        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
         
         [JMSGConversation createSingleConversationWithUsername:_logname completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            if (error) {
+            if (error) {[WarningBox warningBoxModeText:@"对方聊天未开启" andView:self.view];
                 return ;
             }
             

@@ -138,7 +138,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         @try
         {
-
+            
             if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                 
                 NSDictionary*datadic=[responseObject valueForKey:@"data"];
@@ -199,13 +199,17 @@
     touxiang.frame = CGRectMake(5, 5, 80, 80);
     touxiang.layer.cornerRadius = 40;
     touxiang.layer.masksToBounds = YES;
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"photo"]];
+    NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
     [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
     
     UILabel *name = [[UILabel alloc]init];
     name.frame = CGRectMake(5, 90, 80, 20);
     name.font = [UIFont systemFontOfSize:15];
-    name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+    if (NULL == [[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]) {
+        name.text=@"系统管理员";
+    }else{
+        name.text = [NSString stringWithFormat:@"%@",[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"]];
+    }
     name.textAlignment = NSTextAlignmentCenter;
     name.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     
@@ -225,11 +229,11 @@
     fubiaoti.numberOfLines = 2;
     
     UILabel *biaoqian = [[UILabel alloc]init];
-    biaoqian.frame = CGRectMake(90, 65, 80, 20);
+    biaoqian.frame = CGRectMake(90, 65, 100, 20);
     biaoqian.font = [UIFont systemFontOfSize:13];
     biaoqian.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"diseaseName"]];
     biaoqian.textAlignment = NSTextAlignmentCenter;
-    biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+    biaoqian.backgroundColor = [UIColor colorWithHexString:@"FFCC22" alpha:1];
     biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     UILabel *shijian = [[UILabel alloc]init];
@@ -291,7 +295,8 @@
         YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
         TieZiXiangQing.tieziId = [arr[indexPath.row] objectForKey:@"id"];
         TieZiXiangQing.bingzheng = [arr[indexPath.row] objectForKey:@"diseaseName"];
-        TieZiXiangQing.touxiang1 = [arr[indexPath.row] objectForKey:@"photo"];
+        TieZiXiangQing.touxiang1 = [[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"];
+        TieZiXiangQing.named = [[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"];
         [self.navigationController pushViewController:TieZiXiangQing animated:YES];
     }
 }

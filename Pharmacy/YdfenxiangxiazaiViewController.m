@@ -7,7 +7,7 @@
 //
 
 #import "YdfenxiangxiazaiViewController.h"
-
+#import "WarningBox.h"
 @interface YdfenxiangxiazaiViewController ()
 
 @end
@@ -41,5 +41,6 @@
 }
 
 - (IBAction)fenxiang:(id)sender {
+    [WarningBox warningBoxModeText:@"此功能暂未开启" andView:self.view];
 }
 @end

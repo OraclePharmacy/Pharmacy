@@ -320,10 +320,19 @@
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
     {
         [JPUSHService handleRemoteNotification:userInfo];
+        
         NSString *message = [NSString stringWithFormat:@"%@", [userInfo[@"aps"] objectForKey:@"alert"]];
-        NSLog(@"iOS10程序在前台时收到的推送: %@", message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil, nil];
-        [alert show];
+        if ([message rangeOfString:@"订单已"].location !=NSNotFound) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"youjian"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"111" object:nil];
+        }else{
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"tiezixinxi"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"222" object:nil];
+        }
+        
+//        NSLog(@"iOS10程序在前台时收到的推送: %@", message);
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil, nil];
+//        [alert show];
     }
     
     completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
@@ -344,10 +353,18 @@
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
     {
         [JPUSHService handleRemoteNotification:userInfo];
+        
         NSString *message = [NSString stringWithFormat:@"%@", [userInfo[@"aps"] objectForKey:@"alert"]];
-        NSLog(@"iOS10程序关闭后通过点击推送进入程序弹出的通知: %@", message);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ,nil];
-        [alert show];
+        if ([message rangeOfString:@"订单已"].location !=NSNotFound) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"youjian"];
+        }else{
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"tiezixinxi"];
+        }
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"111" object:nil];
+//        NSString *message = [NSString stringWithFormat:@"%@", [userInfo[@"aps"] objectForKey:@"alert"]];
+//        NSLog(@"iOS10程序关闭后通过点击推送进入程序弹出的通知: %@", message);
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ,nil];
+//        [alert show];
     }
     
     completionHandler();  // 系统要求执行这个方法
@@ -401,6 +418,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     //Optional
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
-
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"111" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"222" object:nil];
+}
 @end

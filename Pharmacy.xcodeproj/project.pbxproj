@@ -342,6 +342,12 @@
 		D23EE5811CBB4BC1000A9F01 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */; };
 		D254EF1C1CD3403F004376A4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */; };
 		D25519221DF7AF520077B848 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25519211DF7AF520077B848 /* JMessage.framework */; };
+		D263A7B91E5C066E001297FC /* 邮件-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D263A7B71E5C066E001297FC /* 邮件-1.png */; };
+		D263A7BA1E5C066E001297FC /* 邮件-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D263A7B81E5C066E001297FC /* 邮件-2.png */; };
+		D26531151E5A7AB400ED6AA4 /* XLImageShow.m in Sources */ = {isa = PBXBuildFile; fileRef = D26531141E5A7AB400ED6AA4 /* XLImageShow.m */; };
+		D2717C4D1E63F5C5003C3CEC /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D2717C461E63F5C5003C3CEC /* NSString+Hash.m */; };
+		D2717C4E1E63F5C5003C3CEC /* HSDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2717C491E63F5C5003C3CEC /* HSDownloadManager.m */; };
+		D2717C4F1E63F5C5003C3CEC /* HSSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2717C4B1E63F5C5003C3CEC /* HSSessionModel.m */; };
 		D2C5C1011DFA3C050018AE47 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C5C1001DFA3C050018AE47 /* libresolv.tbd */; };
 		D2D3674A1D6D9D3B004AAE54 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D367491D6D9D3B004AAE54 /* GuideViewController.m */; };
 		D2D4E7431E1102990080A156 /* JMUIChattingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D4E7401E1102990080A156 /* JMUIChattingKit.framework */; };
@@ -888,6 +894,16 @@
 		D23EE57B1CBB4BC1000A9F01 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		D254EF1B1CD3403F004376A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D25519211DF7AF520077B848 /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMessage.framework; sourceTree = "<group>"; };
+		D263A7B71E5C066E001297FC /* 邮件-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "邮件-1.png"; sourceTree = "<group>"; };
+		D263A7B81E5C066E001297FC /* 邮件-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "邮件-2.png"; sourceTree = "<group>"; };
+		D26531131E5A7AB400ED6AA4 /* XLImageShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImageShow.h; sourceTree = "<group>"; };
+		D26531141E5A7AB400ED6AA4 /* XLImageShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImageShow.m; sourceTree = "<group>"; };
+		D2717C451E63F5C5003C3CEC /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		D2717C461E63F5C5003C3CEC /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		D2717C481E63F5C5003C3CEC /* HSDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDownloadManager.h; sourceTree = "<group>"; };
+		D2717C491E63F5C5003C3CEC /* HSDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDownloadManager.m; sourceTree = "<group>"; };
+		D2717C4A1E63F5C5003C3CEC /* HSSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSessionModel.h; sourceTree = "<group>"; };
+		D2717C4B1E63F5C5003C3CEC /* HSSessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSessionModel.m; sourceTree = "<group>"; };
 		D2C5C1001DFA3C050018AE47 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		D2CF97FB1DEC19B0002782F9 /* Pharmacy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pharmacy.entitlements; sourceTree = "<group>"; };
 		D2D367471D6D9D3B004AAE54 /* GuideImageName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideImageName.h; sourceTree = "<group>"; };
@@ -1113,6 +1129,7 @@
 		9505D7011C9A7B34006F6850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D26531121E5A7A8900ED6AA4 /* 点击图像放大 */,
 				D2D4E7401E1102990080A156 /* JMUIChattingKit.framework */,
 				D2D4E7411E1102990080A156 /* JMUIChattingKitResource.bundle */,
 				D2D4E7421E1102990080A156 /* JMUICommon.framework */,
@@ -1769,6 +1786,8 @@
 				950BC6F21D12986000817E4A /* hb_dzp.png */,
 				950BC6F31D12986000817E4A /* hb_yjwd.png */,
 				950BC6F41D12986000817E4A /* hb_yyy.png */,
+				D263A7B71E5C066E001297FC /* 邮件-1.png */,
+				D263A7B81E5C066E001297FC /* 邮件-2.png */,
 				950BC6F01D1270EF00817E4A /* 未标题-1.png */,
 				95024D331D113D5900B7F7D8 /* dingdan.png */,
 				95024D341D113D5900B7F7D8 /* fenxiang.png */,
@@ -2045,6 +2064,7 @@
 		95E9512A1CB504DE00BB754C /* 健康电台详情 */ = {
 			isa = PBXGroup;
 			children = (
+				D2717C4C1E63F5C5003C3CEC /* HSDownloadManager */,
 				95E0EC631CC6044C00B87690 /* YdInformationDetailsViewController.h */,
 				95E0EC641CC6044C00B87690 /* YdInformationDetailsViewController.m */,
 			);
@@ -2381,6 +2401,37 @@
 			name = shishi;
 			sourceTree = "<group>";
 		};
+		D26531121E5A7A8900ED6AA4 /* 点击图像放大 */ = {
+			isa = PBXGroup;
+			children = (
+				D26531131E5A7AB400ED6AA4 /* XLImageShow.h */,
+				D26531141E5A7AB400ED6AA4 /* XLImageShow.m */,
+			);
+			name = "点击图像放大";
+			sourceTree = "<group>";
+		};
+		D2717C471E63F5C5003C3CEC /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				D2717C451E63F5C5003C3CEC /* NSString+Hash.h */,
+				D2717C461E63F5C5003C3CEC /* NSString+Hash.m */,
+			);
+			path = MD5;
+			sourceTree = "<group>";
+		};
+		D2717C4C1E63F5C5003C3CEC /* HSDownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2717C471E63F5C5003C3CEC /* MD5 */,
+				D2717C481E63F5C5003C3CEC /* HSDownloadManager.h */,
+				D2717C491E63F5C5003C3CEC /* HSDownloadManager.m */,
+				D2717C4A1E63F5C5003C3CEC /* HSSessionModel.h */,
+				D2717C4B1E63F5C5003C3CEC /* HSSessionModel.m */,
+			);
+			name = HSDownloadManager;
+			path = ../../HSDownloadManager/HSDownloadManager;
+			sourceTree = "<group>";
+		};
 		D2C5C0FF1DFA3C050018AE47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2572,6 +2623,7 @@
 				95C3726C1CB5F5780083AC90 /* 问药师@3x.png in Resources */,
 				95E38EB31D1CBEEA006BCF6C /* ll.png in Resources */,
 				9509BCDF1D2207A2006B4962 /* option_a2.png in Resources */,
+				D263A7B91E5C066E001297FC /* 邮件-1.png in Resources */,
 				95C372651CB5F5780083AC90 /* 药品@2x.png in Resources */,
 				95C372601CB5F5780083AC90 /* 矩形-20-拷贝@3x.png in Resources */,
 				95C372631CB5F5780083AC90 /* 组-4@2x.png in Resources */,
@@ -2615,6 +2667,7 @@
 				95206A791D3883B3002BB3B5 /* UMSCommentDetailController.xib in Resources */,
 				9505D6D91C9A7B27006F6850 /* Assets.xcassets in Resources */,
 				95F1E0411CB7A72300614502 /* shake_yyy.png in Resources */,
+				D263A7BA1E5C066E001297FC /* 邮件-2.png in Resources */,
 				95E0EC621CC5C6C400B87690 /* 组-11@3x.png in Resources */,
 				95C372501CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@3x.png in Resources */,
 				95E604C41D055A3A0057BA0C /* xl.png in Resources */,
@@ -2727,6 +2780,7 @@
 				95F440CC1CD047A000B66D8C /* UUChartLabel.m in Sources */,
 				9549FB661D599EC4004591E1 /* DurgTableViewCell.m in Sources */,
 				951A41AD1CFE67FB00FD81D6 /* YddianyuanViewController.m in Sources */,
+				D26531151E5A7AB400ED6AA4 /* XLImageShow.m in Sources */,
 				95609EA81CABC72E00AF65E4 /* SBJsonUTF8Stream.m in Sources */,
 				95D6E1381D5335CA00D71CA4 /* YdmingchengsearchViewController.m in Sources */,
 				9505D7141C9A7FFF006F6850 /* YdRootViewController.m in Sources */,
@@ -2742,6 +2796,7 @@
 				95E0EC651CC6044C00B87690 /* YdInformationDetailsViewController.m in Sources */,
 				D23EE57E1CBB4BC1000A9F01 /* AFSecurityPolicy.m in Sources */,
 				D23EA35A1CEE9A81000454FE /* MJRefreshAutoFooter.m in Sources */,
+				D2717C4D1E63F5C5003C3CEC /* NSString+Hash.m in Sources */,
 				9505D7371C9A9D34006F6850 /* YdGenerateViewController.m in Sources */,
 				95F440C81CD047A000B66D8C /* UUBar.m in Sources */,
 				95EFDB221D506D5D006557DC /* YdmingchengViewController.m in Sources */,
@@ -2757,6 +2812,7 @@
 				952A1A0D1CD844FA00582D26 /* YdJiaoLiuViewController.m in Sources */,
 				D23EE5801CBB4BC1000A9F01 /* AFURLResponseSerialization.m in Sources */,
 				D23EA3661CEE9A81000454FE /* MJRefreshNormalHeader.m in Sources */,
+				D2717C4F1E63F5C5003C3CEC /* HSSessionModel.m in Sources */,
 				953717091CE6B18E00CA959D /* YdyouhuiquanViewController.m in Sources */,
 				95609F061CABC76500AF65E4 /* lianjie.m in Sources */,
 				95E189861CE55BA8008EB1A4 /* YdfabiaopinglunViewController.m in Sources */,
@@ -2793,6 +2849,7 @@
 				95F4D1D61CE4605E00081C7E /* YdTieZiXiangQingViewController.m in Sources */,
 				958DA2DD1CCDFB5000E1375D /* YdPharmacistDetailsViewController.m in Sources */,
 				D212B5441CF7EDA7001B5EAB /* YDJifenViewController.m in Sources */,
+				D2717C4E1E63F5C5003C3CEC /* HSDownloadManager.m in Sources */,
 				D23EA35E1CEE9A81000454FE /* MJRefreshHeader.m in Sources */,
 				95609EF71CABC74E00AF65E4 /* SDWebImageDecoder.m in Sources */,
 				953717111CE6D5C500CA959D /* YdwodeshoucangViewController.m in Sources */,

@@ -95,7 +95,6 @@
                 arr = [datadic objectForKey:@"attentionDiseaseList"];
                 
                 [self scrollviewshezhi];
-                
             }
         }
         @catch (NSException * e) {
@@ -166,7 +165,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.tag = 100 + i;
         button.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
-        [button addTarget:self action:@selector(handleClick:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(handleClick1:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:[UIColor colorWithHexString:@"f4f4f4" alpha:1] forState:UIControlStateNormal];
         button.layer.cornerRadius = 5;
         button.layer.masksToBounds = YES;
@@ -199,13 +198,21 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
 }
-- (void)handleClick:(UIButton *)btn
+- (void)handleClick1:(UIButton *)btn
 {
     
     bingzheng = [[NSString alloc]init];
     
     bingzheng = [arr[btn.tag - 100] objectForKey:@"id"];
     
+    
+    for (UIButton * bb in _scrollView.subviews) {
+        if (bb.tag == btn.tag) {
+            bb.backgroundColor = [UIColor colorWithHexString:@"f7cb16" alpha:1];
+        }else{
+            bb.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+        }
+    }
     
 }
 //image 设置

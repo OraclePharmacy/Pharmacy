@@ -333,7 +333,7 @@
         shengzhi.frame = CGRectMake(CGRectGetMinX(xiong.frame) ,CGRectGetMaxY(yao.frame) + width / 8.5 * 0.5,CGRectGetMaxX(xiong.frame) - CGRectGetMinX(xiong.frame),width / 8.5 * 0.5);
         [shengzhi setTitle:@"生殖器官" forState:UIControlStateNormal];
         [shengzhi setTitleColor:[UIColor colorWithHexString:@"323232" alpha:1] forState:UIControlStateNormal];
-        shengzhi.titleLabel.font = [UIFont systemFontOfSize:xiaozi];
+        shengzhi.titleLabel.font = [UIFont systemFontOfSize:xiaozi-2];
         [shengzhi addTarget:self action:@selector(biaoqian:) forControlEvents:UIControlEventTouchUpInside];
         [beijing addSubview:shengzhi];
         //手

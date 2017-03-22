@@ -35,11 +35,27 @@
 
 @implementation YdwodetieziViewController
 -(void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults *ss =[NSUserDefaults standardUserDefaults];
+    if ([[ss objectForKey:@"tiezixinxi"] isEqualToString:@"0"]||NULL ==[ss objectForKey:@"tiezixinxi"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unread(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    }
+
     ye=1;[self jiekou];
+}
+-(void)jieshou{
+    //设置导航栏右按钮
+    NSUserDefaults *ss =[NSUserDefaults standardUserDefaults];
+    if ([[ss objectForKey:@"tiezixinxi"] isEqualToString:@"0"]||NULL ==[ss objectForKey:@"tiezixinxi"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"unread(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"222" object:nil];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -51,7 +67,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(guanyu)];
+    
     
     self.tableview = [[UITableView alloc]init];
     self.tableview.frame = CGRectMake(0, 64, width, height - 64);
@@ -235,7 +251,7 @@
     touxiang.frame = CGRectMake(5, 5, 80, 80);
     touxiang.layer.cornerRadius = 40;
     touxiang.layer.masksToBounds = YES;
-    NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[arr[indexPath.row] objectForKey:@"photo"]];
+    NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[arr[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
     [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
     
     UILabel *name = [[UILabel alloc]init];
@@ -261,11 +277,11 @@
     fubiaoti.numberOfLines = 2;
     
     UILabel *biaoqian = [[UILabel alloc]init];
-    biaoqian.frame = CGRectMake(90, 65, 80, 20);
+    biaoqian.frame = CGRectMake(90, 65, 100, 20);
     biaoqian.font = [UIFont systemFontOfSize:13];
     biaoqian.text = [NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"diseaseName"]];
     biaoqian.textAlignment = NSTextAlignmentCenter;
-    biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+    biaoqian.backgroundColor = [UIColor colorWithHexString:@"FFCC22" alpha:1];
     biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     UILabel *shijian = [[UILabel alloc]init];

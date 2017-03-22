@@ -13,7 +13,7 @@
 @property (nonatomic,strong) NSString *tieziId;
 @property (nonatomic,strong) NSString *bingzheng;
 @property (nonatomic,strong) NSString *touxiang1;
-
+@property (nonatomic,strong) NSString *named;
 
 @property (weak, nonatomic) IBOutlet UIImageView *touxiang;
 

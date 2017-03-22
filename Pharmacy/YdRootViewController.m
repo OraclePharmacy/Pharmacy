@@ -44,7 +44,6 @@
 {
     //NSLog(@"willShowMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
-
 - (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
 {
     //NSLog(@"didShowMenuViewController: %@", NSStringFromClass([menuViewController class]));

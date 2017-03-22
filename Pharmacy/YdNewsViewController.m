@@ -31,12 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
       ye=1;
-
+    [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"youjian"];
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     pushLogList=[[NSMutableArray alloc] init];
     //状态栏名称
-    self.navigationItem.title = @"消 息";
+    self.navigationItem.title = @"消息中心";
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     
@@ -192,7 +192,7 @@
     
     UILabel *title = [[UILabel alloc]init];
     title.frame = CGRectMake(5, 0, width - 20, 30);
-    title.text = [NSString stringWithFormat:@"%@",[pushLogList[indexPath.row] objectForKey:@"pushContent"]];
+    title.text = [NSString stringWithFormat:@"【康速达】提醒，%@",[pushLogList[indexPath.row] objectForKey:@"pushContent"]];
     title.font = [UIFont systemFontOfSize:15];
     title.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
     [bai addSubview:title];

@@ -115,6 +115,13 @@
 @implementation YdHomePageViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults * ss=[NSUserDefaults standardUserDefaults];
+    //设置导航栏右按钮
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
     NSString *cunzai=[NSString stringWithFormat:@"%@/Documents/cun.plist",NSHomeDirectory()];
     NSFileManager *fm=[NSFileManager defaultManager];
     if ([fm fileExistsAtPath:cunzai])
@@ -142,17 +149,26 @@
         self.navigationController.navigationBarHidden=NO;
     }
 }
-
+-(void)jieshou{
+    NSUserDefaults * ss=[NSUserDefaults standardUserDefaults];
+    //设置导航栏右按钮
+    if ([[ss objectForKey:@"youjian"] isEqualToString:@"0"] || NULL ==[ss objectForKey:@"youjian"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-2.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"邮件-1.png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"111" object:nil];
+    
     NSString *cunzai=[NSString stringWithFormat:@"%@/Documents/cun.plist",NSHomeDirectory()];
     
     NSFileManager *fm=[NSFileManager defaultManager];
     
     bingzhengarr = @[@"高血压",@"高血脂",@"冠心病",@"流行性感冒",@"病毒性感冒",@"风寒感冒",@"风热感冒",@"暑湿感冒"];
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"tiao"] isEqual:@"1"]){
-    [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isLogin"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isLogin"];
     }
     //    启动
     if (![fm fileExistsAtPath:cunzai])
@@ -199,8 +215,7 @@
     //设置导航栏左按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"圆角矩形-6@3x.png"] style:UIBarButtonItemStyleDone target:self action:@selector(presentLeftMenuViewController:)];
     
-    //设置导航栏右按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"read(1).png"] style:UIBarButtonItemStyleDone target:self action:@selector(scanning)];
+    
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -217,7 +232,7 @@
     
     
     
-//    [WarningBox warningBoxModeText:@"正在定位门店...." andView:self.view];
+    //    [WarningBox warningBoxModeText:@"正在定位门店...." andView:self.view];
     
     //    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isLogin"];
     
@@ -232,13 +247,13 @@
             
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"zddl"] isEqualToString:@"1"] ) {
                 [denglu zidongdenglu:self.view];
-               
+                
             }else{
-                 [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"liansuoid"];
+                [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"liansuoid"];
             }
         }
     }
-//    [beibei addSubview:wocalei];
+    //    [beibei addSubview:wocalei];
     //调用定位
     [self initializeLocationService];
     
@@ -250,7 +265,7 @@
         [self bargaingoodsjiekou];
         [self tejieyaopinjiekou];
         [self rementiezi];
-        [self remenzixun];
+        [self zixunleibie];
         [self bannerjiekou];
     }
     [self.tableview.mj_header endRefreshing];
@@ -345,7 +360,7 @@
 -(void)bannerjiekou
 {
     
-    [WarningBox warningBoxModeIndeterminate:@"数据加载中..." andView:self.view];
+//    [WarningBox warningBoxModeIndeterminate:@"数据加载中..." andView:self.view];
     
     //userID    暂时不用改
     NSString * userID=@"0";
@@ -550,7 +565,7 @@
             });
             
             if (error) {
-               
+                
                 if (error.code == 863006) {
                     NSLog(@"已经登陆");
                     [self jixu];
@@ -594,7 +609,7 @@
         NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:/*1*/@"0",@"yongjingxi",/*2*/@"1",@"wenyaoshi",/*3*/@"0",@"daigouyao",/*4*/@"0",@"youhuiquan",/*5*/@"0",@"bingyoujiaoliu",/*6*/@"0",@"zizhen",/*7*/@"0",@"yongyaotixing",/*8*/@"0",@"xueyaxuetang",/*9*/@"0",@"dianzibingli",/*10*/@"0",@"zhihuiyaoxiang",nil]; //写入数据
         [dic writeToFile:filename atomically:YES];
     }
- [self.navigationController pushViewController:Question animated:YES];
+    [self.navigationController pushViewController:Question animated:YES];
 }
 -(void)imzhuce{
     [WarningBox warningBoxHide:YES andView:self.view];
@@ -900,7 +915,63 @@
     
 }
 #pragma mark ---- 热门资讯接口
--(void)remenzixun{
+-(void)zixunleibie{
+    [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
+    
+    //userID    暂时不用改
+    NSString * userID=@"0";
+    
+    //请求地址   地址不同 必须要改
+    NSString * url =@"/postDetail/newsCatelogList";
+    
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
+    
+    
+    //将上传对象转换为json格式字符串
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
+    SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+    //出入参数：
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"",@"pageNo", nil];
+    
+    NSString*jsonstring=[writer stringWithObject:datadic];
+    
+    //获取签名
+    NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
+    
+    NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
+    
+    
+    //电泳借口需要上传的数据
+    NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
+    
+    [manager POST:url1 parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        @try
+        {
+            if ([[responseObject objectForKey:@"code"] intValue]==0000) {
+                
+                NSArray*heheda= [[responseObject objectForKey:@"data"] objectForKey:@"newsCatelog"];
+                [self remenzixun:[NSString stringWithFormat:@"%@",[heheda[0] objectForKey:@"id"]]];
+            }
+        }
+        @catch (NSException * e) {
+            [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
+        
+    }];
+}
+
+
+-(void)remenzixun:(NSString*)xxx{
     
     
     //userID    暂时不用改
@@ -920,7 +991,7 @@
     SBJsonWriter *writer = [[SBJsonWriter alloc]init];
     //出入参数：
     //id   不传空
-    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",@"9          ",@"id", nil];
+    NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"pageNo",@"10",@"pageSize",xxx,@"id", nil];
     
     NSString*jsonstring=[writer stringWithObject:datadic];
     
@@ -1039,6 +1110,18 @@
 }else{
     if (indexPath.section == 0)
     {
+        if (self.view.bounds.size.width == 414)
+        {
+            return 200;
+        }
+        else if (self.view.bounds.size.width == 375)
+        {
+            return 180;
+        }
+        else if (self.view.bounds.size.width == 320)
+        {
+            return 150;
+        }
         return 150;
     }
     else if (indexPath.section == 1)
@@ -1213,13 +1296,39 @@
             if (arrImage.count < 1 )
             {
                 UIImageView *image = [[UIImageView alloc]init];
-                image.frame = CGRectMake(0, 0, width, 150);
+                if (self.view.bounds.size.width == 414)
+                {
+                    image.frame = CGRectMake(0, 0, width, 200);
+                }
+                else if (self.view.bounds.size.width == 375)
+                {
+                    image.frame = CGRectMake(0, 0, width, 180);
+                }
+                else if (self.view.bounds.size.width == 320)
+                {
+                    image.frame = CGRectMake(0, 0, width, 150);
+                }
+                
+                //                image.contentMode=UIViewContentModeScaleAspectFit;
                 image.image = [UIImage imageNamed:@"daiti.png"];
                 [cell.contentView addSubview:image];
             }
             else
             {
-                YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, 150)
+                float afw=0.0;
+                if (self.view.bounds.size.width == 414)
+                {
+                    afw = 200;
+                }
+                else if (self.view.bounds.size.width == 375)
+                {
+                    afw = 180;
+                }
+                else if (self.view.bounds.size.width == 320)
+                {
+                    afw = 150;
+                }
+                YCAdView *ycAdView = [YCAdView initAdViewWithFrame:CGRectMake(0, 0, width, afw)
                                                             images:arrImage
                                                             titles:titarr
                                                   placeholderImage:[UIImage imageNamed:@"daiti.png"]];
@@ -1264,6 +1373,7 @@
             
             UIImageView *biaoti = [[UIImageView alloc] init];
             biaoti.frame = CGRectMake(0, 3, 3, 14);
+            biaoti.contentMode=UIViewContentModeScaleAspectFit;
             biaoti.image = [UIImage imageNamed:@"矩形-20@3x.png"];
             
             UILabel * tou = [[UILabel alloc]init];
@@ -1301,6 +1411,7 @@
                 //图片
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+                imageview.contentMode=UIViewContentModeScaleAspectFit;
                 [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",service_host,[proList[i] objectForKey:@"picUrl"]]] placeholderImage:[UIImage imageNamed:@"daiti.png"]];
                 //名称
                 UILabel *name = [[UILabel alloc]init];
@@ -1362,6 +1473,7 @@
             
             UIImageView *biaoti = [[UIImageView alloc] init];
             biaoti.frame = CGRectMake(0, 3, 3, 14);
+            biaoti.contentMode=UIViewContentModeScaleAspectFit;
             biaoti.image = [UIImage imageNamed:@"矩形-20-拷贝@3x.png"];
             
             UILabel * tou = [[UILabel alloc]init];
@@ -1397,6 +1509,7 @@
                 //图片
                 UIImageView *imageview = [[UIImageView alloc]init];
                 imageview.frame = CGRectMake(kuan*0.2, gao*0.1, kuan*0.6, gao*0.45);
+                imageview.contentMode=UIViewContentModeScaleAspectFit;
                 NSURL*url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",presentarrImage[i]]];
                 [imageview sd_setImageWithURL:url  placeholderImage:[UIImage imageNamed:@"daiti.png"]];
                 //名称
@@ -1449,7 +1562,8 @@
             touxiang.frame = CGRectMake(5, 5, 80, 80);
             touxiang.layer.cornerRadius = 40;
             touxiang.layer.masksToBounds = YES;
-            NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[rementieziarray[indexPath.row] objectForKey:@"photo"]];
+            NSString*path=[NSString stringWithFormat:@"%@/hyb/%@",service_host,[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"]];
+            touxiang.contentMode=UIViewContentModeScaleAspectFit;
             [touxiang sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"小人@2x.png" ]];
             
             UILabel *name = [[UILabel alloc]init];
@@ -1478,11 +1592,11 @@
             fubiaoti.numberOfLines = 2;
             
             UILabel *biaoqian = [[UILabel alloc]init];
-            biaoqian.frame = CGRectMake(90, 65, 80, 20);
+            biaoqian.frame = CGRectMake(90, 65, 100, 20);
             biaoqian.font = [UIFont systemFontOfSize:13];
             biaoqian.text = [NSString stringWithFormat:@"%@",[rementieziarray[indexPath.row] objectForKey:@"diseaseName"]];
             biaoqian.textAlignment = NSTextAlignmentCenter;
-            biaoqian.backgroundColor = [UIColor colorWithHexString:@"32BE60" alpha:1];
+            biaoqian.backgroundColor = [UIColor colorWithHexString:@"FFCC22" alpha:1];
             biaoqian.textColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
             
             UILabel *shijian = [[UILabel alloc]init];
@@ -1511,11 +1625,6 @@
             if ([[rementieziarray[indexPath.row] objectForKey:@"isTop"] isEqualToString:@"1" ]) {
                 
                 remen.image = [UIImage imageNamed:@"hot.png"];
-                
-            }
-            else
-            {
-                
             }
             
             [cell.contentView addSubview:remen];
@@ -1534,6 +1643,7 @@
             NSString*path=[NSString stringWithFormat:@"%@%@",service_host,[remenzixunarray[indexPath.row] objectForKey:@"picUrl"]] ;
             UIImageView *image = [[UIImageView alloc]init];
             image.frame = CGRectMake(10, 10, 100 , 100);
+            image.contentMode=UIViewContentModeScaleAspectFit;
             [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"daiti.png" ]];
             
             UILabel *title = [[UILabel alloc]init];
@@ -1644,7 +1754,7 @@
                 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[indexPath.row-1]objectForKey:@"name"]] forKey:@"yixuanmendian"];
             }else{
                 haha= [NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"] ];
-            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]] forKey:@"yixuanmendian"];
+                [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[wocalede[indexPath.row-1] objectForKey:@"office"] objectForKey:@"name"]] forKey:@"yixuanmendian"];
             }
             [SearchButton setTitle:haha forState:UIControlStateNormal];
             wocalei.hidden=YES;beibei.hidden=YES;
@@ -1662,7 +1772,7 @@
             [self tejieyaopinjiekou];
             [self bargaingoodsjiekou];
             [self rementiezi];
-            [self remenzixun];
+            [self zixunleibie];
         }
         
         
@@ -1676,7 +1786,7 @@
             }else{
                 //跳转文字资讯详情
                 YdTextDetailsViewController *TextDetails = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"textdetails"];
-              
+                
                 TextDetails.xixi=[NSString stringWithFormat:@"%@",[remenzixunarray[indexPath.row] objectForKey:@"id"]];
                 [self.navigationController pushViewController:TextDetails animated:YES];
             }
@@ -1688,7 +1798,8 @@
                 YdTieZiXiangQingViewController *TieZiXiangQing = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tiezixiangqing"];
                 TieZiXiangQing.tieziId = [rementieziarray[indexPath.row] objectForKey:@"id"];
                 TieZiXiangQing.bingzheng = [rementieziarray[indexPath.row] objectForKey:@"diseaseName"];
-                TieZiXiangQing.touxiang1 = [rementieziarray[indexPath.row] objectForKey:@"photo"];
+                TieZiXiangQing.touxiang1 = [[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"photo"];
+                TieZiXiangQing.named =[[rementieziarray[indexPath.row] objectForKey:@"vipinfo"] objectForKey:@"nickName"];
                 [self.navigationController pushViewController:TieZiXiangQing animated:YES];
             }
         }
@@ -2041,7 +2152,7 @@
             @try{
                 
                 
-            
+                
                 [WarningBox warningBoxHide:YES andView:self.view];
                 
                 if([[responseObject objectForKey:@"code"] intValue]==1111){
@@ -2076,7 +2187,7 @@
                     
                     [wocalei reloadData];
                     
-                   
+                    
                     [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forKey:@"yixuanmendian"];
                     
                     [SearchButton setTitle:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forState:UIControlStateNormal];
@@ -2087,9 +2198,9 @@
                     [self tejieyaopinjiekou];
                     [self bargaingoodsjiekou];
                     [self rementiezi];
-                    [self remenzixun];
-
-
+                    [self zixunleibie];
+                    
+                    
                     
                     
                     
@@ -2232,7 +2343,7 @@ int nicaicai=0;
         if (qu==nil) {
             qu=@"";
         }
-    
+        
         NSString*officeid=[[NSUserDefaults standardUserDefaults] objectForKey:@"liansuoid"];
         NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:jing,@"longitude",wei,@"latitude",sheng,@"areaProvince", shi,@"areaCity",qu,@"areaQu",officeid,@"officeId",nil];
         NSLog(@"*-*-*-*-%@",datadic);
@@ -2294,17 +2405,17 @@ int nicaicai=0;
                     [wocalei reloadData];
                     wocalei.hidden = YES;beibei.hidden=YES;
                     [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forKey:@"yixuanmendian"];
-                
-                [SearchButton setTitle:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forState:UIControlStateNormal];
-                wocalei.hidden=YES;beibei.hidden=YES;
+                    
+                    [SearchButton setTitle:[NSString stringWithFormat:@"%@",[wocalede[0]  objectForKey:@"name"]] forState:UIControlStateNormal];
+                    wocalei.hidden=YES;beibei.hidden=YES;
                     NSUserDefaults*pp=  [NSUserDefaults standardUserDefaults];
                     [pp setObject:[NSString stringWithFormat:@"%@",[wocalede[0] objectForKey:@"id"]] forKey:@"officeid"];
                     [self bannerjiekou];
                     [self tejieyaopinjiekou];
                     [self bargaingoodsjiekou];
                     [self rementiezi];
-                    [self remenzixun];
-
+                    [self zixunleibie];
+                    
                     
                 }
             }

@@ -22,6 +22,7 @@
 #import "tiaodaodenglu.h"
 #import "hongdingyi.h"
 #import "UIImageView+WebCache.h"
+#import "WarningBox.h"
 
 static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControllerCellReuseId";
 
@@ -113,6 +114,7 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
         
         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/GRtouxiang"];
         NSFileManager*fm=[NSFileManager defaultManager];
+//        image.contentMode=UIViewContentModeScaleAspectFit;
         if ([fm fileExistsAtPath:path]) {
             image.image =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/110.jpg",path]];
             
@@ -228,9 +230,9 @@ static NSString * const kYCLeftViewControllerCellReuseId = @"kYCLeftViewControll
     }
     else if (indexPath.row == 6)
     {
-        
-        YdfenxiangxiazaiViewController *fenxiangxiazai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fenxiangxiazai"];
-        [self.navigationController pushViewController:fenxiangxiazai animated:YES];
+        [WarningBox warningBoxModeText:@"此功能在未开通" andView:self.view];
+//        YdfenxiangxiazaiViewController *fenxiangxiazai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fenxiangxiazai"];
+//        [self.navigationController pushViewController:fenxiangxiazai animated:YES];
         
     }
     else if (indexPath.row == 7)

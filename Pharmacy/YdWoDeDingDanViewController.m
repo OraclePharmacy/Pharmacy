@@ -33,9 +33,13 @@
 @end
 
 @implementation YdWoDeDingDanViewController
-
+-(void)jieshou{
+    ye = 1;
+   [self jiekou];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(jieshou) name:@"111" object:nil];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     //状态栏名称
     self.navigationItem.title = @"我的订单";
@@ -221,7 +225,7 @@
     Ddzhuangtai.frame = CGRectMake(width - (width - 10)/2 - 5 , 0, (width - 10)/2, 30);
     Ddzhuangtai.textColor = [UIColor colorWithHexString:@"32be60" alpha:1];
     if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"0"]) {
-        Ddzhuangtai.text = @"订单状态:  已处理";
+        Ddzhuangtai.text = @"订单状态:  已接单";
     }
     else if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"1"]) {
         Ddzhuangtai.text = @"订单状态:  已发货";
@@ -328,10 +332,10 @@
     queren.layer.masksToBounds = YES;
     queren.titleLabel.font    = [UIFont systemFontOfSize: 13];
     [queren addTarget:self action:@selector(queren) forControlEvents:UIControlEventTouchUpInside];
-    if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"2"]) {
-        
-    }else
+    if ([[arr[indexPath.section] objectForKey:@"states"] isEqual:@"1"]) {
         [cell.contentView addSubview:queren];
+    }
+        
     
     //cell点击不变色
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -385,7 +389,8 @@
                 if ([[responseObject objectForKey:@"code"] intValue]==0000) {
                     
                     [WarningBox warningBoxModeText:@"收货成功" andView:self.view];
-                    [self.tableview reloadData];
+                    ye =1;
+                    [self jiekou];
                     
                 }
             }

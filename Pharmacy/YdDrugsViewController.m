@@ -33,7 +33,7 @@
     
     
     NSMutableDictionary*tianjiaxinxi;
-    
+    UILabel*lable,*lablee;
 }
 
 @end
@@ -53,7 +53,7 @@
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
-    arr = @[@"药 品 名 称 :",@"拼   音   码 :",@"通 用 名 称 :",@"药 品 简 介 :",@"药 品 类 别 :",@"药 品 规 格 :",@"生 产 企 业 :",@"商 品 编 号 :",@"说   明   书 :",@"包          装 :",@"批 准 文 号 :",@"是否为处方:"];
+    arr = @[@"药 品 编 号 :",@"药 品 名 称 :",@"通 用 名 称 :",@"药 品 条 码 :",@"拼   音   码 :",@"药 品 规 格 :",@"药 品 包 装 :",@"生 产 企 业 :",@"批 准 文 号 :",@"药 品 简 介 :",@"说   明   书 :",@"药 品 类 别 :",@"病 症 类 别 :",@"中 西 成 药 :",@"OTC  标 识 :"];
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
@@ -64,7 +64,7 @@
     //self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     
     _shuliang.delegate=self;
-    self.tableview.scrollEnabled =NO; //设置tableview 不能滚动
+    //    self.tableview.scrollEnabled =NO; //设置tableview 不能滚动
     self.tableview.backgroundColor= [UIColor colorWithHexString:@"f4f4f4" alpha:1];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -197,6 +197,57 @@ int popop=0;
         return 25;
     }
     else if (indexPath.section == 2){
+        if(indexPath.row == 9){
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            if (NULL == [tianjiaxinxi objectForKey:@"summary"]) {
+                s=@"暂无";
+            }else
+                s=[NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"summary"]];
+            lable=[[UILabel alloc] init];
+            UIFont *font = [UIFont systemFontOfSize:13 /*fontWithName:@"Arial" size:13*/];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-100, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lable.text=s;
+            [lable setFrame:CGRectMake(100, 10, rect.size.width, rect.size.height)];
+            
+            return lable.frame.size.height+16>25? lable.frame.size.height+16:25;
+        }else if (indexPath.row == 10){
+            //根据lable返回行高
+            NSString* s=[[NSString alloc] init];
+            if (NULL == [tianjiaxinxi objectForKey:@"instructions"]) {
+                s=@"暂无";
+            }else
+                s=[NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"instructions"]];
+            lablee=[[UILabel alloc] init];
+            UIFont *font = [UIFont systemFontOfSize:13 /*fontWithName:@"Arial" size:13*/];
+            
+            NSAttributedString *attributedText =
+            [[NSAttributedString alloc]
+             initWithString:s
+             attributes:@
+             {
+             NSFontAttributeName: font
+             }];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){width-100, CGFLOAT_MAX}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            
+            lablee.text=s;
+            [lablee setFrame:CGRectMake(100, 10, rect.size.width, rect.size.height)];
+            
+            return lablee.frame.size.height+16>25? lablee.frame.size.height+16:25;
+        }
         return 25;
     }
     return 0;
@@ -275,15 +326,17 @@ int popop=0;
         if ([[xianshiarr objectForKey:@"specProdFlag"] isEqual:@"1"]) {
             
             if (indexPath.row == 0) {
+                cell.textLabel.text = @"原          价 :";
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%.2f",[[xianshiarr  objectForKey:@"prodPrice"]floatValue]]];
+                [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+                shuju.attributedText = string;
+                
+            }
+            else if (indexPath.row == 1) {
                 cell.textLabel.text = @"特          价 :";
                 shuju.textColor = [UIColor redColor];
                 
                 shuju.text = [NSString stringWithFormat:@"¥%.2f",[[xianshiarr objectForKey:@"specPrice"]floatValue]];
-            }
-            else if (indexPath.row == 1) {
-                cell.textLabel.text = @"原          价 :";
-                
-                shuju.text = [NSString stringWithFormat:@"¥%.2f",[[xianshiarr  objectForKey:@"prodPrice"]floatValue]];
             }
         }
         else
@@ -303,85 +356,129 @@ int popop=0;
         cell.textLabel.text = arr[indexPath.row];
         
         if (indexPath.row == 0) {
-            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"name"]) {
-                shuju.text=@"";
+            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"prodCode"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"name"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prodCode"]];
+            //
+            
         }
         else if (indexPath.row == 1) {
-            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"pinyinCode"]) {
-                shuju.text=@"";
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"name"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"pinyinCode"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"name"]];
+            
+            
+            
         }
         else if (indexPath.row == 2) {
             if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"commonName"]) {
-                shuju.text=@"";
+                shuju.text=@"暂无";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"commonName"]];
         }
         else if (indexPath.row == 3) {
-            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"summary"]) {
-                shuju.text=@"";
+            //药品条码  barCode
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"barCode"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"summary"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"barCode"]];
         }
         else if (indexPath.row == 4) {
-            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"level3Name"]) {
-                shuju.text=@"";
+            //拼音码
+            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"pinyinCode"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"level3Name"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"pinyinCode"]];
+            
+            
         }
         else if (indexPath.row == 5) {
             if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"specification"]) {
-                shuju.text=@"";
+                shuju.text=@"暂无";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"specification"]];
         }
         else if (indexPath.row == 6) {
-            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"manufacturer"]) {
-                shuju.text=@"";
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"package"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"manufacturer"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"package"]];
+            
         }
         else if (indexPath.row == 7) {
-            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"prodCode"]) {
-                shuju.text=@"";
+            if (xianshiarr.count==0  || NULL == [tianjiaxinxi objectForKey:@"manufacturer"]) {
+                shuju.text=@"暂无";
             }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prodCode"]];
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"manufacturer"]];
         }
         //        else if (indexPath.row == 8) {
         //
         //            shuju.text = @"";//[NSString stringWithFormat:@"%@",[xianshiarr objectForKey:@""]];
         //        }
         else if (indexPath.row == 8) {
-            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"instructions"]) {
-                shuju.text=@"";
-            }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"instructions"]];
-        }
-        else if (indexPath.row == 9) {
-            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"package"]) {
-                shuju.text=@"";
-            }else
-                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"package"]];
-        }
-        else if (indexPath.row == 10) {
             if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"approvalNumber"]) {
-                shuju.text=@"";
+                shuju.text=@"暂无";
             }else
                 shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"approvalNumber"]];
+            
+            
+            
+        }
+        else if (indexPath.row == 9) {
+            NSString* hehe =lable.text;
+            shuju.numberOfLines=0;
+            shuju.frame = lable.frame;
+            shuju.text =hehe;
+        }
+        else if (indexPath.row == 10) {
+            //说明书
+            NSString* hehe =lablee.text;
+            shuju.numberOfLines=0;
+            shuju.frame = lablee.frame;
+            shuju.text =hehe;
         }
         else if (indexPath.row == 11) {
-            if (tianjiaxinxi.count==0 || NULL == [tianjiaxinxi objectForKey:@"prescription"]) {
-                shuju.text=@"";
+            //药品类型
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"level3Name"]) {
+                shuju.text=@"暂无";
             }else
-                if ([[tianjiaxinxi objectForKey:@"prescription"] intValue]==1) {
-                    shuju.text=@"处方药";
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"level3Name"]];
+        }
+        else if (indexPath.row == 12) {
+            //病症类型  diseaseName
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"diseaseName"]) {
+                shuju.text=@"暂无";
+            }else
+                shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"diseaseName"]];
+        }
+        else if (indexPath.row == 13) {
+            //中西成药 level1Name
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"westernMedicineFlag"]) {
+                shuju.text=@"暂无";
+            }else{
+                if ([[tianjiaxinxi objectForKey:@"westernMedicineFlag"] isEqualToString:@"0"]) {
+                    shuju.text = @"西药";
+                }else if ([[tianjiaxinxi objectForKey:@"westernMedicineFlag"] isEqualToString:@"1"]){
+                    shuju.text = @"中药";
                 }else{
-                    shuju.text=@"非处方药";
+                    shuju.text = @"中成药";
                 }
-            // shuju.text = [NSString stringWithFormat:@"%@",[tianjiaxinxi objectForKey:@"prescription"]];
+            }
+        }
+        else if (indexPath.row == 14) {
+            //OTC标识  otcFlage
+            if (tianjiaxinxi.count==0  || NULL == [tianjiaxinxi objectForKey:@"otcFlage"]) {
+                shuju.text=@"暂无";
+            }else{
+                if ([[tianjiaxinxi objectForKey:@"otcFlage"] isEqualToString:@"1"]) {
+                    shuju.text = @"是";
+                }else{
+                    shuju.text = @"否";
+                }
+                
+            }
         }
         
     }
@@ -491,7 +588,7 @@ int popop=0;
                          NSLog(@"失败%@",error);
                          [WarningBox warningBoxHide:YES andView:self.navigationController.view];
                          [WarningBox warningBoxModeText:@"网络出错，请重试" andView:self.view];
-
+                         
                          return ;
                      }
                  }];
@@ -504,14 +601,14 @@ int popop=0;
     }];
     if (conversation == nil) {
         
-        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
+//        [WarningBox warningBoxModeText:@"获取会话" andView:self.view];
         
         [JMSGConversation createSingleConversationWithUsername:[NSString stringWithFormat:@"%@",[[dataha objectForKey:@"user"] objectForKey:@"loginName"]] completionHandler:^(id resultObject, NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [WarningBox warningBoxHide:YES andView:self.view];
             
             if (error) {
-                
+                [WarningBox warningBoxModeText:@"对方聊天未开启" andView:self.view];
                 return ;
             }
             
@@ -570,48 +667,48 @@ int popop=0;
     }
     else{
         
-    if ([_shuliang.text intValue]<1) {
-        
-    }else{
-        NSMutableArray * arrr=[NSMutableArray array];
-        NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
-        NSFileManager *file=[NSFileManager defaultManager];
-        [xianshiarr setValue:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
-        
-        if([file fileExistsAtPath:countwenjian])
-        {
-            //   获取文件里的数据
-            arrr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
-            int ioi=0;
-            for (int i=0; i<arrr.count; i++) {
-                if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
-                    ioi=1;
-                    [arrr[i] setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+        if ([_shuliang.text intValue]<1) {
+            
+        }else{
+            NSMutableArray * arrr=[NSMutableArray array];
+            NSString *countwenjian=[NSString stringWithFormat:@"%@/Documents/Dingdanxinxi.plist",NSHomeDirectory()];
+            NSFileManager *file=[NSFileManager defaultManager];
+            [xianshiarr setValue:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+            
+            if([file fileExistsAtPath:countwenjian])
+            {
+                //   获取文件里的数据
+                arrr=[NSMutableArray arrayWithContentsOfFile:countwenjian];
+                int ioi=0;
+                for (int i=0; i<arrr.count; i++) {
+                    if ([[arrr[i] objectForKey:@"id"]isEqual:[xianshiarr objectForKey:@"id"]]) {
+                        ioi=1;
+                        [arrr[i] setObject:[NSString stringWithFormat:@"%@", _shuliang.text ] forKey:@"shuliang"];
+                        [arrr writeToFile:countwenjian atomically:YES];
+                        [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
+                        [self.navigationController popViewControllerAnimated:YES];
+                        
+                    }
+                }
+                if (ioi==0) {
+                    
+                    [arrr addObject:xianshiarr];
                     [arrr writeToFile:countwenjian atomically:YES];
-                    [WarningBox warningBoxModeText:@"数量修改成功" andView:self.navigationController.view];
+                    [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
                     [self.navigationController popViewControllerAnimated:YES];
                     
                 }
+                
             }
-            if (ioi==0) {
+            else{
                 
                 [arrr addObject:xianshiarr];
                 [arrr writeToFile:countwenjian atomically:YES];
                 [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
                 
             }
-            
         }
-        else{
-            
-            [arrr addObject:xianshiarr];
-            [arrr writeToFile:countwenjian atomically:YES];
-            [WarningBox warningBoxModeText:@"添加成功～" andView:self. navigationController.view];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            
-        }
-    }
     }
 }
 #pragma  mark ----textField

@@ -14,13 +14,13 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import "Color+Hex.h"
-
+#import "XLImageShow.h"
 @interface dianzixiangqing ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *hehe;
     NSDictionary *xq;
     UILabel *lablehaha;
-
+    NSMutableArray *tupianv;
     CGFloat width;
     CGFloat height;
 }
@@ -32,13 +32,19 @@
 
 @implementation dianzixiangqing
 
+-(void)viewWillAppear:(BOOL)animated{
+    tupianv = [[NSMutableArray alloc] init];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
-    
+    //状态栏名称
+    self.navigationItem.title = @"电子病历详情";
+    //设置导航栏左按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"@3x_xx_06.png"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     //解决tableview多出的白条
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableview.delegate=self;
@@ -58,8 +64,6 @@
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval a=[dat timeIntervalSince1970];
     NSString *timeSp = [NSString stringWithFormat:@"%.0f",a];
-    
-    
     //将上传对象转换为json格式字符串
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
@@ -74,8 +78,6 @@
     NSString*sign= [lianjie getSign:url :userID :jsonstring :timeSp ];
     
     NSString *url1=[NSString stringWithFormat:@"%@%@%@%@",service_host,app_name,api_url,url];
-    
-    
     //电泳借口需要上传的数据
     NSDictionary*dic=[NSDictionary dictionaryWithObjectsAndKeys:jsonstring,@"params",appkey, @"appkey",userID,@"userid",sign,@"sign",timeSp,@"timestamp", nil];
     
@@ -93,18 +95,11 @@
         @catch (NSException * e) {
             
             [WarningBox warningBoxModeText:@"请检查你的网络连接!" andView:self.view];
-            
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         [WarningBox warningBoxModeText:@"网络连接失败！" andView:self.view];
     }];
-
-    
-    
-    
 }
 #pragma mark  -----tableview 整理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -133,7 +128,7 @@
         if (indexPath.row == 1) {
             //根据lable返回行高
             NSString* s=[[NSString alloc] init];
-            s=[NSString stringWithFormat:@"%@",[xq objectForKey:@"emrDesc"] ];
+            s=[NSString stringWithFormat:@"病例描述: %@",[xq objectForKey:@"emrDesc"] ];
             lablehaha=[[UILabel alloc] init];
             UIFont *font = [UIFont fontWithName:@"Arial" size:15];
             
@@ -153,7 +148,6 @@
             [lablehaha setFrame:CGRectMake(20, 0, rect.size.width, rect.size.height)];
             
             return lablehaha.frame.size.height+1>40? lablehaha.frame.size.height+1:40;
-
         }
         return 40;
     }
@@ -167,14 +161,14 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
     }
-
+    
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
             self.biaoti = [[UILabel alloc]init];
-            self.biaoti.frame = CGRectMake(0, 0, width, 40);
+            self.biaoti.frame = CGRectMake(0, 0, width, 44);
             self.biaoti.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
-            self.biaoti.font = [UIFont systemFontOfSize:15];
+            self.biaoti.font = [UIFont systemFontOfSize:17];
             self.biaoti.textAlignment = NSTextAlignmentCenter;
             if ([xq objectForKey:@"title"] == nil) {
                 self.biaoti.text = @"";
@@ -204,14 +198,14 @@
                 cell.textLabel.text = [NSString stringWithFormat:@"%@",[xq objectForKey:@"tjsj"]];
             }
         }
-
     }
     else if (indexPath.section == 1)
     {
         UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tableview.frame.size.width, _tableview.frame.size.width)];
-        
-        [imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",hehe[indexPath.row]]] placeholderImage:[UIImage imageNamed: @"daiti.png" ]];
-        
+        imageview.contentMode=UIViewContentModeScaleAspectFit;
+        NSURL *uu=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hyb/%@",service_host,hehe[indexPath.row]]];
+        [imageview sd_setImageWithURL:uu placeholderImage:[UIImage imageNamed: @"daiti.png" ]];
+        [tupianv addObject:imageview];
         [cell addSubview:imageview];
     }
    
@@ -224,19 +218,16 @@
     return cell;
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 1) {
+        [XLImageShow showImage:tupianv[indexPath.row]];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)fanhui
+{
+    //返回上一页
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
-
 @end

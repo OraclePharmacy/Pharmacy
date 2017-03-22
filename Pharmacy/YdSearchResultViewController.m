@@ -241,17 +241,23 @@
         yuanjian.frame = CGRectMake(110, 65, width - 115, 20);
         yuanjian.font = [UIFont systemFontOfSize:12];
         yuanjian.textColor = [UIColor colorWithHexString:@"646464" alpha:1];
-        yuanjian.text = [NSString stringWithFormat:@"原价:%.2f",[[_yaopin[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
+        
         
         UILabel *tejia = [[UILabel alloc]init];
         tejia.frame = CGRectMake(110, 85, width  - 115, 20);
         tejia.font = [UIFont systemFontOfSize:12];
         if (NULL == [_yaopin[indexPath.row] objectForKey:@"specPrice"] || [[_yaopin[indexPath.row] objectForKey:@"specPrice"]floatValue] == 0) {
             tejia.textColor = [UIColor colorWithHexString:@"323232" alpha:1];
+            yuanjian.text = [NSString stringWithFormat:@"原价:%.2f",[[_yaopin[indexPath.row] objectForKey:@"prodPrice"]floatValue]];
             tejia.text = @"非特价药";
         }
         else
         {
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"原价:%.2f",[[_yaopin[indexPath.row] objectForKey:@"prodPrice"]floatValue]]];
+            [string setAttributes:@{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(0, string.length)];
+            
+            yuanjian.attributedText = string;
+
             tejia.textColor = [UIColor redColor];
             tejia.text = [NSString stringWithFormat:@"特价:%.2f",[[_yaopin[indexPath.row] objectForKey:@"specPrice"]floatValue]];
         }

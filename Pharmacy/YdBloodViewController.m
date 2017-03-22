@@ -336,8 +336,12 @@
         NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+        NSString*zhid;
+        NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+        zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+        NSString* vipPhone=[uiwe objectForKey:@"shoujihao"];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血糖",@"checkItem",xuetangstring,@"result",currentTime,@"checkTime", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血糖",@"checkItem",xuetangstring,@"result",currentTime,@"checkTime",zhid,@"officeId",vipPhone,@"vipPhone", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
@@ -419,8 +423,12 @@
         NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+        NSString*zhid;
+        NSUserDefaults*uiwe=  [NSUserDefaults standardUserDefaults];
+        zhid=[NSString stringWithFormat:@"%@",[uiwe objectForKey:@"officeid"]];
+        NSString* vipPhone=[uiwe objectForKey:@"shoujihao"];
         //出入参数：
-        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血压",@"checkItem",xueyastring,@"result",currentTime,@"checkTime", nil];
+        NSDictionary*datadic=[NSDictionary dictionaryWithObjectsAndKeys:[ddd objectForKey:@"id"],@"vipId",@"血压",@"checkItem",xueyastring,@"result",currentTime,@"checkTime",vipPhone,@"vipPhone",zhid,@"officeId", nil];
         
         NSString*jsonstring=[writer stringWithObject:datadic];
         
