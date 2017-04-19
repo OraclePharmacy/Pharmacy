@@ -13,8 +13,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
-#import "UMSocial.h"
-@interface YdbannerViewController ()<UMSocialUIDelegate,UIWebViewDelegate>
+//#import "UMSocial.h"
+@interface YdbannerViewController ()<UIWebViewDelegate>
 {
     int zan;
     NSString *dian;

@@ -13,8 +13,8 @@
 #import "hongdingyi.h"
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
-#import "UMSocial.h"
-@interface YdTextDetailsViewController ()<UIWebViewDelegate,UMSocialUIDelegate>
+//#import "UMSocial.h"
+@interface YdTextDetailsViewController ()<UIWebViewDelegate>
 {
     int zan;
     NSString *dian;
@@ -194,14 +194,14 @@
 }
 
 //实现回调方法
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的平台名
-    }
-}
+//-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+//{
+//    //根据`responseCode`得到发送结果,如果分享成功
+//    if(response.responseCode == UMSResponseCodeSuccess)
+//    {
+//        //得到分享到的平台名
+//    }
+//}
 
 
 

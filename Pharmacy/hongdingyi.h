@@ -17,10 +17,10 @@
 //其中斌
 //#define service_host @"http://192.168.1.110:8888"
 //小展
-#define service_host @"http://192.168.1.144:8080"
+//#define service_host @"http://192.168.1.144:8080"
 //外网
 //#define service_host @"http://222.171.242.146:60082"
-//#define service_host @"http://www.kanglins.com"
+#define service_host @"http://www.kanglins.com"
 /**
  *  计算机签名地址，当服务对外使用端口映射时使用，此地址是真实地址
  *

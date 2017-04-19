@@ -17,11 +17,13 @@
 #import "lianjie.h"
 #import "UIImageView+WebCache.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "UMSocial.h"
 #import "HSDownloadManager.h"
+
+#import <UShareUI/UShareUI.h>
+
 #define HSFileName(url) url.md5String
 #define HSFileFullpath(url) [HSCachesDirectory stringByAppendingPathComponent:HSFileName(url)]
-@interface YdInformationDetailsViewController ()</*NSURLSessionDownloadDelegate,*/MPMediaPickerControllerDelegate,UMSocialUIDelegate>
+@interface YdInformationDetailsViewController ()</*NSURLSessionDownloadDelegate,*/MPMediaPickerControllerDelegate>
 {
     CGFloat width;
     CGFloat height;
@@ -199,15 +201,7 @@
         }
     }
 }
-//实现回调方法
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的平台名
-    }
-}
+
 
 -(void)wangluo{
     [WarningBox warningBoxModeIndeterminate:@"加载中..." andView:self.view];
@@ -357,7 +351,6 @@ NSString*oos;
         NSLog(@"哈哈哈");
     }
 }
-
 -(void)movieFinishedCallback:(NSNotification*)notify{
     
     
@@ -400,8 +393,6 @@ NSString*oos;
                                                object:moviePlayer.moviePlayer];
     
 }
-
-
 -(void)fanhui
 {
     //返回上一页
@@ -612,15 +603,67 @@ NSString*oos;
 {
     //这里写分享功能
     
-    [UMSocialData defaultData].extConfig.title = @"接招！！";
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"507fcab25270157b37000010"
-                                      shareText:@"你是大傻子！！"
-                                     shareImage:[UIImage imageNamed:@"IMG_0797.jpg"]
-                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
-                                       delegate:self];
+//    [UMSocialData defaultData].extConfig.title = @"接招！！";
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:@"507fcab25270157b37000010"
+//                                      shareText:@"你是大傻子！！"
+//                                     shareImage:[UIImage imageNamed:@"IMG_0797.jpg"]
+//                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
+//                                       delegate:self];
+
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_Sms),@(UMSocialPlatformType_DingDing)]];
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        [self shareWebPageToPlatformType:platformType];
+    }];
+    
     
     
     
 }
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    NSString* thumbURL =  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490322357&di=41a07a09e62f75400dade1b603142199&imgtype=jpg&er=1&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7acb0a46f21fbe09359315d16f600c338644ad22.jpg";
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"收到了吧" descr:@"分享测试" thumImage:thumbURL];
+    //设置网页地址
+    shareObject.webpageUrl = @"http://www.kanglins.com";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+       // [self alertWithError:error];
+    }];
+}
+
+//实现回调方法
+//-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+//{
+//    //根据`responseCode`得到发送结果,如果分享成功
+//    if(response.responseCode == UMSResponseCodeSuccess)
+//    {
+//        //得到分享到的平台名
+//    }
+//}
+
+
 @end
