@@ -347,6 +347,7 @@
 		D74C2EA11EA601FB004A10B3 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D74C2E961EA601FB004A10B3 /* UMSocialSDKResources.bundle */; };
 		D74C2EA21EA601FB004A10B3 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74C2E971EA601FB004A10B3 /* UShareUI.framework */; };
 		D74C2EA41EA60272004A10B3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74C2EA31EA60272004A10B3 /* MessageUI.framework */; };
+		D75BDCB81EA994D200B2BAD3 /* icon_notice_time.png in Resources */ = {isa = PBXBuildFile; fileRef = D75BDCB71EA994D200B2BAD3 /* icon_notice_time.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -877,6 +878,7 @@
 		D74C2E961EA601FB004A10B3 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		D74C2E971EA601FB004A10B3 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
 		D74C2EA31EA60272004A10B3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D75BDCB71EA994D200B2BAD3 /* icon_notice_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_notice_time.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1631,6 +1633,7 @@
 		95C3722A1CB5F5780083AC90 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				D75BDCB71EA994D200B2BAD3 /* icon_notice_time.png */,
 				951B37F41D752A1A003F6756 /* daiti.png */,
 				950FFDAE1D7429ED007D0449 /* 123.png */,
 				952B2F001D713BB500EEE01B /* welcome.jpg */,
@@ -2575,6 +2578,7 @@
 				95F7F7031CFBE93C00EF30B7 /* clicklike_dark(1).png in Resources */,
 				951A41A91CFE661C00FD81D6 /* bx.png in Resources */,
 				950BC6F11D1270EF00817E4A /* 未标题-1.png in Resources */,
+				D75BDCB81EA994D200B2BAD3 /* icon_notice_time.png in Resources */,
 				95206AA61D38A838002BB3B5 /* youhuiquan(1).png in Resources */,
 				95206AA11D38A838002BB3B5 /* shezhi(1).png in Resources */,
 				95C3724F1CB5F5780083AC90 /* iconfont-erweimasaomiaotubiao@2x.png in Resources */,

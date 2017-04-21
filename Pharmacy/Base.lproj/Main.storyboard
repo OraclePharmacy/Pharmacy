@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ueS-9d-teE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ueS-9d-teE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1635,6 +1635,24 @@
             </objects>
             <point key="canvasLocation" x="1984" y="1098"/>
         </scene>
+        <!--Ydmingcheng View Controller-->
+        <scene sceneID="xzz-hy-Hzf">
+            <objects>
+                <viewController storyboardIdentifier="ymingcheng" id="E4n-k8-yGM" customClass="YdmingchengViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oqF-er-mEm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kfs-6z-w3E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Lh-fw-tAZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3pj-9y-FKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2650" y="1098"/>
+        </scene>
         <!--Ydpinglunliebiao View Controller-->
         <scene sceneID="BAH-D6-Nk4">
             <objects>
@@ -1730,24 +1748,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5o-di-X5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2624" y="403"/>
-        </scene>
-        <!--Ydmingcheng View Controller-->
-        <scene sceneID="kJI-vP-Xh1">
-            <objects>
-                <viewController storyboardIdentifier="mingcheng" hidesBottomBarWhenPushed="YES" id="lHa-ND-3gl" customClass="YdmingchengViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HZz-q8-9IW"/>
-                        <viewControllerLayoutGuide type="bottom" id="LIR-73-jB5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HWl-Fl-4dH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5yI-YA-jjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2624" y="1098"/>
         </scene>
         <!--YdB Zxiangqing View Controller-->
         <scene sceneID="dud-42-akD">

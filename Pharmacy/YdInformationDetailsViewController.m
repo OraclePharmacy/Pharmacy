@@ -627,7 +627,7 @@ NSString*oos;
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    NSString* thumbURL =  @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490322357&di=41a07a09e62f75400dade1b603142199&imgtype=jpg&er=1&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7acb0a46f21fbe09359315d16f600c338644ad22.jpg";
+    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"收到了吧" descr:@"分享测试" thumImage:thumbURL];
     //设置网页地址
     shareObject.webpageUrl = @"http://www.kanglins.com";

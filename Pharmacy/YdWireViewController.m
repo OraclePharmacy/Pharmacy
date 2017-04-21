@@ -635,7 +635,7 @@
             }
             
             //  跳页
-            YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
+            YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ymingcheng"];
             mingcheng.sanji  = chuan;
             [self.navigationController pushViewController:mingcheng animated:YES];
         }
@@ -845,7 +845,7 @@
     }
     else if (tableView == self.tableview2){
         //  跳页
-        YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
+        YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ymingcheng"];
         mingcheng.sanji = [erji[indexPath.row] objectForKey:@"name"];
         [self.navigationController pushViewController:mingcheng animated:YES];
     }
@@ -853,7 +853,7 @@
         
         [alertview removeFromSuperview];
         //  跳页
-        YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mingcheng"];
+        YdmingchengViewController *mingcheng = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ymingcheng"];
         mingcheng.sanji = [NSString stringWithFormat:@"%@",arr[indexPath.row]];
         [self.navigationController pushViewController:mingcheng animated:YES];
         

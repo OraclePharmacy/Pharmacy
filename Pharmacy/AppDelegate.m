@@ -110,18 +110,7 @@
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
-    
-//    [UMSocialData setAppKey:@"573ecc1ee0f55a834f0011fb"];
-//    
-//    //设置微信AppId、appSecret，分享url
-//    [UMSocialWechatHandler setWXAppId:@"wx3f0e5b3522c2f6b1" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.baidu.com"];
-//    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
-//    [UMSocialQQHandler setQQWithAppId:@"1104922260" appKey:@"rRqcJM43g8GFv6mE" url:@"http://www.umeng.com/social"];
-//    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"3921700954"
-//                                              secret:@"04b48b094faeb16683c32669824ebdad"
-//                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
+ 
     
 
     return YES;
@@ -147,7 +136,8 @@
 - (void)configUSharePlatforms
 {
     /* 设置微信的appKey和appSecret */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://www.kanglins.com"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx1c53e8647ce24417" appSecret:@"e5486a6a118b5343334c1683f87ebde1" redirectURL:@"http://www.kanglins.com"];//审核未完成
+    //e5486a6a118b5343334c1683f87ebde1微信appsecret 
     /*
      * 移除相应平台的分享，如微信收藏
      */
@@ -156,13 +146,13 @@
     /* 设置分享到QQ互联的appID
      * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
      */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://www.kanglins.com"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106111034"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://www.kanglins.com"];
     
     /* 设置新浪的appKey和appSecret */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"http://www.kanglins.com"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"4226703456"  appSecret:@"fa390074566d8d9aaaefa272fe2f18f3" redirectURL:@"http://www.kanglins.com"];
     
     /* 钉钉的appKey */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_DingDing appKey:@"dingoalmlnohc0wggfedpk" appSecret:nil redirectURL:@"http://www.kanglins.com"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_DingDing appKey:@"dingoalmlnohc0wggfedpk" appSecret:nil redirectURL:@"http://www.kanglins.com"];//还没有
     
    
     
